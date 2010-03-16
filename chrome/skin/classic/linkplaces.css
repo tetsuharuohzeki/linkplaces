@@ -1,0 +1,17 @@
+#linkplaces-button {
+	list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar.png");
+	-moz-image-region: rect(0px 24px 24px 0px);
+}
+toolbar[iconsize="small"] #linkplaces-button {
+	list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar-small.png");
+	-moz-image-region: rect(0px 16px 16px 0px);
+}
+
+/* Style for Windows */
+#linkplaces-panel:-moz-system-metric(windows-default-theme) {
+  background-color: #EEF3FA;
+}
+.sidebar-placesTree:-moz-system-metric(windows-default-theme) {
+  background-color: transparent;
+  border-top: none;
+}

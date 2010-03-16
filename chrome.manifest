@@ -1,0 +1,17 @@
+# Defines the package
+content  linkplaces               jar:chrome/linkplaces.jar!/content/
+skin     linkplaces  classic/1.0  jar:chrome/linkplaces.jar!/skin/classic/
+
+## modules
+resource linkplaces               modules/
+
+## Overlay
+overlay  chrome://browser/content/browser.xul  chrome://linkplaces/content/linkplaces-overlay.xul
+overlay  chrome://multipletab/content/multipletab.xul  chrome://linkplaces/content/linkplaces-multipletab.xul
+overlay  chrome://browser/content/places/placesOverlay.xul   chrome://linkplaces/content/linkplaces-places.xul
+
+## styles
+style    chrome://global/content/customizeToolbar.xul  chrome://linkplaces/skin/linkplaces.css
+
+## Locale
+locale   linkplaces   en-US       jar:chrome/linkplaces.jar!/locale/en-US/

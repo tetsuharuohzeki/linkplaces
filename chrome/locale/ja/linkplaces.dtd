@@ -1,0 +1,26 @@
+<!-- Global Entities -->
+<!ENTITY linkplaces.global                         "Link Places">
+
+<!-- Browser Overlay -->
+<!ENTITY linkplaces.overlay.label                  "&linkplaces.global;">
+<!ENTITY linkplaces.overlay.tooltip                "&linkplaces.global;をサイドバーに表示します">
+<!ENTITY linkplaces.overlay.sidebar.title          "&linkplaces.global;">
+<!ENTITY linkplaces.overlay.commandkey             "L">
+<!ENTITY linkplaces.overlay.accesskey              "L">
+<!ENTITY linkplaces.overlay.drop                   "ドロップされたリンクを&linkplaces.global;に追加します">
+
+<!-- Context menu -->
+<!ENTITY linkplaces.ctx.tab.saveThisTab            "このタブを&linkplaces.global;に追加">
+<!ENTITY linkplaces.ctx.multipletab.saveSelected   "選択したタブを&linkplaces.global;に追加">
+<!ENTITY linkplaces.ctx.content.savePage           "このページを&linkplaces.global;に追加">
+<!ENTITY linkplaces.ctx.content.saveLink           "このリンクを&linkplaces.global;に追加">
+<!ENTITY linkplaces.ctx.places.saveContext         "このリンクを&linkplaces.global;に追加">
+
+<!-- Options -->
+<!ENTITY linkplaces.option.title                   "&linkplaces.global; - オプション">
+<!ENTITY linkplaces.option.menu                    "下記のメニュー項目を表示する">
+<!ENTITY linkplaces.option.tabCtx.title            "タブコンテクストメニュー">
+<!ENTITY linkplaces.option.pref.tabctx.saveTab     "&linkplaces.ctx.tab.saveThisTab;">
+<!ENTITY linkplaces.option.contentCtx.title        "コンテンツエリアコンテクストメニュー">
+<!ENTITY linkplaces.option.pref.content.savePage   "&linkplaces.ctx.content.savePage;">
+<!ENTITY linkplaces.option.pref.content.saveLink   "&linkplaces.ctx.content.saveLink;">

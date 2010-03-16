@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://linkplaces/skin/linkplaces.css"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://linkplaces/locale/linkplaces.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+         id="linkplaces-overlay">
+
+	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-overlay.js"></script>
+
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbarbutton id="linkplaces-button"
+		               class="toolbarbutton-1 chromeclass-toolbar-additional"
+		               label="&linkplaces.overlay.label;"
+		               tooltiptext="&linkplaces.overlay.tooltip;"
+		               observes="linkplaces-sidebar"
+		               ondrop="LinkplacesOverlay.ButtonObserver.onDrop(event)"
+		               ondragover="LinkplacesOverlay.ButtonObserver.onDragOver(event)"
+		               ondragenter="LinkplacesOverlay.ButtonObserver.onDragOver(event)"
+		               ondragleave="LinkplacesOverlay.ButtonObserver.onDragLeave(event)"/>
+	</toolbarpalette>
+
+	<keyset id="mainKeyset">
+		<key id="linkplaces-key"
+		     key="&linkplaces.overlay.commandkey;"
+		     command="linkplaces-sidebar"
+		     modifiers="accel,shift"/>
+	</keyset>
+
+	<menupopup id="viewSidebarMenu">
+		<menuitem id="linkplaces-menu-sidebar"
+		          key="linkplaces-key"
+		          observes="linkplaces-sidebar"
+		          accesskey="&linkplaces.overlay.accesskey;"/>
+	</menupopup>
+
+	<broadcasterset id="mainBroadcasterSet">
+		<broadcaster id="linkplaces-sidebar"
+		             label="&linkplaces.overlay.label;"
+		             autoCheck="false"
+		             type="checkbox"
+		             group="sidebar"
+		             sidebartitle="&linkplaces.overlay.sidebar.title;"
+		             sidebarurl="chrome://linkplaces/content/linkplaces-panel.xul"
+		             oncommand="toggleSidebar('linkplaces-sidebar');"/>
+	</broadcasterset>
+
+	<popupset id="mainPopupSet">
+		<menupopup  id="linkplaces-tabCtx">
+			<menuitem id="linkplaces-tabCtx-saveTab"
+			          label="&linkplaces.ctx.tab.saveThisTab;"
+			          oncommand="LinkplacesOverlay.saveThisTab();"/>
+		</menupopup>
+	</popupset>
+
+	<popup id="contentAreaContextMenu">
+		<menuitem id="linkplaces-contentCtx-savePage"
+		          label="&linkplaces.ctx.content.savePage;"
+		          insertafter="context-bookmarkpage"
+		          oncommand="LinkplacesOverlay.saveThisPage();"/>
+		<menuitem id="linkplaces-contentCtx-saveLink"
+		          label="&linkplaces.ctx.content.saveLink;"
+		          insertafter="context-bookmarklink"
+		          oncommand="LinkplacesOverlay.saveLink();"/>
+	</popup>
+</overlay>
