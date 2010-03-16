@@ -19,6 +19,7 @@
 ]>
 
 <page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
       id="linkplaces-panel">
 
 	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-panel.js"></script>
@@ -113,7 +114,8 @@
 		<treecols>
 			<treecol id="title" flex="1" primary="true" hideheader="true"/>
 		</treecols>
-		<treechildren class="sidebar-placesTreechildren"
+		<treechildren id="linkplaces-view-children"
+		              class="sidebar-placesTreechildren"
 		              tooltip="bhTooltip"
 		              flex="1"/>
 	</tree>

@@ -66,6 +66,7 @@ var LinkplacesPanel = {
 
 	onUnLoad: function() {
 		window.removeEventListener("unload", this, false);
+		this.clearURLFromStatusBar();
 	},
 
 	// Based on "chrome://browser/content/bookmarks/sidebarUtils.js"
