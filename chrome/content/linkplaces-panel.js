@@ -160,10 +160,7 @@ var LinkplacesPanel = {
 		var obj = new Object();
 		treeBoxObj.getCellAt(aEvent.clientX, aEvent.clientY, row, col, obj);
 
-		if (row.value == -1) {
-			this.clearURLFromStatusBar();
-		}
-		else {
+		if (row.value != -1) {
 			var cell = tree.view.nodeForTreeIndex(row.value);
 			if (PlacesUtils.nodeIsURI(cell)) {
 				window.top.XULBrowserWindow.setOverLink(cell.uri, null);
@@ -171,6 +168,9 @@ var LinkplacesPanel = {
 			else {
 				this.clearURLFromStatusBar();
 			}
+		}
+		else {
+			this.clearURLFromStatusBar();
 		}
 	},
 
