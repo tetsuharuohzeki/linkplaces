@@ -164,7 +164,12 @@ var LinkplacesPanel = {
 
 	openNodeWithEvent: function (aNode, aEvent) {
 		var where = "tab";
-		PlacesUIUtils.openNodeIn(aNode, where);
+		if (this.isBookmarklet(aNode.uri)) {
+			PlacesUIUtils.openNodeIn(aNode, "current");
+		}
+		else {
+			PlacesUIUtils.openNodeIn(aNode, where);
+		}
 		LinkplacesService.removeItem(aNode.itemId);
 	},
 
@@ -196,6 +201,11 @@ var LinkplacesPanel = {
 
 	clearURLFromStatusBar: function () {
 		window.top.XULBrowserWindow.setOverLink("", null);
+	},
+
+	isBookmarklet: function (aURI) {
+		var reg = new RegExp("^javascript:");
+		return reg.test(aURI);
 	},
 
 };
