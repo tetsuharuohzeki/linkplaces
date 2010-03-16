@@ -11,7 +11,7 @@
 	<!-- Metadata -->
 	<em:name>Link Places</em:name>
 	<em:description>Sidebar to display "Unsorted Bookmarks" folder in Places, as "Temporary Links".</em:description>
-	<em:optionsURL></em:optionsURL>
+	<em:optionsURL>chrome://linkplaces/content/linkplaces-options.xul</em:optionsURL>
 	<em:iconURL>chrome://linkplaces/skin/icon.png</em:iconURL>
 	<em:creator>saneyuki</em:creator>
 
