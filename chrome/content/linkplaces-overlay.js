@@ -3,23 +3,19 @@ var LinkplacesOverlay = {
 	get service() {
 		return LinkplacesService;
 	},
-
-	//The preference domain of this add-on
-	PREF_DOMAIN: "extensions.linkplaces.",
-
-	PREF: {
-		content_savePage: null,
-		content_saveLink: null,
+/*
+	get PREF() {
+		return this.service.PREF;
 	},
 
 	_prefBranch: null,
 	get prefBranch() {
 		if (!this._prefBranch) {
-			this._prefBranch = (new Preferences(this.PREF_DOMAIN));
+			this._prefBranch = (new Preferences(this.service.PREF_DOMAIN));
 		}
 		return this._prefBranch;
 	},
-
+*/
 	handleEvent: function (aEvent) {
 		switch (aEvent.type) {
 			case "load":
@@ -33,28 +29,18 @@ var LinkplacesOverlay = {
 				break;
 		}
 	},
-
+/*
 	observe: function (aSubject, aTopic, aData) {
 		if (aTopic == "nsPref:changed") {
-			this.prefObserve(aSubject, aTopic, aData);
+			var value = this.prefBranch.get(aData);
+			switch (aData) {
+				case "tab.saveTab":
+					this.prefShowItem("linkplaces-tabCtx-saveTab", value);
+					break;
+			}
 		}
 	},
-
-	prefObserve: function (aSubject, aTopic, aData) {
-		var value = this.prefBranch.get(aData);
-		switch (aData) {
-			case "tab.saveTab":
-				this.prefShowItem("linkplaces-tabCtx-saveTab", value);
-				break;
-			case "content.savePage":
-				this.PREF.content_savePage = value;
-				break;
-			case "content.saveLink":
-				this.PREF.content_saveLink = value;
-				break;
-		}
-	},
-
+*/
 	onLoad: function () {
 		window.removeEventListener("load", this, false);
 		window.addEventListener("unload", this, false);
@@ -79,16 +65,16 @@ var LinkplacesOverlay = {
 		var contentAreaCtx = document.getElementById("contentAreaContextMenu");
 		contentAreaCtx.removeEventListener("popupshowing", this, false);
 
-		this.prefBranch.ignore("", this);
+		//this.prefBranch.ignore("", this);
 	},
-
+/*
 	initPref: function () {
 		var allPref = this.prefBranch.prefSvc.getChildList("", {});
 		allPref.forEach(function(aPref) {
 			this.observe(null, "nsPref:changed", aPref);
 		}, this);
 	},
-
+*/
 	initContext: function () {
 		this.insertAllToTabCtx("linkplaces-tabCtx",
 		                       document.getElementById("context_bookmarkAllTabs").nextSibling);
@@ -136,7 +122,7 @@ var LinkplacesOverlay = {
 		var title = aTab.linkedBrowser.contentDocument.title || aTab.getAttribute("label");
 		this.service.saveItem(URI, title, -1);
 	},
-
+/*
 	prefShowItem: function (aItemId, aPref) {
 		var item = document.getElementById(aItemId);
 		if (aPref) {
@@ -145,7 +131,7 @@ var LinkplacesOverlay = {
 			item.setAttribute("hidden", "true");
 		}
 	},
-
+*/
 	// based on bookmarksButtonObserver class and browserDragAndDrop class
 	ButtonObserver: {
 

@@ -4,18 +4,8 @@ var LinkplacesPanel = {
 		return LinkplacesService;
 	},
 
-	PREF_DOMAIN: "extensions.linkplaces.",
-
-	PREF: {
-		openLinkToWhere: null,
-	},
-
-	_prefBranch: null,
-	get prefBranch() {
-		if (!this._prefBranch) {
-			this._prefBranch = new Preferences(this.PREF_DOMAIN);
-		}
-		return this._prefBranch;
+	get PREF() {
+		return this.service.PREF;
 	},
 
 	_bkmSvc: null,
@@ -47,34 +37,6 @@ var LinkplacesPanel = {
 		}
 	},
 
-	observe: function (aSubject, aTopic, aData) {
-		if (aTopic == "nsPref:changed") {
-			this.prefObserve(aSubject, aData);
-		}
-	},
-
-	prefObserve: function (aSubject, aData) {
-		var value = this.prefBranch.get(aData);
-		switch (aData) {
-			case "openLinkToWhere":
-				switch (value) {
-					case 0:
-						this.PREF.openLinkToWhere = "current";
-						break;
-					case 1:
-						this.PREF.openLinkToWhere = "tab";
-						break;
-					case 2:
-						this.PREF.openLinkToWhere = "tabshifted";
-						break;
-					case 3:
-						this.PREF.openLinkToWhere = "window";
-						break;
-				}
-				break;
-		}
-	},
-
 	onLoad: function () {
 		window.removeEventListener("load", this, false);
 		window.addEventListener("unload", this, false);
@@ -82,9 +44,6 @@ var LinkplacesPanel = {
 		//Import JS Utils module
 		Components.utils.import("resource://linkplaces/Utils.js");
 		Components.utils.import("resource://linkplaces/linkplaces.js");
-
-		this.prefBranch.observe("", this);
-		this.initPref();
 
 		this.initPlacesView();
 	},
@@ -105,16 +64,8 @@ var LinkplacesPanel = {
 		tree.place = placesQuery;
 	},
 
-	initPref: function () {
-		var allPref = this.prefBranch.prefSvc.getChildList("", {});
-		allPref.forEach(function(aPref) {
-			this.prefObserve(null, aPref);
-		}, this);
-	},
-
 	onUnLoad: function() {
 		window.removeEventListener("unload", this, false);
-		this.prefBranch.ignore("", this);
 	},
 
 	// Based on "chrome://browser/content/bookmarks/sidebarUtils.js"

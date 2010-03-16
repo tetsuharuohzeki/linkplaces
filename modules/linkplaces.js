@@ -1,12 +1,31 @@
 var EXPORTED_SYMBOLS = ["LinkplacesService"];
 
+//Import JS Utils module
+Components.utils.import("resource://linkplaces/Utils.js");
+
 var LinkplacesService = {
+
+	PREF_DOMAIN: "extensions.linkplaces.",
+
+	PREF: {
+		openLinkToWhere: null,
+		content_savePage: null,
+		content_saveLink: null,
+	},
+
+	_prefBranch: null,
+	get prefBranch() {
+		if (!this._prefBranch) {
+			this._prefBranch = new Preferences(this.PREF_DOMAIN);
+		}
+		return this._prefBranch;
+	},
 
 	_bookmarksSvc: null,
 	get bookmarksSvc() {
 		if (!this._bookmarksSvc) {
 			this._bookmarksSvc = Components.classes["@mozilla.org/browser/nav-bookmarks-service;1"]
-			                         .getService(Components.interfaces.nsINavBookmarksService);
+			                     .getService(Components.interfaces.nsINavBookmarksService);
 		}
 		return this._bookmarksSvc;
 	},
@@ -28,12 +47,64 @@ var LinkplacesService = {
 		return this._IOService;
 	},
 
+	observe: function (aSubject, aTopic, aData) {
+		switch (aTopic) {
+			case "nsPref:changed":
+				this.prefObserve(aSubject, aData);
+				break;
+			case "quit-application-granted":
+				this.destroy();
+				break;
+		}
+	},
+
+	prefObserve: function (aSubject, aData) {
+		var value = this.prefBranch.get(aData);
+		switch (aData) {
+			case "openLinkToWhere":
+				switch (value) {
+					case 0:
+						this.PREF.openLinkToWhere = "current";
+						break;
+					case 1:
+						this.PREF.openLinkToWhere = "tab";
+						break;
+					case 2:
+						this.PREF.openLinkToWhere = "tabshifted";
+						break;
+					case 3:
+						this.PREF.openLinkToWhere = "window";
+						break;
+				}
+				break;
+			case "content.savePage":
+				this.PREF.content_savePage = value;
+				break;
+			case "content.saveLink":
+				this.PREF.content_saveLink = value;
+				break;
+		}
+	},
+
+	initPref: function () {
+		var allPref = this.prefBranch.prefSvc.getChildList("", {});
+		allPref.forEach(function(aPref) {
+			this.prefObserve(null, aPref);
+		}, this);
+	},
+
 	init: function () {
-		//Import JS Utils module
-		Components.utils.import("resource://linkplaces/Utils.js");
+		Observers.add("quit-application-granted", this);
+
+		//Set Preferences Observer
+		this.prefBranch.observe("", this);
+		//set user preferences
+		this.initPref();
 	},
 
 	destroy: function () {
+		Observers.remove("quit-application-granted", this);
+		this.prefBranch.ignore("", this);
 	},
 
 	saveItem: function (aURI, aTitle, aIndex) {
