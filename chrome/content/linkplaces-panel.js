@@ -1,5 +1,9 @@
 var LinkplacesPanel = {
 
+	get service() {
+		return LinkplacesService;
+	},
+
 	PREF_DOMAIN: "extensions.linkplaces.",
 
 	PREF: {
@@ -117,7 +121,7 @@ var LinkplacesPanel = {
 	handleTreeKeyPress: function (aEvent) {
 		if (aEvent.keyCode == KeyEvent.DOM_VK_RETURN) {
 			PlacesUIUtils.openNodeIn(aTree.selectedNode, "tab");
-			LinkplacesService.removeItem(aTree.selectedNode.itemId);
+			this.service.removeItem(aTree.selectedNode.itemId);
 		}
 	},
 
@@ -172,7 +176,7 @@ var LinkplacesPanel = {
 			if (openInTabs) {
 				treeBoxObj.view.selection.select(row.value);
 				PlacesUIUtils.openContainerNodeInTabs(tree.selectedNode, aEvent);
-				LinkplacesService.removeItem(tree.selectedNode.itemId);
+				this.service.removeItem(tree.selectedNode.itemId);
 			}
 			else if (!isContainer) {
 				treeBoxObj.view.selection.select(row.value);
@@ -190,7 +194,7 @@ var LinkplacesPanel = {
 		else {
 			PlacesUIUtils.openNodeIn(aNode, where);
 		}
-		LinkplacesService.removeItem(aNode.itemId);
+		this.service.removeItem(aNode.itemId);
 	},
 
 	handleTreeMouseMove: function (aEvent) {
