@@ -137,13 +137,35 @@ var LinkplacesPanel = {
 			}
 		}
 
+		var modifKey = aEvent.ctrlKey || aEvent.shiftKey;
 		var isContainer = treeBoxObj.view.isContainer(row.value);
+		var openInTabs = isContainer &&// Is the node container?
+		                 // Is event is middle-click, or left-click with ctrlkey?
+		                 (aEvent.button == 1 || (aEvent.button == 0 && modifKey)) &&
+		                 //Does the node have child URI node?
+		                 PlacesUtils.hasChildURIs(treeBoxObj.view.nodeForTreeIndex(row.value));
 
-		if (!mouseInGutter && !isContainer && aEvent.originalTarget.localName == "treechildren") {
-			treeBoxObj.view.selection.select(row.value);
-			PlacesUIUtils.openNodeIn(tree.selectedNode, "tab");
-			LinkplacesService.removeItem(tree.selectedNode.itemId);
+		if (aEvent.button == 0 && isContainer && !openInTabs) {
+			treeBoxObj.view.toggleOpenState(row.value);
+			return;
 		}
+		else if (!mouseInGutter && aEvent.originalTarget.localName == "treechildren") {
+			if (openInTabs) {
+				treeBoxObj.view.selection.select(row.value);
+				PlacesUIUtils.openContainerNodeInTabs(tree.selectedNode, aEvent);
+				LinkplacesService.removeItem(tree.selectedNode.itemId);
+			}
+			else if (!isContainer) {
+				treeBoxObj.view.selection.select(row.value);
+				this.openNodeWithEvent(tree.selectedNode, aEvent);
+			}
+		}
+	},
+
+	openNodeWithEvent: function (aNode, aEvent) {
+		var where = "tab";
+		PlacesUIUtils.openNodeIn(aNode, where);
+		LinkplacesService.removeItem(aNode.itemId);
 	},
 
 	handleTreeMouseMove: function (aEvent) {
@@ -153,7 +175,9 @@ var LinkplacesPanel = {
 
 		var tree = aEvent.target.parentNode;
 		var treeBoxObj = tree.treeBoxObject;
-		var row = (new Object()), col = (new Object()), obj = (new Object());
+		var row = new Object();
+		var col = new Object();
+		var obj = new Object();
 		treeBoxObj.getCellAt(aEvent.clientX, aEvent.clientY, row, col, obj);
 
 		if (row.value == -1) {

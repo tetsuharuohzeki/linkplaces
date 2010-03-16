@@ -46,8 +46,6 @@ var LinkplacesService = {
 	},
 
 	removeItem: function (aItemId) {
-		var uri = this.bookmarksSvc.getBookmarkURI(aItemId);
-
 		this.bookmarksSvc.removeItem(aItemId);
 	},
 };
