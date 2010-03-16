@@ -1,0 +1,1 @@
+pref("extensions.linkplaces.openLinkToWhere", 1);

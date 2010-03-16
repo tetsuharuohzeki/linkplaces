@@ -12,4 +12,27 @@
 	<prefpane id="linkplaces-optionPane-general"
 	          label="&linkplaces.option.pane.general;">
 
+		<preferences>
+			<preference id="extensions.linkplaces.openLinkToWhere"
+			            name="extensions.linkplaces.openLinkToWhere"
+			            type="int"/>
+		</preferences>
+
+		<groupbox id="linkplaces-option-openLinkToWhere">
+			<caption label="&linkplaces.option.openLinkToWhere.label;"/>
+			<radiogroup preference="extensions.linkplaces.openLinkToWhere"
+			            orient="vertical">
+				<radio value="0"
+				       label="&linkplaces.option.openLinkToWhere.current;"/>
+				<radio value="1"
+				       label="&linkplaces.option.openLinkToWhere.tab;"/>
+				<radio value="2"
+				       label="&linkplaces.option.openLinkToWhere.tabshifted;"/>
+				<radio value="3"
+				       label="&linkplaces.option.openLinkToWhere.window;"/>
+			</radiogroup>
+		</groupbox>
+
+	</prefpane>
+
 </prefwindow>

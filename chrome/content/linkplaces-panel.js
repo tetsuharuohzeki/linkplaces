@@ -1,9 +1,9 @@
 var LinkplacesPanel = {
 
-	PREF_DOMAIN: "",
+	PREF_DOMAIN: "extensions.linkplaces.",
 
 	PREF: {
-		
+		openLinkToWhere: null,
 	},
 
 	_prefBranch: null,
@@ -50,7 +50,25 @@ var LinkplacesPanel = {
 	},
 
 	prefObserve: function (aSubject, aData) {
-		
+		var value = this.prefBranch.get(aData);
+		switch (aData) {
+			case "openLinkToWhere":
+				switch (value) {
+					case 0:
+						this.PREF.openLinkToWhere = "current";
+						break;
+					case 1:
+						this.PREF.openLinkToWhere = "tab";
+						break;
+					case 2:
+						this.PREF.openLinkToWhere = "tabshifted";
+						break;
+					case 3:
+						this.PREF.openLinkToWhere = "window";
+						break;
+				}
+				break;
+		}
 	},
 
 	onLoad: function () {
@@ -61,8 +79,8 @@ var LinkplacesPanel = {
 		Components.utils.import("resource://linkplaces/Utils.js");
 		Components.utils.import("resource://linkplaces/linkplaces.js");
 
-		//this.prefBranch.observe("", this);
-		//this.initPref();
+		this.prefBranch.observe("", this);
+		this.initPref();
 
 		this.initPlacesView();
 	},
@@ -92,6 +110,7 @@ var LinkplacesPanel = {
 
 	onUnLoad: function() {
 		window.removeEventListener("unload", this, false);
+		this.prefBranch.ignore("", this);
 	},
 
 	// Based on "chrome://browser/content/bookmarks/sidebarUtils.js"
@@ -163,7 +182,8 @@ var LinkplacesPanel = {
 	},
 
 	openNodeWithEvent: function (aNode, aEvent) {
-		var where = "tab";
+		var where = this.PREF.openLinkToWhere;
+
 		if (this.isBookmarklet(aNode.uri)) {
 			PlacesUIUtils.openNodeIn(aNode, "current");
 		}
