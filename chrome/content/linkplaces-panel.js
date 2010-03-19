@@ -70,13 +70,6 @@ var LinkplacesPanel = {
 	},
 
 	// Based on "chrome://browser/content/bookmarks/sidebarUtils.js"
-	handleTreeKeyPress: function (aEvent) {
-		if (aEvent.keyCode == KeyEvent.DOM_VK_RETURN) {
-			PlacesUIUtils.openNodeIn(aTree.selectedNode, "tab");
-			this.service.removeItem(aTree.selectedNode.itemId);
-		}
-	},
-
 	handleTreeClick: function (aEvent, aGutterSelect) {
 		// When right button click
 		if (aEvent.button == 2) {
@@ -137,16 +130,13 @@ var LinkplacesPanel = {
 		}
 	},
 
-	openNodeWithEvent: function (aNode, aEvent) {
-		var where = this.PREF.openLinkToWhere;
-
-		if (this.isBookmarklet(aNode.uri)) {
-			PlacesUIUtils.openNodeIn(aNode, "current");
+	handleTreeKeyPress: function (aEvent) {
+		if (aEvent.keyCode == KeyEvent.DOM_VK_RETURN) {
+			var node = aEvent.target.selectedNode;
+			if (PlacesUtils.nodeIsURI(node)) {
+				this.openNodeWithEvent(node, aEvent);
+			}
 		}
-		else {
-			PlacesUIUtils.openNodeIn(aNode, where);
-		}
-		this.service.removeItem(aNode.itemId);
 	},
 
 	handleTreeMouseMove: function (aEvent) {
@@ -177,6 +167,18 @@ var LinkplacesPanel = {
 
 	clearURLFromStatusBar: function () {
 		window.top.XULBrowserWindow.setOverLink("", null);
+	},
+
+	openNodeWithEvent: function (aNode, aEvent) {
+		var where = this.PREF.openLinkToWhere;
+
+		if (this.isBookmarklet(aNode.uri)) {
+			PlacesUIUtils.openNodeIn(aNode, "current");
+		}
+		else {
+			PlacesUIUtils.openNodeIn(aNode, where);
+		}
+		this.service.removeItem(aNode.itemId);
 	},
 
 	isBookmarklet: function (aURI) {
