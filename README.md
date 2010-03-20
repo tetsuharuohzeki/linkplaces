@@ -11,24 +11,24 @@ Features
 * You can share your unread items by the add-ons sharing bookmarks.
 * This adds some menu items to context menus.
   * to Tab context menu.
-  * This inserts menu which adds selection items to LinkPlaces, to Multiple Tab Handler's tab selection context-menu.
+    * This inserts menu which adds selection items to LinkPlaces, to Multiple Tab Handler's tab selection context-menu.
   * to Content-area context menu.
     * on Page.
     * on Link.
-
-Requirement
------------
-
- * [Mozilla Firefox > 3.6](http://www.mozilla.com/firefox/)
 
 License
 -------
 
 This project source code is licensed under a disjunctive tri-license giving you the choice of one of the three following sets of free software/open source licensing terms.
 
- *[MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
- *[GPL 2.0](http://www.gnu.org/licenses/gpl-2.0.html)
- *[LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
+ * [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
+ * [GPL 2.0](http://www.gnu.org/licenses/gpl-2.0.html)
+ * [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
+
+Requirement
+-----------
+
+ * [Mozilla Firefox > 3.6](http://www.mozilla.com/firefox/)
 
 Get This Add-ons
 ----------------
