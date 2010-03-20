@@ -1,5 +1,5 @@
 <!-- Global Entities -->
-<!ENTITY linkplaces.global                            "Link Places">
+<!ENTITY linkplaces.global                            "LinkPlaces">
 
 <!-- Browser Overlay -->
 <!ENTITY linkplaces.overlay.label                     "&linkplaces.global;">

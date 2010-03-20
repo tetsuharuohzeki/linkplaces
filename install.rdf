@@ -9,7 +9,7 @@
 	<em:type>2</em:type>
 
 	<!-- Metadata -->
-	<em:name>Link Places</em:name>
+	<em:name>LinkPlaces</em:name>
 	<em:description>Sidebar to display "Unsorted Bookmarks" folder in Places, as "Temporary Links".</em:description>
 	<em:optionsURL>chrome://linkplaces/content/linkplaces-options.xul</em:optionsURL>
 	<em:iconURL>chrome://linkplaces/skin/icon.png</em:iconURL>
