@@ -8,24 +8,6 @@ var LinkplacesPanel = {
 		return this.service.PREF;
 	},
 
-	_bkmSvc: null,
-	get bkmSvc() {
-		if (!this._bkmSvc) {
-			this._bkmSvc = Components.classes["@mozilla.org/browser/nav-bookmarks-service;1"]
-			               .getService(Components.interfaces.nsINavBookmarksService);
-		}
-		return this._bkmSvc;
-	},
-
-	_histSvc: null,
-	get histSvc() {
-		if (!this._histSvc) {
-			this._histSvc = Components.classes["@mozilla.org/browser/nav-history-service;1"]
-			                .getService(Ci.nsINavHistoryService);
-		}
-		return this._histSvc;
-	},
-
 	handleEvent: function (aEvent) {
 		switch (aEvent.type) {
 			case "load":
@@ -49,16 +31,16 @@ var LinkplacesPanel = {
 	},
 
 	initPlacesView: function() {
-		var query = this.histSvc.getNewQuery();
-		var unfiledBookmarksFolder = this.bkmSvc.unfiledBookmarksFolder;
+		var query = this.service.historySvc.getNewQuery();
+		var unfiledBookmarksFolder = this.service.unfiledBookmarksFolder;
 		query.setFolders([unfiledBookmarksFolder], 1);
 		//query.searchTerms = "";
 		query.onlyBookmarked = true;
 
-		var queryOpts = this.histSvc.getNewQueryOptions();
+		var queryOpts = this.service.historySvc.getNewQueryOptions();
 		queryOpts.queryType = queryOpts.QUERY_TYPE_BOOKMARKS;//queryType=1
 
-		var placesQuery = this.histSvc.queriesToQueryString([query], 1, queryOpts);
+		var placesQuery = this.service.historySvc.queriesToQueryString([query], 1, queryOpts);
 
 		var tree = document.getElementById("linkplaces-view");
 		tree.place = placesQuery;

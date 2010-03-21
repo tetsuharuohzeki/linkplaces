@@ -44,6 +44,15 @@ var LinkplacesService = {
 		return this._unfiledBookmarksFolder;
 	},
 
+	_historySvc: null,
+	get historySvc() {
+		if (!this._historySvc) {
+			this._historySvc = Components.classes["@mozilla.org/browser/nav-history-service;1"]
+			                   .getService(Components.interfaces.nsINavHistoryService);
+		}
+		return this._historySvc;
+	},
+
 	_IOService: null,
 	get IOService() {
 		if (!this._IOService) {
