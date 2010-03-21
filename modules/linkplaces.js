@@ -9,8 +9,6 @@ var LinkplacesService = {
 
 	PREF: {
 		openLinkToWhere: null,
-		content_savePage: null,
-		content_saveLink: null,
 	},
 
 	_prefBranch: null,
@@ -84,12 +82,6 @@ var LinkplacesService = {
 						this.PREF.openLinkToWhere = "window";
 						break;
 				}
-				break;
-			case "content.savePage":
-				this.PREF.content_savePage = value;
-				break;
-			case "content.saveLink":
-				this.PREF.content_saveLink = value;
 				break;
 		}
 	},

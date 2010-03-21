@@ -20,7 +20,7 @@
 <!-- Options -->
 <!ENTITY linkplaces.option.title                      "&linkplaces.global; - Options">
 <!ENTITY linkplaces.option.pane.general               "General">
-<!ENTITY linkplaces.option.openLinkToWhere.label      "Open the Link to">
+<!ENTITY linkplaces.option.openLinkToWhere.caption    "Open the Link to">
 <!ENTITY linkplaces.option.openLinkToWhere.current    "Current Tab">
 <!ENTITY linkplaces.option.openLinkToWhere.tab        "New Tab">
 <!ENTITY linkplaces.option.openLinkToWhere.tabshifted "New Background Tab">

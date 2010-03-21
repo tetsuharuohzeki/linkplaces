@@ -22,7 +22,7 @@
 		</preferences>
 
 		<groupbox id="linkplaces-option-openLinkToWhere">
-			<caption label="&linkplaces.option.openLinkToWhere.label;"/>
+			<caption label="&linkplaces.option.openLinkToWhere.caption;"/>
 			<radiogroup preference="extensions.linkplaces.openLinkToWhere"
 			            orient="vertical">
 				<radio value="0"

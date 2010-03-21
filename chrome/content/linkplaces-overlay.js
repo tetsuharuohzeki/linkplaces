@@ -3,19 +3,7 @@ var LinkplacesOverlay = {
 	get service() {
 		return LinkplacesService;
 	},
-/*
-	get PREF() {
-		return this.service.PREF;
-	},
 
-	_prefBranch: null,
-	get prefBranch() {
-		if (!this._prefBranch) {
-			this._prefBranch = (new Preferences(this.service.PREF_DOMAIN));
-		}
-		return this._prefBranch;
-	},
-*/
 	handleEvent: function (aEvent) {
 		switch (aEvent.type) {
 			case "load":
@@ -29,18 +17,7 @@ var LinkplacesOverlay = {
 				break;
 		}
 	},
-/*
-	observe: function (aSubject, aTopic, aData) {
-		if (aTopic == "nsPref:changed") {
-			var value = this.prefBranch.get(aData);
-			switch (aData) {
-				case "tab.saveTab":
-					this.prefShowItem("linkplaces-tabCtx-saveTab", value);
-					break;
-			}
-		}
-	},
-*/
+
 	onLoad: function () {
 		window.removeEventListener("load", this, false);
 		window.addEventListener("unload", this, false);
@@ -48,12 +25,6 @@ var LinkplacesOverlay = {
 		//Import JS Utils module
 		Components.utils.import("resource://linkplaces/Utils.js");
 		Components.utils.import("resource://linkplaces/linkplaces.js");
-
-		//Set Preferences Observer
-		//this.prefBranch.observe("", this);
-
-		//set user preferences
-		//this.initPref();
 
 		//set Context menu
 		this.initContext();
@@ -65,16 +36,8 @@ var LinkplacesOverlay = {
 		var contentAreaCtx = document.getElementById("contentAreaContextMenu");
 		contentAreaCtx.removeEventListener("popupshowing", this, false);
 
-		//this.prefBranch.ignore("", this);
 	},
-/*
-	initPref: function () {
-		var allPref = this.prefBranch.prefSvc.getChildList("", {});
-		allPref.forEach(function(aPref) {
-			this.observe(null, "nsPref:changed", aPref);
-		}, this);
-	},
-*/
+
 	initContext: function () {
 		this.insertAllToTabCtx("linkplaces-tabCtx",
 		                       document.getElementById("context_bookmarkAllTabs").nextSibling);
@@ -122,24 +85,18 @@ var LinkplacesOverlay = {
 		var title = aTab.linkedBrowser.contentDocument.title || aTab.getAttribute("label");
 		this.service.saveItem(URI, title, -1);
 	},
-/*
-	prefShowItem: function (aItemId, aPref) {
-		var item = document.getElementById(aItemId);
-		if (aPref) {
-			item.removeAttribute("hidden");
-		} else {
-			item.setAttribute("hidden", "true");
-		}
-	},
-*/
+
 	// based on bookmarksButtonObserver class and browserDragAndDrop class
 	ButtonObserver: {
+
+		get service() {
+			return LinkplacesOverlay.service;
+		},
 
 		_statusText: null,
 		get statusText() {
 			if (!this._statusText) {
-				this._statusText = (new StringBundle("chrome://linkplaces/locale/linkplaces.properties"))
-				                   .get("linkplaces.overlay.drop");
+				this._statusText = this.service.strings.get("linkplaces.overlay.drop");
 			}
 			return this._statusText;
 		},
@@ -147,7 +104,7 @@ var LinkplacesOverlay = {
 		onDrop: function (aEvent) {
 			var [uri, title] = browserDragAndDrop.getDragURLFromDataTransfer(aEvent.dataTransfer);
 			try {
-				LinkplacesOverlay.service.saveItem(uri, title, -1);
+				this.service.saveItem(uri, title, -1);
 			}
 			catch(ex) {}
 		},
