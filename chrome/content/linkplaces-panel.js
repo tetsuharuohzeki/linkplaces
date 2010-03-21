@@ -170,7 +170,7 @@ var LinkplacesPanel = {
 	},
 
 	openNodeWithEvent: function (aNode, aEvent) {
-		var where = this.PREF.openLinkToWhere;
+		var where = this.whereToOpenLink(aEvent);
 
 		if (this.isBookmarklet(aNode.uri)) {
 			PlacesUIUtils.openNodeIn(aNode, "current");
@@ -178,7 +178,18 @@ var LinkplacesPanel = {
 		else {
 			PlacesUIUtils.openNodeIn(aNode, where);
 		}
+
 		this.service.removeItem(aNode.itemId);
+	},
+
+	whereToOpenLink: function (aEvent) {
+		var where = whereToOpenLink(aEvent);
+		switch (where) {
+			case "current":
+				return this.PREF.openLinkToWhere;
+			default: 
+				return where;
+		}
 	},
 
 	isBookmarklet: function (aURI) {
