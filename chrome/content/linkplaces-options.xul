@@ -16,9 +16,6 @@
 			<preference id="extensions.linkplaces.openLinkToWhere"
 			            name="extensions.linkplaces.openLinkToWhere"
 			            type="int"/>
-			<preference id="extensions.linkplaces.askDeleteAll"
-			            name="extensions.linkplaces.askDeleteAll"
-			            type="bool"/>
 		</preferences>
 
 		<groupbox id="linkplaces-option-openLinkToWhere">
@@ -34,12 +31,6 @@
 				<radio value="3"
 				       label="&linkplaces.option.openLinkToWhere.window;"/>
 			</radiogroup>
-		</groupbox>
-
-		<groupbox id="linkplaces-option-dialogs">
-			<caption label="&linkplaces.option.dialogs.caption;"/>
-			<checkbox label="&linkplaces.option.dialogs.deleteAll.checkbox;"
-			          preference="extensions.linkplaces.askDeleteAll"/>
 		</groupbox>
 
 	</prefpane>

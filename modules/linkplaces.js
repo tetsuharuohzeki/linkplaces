@@ -120,8 +120,5 @@ var LinkplacesService = {
 		this.bookmarksSvc.removeItem(aItemId);
 	},
 
-	removeItemAll: function() {
-		this.bookmarksSvc.removeFolderChildren(this.unfiledBookmarksFolder);
-	},
 };
 LinkplacesService.init();

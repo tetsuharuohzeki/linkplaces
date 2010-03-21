@@ -197,35 +197,5 @@ var LinkplacesPanel = {
 		return reg.test(aURI);
 	},
 
-	deleteItemAll: function () {
-		if (this.confirmDeleteAll()) {
-			this.service.removeItemAll();
-		}
-	},
-
-	confirmDeleteAll: function () {
-		var askDeleteAll = this.service.prefBranch.get("askDeleteAll");
-		if (!askDeleteAll) {
-			return true;
-		}
-
-		var title = this.service.strings.get("linkplaces.prompt.deleteAll.title");
-		var message = this.service.strings.get("linkplaces.prompt.deleteAll.message");
-		var showAgain = this.service.strings.get("linkplaces.prompt.deleteAll.showAgain");
-
-		var prompt = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-		             .getService(Components.interfaces.nsIPromptService);
-		var checkbox = { value: false };
-		var deleteAll =  prompt.confirmCheck(window, title, message, showAgain, checkbox);
-
-		if (deleteAll) {
-			this.service.prefBranch.set("askDeleteAll", !checkbox.value);
-			return true;
-		}
-		else {
-			return false;
-		}
-	},
-
 };
 window.addEventListener("load", LinkplacesPanel, false);

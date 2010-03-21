@@ -15,7 +15,6 @@
 <!ENTITY linkplaces.ctx.content.savePage              "Add This Page to &linkplaces.global;">
 <!ENTITY linkplaces.ctx.content.saveLink              "Add This Link to &linkplaces.global;">
 <!ENTITY linkplaces.ctx.places.saveContext            "Add This Link to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.panel.deleteAll               "Delete All">
 
 <!-- Options -->
 <!ENTITY linkplaces.option.title                      "&linkplaces.global; - Options">
@@ -25,5 +24,3 @@
 <!ENTITY linkplaces.option.openLinkToWhere.tab        "New Tab">
 <!ENTITY linkplaces.option.openLinkToWhere.tabshifted "New Background Tab">
 <!ENTITY linkplaces.option.openLinkToWhere.window     "New Window">
-<!ENTITY linkplaces.option.dialogs.caption            "Warning Messages">
-<!ENTITY linkplaces.option.dialogs.deleteAll.checkbox "Show a warning when deleting all items">
