@@ -15,6 +15,7 @@
 <!ENTITY linkplaces.ctx.content.savePage              "Add This Page to &linkplaces.global;">
 <!ENTITY linkplaces.ctx.content.saveLink              "Add This Link to &linkplaces.global;">
 <!ENTITY linkplaces.ctx.places.saveContext            "Add This Link to &linkplaces.global;">
+<!ENTITY linkplaces.ctx.panel.deleteAll               "Delete All">
 
 <!-- Options -->
 <!ENTITY linkplaces.option.title                      "&linkplaces.global; - Options">

@@ -26,6 +26,9 @@
 
 	<commandset id="placesCommands"/>
 	<commandset id="editMenuCommands"/>
+	<commandset id="linkplaces-commands">
+		<command id="linkplacesCmd-deleteAll" oncommand="LinkplacesPanel.deleteItemAll();"/>
+	</commandset>
 
 	<popup id="linkplaces-panelCtx"
 	       onpopupshowing="return PlacesUIUtils.getViewForNode(document.popupNode).buildContextMenu(this);">
@@ -90,6 +93,12 @@
 		          accesskey="&deleteCmd.accesskey;"
 		          closemenu="single"
 		          selection="bookmark|tagChild|folder|query|dynamiccontainer|separator|host"/>
+		<menuitem id="linkplaces-panelCtx-deleteAll"
+		          command="linkplacesCmd-deleteAll"
+		          label="&linkplaces.ctx.panel.deleteAll;"
+		          closemenu="single"
+		          accesskey=""
+		          selection="any"/>
 		<menuseparator id="placesContext_deleteSeparator"/>
 		<menuitem id="placesContext_show:info"
 		          command="placesCmd_show:info"

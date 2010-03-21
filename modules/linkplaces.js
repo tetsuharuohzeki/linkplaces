@@ -21,6 +21,14 @@ var LinkplacesService = {
 		return this._prefBranch;
 	},
 
+	_strings: null,
+	get strings() {
+		if (!this._strings) {
+			this._strings = new StringBundle("chrome://linkplaces/locale/linkplaces.properties");
+		}
+		return this._strings;
+	},
+
 	_bookmarksSvc: null,
 	get bookmarksSvc() {
 		if (!this._bookmarksSvc) {
@@ -118,6 +126,10 @@ var LinkplacesService = {
 
 	removeItem: function (aItemId) {
 		this.bookmarksSvc.removeItem(aItemId);
+	},
+
+	removeItemAll: function() {
+		this.bookmarksSvc.removeFolderChildren(this.unfiledBookmarksFolder);
 	},
 };
 LinkplacesService.init();
