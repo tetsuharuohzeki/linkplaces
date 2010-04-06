@@ -1,4 +1,4 @@
-# Defines the package
+## Defines the package
 content  linkplaces               jar:chrome/linkplaces.jar!/content/
 skin     linkplaces  classic/1.0  jar:chrome/linkplaces.jar!/skin/classic/
 
