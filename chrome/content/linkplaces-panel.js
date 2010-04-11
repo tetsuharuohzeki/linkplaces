@@ -16,12 +16,16 @@ var LinkplacesPanel = {
 			case "unload":
 				this.onUnLoad();
 				break;
+			case "SidebarFocused":
+				this.onSidebarFocused();
+				break;
 		}
 	},
 
 	onLoad: function () {
 		window.removeEventListener("load", this, false);
 		window.addEventListener("unload", this, false);
+		window.addEventListener("SidebarFocused", this, false);
 
 		//Import JS Utils module
 		Components.utils.import("resource://linkplaces/Utils.js");
@@ -48,7 +52,12 @@ var LinkplacesPanel = {
 
 	onUnLoad: function() {
 		window.removeEventListener("unload", this, false);
+		window.removeEventListener("SidebarFocused", this, false);
 		this.clearURLFromStatusBar();
+	},
+
+	onSidebarFocused: function () {
+		document.getElementById("linkplaces-view").focus();
 	},
 
 	// Based on "chrome://browser/content/bookmarks/sidebarUtils.js"
