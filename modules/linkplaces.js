@@ -1,7 +1,7 @@
 var EXPORTED_SYMBOLS = ["LinkplacesService"];
 
 //Import JS Utils module
-Components.utils.import("resource://linkplaces/Utils.js");
+Components.utils.import("resource://linkplaces/UtilsForExtension.js");
 
 var LinkplacesService = {
 
@@ -96,7 +96,7 @@ var LinkplacesService = {
 	},
 
 	initPref: function () {
-		var allPref = this.prefBranch.prefSvc.getChildList("", {});
+		var allPref = this.prefBranch.getChildList("");
 		allPref.forEach(function(aPref) {
 			this.prefObserve(null, aPref);
 		}, this);
