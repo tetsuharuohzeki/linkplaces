@@ -95,7 +95,7 @@ var LinkplacesPanel = {
 			}
 		}
 
-		var modifKey = aEvent.ctrlKey || aEvent.shiftKey;
+		var modifKey = (aEvent.ctrlKey || aEvent.metaKey) || aEvent.shiftKey;
 		var isContainer = treeBoxObj.view.isContainer(row.value);
 		var openInTabs = isContainer &&// Is the node container?
 		                 // Is event is middle-click, or left-click with ctrlkey?
