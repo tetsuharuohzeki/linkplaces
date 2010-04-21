@@ -1,16 +1,16 @@
 /**
- * Utilties
+ * Utilities for Extension
  * The following codes are based on <https://wiki.mozilla.org/Labs/JS_Modules>.
  * @License     MPL 1.1/GPL 2.0/LGPL 2.1
  * @developer   saneyuki
- * @version     20100223.1
+ * @version     20100421.1
  */
 
 var EXPORTED_SYMBOLS = ["Preferences", "Observers", "StringBundle", "Extensions"];
 
 /**
  * Preferences Utils
- * @version 0.1.20100223.1
+ * @version 0.1.20100421.1
  */
 function Preferences(aPrefBranch) {
 	if (aPrefBranch) {
@@ -33,15 +33,14 @@ Preferences.prototype = {
 	},
 
 	get: function (aPrefName) {
-		var Ci = Components.interfaces;
 		switch (this.prefSvc.getPrefType(aPrefName)) {
-			case Ci.nsIPrefBranch.PREF_STRING:
+			case Components.interfaces.nsIPrefBranch.PREF_STRING:
 				return this.prefSvc.getComplexValue(aPrefName, Ci.nsISupportsString).data;
 
-			case Ci.nsIPrefBranch.PREF_INT:
+			case Components.interfaces.nsIPrefBranch.PREF_INT:
 				return this.prefSvc.getIntPref(aPrefName);
 
-			case Ci.nsIPrefBranch.PREF_BOOL:
+			case Components.interfaces.nsIPrefBranch.PREF_BOOL:
 				return this.prefSvc.getBoolPref(aPrefName);
 		}
 	},
@@ -76,6 +75,10 @@ Preferences.prototype = {
 		this.prefSvc.resetBranch(aPrefBranch);
 	},
 
+	getChildList: function(aPrefBranch) {
+		return this.prefSvc.getChildList(aPrefBranch, {});
+	},
+
 	observe: function (aPrefBranch, aObsObj) {
 		this.prefSvc.addObserver(aPrefBranch, aObsObj, false);
 	},
@@ -88,21 +91,21 @@ Preferences.__proto__ = Preferences.prototype;
 
 /**
  * Observers Utils
- * @version 0.1.20100212.1
+ * @version 0.1.20100421.1
  */
 var Observers = {
-	_observers: null,
-	get observers() {
-		if (!this._observers) {
-			this._observers = Components.classes["@mozilla.org/observer-service;1"]
-			                  .getService(Components.interfaces.nsIObserverService);
+	_observerSvc: null,
+	get observerSvc() {
+		if (!this._observerSvc) {
+			this._observerSvc = Components.classes["@mozilla.org/observer-service;1"]
+			                    .getService(Components.interfaces.nsIObserverService);
 		}
-		return this._observers;
+		return this._observerSvc;
 	},
 
 	add: function (aTopic, aObsObj) {
 		var obs = new Observer(aTopic, aObsObj);
-		this.observers.addObserver(obs, aTopic, false);
+		this.observerSvc.addObserver(obs, aTopic, false);
 		ObserverCache.push(obs);
 	},
 
@@ -110,14 +113,14 @@ var Observers = {
 		var observerArray = ObserverCache.filter(function(aElm){ return (aElm.topic == aTopic &&
 		                                                                 aElm.obsObj == aObsObj); });
 		observerArray.forEach(function(aElem){
-			this.observers.removeObserver(aElem, aTopic);
+			this.observerSvc.removeObserver(aElem, aTopic);
 			ObserverCache.splice(ObserverCache.indexOf(aElem), 1);
 		}, this);
 	},
 
 	notify: function (aTopic, aSubject, aData) {
 		var subject = { wrappedJSObject: aSubject };
-		this.observers.notifyObservers(subject, aTopic, aData);
+		this.observerSvc.notifyObservers(subject, aTopic, aData);
 	},
 };
 
@@ -140,7 +143,7 @@ Observer.prototype = {
 
 /**
  * StringBundle Utils
- * @version 0.1.20100211.1
+ * @version 0.1.20100421.1
  */
 function StringBundle(aURI) {
 	this.propertiesURI = aURI;
@@ -149,22 +152,22 @@ StringBundle.prototype = {
 
 	propertiesURI: null,
 
-	_bundle: null,
-	get bundle() {
-		if (!this._bundle) {
-			this._bundle = Components.classes["@mozilla.org/intl/stringbundle;1"]
-			               .getService(Components.interfaces.nsIStringBundleService)
-			               .createBundle(this.propertiesURI);
+	_strBundleSvc: null,
+	get strBundleSvc() {
+		if (!this._strBundleSvc) {
+			this._strBundleSvc = Components.classes["@mozilla.org/intl/stringbundle;1"]
+			                     .getService(Components.interfaces.nsIStringBundleService)
+			                     .createBundle(this.propertiesURI);
 		}
-		return this._bundle;
+		return this._strBundleSvc;
 	},
 
 	get: function (aStrKey, aPramsArray) {
 		if (aPramsArray) {
-			return this.bundle.formatStringFromName(aStrKey, aPramsArray, aPramsArray.length);
+			return this.strBundleSvc.formatStringFromName(aStrKey, aPramsArray, aPramsArray.length);
 		}
 		else {
-			return this.bundle.GetStringFromName(aStrKey);
+			return this.strBundleSvc.GetStringFromName(aStrKey);
 		}
 	},
 };
@@ -172,21 +175,21 @@ StringBundle.prototype = {
 
 /**
  * Console Utils
- * @version 0.1.20100211.1
+ * @version 0.1.20100421.1
  */
 var Console = {
 
-	_console: null,
-	get console() {
-		if (!this._console) {
-			this._console = Components.classes["@mozilla.org/consoleservice;1"]
-			                .getService(Components.interfaces.nsIConsoleService);
+	_consoleSvc: null,
+	get consoleSvc() {
+		if (!this._consoleSvc) {
+			this._consoleSvc = Components.classes["@mozilla.org/consoleservice;1"]
+			                   .getService(Components.interfaces.nsIConsoleService);
 		}
-		return this._console;
+		return this._consoleSvc;
 	},
 
 	log: function (aMsg) {
-		this.console.logStringMessage(aMsg);
+		this.consoleSvc.logStringMessage(aMsg);
 	},
 };
 
