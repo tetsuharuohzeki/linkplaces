@@ -23,7 +23,6 @@ var LinkplacesOverlay = {
 		window.addEventListener("unload", this, false);
 
 		//Import JS Utils module
-		Components.utils.import("resource://linkplaces/Utils.js");
 		Components.utils.import("resource://linkplaces/linkplaces.js");
 
 		//set Context menu

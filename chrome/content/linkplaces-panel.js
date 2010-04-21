@@ -28,7 +28,6 @@ var LinkplacesPanel = {
 		window.addEventListener("SidebarFocused", this, false);
 
 		//Import JS Utils module
-		Components.utils.import("resource://linkplaces/Utils.js");
 		Components.utils.import("resource://linkplaces/linkplaces.js");
 
 		this.initPlacesView();
