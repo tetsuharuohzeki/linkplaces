@@ -36,12 +36,12 @@ var LinkplacesService = {
 		return this._bookmarksSvc;
 	},
 
-	_linkPlacesFolder: null,
-	get linkPlacesFolder() {
-		if (!this._linkPlacesFolder) {
-			this._linkPlacesFolder = this.bookmarksSvc.unfiledBookmarksFolder;
+	_linkplacesFolder: null,
+	get linkplacesFolder() {
+		if (!this._linkplacesFolder) {
+			this._linkplacesFolder = this.bookmarksSvc.unfiledBookmarksFolder;
 		}
-		return this._linkPlacesFolder;
+		return this._linkplacesFolder;
 	},
 
 	_historySvc: null,
@@ -121,7 +121,7 @@ var LinkplacesService = {
 		if (!aIndex) {
 			aIndex = -1;
 		}
-		this.bookmarksSvc.insertBookmark(this.linkPlacesFolder, uri,
+		this.bookmarksSvc.insertBookmark(this.linkplacesFolder, uri,
 		                                 aIndex, aTitle);
 	},
 

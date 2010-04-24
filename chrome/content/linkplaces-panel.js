@@ -35,8 +35,8 @@ var LinkplacesPanel = {
 
 	initPlacesView: function() {
 		var query = this.service.historySvc.getNewQuery();
-		var linkPlacesFolder = this.service.linkPlacesFolder;
-		query.setFolders([linkPlacesFolder], 1);
+		var linkplacesFolder = this.service.linkplacesFolder;
+		query.setFolders([linkplacesFolder], 1);
 		//query.searchTerms = "";
 		query.onlyBookmarked = true;
 
