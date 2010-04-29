@@ -1,7 +1,7 @@
 var LinkplacesOverlay = {
 
 	get service() {
-		return LinkplacesService;
+		return this.LinkplacesService;
 	},
 
 	handleEvent: function (aEvent) {
@@ -23,7 +23,7 @@ var LinkplacesOverlay = {
 		window.addEventListener("unload", this, false);
 
 		//Import JS Utils module
-		Components.utils.import("resource://linkplaces/linkplaces.js");
+		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 
 		//set Context menu
 		this.initContext();
