@@ -11,10 +11,10 @@ Features
 * You can share your unread items by the add-ons sharing bookmarks.
 * This adds some menu items to context menus.
   * to Tab context menu.
-    * This inserts menu which adds selection items to LinkPlaces, to Multiple Tab Handler's tab selection context-menu.
   * to Content-area context menu.
     * on Page.
     * on Link.
+* This Add-on works together with [Multiple Tab Handler](https://addons.mozilla.org/ja/firefox/addon/4838 "Multiple Tab Handler :: Add-ons for Firefox").
 
 License
 -------
