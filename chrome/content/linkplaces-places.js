@@ -12,14 +12,14 @@ var LinkplacesPlaces = {
 		}
 	},
 
-	onLoad: function Linkpad_onLoad() {
+	onLoad: function () {
 		window.removeEventListener("load", this, false);
 
 		// Import JavaScript Compornent code module
 		Components.utils.import("resource://linkplaces/linkplaces.js");
 	},
 
-	saveContext: function Linkpad_saveContext() {
+	saveContext: function () {
 		var node = PlacesUIUtils.getViewForNode(document.popupNode).selectedNode;
 
 		if (node && PlacesUtils.nodeIsURI(node)) {
