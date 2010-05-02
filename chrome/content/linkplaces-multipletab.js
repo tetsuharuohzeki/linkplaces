@@ -15,7 +15,8 @@ var LinkplacesMultipleTab = {
 	},
 
 	deleteItemFromTabCtx: function () {
-		var tabContextMenu = document.getAnonymousElementByAttribute(gBrowser, "anonid", "tabContextMenu");
+		var tabContextMenu = document.getAnonymousElementByAttribute(gBrowser, "anonid", "tabContextMenu") ||
+		                     gBrowser.tabContextMenu;
 		var menuitem = document.getElementById("linkplaces-tabCtx-saveTab");
 		tabContextMenu.removeChild(menuitem);
 	},

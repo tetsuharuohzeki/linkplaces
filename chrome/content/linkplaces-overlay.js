@@ -54,7 +54,8 @@ var LinkplacesOverlay = {
 	},
 
 	insertToTabCtxBefore: function (aElem, aReference) {
-		var tabContextMenu = document.getAnonymousElementByAttribute(gBrowser, "anonid", "tabContextMenu");
+		var tabContextMenu = document.getAnonymousElementByAttribute(gBrowser, "anonid", "tabContextMenu") ||
+		                     gBrowser.tabContextMenu;
 		tabContextMenu.insertBefore(aElem, aReference);
 	},
 
