@@ -41,25 +41,8 @@ var LinkplacesBrowserOverlay = {
 	},
 
 	initContext: function () {
-		this.insertAllToTabCtx("linkplaces-tabCtx",
-		                       document.getElementById("context_bookmarkAllTabs").nextSibling);
-
 		var contentAreaCtx = document.getElementById("contentAreaContextMenu");
 		contentAreaCtx.addEventListener("popupshowing", this, false);
-	},
-
-	insertAllToTabCtx: function (aId, aReference) {
-		var menuParent = document.getElementById(aId);
-		while (menuParent.hasChildNodes()) {
-			var node = menuParent.firstChild;
-			this.insertToTabCtxBefore(node, aReference);
-		}
-	},
-
-	insertToTabCtxBefore: function (aElem, aReference) {
-		var tabContextMenu = document.getAnonymousElementByAttribute(gBrowser, "anonid", "tabContextMenu") ||
-		                     gBrowser.tabContextMenu;
-		tabContextMenu.insertBefore(aElem, aReference);
 	},
 
 	handleContentCtxPopup: function () {

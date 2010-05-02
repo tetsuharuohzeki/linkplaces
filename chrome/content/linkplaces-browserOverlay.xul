@@ -47,13 +47,12 @@
 		             oncommand="toggleSidebar('linkplaces-sidebar');"/>
 	</broadcasterset>
 
-	<popupset id="mainPopupSet">
-		<menupopup  id="linkplaces-tabCtx">
-			<menuitem id="linkplaces-tabCtx-saveTab"
-			          label="&linkplaces.ctx.tab.saveThisTab;"
-			          oncommand="LinkplacesBrowserOverlay.saveThisTab();"/>
-		</menupopup>
-	</popupset>
+	 <menupopup id="tabContextMenu">
+		<menuitem id="linkplaces-tabCtx-saveTab"
+		          label="&linkplaces.ctx.tab.saveThisTab;"
+		          insertafter="context_bookmarkAllTabs"
+		          oncommand="LinkplacesBrowserOverlay.saveThisTab();"/>
+	 </menupopup>
 
 	<menupopup id="contentAreaContextMenu">
 		<menuitem id="linkplaces-contentCtx-savePage"
