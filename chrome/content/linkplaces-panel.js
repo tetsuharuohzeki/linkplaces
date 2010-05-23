@@ -8,6 +8,8 @@ var LinkplacesPanel = {
 		return this.service.PREF;
 	},
 
+	placesController: null,
+
 	handleEvent: function (aEvent) {
 		switch (aEvent.type) {
 			case "load":
@@ -30,6 +32,7 @@ var LinkplacesPanel = {
 		//Import JS Utils module
 		Components.utils.import("resource://linkplaces/linkplaces.js");
 
+		this.overrideCommands();
 		this.initPlacesView();
 	},
 
@@ -49,10 +52,39 @@ var LinkplacesPanel = {
 		tree.place = placesQuery;
 	},
 
+	overrideCommands: function () {
+		var tree = document.getElementById("linkplaces-view");
+		this.placesController = new PlacesController(tree);
+		this.placesController.linkplaces = this;
+		this.placesController._doCommand = this.placesController.doCommand;
+		this.placesController.doCommand = function (aCmd) {
+			switch (aCmd) {
+				case "placesCmd_open":
+					PlacesUIUtils.openNodeIn(this._view.selectedNode, "current");
+					this.linkplaces.service.removeItem(this._view.selectedNode.itemId);
+					break;
+				case "placesCmd_open:window":
+					PlacesUIUtils.openNodeIn(this._view.selectedNode, "window");
+					this.linkplaces.service.removeItem(this._view.selectedNode.itemId);
+					break;
+				case "placesCmd_open:tab":
+					PlacesUIUtils.openNodeIn(this._view.selectedNode, "tab");
+					this.linkplaces.service.removeItem(this._view.selectedNode.itemId);
+					break;
+				default:
+					this._doCommand(aCmd);
+					break;
+			}
+		};
+		tree.controllers.appendController(this.placesController);
+	},
+
 	onUnLoad: function() {
 		window.removeEventListener("unload", this, false);
 		window.removeEventListener("SidebarFocused", this, false);
 		this.clearURLFromStatusBar();
+		document.getElementById("linkplaces-view").controllers.removeController(this.placesController);
+		//delete this.placesController;
 	},
 
 	onSidebarFocused: function () {
@@ -185,6 +217,11 @@ var LinkplacesPanel = {
 	isBookmarklet: function (aURI) {
 		var reg = new RegExp("^javascript:");
 		return reg.test(aURI);
+	},
+
+	openSelectionInTabs: function(aController, aEvent) {
+		aController.openSelectionInTabs(aEvent);
+		aController.remove("Remove Selection");
 	},
 
 };

@@ -49,14 +49,15 @@
 		          selectiontype="single"
 		          selection="link"/>
 		<menuitem id="placesContext_openContainer:tabs"
-		          oncommand="PlacesUIUtils.getViewForNode(document.popupNode).controller.openSelectionInTabs(event);"
-		          onclick="checkForMiddleClick(this, event);"
+		          oncommand="LinkplacesPanel.openSelectionInTabs(PlacesUIUtils.getViewForNode(document.popupNode).controller, event);"
+		          onclick="checkForMiddleClic
+		          k(this, event);"
 		          label="&cmd.open_all_in_tabs.label;"
 		          accesskey="&cmd.open_all_in_tabs.accesskey;"
 		          selectiontype="single"
 		          selection="folder|host|query"/>
 		<menuitem id="placesContext_openLinks:tabs"
-		          oncommand="PlacesUIUtils.getViewForNode(document.popupNode).controller.openSelectionInTabs(event);"
+		          oncommand="LinkplacesPanel.openSelectionInTabs(PlacesUIUtils.getViewForNode(document.popupNode).controller, event);"
 		          onclick="checkForMiddleClick(this, event);"
 		          label="&cmd.open_all_in_tabs.label;"
 		          accesskey="&cmd.open_all_in_tabs.accesskey;"
