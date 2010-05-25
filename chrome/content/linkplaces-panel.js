@@ -221,7 +221,9 @@ var LinkplacesPanel = {
 
 	openSelectionInTabs: function(aController, aEvent) {
 		aController.openSelectionInTabs(aEvent);
-		aController.remove("Remove Selection");
+		if (aController && aController.isCommandEnabled("placesCmd_delete")) {
+			aController.doCommand("placesCmd_delete");
+		}
 	},
 
 };
