@@ -1,5 +1,13 @@
 var LinkplacesPanel = {
 
+	_treeView: null,
+	get treeView() {
+		if (!this._treeView) {
+			this._treeView = document.getElementById("linkplaces-view");
+		}
+		return this._treeView;
+	},
+
 	get service() {
 		return LinkplacesService;
 	},
@@ -48,13 +56,11 @@ var LinkplacesPanel = {
 
 		var placesQuery = this.service.historySvc.queriesToQueryString([query], 1, queryOpts);
 
-		var tree = document.getElementById("linkplaces-view");
-		tree.place = placesQuery;
+		this.treeView.place = placesQuery;
 	},
 
 	overrideCommands: function () {
-		var tree = document.getElementById("linkplaces-view");
-		this.placesController = new PlacesController(tree);
+		this.placesController = new PlacesController(this.treeView);
 		this.placesController.linkplaces = this;
 		this.placesController._doCommand = this.placesController.doCommand;
 		this.placesController.doCommand = function (aCmd) {
@@ -76,19 +82,19 @@ var LinkplacesPanel = {
 					break;
 			}
 		};
-		tree.controllers.appendController(this.placesController);
+		this.treeView.controllers.appendController(this.placesController);
 	},
 
 	onUnLoad: function() {
 		window.removeEventListener("unload", this, false);
 		window.removeEventListener("SidebarFocused", this, false);
 		this.clearURLFromStatusBar();
-		document.getElementById("linkplaces-view").controllers.removeController(this.placesController);
+		this.treeView.controllers.removeController(this.placesController);
 		//delete this.placesController;
 	},
 
 	onSidebarFocused: function () {
-		document.getElementById("linkplaces-view").focus();
+		this.treeView.focus();
 	},
 
 	// Based on "chrome://browser/content/bookmarks/sidebarUtils.js"
