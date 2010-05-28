@@ -1,5 +1,8 @@
 var LinkplacesOverlay = {
 
+	ElmId_contentCtxSavePage: "linkplaces-contentCtx-savePage",
+	ElmId_contentCtxSaveLink: "linkplaces-contentCtx-saveLink",
+
 	get service() {
 		return this.LinkplacesService;
 	},
@@ -60,10 +63,10 @@ var LinkplacesOverlay = {
 	},
 
 	ctrlContentCtxMenu: function () {
-		gContextMenu.showItem("linkplaces-contentCtx-savePage",
+		gContextMenu.showItem(this.ElmId_contentCtxSavePage,
 		                      !(gContextMenu.isContentSelected || gContextMenu.onTextInput || gContextMenu.onLink ||
 		                        gContextMenu.onImage || gContextMenu.onVideo || gContextMenu.onAudio));
-		gContextMenu.showItem("linkplaces-contentCtx-saveLink",
+		gContextMenu.showItem(this.ElmId_contentCtxSaveLink,
 		                      gContextMenu.onLink && !gContextMenu.onMailtoLink);
 	},
 
