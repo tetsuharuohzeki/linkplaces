@@ -1,5 +1,7 @@
 var LinkplacesMultipleTab = {
 
+	ElmId_tabCtxSaveTab: "linkplaces-tabCtx-saveTab",
+
 	handleEvent: function (aEvent) {
 		switch (aEvent.type) {
 			case "load":
@@ -17,7 +19,7 @@ var LinkplacesMultipleTab = {
 	deleteItemFromTabCtx: function () {
 		var tabContextMenu = document.getAnonymousElementByAttribute(gBrowser, "anonid", "tabContextMenu") ||
 		                     gBrowser.tabContextMenu;
-		var menuitem = document.getElementById("linkplaces-tabCtx-saveTab");
+		var menuitem = document.getElementById(this.ElmId_tabCtxSaveTab);
 		tabContextMenu.removeChild(menuitem);
 	},
 

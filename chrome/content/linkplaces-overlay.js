@@ -1,7 +1,10 @@
 var LinkplacesOverlay = {
 
+	ElmId_contentCtxSavePage: "linkplaces-contentCtx-savePage",
+	ElmId_contentCtxSaveLink: "linkplaces-contentCtx-saveLink",
+
 	get service() {
-		return LinkplacesService;
+		return this.LinkplacesService;
 	},
 
 	handleEvent: function (aEvent) {
@@ -23,7 +26,7 @@ var LinkplacesOverlay = {
 		window.addEventListener("unload", this, false);
 
 		//Import JS Utils module
-		Components.utils.import("resource://linkplaces/linkplaces.js");
+		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 
 		//set Context menu
 		this.initContext();
@@ -60,10 +63,10 @@ var LinkplacesOverlay = {
 	},
 
 	ctrlContentCtxMenu: function () {
-		gContextMenu.showItem("linkplaces-contentCtx-savePage",
+		gContextMenu.showItem(this.ElmId_contentCtxSavePage,
 		                      !(gContextMenu.isContentSelected || gContextMenu.onTextInput || gContextMenu.onLink ||
 		                        gContextMenu.onImage || gContextMenu.onVideo || gContextMenu.onAudio));
-		gContextMenu.showItem("linkplaces-contentCtx-saveLink",
+		gContextMenu.showItem(this.ElmId_contentCtxSaveLink,
 		                      gContextMenu.onLink && !gContextMenu.onMailtoLink);
 	},
 

@@ -9,7 +9,7 @@ var LinkplacesPanel = {
 	},
 
 	get service() {
-		return LinkplacesService;
+		return this.LinkplacesService;
 	},
 
 	get PREF() {
@@ -38,7 +38,7 @@ var LinkplacesPanel = {
 		window.addEventListener("SidebarFocused", this, false);
 
 		//Import JS Utils module
-		Components.utils.import("resource://linkplaces/linkplaces.js");
+		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 
 		this.overrideCommands();
 		this.initPlacesView();
@@ -47,9 +47,11 @@ var LinkplacesPanel = {
 	onUnLoad: function() {
 		window.removeEventListener("unload", this, false);
 		window.removeEventListener("SidebarFocused", this, false);
-		this.clearURLFromStatusBar();
+
 		this.treeView.controllers.removeController(this.placesController);
 		//delete this.placesController;
+
+		this.clearURLFromStatusBar();
 	},
 
 	onSidebarFocused: function () {

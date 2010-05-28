@@ -1,7 +1,7 @@
 var LinkplacesPlaces = {
 
 	get service() {
-		return LinkplacesService;
+		return this.LinkplacesService;
 	},
 
 	handleEvent: function (aEvent) {
@@ -16,7 +16,7 @@ var LinkplacesPlaces = {
 		window.removeEventListener("load", this, false);
 
 		// Import JavaScript Compornent code module
-		Components.utils.import("resource://linkplaces/linkplaces.js");
+		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 	},
 
 	saveContext: function () {
