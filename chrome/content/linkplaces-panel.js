@@ -44,6 +44,18 @@ var LinkplacesPanel = {
 		this.initPlacesView();
 	},
 
+	onUnLoad: function() {
+		window.removeEventListener("unload", this, false);
+		window.removeEventListener("SidebarFocused", this, false);
+		this.clearURLFromStatusBar();
+		this.treeView.controllers.removeController(this.placesController);
+		//delete this.placesController;
+	},
+
+	onSidebarFocused: function () {
+		this.treeView.focus();
+	},
+
 	initPlacesView: function() {
 		var query = this.service.historySvc.getNewQuery();
 		var linkplacesFolder = this.service.linkplacesFolder;
@@ -83,18 +95,6 @@ var LinkplacesPanel = {
 			}
 		};
 		this.treeView.controllers.appendController(this.placesController);
-	},
-
-	onUnLoad: function() {
-		window.removeEventListener("unload", this, false);
-		window.removeEventListener("SidebarFocused", this, false);
-		this.clearURLFromStatusBar();
-		this.treeView.controllers.removeController(this.placesController);
-		//delete this.placesController;
-	},
-
-	onSidebarFocused: function () {
-		this.treeView.focus();
 	},
 
 	// Based on "chrome://browser/content/bookmarks/sidebarUtils.js"
