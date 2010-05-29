@@ -16,8 +16,6 @@ var LinkplacesPanel = {
 		return this.service.PREF;
 	},
 
-	placesController: null,//Set new PlacesController to override default.
-
 	handleEvent: function (aEvent) {
 		switch (aEvent.type) {
 			case "load":
@@ -51,7 +49,7 @@ var LinkplacesPanel = {
 		this.treeView.controllers.removeController(this.placesController);
 		//delete this.placesController;
 
-		this.clearURLFromStatusBar();
+		this.clearURIFromStatusBar();
 	},
 
 	onSidebarFocused: function () {
@@ -73,6 +71,7 @@ var LinkplacesPanel = {
 		this.treeView.place = placesQuery;
 	},
 
+	placesController: null,//Set new PlacesController to override default.
 	overrideCommands: function () {
 		this.placesController = new PlacesController(this.treeView);
 		this.placesController.linkplaces = this;
@@ -187,15 +186,15 @@ var LinkplacesPanel = {
 				window.top.XULBrowserWindow.setOverLink(cell.uri, null);
 			}
 			else {
-				this.clearURLFromStatusBar();
+				this.clearURIFromStatusBar();
 			}
 		}
 		else {
-			this.clearURLFromStatusBar();
+			this.clearURIFromStatusBar();
 		}
 	},
 
-	clearURLFromStatusBar: function () {
+	clearURIFromStatusBar: function () {
 		window.top.XULBrowserWindow.setOverLink("", null);
 	},
 
