@@ -16,7 +16,7 @@ var LinkplacesPanel = {
 		return this.service.PREF;
 	},
 
-	placesController: null,
+	placesController: null,//Set new PlacesController to override default.
 
 	handleEvent: function (aEvent) {
 		switch (aEvent.type) {
