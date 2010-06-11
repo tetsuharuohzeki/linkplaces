@@ -1,28 +1,28 @@
 <!-- Global Entities -->
-<!ENTITY linkplaces.global                            "LinkPlaces">
+<!ENTITY linkplaces.global                             "LinkPlaces">
 
 <!-- Browser Overlay -->
-<!ENTITY linkplaces.overlay.label                     "&linkplaces.global;">
-<!ENTITY linkplaces.overlay.tooltip                   "Display &linkplaces.global;">
-<!ENTITY linkplaces.overlay.sidebar.title             "&linkplaces.global;">
-<!ENTITY linkplaces.overlay.commandkey                "L">
-<!ENTITY linkplaces.overlay.accesskey                 "L">
-<!ENTITY linkplaces.overlay.drop                      "Drop a link to add it to &linkplaces.global;">
+<!ENTITY linkplaces.overlay.label                      "&linkplaces.global;">
+<!ENTITY linkplaces.overlay.tooltip                    "Display &linkplaces.global;">
+<!ENTITY linkplaces.overlay.sidebar.title              "&linkplaces.global;">
+<!ENTITY linkplaces.overlay.commandkey                 "L">
+<!ENTITY linkplaces.overlay.accesskey                  "L">
+<!ENTITY linkplaces.overlay.drop                       "Drop a link to add it to &linkplaces.global;">
 
 <!-- Context menu -->
-<!ENTITY linkplaces.ctx.tab.saveThisTab               "Add This Tab to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.multipletab.saveSelected      "Add Selected Tabs to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.content.savePage              "Add This Page to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.content.saveLink              "Add This Link to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.places.saveContext            "Add This Link to &linkplaces.global;">
+<!ENTITY linkplaces.ctx.tab.saveThisTab                "Add This Tab to &linkplaces.global;">
+<!ENTITY linkplaces.ctx.multipletab.saveSelected       "Add Selected Tabs to &linkplaces.global;">
+<!ENTITY linkplaces.ctx.content.savePage               "Add This Page to &linkplaces.global;">
+<!ENTITY linkplaces.ctx.content.saveLink               "Add This Link to &linkplaces.global;">
+<!ENTITY linkplaces.ctx.places.saveContext             "Add This Link to &linkplaces.global;">
 
 <!-- Options -->
-<!ENTITY linkplaces.option.title                      "&linkplaces.global; - Options">
-<!ENTITY linkplaces.option.pane.general               "General">
-<!ENTITY linkplaces.option.openLinkToWhere.caption    "When click, Open the Item to">
-<!ENTITY linkplaces.option.openLinkToWhere.current    "Current Tab">
-<!ENTITY linkplaces.option.openLinkToWhere.tab        "New Tab">
-<!ENTITY linkplaces.option.openLinkToWhere.tabshifted "New Background Tab">
-<!ENTITY linkplaces.option.openLinkToWhere.window     "New Window">
-<!ENTITY linkplaces.option.sidebar.caption            "Sidebar">
-<!ENTITY linkplaces.option.focusSidebarWhenItemsOpened "Focus Sidebar When Item Opened">
+<!ENTITY linkplaces.option.title                       "&linkplaces.global; - Options">
+<!ENTITY linkplaces.option.pane.general                "General">
+<!ENTITY linkplaces.option.openLinkToWhere.caption     "When click, Open the item to">
+<!ENTITY linkplaces.option.openLinkToWhere.current     "Current Tab">
+<!ENTITY linkplaces.option.openLinkToWhere.tab         "New Tab">
+<!ENTITY linkplaces.option.openLinkToWhere.tabshifted  "New Background Tab">
+<!ENTITY linkplaces.option.openLinkToWhere.window      "New Window">
+<!ENTITY linkplaces.option.sidebar.caption             "Focus when item opened">
+<!ENTITY linkplaces.option.focusSidebarWhenItemsOpened "Focus sidebar when item opened">
