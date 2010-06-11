@@ -73,22 +73,22 @@ var LinkplacesPanel = {
 
 	placesController: null,//Set new PlacesController to override default.
 	overrideCommands: function () {
+		var self = this;
 		this.placesController = new PlacesController(this.treeView);
-		this.placesController.linkplaces = this;
 		this.placesController._doCommand = this.placesController.doCommand;
 		this.placesController.doCommand = function (aCmd) {
 			switch (aCmd) {
 				case "placesCmd_open":
 					PlacesUIUtils.openNodeIn(this._view.selectedNode, "current");
-					this.linkplaces.service.removeItem(this._view.selectedNode.itemId);
+					self.service.removeItem(this._view.selectedNode.itemId);
 					break;
 				case "placesCmd_open:window":
 					PlacesUIUtils.openNodeIn(this._view.selectedNode, "window");
-					this.linkplaces.service.removeItem(this._view.selectedNode.itemId);
+					self.service.removeItem(this._view.selectedNode.itemId);
 					break;
 				case "placesCmd_open:tab":
 					PlacesUIUtils.openNodeIn(this._view.selectedNode, "tab");
-					this.linkplaces.service.removeItem(this._view.selectedNode.itemId);
+					self.service.removeItem(this._view.selectedNode.itemId);
 					break;
 				default:
 					this._doCommand(aCmd);
