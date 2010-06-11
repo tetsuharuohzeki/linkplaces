@@ -1,2 +1,2 @@
 pref("extensions.linkplaces.openLinkToWhere", 1);
-pref("extensions.linkplaces.focusSidebarWhenItemOpened", true);
+pref("extensions.linkplaces.focusSidebarWhenItemsOpened", true);

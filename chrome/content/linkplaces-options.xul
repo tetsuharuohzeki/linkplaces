@@ -16,8 +16,8 @@
 			<preference id="extensions.linkplaces.openLinkToWhere"
 			            name="extensions.linkplaces.openLinkToWhere"
 			            type="int"/>
-			<preference id="extensions.linkplaces.focusSidebarWhenItemOpened"
-			            name="extensions.linkplaces.focusSidebarWhenItemOpened"
+			<preference id="extensions.linkplaces.focusSidebarWhenItemsOpened"
+			            name="extensions.linkplaces.focusSidebarWhenItemsOpened"
 			            type="bool"/>
 		</preferences>
 
@@ -38,9 +38,9 @@
 
 		<groupbox id="linkplaces-option-sidebar">
 			<caption label="&linkplaces.option.sidebar.caption;"/>
-			<checkbox id="linkplaces-option-focusSidebarWhenItemOpened"
-			          label="&linkplaces.option.focusSidebarWhenItemOpened;"
-			          preference="extensions.linkplaces.focusSidebarWhenItemOpened"/>
+			<checkbox id="linkplaces-option-focusSidebarWhenItemsOpened"
+			          label="&linkplaces.option.focusSidebarWhenItemsOpened;"
+			          preference="extensions.linkplaces.focusSidebarWhenItemsOpened"/>
 		</groupbox>
 
 	</prefpane>

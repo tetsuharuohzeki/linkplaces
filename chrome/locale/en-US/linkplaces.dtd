@@ -25,4 +25,4 @@
 <!ENTITY linkplaces.option.openLinkToWhere.tabshifted "New Background Tab">
 <!ENTITY linkplaces.option.openLinkToWhere.window     "New Window">
 <!ENTITY linkplaces.option.sidebar.caption            "Sidebar">
-<!ENTITY linkplaces.option.focusSidebarWhenItemOpened "Focus Sidebar When Item Opened">
+<!ENTITY linkplaces.option.focusSidebarWhenItemsOpened "Focus Sidebar When Item Opened">
