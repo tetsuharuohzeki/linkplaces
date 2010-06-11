@@ -244,6 +244,11 @@ var LinkplacesPanel = {
 
 	openSelectionInTabs: function(aController, aEvent) {
 		aController.openSelectionInTabs(aEvent);
+
+		if (this.PREF.focusSidebarWhenItemOpened) {
+			this.onSidebarFocused();
+		}
+
 		if (aController && aController.isCommandEnabled("placesCmd_delete")) {
 			aController.doCommand("placesCmd_delete");
 		}
