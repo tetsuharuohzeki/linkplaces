@@ -80,14 +80,17 @@ var LinkplacesPanel = {
 			switch (aCmd) {
 				case "placesCmd_open":
 					PlacesUIUtils.openNodeIn(this._view.selectedNode, "current");
+					self.focusSidebarWhenItemsOpened();
 					self.service.removeItem(this._view.selectedNode.itemId);
 					break;
 				case "placesCmd_open:window":
 					PlacesUIUtils.openNodeIn(this._view.selectedNode, "window");
+					self.focusSidebarWhenItemsOpened();
 					self.service.removeItem(this._view.selectedNode.itemId);
 					break;
 				case "placesCmd_open:tab":
 					PlacesUIUtils.openNodeIn(this._view.selectedNode, "tab");
+					self.focusSidebarWhenItemsOpened();
 					self.service.removeItem(this._view.selectedNode.itemId);
 					break;
 				default:
@@ -150,6 +153,7 @@ var LinkplacesPanel = {
 			if (openInTabs) {
 				treeBoxObj.view.selection.select(row.value);
 				PlacesUIUtils.openContainerNodeInTabs(tree.selectedNode, aEvent);
+				this.focusSidebarWhenItemsOpened();
 				this.service.removeItem(tree.selectedNode.itemId);
 			}
 			else if (!isContainer) {
@@ -208,6 +212,8 @@ var LinkplacesPanel = {
 			PlacesUIUtils.openNodeIn(aNode, where);
 		}
 
+		this.focusSidebarWhenItemsOpened();
+
 		this.service.removeItem(aNode.itemId);
 	},
 
@@ -228,8 +234,17 @@ var LinkplacesPanel = {
 
 	openSelectionInTabs: function(aController, aEvent) {
 		aController.openSelectionInTabs(aEvent);
+
+		this.focusSidebarWhenItemsOpened();
+
 		if (aController && aController.isCommandEnabled("placesCmd_delete")) {
 			aController.doCommand("placesCmd_delete");
+		}
+	},
+
+	focusSidebarWhenItemsOpened: function () {
+		if (this.PREF.focusSidebarWhenItemsOpened) {
+			this.treeView.focus();
 		}
 	},
 

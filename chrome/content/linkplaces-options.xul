@@ -16,6 +16,9 @@
 			<preference id="extensions.linkplaces.openLinkToWhere"
 			            name="extensions.linkplaces.openLinkToWhere"
 			            type="int"/>
+			<preference id="extensions.linkplaces.focusSidebarWhenItemsOpened"
+			            name="extensions.linkplaces.focusSidebarWhenItemsOpened"
+			            type="bool"/>
 		</preferences>
 
 		<groupbox id="linkplaces-option-openLinkToWhere">
@@ -31,6 +34,13 @@
 				<radio value="3"
 				       label="&linkplaces.option.openLinkToWhere.window;"/>
 			</radiogroup>
+		</groupbox>
+
+		<groupbox id="linkplaces-option-sidebar">
+			<caption label="&linkplaces.option.sidebar.caption;"/>
+			<checkbox id="linkplaces-option-focusSidebarWhenItemsOpened"
+			          label="&linkplaces.option.focusSidebarWhenItemsOpened;"
+			          preference="extensions.linkplaces.focusSidebarWhenItemsOpened"/>
 		</groupbox>
 
 	</prefpane>
