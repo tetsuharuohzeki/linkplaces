@@ -16,6 +16,36 @@ var LinkplacesPanel = {
 		return this.service.PREF;
 	},
 
+	get placesController() {
+		delete this.placesController;
+		var self = this;
+		this.placesController = new PlacesController(this.treeView);
+		this.placesController._doCommand = this.placesController.doCommand;
+		this.placesController.doCommand = function (aCmd) {
+			switch (aCmd) {
+				case "placesCmd_open":
+					PlacesUIUtils.openNodeIn(this._view.selectedNode, "current");
+					self.focusSidebarWhenItemsOpened();
+					self.service.removeItem(this._view.selectedNode.itemId);
+					break;
+				case "placesCmd_open:window":
+					PlacesUIUtils.openNodeIn(this._view.selectedNode, "window");
+					self.focusSidebarWhenItemsOpened();
+					self.service.removeItem(this._view.selectedNode.itemId);
+					break;
+				case "placesCmd_open:tab":
+					PlacesUIUtils.openNodeIn(this._view.selectedNode, "tab");
+					self.focusSidebarWhenItemsOpened();
+					self.service.removeItem(this._view.selectedNode.itemId);
+					break;
+				default:
+					this._doCommand(aCmd);
+					break;
+			}
+		};
+		return this.placesController;
+	},
+
 	handleEvent: function (aEvent) {
 		switch (aEvent.type) {
 			case "load":
@@ -38,7 +68,7 @@ var LinkplacesPanel = {
 		//Import JS Utils module
 		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 
-		this.overrideCommands();
+		this.treeView.controllers.appendController(this.placesController);
 		this.initPlacesView();
 	},
 
@@ -69,36 +99,6 @@ var LinkplacesPanel = {
 		var placesQuery = this.service.historySvc.queriesToQueryString([query], 1, queryOpts);
 
 		this.treeView.place = placesQuery;
-	},
-
-	placesController: null,//Set new PlacesController to override default.
-	overrideCommands: function () {
-		var self = this;
-		this.placesController = new PlacesController(this.treeView);
-		this.placesController._doCommand = this.placesController.doCommand;
-		this.placesController.doCommand = function (aCmd) {
-			switch (aCmd) {
-				case "placesCmd_open":
-					PlacesUIUtils.openNodeIn(this._view.selectedNode, "current");
-					self.focusSidebarWhenItemsOpened();
-					self.service.removeItem(this._view.selectedNode.itemId);
-					break;
-				case "placesCmd_open:window":
-					PlacesUIUtils.openNodeIn(this._view.selectedNode, "window");
-					self.focusSidebarWhenItemsOpened();
-					self.service.removeItem(this._view.selectedNode.itemId);
-					break;
-				case "placesCmd_open:tab":
-					PlacesUIUtils.openNodeIn(this._view.selectedNode, "tab");
-					self.focusSidebarWhenItemsOpened();
-					self.service.removeItem(this._view.selectedNode.itemId);
-					break;
-				default:
-					this._doCommand(aCmd);
-					break;
-			}
-		};
-		this.treeView.controllers.appendController(this.placesController);
 	},
 
 	// Based on "chrome://browser/content/bookmarks/sidebarUtils.js"
