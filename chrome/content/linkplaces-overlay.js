@@ -13,7 +13,7 @@ var LinkplacesOverlay = {
 				this.onLoad();
 				break;
 			case "popupshowing":
-				this.ctrlContentCtxMenu();
+				this.handleContentCtxPopup();
 				break;
 			case "unload":
 				this.onUnLoad();
@@ -62,7 +62,7 @@ var LinkplacesOverlay = {
 		tabContextMenu.insertBefore(aElem, aReference);
 	},
 
-	ctrlContentCtxMenu: function () {
+	handleContentCtxPopup: function () {
 		gContextMenu.showItem(this.ElmId_contentCtxSavePage,
 		                      !(gContextMenu.isContentSelected || gContextMenu.onTextInput || gContextMenu.onLink ||
 		                        gContextMenu.onImage || gContextMenu.onVideo || gContextMenu.onAudio));
