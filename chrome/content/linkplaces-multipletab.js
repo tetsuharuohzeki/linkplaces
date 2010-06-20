@@ -2,6 +2,10 @@ var LinkplacesMultipleTab = {
 
 	ElmId_tabCtxSaveTab: "linkplaces-tabCtx-saveTab",
 
+	get browserOverlay () {
+		return this.browserOverlay = LinkplacesOverlay;
+	},
+
 	handleEvent: function (aEvent) {
 		switch (aEvent.type) {
 			case "load":
@@ -25,8 +29,8 @@ var LinkplacesMultipleTab = {
 
 	saveSelectedTabs: function () {
 		MultipleTabService.getSelectedTabs().forEach(function(aTab){
-			LinkplacesOverlay.saveTab(aTab);
-		});
+			this.browserOverlay.saveTab(aTab);
+		}, this);
 	},
 };
 window.addEventListener("load", LinkplacesMultipleTab, false);
