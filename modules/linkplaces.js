@@ -12,55 +12,37 @@ var LinkplacesService = {
 		focusSidebarWhenItemsOpened: null,
 	},
 
-	_prefBranch: null,
 	get prefBranch() {
-		if (!this._prefBranch) {
-			this._prefBranch = new Preferences(this.PREF_DOMAIN);
-		}
-		return this._prefBranch;
+		delete this.prefBranch;
+		return this.prefBranch = new Preferences(this.PREF_DOMAIN);
 	},
 
-	_strings: null,
 	get strings() {
-		if (!this._strings) {
-			this._strings = new StringBundle("chrome://linkplaces/locale/linkplaces.properties");
-		}
-		return this._strings;
+		delete this.strings;
+		return this.strings = new StringBundle("chrome://linkplaces/locale/linkplaces.properties");
 	},
 
-	_bookmarksSvc: null,
 	get bookmarksSvc() {
-		if (!this._bookmarksSvc) {
-			this._bookmarksSvc = Components.classes["@mozilla.org/browser/nav-bookmarks-service;1"]
-			                     .getService(Components.interfaces.nsINavBookmarksService);
-		}
-		return this._bookmarksSvc;
+		delete this.bookmarksSvc;
+		return this.bookmarksSvc = Components.classes["@mozilla.org/browser/nav-bookmarks-service;1"]
+		                           .getService(Components.interfaces.nsINavBookmarksService);
 	},
 
-	_linkplacesFolder: null,
 	get linkplacesFolder() {
-		if (!this._linkplacesFolder) {
-			this._linkplacesFolder = this.bookmarksSvc.unfiledBookmarksFolder;
-		}
-		return this._linkplacesFolder;
+		delete this.linkplacesFolder;
+		return this.linkplacesFolder = this.bookmarksSvc.unfiledBookmarksFolder;
 	},
 
-	_historySvc: null,
 	get historySvc() {
-		if (!this._historySvc) {
-			this._historySvc = Components.classes["@mozilla.org/browser/nav-history-service;1"]
-			                   .getService(Components.interfaces.nsINavHistoryService);
-		}
-		return this._historySvc;
+		delete this.historySvc;
+		return this.historySvc = Components.classes["@mozilla.org/browser/nav-history-service;1"]
+		                         .getService(Components.interfaces.nsINavHistoryService);
 	},
 
-	_IOService: null,
 	get IOService() {
-		if (!this._IOService) {
-			this._IOService = Components.classes["@mozilla.org/network/io-service;1"]
-			                  .getService(Components.interfaces.nsIIOService);
-		}
-		return this._IOService;
+		delete this.IOService;
+		return this.IOService = Components.classes["@mozilla.org/network/io-service;1"]
+		                        .getService(Components.interfaces.nsIIOService);
 	},
 
 	observe: function (aSubject, aTopic, aData) {

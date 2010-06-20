@@ -4,7 +4,8 @@ var LinkplacesOverlay = {
 	ElmId_contentCtxSaveLink: "linkplaces-contentCtx-saveLink",
 
 	get service() {
-		return this.LinkplacesService;
+		delete this.service;
+		return this.service = this.LinkplacesService;
 	},
 
 	handleEvent: function (aEvent) {
@@ -37,7 +38,6 @@ var LinkplacesOverlay = {
 
 		var contentAreaCtx = document.getElementById("contentAreaContextMenu");
 		contentAreaCtx.removeEventListener("popupshowing", this, false);
-
 	},
 
 	initContext: function () {
@@ -93,15 +93,13 @@ var LinkplacesOverlay = {
 	ButtonObserver: {
 
 		get service() {
-			return LinkplacesOverlay.service;
+			delete this.service;
+			return this.service = LinkplacesOverlay.service;
 		},
 
-		_statusText: null,
 		get statusText() {
-			if (!this._statusText) {
-				this._statusText = this.service.strings.get("linkplaces.overlay.drop");
-			}
-			return this._statusText;
+			delete this.statusText;
+			return this.statusText = this.service.strings.get("linkplaces.overlay.drop");
 		},
 
 		onDrop: function (aEvent) {

@@ -1,19 +1,18 @@
 var LinkplacesPanel = {
 
-	_treeView: null,
 	get treeView() {
-		if (!this._treeView) {
-			this._treeView = document.getElementById("linkplaces-view");
-		}
-		return this._treeView;
+		delete this.treeView;
+		return this.treeView = document.getElementById("linkplaces-view");
 	},
 
 	get service() {
-		return this.LinkplacesService;
+		delete this.service;
+		return this.service = this.LinkplacesService;
 	},
 
 	get PREF() {
-		return this.service.PREF;
+		delete this.PREF;
+		return this.PREF = this.service.PREF;
 	},
 
 	get placesController() {

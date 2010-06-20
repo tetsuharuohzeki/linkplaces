@@ -2,7 +2,8 @@ var LinkplacesMultipleTab = {
 
 	ElmId_tabCtxSaveTab: "linkplaces-tabCtx-saveTab",
 
-	get browserOverlay () {
+	get browserOverlay() {
+		delete this.browserOverlay;
 		return this.browserOverlay = LinkplacesOverlay;
 	},
 

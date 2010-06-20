@@ -1,7 +1,8 @@
 var LinkplacesPlaces = {
 
 	get service() {
-		return this.LinkplacesService;
+		delete this.service;
+		return this.service = this.LinkplacesService;
 	},
 
 	handleEvent: function (aEvent) {
