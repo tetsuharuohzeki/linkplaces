@@ -14,7 +14,7 @@
 	<em:optionsURL>chrome://linkplaces/content/linkplaces-options.xul</em:optionsURL>
 	<em:iconURL>chrome://linkplaces/skin/icon.png</em:iconURL>
 	<em:homepageURL>http://github.com/saneyuki/LinkPlaces/</em:homepageURL>
-	<em:creator>saneyuki</em:creator>
+	<em:creator>saneyuki_s</em:creator>
 
 	<!-- Target Application -->
 	<!-- Firefox -->
