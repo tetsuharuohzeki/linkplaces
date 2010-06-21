@@ -2,11 +2,11 @@
  * Utilities for Extension
  * The following codes are based on <https://wiki.mozilla.org/Labs/JS_Modules>.
  * @License     MPL 1.1/GPL 2.0/LGPL 2.1
- * @developer   saneyuki
- * @version     20100421.1
+ * @developer   saneyuki_s
+ * @version     20100620.1
  */
 
-var EXPORTED_SYMBOLS = ["Preferences", "Observers", "StringBundle", "Extensions"];
+var EXPORTED_SYMBOLS = ["Preferences", "Observers", "StringBundle"];
 
 /**
  * Preferences Utils
@@ -35,7 +35,7 @@ Preferences.prototype = {
 	get: function (aPrefName) {
 		switch (this.prefSvc.getPrefType(aPrefName)) {
 			case Components.interfaces.nsIPrefBranch.PREF_STRING:
-				return this.prefSvc.getComplexValue(aPrefName, Ci.nsISupportsString).data;
+				return this.prefSvc.getComplexValue(aPrefName, Components.interfaces.nsISupportsString).data;
 
 			case Components.interfaces.nsIPrefBranch.PREF_INT:
 				return this.prefSvc.getIntPref(aPrefName);
@@ -52,9 +52,9 @@ Preferences.prototype = {
 		switch (PrefType) {
 			case "string":
 				var str = Components.classes["@mozilla.org/supports-string;1"]
-				          .createInstance(Ci.nsISupportsString);
+				          .createInstance(Components.interfaces.nsISupportsString);
 				str.data = aPrefValue;
-				prefSvc.setComplexValue(aPrefName, Ci.nsISupportsString, str);
+				prefSvc.setComplexValue(aPrefName, Components.interfaces.nsISupportsString, str);
 				break;
 
 			case "number":
@@ -190,71 +190,5 @@ var Console = {
 
 	log: function (aMsg) {
 		this.consoleSvc.logStringMessage(aMsg);
-	},
-};
-
-/**
- * Extensions Utils
- * @version 0.1.20100213.1
- */
-var Extensions = {
-
-	_extensionManager: null,
-	get extensionManager() {
-		 if (!this._ExtensionManager) {
-			this._extensionManager = Components.classes["@mozilla.org/extensions/manager;1"]
-			                         .getService(Components.interfaces.nsIExtensionManager);
-		}
-		return this._extensionManager;
-	},
-
-	_RDFSvc: null,
-	get RDFSvc() {
-		 if (!this._RDFSvc) {
-			this._RDFSvc = Components.classes['@mozilla.org/rdf/rdf-service;1']
-			               .getService(Components.interfaces.nsIRDFService);
-		}
-		return this._RDFSvc;
-	},
-
-	isInstalled: function(aExtensionId) {
-		var location = this.extensionManager.getInstallLocation(aExtensionId);
-		if (location) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	},
-
-	isEnabled: function(aExtensionId) {
-		var extResource = this.RDFSvc.GetResource("urn:mozilla:item:" + aExtensionId);
-
-		var appDiabled = false;
-		var userDisabled = false;
-
-		// Checking whether the Extension is disabled by Apps.
-		try {
-			appDiabled = (this.extensionManager.datasource
-			              .GetTarget(extResource,
-			                         this.RDFSvc.GetResource("http://www.mozilla.org/2004/em-rdf#appDisabled"),
-			                         true)
-			              .QueryInterface(Components.interfaces.nsIRDFLiteral)
-			              .Value == "true");
-		}
-		catch (e) {}
-
-		// Checking whether the Extension is disabled by user.
-		try {
-			userDisabled = (this.extensionManager.datasource
-			                .GetTarget(extResource,
-			                           this.RDFSvc.GetResource("http://www.mozilla.org/2004/em-rdf#userDisabled"),
-			                           true)
-			                .QueryInterface(Components.interfaces.nsIRDFLiteral)
-			                .Value == "true");
-		}
-		catch (e) {}
-
-		return (!appDiabled && !userDisabled);
 	},
 };
