@@ -4,7 +4,7 @@
 <Description about="urn:mozilla:install-manifest">
 
 	<!-- Extension Identifier -->
-	<em:id>linkplaces@saneyuki</em:id>
+	<em:id>linkplaces@saneyuki_s</em:id>
 	<em:version>master</em:version>
 	<em:type>2</em:type>
 
