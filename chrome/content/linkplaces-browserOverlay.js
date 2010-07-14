@@ -85,21 +85,17 @@ var LinkplacesBrowserOverlay = {
 		},
 
 		onDrop: function (aEvent) {
-			var [uri, title] = browserDragAndDrop.getDragURLFromDataTransfer(aEvent.dataTransfer);
+			var name = new String();
+			var uri = browserDragAndDrop.drop(aEvent, name);
 			try {
-				this.service.saveItem(uri, title, -1);
+				this.service.saveItem(uri, name, -1);
 			}
 			catch(ex) {}
 		},
 
 		onDragOver: function (aEvent) {
-			var types = aEvent.dataTransfer.types;
-			var typeContain = (types.contains("application/x-moz-file") ||
-			                   types.contains("text/x-moz-url") ||
-			                   types.contains("text/uri-list") ||
-			                   types.contains("text/x-moz-text-internal") ||
-			                   types.contains("text/plain"));
-			if (typeContain) {
+			// browserDragAndDrop.dragOver()
+			if (browserDragAndDrop.canDropLink(aEvent)) {
 				aEvent.preventDefault();
 
 				var statusTextFld = document.getElementById("statusbar-display");
