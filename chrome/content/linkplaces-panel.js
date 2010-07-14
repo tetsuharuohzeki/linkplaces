@@ -226,9 +226,9 @@ var LinkplacesPanel = {
 		}
 	},
 
+	regExpIsBookmarklet: /^javascript:/,
 	isBookmarklet: function (aURI) {
-		var reg = new RegExp("^javascript:");
-		return reg.test(aURI);
+		return this.regExpIsBookmarklet.test(aURI);
 	},
 
 	openSelectionInTabs: function(aController, aEvent) {
