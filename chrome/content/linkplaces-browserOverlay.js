@@ -85,12 +85,12 @@ var LinkplacesBrowserOverlay = {
 		},
 
 		onDrop: function (aEvent) {
-			var name = new String();
+			var name = new Object();
 			var uri = browserDragAndDrop.drop(aEvent, name);
 			try {
-				this.service.saveItem(uri, name, -1);
+				this.service.saveItem(uri, name.value, -1);
 			}
-			catch(ex) {}
+			catch (ex) {}
 		},
 
 		onDragOver: function (aEvent) {
