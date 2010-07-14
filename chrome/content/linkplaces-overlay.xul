@@ -55,7 +55,7 @@
 		</menupopup>
 	</popupset>
 
-	<popup id="contentAreaContextMenu">
+	<menupopup id="contentAreaContextMenu">
 		<menuitem id="linkplaces-contentCtx-savePage"
 		          label="&linkplaces.ctx.content.savePage;"
 		          insertafter="context-bookmarkpage"
@@ -64,5 +64,5 @@
 		          label="&linkplaces.ctx.content.saveLink;"
 		          insertafter="context-bookmarklink"
 		          oncommand="LinkplacesOverlay.saveLink();"/>
-	</popup>
+	</menupopup>
 </overlay>

@@ -6,7 +6,7 @@
          id="linkplaces-places">
 	<script type="application/x-javascript" src="chrome://linkplaces/content/linkplaces-places.js"></script>
 
-	<popup id="placesContext">
+	<menupopup id="placesContext">
 		<menuitem id="linkplaces-saveCtx-places"
 		          label="&linkplaces.ctx.places.saveContext;"
 		          insertafter="placesContext_cut"
@@ -14,5 +14,5 @@
 		          selectiontype="single"
 		          forcehideselection="bookmark"
 		          oncommand="LinkplacesPlaces.saveContext();"/>
-	</popup>
+	</menupopup>
 </overlay>

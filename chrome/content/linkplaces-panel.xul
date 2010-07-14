@@ -27,8 +27,8 @@
 	<commandset id="placesCommands"/>
 	<commandset id="editMenuCommands"/>
 
-	<popup id="linkplaces-panelCtx"
-	       onpopupshowing="return PlacesUIUtils.getViewForNode(document.popupNode).buildContextMenu(this);">
+	<menupopup id="linkplaces-panelCtx"
+	           onpopupshowing="return PlacesUIUtils.getViewForNode(document.popupNode).buildContextMenu(this);">
 		<menuitem id="placesContext_open"
 		          command="placesCmd_open"
 		          label="&cmd.open.label;"
@@ -97,7 +97,7 @@
 		          accesskey="&cmd.properties.accesskey;"
 		          selection="bookmark|folder|query"
 		          forcehideselection="livemarkChild"/>
-	</popup>
+	</menupopup>
 
 	<tooltip id="bhTooltip"/>
 
