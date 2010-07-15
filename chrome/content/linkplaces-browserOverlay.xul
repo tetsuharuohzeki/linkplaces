@@ -6,9 +6,9 @@
 <!DOCTYPE overlay SYSTEM "chrome://linkplaces/locale/linkplaces.dtd">
 
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-         id="linkplaces-overlay">
+         id="linkplaces-browserOverlay">
 
-	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-overlay.js"></script>
+	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-browserOverlay.js"></script>
 
 	<toolbarpalette id="BrowserToolbarPalette">
 		<toolbarbutton id="linkplaces-button"
