@@ -1,4 +1,4 @@
-var LinkplacesOverlay = {
+var LinkplacesBrowserOverlay = {
 
 	ElmId_contentCtxSavePage: "linkplaces-contentCtx-savePage",
 	ElmId_contentCtxSaveLink: "linkplaces-contentCtx-saveLink",
@@ -94,7 +94,7 @@ var LinkplacesOverlay = {
 
 		get service() {
 			delete this.service;
-			return this.service = LinkplacesOverlay.service;
+			return this.service = LinkplacesBrowserOverlay.service;
 		},
 
 		get statusText() {
@@ -134,4 +134,4 @@ var LinkplacesOverlay = {
 	},
 
 };
-window.addEventListener("load", LinkplacesOverlay, false);
+window.addEventListener("load", LinkplacesBrowserOverlay, false);

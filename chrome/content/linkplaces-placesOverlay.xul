@@ -13,6 +13,6 @@
 		          selection="link"
 		          selectiontype="single"
 		          forcehideselection="bookmark"
-		          oncommand="LinkplacesPlaces.saveContext();"/>
+		          oncommand="LinkplacesPlacesOverlay.saveContext();"/>
 	</menupopup>
 </overlay>
