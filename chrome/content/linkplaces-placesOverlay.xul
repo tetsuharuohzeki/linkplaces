@@ -4,7 +4,7 @@
 
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
          id="linkplaces-placesOverlay">
-	<script type="application/x-javascript" src="chrome://linkplaces/content/linkplaces-placesOverlay.js"></script>
+	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-placesOverlay.js"></script>
 
 	<menupopup id="placesContext">
 		<menuitem id="linkplaces-saveCtx-places"
