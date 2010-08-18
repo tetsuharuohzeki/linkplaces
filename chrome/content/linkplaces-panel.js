@@ -86,16 +86,18 @@ var LinkplacesPanel = {
 	},
 
 	initPlacesView: function() {
-		var query = this.service.historySvc.getNewQuery();
+		var historySvc = this.service.historySvc;
+
+		var query = historySvc.getNewQuery();
 		var linkplacesFolder = this.service.linkplacesFolder;
 		query.setFolders([linkplacesFolder], 1);
 		//query.searchTerms = "";
 		query.onlyBookmarked = true;
 
-		var queryOpts = this.service.historySvc.getNewQueryOptions();
+		var queryOpts = historySvc.getNewQueryOptions();
 		queryOpts.queryType = queryOpts.QUERY_TYPE_BOOKMARKS;//queryType=1
 
-		var placesQuery = this.service.historySvc.queriesToQueryString([query], 1, queryOpts);
+		var placesQuery = historySvc.queriesToQueryString([query], 1, queryOpts);
 
 		this.treeView.place = placesQuery;
 	},
