@@ -11,8 +11,7 @@
 		          label="&linkplaces.ctx.places.saveContext;"
 		          insertafter="placesContext_cut"
 		          selection="link"
-		          selectiontype="single"
 		          forcehideselection="bookmark"
-		          oncommand="LinkplacesPlacesOverlay.saveContext();"/>
+		          oncommand="LinkplacesPlacesOverlay.saveContextAll();"/>
 	</menupopup>
 </overlay>

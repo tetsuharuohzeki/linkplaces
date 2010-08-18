@@ -20,16 +20,23 @@ var LinkplacesPlacesOverlay = {
 		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 	},
 
-	saveContext: function () {
-		var node = PlacesUIUtils.getViewForNode(document.popupNode).selectedNode;
+	saveContextAll: function () {
+		var nodesArray = PlacesUIUtils.getViewForNode(document.popupNode).getSelectionNodes();
+		for (var i = 0; i < nodesArray.length; i++) {
+			this._saveContext(nodesArray[i]);
+		}
+	},
+
+	_saveContext: function (aNode) {
+		var node = aNode;
 
 		if (node && PlacesUtils.nodeIsURI(node)) {
 			if (!PlacesUIUtils.checkURLSecurity(node)) {
 				return;
 			}
-
 			this.service.saveItem(node.uri, node.title, -1);
 		}
 	},
+
 };
 window.addEventListener("load", LinkplacesPlacesOverlay, false);
