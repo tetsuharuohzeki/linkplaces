@@ -71,7 +71,6 @@ var LinkplacesBrowserOverlay = {
 	},
 
 	saveLink: function () {
-		urlSecurityCheck(gContextMenu.linkURL, gContextMenu.target.ownerDocument.nodePrincipal);
 		this.service.saveItem(gContextMenu.linkURL, gContextMenu.linkText(), -1);
 	},
 
