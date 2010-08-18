@@ -20,14 +20,14 @@ var LinkplacesPlacesOverlay = {
 		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 	},
 
-	saveContextAll: function () {
+	saveAllItems: function () {
 		var nodesArray = PlacesUIUtils.getViewForNode(document.popupNode).getSelectionNodes();
 		for (var i = 0; i < nodesArray.length; i++) {
-			this._saveContext(nodesArray[i]);
+			this._saveItem(nodesArray[i]);
 		}
 	},
 
-	_saveContext: function (aNode) {
+	_saveItem: function (aNode) {
 		var node = aNode;
 
 		if (node && PlacesUtils.nodeIsURI(node)) {

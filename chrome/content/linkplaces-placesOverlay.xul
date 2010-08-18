@@ -7,11 +7,11 @@
 	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-placesOverlay.js"></script>
 
 	<menupopup id="placesContext">
-		<menuitem id="linkplaces-saveCtx-places"
-		          label="&linkplaces.ctx.places.saveContext;"
+		<menuitem id="linkplaces-placesCtx-saveItems"
+		          label="&linkplaces.ctx.places.saveItems;"
 		          insertafter="placesContext_cut"
 		          selection="link"
 		          forcehideselection="bookmark"
-		          oncommand="LinkplacesPlacesOverlay.saveContextAll();"/>
+		          oncommand="LinkplacesPlacesOverlay.saveAllItems();"/>
 	</menupopup>
 </overlay>

@@ -9,7 +9,7 @@
 	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-multipletab.js"></script>
 
 	<menupopup id="multipletab-tabcontext-menu-template">
-		<menuitem id="linkplaces-tabCtx-saveTab-multipletab"
+		<menuitem id="linkplaces-tabCtx-saveTab:multipletab"
 		          label="&linkplaces.ctx.tab.saveThisTab;"
 		          oncommand="LinkplacesBrowserOverlay.saveThisTab();"
 		          multipletab-insertafter="document.getElementById('context_bookmarkAllTabs')"/>
@@ -18,7 +18,7 @@
 	</menupopup>
 
 	<menupopup id="multipletab-selection-menu">
-		<menuitem id="linkplaces-tabCtx-saveSelected-multipletab-selection"
+		<menuitem id="linkplaces-tabCtx-saveSelected:multipletab-selection"
 		          label="&linkplaces.ctx.multipletab.saveSelected;"
 		          oncommand="LinkplacesMultipleTab.saveSelectedTabs();"
 		          insertbefore="multipletab-selection-duplicate-separator"/>
