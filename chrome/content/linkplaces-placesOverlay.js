@@ -28,13 +28,8 @@ var LinkplacesPlacesOverlay = {
 	},
 
 	_saveItem: function (aNode) {
-		var node = aNode;
-
-		if (node && PlacesUtils.nodeIsURI(node)) {
-			if (!PlacesUIUtils.checkURLSecurity(node)) {
-				return;
-			}
-			this.service.saveItem(node.uri, node.title, -1);
+		if (PlacesUtils.nodeIsURI(aNode)) {
+			this.service.saveItem(aNode.uri, aNode.title, -1);
 		}
 	},
 
