@@ -14,7 +14,7 @@
 <!ENTITY linkplaces.ctx.multipletab.saveSelected       "Add Selected Tabs to &linkplaces.global;">
 <!ENTITY linkplaces.ctx.content.savePage               "Add This Page to &linkplaces.global;">
 <!ENTITY linkplaces.ctx.content.saveLink               "Add This Link to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.places.saveItems               "Add This Link to &linkplaces.global;">
+<!ENTITY linkplaces.ctx.places.saveItems               "Add to &linkplaces.global;">
 
 <!-- Options -->
 <!ENTITY linkplaces.option.title                       "&linkplaces.global; - Options">
