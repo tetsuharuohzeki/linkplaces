@@ -1,6 +1,6 @@
 ## Defines the package
-content  linkplaces               jar:chrome/linkplaces.jar!/content/
-skin     linkplaces  classic/1.0  jar:chrome/linkplaces.jar!/skin/classic/
+content  linkplaces               chrome/content/
+skin     linkplaces  classic/1.0  chrome/skin/classic/
 
 ## modules
 resource linkplaces               modules/
@@ -15,4 +15,4 @@ overlay  chrome://linkplaces/content/linkplaces-panel.xul  chrome://multipletab/
 style    chrome://global/content/customizeToolbar.xul  chrome://linkplaces/skin/linkplaces.css
 
 ## Locale
-locale   linkplaces   en-US       jar:chrome/linkplaces.jar!/locale/en-US/
+locale   linkplaces   en-US       chrome/locale/en-US/
