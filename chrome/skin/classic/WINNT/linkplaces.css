@@ -1,12 +1,16 @@
 #linkplaces-button {
 	list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar.png");
 }
+#linkplaces-button > .toolbarbutton-icon {
+	margin: 0px !important;
+	width: auto !important;
+	height: auto !important;
+}
 
-/* Style for Windows */
 #linkplaces-panel:-moz-system-metric(windows-default-theme) {
-  background-color: #EEF3FA;
+	background-color: #EEF3FA;
 }
 .sidebar-placesTree:-moz-system-metric(windows-default-theme) {
-  background-color: transparent;
-  border-top: none;
+	background-color: transparent;
+	border-top: none;
 }
