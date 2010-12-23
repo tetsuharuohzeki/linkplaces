@@ -89,29 +89,20 @@ var LinkplacesBrowserOverlay = {
 		},
 
 		onDrop: function (aEvent) {
-			var name = new Object();
+			var name = {};
 			var uri = browserDragAndDrop.drop(aEvent, name);
 			try {
 				this.service.saveItem(uri, name.value, -1);
 			}
-			catch (ex) {}
+			catch (e) {}
 		},
 
 		onDragOver: function (aEvent) {
-			// browserDragAndDrop.dragOver()
-			if (browserDragAndDrop.canDropLink(aEvent)) {
-				aEvent.preventDefault();
-
-				var statusTextFld = document.getElementById("statusbar-display");
-				statusTextFld.label = this.statusText;
-			}
-
+			browserDragAndDrop.dragOver(aEvent);
 			aEvent.dropEffect = "link";
 		},
 
 		onDragLeave: function (aEvent) {
-			var statusTextFld = document.getElementById("statusbar-display");
-			statusTextFld.label = "";
 		}
 	},
 
