@@ -78,7 +78,7 @@ var LinkplacesPanel = {
 		this.treeView.controllers.removeController(this.placesController);
 		//delete this.placesController;
 
-		this.clearURIFromStatusBar();
+		this.setMouseoverURL("");
 	},
 
 	onSidebarFocused: function () {
@@ -186,21 +186,21 @@ var LinkplacesPanel = {
 		treeBoxObj.getCellAt(aEvent.clientX, aEvent.clientY, row, col, obj);
 
 		if (row.value != -1) {
-			var cell = tree.view.nodeForTreeIndex(row.value);
-			if (PlacesUtils.nodeIsURI(cell)) {
-				window.top.XULBrowserWindow.setOverLink(cell.uri, null);
+			var node = tree.view.nodeForTreeIndex(row.value);
+			if (PlacesUtils.nodeIsURI(node)) {
+				this.setMouseoverURL(node.uri);
 			}
 			else {
-				this.clearURIFromStatusBar();
+				this.setMouseoverURL("");
 			}
 		}
 		else {
-			this.clearURIFromStatusBar();
+			this.setMouseoverURL("");
 		}
 	},
 
-	clearURIFromStatusBar: function () {
-		window.top.XULBrowserWindow.setOverLink("", null);
+	setMouseoverURL: function (aURI) {
+		window.top.XULBrowserWindow.setOverLink(aURI, null);
 	},
 
 	openNodeWithEvent: function (aNode, aEvent) {
