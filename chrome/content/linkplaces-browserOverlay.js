@@ -36,13 +36,17 @@ var LinkplacesBrowserOverlay = {
 	onUnLoad: function() {
 		window.removeEventListener("unload", this, false);
 
-		var contentAreaCtx = document.getElementById("contentAreaContextMenu");
-		contentAreaCtx.removeEventListener("popupshowing", this, false);
+		this.finalizeContext();
 	},
 
 	initContext: function () {
 		var contentAreaCtx = document.getElementById("contentAreaContextMenu");
 		contentAreaCtx.addEventListener("popupshowing", this, false);
+	},
+
+	finalizeContext: function () {
+		var contentAreaCtx = document.getElementById("contentAreaContextMenu");
+		contentAreaCtx.removeEventListener("popupshowing", this, false);
 	},
 
 	handleContentCtxPopup: function () {
