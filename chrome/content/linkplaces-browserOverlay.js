@@ -83,11 +83,6 @@ var LinkplacesBrowserOverlay = {
 			return this.service = LinkplacesBrowserOverlay.service;
 		},
 
-		get statusText() {
-			delete this.statusText;
-			return this.statusText = this.service.strings.get("linkplaces.overlay.drop");
-		},
-
 		onDrop: function (aEvent) {
 			var name = {};
 			var uri = browserDragAndDrop.drop(aEvent, name);

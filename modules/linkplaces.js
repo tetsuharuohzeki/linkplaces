@@ -17,11 +17,6 @@ var LinkplacesService = {
 		return this.prefBranch = new Preferences(this.PREF_DOMAIN);
 	},
 
-	get strings() {
-		delete this.strings;
-		return this.strings = new StringBundle("chrome://linkplaces/locale/linkplaces.properties");
-	},
-
 	get bookmarksSvc() {
 		delete this.bookmarksSvc;
 		return this.bookmarksSvc = Components.classes["@mozilla.org/browser/nav-bookmarks-service;1"]
