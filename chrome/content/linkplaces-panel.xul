@@ -28,7 +28,9 @@
 	<commandset id="editMenuCommands"/>
 
 	<menupopup id="linkplaces-panelCtx"
-	           onpopupshowing="return PlacesUIUtils.getViewForNode(document.popupNode).buildContextMenu(this);">
+	           onpopupshowing="this._view = PlacesUIUtils.getViewForNode(document.popupNode);
+		                       return this._view.buildContextMenu(this);"
+		       onpopuphiding="this._view.destroyContextMenu();">
 		<menuitem id="placesContext_open"
 		          command="placesCmd_open"
 		          label="&cmd.open.label;"
