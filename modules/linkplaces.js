@@ -100,7 +100,7 @@ var LinkplacesService = {
 	saveItem: function (aURI, aTitle, aIndex) {
 		var uri = this.IOService.newURI(aURI, null, null);
 		if (!aIndex) {
-			aIndex = -1;
+			aIndex = this.bookmarksSvc.DEFAULT_INDEX;
 		}
 		this.bookmarksSvc.insertBookmark(this.linkplacesFolder, uri,
 		                                 aIndex, aTitle);
