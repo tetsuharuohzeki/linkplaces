@@ -84,12 +84,10 @@ var LinkplacesBrowserOverlay = {
 		},
 
 		onDrop: function (aEvent) {
-			var name = {};
-			var uri = browserDragAndDrop.drop(aEvent, name);
-			try {
-				this.service.saveItem(uri, name.value, -1);
-			}
-			catch (e) {}
+			var ip = new InsertionPoint(this.service.linkplacesFolder,
+			                            PlacesUtils.bookmarks.DEFAULT_INDEX,
+			                            Components.interfaces.nsITreeView.DROP_ON);
+			PlacesControllerDragHelper.onDrop(ip, aEvent.dataTransfer);
 		},
 
 		onDragOver: function (aEvent) {
