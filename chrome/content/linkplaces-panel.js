@@ -72,6 +72,7 @@ var LinkplacesPanel = {
 
 		this.treeView.controllers.appendController(this.placesController);
 		this.initPlacesView();
+		this.overrideCmdOpenMultipleItem();
 	},
 
 	onUnLoad: function() {
@@ -103,6 +104,15 @@ var LinkplacesPanel = {
 		var placesQuery = historySvc.queriesToQueryString([query], 1, queryOpts);
 
 		this.treeView.place = placesQuery;
+	},
+
+	overrideCmdOpenMultipleItem: function () {
+		var cmdValue = "var controller = PlacesUIUtils.getViewForNode(document.popupNode).controller;" + 
+		               "LinkplacesPanel.openSelectionInTabs(controller, event);";
+		["placesContext_openContainer:tabs",
+		 "placesContext_openLinks:tabs"].forEach(function(aElm){
+		 	 document.getElementById(aElm).setAttribute("oncommand", cmdValue);
+		});
 	},
 
 	// Based on "chrome://browser/content/bookmarks/sidebarUtils.js"
