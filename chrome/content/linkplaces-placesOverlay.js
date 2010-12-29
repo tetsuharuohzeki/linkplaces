@@ -2,6 +2,7 @@ var LinkplacesPlacesOverlay = {
 
 	get service() {
 		delete this.service;
+		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 		return this.service = this.LinkplacesService;
 	},
 
@@ -15,9 +16,6 @@ var LinkplacesPlacesOverlay = {
 
 	onLoad: function () {
 		window.removeEventListener("load", this, false);
-
-		// Import JavaScript Compornent code module
-		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 	},
 
 	saveAllItems: function () {

@@ -7,6 +7,7 @@ var LinkplacesPanel = {
 
 	get service() {
 		delete this.service;
+		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 		return this.service = this.LinkplacesService;
 	},
 
@@ -63,9 +64,6 @@ var LinkplacesPanel = {
 		window.removeEventListener("load", this, false);
 		window.addEventListener("unload", this, false);
 		window.addEventListener("SidebarFocused", this, false);
-
-		//Import JS Utils module
-		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 
 		this.treeView.controllers.appendController(this.placesController);
 		this.initPlacesView();
