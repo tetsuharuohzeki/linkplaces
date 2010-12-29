@@ -22,24 +22,13 @@ var LinkplacesPanel = {
 		this.placesController = new PlacesController(this.treeView);
 		this.placesController._doCommand = this.placesController.doCommand;
 		this.placesController.doCommand = function (aCmd) {
+			this._doCommand(aCmd);
 			switch (aCmd) {
 				case "placesCmd_open":
-					PlacesUIUtils.openNodeIn(this._view.selectedNode, "current");
-					self.focusSidebarWhenItemsOpened();
-					self.service.removeItem(this._view.selectedNode.itemId);
-					break;
 				case "placesCmd_open:window":
-					PlacesUIUtils.openNodeIn(this._view.selectedNode, "window");
-					self.focusSidebarWhenItemsOpened();
-					self.service.removeItem(this._view.selectedNode.itemId);
-					break;
 				case "placesCmd_open:tab":
-					PlacesUIUtils.openNodeIn(this._view.selectedNode, "tab");
 					self.focusSidebarWhenItemsOpened();
 					self.service.removeItem(this._view.selectedNode.itemId);
-					break;
-				default:
-					this._doCommand(aCmd);
 					break;
 			}
 		};
