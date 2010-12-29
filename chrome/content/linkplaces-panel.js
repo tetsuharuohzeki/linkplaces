@@ -20,6 +20,22 @@ var LinkplacesPanel = {
 		delete this.placesController;
 		var self = this;
 		this.placesController = new PlacesController(this.treeView);
+		this.placesController._isCommandEnabled = this.placesController.isCommandEnabled;
+		this.placesController.isCommandEnabled = function (aCmd) {
+			switch (aCmd) {
+				case "placesCmd_new:bookmark":
+				case "placesCmd_new:folder":
+				case "placesCmd_new:separator":
+				case "placesCmd_createBookmark":// for History
+				case "placesCmd_deleteDataHost":// for History
+				case "placesCmd_reload":
+				case "placesCmd_reloadMicrosummary":
+				case "placesCmd_sortBy:name":
+					return false;
+				default:
+					return this._isCommandEnabled(aCmd);
+			}
+		};
 		this.placesController._doCommand = this.placesController.doCommand;
 		this.placesController.doCommand = function (aCmd) {
 			this._doCommand(aCmd);
