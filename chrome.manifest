@@ -11,6 +11,7 @@ resource linkplaces               modules/
 overlay  chrome://browser/content/browser.xul  chrome://linkplaces/content/linkplaces-browserOverlay.xul
 overlay  chrome://multipletab/content/multipletab.xul  chrome://linkplaces/content/linkplaces-multipletab.xul
 overlay  chrome://browser/content/places/placesOverlay.xul   chrome://linkplaces/content/linkplaces-placesOverlay.xul
+overlay  chrome://linkplaces/content/linkplaces-panel.xul   chrome://treestyletab/content/bookmarksOverlay.xul
 
 ## styles
 style    chrome://global/content/customizeToolbar.xul  chrome://linkplaces/skin/linkplaces.css
