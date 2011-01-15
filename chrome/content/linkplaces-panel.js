@@ -203,9 +203,8 @@ var LinkplacesPanel = {
 		}
 	},
 
-	regExpIsBookmarklet: /^javascript:/,
 	isBookmarklet: function (aURI) {
-		return this.regExpIsBookmarklet.test(aURI);
+		return (aURI.indexOf("javascript:") == 0) ? true : false;
 	},
 
 	openSelectionInTabs: function(aController, aEvent) {
