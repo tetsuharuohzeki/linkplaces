@@ -191,14 +191,9 @@ var LinkplacesPanel = {
 	},
 
 	openNodeWithEvent: function (aNode, aEvent) {
-		var where = this.whereToOpenLink(aEvent);
+		var where = this.isBookmarklet(aNode.uri) ? "current" : this.whereToOpenLink(aEvent);
 
-		if (this.isBookmarklet(aNode.uri)) {
-			PlacesUIUtils.openNodeIn(aNode, "current");
-		}
-		else {
-			PlacesUIUtils.openNodeIn(aNode, where);
-		}
+		PlacesUIUtils.openNodeIn(aNode, where);
 
 		this.focusSidebarWhenItemsOpened();
 
