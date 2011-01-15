@@ -98,9 +98,7 @@ var LinkplacesPanel = {
 
 		var tree = aEvent.target.parentNode;
 		var treeBoxObj = tree.treeBoxObject;
-		var row = new Object();
-		var col = new Object();
-		var obj = new Object();
+		var row = {}, col = {}, obj = {};
 		treeBoxObj.getCellAt(aEvent.clientX, aEvent.clientY, row, col, obj);
 
 		if (row.value == -1 ||  obj.value == "twisty") {
@@ -109,10 +107,7 @@ var LinkplacesPanel = {
 
 		// whether mouse in opening item area or not.
 		var mouseInGutter = false;
-		var cellX = new Object();
-		var cellY = new Object();
-		var cellW = new Object();
-		var cellH = new Object();
+		var cellX = {}, cellY = {}, cellW = {}, cellH = {};
 		if (aGutterSelect) {
 			treeBoxObj.getCoordsForCellItem(row.value, col.value, "image", cellX, cellY, cellW, cellH);
 
@@ -167,9 +162,7 @@ var LinkplacesPanel = {
 
 		var tree = aEvent.target.parentNode;
 		var treeBoxObj = tree.treeBoxObject;
-		var row = new Object();
-		var col = new Object();
-		var obj = new Object();
+		var row = {}, col = {}, obj = {};
 		treeBoxObj.getCellAt(aEvent.clientX, aEvent.clientY, row, col, obj);
 
 		if (row.value != -1) {
