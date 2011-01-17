@@ -10,10 +10,6 @@
 <?xml-stylesheet href="chrome://linkplaces/skin/linkplaces.css"?>
 
 <!DOCTYPE page [
-	<!ENTITY % placesDTD SYSTEM "chrome://browser/locale/places/places.dtd">
-	%placesDTD;
-	<!ENTITY % editMenuOverlayDTD SYSTEM "chrome://global/locale/editMenuOverlay.dtd">
-	%editMenuOverlayDTD;
 	<!ENTITY % linkplacesDTD SYSTEM "chrome://linkplaces/locale/linkplaces.dtd">
 	%linkplacesDTD;
 ]>
