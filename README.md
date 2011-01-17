@@ -1,12 +1,12 @@
 LinkPlaces
 ==========
 
-This is a add-on for Mozilla Firefox. This provides Sidebar to display "Unsorted Bookmarks" folder in Places, as "Temporary Links".
+This is an add-on for Mozilla Firefox. This provides Sidebar to display "Unsorted Bookmarks" folder in Places, as "Temporary Links".
 
 Features
 --------
 
-* Add the sidebar which displays items in Unsorted Bookmarks Folder in Places as "Temporary links". So this is the function like [Link Pad](https://addons.mozilla.org/firefox/addon/9706 "Link Pad :: Add-ons for Firefox").
+* Add the sidebar which displays items in Unsorted Bookmarks Folder in Places as "Temporary links". So this is the function like [Link Pad](https://addons.mozilla.org/firefox/addon/link-pad/ "Link Pad :: Add-ons for Firefox").
 * This uses Unsorted Bookmarks Folder in Places DB. So it is not recommend that you store folders and smart bookmark folders at "Unsorted Bookmarks" Folder.
 * You can share your unread items by the add-ons sharing bookmarks.
 * This adds some menu items to context menus.
@@ -14,7 +14,7 @@ Features
   * to Content-area context menu.
     * on Page.
     * on Link.
-* This Add-on works together with [Multiple Tab Handler](https://addons.mozilla.org/ja/firefox/addon/4838 "Multiple Tab Handler :: Add-ons for Firefox").
+* This Add-on works together with [Multiple Tab Handler](https://addons.mozilla.org/firefox/addon/multiple-tab-handler/ "Multiple Tab Handler :: Add-ons for Firefox").
 
 License
 -------
@@ -28,7 +28,7 @@ This project source code is licensed under a disjunctive tri-license giving you 
 Requirement
 -----------
 
- * [Mozilla Firefox > 3.6](http://www.mozilla.com/firefox/)
+ * [Mozilla Firefox](http://www.mozilla.com/firefox/)
 
 Get This Add-ons
 ----------------
