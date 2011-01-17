@@ -20,6 +20,22 @@ var LinkplacesPanel = {
 		delete this.placesController;
 		var self = this;
 		this.placesController = new PlacesController(this.treeView);
+		this.placesController._isCommandEnabled = this.placesController.isCommandEnabled;
+		this.placesController.isCommandEnabled = function (aCmd) {
+			switch (aCmd) {
+				case "placesCmd_new:bookmark":
+				case "placesCmd_new:folder":
+				case "placesCmd_new:separator":
+				case "placesCmd_createBookmark":// for History
+				case "placesCmd_deleteDataHost":// for History
+				case "placesCmd_reload":
+				case "placesCmd_reloadMicrosummary":
+				case "placesCmd_sortBy:name":
+					return false;
+				default:
+					return this._isCommandEnabled(aCmd);
+			}
+		};
 		this.placesController._doCommand = this.placesController.doCommand;
 		this.placesController.doCommand = function (aCmd) {
 			this._doCommand(aCmd);
@@ -56,6 +72,7 @@ var LinkplacesPanel = {
 
 		this.treeView.controllers.appendController(this.placesController);
 		this.initPlacesView();
+		this.overrideCmdOpenMultipleItem();
 	},
 
 	onUnLoad: function() {
@@ -87,6 +104,15 @@ var LinkplacesPanel = {
 		var placesQuery = historySvc.queriesToQueryString([query], 1, queryOpts);
 
 		this.treeView.place = placesQuery;
+	},
+
+	overrideCmdOpenMultipleItem: function () {
+		var cmdValue = "var controller = PlacesUIUtils.getViewForNode(document.popupNode).controller;" + 
+		               "LinkplacesPanel.openSelectionInTabs(controller, event);";
+		["placesContext_openContainer:tabs",
+		 "placesContext_openLinks:tabs"].forEach(function(aElm){
+		 	 document.getElementById(aElm).setAttribute("oncommand", cmdValue);
+		});
 	},
 
 	// Based on "chrome://browser/content/bookmarks/sidebarUtils.js"
