@@ -1,4 +1,4 @@
-var LinkplacesBrowserOverlay = {
+var LinkplacesBrowser = {
 
 	ElmId_contentCtxSavePage: "linkplaces-contentCtx-savePage",
 	ElmId_contentCtxSaveLink: "linkplaces-contentCtx-saveLink",
@@ -73,29 +73,21 @@ var LinkplacesBrowserOverlay = {
 		this.service.saveItem(URI, title, -1);
 	},
 
-	// based on bookmarksButtonObserver class and browserDragAndDrop class
-	ButtonObserver: {
-
-		get service() {
-			delete this.service;
-			return this.service = LinkplacesBrowserOverlay.service;
-		},
-
-		onDrop: function (aEvent) {
-			var ip = new InsertionPoint(this.service.linkplacesFolder,
-			                            PlacesUtils.bookmarks.DEFAULT_INDEX,
-			                            Components.interfaces.nsITreeView.DROP_ON);
-			PlacesControllerDragHelper.onDrop(ip, aEvent.dataTransfer);
-		},
-
-		onDragOver: function (aEvent) {
-			browserDragAndDrop.dragOver(aEvent);
-			aEvent.dropEffect = "link";
-		},
-
-		onDragLeave: function (aEvent) {
-		}
+// based on bookmarksButtonObserver class and browserDragAndDrop class
+	ButtonOnDrop: function (aEvent) {
+		var ip = new InsertionPoint(this.service.linkplacesFolder,
+		                            PlacesUtils.bookmarks.DEFAULT_INDEX,
+		                            Components.interfaces.nsITreeView.DROP_ON);
+		PlacesControllerDragHelper.onDrop(ip, aEvent.dataTransfer);
 	},
 
+	ButtonOnDragOver: function (aEvent) {
+		browserDragAndDrop.dragOver(aEvent);
+		aEvent.dropEffect = "link";
+	},
+
+	ButtonOnDragLeave: function (aEvent) {
+	}
+
 };
-window.addEventListener("load", LinkplacesBrowserOverlay, false);
+window.addEventListener("load", LinkplacesBrowser, false);

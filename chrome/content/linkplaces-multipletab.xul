@@ -11,7 +11,7 @@
 	<menupopup id="multipletab-tabcontext-menu-template">
 		<menuitem id="linkplaces-tabCtx-saveTab:multipletab"
 		          label="&linkplaces.ctx.tab.saveThisTab;"
-		          oncommand="LinkplacesBrowserOverlay.saveThisTab();"
+		          oncommand="LinkplacesBrowser.saveThisTab();"
 		          multipletab-insertafter="document.getElementById('context_bookmarkAllTabs')"/>
 		<menuseparator id="linkplaces-separator-multipletab"
 		               multipletab-insertafter="document.getElementById('context_bookmarkAllTabs').nextSibling"/>

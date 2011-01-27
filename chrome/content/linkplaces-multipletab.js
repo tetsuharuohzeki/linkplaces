@@ -4,7 +4,7 @@ var LinkplacesMultipleTab = {
 
 	get browserOverlay() {
 		delete this.browserOverlay;
-		return this.browserOverlay = LinkplacesBrowserOverlay;
+		return this.browserOverlay = LinkplacesBrowser;
 	},
 
 	handleEvent: function (aEvent) {

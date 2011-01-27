@@ -16,10 +16,10 @@
 		               label="&linkplaces.overlay.label;"
 		               tooltiptext="&linkplaces.overlay.tooltip;"
 		               observes="linkplaces-sidebar"
-		               ondrop="LinkplacesBrowserOverlay.ButtonObserver.onDrop(event)"
-		               ondragover="LinkplacesBrowserOverlay.ButtonObserver.onDragOver(event)"
-		               ondragenter="LinkplacesBrowserOverlay.ButtonObserver.onDragOver(event)"
-		               ondragleave="LinkplacesBrowserOverlay.ButtonObserver.onDragLeave(event)"/>
+		               ondrop="LinkplacesBrowser.ButtonOnDrop(event)"
+		               ondragover="LinkplacesBrowser.ButtonOnDragOver(event)"
+		               ondragenter="LinkplacesBrowser.ButtonOnDragOver(event)"
+		               ondragleave="LinkplacesBrowser.ButtonOnDragLeave(event)"/>
 	</toolbarpalette>
 
 	<keyset id="mainKeyset">
@@ -51,17 +51,17 @@
 		<menuitem id="linkplaces-tabCtx-saveTab"
 		          label="&linkplaces.ctx.tab.saveThisTab;"
 		          insertafter="context_bookmarkAllTabs"
-		          oncommand="LinkplacesBrowserOverlay.saveThisTab();"/>
+		          oncommand="LinkplacesBrowser.saveThisTab();"/>
 	 </menupopup>
 
 	<menupopup id="contentAreaContextMenu">
 		<menuitem id="linkplaces-contentCtx-savePage"
 		          label="&linkplaces.ctx.content.savePage;"
 		          insertafter="context-bookmarkpage"
-		          oncommand="LinkplacesBrowserOverlay.saveThisPage();"/>
+		          oncommand="LinkplacesBrowser.saveThisPage();"/>
 		<menuitem id="linkplaces-contentCtx-saveLink"
 		          label="&linkplaces.ctx.content.saveLink;"
 		          insertafter="context-bookmarklink"
-		          oncommand="LinkplacesBrowserOverlay.saveLink();"/>
+		          oncommand="LinkplacesBrowser.saveLink();"/>
 	</menupopup>
 </overlay>
