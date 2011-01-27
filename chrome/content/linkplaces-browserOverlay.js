@@ -88,7 +88,7 @@ var LinkplacesBrowser = {
 		aEvent.dropEffect = "link";
 	},
 
-	ButtonOnDragLeave: function (aEvent) {
+	ButtonOnDragExit: function (aEvent) {
 	}
 
 };

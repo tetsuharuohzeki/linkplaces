@@ -18,7 +18,7 @@
 		               ondrop="LinkplacesBrowser.ButtonOnDrop(event)"
 		               ondragover="LinkplacesBrowser.ButtonOnDragOver(event)"
 		               ondragenter="LinkplacesBrowser.ButtonOnDragOver(event)"
-		               ondragleave="LinkplacesBrowser.ButtonOnDragLeave(event)"/>
+		               ondragexit="LinkplacesBrowser.ButtonOnDragExit(event)"/>
 	</toolbarpalette>
 
 	<keyset id="mainKeyset">
