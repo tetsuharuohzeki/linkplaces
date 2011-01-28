@@ -13,9 +13,8 @@
 	<toolbarpalette id="BrowserToolbarPalette">
 		<toolbarbutton id="linkplaces-button"
 		               class="toolbarbutton-1 chromeclass-toolbar-additional"
-		               label="&linkplaces.overlay.label;"
-		               tooltiptext="&linkplaces.overlay.tooltip;"
-		               observes="linkplaces-sidebar"
+		               tooltiptext="&linkplaces.overlay.button.tooltip;"
+		               observes="viewLinkplacesSidebar"
 		               ondrop="LinkplacesBrowser.ButtonOnDrop(event)"
 		               ondragover="LinkplacesBrowser.ButtonOnDragOver(event)"
 		               ondragenter="LinkplacesBrowser.ButtonOnDragOver(event)"
@@ -23,28 +22,28 @@
 	</toolbarpalette>
 
 	<keyset id="mainKeyset">
-		<key id="linkplaces-key"
+		<key id="linkplaces-key-toggleSidebar"
 		     key="&linkplaces.overlay.commandkey;"
-		     command="linkplaces-sidebar"
+		     command="viewLinkplacesSidebar"
 		     modifiers="accel,shift"/>
 	</keyset>
 
 	<menupopup id="viewSidebarMenu">
 		<menuitem id="linkplaces-menu-sidebar"
-		          key="linkplaces-key"
-		          observes="linkplaces-sidebar"
+		          key="linkplaces-key-toggleSidebar"
+		          observes="viewLinkplacesSidebar"
 		          accesskey="&linkplaces.overlay.accesskey;"/>
 	</menupopup>
 
 	<broadcasterset id="mainBroadcasterSet">
-		<broadcaster id="linkplaces-sidebar"
-		             label="&linkplaces.overlay.label;"
+		<broadcaster id="viewLinkplacesSidebar"
+		             label="&linkplaces.overlay.broadcaster.label;"
 		             autoCheck="false"
 		             type="checkbox"
 		             group="sidebar"
 		             sidebartitle="&linkplaces.overlay.sidebar.title;"
 		             sidebarurl="chrome://linkplaces/content/linkplaces-panel.xul"
-		             oncommand="toggleSidebar('linkplaces-sidebar');"/>
+		             oncommand="toggleSidebar('viewLinkplacesSidebar');"/>
 	</broadcasterset>
 
 	 <menupopup id="tabContextMenu">
