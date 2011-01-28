@@ -5,7 +5,6 @@
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
          id="linkplaces-multiple">
 
-	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-browserOverlay.js"></script>
 	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-multipletab.js"></script>
 
 	<menupopup id="multipletab-tabcontext-menu-template">
