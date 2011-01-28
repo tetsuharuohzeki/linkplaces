@@ -9,7 +9,7 @@ var LinkplacesService = {
 
 	PREF: {
 		openLinkToWhere: null,
-		focusSidebarWhenItemsOpened: null,
+		focusWhenItemsOpened_Sidebar: null,
 	},
 
 	get prefBranch() {
@@ -70,8 +70,8 @@ var LinkplacesService = {
 						break;
 				}
 				break;
-			case "focusSidebarWhenItemsOpened":
-				this.PREF.focusSidebarWhenItemsOpened = value;
+			case "focusWhenItemsOpened.sidebar":
+				this.PREF.focusWhenItemsOpened_Sidebar = value;
 				break;
 		}
 	},

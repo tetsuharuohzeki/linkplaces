@@ -249,7 +249,7 @@ var LinkplacesPanel = {
 	},
 
 	focusSidebarWhenItemsOpened: function () {
-		if (this.PREF.focusSidebarWhenItemsOpened) {
+		if (this.PREF.focusWhenItemsOpened_Sidebar) {
 			this.treeView.focus();
 		}
 	},

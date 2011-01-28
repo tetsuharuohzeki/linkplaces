@@ -16,7 +16,7 @@
 			            name="extensions.linkplaces.openLinkToWhere"
 			            type="int"/>
 			<preference id="linkplaces.option.focusWhenItemsOpened.sidebar"
-			            name="extensions.linkplaces.focusSidebarWhenItemsOpened"
+			            name="extensions.linkplaces.focusWhenItemsOpened.sidebar"
 			            type="bool"/>
 		</preferences>
 
