@@ -1,27 +1,27 @@
 <!-- Global Entities -->
-<!ENTITY linkplaces.global                             "LinkPlaces">
+<!ENTITY linkplaces.global                              "LinkPlaces">
 
 <!-- Browser Overlay -->
-<!ENTITY linkplaces.overlay.broadcaster.label          "&linkplaces.global;">
-<!ENTITY linkplaces.overlay.button.tooltip             "Display &linkplaces.global;">
-<!ENTITY linkplaces.overlay.sidebar.title              "&linkplaces.global;">
-<!ENTITY linkplaces.overlay.commandkey                 "L">
-<!ENTITY linkplaces.overlay.accesskey                  "L">
+<!ENTITY linkplaces.overlay.broadcaster.label           "&linkplaces.global;">
+<!ENTITY linkplaces.overlay.button.tooltip              "Display &linkplaces.global;">
+<!ENTITY linkplaces.overlay.sidebar.title               "&linkplaces.global;">
+<!ENTITY linkplaces.overlay.commandkey                  "L">
+<!ENTITY linkplaces.overlay.accesskey                   "L">
 
 <!-- Context menu -->
-<!ENTITY linkplaces.ctx.tab.saveThisTab                "Add This Tab to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.multipletab.saveSelected       "Add Selected Tabs to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.content.savePage               "Add This Page to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.content.saveLink               "Add This Link to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.places.saveItems               "Add to &linkplaces.global;">
+<!ENTITY linkplaces.ctx.tab.saveThisTab                 "Add This Tab to &linkplaces.global;">
+<!ENTITY linkplaces.ctx.multipletab.saveSelected        "Add Selected Tabs to &linkplaces.global;">
+<!ENTITY linkplaces.ctx.content.savePage                "Add This Page to &linkplaces.global;">
+<!ENTITY linkplaces.ctx.content.saveLink                "Add This Link to &linkplaces.global;">
+<!ENTITY linkplaces.ctx.places.saveItems                "Add to &linkplaces.global;">
 
 <!-- Options -->
-<!ENTITY linkplaces.option.title                       "&linkplaces.global; - Options">
-<!ENTITY linkplaces.option.pane.general                "General">
-<!ENTITY linkplaces.option.openLinkToWhere.caption     "When click, Open the item to">
-<!ENTITY linkplaces.option.openLinkToWhere.current     "Current Tab">
-<!ENTITY linkplaces.option.openLinkToWhere.tab         "New Tab">
-<!ENTITY linkplaces.option.openLinkToWhere.tabshifted  "New Background Tab">
-<!ENTITY linkplaces.option.openLinkToWhere.window      "New Window">
+<!ENTITY linkplaces.option.title                        "&linkplaces.global; - Options">
+<!ENTITY linkplaces.option.pane.general                 "General">
+<!ENTITY linkplaces.option.openLinkToWhere.caption      "When click, Open the item to">
+<!ENTITY linkplaces.option.openLinkToWhere.current      "Current Tab">
+<!ENTITY linkplaces.option.openLinkToWhere.tab          "New Tab">
+<!ENTITY linkplaces.option.openLinkToWhere.tabshifted   "New Background Tab">
+<!ENTITY linkplaces.option.openLinkToWhere.window       "New Window">
 <!ENTITY linkplaces.option.focusWhenItemsOpened.caption "Focus when item opened">
 <!ENTITY linkplaces.option.focusWhenItemsOpened.sidebar "Focus sidebar when item opened">
