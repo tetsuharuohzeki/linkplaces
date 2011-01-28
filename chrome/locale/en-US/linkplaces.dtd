@@ -7,7 +7,6 @@
 <!ENTITY linkplaces.overlay.sidebar.title              "&linkplaces.global;">
 <!ENTITY linkplaces.overlay.commandkey                 "L">
 <!ENTITY linkplaces.overlay.accesskey                  "L">
-<!ENTITY linkplaces.overlay.drop                       "Drop a link to add it to &linkplaces.global;">
 
 <!-- Context menu -->
 <!ENTITY linkplaces.ctx.tab.saveThisTab                "Add This Tab to &linkplaces.global;">
