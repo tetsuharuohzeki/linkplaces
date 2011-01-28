@@ -9,14 +9,13 @@
             id="linkplaces-option"
             title="&linkplaces.option.title;">
 
-	<prefpane id="linkplaces-optionPane-general"
-	          label="&linkplaces.option.pane.general;">
+	<prefpane label="&linkplaces.option.pane.general;">
 
 		<preferences>
 			<preference id="extensions.linkplaces.openLinkToWhere"
 			            name="extensions.linkplaces.openLinkToWhere"
 			            type="int"/>
-			<preference id="extensions.linkplaces.focusSidebarWhenItemsOpened"
+			<preference id="linkplaces.option.focusWhenItemsOpened.sidebar"
 			            name="extensions.linkplaces.focusSidebarWhenItemsOpened"
 			            type="bool"/>
 		</preferences>
@@ -36,11 +35,11 @@
 			</radiogroup>
 		</groupbox>
 
-		<groupbox id="linkplaces-option-sidebar">
-			<caption label="&linkplaces.option.sidebar.caption;"/>
-			<checkbox id="linkplaces-option-focusSidebarWhenItemsOpened"
-			          label="&linkplaces.option.focusSidebarWhenItemsOpened;"
-			          preference="extensions.linkplaces.focusSidebarWhenItemsOpened"/>
+		<groupbox>
+			<caption label="&linkplaces.option.focusWhenItemsOpened.caption;"/>
+			<checkbox id="linkplaces-option-focusWhenItemsOpened-sidebar"
+			          label="&linkplaces.option.focusWhenItemsOpened.sidebar;"
+			          preference="linkplaces.option.focusWhenItemsOpened.sidebar"/>
 		</groupbox>
 
 	</prefpane>
