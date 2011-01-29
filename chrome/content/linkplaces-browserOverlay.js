@@ -68,9 +68,10 @@ var LinkplacesBrowser = {
 	},
 
 	saveTab: function (aTab) {
-		var URI = aTab.linkedBrowser.currentURI.spec
-		var title = aTab.linkedBrowser.contentDocument.title || aTab.getAttribute("label");
-		this.service.saveItem(URI, title);
+		var browser = aTab.linkedBrowser;
+		var uri = browser.currentURI.spec
+		var title = browser.contentDocument.title || uri;
+		this.service.saveItem(uri, title);
 	},
 
 // based on bookmarksButtonObserver class and browserDragAndDrop class
