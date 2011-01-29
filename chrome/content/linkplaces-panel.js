@@ -167,7 +167,7 @@ var LinkplacesPanel = {
 			}
 			else if (!isContainer) {
 				treeBoxObj.view.selection.select(row.value);
-				this.openNodeWithEvent(tree.selectedNode, aEvent);
+				this.openNodeWithEvent(tree.selectedNode, aEvent, this.treeView);
 			}
 		}
 	},
@@ -176,7 +176,7 @@ var LinkplacesPanel = {
 		if (aEvent.keyCode == KeyEvent.DOM_VK_RETURN) {
 			var node = aEvent.target.selectedNode;
 			if (PlacesUtils.nodeIsURI(node)) {
-				this.openNodeWithEvent(node, aEvent);
+				this.openNodeWithEvent(node, aEvent, this.treeView);
 			}
 		}
 	},
@@ -209,10 +209,10 @@ var LinkplacesPanel = {
 		window.top.XULBrowserWindow.setOverLink(aURI, null);
 	},
 
-	openNodeWithEvent: function (aNode, aEvent) {
+	openNodeWithEvent: function (aNode, aEvent, aView) {
 		var where = this.whereToOpenLink(aEvent, aNode.uri);
 
-		PlacesUIUtils.openNodeIn(aNode, where);
+		PlacesUIUtils.openNodeIn(aNode, where, aView);
 
 		this.focusSidebarWhenItemsOpened();
 
