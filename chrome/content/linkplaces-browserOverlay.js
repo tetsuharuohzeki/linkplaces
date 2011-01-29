@@ -76,8 +76,9 @@ var LinkplacesBrowser = {
 
 // based on bookmarksButtonObserver class and browserDragAndDrop class
 	ButtonOnDrop: function (aEvent) {
-		var ip = new InsertionPoint(this.service.linkplacesFolder,
-		                            PlacesUtils.bookmarks.DEFAULT_INDEX,
+		var service = this.service;
+		var ip = new InsertionPoint(service.linkplacesFolder,
+		                            service.linkplacesFolder_DEFAULT_INDEX,
 		                            Components.interfaces.nsITreeView.DROP_ON);
 		PlacesControllerDragHelper.onDrop(ip, aEvent.dataTransfer);
 	},
