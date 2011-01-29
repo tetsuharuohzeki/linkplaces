@@ -27,7 +27,7 @@ var LinkplacesPlacesOverlay = {
 
 	_saveItem: function (aNode) {
 		if (PlacesUtils.nodeIsURI(aNode)) {
-			this.service.saveItem(aNode.uri, aNode.title, -1);
+			this.service.saveItem(aNode.uri, aNode.title);
 		}
 	},
 

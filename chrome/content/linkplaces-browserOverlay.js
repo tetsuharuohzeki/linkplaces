@@ -56,7 +56,7 @@ var LinkplacesBrowser = {
 	},
 
 	saveLink: function () {
-		this.service.saveItem(gContextMenu.linkURL, gContextMenu.linkText(), -1);
+		this.service.saveItem(gContextMenu.linkURL, gContextMenu.linkText());
 	},
 
 	saveThisPage: function () {
@@ -70,7 +70,7 @@ var LinkplacesBrowser = {
 	saveTab: function (aTab) {
 		var URI = aTab.linkedBrowser.currentURI.spec
 		var title = aTab.linkedBrowser.contentDocument.title || aTab.getAttribute("label");
-		this.service.saveItem(URI, title, -1);
+		this.service.saveItem(URI, title);
 	},
 
 // based on bookmarksButtonObserver class and browserDragAndDrop class
