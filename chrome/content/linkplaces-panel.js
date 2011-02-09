@@ -19,9 +19,9 @@ var LinkplacesPanel = {
 	get placesController() {
 		delete this.placesController;
 		var self = this;
-		this.placesController = new PlacesController(this.treeView);
-		this.placesController._isCommandEnabled = this.placesController.isCommandEnabled;
-		this.placesController.isCommandEnabled = function (aCmd) {
+		var placesController = new PlacesController(this.treeView);
+		placesController._isCommandEnabled = placesController.isCommandEnabled;
+		placesController.isCommandEnabled = function (aCmd) {
 			switch (aCmd) {
 				case "placesCmd_new:bookmark":
 				case "placesCmd_new:folder":
@@ -36,8 +36,8 @@ var LinkplacesPanel = {
 					return this._isCommandEnabled(aCmd);
 			}
 		};
-		this.placesController._doCommand = this.placesController.doCommand;
-		this.placesController.doCommand = function (aCmd) {
+		placesController._doCommand = placesController.doCommand;
+		placesController.doCommand = function (aCmd) {
 			this._doCommand(aCmd);
 			switch (aCmd) {
 				case "placesCmd_open":
@@ -48,7 +48,7 @@ var LinkplacesPanel = {
 					break;
 			}
 		};
-		return this.placesController;
+		return this.placesController = placesController;
 	},
 
 	handleEvent: function (aEvent) {
@@ -70,7 +70,7 @@ var LinkplacesPanel = {
 		window.addEventListener("unload", this, false);
 		window.addEventListener("SidebarFocused", this, false);
 
-		this.treeView.controllers.appendController(this.placesController);
+		this.treeView.controllers.insertControllerAt(0, this.placesController);
 		this.initPlacesView();
 		this.overrideCmdOpenMultipleItem();
 	},
@@ -79,7 +79,7 @@ var LinkplacesPanel = {
 		window.removeEventListener("unload", this, false);
 		window.removeEventListener("SidebarFocused", this, false);
 
-		this.treeView.controllers.removeController(this.placesController);
+		this.treeView.controllers.removeControllerAt(0);
 		//delete this.placesController;
 
 		this.setMouseoverURL("");
