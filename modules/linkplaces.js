@@ -1,7 +1,8 @@
 var EXPORTED_SYMBOLS = ["LinkplacesService"];
 
 //Import JS Utils module
-Components.utils.import("resource://linkplaces/UtilsForExtension.js");
+Components.utils.import("resource://linkplaces/Preferences.js");
+Components.utils.import("resource://linkplaces/Observers.js");
 
 var LinkplacesService = {
 
