@@ -3,7 +3,7 @@ var LinkplacesBrowser = {
 	ElmId_contentCtxSavePage: "linkplaces-contentCtx-savePage",
 	ElmId_contentCtxSaveLink: "linkplaces-contentCtx-saveLink",
 
-	get service() {
+	get service () {
 		delete this.service;
 		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 		return this.service = this.LinkplacesService;

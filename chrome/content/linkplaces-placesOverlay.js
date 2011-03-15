@@ -1,6 +1,6 @@
 var LinkplacesPlacesOverlay = {
 
-	get service() {
+	get service () {
 		delete this.service;
 		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 		return this.service = this.LinkplacesService;

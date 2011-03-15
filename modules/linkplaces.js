@@ -13,12 +13,12 @@ var LinkplacesService = {
 		focusWhenItemsOpened_Sidebar: null,
 	},
 
-	get prefBranch() {
+	get prefBranch () {
 		delete this.prefBranch;
 		return this.prefBranch = new Preferences(this.PREF_DOMAIN);
 	},
 
-	get bookmarksSvc() {
+	get bookmarksSvc () {
 		delete this.bookmarksSvc;
 		return this.bookmarksSvc = Components.classes["@mozilla.org/browser/nav-bookmarks-service;1"]
 		                           .getService(Components.interfaces.nsINavBookmarksService);
@@ -34,13 +34,13 @@ var LinkplacesService = {
 		return this.DEFAULT_INDEX = this.bookmarksSvc.DEFAULT_INDEX;
 	},
 
-	get historySvc() {
+	get historySvc () {
 		delete this.historySvc;
 		return this.historySvc = Components.classes["@mozilla.org/browser/nav-history-service;1"]
 		                         .getService(Components.interfaces.nsINavHistoryService);
 	},
 
-	get IOService() {
+	get IOService () {
 		delete this.IOService;
 		return this.IOService = Components.classes["@mozilla.org/network/io-service;1"]
 		                        .getService(Components.interfaces.nsIIOService);

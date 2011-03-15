@@ -1,22 +1,22 @@
 var LinkplacesPanel = {
 
-	get treeView() {
+	get treeView () {
 		delete this.treeView;
 		return this.treeView = document.getElementById("linkplaces-view");
 	},
 
-	get service() {
+	get service () {
 		delete this.service;
 		Components.utils.import("resource://linkplaces/linkplaces.js", this);
 		return this.service = this.LinkplacesService;
 	},
 
-	get PREF() {
+	get PREF () {
 		delete this.PREF;
 		return this.PREF = this.service.PREF;
 	},
 
-	get placesController() {
+	get placesController () {
 		delete this.placesController;
 		var self = this;
 		var placesController = new PlacesController(this.treeView);
