@@ -24,14 +24,14 @@ var LinkplacesService = {
 		                           .getService(Components.interfaces.nsINavBookmarksService);
 	},
 
-	get linkplacesFolder() {
-		delete this.linkplacesFolder;
-		return this.linkplacesFolder = this.bookmarksSvc.unfiledBookmarksFolder;
+	get folder () {
+		delete this.folder;
+		return this.folder = this.bookmarksSvc.unfiledBookmarksFolder;
 	},
 
-	get linkplacesFolder_DEFAULT_INDEX () {
-		delete this.linkplacesFolder_DEFAULT_INDEX;
-		return this.linkplacesFolder_DEFAULT_INDEX = this.bookmarksSvc.DEFAULT_INDEX;
+	get DEFAULT_INDEX () {
+		delete this.DEFAULT_INDEX;
+		return this.DEFAULT_INDEX = this.bookmarksSvc.DEFAULT_INDEX;
 	},
 
 	get historySvc() {
@@ -106,9 +106,9 @@ var LinkplacesService = {
 	saveItem: function (aURI, aTitle, aIndex) {
 		var uri = this.IOService.newURI(aURI, null, null);
 		if (!aIndex) {
-			aIndex = this.linkplacesFolder_DEFAULT_INDEX;
+			aIndex = this.DEFAULT_INDEX;
 		}
-		this.bookmarksSvc.insertBookmark(this.linkplacesFolder, uri,
+		this.bookmarksSvc.insertBookmark(this.folder, uri,
 		                                 aIndex, aTitle);
 	},
 

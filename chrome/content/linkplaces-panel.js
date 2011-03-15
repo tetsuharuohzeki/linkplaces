@@ -93,7 +93,7 @@ var LinkplacesPanel = {
 		var historySvc = this.service.historySvc;
 
 		var query = historySvc.getNewQuery();
-		var linkplacesFolder = this.service.linkplacesFolder;
+		var linkplacesFolder = this.service.folder;
 		query.setFolders([linkplacesFolder], 1);
 		//query.searchTerms = "";
 		query.onlyBookmarked = true;
