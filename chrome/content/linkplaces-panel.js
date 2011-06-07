@@ -107,11 +107,13 @@ var LinkplacesPanel = {
 	},
 
 	overrideCmdOpenMultipleItem: function () {
-		var cmdValue = "var controller = PlacesUIUtils.getViewForNode(document.popupNode).controller;" + 
-		               "LinkplacesPanel.openSelectionInTabs(controller, event);";
+		var cmdValue = <![CDATA[
+			var controller = PlacesUIUtils.getViewForNode(document.popupNode).controller;
+			LinkplacesPanel.openSelectionInTabs(controller, event);
+		]]>;
 		["placesContext_openContainer:tabs",
 		 "placesContext_openLinks:tabs"].forEach(function(aElm){
-		 	 document.getElementById(aElm).setAttribute("oncommand", cmdValue);
+		 	 document.getElementById(aElm).setAttribute("oncommand", cmdValue.toString());
 		});
 	},
 
