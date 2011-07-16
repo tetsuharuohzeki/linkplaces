@@ -18,8 +18,8 @@ var LinkplacesPanel = {
 
 	get placesController () {
 		delete this.placesController;
-		var self = this;
-		var placesController = new PlacesController(this.treeView);
+		let self = this;
+		let placesController = new PlacesController(this.treeView);
 		placesController._isCommandEnabled = placesController.isCommandEnabled;
 		placesController.isCommandEnabled = function (aCmd) {
 			switch (aCmd) {
@@ -90,25 +90,25 @@ var LinkplacesPanel = {
 	},
 
 	initPlacesView: function() {
-		var historySvc = this.service.historySvc;
+		let historySvc = this.service.historySvc;
 
-		var query = historySvc.getNewQuery();
-		var linkplacesFolder = this.service.folder;
+		let query = historySvc.getNewQuery();
+		let linkplacesFolder = this.service.folder;
 		query.setFolders([linkplacesFolder], 1);
 		//query.searchTerms = "";
 		query.onlyBookmarked = true;
 
-		var queryOpts = historySvc.getNewQueryOptions();
+		let queryOpts = historySvc.getNewQueryOptions();
 		queryOpts.queryType = queryOpts.QUERY_TYPE_BOOKMARKS;//queryType=1
 
-		var placesQuery = historySvc.queriesToQueryString([query], 1, queryOpts);
+		let placesQuery = historySvc.queriesToQueryString([query], 1, queryOpts);
 
 		this.treeView.place = placesQuery;
 	},
 
 	overrideCmdOpenMultipleItem: function () {
-		var cmdValue = <![CDATA[
-			var controller = PlacesUIUtils.getViewForNode(document.popupNode).controller;
+		let cmdValue = <![CDATA[
+			let controller = PlacesUIUtils.getViewForNode(document.popupNode).controller;
 			LinkplacesPanel.openSelectionInTabs(controller, event);
 		]]>;
 		["placesContext_openContainer:tabs",
@@ -124,9 +124,9 @@ var LinkplacesPanel = {
 			return;
 		}
 
-		var tree = aEvent.target.parentNode;
-		var treeBoxObj = tree.treeBoxObject;
-		var row = {}, col = {}, obj = {};
+		let tree = aEvent.target.parentNode;
+		let treeBoxObj = tree.treeBoxObject;
+		let row = {}, col = {}, obj = {};
 		treeBoxObj.getCellAt(aEvent.clientX, aEvent.clientY, row, col, obj);
 
 		if (row.value == -1 ||  obj.value == "twisty") {
@@ -134,12 +134,12 @@ var LinkplacesPanel = {
 		}
 
 		// whether mouse in opening item area or not.
-		var mouseInGutter = false;
-		var cellX = {}, cellY = {}, cellW = {}, cellH = {};
+		let mouseInGutter = false;
+		let cellX = {}, cellY = {}, cellW = {}, cellH = {};
 		if (aGutterSelect) {
 			treeBoxObj.getCoordsForCellItem(row.value, col.value, "image", cellX, cellY, cellW, cellH);
 
-			var isRTL = (window.getComputedStyle(tree, null).direction == "rtl");
+			let isRTL = (window.getComputedStyle(tree, null).direction == "rtl");
 			if (isRTL) {
 				mouseInGutter = (aEvent.clientX > cellX.value);
 			}
@@ -148,9 +148,9 @@ var LinkplacesPanel = {
 			}
 		}
 
-		var modifKey = (aEvent.ctrlKey || aEvent.metaKey) || aEvent.shiftKey;
-		var isContainer = treeBoxObj.view.isContainer(row.value);
-		var openInTabs = isContainer &&// Is the node container?
+		let modifKey = (aEvent.ctrlKey || aEvent.metaKey) || aEvent.shiftKey;
+		let isContainer = treeBoxObj.view.isContainer(row.value);
+		let openInTabs = isContainer &&// Is the node container?
 		                 // Is event is middle-click, or left-click with ctrlkey?
 		                 (aEvent.button == 1 || (aEvent.button == 0 && modifKey)) &&
 		                 //Does the node have child URI node?
@@ -176,7 +176,7 @@ var LinkplacesPanel = {
 
 	handleTreeKeyPress: function (aEvent) {
 		if (aEvent.keyCode == KeyEvent.DOM_VK_RETURN) {
-			var node = aEvent.target.selectedNode;
+			let node = aEvent.target.selectedNode;
 			if (PlacesUtils.nodeIsURI(node)) {
 				this.openNodeWithEvent(node, aEvent, this.treeView);
 			}
@@ -188,13 +188,13 @@ var LinkplacesPanel = {
 			return;
 		}
 
-		var tree = aEvent.target.parentNode;
-		var treeBoxObj = tree.treeBoxObject;
-		var row = {}, col = {}, obj = {};
+		let tree = aEvent.target.parentNode;
+		let treeBoxObj = tree.treeBoxObject;
+		let row = {}, col = {}, obj = {};
 		treeBoxObj.getCellAt(aEvent.clientX, aEvent.clientY, row, col, obj);
 
 		if (row.value != -1) {
-			var node = tree.view.nodeForTreeIndex(row.value);
+			let node = tree.view.nodeForTreeIndex(row.value);
 			if (PlacesUtils.nodeIsURI(node)) {
 				this.setMouseoverURL(node.uri);
 			}
@@ -212,7 +212,7 @@ var LinkplacesPanel = {
 	},
 
 	openNodeWithEvent: function (aNode, aEvent, aView) {
-		var where = this.whereToOpenLink(aEvent, aNode.uri);
+		let where = this.whereToOpenLink(aEvent, aNode.uri);
 
 		PlacesUIUtils.openNodeIn(aNode, where, aView);
 
@@ -226,7 +226,7 @@ var LinkplacesPanel = {
 			return "current";//for bookmarklet
 		}
 		else {
-			var where = whereToOpenLink(aEvent);
+			let where = whereToOpenLink(aEvent);
 			switch (where) {
 				case "current":
 					return this.PREF.openLinkToWhere;

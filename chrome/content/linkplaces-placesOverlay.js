@@ -19,8 +19,8 @@ var LinkplacesPlacesOverlay = {
 	},
 
 	saveAllItems: function () {
-		var nodesArray = PlacesUIUtils.getViewForNode(document.popupNode).selectedNodes;
-		for (var i = 0, length = nodesArray.length; i < length; i++) {
+		let nodesArray = PlacesUIUtils.getViewForNode(document.popupNode).selectedNodes;
+		for (let i = 0, length = nodesArray.length; i < length; i++) {
 			this._saveItem(nodesArray[i]);
 		}
 	},

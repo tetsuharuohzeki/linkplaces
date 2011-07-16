@@ -1,4 +1,4 @@
-var EXPORTED_SYMBOLS = ["LinkplacesService"];
+let EXPORTED_SYMBOLS = ["LinkplacesService"];
 
 //Import JS Utils module
 Components.utils.import("resource://gre/modules/Services.jsm");
@@ -10,7 +10,7 @@ Components.utils.import("resource://linkplaces/Observers.js");
  *
  * This service provides primary methods & properties for LinkPlaces.
  */
-var LinkplacesService = {
+let LinkplacesService = {
 
 	/**
 	 * @constant
@@ -97,7 +97,7 @@ var LinkplacesService = {
 	 * Set pref values to cache.
 	 */
 	prefObserve: function (aSubject, aData) {
-		var value = this.prefBranch.get(aData);
+		let value = this.prefBranch.get(aData);
 		switch (aData) {
 			case "openLinkToWhere":
 				switch (value) {
@@ -125,7 +125,7 @@ var LinkplacesService = {
 	 * Initialize cache of preferences
 	 */
 	initPref: function () {
-		var allPref = this.prefBranch.getChildList("");
+		let allPref = this.prefBranch.getChildList("");
 		allPref.forEach(function(aPref) {
 			this.prefObserve(null, aPref);
 		}, this);
@@ -163,7 +163,7 @@ var LinkplacesService = {
 	 *   The index which item inserted point.
 	 */
 	saveItem: function (aURI, aTitle, aIndex) {
-		var uri = Services.io.newURI(aURI, null, null);
+		let uri = Services.io.newURI(aURI, null, null);
 		if (!aIndex) {
 			aIndex = this.DEFAULT_INDEX;
 		}

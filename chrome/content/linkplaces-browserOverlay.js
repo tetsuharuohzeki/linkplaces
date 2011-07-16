@@ -38,12 +38,12 @@ var LinkplacesBrowser = {
 	},
 
 	initContext: function () {
-		var contentAreaCtx = document.getElementById("contentAreaContextMenu");
+		let contentAreaCtx = document.getElementById("contentAreaContextMenu");
 		contentAreaCtx.addEventListener("popupshowing", this, false);
 	},
 
 	finalizeContext: function () {
-		var contentAreaCtx = document.getElementById("contentAreaContextMenu");
+		let contentAreaCtx = document.getElementById("contentAreaContextMenu");
 		contentAreaCtx.removeEventListener("popupshowing", this, false);
 	},
 
@@ -68,16 +68,16 @@ var LinkplacesBrowser = {
 	},
 
 	saveTab: function (aTab) {
-		var browser = aTab.linkedBrowser;
-		var uri = browser.currentURI.spec
-		var title = browser.contentDocument.title || uri;
+		let browser = aTab.linkedBrowser;
+		let uri = browser.currentURI.spec
+		let title = browser.contentDocument.title || uri;
 		this.service.saveItem(uri, title);
 	},
 
 // based on bookmarksButtonObserver class and browserDragAndDrop class
 	ButtonOnDrop: function (aEvent) {
-		var service = this.service;
-		var ip = new InsertionPoint(service.folder,
+		let service = this.service;
+		let ip = new InsertionPoint(service.folder,
 		                            service.DEFAULT_INDEX,
 		                            Components.interfaces.nsITreeView.DROP_ON);
 		PlacesControllerDragHelper.onDrop(ip, aEvent.dataTransfer);
