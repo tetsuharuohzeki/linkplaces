@@ -4,10 +4,12 @@
  *
  * @License     MPL 1.1/GPL 2.0/LGPL 2.1
  * @developer   saneyuki_s
- * @version     20110215.1
+ * @version     20110716.1
  */
 
-var EXPORTED_SYMBOLS = ["Preferences"];
+Components.utils.import("resource://gre/modules/Services.jsm");
+
+let EXPORTED_SYMBOLS = ["Preferences"];
 
 function Preferences(aPrefBranch) {
 	if (aPrefBranch) {
@@ -21,15 +23,22 @@ Preferences.prototype = {
 	_prefSvc: null,
 	get prefSvc() {
 		if (!this._prefSvc) {
-			this._prefSvc = Components.classes["@mozilla.org/preferences-service;1"]
-			                .getService(Components.interfaces.nsIPrefService)
-			                .getBranch(this._prefBranch)
+			this._prefSvc = Services.prefs.getBranch(this._prefBranch)
 			                .QueryInterface(Components.interfaces.nsIPrefBranch2);
 		}
 		return this._prefSvc;
 	},
 
 	get: function (aPrefName) {
+		if (aPrefName instanceof Array) {
+			return aPrefName.map(function(v){ return this._get(v); }, this);
+		}
+		else {
+			return this._get(aPrefName);
+		}
+	},
+
+	_get: function (aPrefName) {
 		switch (this.prefSvc.getPrefType(aPrefName)) {
 			case Components.interfaces.nsIPrefBranch.PREF_STRING:
 				return this.prefSvc.getComplexValue(aPrefName, Components.interfaces.nsISupportsString).data;
@@ -43,12 +52,12 @@ Preferences.prototype = {
 	},
 
 	set: function (aPrefName, aPrefValue) {
-		var prefSvc = this.prefSvc;
-		var PrefType = typeof aPrefValue;
+		let prefSvc = this.prefSvc;
+		let PrefType = typeof aPrefValue;
 
 		switch (PrefType) {
 			case "string":
-				var str = Components.classes["@mozilla.org/supports-string;1"]
+				let str = Components.classes["@mozilla.org/supports-string;1"]
 				          .createInstance(Components.interfaces.nsISupportsString);
 				str.data = aPrefValue;
 				prefSvc.setComplexValue(aPrefName, Components.interfaces.nsISupportsString, str);

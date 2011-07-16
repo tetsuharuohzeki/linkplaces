@@ -4,24 +4,18 @@
  *
  * @License     MPL 1.1/GPL 2.0/LGPL 2.1
  * @developer   saneyuki_s
- * @version     20110215.1
+ * @version     20110716.1
  */
 
-var EXPORTED_SYMBOLS = ["Observers"];
+Components.utils.import("resource://gre/modules/Services.jsm");
 
-var Observers = {
-	_observerSvc: null,
-	get observerSvc() {
-		if (!this._observerSvc) {
-			this._observerSvc = Components.classes["@mozilla.org/observer-service;1"]
-			                    .getService(Components.interfaces.nsIObserverService);
-		}
-		return this._observerSvc;
-	},
+let EXPORTED_SYMBOLS = ["Observers"];
+
+let Observers = {
 
 	add: function (aTopic, aObsObj) {
-		var obs = new Observer(aTopic, aObsObj);
-		this.observerSvc.addObserver(obs, aTopic, false);
+		let obs = new Observer(aTopic, aObsObj);
+		Services.obs.addObserver(obs, aTopic, false);
 		ObserverCache.push(obs);
 	},
 
@@ -29,15 +23,15 @@ var Observers = {
 		var observerArray = ObserverCache.filter(function(aElm){ return (aElm.topic == aTopic &&
 		                                                                 aElm.obsObj == aObsObj); });
 		observerArray.forEach(function(aElem){
-			this.observerSvc.removeObserver(aElem, aTopic);
+			Services.obs.removeObserver(aElem, aTopic);
 			ObserverCache.splice(ObserverCache.indexOf(aElem), 1);
 		}, this);
 	},
 
 	notify: function (aTopic, aSubject, aData) {
-		var subject = (typeof aSubject === "undefined") ? null : { wrappedJSObject: aSubject };
-		var data    = (typeof aData    === "undefined") ? null : aData;
-		this.observerSvc.notifyObservers(subject, aTopic, data);
+		let subject = (typeof aSubject === "undefined") ? null : { wrappedJSObject: aSubject };
+		let data    = (typeof aData    === "undefined") ? null : aData;
+		Services.obs.notifyObservers(subject, aTopic, data);
 	}
 };
 
