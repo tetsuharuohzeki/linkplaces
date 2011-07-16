@@ -1,6 +1,7 @@
 var EXPORTED_SYMBOLS = ["LinkplacesService"];
 
 //Import JS Utils module
+Components.utils.import("resource://gre/modules/Services.jsm");
 Components.utils.import("resource://linkplaces/Preferences.js");
 Components.utils.import("resource://linkplaces/Observers.js");
 
@@ -69,15 +70,6 @@ var LinkplacesService = {
 		delete this.historySvc;
 		return this.historySvc = Components.classes["@mozilla.org/browser/nav-history-service;1"]
 		                         .getService(Components.interfaces.nsINavHistoryService);
-	},
-
-	/**
-	 * Cache nsIIOService.
-	 */
-	get IOService () {
-		delete this.IOService;
-		return this.IOService = Components.classes["@mozilla.org/network/io-service;1"]
-		                        .getService(Components.interfaces.nsIIOService);
 	},
 
 	/**
@@ -171,7 +163,7 @@ var LinkplacesService = {
 	 *   The index which item inserted point.
 	 */
 	saveItem: function (aURI, aTitle, aIndex) {
-		var uri = this.IOService.newURI(aURI, null, null);
+		var uri = Services.io.newURI(aURI, null, null);
 		if (!aIndex) {
 			aIndex = this.DEFAULT_INDEX;
 		}
