@@ -108,7 +108,7 @@ var LinkplacesPanel = {
 
 	overrideCmdOpenMultipleItem: function () {
 		let cmdValue = <![CDATA[
-			let controller = PlacesUIUtils.getViewForNode(document.popupNode).controller;
+			var controller = PlacesUIUtils.getViewForNode(document.popupNode).controller;
 			LinkplacesPanel.openSelectionInTabs(controller, event);
 		]]>;
 		["placesContext_openContainer:tabs",
