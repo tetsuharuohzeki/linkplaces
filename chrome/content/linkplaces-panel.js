@@ -80,7 +80,7 @@ var LinkplacesPanel = {
 		window.removeEventListener("SidebarFocused", this, false);
 
 		this.treeView.controllers.removeControllerAt(0);
-		//delete this.placesController;
+		this.placesController = null;
 
 		this.setMouseoverURL("");
 	},
