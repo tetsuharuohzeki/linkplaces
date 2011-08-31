@@ -25,7 +25,6 @@ var LinkplacesPanel = {
 			switch (aCmd) {
 				case "placesCmd_new:bookmark":
 				case "placesCmd_new:folder":
-				case "placesCmd_new:separator":
 				case "placesCmd_createBookmark":// for History
 				case "placesCmd_deleteDataHost":// for History
 				case "placesCmd_reload":
