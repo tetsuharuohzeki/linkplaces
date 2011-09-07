@@ -7,7 +7,7 @@
 
 <?xul-overlay href="chrome://global/content/editMenuOverlay.xul"?>
 
-<?xml-stylesheet href="chrome://linkplaces/skin/linkplaces.css"?>
+<?xml-stylesheet href="chrome://linkplaces/skin/linkplaces-sidebar.css"?>
 
 <!DOCTYPE page [
 	<!ENTITY % linkplacesDTD SYSTEM "chrome://linkplaces/locale/linkplaces.dtd">

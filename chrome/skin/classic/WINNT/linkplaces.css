@@ -1,11 +1,3 @@
 #linkplaces-button {
 	list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar.png");
 }
-
-#linkplaces-panel:-moz-system-metric(windows-default-theme) {
-	background-color: #EEF3FA;
-}
-.sidebar-placesTree:-moz-system-metric(windows-default-theme) {
-	background-color: transparent;
-	border-top: none;
-}
