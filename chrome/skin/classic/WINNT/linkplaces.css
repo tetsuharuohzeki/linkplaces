@@ -1,3 +1,8 @@
 #linkplaces-button {
 	list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar.png");
 }
+#TabsToolbar > #linkplaces-button:-moz-system-metric(windows-compositor):not(:-moz-lwtheme),
+#TabsToolbar > toolbarpaletteitem > #linkplaces-button:-moz-system-metric(windows-compositor):not(:-moz-lwtheme),
+#linkplaces-button:-moz-lwtheme-brighttext {
+  list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar-inverted.png");
+}
