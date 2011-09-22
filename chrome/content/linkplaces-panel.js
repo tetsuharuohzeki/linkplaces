@@ -207,7 +207,10 @@ var LinkplacesPanel = {
 	},
 
 	setMouseoverURL: function (aURI) {
-		window.top.XULBrowserWindow.setOverLink(aURI, null);
+		let XULBrowserWindow = window.top.XULBrowserWindow;
+		if (XULBrowserWindow) {
+			XULBrowserWindow.setOverLink(aURI, null);
+		}
 	},
 
 	openNodeWithEvent: function (aNode, aEvent, aView) {
