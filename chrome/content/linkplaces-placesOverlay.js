@@ -6,6 +6,11 @@ var LinkplacesPlacesOverlay = {
 		return this.service = this.LinkplacesService;
 	},
 
+	get ctxMenu () {
+		delete this.ctxMenu;
+		return this.ctxMenu = document.getElementById("placesContext");
+	},
+
 	handleEvent: function (aEvent) {
 		switch (aEvent.type) {
 			case "load":
@@ -19,7 +24,8 @@ var LinkplacesPlacesOverlay = {
 	},
 
 	saveAllItems: function () {
-		let nodesArray = PlacesUIUtils.getViewForNode(document.popupNode).selectedNodes;
+		let triggerNode = this.ctxMenu.triggerNode;
+		let nodesArray = PlacesUIUtils.getViewForNode(triggerNode).selectedNodes;
 		for (let i = 0, length = nodesArray.length; i < length; i++) {
 			this._saveItem(nodesArray[i]);
 		}

@@ -5,6 +5,11 @@ var LinkplacesPanel = {
 		return this.treeView = document.getElementById("linkplaces-view");
 	},
 
+	get ctxMenu () {
+		delete this.ctxMenu;
+		return this.ctxMenu = document.getElementById("placesContext");
+	},
+
 	get service () {
 		delete this.service;
 		Components.utils.import("resource://linkplaces/linkplaces.js", this);
@@ -107,7 +112,8 @@ var LinkplacesPanel = {
 
 	overrideCmdOpenMultipleItem: function () {
 		let cmdValue = <![CDATA[
-			var controller = PlacesUIUtils.getViewForNode(document.popupNode).controller;
+			var triggerNode = LinkplacesPanel.ctxMenu.triggerNode;
+			var controller = PlacesUIUtils.getViewForNode(triggerNode).controller;
 			LinkplacesPanel.openSelectionInTabs(controller, event);
 		]]>;
 		["placesContext_openContainer:tabs",
