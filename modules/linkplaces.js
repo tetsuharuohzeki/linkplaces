@@ -1,9 +1,13 @@
 let EXPORTED_SYMBOLS = ["LinkplacesService"];
 
+const Cc = Components.classes;
+const Ci = Components.interfaces;
+const Cu = Components.utils;
+
 //Import JS Utils module
-Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
-Components.utils.import("resource://gre/modules/Services.jsm");
-Components.utils.import("resource://linkplaces/Preferences.js");
+Cu.import("resource://gre/modules/XPCOMUtils.jsm");
+Cu.import("resource://gre/modules/Services.jsm");
+Cu.import("resource://linkplaces/Preferences.js");
 
 /**
  * LinkplacesService
@@ -12,9 +16,9 @@ Components.utils.import("resource://linkplaces/Preferences.js");
  */
 let LinkplacesService = {
 
-	QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsIObserver,
-	                                       Components.interfaces.nsISupportsWeakReference,
-	                                       Components.interfaces.nsISupports]),
+	QueryInterface: XPCOMUtils.generateQI([Ci.nsIObserver,
+	                                       Ci.nsISupportsWeakReference,
+	                                       Ci.nsISupports]),
 
 	/**
 	 * @constant
@@ -45,8 +49,8 @@ let LinkplacesService = {
 	 */
 	get bookmarksSvc () {
 		delete this.bookmarksSvc;
-		return this.bookmarksSvc = Components.classes["@mozilla.org/browser/nav-bookmarks-service;1"]
-		                           .getService(Components.interfaces.nsINavBookmarksService);
+		return this.bookmarksSvc = Cc["@mozilla.org/browser/nav-bookmarks-service;1"]
+		                           .getService(Ci.nsINavBookmarksService);
 	},
 
 	/**
@@ -72,8 +76,8 @@ let LinkplacesService = {
 	 */
 	get historySvc () {
 		delete this.historySvc;
-		return this.historySvc = Components.classes["@mozilla.org/browser/nav-history-service;1"]
-		                         .getService(Components.interfaces.nsINavHistoryService);
+		return this.historySvc = Cc["@mozilla.org/browser/nav-history-service;1"]
+		                         .getService(Ci.nsINavHistoryService);
 	},
 
 	/**
