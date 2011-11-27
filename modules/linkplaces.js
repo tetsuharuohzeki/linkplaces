@@ -1,9 +1,9 @@
 let EXPORTED_SYMBOLS = ["LinkplacesService"];
 
 //Import JS Utils module
+Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 Components.utils.import("resource://gre/modules/Services.jsm");
 Components.utils.import("resource://linkplaces/Preferences.js");
-Components.utils.import("resource://linkplaces/Observers.js");
 
 /**
  * LinkplacesService
@@ -11,6 +11,10 @@ Components.utils.import("resource://linkplaces/Observers.js");
  * This service provides primary methods & properties for LinkPlaces.
  */
 let LinkplacesService = {
+
+	QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsIObserver,
+	                                       Components.interfaces.nsISupportsWeakReference,
+	                                       Components.interfaces.nsISupports]),
 
 	/**
 	 * @constant
@@ -135,7 +139,7 @@ let LinkplacesService = {
 	 * Initialize this service. This methods must be called before using this service.
 	 */
 	init: function () {
-		Observers.add("quit-application-granted", this);
+		Services.obs.addObserver(this, "quit-application-granted", true);
 
 		//Set Preferences Observer
 		this.prefBranch.observe("", this);
@@ -147,7 +151,7 @@ let LinkplacesService = {
 	 * Unregister this object from observer.
 	 */
 	destroy: function () {
-		Observers.remove("quit-application-granted", this);
+		Services.obs.removeObserver(this, "quit-application-granted");
 		this.prefBranch.ignore("", this);
 	},
 
