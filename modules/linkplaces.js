@@ -146,7 +146,7 @@ let LinkplacesService = {
 		Services.obs.addObserver(this, "quit-application-granted", true);
 
 		//Set Preferences Observer
-		this.prefBranch.observe("", this);
+		this.prefBranch.addObserver("", this);
 		//set user preferences
 		this.initPref();
 	},
@@ -156,7 +156,7 @@ let LinkplacesService = {
 	 */
 	destroy: function () {
 		Services.obs.removeObserver(this, "quit-application-granted");
-		this.prefBranch.ignore("", this);
+		this.prefBranch.removeObserver("", this);
 	},
 
 

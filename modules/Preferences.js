@@ -4,27 +4,31 @@
  *
  * @License     MPL 1.1/GPL 2.0/LGPL 2.1
  * @developer   saneyuki_s
- * @version     20110716.1
+ * @version     20111127.1
  */
 
-Components.utils.import("resource://gre/modules/Services.jsm");
+const Cc = Components.classes;
+const Ci = Components.interfaces;
+const Cu = Components.utils;
+
+Cu.import("resource://gre/modules/Services.jsm");
 
 let EXPORTED_SYMBOLS = ["Preferences"];
 
 function Preferences(aPrefBranch) {
 	if (aPrefBranch) {
-		this._prefBranch = aPrefBranch;
+		this.prefBranch = aPrefBranch;
 	}
 }
 Preferences.prototype = {
 
-	_prefBranch: "",
+	prefBranch: "",
 
 	_prefSvc: null,
 	get prefSvc() {
 		if (!this._prefSvc) {
-			this._prefSvc = Services.prefs.getBranch(this._prefBranch)
-			                .QueryInterface(Components.interfaces.nsIPrefBranch2);
+			this._prefSvc = Services.prefs.getBranch(this.prefBranch)
+			                .QueryInterface(Ci.nsIPrefBranch2);
 		}
 		return this._prefSvc;
 	},
@@ -39,15 +43,16 @@ Preferences.prototype = {
 	},
 
 	_get: function (aPrefName) {
-		switch (this.prefSvc.getPrefType(aPrefName)) {
-			case Components.interfaces.nsIPrefBranch.PREF_STRING:
-				return this.prefSvc.getComplexValue(aPrefName, Components.interfaces.nsISupportsString).data;
+		let prefSvc = this.prefSvc;
+		switch (prefSvc.getPrefType(aPrefName)) {
+			case Ci.nsIPrefBranch.PREF_STRING:
+				return prefSvc.getComplexValue(aPrefName, Ci.nsISupportsString).data;
 
-			case Components.interfaces.nsIPrefBranch.PREF_INT:
-				return this.prefSvc.getIntPref(aPrefName);
+			case Ci.nsIPrefBranch.PREF_INT:
+				return prefSvc.getIntPref(aPrefName);
 
-			case Components.interfaces.nsIPrefBranch.PREF_BOOL:
-				return this.prefSvc.getBoolPref(aPrefName);
+			case Ci.nsIPrefBranch.PREF_BOOL:
+				return prefSvc.getBoolPref(aPrefName);
 		}
 	},
 
@@ -57,10 +62,10 @@ Preferences.prototype = {
 
 		switch (PrefType) {
 			case "string":
-				let str = Components.classes["@mozilla.org/supports-string;1"]
-				          .createInstance(Components.interfaces.nsISupportsString);
+				let str = Cc["@mozilla.org/supports-string;1"]
+				          .createInstance(Ci.nsISupportsString);
 				str.data = aPrefValue;
-				prefSvc.setComplexValue(aPrefName, Components.interfaces.nsISupportsString, str);
+				prefSvc.setComplexValue(aPrefName, Ci.nsISupportsString, str);
 				break;
 
 			case "number":
@@ -85,11 +90,11 @@ Preferences.prototype = {
 		return this.prefSvc.getChildList(aPrefBranch, {});
 	},
 
-	observe: function (aPrefBranch, aObsObj) {
-		this.prefSvc.addObserver(aPrefBranch, aObsObj, false);
+	addObserver: function (aPrefBranch, aObsObj) {
+		this.prefSvc.addObserver(aPrefBranch, aObsObj, true);
 	},
 
-	ignore: function (aPrefBranch, aObsObj) {
+	removeObserver: function (aPrefBranch, aObsObj) {
 		this.prefSvc.removeObserver(aPrefBranch, aObsObj);
 	},
 };
