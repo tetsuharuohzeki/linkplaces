@@ -9,7 +9,6 @@ const PREF_DOMAIN = "extensions.linkplaces.";
 //Import JS Utils module
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
-Cu.import("resource://linkplaces/Preferences.js");
 
 /**
  * LinkplacesService
@@ -45,7 +44,8 @@ let LinkplacesService = {
 	 */
 	get prefBranch () {
 		delete this.prefBranch;
-		return this.prefBranch = new Preferences(PREF_DOMAIN);
+		return this.prefBranch = Services.prefs.getBranch(PREF_DOMAIN)
+		                         .QueryInterface(Ci.nsIPrefBranch2);
 	},
 
 	/**
@@ -109,10 +109,10 @@ let LinkplacesService = {
 	 * Set pref values to cache.
 	 */
 	prefObserve: function (aSubject, aData) {
-		let value = this.prefBranch.get(aData);
+		let prefBranch = this.prefBranch;
 		switch (aData) {
 			case "openLinkToWhere":
-				switch (value) {
+				switch (prefBranch.getIntPref(aData)) {
 					case 0:
 						this.PREF.openLinkToWhere = "current";
 						break;
@@ -128,7 +128,7 @@ let LinkplacesService = {
 				}
 				break;
 			case "focusWhenItemsOpened.sidebar":
-				this.PREF.focusWhenItemsOpened_Sidebar = value;
+				this.PREF.focusWhenItemsOpened_Sidebar = prefBranch.getBoolPref(aData);
 				break;
 		}
 	},
@@ -137,7 +137,7 @@ let LinkplacesService = {
 	 * Initialize cache of preferences
 	 */
 	initPref: function () {
-		let allPref = this.prefBranch.getChildList("");
+		let allPref = this.prefBranch.getChildList("", {});
 		allPref.forEach(function(aPref) {
 			this.prefObserve(null, aPref);
 		}, this);
@@ -150,7 +150,7 @@ let LinkplacesService = {
 		Services.obs.addObserver(this, "quit-application-granted", true);
 
 		//Set Preferences Observer
-		this.prefBranch.addObserver("", this);
+		this.prefBranch.addObserver("", this, true);
 		//set user preferences
 		this.initPref();
 	},
