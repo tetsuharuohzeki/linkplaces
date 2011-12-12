@@ -4,6 +4,8 @@ const Cc = Components.classes;
 const Ci = Components.interfaces;
 const Cu = Components.utils;
 
+const PREF_DOMAIN = "extensions.linkplaces.";
+
 //Import JS Utils module
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
@@ -25,7 +27,9 @@ let LinkplacesService = {
 	 *   Preference domain of this service.
 	 * @type string
 	 */
-	PREF_DOMAIN: "extensions.linkplaces.",
+	get PREF_DOMAIN () {
+		return PREF_DOMAIN;
+	},
 
 	/**
 	 * Cache this service's preferences value.
@@ -41,7 +45,7 @@ let LinkplacesService = {
 	 */
 	get prefBranch () {
 		delete this.prefBranch;
-		return this.prefBranch = new Preferences(this.PREF_DOMAIN);
+		return this.prefBranch = new Preferences(PREF_DOMAIN);
 	},
 
 	/**
