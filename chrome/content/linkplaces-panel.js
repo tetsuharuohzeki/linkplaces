@@ -230,18 +230,22 @@ var LinkplacesPanel = {
 	},
 
 	whereToOpenLink: function (aEvent, aURI) {
+		let rv = "";
 		if (this.isBookmarklet(aURI)) {
-			return "current";//for bookmarklet
+			rv = "current";//for bookmarklet
 		}
 		else {
 			let where = whereToOpenLink(aEvent);
 			switch (where) {
 				case "current":
-					return this.PREF.openLinkToWhere;
+					rv = this.PREF.openLinkToWhere;
+					break;
 				default:
-					return where;
+					rv = where;
+					break;
 			}
 		}
+		return rv;
 	},
 
 	isBookmarklet: function (aURI) {
