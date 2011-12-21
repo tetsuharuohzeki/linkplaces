@@ -71,22 +71,25 @@ var LinkplacesPanel = {
 
 	onLoad: function () {
 		window.removeEventListener("load", this, false);
+
+		// initialize
+		this.initPlacesView();
+		this.treeView.controllers.insertControllerAt(0, this.placesController);
+		this.overrideCmdOpenMultipleItem();
+
 		window.addEventListener("unload", this, false);
 		window.addEventListener("SidebarFocused", this, false);
-
-		this.treeView.controllers.insertControllerAt(0, this.placesController);
-		this.initPlacesView();
-		this.overrideCmdOpenMultipleItem();
 	},
 
 	onUnLoad: function() {
 		window.removeEventListener("unload", this, false);
 		window.removeEventListener("SidebarFocused", this, false);
 
+		this.setMouseoverURL("");
+
+		// finalize
 		this.treeView.controllers.removeControllerAt(0);
 		this.placesController = null;
-
-		this.setMouseoverURL("");
 	},
 
 	onSidebarFocused: function () {
