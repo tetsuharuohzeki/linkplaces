@@ -5,8 +5,8 @@ var LinkplacesBrowser = {
 
 	get service () {
 		delete this.service;
-		Components.utils.import("resource://linkplaces/linkplaces.js", this);
-		return this.service = this.LinkplacesService;
+		Components.utils.import("resource://linkplaces/linkplaces.js");
+		return this.service = LinkplacesService;
 	},
 
 	handleEvent: function (aEvent) {
