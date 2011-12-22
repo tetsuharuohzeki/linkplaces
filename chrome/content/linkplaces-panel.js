@@ -4,11 +4,13 @@ var LinkplacesPanel = {
 		delete this.treeView;
 		return this.treeView = document.getElementById("linkplaces-view");
 	},
+	set treeView (v) {},
 
 	get ctxMenu () {
 		delete this.ctxMenu;
 		return this.ctxMenu = document.getElementById("placesContext");
 	},
+	set ctxMenu (v) {},
 
 	get service () {
 		delete this.service;
@@ -90,6 +92,9 @@ var LinkplacesPanel = {
 		// finalize
 		this.treeView.controllers.removeControllerAt(0);
 		this.placesController = null;
+
+		this.treeView = null;
+		this.ctxMenu  = null;
 	},
 
 	onSidebarFocused: function () {

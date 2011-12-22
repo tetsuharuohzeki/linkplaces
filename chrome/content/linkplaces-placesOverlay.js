@@ -10,17 +10,29 @@ var LinkplacesPlacesOverlay = {
 		delete this.ctxMenu;
 		return this.ctxMenu = document.getElementById("placesContext");
 	},
+	set ctxMenu (v) {},
 
 	handleEvent: function (aEvent) {
 		switch (aEvent.type) {
 			case "load":
 				this.onLoad();
 				break;
+			case "unload":
+				this.onUnLoad();
+				break;
 		}
 	},
 
 	onLoad: function () {
 		window.removeEventListener("load", this, false);
+
+		window.addEventListener("unload",  this, false);
+	},
+
+	onUnLoad: function () {
+		window.removeEventListener("unload", this, false);
+
+		this.ctxMenu = null;
 	},
 
 	saveAllItems: function () {
