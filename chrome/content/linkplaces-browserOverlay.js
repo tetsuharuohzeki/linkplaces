@@ -15,7 +15,9 @@ var LinkplacesBrowser = {
 				this.onLoad();
 				break;
 			case "popupshowing":
-				this.handleContentCtxPopup();
+				if (aEvent.target.id === "contentAreaContextMenu") {
+					this.handleContentCtxPopup();
+				}
 				break;
 			case "unload":
 				this.onUnLoad();
