@@ -1,8 +1,8 @@
 ## Defines the package
-content  linkplaces               chrome/content/
-skin     linkplaces  classic/1.0  chrome/skin/classic/WINNT/ os=WINNT
-skin     linkplaces  classic/1.0  chrome/skin/classic/Darwin/ os=Darwin
-skin     linkplaces  classic/1.0  chrome/skin/classic/Linux/ os=Linux
+content  linkplaces               content/
+skin     linkplaces  classic/1.0  skin/classic/WINNT/ os=WINNT
+skin     linkplaces  classic/1.0  skin/classic/Darwin/ os=Darwin
+skin     linkplaces  classic/1.0  skin/classic/Linux/ os=Linux
 
 ## modules
 resource linkplaces               modules/
@@ -17,4 +17,4 @@ overlay  chrome://linkplaces/content/linkplaces-panel.xul   chrome://treestyleta
 style    chrome://global/content/customizeToolbar.xul  chrome://linkplaces/skin/linkplaces.css
 
 ## Locale
-locale   linkplaces   en-US       chrome/locale/en-US/
+locale   linkplaces   en-US       locale/en-US/
