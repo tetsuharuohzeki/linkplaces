@@ -3,8 +3,8 @@
 <!DOCTYPE overlay SYSTEM "chrome://linkplaces/locale/linkplaces.dtd">
 
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-         id="linkplaces-placesOverlay">
-	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-placesOverlay.js"></script>
+         id="linkplaces-places">
+	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-places.js"></script>
 
 	<menupopup id="placesContext">
 		<menuitem id="linkplaces-placesCtx-saveItems"
