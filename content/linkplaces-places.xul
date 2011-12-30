@@ -12,6 +12,6 @@
 		          insertafter="placesContext_cut"
 		          selection="link"
 		          forcehideselection="bookmark"
-		          oncommand="LinkplacesPlacesOverlay.saveAllItems();"/>
+		          oncommand="LinkplacesPlaces.saveAllItems();"/>
 	</menupopup>
 </overlay>

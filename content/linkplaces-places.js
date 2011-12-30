@@ -1,4 +1,4 @@
-var LinkplacesPlacesOverlay = {
+var LinkplacesPlaces = {
 
 	get service () {
 		delete this.service;
@@ -50,4 +50,4 @@ var LinkplacesPlacesOverlay = {
 	},
 
 };
-window.addEventListener("load", LinkplacesPlacesOverlay, false);
+window.addEventListener("load", LinkplacesPlaces, false);
