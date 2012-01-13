@@ -19,11 +19,7 @@ Features
 License
 -------
 
-This project source code is licensed under a disjunctive tri-license giving you the choice of one of the three following sets of free software/open source licensing terms.
-
- * [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html "Mozilla Public License, version 1.1")
- * [GPL 2.0](http://www.gnu.org/licenses/gpl-2.0.html "GNU General Public License, version 2.0")
- * [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html "GNU Lesser General Public License, version 2.1")
+This project source code is licensed under [MPL 2.0](http://mozilla.org/MPL/2.0/ "Mozilla Public License, version 2.0").
 
 Requirement
 -----------
