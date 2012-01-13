@@ -12,8 +12,6 @@ Features
 * This adds some menu items to context menus.
   * to Tab context menu.
   * to Content-area context menu.
-    * on Page.
-    * on Link.
 * This Add-on works together with [Multiple Tab Handler](https://addons.mozilla.org/firefox/addon/multiple-tab-handler/ "Multiple Tab Handler :: Add-ons for Firefox").
 
 License
