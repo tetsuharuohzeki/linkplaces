@@ -2,6 +2,12 @@ var LinkplacesMultipleTab = {
 
 	ElmId_tabCtxSaveTab: "linkplaces-tabCtx-saveTab",
 
+	get service () {
+		delete this.service;
+		Components.utils.import("resource://linkplaces/linkplaces.js");
+		return this.service = LinkplacesService;
+	},
+
 	get browserOverlay() {
 		delete this.browserOverlay;
 		return this.browserOverlay = LinkplacesBrowser;
@@ -28,9 +34,13 @@ var LinkplacesMultipleTab = {
 	},
 
 	saveSelectedTabs: function () {
-		MultipleTabService.getSelectedTabs().forEach(function(aTab){
-			this.browserOverlay.saveTab(aTab);
+		let items = MultipleTabService.getSelectedTabs().map(function(aTab){
+			let browser = aTab.linkedBrowser;
+			let uri     = browser.currentURI.spec
+			let title   = browser.contentDocument.title || uri;
+			return { uri: uri, title:title };
 		}, this);
+		this.service.saveItems(items);
 	},
 };
 window.addEventListener("load", LinkplacesMultipleTab, false);
