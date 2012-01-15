@@ -4,7 +4,7 @@ const Cc = Components.classes;
 const Ci = Components.interfaces;
 const Cu = Components.utils;
 
-const PREF_DOMAIN = "extensions.linkplaces.";
+const kPREF_DOMAIN = "extensions.linkplaces.";
 
 //Import JS Utils module
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -28,7 +28,7 @@ let LinkplacesService = {
 	 * @type string
 	 */
 	get PREF_DOMAIN () {
-		return PREF_DOMAIN;
+		return kPREF_DOMAIN;
 	},
 
 	/**
@@ -45,7 +45,7 @@ let LinkplacesService = {
 	 */
 	get prefBranch () {
 		delete this.prefBranch;
-		return this.prefBranch = Services.prefs.getBranch(PREF_DOMAIN)
+		return this.prefBranch = Services.prefs.getBranch(kPREF_DOMAIN)
 		                         .QueryInterface(Ci.nsIPrefBranch2);
 	},
 
