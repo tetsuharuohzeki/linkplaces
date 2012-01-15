@@ -176,12 +176,11 @@ let LinkplacesService = {
 	 *   The index which item inserted point.
 	 */
 	saveItem: function (aURI, aTitle, aIndex) {
-		let uri = Services.io.newURI(aURI, null, null);
-		if (!aIndex) {
-			aIndex = this.DEFAULT_INDEX;
-		}
+		let uri   = Services.io.newURI(aURI, null, null);
+		let index = (typeof aIndex === "number" || aIndex instanceof Number) ?
+		            aIndex : this.DEFAULT_INDEX;
 		this.bookmarksSvc.insertBookmark(this.folder, uri,
-		                                 aIndex, aTitle);
+		                                 index, aTitle);
 	},
 
 	/**
