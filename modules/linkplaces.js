@@ -18,6 +18,7 @@ Cu.import("resource://gre/modules/Services.jsm");
 let LinkplacesService = {
 
 	QueryInterface: XPCOMUtils.generateQI([Ci.nsIObserver,
+	                                       Ci.nsINavHistoryBatchCallback,
 	                                       Ci.nsISupportsWeakReference,
 	                                       Ci.nsISupports]),
 
@@ -191,6 +192,34 @@ let LinkplacesService = {
 	 */
 	removeItem: function (aItemId) {
 		this.bookmarksSvc.removeItem(aItemId);
+	},
+
+	/**
+	 * Save plural items to LinkPlaces folder
+	 *
+	 * @params {string} aItems
+	 *   The array of saved items.
+	 *   Items must have the following fields set:
+	 *   @ {string} uri
+	 *   @ {string} title
+	 *
+	 * @params {number} aIndex (optional)
+	 *   The index which items inserted point.
+	 */
+	saveItems: function (aItems, aIndex) {
+		let index = aIndex || this.DEFAULT_INDEX;
+
+		this.bookmarksSvc.runInBatchMode(this, {
+			wrappedJSObject: [aItems, index],
+		});
+	},
+
+	runBatched: function (aUserData) {
+		let [items, index] = aUserData.wrappedJSObject;
+		for (let i = 0, l = items.length; i < l; i++) {
+			let item = items[i];
+			this.saveItem(item.uri, item.title, index);
+		}
 	},
 
 };

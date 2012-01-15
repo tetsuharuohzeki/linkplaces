@@ -38,15 +38,17 @@ var LinkplacesPlaces = {
 	saveAllItems: function () {
 		let triggerNode = this.ctxMenu.triggerNode;
 		let nodesArray = PlacesUIUtils.getViewForNode(triggerNode).selectedNodes;
-		for (let i = 0, length = nodesArray.length; i < length; i++) {
-			this._saveItem(nodesArray[i]);
+		let items = [];
+		for (let i = 0, l = nodesArray.length; i < l; ++i) {
+			let node = nodesArray[i];
+			if (PlacesUtils.nodeIsURI(node)) {
+				items.push({
+					uri  : node.uri,
+					title: node.title,
+				});
+			}
 		}
-	},
-
-	_saveItem: function (aNode) {
-		if (PlacesUtils.nodeIsURI(aNode)) {
-			this.service.saveItem(aNode.uri, aNode.title);
-		}
+		this.service.saveItems(items);
 	},
 
 };
