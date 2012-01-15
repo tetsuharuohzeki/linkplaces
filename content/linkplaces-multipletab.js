@@ -8,11 +8,6 @@ var LinkplacesMultipleTab = {
 		return this.service = LinkplacesService;
 	},
 
-	get browserOverlay() {
-		delete this.browserOverlay;
-		return this.browserOverlay = LinkplacesBrowser;
-	},
-
 	handleEvent: function (aEvent) {
 		switch (aEvent.type) {
 			case "load":
