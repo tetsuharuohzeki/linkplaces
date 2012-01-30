@@ -5,7 +5,7 @@ const Ci = Components.interfaces;
 const Cu = Components.utils;
 
 const kPREF_DOMAIN        = "extensions.linkplaces.";
-const kTXNNAME_SAVEITEMS = "LinkplacesService:sevesItems"
+const kTXNNAME_SAVEITEMS  = "LinkplacesService:sevesItems";
 
 
 //Import JS Utils module
