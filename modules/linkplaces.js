@@ -178,12 +178,11 @@ let LinkplacesService = {
 	 *   The index which item inserted point.
 	 */
 	saveItem: function (aURI, aTitle, aIndex) {
-		let uri   = Services.io.newURI(aURI, null, null);
-		let index = (typeof aIndex === "number") ? aIndex : this.DEFAULT_INDEX;
-
-		let txn   = new PlacesCreateBookmarkTransaction(uri, this.folder,
-		                                                index, aTitle);
-		PlacesUtils.transactionManager.doTransaction(txn);
+		let item = {
+			uri  : aURI,
+			title: aTitle, 
+		};
+		this.saveItems([item], aIndex);
 	},
 
 	/**
