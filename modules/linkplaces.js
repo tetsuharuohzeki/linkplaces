@@ -186,17 +186,6 @@ let LinkplacesService = {
 	},
 
 	/**
-	 * Wrapper to remove the bookmark item.
-	 *
-	 * @params {number} aItemId
-	 *   The item's id.
-	 */
-	removeItem: function (aItemId) {
-		let txn = new PlacesRemoveItemTransaction(aItemId);
-		PlacesUtils.transactionManager.doTransaction(txn);
-	},
-
-	/**
 	 * Save plural items to LinkPlaces folder
 	 *
 	 * @params {Array} aItems
@@ -224,6 +213,17 @@ let LinkplacesService = {
 		let finalTxn = new PlacesAggregatedTransaction(kTXNNAME_SAVEITEMS,
 		                                               transactions);
 		PlacesUtils.transactionManager.doTransaction(finalTxn);
+	},
+
+	/**
+	 * Wrapper to remove the bookmark item.
+	 *
+	 * @params {number} aItemId
+	 *   The item's id.
+	 */
+	removeItem: function (aItemId) {
+		let txn = new PlacesRemoveItemTransaction(aItemId);
+		PlacesUtils.transactionManager.doTransaction(txn);
 	},
 
 };
