@@ -4,7 +4,9 @@ const Cc = Components.classes;
 const Ci = Components.interfaces;
 const Cu = Components.utils;
 
-const kPREF_DOMAIN = "extensions.linkplaces.";
+const kPREF_DOMAIN        = "extensions.linkplaces.";
+const kTXNNAME_SAVEITEMS = "LinkplacesService:sevesItems"
+
 
 //Import JS Utils module
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -210,7 +212,6 @@ let LinkplacesService = {
 	 *   The index which items inserted point.
 	 */
 	saveItems: function (aItems, aIndex) {
-		const txnName    = "LinkPlaces:sevesItems";
 		let index        = (typeof aIndex === "number") ? aIndex : this.DEFAULT_INDEX;
 		let containerId  = this.folder;
 		let transactions = aItems.map(function createTxns(item) {
@@ -221,7 +222,8 @@ let LinkplacesService = {
 			return txn;
 		});
 
-		let finalTxn = new PlacesAggregatedTransaction(txnName, transactions);
+		let finalTxn = new PlacesAggregatedTransaction(kTXNNAME_SAVEITEMS,
+		                                               transactions);
 		PlacesUtils.transactionManager.doTransaction(finalTxn);
 	},
 
