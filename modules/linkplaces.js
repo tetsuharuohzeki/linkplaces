@@ -9,6 +9,7 @@ const kPREF_DOMAIN = "extensions.linkplaces.";
 //Import JS Utils module
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
+Cu.import("resource://gre/modules/PlacesUtils.jsm");
 
 /**
  * LinkplacesService
@@ -18,7 +19,6 @@ Cu.import("resource://gre/modules/Services.jsm");
 let LinkplacesService = {
 
 	QueryInterface: XPCOMUtils.generateQI([Ci.nsIObserver,
-	                                       Ci.nsINavHistoryBatchCallback,
 	                                       Ci.nsISupportsWeakReference,
 	                                       Ci.nsISupports]),
 
@@ -178,8 +178,10 @@ let LinkplacesService = {
 	saveItem: function (aURI, aTitle, aIndex) {
 		let uri   = Services.io.newURI(aURI, null, null);
 		let index = (typeof aIndex === "number") ? aIndex : this.DEFAULT_INDEX;
-		this.bookmarksSvc.insertBookmark(this.folder, uri,
-		                                 index, aTitle);
+
+		let txn   = new PlacesCreateBookmarkTransaction(uri, this.folder,
+		                                                index, aTitle);
+		PlacesUtils.transactionManager.doTransaction(txn);
 	},
 
 	/**
@@ -189,7 +191,8 @@ let LinkplacesService = {
 	 *   The item's id.
 	 */
 	removeItem: function (aItemId) {
-		this.bookmarksSvc.removeItem(aItemId);
+		let txn = new PlacesRemoveItemTransaction(aItemId);
+		PlacesUtils.transactionManager.doTransaction(txn);
 	},
 
 	/**
@@ -205,19 +208,19 @@ let LinkplacesService = {
 	 *   The index which items inserted point.
 	 */
 	saveItems: function (aItems, aIndex) {
-		let index = aIndex || this.DEFAULT_INDEX;
-
-		this.bookmarksSvc.runInBatchMode(this, {
-			wrappedJSObject: [aItems, index],
+		const txnName    = "LinkPlaces:sevesItems";
+		let index        = (typeof aIndex === "number") ? aIndex : this.DEFAULT_INDEX;
+		let containerId  = this.folder;
+		let transactions = aItems.map(function createTxns(item) {
+			let uri   = Services.io.newURI(item.uri, null, null);
+			let title = item.title;
+			let txn   = new PlacesCreateBookmarkTransaction(uri, containerId,
+			                                                index, title);
+			return txn;
 		});
-	},
 
-	runBatched: function (aUserData) {
-		let [items, index] = aUserData.wrappedJSObject;
-		for (let i = 0, l = items.length; i < l; i++) {
-			let item = items[i];
-			this.saveItem(item.uri, item.title, index);
-		}
+		let finalTxn = new PlacesAggregatedTransaction(txnName, transactions);
+		PlacesUtils.transactionManager.doTransaction(finalTxn);
 	},
 
 };
