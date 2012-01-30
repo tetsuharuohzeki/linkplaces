@@ -202,7 +202,9 @@ let LinkplacesService = {
 	 *   The array of saved items.
 	 *   Items must have the following fields set:
 	 *   @ {string} uri
+	 *     The item's URI.
 	 *   @ {string} title
+	 *     The item's title.
 	 *
 	 * @params {number} aIndex (optional)
 	 *   The index which items inserted point.
