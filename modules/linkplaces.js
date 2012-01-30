@@ -199,7 +199,7 @@ let LinkplacesService = {
 	/**
 	 * Save plural items to LinkPlaces folder
 	 *
-	 * @params {string} aItems
+	 * @params {Array} aItems
 	 *   The array of saved items.
 	 *   Items must have the following fields set:
 	 *   @ {string} uri
