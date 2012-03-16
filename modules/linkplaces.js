@@ -4,8 +4,8 @@ const Cc = Components.classes;
 const Ci = Components.interfaces;
 const Cu = Components.utils;
 
-const kPREF_DOMAIN        = "extensions.linkplaces.";
-const kTXNNAME_SAVEITEMS  = "LinkplacesService:sevesItems";
+const PREF_DOMAIN        = "extensions.linkplaces.";
+const TXNNAME_SAVEITEMS  = "LinkplacesService:sevesItems";
 
 
 //Import JS Utils module
@@ -30,7 +30,7 @@ let LinkplacesService = {
 	 * @type string
 	 */
 	get PREF_DOMAIN () {
-		return kPREF_DOMAIN;
+		return PREF_DOMAIN;
 	},
 
 	/**
@@ -47,7 +47,7 @@ let LinkplacesService = {
 	 */
 	get prefBranch () {
 		delete this.prefBranch;
-		return this.prefBranch = Services.prefs.getBranch(kPREF_DOMAIN)
+		return this.prefBranch = Services.prefs.getBranch(PREF_DOMAIN)
 		                         .QueryInterface(Ci.nsIPrefBranch2);
 	},
 
@@ -210,7 +210,7 @@ let LinkplacesService = {
 			return txn;
 		});
 
-		let finalTxn = new PlacesAggregatedTransaction(kTXNNAME_SAVEITEMS,
+		let finalTxn = new PlacesAggregatedTransaction(TXNNAME_SAVEITEMS,
 		                                               transactions);
 		PlacesUtils.transactionManager.doTransaction(finalTxn);
 	},
