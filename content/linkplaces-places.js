@@ -39,8 +39,7 @@ var LinkplacesPlaces = {
 		let triggerNode = this.ctxMenu.triggerNode;
 		let nodesArray = PlacesUIUtils.getViewForNode(triggerNode).selectedNodes;
 		let items = [];
-		for (let i = 0, l = nodesArray.length; i < l; ++i) {
-			let node = nodesArray[i];
+		for (let node of nodesArray) {
 			if (PlacesUtils.nodeIsURI(node)) {
 				items.push({
 					uri  : node.uri,
