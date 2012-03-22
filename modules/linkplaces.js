@@ -47,8 +47,7 @@ let LinkplacesService = {
 	 */
 	get prefBranch () {
 		delete this.prefBranch;
-		return this.prefBranch = Services.prefs.getBranch(PREF_DOMAIN)
-		                         .QueryInterface(Ci.nsIPrefBranch2);
+		return this.prefBranch = Services.prefs.getBranch(PREF_DOMAIN);
 	},
 
 	/**
