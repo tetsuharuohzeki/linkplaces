@@ -1,8 +1,13 @@
 #linkplaces-button {
 	list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar.png");
 }
-#TabsToolbar > #linkplaces-button:-moz-system-metric(windows-compositor):not(:-moz-lwtheme),
-#TabsToolbar > toolbarpaletteitem > #linkplaces-button:-moz-system-metric(windows-compositor):not(:-moz-lwtheme),
+
+/* ::: browser/themes/winstripe/browser-aero.css @161~@164 */
+#toolbar-menubar #linkplaces-button > .toolbarbutton-icon:not(:-moz-lwtheme),
+#TabsToolbar[tabsontop=true] #linkplaces-button > .toolbarbutton-icon:not(:-moz-lwtheme),
+#navigator-toolbox[tabsontop=false] > #nav-bar #linkplaces-button > .toolbarbutton-icon:not(:-moz-lwtheme),
+#nav-bar + #customToolbars + #PersonalToolbar[collapsed=true] + #TabsToolbar[tabsontop=false]:last-child #linkplaces-button > .toolbarbutton-icon:not(:-moz-lwtheme),
+/* ::: browser/themes/winstripe/browser.css @661 */
 #linkplaces-button:-moz-lwtheme-brighttext {
   list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar-inverted.png");
 }
