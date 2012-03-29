@@ -221,9 +221,11 @@ var LinkplacesPanel = {
 	},
 
 	setMouseoverURL: function (aURI) {
-		let XULBrowserWindow = window.top.XULBrowserWindow;
-		if (XULBrowserWindow) {
-			XULBrowserWindow.setOverLink(aURI, null);
+		// When the browser window is closed with an open sidebar, the sidebar
+		// unload event happens after the browser's one.  In this case
+		// top.XULBrowserWindow has been nullified already.
+		if (top.XULBrowserWindow) {
+			top.XULBrowserWindow.setOverLink(aURI, null);
 		}
 	},
 
