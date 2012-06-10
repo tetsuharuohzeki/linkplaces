@@ -119,11 +119,11 @@ var LinkplacesPanel = {
 	},
 
 	overrideCmdOpenMultipleItem: function () {
-		let cmdValue = <![CDATA[
-			var triggerNode = LinkplacesPanel.ctxMenu.triggerNode;
-			var controller = PlacesUIUtils.getViewForNode(triggerNode).controller;
-			LinkplacesPanel.openSelectionInTabs(controller, event);
-		]]>;
+		let cmdValue = "\
+			var triggerNode = LinkplacesPanel.ctxMenu.triggerNode;\
+			var controller = PlacesUIUtils.getViewForNode(triggerNode).controller;\
+			LinkplacesPanel.openSelectionInTabs(controller, event);\
+		";
 		["placesContext_openContainer:tabs",
 		 "placesContext_openLinks:tabs"].forEach(function(aElm){
 		 	 document.getElementById(aElm).setAttribute("oncommand", cmdValue.toString());
