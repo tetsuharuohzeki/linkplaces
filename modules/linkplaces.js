@@ -179,7 +179,7 @@ let LinkplacesService = {
 	saveItem: function (aURI, aTitle, aIndex) {
 		let item = {
 			uri  : aURI,
-			title: aTitle, 
+			title: aTitle,
 		};
 		this.saveItems([item], aIndex);
 	},
@@ -198,14 +198,13 @@ let LinkplacesService = {
 	 * @params {number} aIndex (optional)
 	 *   The index which items inserted point.
 	 */
-	saveItems: function (aItems, aIndex) {
-		let index        = (typeof aIndex === "number") ? aIndex : this.DEFAULT_INDEX;
+	saveItems: function (aItems, aIndex = this.DEFAULT_INDEX) {
 		let containerId  = this.folder;
 		let transactions = aItems.map(function createTxns(item) {
 			let uri   = Services.io.newURI(item.uri, null, null);
 			let title = item.title;
 			let txn   = new PlacesCreateBookmarkTransaction(uri, containerId,
-			                                                index, title);
+			                                                aIndex, title);
 			return txn;
 		});
 
