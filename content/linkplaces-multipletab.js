@@ -1,3 +1,5 @@
+/* vim: set filetype=javascript shiftwidth=4 tabstop=4 noexpandtab: */
+
 var LinkplacesMultipleTab = {
 
 	ElmId_tabCtxSaveTab: "linkplaces-tabCtx-saveTab",
