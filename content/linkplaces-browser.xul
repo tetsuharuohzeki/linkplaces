@@ -25,7 +25,7 @@
 		<key id="linkplaces-key-toggleSidebar"
 		     key="&linkplaces.overlay.commandkey;"
 		     command="viewLinkplacesSidebar"
-		     modifiers="accel,shift"/>
+		     modifiers="accel,alt"/>
 	</keyset>
 
 	<menupopup id="viewSidebarMenu">
