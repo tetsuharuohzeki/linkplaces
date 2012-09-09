@@ -261,7 +261,7 @@ var LinkplacesPanel = {
 	},
 
 	isBookmarklet: function (aURI) {
-		return (aURI.indexOf("javascript:") == 0) ? true : false;
+		return aURI.startsWith("javascript:");
 	},
 
 	openSelectionInTabs: function(aController, aEvent) {
