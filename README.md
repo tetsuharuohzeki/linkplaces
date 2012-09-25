@@ -14,6 +14,11 @@ Features
   * to Content-area context menu.
 * This Add-on works together with [Multiple Tab Handler](https://addons.mozilla.org/firefox/addon/multiple-tab-handler/ "Multiple Tab Handler :: Add-ons for Firefox").
 
+Build
+-----
+
+`make xpi`
+
 License
 -------
 
