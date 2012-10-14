@@ -1,5 +1,7 @@
 /* vim: set filetype=javascript shiftwidth=4 tabstop=4 noexpandtab: */
 
+"use strict";
+
 let EXPORTED_SYMBOLS = ["LinkplacesService"];
 
 const Cc = Components.classes;

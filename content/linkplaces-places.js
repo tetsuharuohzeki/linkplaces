@@ -1,5 +1,7 @@
 /* vim: set filetype=javascript shiftwidth=4 tabstop=4 noexpandtab: */
 
+"use strict";
+
 var LinkplacesPlaces = {
 
 	get service () {
