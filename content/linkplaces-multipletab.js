@@ -2,13 +2,16 @@
 
 "use strict";
 
+Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService",
+                                  "resource://linkplaces/linkplaces.js");
+
 var LinkplacesMultipleTab = {
 
 	ElmId_tabCtxSaveTab: "linkplaces-tabCtx-saveTab",
 
 	get service () {
 		delete this.service;
-		Components.utils.import("resource://linkplaces/linkplaces.js");
 		return this.service = LinkplacesService;
 	},
 

@@ -2,6 +2,10 @@
 
 "use strict";
 
+Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService",
+                                  "resource://linkplaces/linkplaces.js");
+
 var LinkplacesBrowser = {
 
 	ElmId_contentCtxSavePage: "linkplaces-contentCtx-savePage",
@@ -9,7 +13,6 @@ var LinkplacesBrowser = {
 
 	get service () {
 		delete this.service;
-		Components.utils.import("resource://linkplaces/linkplaces.js");
 		return this.service = LinkplacesService;
 	},
 
