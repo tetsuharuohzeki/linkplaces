@@ -29,9 +29,9 @@ let LinkplacesService = {
 	                                       Ci.nsISupports]),
 
 	/**
-	 * @constant
+	 * @const
 	 *   Preference domain of this service.
-	 * @type string
+	 * @type {string}
 	 */
 	get PREF_DOMAIN () {
 		return PREF_DOMAIN;
@@ -39,7 +39,7 @@ let LinkplacesService = {
 
 	/**
 	 * Cache this service's preferences value.
-	 * @type object
+	 * @type {object}
 	 */
 	PREF: {
 		openLinkToWhere: null,
@@ -48,6 +48,7 @@ let LinkplacesService = {
 
 	/**
 	 * Cache preferences service.
+	 * @type {nsIPrefBranch}
 	 */
 	get prefBranch () {
 		delete this.prefBranch;
@@ -56,6 +57,7 @@ let LinkplacesService = {
 
 	/**
 	 * Cache nsINavBookmarksService.
+	 * @type {nsINavBookmarksService}
 	 */
 	get bookmarksSvc () {
 		delete this.bookmarksSvc;
@@ -65,7 +67,7 @@ let LinkplacesService = {
 
 	/**
 	 * Returns LinkPlaces folder's id.
-	 * @type number
+	 * @type {number}
 	 */
 	get folder () {
 		delete this.folder;
@@ -74,7 +76,7 @@ let LinkplacesService = {
 
 	/**
 	 * Returns default inserted index in Places bookmarks.
-	 * @type number
+	 * @type {number}
 	 */
 	get DEFAULT_INDEX () {
 		delete this.DEFAULT_INDEX;
@@ -83,6 +85,7 @@ let LinkplacesService = {
 
 	/**
 	 * Cache nsINavHistoryService.
+	 * @type {nsINavHistoryService}
 	 */
 	get historySvc () {
 		delete this.historySvc;
@@ -93,11 +96,11 @@ let LinkplacesService = {
 	/**
 	 * Observer method.
 	 *
-	 * @params {nsISupports} aSubject
+	 * @param {nsISupports} aSubject
 	 *   In general reflects the object whose change or action is being observed.
-	 * @params {string}      aTopic
+	 * @param {string}      aTopic
 	 *   Indicates the specific change or action.
-	 * @params {wstring}     aData
+	 * @param {wstring}     aData
 	 *   An optional parameter or other auxiliary data further describing the change or action.
 	 */
 	observe: function (aSubject, aTopic, aData) {
@@ -173,11 +176,11 @@ let LinkplacesService = {
 	/**
 	 * Save item to LinkPlaces folder
 	 *
-	 * @params {string} aURI
+	 * @param {string} aURI
 	 *   The item's URI.
-	 * @params {string} aTitle
+	 * @param {string} aTitle
 	 *   The item's title.
-	 * @params {number} aIndex (optional)
+	 * @param {number=} aIndex (optional)
 	 *   The index which item inserted point.
 	 */
 	saveItem: function (aURI, aTitle, aIndex) {
@@ -191,7 +194,7 @@ let LinkplacesService = {
 	/**
 	 * Save plural items to LinkPlaces folder
 	 *
-	 * @params {Array} aItems
+	 * @param {Array.<{ uri:string, title:string }>} aItems
 	 *   The array of saved items.
 	 *   Items must have the following fields set:
 	 *   @ {string} uri
@@ -199,7 +202,7 @@ let LinkplacesService = {
 	 *   @ {string} title
 	 *     The item's title.
 	 *
-	 * @params {number} aIndex (optional)
+	 * @param {number=} aIndex (optional)
 	 *   The index which items inserted point.
 	 */
 	saveItems: function (aItems, aIndex = this.DEFAULT_INDEX) {
@@ -220,7 +223,7 @@ let LinkplacesService = {
 	/**
 	 * Wrapper to remove the bookmark item.
 	 *
-	 * @params {number} aItemId
+	 * @param {number} aItemId
 	 *   The item's id.
 	 */
 	removeItem: function (aItemId) {
