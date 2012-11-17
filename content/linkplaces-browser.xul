@@ -32,8 +32,7 @@
 	<menupopup id="viewSidebarMenu">
 		<menuitem id="linkplaces-menu-sidebar"
 		          key="linkplaces-key-toggleSidebar"
-		          observes="viewLinkplacesSidebar"
-		          accesskey="&linkplaces.overlay.accesskey;"/>
+		          observes="viewLinkplacesSidebar"/>
 	</menupopup>
 
 	<broadcasterset id="mainBroadcasterSet">

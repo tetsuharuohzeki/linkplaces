@@ -6,7 +6,6 @@
 <!ENTITY linkplaces.overlay.button.tooltip              "Display &linkplaces.global;">
 <!ENTITY linkplaces.overlay.sidebar.title               "&linkplaces.global;">
 <!ENTITY linkplaces.overlay.commandkey                  "L">
-<!ENTITY linkplaces.overlay.accesskey                   "L">
 
 <!-- Context menu -->
 <!ENTITY linkplaces.ctx.tab.saveThisTab                 "Add Tab to &linkplaces.global;">
