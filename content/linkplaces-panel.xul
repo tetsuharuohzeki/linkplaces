@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- vim: set filetype=xml shiftwidth=4 tabstop=4 noexpandtab: -->
+<!-- vim: set filetype=xml shiftwidth=2 tabstop=2 expandtab: -->
 
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://browser/content/places/places.css"?>
@@ -11,39 +11,39 @@
 <?xml-stylesheet href="chrome://linkplaces/skin/linkplaces-sidebar.css"?>
 
 <!DOCTYPE page [
-	<!ENTITY % linkplacesDTD SYSTEM "chrome://linkplaces/locale/linkplaces.dtd">
-	%linkplacesDTD;
+  <!ENTITY % linkplacesDTD SYSTEM "chrome://linkplaces/locale/linkplaces.dtd">
+  %linkplacesDTD;
 ]>
 
 <page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
       xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
       id="linkplaces-panel">
 
-	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-panel.js"></script>
+  <script type="application/javascript" src="chrome://linkplaces/content/linkplaces-panel.js"></script>
 
-	<commandset id="placesCommands"/>
-	<commandset id="editMenuCommands"/>
+  <commandset id="placesCommands"/>
+  <commandset id="editMenuCommands"/>
 
-	<menupopup id="placesContext"/>
+  <menupopup id="placesContext"/>
 
-	<tooltip id="bhTooltip"/>
+  <tooltip id="bhTooltip"/>
 
-	<tree id="linkplaces-view"
-	      type="places"
-	      class="sidebar-placesTree"
-	      flex="1"
-	      hidecolumnpicker="true"
-	      context="placesContext"
-	      onkeypress="LinkplacesPanel.handleTreeKeyPress(event);"
-	      onclick="LinkplacesPanel.handleTreeClick(event, true);"
-	      onmousemove="LinkplacesPanel.handleTreeMouseMove(event);"
-	      onmouseout="LinkplacesPanel.setMouseoverURL('');">
-		<treecols>
-			<treecol id="title" flex="1" primary="true" hideheader="true"/>
-		</treecols>
-		<treechildren id="linkplaces-view-children"
-		              class="sidebar-placesTreechildren"
-		              tooltip="bhTooltip"
-		              flex="1"/>
-	</tree>
+  <tree id="linkplaces-view"
+        type="places"
+        class="sidebar-placesTree"
+        flex="1"
+        hidecolumnpicker="true"
+        context="placesContext"
+        onkeypress="LinkplacesPanel.handleTreeKeyPress(event);"
+        onclick="LinkplacesPanel.handleTreeClick(event, true);"
+        onmousemove="LinkplacesPanel.handleTreeMouseMove(event);"
+        onmouseout="LinkplacesPanel.setMouseoverURL('');">
+    <treecols>
+      <treecol id="title" flex="1" primary="true" hideheader="true"/>
+    </treecols>
+    <treechildren id="linkplaces-view-children"
+                  class="sidebar-placesTreechildren"
+                  tooltip="bhTooltip"
+                  flex="1"/>
+  </tree>
 </page>

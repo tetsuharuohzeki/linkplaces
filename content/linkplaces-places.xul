@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
-<!-- vim: set filetype=xml shiftwidth=4 tabstop=4 noexpandtab: -->
+<!-- vim: set filetype=xml shiftwidth=2 tabstop=2 expandtab: -->
 
 <!DOCTYPE overlay SYSTEM "chrome://linkplaces/locale/linkplaces.dtd">
 
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
          id="linkplaces-places">
-	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-places.js"></script>
+  <script type="application/javascript" src="chrome://linkplaces/content/linkplaces-places.js"></script>
 
-	<menupopup id="placesContext">
-		<menuitem id="linkplaces-placesCtx-saveItems"
-		          label="&linkplaces.ctx.places.saveItems;"
-		          insertafter="placesContext_cut"
-		          selection="link"
-		          forcehideselection="bookmark"
-		          oncommand="LinkplacesPlaces.saveAllItems();"/>
-	</menupopup>
+  <menupopup id="placesContext">
+    <menuitem id="linkplaces-placesCtx-saveItems"
+              label="&linkplaces.ctx.places.saveItems;"
+              insertafter="placesContext_cut"
+              selection="link"
+              forcehideselection="bookmark"
+              oncommand="LinkplacesPlaces.saveAllItems();"/>
+  </menupopup>
 </overlay>

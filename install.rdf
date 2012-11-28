@@ -3,27 +3,27 @@
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 <Description about="urn:mozilla:install-manifest">
 
-	<!-- Extension Identifier -->
-	<em:id>linkplaces@saneyuki_s</em:id>
-	<em:version>master</em:version>
-	<em:type>2</em:type>
+  <!-- Extension Identifier -->
+  <em:id>linkplaces@saneyuki_s</em:id>
+  <em:version>master</em:version>
+  <em:type>2</em:type>
 
-	<!-- Metadata -->
-	<em:name>LinkPlaces</em:name>
-	<em:description>Sidebar to display "Unsorted Bookmarks" folder in Places, as "Temporary Links".</em:description>
-	<em:optionsURL>chrome://linkplaces/content/linkplaces-options.xul</em:optionsURL>
-	<em:homepageURL>http://github.com/saneyuki/LinkPlaces/</em:homepageURL>
-	<em:creator>saneyuki_s</em:creator>
+  <!-- Metadata -->
+  <em:name>LinkPlaces</em:name>
+  <em:description>Sidebar to display "Unsorted Bookmarks" folder in Places, as "Temporary Links".</em:description>
+  <em:optionsURL>chrome://linkplaces/content/linkplaces-options.xul</em:optionsURL>
+  <em:homepageURL>http://github.com/saneyuki/LinkPlaces/</em:homepageURL>
+  <em:creator>saneyuki_s</em:creator>
 
-	<!-- Target Application -->
-	<!-- Firefox -->
-	<em:targetApplication>
-		<Description>
-			<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-			<em:minVersion>17.0a1</em:minVersion>
-			<em:maxVersion>*</em:maxVersion>
-		</Description>
-	</em:targetApplication>
+  <!-- Target Application -->
+  <!-- Firefox -->
+  <em:targetApplication>
+    <Description>
+      <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+      <em:minVersion>17.0a1</em:minVersion>
+      <em:maxVersion>*</em:maxVersion>
+    </Description>
+  </em:targetApplication>
 
 </Description>
 </RDF>

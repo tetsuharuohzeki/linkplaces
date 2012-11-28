@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- vim: set filetype=xml shiftwidth=4 tabstop=4 noexpandtab: -->
+<!-- vim: set filetype=xml shiftwidth=2 tabstop=2 expandtab: -->
 
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://linkplaces/skin/linkplaces.css"?>
@@ -9,58 +9,58 @@
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
          id="linkplaces-browser">
 
-	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-browser.js"></script>
+  <script type="application/javascript" src="chrome://linkplaces/content/linkplaces-browser.js"></script>
 
-	<toolbarpalette id="BrowserToolbarPalette">
-		<toolbarbutton id="linkplaces-button"
-		               class="toolbarbutton-1 chromeclass-toolbar-additional"
-		               tooltiptext="&linkplaces.overlay.button.tooltip;"
-		               observes="viewLinkplacesSidebar"
-		               ondrop="LinkplacesBrowser.ButtonOnDrop(event)"
-		               ondragover="LinkplacesBrowser.ButtonOnDragOver(event)"
-		               ondragenter="LinkplacesBrowser.ButtonOnDragOver(event)"
-		               ondragexit="LinkplacesBrowser.ButtonOnDragExit(event)"/>
-	</toolbarpalette>
+  <toolbarpalette id="BrowserToolbarPalette">
+    <toolbarbutton id="linkplaces-button"
+                   class="toolbarbutton-1 chromeclass-toolbar-additional"
+                   tooltiptext="&linkplaces.overlay.button.tooltip;"
+                   observes="viewLinkplacesSidebar"
+                   ondrop="LinkplacesBrowser.ButtonOnDrop(event)"
+                   ondragover="LinkplacesBrowser.ButtonOnDragOver(event)"
+                   ondragenter="LinkplacesBrowser.ButtonOnDragOver(event)"
+                   ondragexit="LinkplacesBrowser.ButtonOnDragExit(event)"/>
+  </toolbarpalette>
 
-	<keyset id="mainKeyset">
-		<key id="linkplaces-key-toggleSidebar"
-		     key="&linkplaces.overlay.commandkey;"
-		     command="viewLinkplacesSidebar"
-		     modifiers="accel,alt"/>
-	</keyset>
+  <keyset id="mainKeyset">
+    <key id="linkplaces-key-toggleSidebar"
+         key="&linkplaces.overlay.commandkey;"
+         command="viewLinkplacesSidebar"
+         modifiers="accel,alt"/>
+  </keyset>
 
-	<menupopup id="viewSidebarMenu">
-		<menuitem id="linkplaces-menu-sidebar"
-		          key="linkplaces-key-toggleSidebar"
-		          observes="viewLinkplacesSidebar"/>
-	</menupopup>
+  <menupopup id="viewSidebarMenu">
+    <menuitem id="linkplaces-menu-sidebar"
+              key="linkplaces-key-toggleSidebar"
+              observes="viewLinkplacesSidebar"/>
+  </menupopup>
 
-	<broadcasterset id="mainBroadcasterSet">
-		<broadcaster id="viewLinkplacesSidebar"
-		             label="&linkplaces.overlay.broadcaster.label;"
-		             autoCheck="false"
-		             type="checkbox"
-		             group="sidebar"
-		             sidebartitle="&linkplaces.overlay.sidebar.title;"
-		             sidebarurl="chrome://linkplaces/content/linkplaces-panel.xul"
-		             oncommand="toggleSidebar('viewLinkplacesSidebar');"/>
-	</broadcasterset>
+  <broadcasterset id="mainBroadcasterSet">
+    <broadcaster id="viewLinkplacesSidebar"
+                 label="&linkplaces.overlay.broadcaster.label;"
+                 autoCheck="false"
+                 type="checkbox"
+                 group="sidebar"
+                 sidebartitle="&linkplaces.overlay.sidebar.title;"
+                 sidebarurl="chrome://linkplaces/content/linkplaces-panel.xul"
+                 oncommand="toggleSidebar('viewLinkplacesSidebar');"/>
+  </broadcasterset>
 
-	 <menupopup id="tabContextMenu">
-		<menuitem id="linkplaces-tabCtx-saveTab"
-		          label="&linkplaces.ctx.tab.saveThisTab;"
-		          insertafter="context_bookmarkAllTabs"
-		          oncommand="LinkplacesBrowser.saveThisTab();"/>
-	 </menupopup>
+   <menupopup id="tabContextMenu">
+    <menuitem id="linkplaces-tabCtx-saveTab"
+              label="&linkplaces.ctx.tab.saveThisTab;"
+              insertafter="context_bookmarkAllTabs"
+              oncommand="LinkplacesBrowser.saveThisTab();"/>
+   </menupopup>
 
-	<menupopup id="contentAreaContextMenu">
-		<menuitem id="linkplaces-contentCtx-savePage"
-		          label="&linkplaces.ctx.content.savePage;"
-		          insertafter="context-bookmarkpage"
-		          oncommand="LinkplacesBrowser.saveThisPage();"/>
-		<menuitem id="linkplaces-contentCtx-saveLink"
-		          label="&linkplaces.ctx.content.saveLink;"
-		          insertafter="context-bookmarklink"
-		          oncommand="LinkplacesBrowser.saveLink();"/>
-	</menupopup>
+  <menupopup id="contentAreaContextMenu">
+    <menuitem id="linkplaces-contentCtx-savePage"
+              label="&linkplaces.ctx.content.savePage;"
+              insertafter="context-bookmarkpage"
+              oncommand="LinkplacesBrowser.saveThisPage();"/>
+    <menuitem id="linkplaces-contentCtx-saveLink"
+              label="&linkplaces.ctx.content.saveLink;"
+              insertafter="context-bookmarklink"
+              oncommand="LinkplacesBrowser.saveLink();"/>
+  </menupopup>
 </overlay>

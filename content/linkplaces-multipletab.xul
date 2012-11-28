@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
-<!-- vim: set filetype=xml shiftwidth=4 tabstop=4 noexpandtab: -->
+<!-- vim: set filetype=xml shiftwidth=2 tabstop=2 expandtab: -->
 
 <!DOCTYPE overlay SYSTEM "chrome://linkplaces/locale/linkplaces.dtd">
 
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
          id="linkplaces-multiple">
 
-	<script type="application/javascript" src="chrome://linkplaces/content/linkplaces-multipletab.js"></script>
+  <script type="application/javascript" src="chrome://linkplaces/content/linkplaces-multipletab.js"></script>
 
-	<menupopup id="multipletab-tabcontext-menu-template">
-		<menuitem id="linkplaces-tabCtx-saveTab:multipletab"
-		          label="&linkplaces.ctx.tab.saveThisTab;"
-		          oncommand="LinkplacesBrowser.saveThisTab();"
-		          multipletab-insertafter="document.getElementById('context_bookmarkAllTabs')"/>
-		<menuseparator id="linkplaces-separator-multipletab"
-		               multipletab-insertafter="document.getElementById('context_bookmarkAllTabs').nextSibling"/>
-	</menupopup>
+  <menupopup id="multipletab-tabcontext-menu-template">
+    <menuitem id="linkplaces-tabCtx-saveTab:multipletab"
+              label="&linkplaces.ctx.tab.saveThisTab;"
+              oncommand="LinkplacesBrowser.saveThisTab();"
+              multipletab-insertafter="document.getElementById('context_bookmarkAllTabs')"/>
+    <menuseparator id="linkplaces-separator-multipletab"
+                   multipletab-insertafter="document.getElementById('context_bookmarkAllTabs').nextSibling"/>
+  </menupopup>
 
-	<menupopup id="multipletab-selection-menu">
-		<menuitem id="linkplaces-tabCtx-saveSelected:multipletab-selection"
-		          label="&linkplaces.ctx.multipletab.saveSelected;"
-		          oncommand="LinkplacesMultipleTab.saveSelectedTabs();"
-		          insertbefore="multipletab-selection-duplicate-separator"/>
-	</menupopup>
+  <menupopup id="multipletab-selection-menu">
+    <menuitem id="linkplaces-tabCtx-saveSelected:multipletab-selection"
+              label="&linkplaces.ctx.multipletab.saveSelected;"
+              oncommand="LinkplacesMultipleTab.saveSelectedTabs();"
+              insertbefore="multipletab-selection-duplicate-separator"/>
+  </menupopup>
 
 </overlay>

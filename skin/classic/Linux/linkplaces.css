@@ -1,6 +1,6 @@
 #linkplaces-button {
-	list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar.png");
+  list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar.png");
 }
 toolbar[iconsize="large"] #linkplaces-button {
-	list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar-large.png");
+  list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar-large.png");
 }
