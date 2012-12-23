@@ -248,8 +248,9 @@ var LinkplacesPanel = {
 
   whereToOpenLink: function (aEvent, aURI) {
     let rv = "";
-    if (this.isBookmarklet(aURI)) {
-      rv = "current";//for bookmarklet
+    if (aURI.startsWith("javascript:")) {
+      // for bookmarklet
+      rv = "current";
     }
     else {
       let where = whereToOpenLink(aEvent);
@@ -263,10 +264,6 @@ var LinkplacesPanel = {
       }
     }
     return rv;
-  },
-
-  isBookmarklet: function (aURI) {
-    return aURI.startsWith("javascript:");
   },
 
   openSelectionInTabs: function(aController, aEvent) {
