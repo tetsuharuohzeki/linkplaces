@@ -41,10 +41,10 @@ let LinkplacesService = {
    * Cache this service's preferences value.
    * @type {object}
    */
-  PREF: {
+  PREF: Object.seal({
     openLinkToWhere: null,
     focusWhenItemsOpened_Sidebar: null,
-  },
+  }),
 
   /**
    * Cache preferences service.
