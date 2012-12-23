@@ -140,7 +140,7 @@ var LinkplacesPanel = {
   // Based on "chrome://browser/content/bookmarks/sidebarUtils.js"
   handleTreeClick: function (aEvent, aGutterSelect) {
     // When right button click
-    if (aEvent.button == 2) {
+    if (aEvent.button === 2) {
       return;
     }
 
@@ -149,7 +149,7 @@ var LinkplacesPanel = {
     let row = {}, col = {}, obj = {};
     treeBoxObj.getCellAt(aEvent.clientX, aEvent.clientY, row, col, obj);
 
-    if (row.value == -1 ||  obj.value == "twisty") {
+    if (row.value === -1 ||  obj.value === "twisty") {
       return;
     }
 
@@ -159,7 +159,7 @@ var LinkplacesPanel = {
     if (aGutterSelect) {
       treeBoxObj.getCoordsForCellItem(row.value, col.value, "image", cellX, cellY, cellW, cellH);
 
-      let isRTL = (window.getComputedStyle(tree, null).direction == "rtl");
+      let isRTL = (window.getComputedStyle(tree, null).direction === "rtl");
       if (isRTL) {
         mouseInGutter = (aEvent.clientX > cellX.value);
       }
@@ -172,15 +172,15 @@ var LinkplacesPanel = {
     let isContainer = treeBoxObj.view.isContainer(row.value);
     let openInTabs = isContainer &&// Is the node container?
                      // Is event is middle-click, or left-click with ctrlkey?
-                     (aEvent.button == 1 || (aEvent.button == 0 && modifKey)) &&
+                     (aEvent.button === 1 || (aEvent.button === 0 && modifKey)) &&
                      //Does the node have child URI node?
                      PlacesUtils.hasChildURIs(treeBoxObj.view.nodeForTreeIndex(row.value));
 
-    if (aEvent.button == 0 && isContainer && !openInTabs) {
+    if (aEvent.button === 0 && isContainer && !openInTabs) {
       treeBoxObj.view.toggleOpenState(row.value);
       return;
     }
-    else if (!mouseInGutter && aEvent.originalTarget.localName == "treechildren") {
+    else if (!mouseInGutter && aEvent.originalTarget.localName === "treechildren") {
       if (openInTabs) {
         treeBoxObj.view.selection.select(row.value);
         PlacesUIUtils.openContainerNodeInTabs(tree.selectedNode, aEvent);
@@ -195,7 +195,7 @@ var LinkplacesPanel = {
   },
 
   handleTreeKeyPress: function (aEvent) {
-    if (aEvent.keyCode == KeyEvent.DOM_VK_RETURN) {
+    if (aEvent.keyCode === KeyEvent.DOM_VK_RETURN) {
       let node = aEvent.target.selectedNode;
       if (PlacesUtils.nodeIsURI(node)) {
         this.openNodeWithEvent(node, aEvent, this.treeView);
@@ -204,7 +204,7 @@ var LinkplacesPanel = {
   },
 
   handleTreeMouseMove: function (aEvent) {
-    if (aEvent.target.localName != "treechildren") {
+    if (aEvent.target.localName !== "treechildren") {
       return;
     }
 
@@ -213,7 +213,7 @@ var LinkplacesPanel = {
     let row = {}, col = {}, obj = {};
     treeBoxObj.getCellAt(aEvent.clientX, aEvent.clientY, row, col, obj);
 
-    if (row.value != -1) {
+    if (row.value !== -1) {
       let node = tree.view.nodeForTreeIndex(row.value);
       if (PlacesUtils.nodeIsURI(node)) {
         this.setMouseoverURL(node.uri);
