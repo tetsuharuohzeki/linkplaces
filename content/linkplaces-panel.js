@@ -2,9 +2,7 @@
 
 "use strict";
 
-Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService",
-                                  "resource://linkplaces/linkplaces.js");
+Components.utils.import("resource://linkplaces/linkplaces.js");
 
 var LinkplacesPanel = {
 
