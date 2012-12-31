@@ -6,11 +6,7 @@ Components.utils.import("resource://linkplaces/linkplaces.js");
 
 var LinkplacesPanel = {
 
-  get treeView () {
-    delete this.treeView;
-    return this.treeView = document.getElementById("linkplaces-view");
-  },
-  set treeView (v) {},
+  treeView: null,
 
   get ctxMenu () {
     delete this.ctxMenu;
@@ -68,6 +64,8 @@ var LinkplacesPanel = {
 
   onLoad: function () {
     window.removeEventListener("load", this, false);
+
+    this.treeView = document.getElementById("linkplaces-view");
 
     // initialize
     this.initPlacesView();
