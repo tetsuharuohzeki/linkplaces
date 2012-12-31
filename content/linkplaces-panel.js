@@ -18,11 +18,6 @@ var LinkplacesPanel = {
   },
   set ctxMenu (v) {},
 
-  get PREF () {
-    delete this.PREF;
-    return this.PREF = LinkplacesService.PREF;
-  },
-
   get placesController () {
     delete this.placesController;
     let self = this;
@@ -236,7 +231,7 @@ var LinkplacesPanel = {
       let where = whereToOpenLink(aEvent);
       switch (where) {
         case "current":
-          rv = this.PREF.openLinkToWhere;
+          rv = LinkplacesService.PREF.openLinkToWhere;
           break;
         default:
           rv = where;
@@ -257,7 +252,7 @@ var LinkplacesPanel = {
   },
 
   focusSidebarWhenItemsOpened: function () {
-    if (this.PREF.focusWhenItemsOpened_Sidebar) {
+    if (LinkplacesService.PREF.focusWhenItemsOpened_Sidebar) {
       this.treeView.focus();
     }
   },
