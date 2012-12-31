@@ -109,20 +109,7 @@ var LinkplacesPanel = {
   },
 
   initPlacesView: function() {
-    let historySvc = this.service.historySvc;
-
-    let query = historySvc.getNewQuery();
-    let linkplacesFolder = this.service.folder;
-    query.setFolders([linkplacesFolder], 1);
-    //query.searchTerms = "";
-    query.onlyBookmarked = true;
-
-    let queryOpts = historySvc.getNewQueryOptions();
-    queryOpts.queryType = queryOpts.QUERY_TYPE_BOOKMARKS;//queryType=1
-
-    let placesQuery = historySvc.queriesToQueryString([query], 1, queryOpts);
-
-    this.treeView.place = placesQuery;
+    this.treeView.place = "place:queryType=1&folder=UNFILED_BOOKMARKS";
   },
 
   overrideCmdOpenMultipleItem: function () {
