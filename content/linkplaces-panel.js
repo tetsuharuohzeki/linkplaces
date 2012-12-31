@@ -18,14 +18,9 @@ var LinkplacesPanel = {
   },
   set ctxMenu (v) {},
 
-  get service () {
-    delete this.service;
-    return this.service = LinkplacesService;
-  },
-
   get PREF () {
     delete this.PREF;
-    return this.PREF = this.service.PREF;
+    return this.PREF = LinkplacesService.PREF;
   },
 
   get placesController () {
@@ -55,7 +50,7 @@ var LinkplacesPanel = {
         case "placesCmd_open:window":
         case "placesCmd_open:tab":
           self.focusSidebarWhenItemsOpened();
-          self.service.removeItem(this._view.selectedNode.itemId);
+          LinkplacesService.removeItem(this._view.selectedNode.itemId);
           break;
       }
     };
@@ -170,7 +165,7 @@ var LinkplacesPanel = {
         treeBoxObj.view.selection.select(row.value);
         PlacesUIUtils.openContainerNodeInTabs(tree.selectedNode, aEvent);
         this.focusSidebarWhenItemsOpened();
-        this.service.removeItem(tree.selectedNode.itemId);
+        LinkplacesService.removeItem(tree.selectedNode.itemId);
       }
       else if (!isContainer) {
         treeBoxObj.view.selection.select(row.value);
@@ -228,7 +223,7 @@ var LinkplacesPanel = {
 
     this.focusSidebarWhenItemsOpened();
 
-    this.service.removeItem(aNode.itemId);
+    LinkplacesService.removeItem(aNode.itemId);
   },
 
   whereToOpenLink: function (aEvent, aURI) {
