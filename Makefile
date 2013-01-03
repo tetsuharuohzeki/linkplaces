@@ -25,7 +25,7 @@ FILE    = \
   ./skin/classic/WINNT/linkplaces-toolbar-inverted.png \
   ./skin/classic/WINNT/linkplaces-toolbar.png \
   ./skin/classic/WINNT/linkplaces.css \
-  ./modules/linkplaces.js \
+  ./modules/LinkplacesService.jsm \
   ./defaults/preferences/linkplaces-prefs.js \
   chrome.manifest \
   install.rdf \

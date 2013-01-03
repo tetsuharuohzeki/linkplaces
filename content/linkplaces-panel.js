@@ -2,7 +2,7 @@
 
 "use strict";
 
-Components.utils.import("resource://linkplaces/linkplaces.js");
+Components.utils.import("resource://linkplaces/LinkplacesService.jsm");
 
 var LinkplacesPanel = {
 
