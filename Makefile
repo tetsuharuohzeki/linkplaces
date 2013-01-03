@@ -26,6 +26,7 @@ FILE    = \
   ./skin/classic/WINNT/linkplaces-toolbar.png \
   ./skin/classic/WINNT/linkplaces.css \
   ./modules/LinkplacesService.jsm \
+  ./modules/LinkplacesPanel.jsm \
   ./defaults/preferences/linkplaces-prefs.js \
   chrome.manifest \
   install.rdf \
