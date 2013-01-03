@@ -17,6 +17,16 @@ Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/PlacesUtils.jsm");
 
+XPCOMUtils.defineLazyGetter(this, "prefBranch", function () {
+  return Services.prefs.getBranch(PREF_DOMAIN);
+});
+XPCOMUtils.defineLazyServiceGetter(this, "BookmarksService",
+                                   "@mozilla.org/browser/nav-bookmarks-service;1",
+                                   "nsINavBookmarksService");
+XPCOMUtils.defineLazyServiceGetter(this, "HistoryService",
+                                   "@mozilla.org/browser/nav-history-service;1",
+                                   "nsINavHistoryService");
+
 /**
  * LinkplacesService
  *
@@ -51,18 +61,14 @@ let LinkplacesService = {
    * @type {nsIPrefBranch}
    */
   get prefBranch () {
-    delete this.prefBranch;
-    return this.prefBranch = Services.prefs.getBranch(PREF_DOMAIN);
+    return prefBranch;
   },
 
   /**
-   * Cache nsINavBookmarksService.
    * @type {nsINavBookmarksService}
    */
   get bookmarksSvc () {
-    delete this.bookmarksSvc;
-    return this.bookmarksSvc = Cc["@mozilla.org/browser/nav-bookmarks-service;1"]
-                               .getService(Ci.nsINavBookmarksService);
+    return BookmarksService;
   },
 
   /**
@@ -70,8 +76,7 @@ let LinkplacesService = {
    * @type {number}
    */
   get folder () {
-    delete this.folder;
-    return this.folder = this.bookmarksSvc.unfiledBookmarksFolder;
+    return BookmarksService.unfiledBookmarksFolder;
   },
 
   /**
@@ -79,18 +84,14 @@ let LinkplacesService = {
    * @type {number}
    */
   get DEFAULT_INDEX () {
-    delete this.DEFAULT_INDEX;
-    return this.DEFAULT_INDEX = this.bookmarksSvc.DEFAULT_INDEX;
+    return BookmarksService.DEFAULT_INDEX;
   },
 
   /**
-   * Cache nsINavHistoryService.
    * @type {nsINavHistoryService}
    */
   get historySvc () {
-    delete this.historySvc;
-    return this.historySvc = Cc["@mozilla.org/browser/nav-history-service;1"]
-                             .getService(Ci.nsINavHistoryService);
+    return HistoryService;
   },
 
   /**
@@ -118,7 +119,6 @@ let LinkplacesService = {
    * Set pref values to cache.
    */
   prefObserve: function (aSubject, aData) {
-    let prefBranch = this.prefBranch;
     switch (aData) {
       case "openLinkToWhere":
         switch (prefBranch.getIntPref(aData)) {
@@ -146,7 +146,7 @@ let LinkplacesService = {
    * Initialize cache of preferences
    */
   initPref: function () {
-    let allPref = this.prefBranch.getChildList("", {});
+    let allPref = prefBranch.getChildList("", {});
     allPref.forEach(function(aPref) {
       this.prefObserve(null, aPref);
     }, this);
@@ -159,7 +159,7 @@ let LinkplacesService = {
     Services.obs.addObserver(this, "quit-application-granted", true);
 
     //Set Preferences Observer
-    this.prefBranch.addObserver("", this, true);
+    prefBranch.addObserver("", this, true);
     //set user preferences
     this.initPref();
   },
@@ -169,7 +169,7 @@ let LinkplacesService = {
    */
   destroy: function () {
     Services.obs.removeObserver(this, "quit-application-granted");
-    this.prefBranch.removeObserver("", this);
+    prefBranch.removeObserver("", this);
   },
 
 
