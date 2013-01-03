@@ -23,9 +23,6 @@ XPCOMUtils.defineLazyGetter(this, "prefBranch", function () {
 XPCOMUtils.defineLazyServiceGetter(this, "BookmarksService",
                                    "@mozilla.org/browser/nav-bookmarks-service;1",
                                    "nsINavBookmarksService");
-XPCOMUtils.defineLazyServiceGetter(this, "HistoryService",
-                                   "@mozilla.org/browser/nav-history-service;1",
-                                   "nsINavHistoryService");
 
 /**
  * LinkplacesService
@@ -85,13 +82,6 @@ let LinkplacesService = {
    */
   get DEFAULT_INDEX () {
     return BookmarksService.DEFAULT_INDEX;
-  },
-
-  /**
-   * @type {nsINavHistoryService}
-   */
-  get historySvc () {
-    return HistoryService;
   },
 
   /**
