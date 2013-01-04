@@ -33,7 +33,10 @@ FILE    = \
   icon.png
 
 
-all: xpi
+all: clean xpi
 
 xpi: $(FILES)
 	$(ZIP) $(OPTION) $(PACKAGE) $(FILE)
+
+clean:
+	-rm -rf $(PACKAGE)
