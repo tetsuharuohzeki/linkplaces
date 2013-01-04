@@ -11,8 +11,7 @@ var LinkplacesMultipleTab = {
   ElmId_tabCtxSaveTab: "linkplaces-tabCtx-saveTab",
 
   get service () {
-    delete this.service;
-    return this.service = LinkplacesService;
+    return LinkplacesService;
   },
 
   handleEvent: function (aEvent) {

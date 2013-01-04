@@ -9,15 +9,12 @@ XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService",
 var LinkplacesPlaces = {
 
   get service () {
-    delete this.service;
-    return this.service = LinkplacesService;
+    return LinkplacesService;
   },
 
   get ctxMenu () {
-    delete this.ctxMenu;
-    return this.ctxMenu = document.getElementById("placesContext");
+    return document.getElementById("placesContext");
   },
-  set ctxMenu (v) {},
 
   handleEvent: function (aEvent) {
     switch (aEvent.type) {

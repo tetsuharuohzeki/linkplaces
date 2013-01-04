@@ -12,8 +12,7 @@ var LinkplacesBrowser = {
   ElmId_contentCtxSaveLink: "linkplaces-contentCtx-saveLink",
 
   get service () {
-    delete this.service;
-    return this.service = LinkplacesService;
+    return LinkplacesService;
   },
 
   handleEvent: function (aEvent) {
