@@ -16,29 +16,6 @@ var LinkplacesPlaces = {
     return document.getElementById("placesContext");
   },
 
-  handleEvent: function (aEvent) {
-    switch (aEvent.type) {
-      case "load":
-        this.onLoad();
-        break;
-      case "unload":
-        this.onUnLoad();
-        break;
-    }
-  },
-
-  onLoad: function () {
-    window.removeEventListener("load", this, false);
-
-    window.addEventListener("unload",  this, false);
-  },
-
-  onUnLoad: function () {
-    window.removeEventListener("unload", this, false);
-
-    this.ctxMenu = null;
-  },
-
   saveAllItems: function () {
     let triggerNode = this.ctxMenu.triggerNode;
     let nodesArray = PlacesUIUtils.getViewForNode(triggerNode).selectedNodes;
@@ -55,4 +32,3 @@ var LinkplacesPlaces = {
   },
 
 };
-window.addEventListener("load", LinkplacesPlaces, false);
