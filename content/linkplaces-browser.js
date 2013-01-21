@@ -71,7 +71,7 @@ var LinkplacesBrowser = {
   },
 
   saveThisPage: function () {
-    this.saveTab(gBrowser.mCurrentTab);
+    this.saveTab(gBrowser.selectedTab);
   },
 
   saveThisTab: function () {
