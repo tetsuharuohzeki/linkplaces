@@ -75,7 +75,7 @@ var LinkplacesBrowser = {
   },
 
   saveThisTab: function () {
-    this.saveTab(gBrowser.mContextTab);
+    this.saveTab(TabContextMenu.contextTab);
   },
 
   saveTab: function (aTab) {
