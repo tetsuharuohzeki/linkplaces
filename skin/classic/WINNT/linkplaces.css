@@ -3,8 +3,24 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #linkplaces-button {
-  list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar.png");
+  list-style-image: url("chrome://linkplaces/skin/button-toolbar.png");
 }
+
+#linkplaces-button[cui-areatype="menu-panel"],
+toolbarpaletteitem[place="palette"] > #linkplaces-button {
+  list-style-image: url("chrome://linkplaces/skin/button-panel.png");
+}
+@media (min-resolution: 2dppx) {
+  #linkplaces-button {
+    list-style-image: url("chrome://linkplaces/skin/button-toolbar@2x.png");
+  }
+
+  #linkplaces-button[cui-areatype="menu-panel"],
+  toolbarpaletteitem[place="palette"] > #linkplaces-button {
+    list-style-image: url("chrome://linkplaces/skin/button-panel@2x.png");
+  }
+}
+
 
 /* ::: browser/themes/winstripe/browser-aero.css @161~@164 */
 :-moz-any(#toolbar-menubar, #nav-bar[tabsontop=false]) #linkplaces-button > .toolbarbutton-icon:not(:-moz-lwtheme),
@@ -12,5 +28,5 @@
 #nav-bar + #customToolbars + #PersonalToolbar[collapsed=true] + #TabsToolbar[tabsontop=false]:last-child #linkplaces-button > .toolbarbutton-icon:not(:-moz-lwtheme),
 /* ::: browser/themes/winstripe/browser.css @661 */
 #linkplaces-button:-moz-lwtheme-brighttext {
-  list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar-inverted.png");
+  list-style-image: url("chrome://linkplaces/skin/button-toolbar-inverted.png");
 }

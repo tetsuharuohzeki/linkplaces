@@ -3,8 +3,21 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #linkplaces-button {
-  list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar.png");
+  list-style-image: url("chrome://linkplaces/skin/button-toolbar.png");
 }
-toolbar[iconsize="large"] #linkplaces-button {
-  list-style-image: url("chrome://linkplaces/skin/linkplaces-toolbar-large.png");
+
+#linkplaces-button[cui-areatype="menu-panel"],
+toolbarpaletteitem[place="palette"] > #linkplaces-button {
+  list-style-image: url("chrome://linkplaces/skin/button-panel.png");
+}
+
+@media (min-resolution: 2dppx) {
+  #linkplaces-button {
+    list-style-image: url("chrome://linkplaces/skin/button-toolbar@2x.png");
+  }
+
+  #linkplaces-button[cui-areatype="menu-panel"],
+  toolbarpaletteitem[place="palette"] > #linkplaces-button {
+    list-style-image: url("chrome://linkplaces/skin/button-panel@2x.png");
+  }
 }
