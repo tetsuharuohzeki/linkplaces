@@ -6,10 +6,6 @@
   list-style-image: url("chrome://linkplaces/skin/button-toolbar.png");
 }
 
-#linkplaces-button[cui-areatype="toolbar"][checked="true"] {
-  list-style-image: url("chrome://linkplaces/skin/button-toolbar-active.png");
-}
-
 #linkplaces-button[cui-areatype="menu-panel"],
 toolbarpaletteitem[place="palette"] > #linkplaces-button {
   list-style-image: url("chrome://linkplaces/skin/button-panel.png");
@@ -18,10 +14,6 @@ toolbarpaletteitem[place="palette"] > #linkplaces-button {
 @media (min-resolution: 2dppx) {
   #linkplaces-button {
     list-style-image: url("chrome://linkplaces/skin/button-toolbar@2x.png");
-  }
-
-  #linkplaces-button[cui-areatype="toolbar"][checked="true"] {
-    list-style-image: url("chrome://linkplaces/skin/button-toolbar-active@2x.png");
   }
 
   #linkplaces-button[cui-areatype="menu-panel"],
