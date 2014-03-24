@@ -20,6 +20,11 @@ Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/PlacesUtils.jsm");
 
+XPCOMUtils.defineLazyModuleGetter(this, "PlacesUIUtils",
+  "resource:///modules/PlacesUIUtils.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "PlacesTransactions",
+  "resource://gre/modules/PlacesTransactions.jsm");
+
 XPCOMUtils.defineLazyGetter(this, "prefBranch", function () {
   return Services.prefs.getBranch(PREF_DOMAIN);
 });
@@ -199,18 +204,47 @@ let LinkplacesService = {
    *   The index which items inserted point.
    */
   saveItems: function (aItems, aIndex = this.DEFAULT_INDEX) {
-    let containerId  = this.folder;
-    let transactions = aItems.map(function createTxns(item) {
-      let uri   = Services.io.newURI(item.uri, null, null);
-      let title = item.title;
-      let txn   = new PlacesCreateBookmarkTransaction(uri, containerId,
-                                                      aIndex, title);
-      return txn;
-    });
+    if (PlacesUIUtils.useAsyncTransactions) {
+      this._saveItemAsync(aItems, aIndex);
+    }
+    else {
+      let containerId  = this.folder;
+      let transactions = aItems.map(function createTxns(item) {
+        let uri   = Services.io.newURI(item.uri, null, null);
+        let title = item.title;
+        let txn   = new PlacesCreateBookmarkTransaction(uri, containerId,
+                                                        aIndex, title);
+        return txn;
+      });
 
-    let finalTxn = new PlacesAggregatedTransaction(TXNNAME_SAVEITEMS,
-                                                   transactions);
-    PlacesUtils.transactionManager.doTransaction(finalTxn);
+      let finalTxn = new PlacesAggregatedTransaction(TXNNAME_SAVEITEMS,
+                                                     transactions);
+      PlacesUtils.transactionManager.doTransaction(finalTxn);
+    }
+  },
+
+  _saveItemAsync: function (aItems, aIndex) {
+    let promise = PlacesUtils.promiseItemGUID(this.folder);
+    promise.then(function(containerId){
+      let txnGenarator = function* (aItems, parentId, insertionPoint) {
+        for (let item of aItems) {
+          let uri = Services.io.newURI(item.uri, null, null);
+          let title = item.title;
+
+          let txn = new PlacesTransactions.NewBookmark({
+            uri: uri,
+            title: title,
+            parentGUID: parentId,
+            index: insertionPoint,
+          });
+          yield txn;
+        }
+
+        return;
+      }.bind(null, aItems, containerId, aIndex);
+
+      PlacesTransactions.transact(txnGenarator);
+    });
   },
 
   /**
@@ -220,8 +254,23 @@ let LinkplacesService = {
    *   The item's id.
    */
   removeItem: function (aItemId) {
-    let txn = new PlacesRemoveItemTransaction(aItemId);
-    PlacesUtils.transactionManager.doTransaction(txn);
+    if (PlacesUIUtils.useAsyncTransactions) {
+      this._removeItemAsync(aItemId);
+    }
+    else {
+      let txn = new PlacesRemoveItemTransaction(aItemId);
+      PlacesUtils.transactionManager.doTransaction(txn);
+    }
+  },
+
+  _removeItemAsync: function (aItemId) {
+    let promise = PlacesUtils.promiseItemGUID(aItemId);
+    promise.then(function(guid){
+      let txn = new PlacesTransactions.RemoveItem({
+        GUID: guid,
+      });
+      PlacesTransactions.transact(txn);
+    });
   },
 
 };
