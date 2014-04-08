@@ -54,19 +54,11 @@ LinkplacesPanel.prototype = {
     let window = this.window;
     window.removeEventListener("load", this, false);
 
-    this.treeView = window.document.getElementById("linkplaces-view");
-    this.ctxMenu = window.document.getElementById("placesContext");
-    this.placesController = createCustomPlacesController(this);
-
     // initialize
-    this.initPlacesView();
-    this.treeView.controllers.insertControllerAt(0, this.placesController);
-    this.overrideCmdOpenMultipleItem();
+    [this.treeView, this.placesController] = this.initPlacesView();
 
-    this.treeView.addEventListener("click", this, false);
-    this.treeView.addEventListener("keypress", this, false);
-    this.treeView.addEventListener("mousemove", this, false);
-    this.treeView.addEventListener("mouseout", this, false);
+    this.ctxMenu = window.document.getElementById("placesContext");
+    this.overrideCmdOpenMultipleItem();
 
     window.addEventListener("unload", this, false);
     window.addEventListener("SidebarFocused", this, false);
@@ -78,16 +70,10 @@ LinkplacesPanel.prototype = {
 
     this.setMouseoverURL("");
 
-    this.treeView.removeEventListener("click", this, false);
-    this.treeView.removeEventListener("keypress", this, false);
-    this.treeView.removeEventListener("mousemove", this, false);
-    this.treeView.removeEventListener("mouseout", this, false);
-
-    // finalize
-    this.treeView.controllers.removeControllerAt(0);
-    this.placesController = null;
+    this.finalizePlacesView();
 
     this.ctxMenu  = null;
+    this.placesController = null;
     this.treeView = null;
   },
 
@@ -96,7 +82,30 @@ LinkplacesPanel.prototype = {
   },
 
   initPlacesView: function() {
-    this.treeView.place = "place:queryType=1&folder=UNFILED_BOOKMARKS";
+    let window = this.window;
+
+    let treeView = window.document.getElementById("linkplaces-view");
+    let placesController = createCustomPlacesController(window.PlacesController, treeView);
+
+    treeView.place = "place:queryType=1&folder=UNFILED_BOOKMARKS";
+    treeView.controllers.insertControllerAt(0, placesController);
+
+    treeView.addEventListener("click", this, false);
+    treeView.addEventListener("keypress", this, false);
+    treeView.addEventListener("mousemove", this, false);
+    treeView.addEventListener("mouseout", this, false);
+
+    return [treeView, placesController];
+  },
+
+  finalizePlacesView: function () {
+    this.treeView.removeEventListener("click", this, false);
+    this.treeView.removeEventListener("keypress", this, false);
+    this.treeView.removeEventListener("mousemove", this, false);
+    this.treeView.removeEventListener("mouseout", this, false);
+
+    // finalize
+    this.treeView.controllers.removeControllerAt(0);
   },
 
   overrideCmdOpenMultipleItem: function () {
@@ -261,9 +270,13 @@ LinkplacesPanel.prototype = {
 };
 
 
-function createCustomPlacesController (aLinkplacesPanel) {
-  let placesController = new aLinkplacesPanel.window.
-                             PlacesController(aLinkplacesPanel.treeView);
+/*
+ *  @param  {function(new:PlacesController)}  aControllerConstructor
+ *  @param  {Element}                         aTreeView
+ *  @return {PlacesController}
+ */
+function createCustomPlacesController (aControllerConstructor, aTreeView) {
+  let placesController = new aControllerConstructor(aTreeView);
   placesController._isCommandEnabled = placesController.isCommandEnabled;
   placesController.isCommandEnabled = function (aCmd) {
     switch (aCmd) {
