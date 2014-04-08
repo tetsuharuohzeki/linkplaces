@@ -16,13 +16,13 @@ Cu.import("resource:///modules/PlacesUIUtils.jsm");
 
 function LinkplacesPanel (aWindow) {
   this.window = aWindow;
+  this.treeView = null;
+  this.ctxMenu = null;
+  this.placesController = null;
+
   aWindow.addEventListener("load", this, false);
 }
 LinkplacesPanel.prototype = {
-
-  window: null,
-  treeView: null,
-  ctxMenu: null,
 
   handleEvent: function (aEvent) {
     switch (aEvent.type) {
