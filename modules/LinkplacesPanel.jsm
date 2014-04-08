@@ -35,6 +35,18 @@ LinkplacesPanel.prototype = {
       case "SidebarFocused":
         this.onSidebarFocused();
         break;
+      case "click": // for TreeView
+        this.handleTreeClick(aEvent, true);
+        break;
+      case "keypress": // for TreeView
+        this.handleTreeKeyPress(aEvent);
+        break;
+      case "mousemove": // for TreeView
+        this.handleTreeMouseMove(aEvent);
+        break;
+      case "mouseout": // for TreeView
+        this.setMouseoverURL("");
+        break;
     }
   },
 
@@ -51,6 +63,11 @@ LinkplacesPanel.prototype = {
     this.treeView.controllers.insertControllerAt(0, this.placesController);
     this.overrideCmdOpenMultipleItem();
 
+    this.treeView.addEventListener("click", this, false);
+    this.treeView.addEventListener("keypress", this, false);
+    this.treeView.addEventListener("mousemove", this, false);
+    this.treeView.addEventListener("mouseout", this, false);
+
     window.addEventListener("unload", this, false);
     window.addEventListener("SidebarFocused", this, false);
   },
@@ -60,6 +77,11 @@ LinkplacesPanel.prototype = {
     this.window.removeEventListener("SidebarFocused", this, false);
 
     this.setMouseoverURL("");
+
+    this.treeView.removeEventListener("click", this, false);
+    this.treeView.removeEventListener("keypress", this, false);
+    this.treeView.removeEventListener("mousemove", this, false);
+    this.treeView.removeEventListener("mouseout", this, false);
 
     // finalize
     this.treeView.controllers.removeControllerAt(0);

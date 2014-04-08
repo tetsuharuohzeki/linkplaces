@@ -36,11 +36,7 @@
         class="sidebar-placesTree"
         flex="1"
         hidecolumnpicker="true"
-        context="placesContext"
-        onkeypress="LinkplacesPanel.handleTreeKeyPress(event);"
-        onclick="LinkplacesPanel.handleTreeClick(event, true);"
-        onmousemove="LinkplacesPanel.handleTreeMouseMove(event);"
-        onmouseout="LinkplacesPanel.setMouseoverURL('');">
+        context="placesContext">
     <treecols>
       <treecol id="title" flex="1" primary="true" hideheader="true"/>
     </treecols>
