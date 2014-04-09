@@ -223,10 +223,10 @@ let LinkplacesService = {
     }
   },
 
-  _saveItemAsync: function (aItems, aIndex) {
-    let promise = PlacesUtils.promiseItemGUID(this.folder);
-    promise.then(function(containerId){
-      let txnGenarator = function* (aItems, parentId, insertionPoint) {
+  _saveItemAsync: function (aItems, aInsertionPoint) {
+    let containerId = PlacesUtils.promiseItemGUID(this.folder);
+    containerId.then(function(parentId){
+      let txnGenarator = function* () {
         for (let item of aItems) {
           let uri = Services.io.newURI(item.uri, null, null);
           let title = item.title;
@@ -235,13 +235,13 @@ let LinkplacesService = {
             uri: uri,
             title: title,
             parentGUID: parentId,
-            index: insertionPoint,
+            index: aInsertionPoint,
           });
           yield txn;
         }
 
         return;
-      }.bind(null, aItems, containerId, aIndex);
+      };
 
       PlacesTransactions.transact(txnGenarator);
     });
