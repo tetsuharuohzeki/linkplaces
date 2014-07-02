@@ -59,7 +59,7 @@
   <menupopup id="contentAreaContextMenu">
     <menuitem id="linkplaces-contentCtx-savePage"
               label="&linkplaces.ctx.content.savePage;"
-              insertafter="context-bookmarkpage"
+              insertbefore="context-savepage"
               oncommand="LinkplacesBrowser.saveThisPage();"/>
     <menuitem id="linkplaces-contentCtx-saveLink"
               label="&linkplaces.ctx.content.saveLink;"
