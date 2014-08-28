@@ -28,3 +28,6 @@
 <!ENTITY linkplaces.option.openLinkToWhere.window       "New Window">
 <!ENTITY linkplaces.option.focusWhenItemsOpened.caption "Focus when item opened">
 <!ENTITY linkplaces.option.focusWhenItemsOpened.sidebar "Focus sidebar when item opened">
+
+<!-- Widget -->
+<!ENTITY linkplaces.widget.menuitem.toggleSidebar       "View &linkplaces.global; Sidebar">

@@ -2,22 +2,33 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#linkplaces-button {
+#linkplaces-button,
+#linkplaces-menu-button {
   list-style-image: url("chrome://linkplaces/skin/button-toolbar.png");
 }
 
 #linkplaces-button[cui-areatype="menu-panel"],
-toolbarpaletteitem[place="palette"] > #linkplaces-button {
+toolbarpaletteitem[place="palette"] > #linkplaces-button,
+#linkplaces-menu-button[cui-areatype="menu-panel"],
+toolbarpaletteitem[place="palette"] > #linkplaces-menu-button {
   list-style-image: url("chrome://linkplaces/skin/button-panel.png");
 }
 
 @media (min-resolution: 2dppx) {
-  #linkplaces-button {
+  #linkplaces-button,
+  #linkplaces-menu-button {
     list-style-image: url("chrome://linkplaces/skin/button-toolbar@2x.png");
   }
 
   #linkplaces-button[cui-areatype="menu-panel"],
-  toolbarpaletteitem[place="palette"] > #linkplaces-button {
+  toolbarpaletteitem[place="palette"] > #linkplaces-button,
+  #linkplaces-menu-button[cui-areatype="menu-panel"],
+  toolbarpaletteitem[place="palette"] > #linkplaces-menu-button {
     list-style-image: url("chrome://linkplaces/skin/button-panel@2x.png");
   }
+}
+
+/* extend places menu item's width */
+#panelMenu_linkplacesMenu > .bookmark-item {
+  max-width: none;
 }

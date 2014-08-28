@@ -73,6 +73,7 @@ let LinkplacesService = {
   PREF: Object.seal({
     openLinkToWhere: null,
     focusWhenItemsOpened_Sidebar: null,
+    removeItemFromPanel: null,
   }),
 
   /**
@@ -158,6 +159,9 @@ let LinkplacesService = {
         break;
       case "focusWhenItemsOpened.sidebar":
         this.PREF.focusWhenItemsOpened_Sidebar = prefBranch.getBoolPref(aData);
+        break;
+      case "removeItemFromPanel":
+        this.PREF.removeItemFromPanel = prefBranch.getBoolPref(aData);
         break;
     }
   },

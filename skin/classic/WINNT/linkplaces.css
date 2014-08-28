@@ -2,31 +2,44 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#linkplaces-button {
+#linkplaces-button,
+#linkplaces-menu-button {
   list-style-image: url("chrome://linkplaces/skin/button-toolbar.png");
 }
 
 #linkplaces-button[cui-areatype="menu-panel"],
-toolbarpaletteitem[place="palette"] > #linkplaces-button {
+toolbarpaletteitem[place="palette"] > #linkplaces-button,
+#linkplaces-menu-button[cui-areatype="menu-panel"],
+toolbarpaletteitem[place="palette"] > #linkplaces-menu-button {
   list-style-image: url("chrome://linkplaces/skin/button-panel.png");
 }
+
 @media (min-resolution: 2dppx) {
-  #linkplaces-button {
+  #linkplaces-button,
+  #linkplaces-menu-button {
     list-style-image: url("chrome://linkplaces/skin/button-toolbar@2x.png");
   }
 
   #linkplaces-button[cui-areatype="menu-panel"],
-  toolbarpaletteitem[place="palette"] > #linkplaces-button {
+  toolbarpaletteitem[place="palette"] > #linkplaces-button,
+  #linkplaces-menu-button[cui-areatype="menu-panel"],
+  toolbarpaletteitem[place="palette"] > #linkplaces-menu-button {
     list-style-image: url("chrome://linkplaces/skin/button-panel@2x.png");
   }
 }
 
+/* extend places menu item's width */
+#panelMenu_linkplacesMenu > .bookmark-item {
+  max-width: none;
+}
+
 
 /* ::: browser/themes/winstripe/browser-aero.css @161~@164 */
-:-moz-any(#toolbar-menubar, #nav-bar[tabsontop=false]) #linkplaces-button > .toolbarbutton-icon:not(:-moz-lwtheme),
-#TabsToolbar[tabsontop=true] #linkplaces-button > .toolbarbutton-icon:not(:-moz-lwtheme),
-#nav-bar + #customToolbars + #PersonalToolbar[collapsed=true] + #TabsToolbar[tabsontop=false]:last-child #linkplaces-button > .toolbarbutton-icon:not(:-moz-lwtheme),
+:-moz-any(#toolbar-menubar, #nav-bar[tabsontop=false]) :-moz-any(#linkplaces-button, #linkplaces-menu-button)  > .toolbarbutton-icon:not(:-moz-lwtheme),
+#TabsToolbar[tabsontop=true] :-moz-any(#linkplaces-button, #linkplaces-menu-button) > .toolbarbutton-icon:not(:-moz-lwtheme),
+#nav-bar + #customToolbars + #PersonalToolbar[collapsed=true] + #TabsToolbar[tabsontop=false]:last-child :-moz-any(#linkplaces-button, #linkplaces-menu-button) > .toolbarbutton-icon:not(:-moz-lwtheme),
 /* ::: browser/themes/winstripe/browser.css @661 */
-#linkplaces-button:-moz-lwtheme-brighttext {
+#linkplaces-button:-moz-lwtheme-brighttext,
+#linkplaces-menu-button:-moz-lwtheme-brighttext {
   list-style-image: url("chrome://linkplaces/skin/button-toolbar-inverted.png");
 }

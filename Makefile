@@ -5,6 +5,7 @@ PACKAGE = linkplaces.xpi
 FILE    = \
   ./content/linkplaces-browser.js \
   ./content/linkplaces-browser.xul \
+  ./content/linkplaces-menu.js \
   ./content/linkplaces-multipletab.js \
   ./content/linkplaces-multipletab.xul \
   ./content/linkplaces-options.xul \
@@ -37,6 +38,7 @@ FILE    = \
   ./skin/classic/WINNT/linkplaces.css \
   ./modules/LinkplacesService.jsm \
   ./modules/LinkplacesPanel.jsm \
+  ./modules/LinkplacesUIWidget.jsm \
   ./defaults/preferences/linkplaces-prefs.js \
   chrome.manifest \
   install.rdf \
