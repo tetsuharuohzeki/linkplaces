@@ -4,3 +4,6 @@
 
 pref("extensions.linkplaces.openLinkToWhere", 1);
 pref("extensions.linkplaces.focusWhenItemsOpened.sidebar", true);
+
+// FIXME: This is only for debug
+pref("extensions.linkplaces.removeItemFromPanel", false);

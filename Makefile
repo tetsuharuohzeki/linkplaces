@@ -5,6 +5,7 @@ PACKAGE = linkplaces.xpi
 FILE    = \
   ./content/linkplaces-browser.js \
   ./content/linkplaces-browser.xul \
+  ./content/linkplaces-menu.js \
   ./content/linkplaces-multipletab.js \
   ./content/linkplaces-multipletab.xul \
   ./content/linkplaces-options.xul \
@@ -13,6 +14,7 @@ FILE    = \
   ./content/linkplaces-places.js \
   ./content/linkplaces-places.xul \
   ./locale/en-US/linkplaces.dtd \
+  ./locale/en-US/linkplaces.properties \
   ./skin/classic/Darwin/linkplaces-sidebar.css \
   ./skin/classic/Darwin/button-toolbar-active.png \
   ./skin/classic/Darwin/button-toolbar-active@2x.png \
@@ -36,6 +38,7 @@ FILE    = \
   ./skin/classic/WINNT/linkplaces.css \
   ./modules/LinkplacesService.jsm \
   ./modules/LinkplacesPanel.jsm \
+  ./modules/LinkplacesUIWidget.jsm \
   ./defaults/preferences/linkplaces-prefs.js \
   chrome.manifest \
   install.rdf \

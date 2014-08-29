@@ -6,8 +6,8 @@
 <!ENTITY linkplaces.global                              "LinkPlaces">
 
 <!-- Browser Overlay -->
-<!ENTITY linkplaces.overlay.broadcaster.label           "&linkplaces.global;">
-<!ENTITY linkplaces.overlay.button.tooltip              "Display &linkplaces.global;">
+<!ENTITY linkplaces.overlay.broadcaster.label           "&linkplaces.global; (Sidebar)">
+<!ENTITY linkplaces.overlay.button.tooltip              "Display &linkplaces.global; Sidebar">
 <!ENTITY linkplaces.overlay.sidebar.title               "&linkplaces.global;">
 <!ENTITY linkplaces.overlay.commandkey                  "L">
 
@@ -28,3 +28,6 @@
 <!ENTITY linkplaces.option.openLinkToWhere.window       "New Window">
 <!ENTITY linkplaces.option.focusWhenItemsOpened.caption "Focus when item opened">
 <!ENTITY linkplaces.option.focusWhenItemsOpened.sidebar "Focus sidebar when item opened">
+
+<!-- Widget -->
+<!ENTITY linkplaces.widget.menuitem.toggleSidebar       "View &linkplaces.global; Sidebar">
