@@ -13,6 +13,7 @@ FILE    = \
   ./content/linkplaces-places.js \
   ./content/linkplaces-places.xul \
   ./locale/en-US/linkplaces.dtd \
+  ./locale/en-US/linkplaces.properties \
   ./skin/classic/Darwin/linkplaces-sidebar.css \
   ./skin/classic/Darwin/button-toolbar-active.png \
   ./skin/classic/Darwin/button-toolbar-active@2x.png \

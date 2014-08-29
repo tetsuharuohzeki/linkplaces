@@ -14,6 +14,7 @@ const Cu = Components.utils;
 const PREF_DOMAIN        = "extensions.linkplaces.";
 const TXNNAME_SAVEITEMS  = "LinkplacesService:sevesItems";
 const QUERY_URI = "place:queryType=1&folder=UNFILED_BOOKMARKS";
+const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 
 
 //Import JS Utils module
@@ -28,6 +29,9 @@ XPCOMUtils.defineLazyModuleGetter(this, "PlacesTransactions",
 
 XPCOMUtils.defineLazyGetter(this, "prefBranch", function () {
   return Services.prefs.getBranch(PREF_DOMAIN);
+});
+XPCOMUtils.defineLazyGetter(this, "stringBundle", function () {
+  return Services.strings.createBundle(STRING_BUNDLE_URI);
 });
 XPCOMUtils.defineLazyServiceGetter(this, "BookmarksService",
                                    "@mozilla.org/browser/nav-bookmarks-service;1",
@@ -77,6 +81,14 @@ let LinkplacesService = {
    */
   get prefBranch () {
     return prefBranch;
+  },
+
+  /**
+   * Cache strings bundle.
+   * @type {nsIStringBundle}
+   */
+  get stringBundle () {
+    return stringBundle;
   },
 
   /**
