@@ -87,7 +87,7 @@ LinkplacesPanel.prototype = {
     let treeView = window.document.getElementById("linkplaces-view");
     let placesController = createCustomPlacesController(window.PlacesController, treeView);
 
-    treeView.place = "place:queryType=1&folder=UNFILED_BOOKMARKS";
+    treeView.place = LinkplacesService.QUERY_URI;
     treeView.controllers.insertControllerAt(0, placesController);
 
     treeView.addEventListener("click", this, false);

@@ -13,6 +13,7 @@ const Cu = Components.utils;
 
 const PREF_DOMAIN        = "extensions.linkplaces.";
 const TXNNAME_SAVEITEMS  = "LinkplacesService:sevesItems";
+const QUERY_URI = "place:queryType=1&folder=UNFILED_BOOKMARKS";
 
 
 //Import JS Utils module
@@ -50,6 +51,15 @@ let LinkplacesService = {
    */
   get PREF_DOMAIN () {
     return PREF_DOMAIN;
+  },
+
+  /**
+   * @const
+   *  The places query uri for linkplaces folder.
+   * @type {string}
+   */
+  get QUERY_URI () {
+    return QUERY_URI;
   },
 
   /**
