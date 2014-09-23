@@ -250,7 +250,7 @@ let LinkplacesService = {
   },
 
   _saveItemAsync: function (aItems, aInsertionPoint) {
-    let containerId = PlacesUtils.promiseItemGUID(this.folder);
+    let containerId = PlacesUtils.promiseItemGuid(this.folder);
     containerId.then(function(parentId){
       let txnGenarator = function* () {
         for (let item of aItems) {
@@ -260,7 +260,7 @@ let LinkplacesService = {
           let txn = new PlacesTransactions.NewBookmark({
             uri: uri,
             title: title,
-            parentGUID: parentId,
+            parentGuid: parentId,
             index: aInsertionPoint,
           });
           yield txn;
@@ -290,10 +290,10 @@ let LinkplacesService = {
   },
 
   _removeItemAsync: function (aItemId) {
-    let promise = PlacesUtils.promiseItemGUID(aItemId);
+    let promise = PlacesUtils.promiseItemGuid(aItemId);
     promise.then(function(guid){
-      let txn = new PlacesTransactions.RemoveItem({
-        GUID: guid,
+      let txn = new PlacesTransactions.Remove({
+        guid: guid,
       });
       PlacesTransactions.transact(txn);
     });
