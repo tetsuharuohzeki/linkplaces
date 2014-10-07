@@ -41,7 +41,8 @@ var LinkplacesMultipleTab = {
     let items = MultipleTabService.getSelectedTabs().map(function(aTab){
       let browser = aTab.linkedBrowser;
       let uri     = browser.currentURI.spec
-      let title   = browser.contentDocument.title || uri;
+      // FIXME: don't use CPOW.
+      let title   = browser.contentDocumentAsCPOW.title || uri;
       return { uri: uri, title:title };
     }, this);
     this.service.saveItems(items);
