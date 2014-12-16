@@ -254,23 +254,25 @@ let LinkplacesService = {
     containerId.then(function(parentId){
       let txnGenarator = function* () {
         for (let item of aItems) {
+
           let uri = Services.io.newURI(item.uri, null, null);
           let title = item.title;
 
           let txn = new PlacesTransactions.NewBookmark({
-            uri: uri,
+            url: uri,
             title: title,
             parentGuid: parentId,
             index: aInsertionPoint,
           });
-          yield txn;
+
+          yield txn.transact();
         }
 
         return;
       };
 
-      PlacesTransactions.transact(txnGenarator);
-    });
+      return PlacesTransactions.batch(txnGenarator);
+    }).catch(Cu.reportError);
   },
 
   /**
@@ -295,8 +297,9 @@ let LinkplacesService = {
       let txn = new PlacesTransactions.Remove({
         guid: guid,
       });
-      PlacesTransactions.transact(txn);
-    });
+
+      return PlacesTransactions.batch([txn]);
+    }).catch(Cu.reportError);
   },
 
 };
