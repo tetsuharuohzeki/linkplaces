@@ -109,11 +109,11 @@ LinkplacesPanel.prototype = {
   },
 
   overrideCmdOpenMultipleItem: function () {
-    let cmdValue = "\
-      var triggerNode = LinkplacesPanel.ctxMenu.triggerNode;\
-      var controller = PlacesUIUtils.getViewForNode(triggerNode).controller;\
-      LinkplacesPanel.openSelectionInTabs(controller, event);\
-    ";
+    let cmdValue = `
+      var triggerNode = LinkplacesPanel.ctxMenu.triggerNode;
+      var controller = PlacesUIUtils.getViewForNode(triggerNode).controller;
+      LinkplacesPanel.openSelectionInTabs(controller, event);
+    `;
     let document = this.window.document;
     let list = ["placesContext_openContainer:tabs",
                 "placesContext_openLinks:tabs"];
