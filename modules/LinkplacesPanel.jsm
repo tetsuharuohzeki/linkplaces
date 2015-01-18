@@ -115,10 +115,11 @@ LinkplacesPanel.prototype = {
       LinkplacesPanel.openSelectionInTabs(controller, event);\
     ";
     let document = this.window.document;
-    ["placesContext_openContainer:tabs",
-     "placesContext_openLinks:tabs"].forEach(function(aElm){
-      document.getElementById(aElm).setAttribute("oncommand", cmdValue.toString());
-    });
+    let list = ["placesContext_openContainer:tabs",
+                "placesContext_openLinks:tabs"];
+    for (let id of list) {
+      document.getElementById(id).setAttribute("oncommand", cmdValue.toString());
+    }
   },
 
   // Based on "chrome://browser/content/bookmarks/sidebarUtils.js"

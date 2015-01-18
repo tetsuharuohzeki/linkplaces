@@ -171,9 +171,9 @@ let LinkplacesService = {
    */
   initPref: function () {
     let allPref = prefBranch.getChildList("", {});
-    allPref.forEach(function(aPref) {
-      this.prefObserve(null, aPref);
-    }, this);
+    for (let pref of allPref) {
+      this.prefObserve(null, pref);
+    }
   },
 
   /**
