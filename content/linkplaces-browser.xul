@@ -39,7 +39,7 @@
                        label="&linkplaces.widget.menuitem.toggleSidebar;"
                        class="subviewbutton"
                        key="linkplaces-key-toggleSidebar"
-                       oncommand="toggleSidebar('viewLinkplacesSidebar'); PanelUI.hide();">
+                       oncommand="SidebarUI.toggle('viewLinkplacesSidebar'); PanelUI.hide();">
           <observes element="viewLinkplacesSidebar" attribute="checked"/>
         </toolbarbutton>
         <toolbarseparator/>
@@ -77,7 +77,7 @@
                  group="sidebar"
                  sidebartitle="&linkplaces.overlay.sidebar.title;"
                  sidebarurl="chrome://linkplaces/content/linkplaces-panel.xul"
-                 oncommand="toggleSidebar('viewLinkplacesSidebar');"/>
+                 oncommand="SidebarUI.toggle('viewLinkplacesSidebar');"/>
   </broadcasterset>
 
    <menupopup id="tabContextMenu">
