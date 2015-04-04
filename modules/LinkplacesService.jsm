@@ -93,13 +93,6 @@ let LinkplacesService = {
   },
 
   /**
-   * @type {nsINavBookmarksService}
-   */
-  get bookmarksSvc () {
-    return BookmarksService;
-  },
-
-  /**
    * Returns LinkPlaces folder's id.
    * @type {number}
    */
