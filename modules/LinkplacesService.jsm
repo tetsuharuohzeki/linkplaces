@@ -33,9 +33,8 @@ XPCOMUtils.defineLazyGetter(this, "prefBranch", function () {
 XPCOMUtils.defineLazyGetter(this, "stringBundle", function () {
   return Services.strings.createBundle(STRING_BUNDLE_URI);
 });
-XPCOMUtils.defineLazyServiceGetter(this, "BookmarksService",
-                                   "@mozilla.org/browser/nav-bookmarks-service;1",
-                                   "nsINavBookmarksService");
+XPCOMUtils.defineLazyModuleGetter(this, "Bookmarks",
+  "resource://gre/modules/Bookmarks.jsm");
 
 /**
  * LinkplacesService
@@ -93,11 +92,21 @@ let LinkplacesService = {
   },
 
   /**
+   * @obsolatd
+   *
    * Returns LinkPlaces folder's id.
    * @type {number}
    */
   get folder () {
-    return BookmarksService.unfiledBookmarksFolder;
+    return PlacesUtils.bookmarks.unfiledBookmarksFolder;
+  },
+
+  /**
+   * Returns LinkPlaces folder's id.
+   * @type {string}
+   */
+  get folderGuid () {
+    return Bookmarks.unfiledGuid;
   },
 
   /**
@@ -105,7 +114,7 @@ let LinkplacesService = {
    * @type {number}
    */
   get DEFAULT_INDEX () {
-    return BookmarksService.DEFAULT_INDEX;
+    return Bookmarks.DEFAULT_INDEX;
   },
 
   /**
