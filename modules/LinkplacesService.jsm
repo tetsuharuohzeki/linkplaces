@@ -70,9 +70,9 @@ let LinkplacesService = {
    * @type {object}
    */
   PREF: Object.seal({
-    openLinkToWhere: null,
-    focusWhenItemsOpened_Sidebar: null,
-    removeItemFromPanel: null,
+    openLinkToWhere: "",
+    focusWhenItemsOpened_Sidebar: false,
+    removeItemFromPanel: false,
   }),
 
   /**
