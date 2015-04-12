@@ -26,9 +26,7 @@ let LinkPlacesUI = {
       let node = target._placesNode;
       let where = this.whereToOpenLink(aEvent, node.uri);
       PlacesUIUtils.openNodeIn(node, where, aView);
-      if (LinkplacesService.PREF.removeItemFromPanel) {
-        LinkplacesService.removeItem(node.itemId);
-      }
+      LinkplacesService.removeItem(node.itemId);
     }
     PanelUI.hide();
   },

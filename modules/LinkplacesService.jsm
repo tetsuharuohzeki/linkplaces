@@ -70,7 +70,6 @@ let LinkplacesService = {
   PREF: Object.seal({
     openLinkToWhere: "",
     focusWhenItemsOpened_Sidebar: false,
-    removeItemFromPanel: false,
     useAsyncTransactions: false,
   }),
 
@@ -160,9 +159,6 @@ let LinkplacesService = {
         break;
       case "focusWhenItemsOpened.sidebar":
         this.PREF.focusWhenItemsOpened_Sidebar = prefBranch.getBoolPref(aData);
-        break;
-      case "removeItemFromPanel":
-        this.PREF.removeItemFromPanel = prefBranch.getBoolPref(aData);
         break;
       case "useAsyncTransactions":
         this.PREF.useAsyncTransactions = prefBranch.getBoolPref(aData);
