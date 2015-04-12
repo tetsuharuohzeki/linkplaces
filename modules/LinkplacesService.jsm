@@ -294,8 +294,8 @@ let LinkplacesService = {
   },
 
   _removeItemAsync: function (aItemId) {
-    let promise = PlacesUtils.promiseItemGuid(aItemId);
-    promise.then(function(guid){
+    let itemId = PlacesUtils.promiseItemGuid(aItemId);
+    itemId.then(function(guid){
       let txn = new PlacesTransactions.Remove({
         guid: guid,
       });
