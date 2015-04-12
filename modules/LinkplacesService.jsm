@@ -252,29 +252,28 @@ let LinkplacesService = {
   },
 
   _saveItemAsync: function (aItems, aInsertionPoint) {
-    let containerId = PlacesUtils.promiseItemGuid(this.folder);
-    containerId.then(function(parentId){
-      let txnGenarator = function* () {
-        for (let item of aItems) {
+    let parentId = this.folderGuid;
+    let txnGenarator = function* () {
+      for (let item of aItems) {
 
-          let uri = Services.io.newURI(item.uri, null, null);
-          let title = item.title;
+        let uri = Services.io.newURI(item.uri, null, null);
+        let title = item.title;
 
-          let txn = new PlacesTransactions.NewBookmark({
-            url: uri,
-            title: title,
-            parentGuid: parentId,
-            index: aInsertionPoint,
-          });
+        let txn = new PlacesTransactions.NewBookmark({
+          url: uri,
+          title: title,
+          parentGuid: parentId,
+          index: aInsertionPoint,
+        });
 
-          yield txn.transact();
-        }
+        yield txn.transact();
+      }
 
-        return;
-      };
+      return;
+    };
 
-      return PlacesTransactions.batch(txnGenarator);
-    }).catch(Cu.reportError);
+    return PlacesTransactions.batch(txnGenarator)
+      .catch(Cu.reportError);
   },
 
   /**
