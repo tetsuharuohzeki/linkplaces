@@ -5,3 +5,6 @@
 pref("extensions.linkplaces.openLinkToWhere", 1);
 pref("extensions.linkplaces.focusWhenItemsOpened.sidebar", true);
 pref("extensions.linkplaces.removeItemFromPanel", true);
+
+// FIXME: This is only for debug
+pref("extensions.linkplaces.useAsyncTransactions", false);

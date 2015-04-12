@@ -22,8 +22,8 @@ Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/PlacesUtils.jsm");
 
-XPCOMUtils.defineLazyModuleGetter(this, "PlacesUIUtils",
-  "resource:///modules/PlacesUIUtils.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "Bookmarks",
+  "resource://gre/modules/Bookmarks.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "PlacesTransactions",
   "resource://gre/modules/PlacesTransactions.jsm");
 
@@ -33,8 +33,6 @@ XPCOMUtils.defineLazyGetter(this, "prefBranch", function () {
 XPCOMUtils.defineLazyGetter(this, "stringBundle", function () {
   return Services.strings.createBundle(STRING_BUNDLE_URI);
 });
-XPCOMUtils.defineLazyModuleGetter(this, "Bookmarks",
-  "resource://gre/modules/Bookmarks.jsm");
 
 /**
  * LinkplacesService
@@ -73,6 +71,7 @@ let LinkplacesService = {
     openLinkToWhere: "",
     focusWhenItemsOpened_Sidebar: false,
     removeItemFromPanel: false,
+    useAsyncTransactions: false,
   }),
 
   /**
@@ -165,6 +164,8 @@ let LinkplacesService = {
       case "removeItemFromPanel":
         this.PREF.removeItemFromPanel = prefBranch.getBoolPref(aData);
         break;
+      case "useAsyncTransactions":
+        this.PREF.useAsyncTransactions = prefBranch.getBoolPref(aData);
     }
   },
 
@@ -232,7 +233,7 @@ let LinkplacesService = {
    *   The index which items inserted point.
    */
   saveItems: function (aItems, aIndex = this.DEFAULT_INDEX) {
-    if (PlacesUIUtils.useAsyncTransactions) {
+    if (this.PREF.useAsyncTransactions) {
       this._saveItemAsync(aItems, aIndex);
     }
     else {
@@ -283,7 +284,7 @@ let LinkplacesService = {
    *   The item's id.
    */
   removeItem: function (aItemId) {
-    if (PlacesUIUtils.useAsyncTransactions) {
+    if (this.PREF.useAsyncTransactions) {
       this._removeItemAsync(aItemId);
     }
     else {
