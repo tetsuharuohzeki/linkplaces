@@ -67,7 +67,7 @@ var LinkplacesBrowser = {
   },
 
   saveLink: function () {
-    this.service.saveItem(gContextMenu.linkURL, gContextMenu.linkText);
+    this.service.saveItem(gContextMenu.linkURL, gContextMenu.linkTextStr);
   },
 
   saveThisPage: function () {
