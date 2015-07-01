@@ -85,7 +85,7 @@ LinkplacesPanel.prototype = {
     let window = this.window;
 
     let treeView = window.document.getElementById("linkplaces-view");
-    let placesController = createCustomPlacesController(window.PlacesController, treeView);
+    let placesController = createCustomPlacesController(window.PlacesController, treeView, this);
 
     treeView.place = LinkplacesService.QUERY_URI;
     treeView.controllers.insertControllerAt(0, placesController);
@@ -274,9 +274,10 @@ LinkplacesPanel.prototype = {
 /*
  *  @param  {function(new:PlacesController)}  aControllerConstructor
  *  @param  {Element}                         aTreeView
+ *  @param  {LinkplacesPanel}                 aLinkplacesPanel
  *  @return {PlacesController}
  */
-function createCustomPlacesController (aControllerConstructor, aTreeView) {
+function createCustomPlacesController (aControllerConstructor, aTreeView, aLinkplacesPanel) {
   let placesController = new aControllerConstructor(aTreeView);
   placesController._isCommandEnabled = placesController.isCommandEnabled;
   placesController.isCommandEnabled = function (aCmd) {
