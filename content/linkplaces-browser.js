@@ -79,10 +79,9 @@ var LinkplacesBrowser = {
   },
 
   saveTab: function (aTab) {
-    let browser = aTab.linkedBrowser;
-    let uri = browser.currentURI.spec;
-    // FIXME: don't use CPOW.
-    let title = browser.contentDocumentAsCPOW.title || uri;
+    const browser = aTab.linkedBrowser;
+    const uri = browser.currentURI.spec;
+    const title = browser.contentTitle || uri;
     this.service.saveItem(uri, title);
   },
 
