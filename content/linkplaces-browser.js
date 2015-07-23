@@ -79,9 +79,9 @@ var LinkplacesBrowser = {
   },
 
   saveTab: function (aTab) {
-    let browser = aTab.linkedBrowser;
-    let uri = browser.currentURI.spec;
-    let title = browser.contentTitle || uri;
+    const browser = aTab.linkedBrowser;
+    const uri = browser.currentURI.spec;
+    const title = browser.contentTitle || uri;
     this.service.saveItem(uri, title);
   },
 
