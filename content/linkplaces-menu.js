@@ -12,7 +12,7 @@ XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService",
 // Load immidiately to initialize the UI Widget.
 Components.utils.import("resource://linkplaces/LinkplacesUIWidget.jsm");
 
-let LinkPlacesUI = {
+var LinkPlacesUI = {
 
   onPanelMenuViewCommand: function BUI_onPanelMenuViewCommand(aEvent, aView) {
     let target = aEvent.originalTarget;
