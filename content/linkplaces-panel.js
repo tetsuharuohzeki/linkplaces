@@ -7,4 +7,4 @@
 
 Components.utils.import("resource://linkplaces/LinkplacesPanel.jsm");
 
-let LinkplacesPanel = new LinkplacesPanel(window);
+const gLinkplacesPanel = new LinkplacesPanel(window);
