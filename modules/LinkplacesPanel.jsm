@@ -110,15 +110,15 @@ LinkplacesPanel.prototype = {
 
   overrideCmdOpenMultipleItem: function () {
     let cmdValue = `
-      var triggerNode = LinkplacesPanel.ctxMenu.triggerNode;
+      var triggerNode = window.gLinkplacesPanel.ctxMenu.triggerNode;
       var controller = PlacesUIUtils.getViewForNode(triggerNode).controller;
-      LinkplacesPanel.openSelectionInTabs(controller, event);
+      window.gLinkplacesPanel.openSelectionInTabs(controller, event);
     `;
     let document = this.window.document;
     let list = ["placesContext_openContainer:tabs",
                 "placesContext_openLinks:tabs"];
     for (let id of list) {
-      document.getElementById(id).setAttribute("oncommand", cmdValue.toString());
+      document.getElementById(id).setAttribute("oncommand", cmdValue);
     }
   },
 
