@@ -13,7 +13,6 @@ resource linkplaces               modules/
 
 ## Overlay
 overlay  chrome://browser/content/browser.xul  chrome://linkplaces/content/linkplaces-browser.xul
-overlay  chrome://browser/content/places/placesOverlay.xul   chrome://linkplaces/content/linkplaces-places.xul
 
 ## styles
 style    chrome://global/content/customizeToolbar.xul  chrome://linkplaces/skin/linkplaces.css
