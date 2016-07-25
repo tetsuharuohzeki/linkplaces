@@ -6,8 +6,6 @@ FILE    = \
   ./content/linkplaces-browser.js \
   ./content/linkplaces-browser.xul \
   ./content/linkplaces-menu.js \
-  ./content/linkplaces-multipletab.js \
-  ./content/linkplaces-multipletab.xul \
   ./content/linkplaces-options.xul \
   ./content/linkplaces-panel.js \
   ./content/linkplaces-panel.xul \
