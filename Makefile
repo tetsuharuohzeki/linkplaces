@@ -11,6 +11,10 @@ FILE    = \
   ./content/linkplaces-panel.xul \
   ./content/linkplaces-places.js \
   ./content/linkplaces-places.xul \
+  ./content/LinkplacesBrowserUI.jsm \
+  ./content/LinkplacesPanel.jsm \
+  ./content/LinkplacesService.jsm \
+  ./content/LinkplacesUIWidget.jsm \
   ./locale/en-US/linkplaces.dtd \
   ./locale/en-US/linkplaces.properties \
   ./skin/classic/Darwin/linkplaces-sidebar.css \
@@ -34,10 +38,8 @@ FILE    = \
   ./skin/classic/WINNT/button-panel.png \
   ./skin/classic/WINNT/button-panel@2x.png \
   ./skin/classic/WINNT/linkplaces.css \
-  ./modules/LinkplacesService.jsm \
-  ./modules/LinkplacesPanel.jsm \
-  ./modules/LinkplacesUIWidget.jsm \
   ./defaults/preferences/linkplaces-prefs.js \
+  bootstrap.js \
   chrome.manifest \
   install.rdf \
   icon.png

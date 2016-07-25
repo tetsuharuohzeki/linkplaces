@@ -5,7 +5,7 @@
 
 "use strict";
 
-let EXPORTED_SYMBOLS = ["LinkplacesService"];
+let EXPORTED_SYMBOLS = ["getLinkplacesService", "createLinkplacesService", "finalizeLinkPlacesService"];
 
 const Cc = Components.classes;
 const Ci = Components.interfaces;
@@ -34,12 +34,35 @@ XPCOMUtils.defineLazyGetter(this, "stringBundle", function () {
   return Services.strings.createBundle(STRING_BUNDLE_URI);
 });
 
+let gLinkplacesService = null;
+
+function getLinkplacesService() {
+  return gLinkplacesService;
+}
+
+function createLinkplacesService() {
+  if (gLinkplacesService !== null) {
+    return;
+  }
+
+  gLinkplacesService = new LinkplacesService();
+}
+
+function finalizeLinkPlacesService() {
+  gLinkplacesService.finalize();
+  gLinkplacesService = null;
+}
+
+
 /**
  * LinkplacesService
  *
  * This service provides primary methods & properties for LinkPlaces.
  */
-let LinkplacesService = {
+function LinkplacesService() {
+  this.init();
+}
+LinkplacesService.prototype = Object.freeze({
 
   QueryInterface: XPCOMUtils.generateQI([Ci.nsIObserver,
                                          Ci.nsISupportsWeakReference,
@@ -68,7 +91,7 @@ let LinkplacesService = {
    * @type {object}
    */
   PREF: Object.seal({
-    openLinkToWhere: "",
+    openLinkToWhere: "tab",
     focusWhenItemsOpened_Sidebar: false,
     useAsyncTransactions: false,
   }),
@@ -155,6 +178,8 @@ let LinkplacesService = {
           case 3:
             this.PREF.openLinkToWhere = "window";
             break;
+          default:
+            throw new Error('');
         }
         break;
       case "focusWhenItemsOpened.sidebar":
@@ -185,6 +210,10 @@ let LinkplacesService = {
     prefBranch.addObserver("", this, true);
     //set user preferences
     this.initPref();
+  },
+
+  finalize() {
+    this.destroy();
   },
 
   /**
@@ -300,5 +329,4 @@ let LinkplacesService = {
     }).catch(Cu.reportError);
   },
 
-};
-LinkplacesService.init();
+});
