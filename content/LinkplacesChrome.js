@@ -16,6 +16,7 @@ const {
   LinkplacesChromeTabCtxMenu,
 } = require("./ui/LinkplacesChromeCtxMenu.js");
 const { LinkplacesChromeSidebar } = require("./ui/LinkplacesChromeSidebar.js");
+const { LinkPlacesChromePanel } = require("./ui/LinkPlacesChromePanel.js");
 
 class LinkplacesChrome {
   static create(win, service){
@@ -29,6 +30,7 @@ class LinkplacesChrome {
     this._contextCtxMenu = null;
     this._tabCtx = null;
     this._sidebar = null;
+    this._panel = null;
     win.gLinkplacesBrowserUI = this; // eslint-disable-line no-param-reassign
 
     Object.seal(this);
@@ -39,6 +41,7 @@ class LinkplacesChrome {
     this._finalize();
 
     this._win.gLinkplacesBrowserUI = null;
+    this._panel = null;
     this._sidebar = null;
     this._tabCtx = null;
     this._contextCtxMenu = null;
@@ -50,11 +53,13 @@ class LinkplacesChrome {
     this._contextCtxMenu = new LinkplacesChromeContentCtxMenu(this._win, this);
     this._tabCtx = new LinkplacesChromeTabCtxMenu(this._win, this);
     this._sidebar = new LinkplacesChromeSidebar(this._win, this);
+    this._panel = new LinkPlacesChromePanel(this._win, this._service);
 
     this._win.addEventListener("unload", this, false);
   }
 
   _finalize() {
+    this._panel.destroy();
     this._sidebar.destroy();
     this._tabCtx.destroy();
     this._ctxMenu.destroy();
@@ -97,6 +102,10 @@ class LinkplacesChrome {
     const uri = browser.currentURI.spec;
     const title = browser.contentTitle || uri;
     this._service.saveItem(uri, title);
+  }
+
+  panel() {
+    return this._panel;
   }
 }
 this.LinkplacesChrome = LinkplacesChrome; // eslint-disable-line no-invalid-this

@@ -5,7 +5,6 @@ PACKAGE = linkplaces.xpi
 FILE    = \
   ./content/linkplaces-browser.js \
   ./content/linkplaces-browser.xul \
-  ./content/linkplaces-menu.js \
   ./content/linkplaces-options.xul \
   ./content/LinkplacesChrome.js \
   ./content/LinkplacesService.js \
@@ -17,6 +16,7 @@ FILE    = \
   ./content/sidebar/LinkplacesPanel.js \
   ./content/ui/contextmenu.js \
   ./content/ui/LinkplacesChromeCtxMenu.js \
+  ./content/ui/LinkPlacesChromePanel.js \
   ./content/ui/LinkplacesChromePlaces.js \
   ./content/ui/LinkplacesChromeSidebar.js \
   ./locale/en-US/linkplaces.dtd \

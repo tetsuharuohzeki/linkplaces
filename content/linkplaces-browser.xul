@@ -13,7 +13,6 @@
          id="linkplaces-browser">
 
   <script type="application/javascript" src="chrome://linkplaces/content/linkplaces-browser.js"></script>
-  <script type="application/javascript" src="chrome://linkplaces/content/linkplaces-menu.js"></script>
 
   <toolbarpalette id="BrowserToolbarPalette">
     <toolbarbutton id="linkplaces-button"
@@ -46,8 +45,8 @@
         <toolbaritem id="panelMenu_linkplacesMenu"
                      orient="vertical"
                      smoothscroll="false"
-                     onclick="if (event.button == 1) { LinkPlacesUI.onPanelMenuViewCommand(event, this._placesView); }"
-                     oncommand="LinkPlacesUI.onPanelMenuViewCommand(event, this._placesView);"
+                     onclick="if (event.button == 1) { gLinkplacesBrowserUI.panel().onPanelMenuViewCommand(event, this._placesView); }"
+                     oncommand="gLinkplacesBrowserUI.panel().onPanelMenuViewCommand(event, this._placesView);"
                      flatList="true"
                      tooltip="bhTooltip">
           <!-- bookmarks menu items will go here -->
