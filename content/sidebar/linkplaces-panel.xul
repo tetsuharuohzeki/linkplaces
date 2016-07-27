@@ -22,7 +22,7 @@
       xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
       id="linkplaces-panel">
 
-  <script type="application/javascript" src="chrome://linkplaces/content/linkplaces-panel.js"></script>
+  <script type="application/javascript" src="chrome://linkplaces/content/sidebar/linkplaces-panel.js"></script>
 
   <commandset id="placesCommands"/>
   <commandset id="editMenuCommands"/>

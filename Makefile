@@ -7,14 +7,14 @@ FILE    = \
   ./content/linkplaces-browser.xul \
   ./content/linkplaces-menu.js \
   ./content/linkplaces-options.xul \
-  ./content/linkplaces-panel.js \
-  ./content/linkplaces-panel.xul \
   ./content/LinkplacesChrome.js \
   ./content/LinkplacesService.js \
-  ./content/LinkplacesPanel.js \
   ./content/LinkplacesUIWidget.js \
   ./content/service/ChromeDocObserver.js \
   ./content/service/pref.js \
+  ./content/sidebar/linkplaces-panel.js \
+  ./content/sidebar/linkplaces-panel.xul \
+  ./content/sidebar/LinkplacesPanel.js \
   ./content/ui/contextmenu.js \
   ./content/ui/LinkplacesChromeCtxMenu.js \
   ./content/ui/LinkplacesChromePlaces.js \

@@ -6,5 +6,5 @@
 /* eslint-env browser */
 /* global Components: false */
 "use strict";
-const { LinkplacesPanel } = Components.utils.import("chrome://linkplaces/content/LinkplacesPanel.js", {});
+const { LinkplacesPanel } = Components.utils.import("chrome://linkplaces/content/sidebar/LinkplacesPanel.js", {});
 window.gLinkplacesPanel = new LinkplacesPanel(window);
