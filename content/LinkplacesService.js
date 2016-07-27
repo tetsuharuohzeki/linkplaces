@@ -40,10 +40,33 @@ XPCOMUtils.defineLazyGetter(this, "stringBundle", function () { // eslint-disabl
 
 class PrefTable {
   constructor() {
-    this.openLinkToWhere = "tab";
+    this._openLinkToWhere = "tab";
     this.focusSidebarWhenOpenItems = false;
     this.useAsyncTransactions = false;
     Object.seal(this);
+  }
+
+  get openLinkToWhere() {
+    return this._openLinkToWhere;
+  }
+
+  set openLinkToWhere(v) {
+    switch (v) {
+      case 0:
+        this._openLinkToWhere = "current";
+        break;
+      case 1:
+        this._openLinkToWhere = "tab";
+        break;
+      case 2:
+        this._openLinkToWhere = "tabshifted";
+        break;
+      case 3:
+        this._openLinkToWhere = "window";
+        break;
+      default:
+        throw new Error("found undefined value");
+    }
   }
 }
 
@@ -55,7 +78,7 @@ class PrefService {
                                                  Ci.nsISupportsWeakReference,
                                                  Ci.nsISupports]);
     this._prefBranch.addObserver("", this, true);
-    this._initPref();
+    this._init();
   }
 
   destroy() {
@@ -89,7 +112,7 @@ class PrefService {
     return this._table.useAsyncTransactions;
   }
 
-  _initPref() {
+  _init() {
     const allPref = this._prefBranch.getChildList("", {});
     for (let pref of allPref) { // eslint-disable-line prefer-const
       this._prefObserve(pref);
@@ -99,28 +122,21 @@ class PrefService {
   _prefObserve(aData) {
     const table = this._table;
     switch (aData) {
-      case "openLinkToWhere":
-        switch (this._prefBranch.getIntPref(aData)) {
-          case 0:
-            table.openLinkToWhere = "current";
-            break;
-          case 1:
-            table.openLinkToWhere = "tab";
-            break;
-          case 2:
-            table.openLinkToWhere = "tabshifted";
-            break;
-          case 3:
-            table.openLinkToWhere = "window";
-            break;
-        }
+      case "openLinkToWhere": {
+        const value = this._prefBranch.getIntPref(aData);
+        table.openLinkToWhere = value;
         break;
-      case "focusSidebarWhenOpenItem":
-        table.focusSidebarWhenOpenItems = this._prefBranch.getBoolPref(aData);
+      }
+      case "focusSidebarWhenOpenItem": {
+        const value = this._prefBranch.getBoolPref(aData);
+        table.focusSidebarWhenOpenItems = value;
         break;
-      case "useAsyncTransactions":
-        table.useAsyncTransactions = this._prefBranch.getBoolPref(aData);
+      }
+      case "useAsyncTransactions": {
+        const value = this._prefBranch.getBoolPref(aData);
+        table.useAsyncTransactions = value;
         break;
+      }
     }
   }
 
