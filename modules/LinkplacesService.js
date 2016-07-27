@@ -17,20 +17,14 @@ const TXNNAME_SAVEITEMS = "LinkplacesService:sevesItems";
 const QUERY_URI = "place:queryType=1&folder=UNFILED_BOOKMARKS";
 const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 
-
-//Import JS Utils module
-
-/*global XPCOMUtils:false*/
-Cu.import("resource://gre/modules/XPCOMUtils.jsm");
-/*global Services:false*/
-Cu.import("resource://gre/modules/Services.jsm");
-/*global
-  PlacesUtils:false,
-  PlacesCreateBookmarkTransaction:false,
-  PlacesAggregatedTransaction:false,
-  PlacesRemoveItemTransaction:false
-*/
-Cu.import("resource://gre/modules/PlacesUtils.jsm");
+const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
+const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
+const {
+  PlacesUtils,
+  PlacesCreateBookmarkTransaction,
+  PlacesAggregatedTransaction,
+  PlacesRemoveItemTransaction,
+} = Cu.import("resource://gre/modules/PlacesUtils.jsm", {});
 
 /*global Bookmarks:false*/
 XPCOMUtils.defineLazyModuleGetter(this, "Bookmarks", // eslint-disable-line no-invalid-this
@@ -308,3 +302,4 @@ const LinkplacesService = {
 
 };
 LinkplacesService.init();
+this.LinkplacesService = LinkplacesService; // eslint-disable-line no-invalid-this

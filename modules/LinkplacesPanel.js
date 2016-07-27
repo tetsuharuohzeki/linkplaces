@@ -12,12 +12,9 @@ const EXPORTED_SYMBOLS = ["LinkplacesPanel"];
 const Ci = Components.interfaces;
 const Cu = Components.utils;
 
-/*global LinkplacesService:false*/
-Cu.import("resource://linkplaces/LinkplacesService.js");
-/*global PlacesUtils:false*/
-Cu.import("resource://gre/modules/PlacesUtils.jsm");
-/*global PlacesUIUtils:false*/
-Cu.import("resource:///modules/PlacesUIUtils.jsm");
+const { LinkplacesService } = Cu.import("resource://linkplaces/LinkplacesService.js", {});
+const { PlacesUtils } = Cu.import("resource://gre/modules/PlacesUtils.jsm", {});
+const { PlacesUIUtils } = Cu.import("resource:///modules/PlacesUIUtils.jsm", {});
 
 // eslint-disable-next-line no-implicit-globals
 function LinkplacesPanel(aWindow) {
@@ -282,7 +279,7 @@ LinkplacesPanel.prototype = {
   },
 
 };
-
+this.LinkplacesPanel = LinkplacesPanel; // eslint-disable-line no-invalid-this
 
 /*
  *  @param  {function(new:PlacesController)}  ControllerConstructor
