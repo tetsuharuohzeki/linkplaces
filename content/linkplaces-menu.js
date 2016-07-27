@@ -25,7 +25,7 @@ Components.utils.import("chrome://linkplaces/content/LinkplacesUIWidget.js");
 
 window.LinkPlacesUI = {
 
-  onPanelMenuViewCommand(aEvent, aView) { // eslint-disable-line camelcase
+  onPanelMenuViewCommand(aEvent, aView) { // eslint-disable-line
     const target = aEvent.originalTarget;
     if (!target._placesNode) { // eslint-disable-line no-underscore-dangle
       return;

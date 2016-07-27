@@ -24,8 +24,8 @@ XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService", //eslint-disable-li
 
 window.LinkplacesBrowser = {
 
-  ElmId_contentCtxSavePage: "linkplaces-contentCtx-savePage", //eslint-disable-line camelcase
-  ElmId_contentCtxSaveLink: "linkplaces-contentCtx-saveLink", //eslint-disable-line camelcase
+  ElmIdContentCtxSavePage: "linkplaces-contentCtx-savePage",
+  ElmIdContentCtxSaveLink: "linkplaces-contentCtx-saveLink",
 
   get service() {
     return LinkplacesService;
@@ -72,10 +72,10 @@ window.LinkplacesBrowser = {
   },
 
   handleContentCtxPopup: function () {
-    gContextMenu.showItem(this.ElmId_contentCtxSavePage,
+    gContextMenu.showItem(this.ElmIdContentCtxSavePage,
                           !(gContextMenu.isContentSelected || gContextMenu.onTextInput || gContextMenu.onLink ||
                             gContextMenu.onImage || gContextMenu.onVideo || gContextMenu.onAudio));
-    gContextMenu.showItem(this.ElmId_contentCtxSaveLink,
+    gContextMenu.showItem(this.ElmIdContentCtxSaveLink,
                           gContextMenu.onLink && !gContextMenu.onMailtoLink);
   },
 

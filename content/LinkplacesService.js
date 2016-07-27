@@ -77,7 +77,7 @@ const LinkplacesService = {
    */
   PREF: Object.seal({
     openLinkToWhere: "",
-    focusWhenItemsOpened_Sidebar: false, // eslint-disable-line camelcase
+    focusSidebarWhenOpenItems: false,
     useAsyncTransactions: false,
   }),
 
@@ -164,7 +164,7 @@ const LinkplacesService = {
         }
         break;
       case "focusWhenItemsOpened.sidebar":
-        this.PREF.focusWhenItemsOpened_Sidebar = prefBranch.getBoolPref(aData); // eslint-disable-line camelcase
+        this.PREF.focusSidebarWhenOpenItems = prefBranch.getBoolPref(aData);
         break;
       case "useAsyncTransactions":
         this.PREF.useAsyncTransactions = prefBranch.getBoolPref(aData);
