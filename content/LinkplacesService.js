@@ -42,6 +42,110 @@ XPCOMUtils.defineLazyGetter(this, "stringBundle", function () { // eslint-disabl
   return Services.strings.createBundle(STRING_BUNDLE_URI);
 });
 
+class PrefTable {
+  constructor() {
+    this.openLinkToWhere = "tab";
+    this.focusSidebarWhenOpenItems = false;
+    this.useAsyncTransactions = false;
+    Object.seal(this);
+  }
+}
+
+class PrefService {
+  constructor() {
+    this._table = new PrefTable();
+    this.QueryInterface = XPCOMUtils.generateQI([Ci.nsIObserver,
+                                                 Ci.nsISupportsWeakReference,
+                                                 Ci.nsISupports]);
+    prefBranch.addObserver("", this, true);
+    this._initPref();
+  }
+
+  destroy() {
+    prefBranch.removeObserver("", this);
+    this.QueryInterface = null;
+    this._table = null;
+  }
+
+  PREF() {
+    return this._table;
+  }
+
+  DOMAIN() {
+    return PREF_DOMAIN;
+  }
+
+  prefBranch() {
+    return prefBranch;
+  }
+
+  openLinkTo() {
+    return this._table.openLinkToWhere;
+  }
+
+  shouldFocusOnSidebarIfOpenItem() {
+    return this._table.focusSidebarWhenOpenItems;
+  }
+
+  useAsyncTransactions() {
+    return this._table.useAsyncTransactions;
+  }
+
+  _initPref() {
+    const allPref = prefBranch.getChildList("", {});
+    for (let pref of allPref) { // eslint-disable-line prefer-const
+      this._prefObserve(pref);
+    }
+  }
+
+  _prefObserve(aData) {
+    const table = this._table;
+    switch (aData) {
+      case "openLinkToWhere":
+        switch (prefBranch.getIntPref(aData)) {
+          case 0:
+            table.openLinkToWhere = "current";
+            break;
+          case 1:
+            table.openLinkToWhere = "tab";
+            break;
+          case 2:
+            table.openLinkToWhere = "tabshifted";
+            break;
+          case 3:
+            table.openLinkToWhere = "window";
+            break;
+        }
+        break;
+      case "focusSidebarWhenOpenItem":
+        table.focusSidebarWhenOpenItems = prefBranch.getBoolPref(aData);
+        break;
+      case "useAsyncTransactions":
+        table.useAsyncTransactions = prefBranch.getBoolPref(aData);
+        break;
+    }
+  }
+
+  /**
+   * Observer method.
+   *
+   * @param {nsISupports} aSubject
+   *   In general reflects the object whose change or action is being observed.
+   * @param {string}      aTopic
+   *   Indicates the specific change or action.
+   * @param {wstring}     aData
+   *   An optional parameter or other auxiliary data further describing the change or action.
+   * @return {void}
+   */
+  observe(aSubject, aTopic, aData) {
+    switch (aTopic) {
+      case "nsPref:changed":
+        this._prefObserve(aData);
+        break;
+    }
+  }
+}
+
 /**
  * LinkplacesService
  *
@@ -59,7 +163,7 @@ const LinkplacesService = {
    * @type {string}
    */
   get PREF_DOMAIN() {
-    return PREF_DOMAIN;
+    return this._pref.DOMAIN;
   },
 
   /**
@@ -75,11 +179,9 @@ const LinkplacesService = {
    * Cache this service's preferences value.
    * @type {object}
    */
-  PREF: Object.seal({
-    openLinkToWhere: "tab",
-    focusSidebarWhenOpenItems: false,
-    useAsyncTransactions: false,
-  }),
+  get PREF() {
+    return this._pref.PREF;
+  },
 
   /**
    * Cache preferences service.
@@ -134,62 +236,24 @@ const LinkplacesService = {
    *   An optional parameter or other auxiliary data further describing the change or action.
    * @return {void}
    */
-  observe: function (aSubject, aTopic, aData) {
+  observe: function (aSubject, aTopic/*, aData*/) {
     switch (aTopic) {
-      case "nsPref:changed":
-        this.prefObserve(aSubject, aData);
-        break;
       case "quit-application-granted":
         this.destroy();
         break;
     }
   },
 
-  prefObserve: function (aSubject, aData) {
-    switch (aData) {
-      case "openLinkToWhere":
-        switch (prefBranch.getIntPref(aData)) {
-          case 0:
-            this.PREF.openLinkToWhere = "current";
-            break;
-          case 1:
-            this.PREF.openLinkToWhere = "tab";
-            break;
-          case 2:
-            this.PREF.openLinkToWhere = "tabshifted";
-            break;
-          case 3:
-            this.PREF.openLinkToWhere = "window";
-            break;
-        }
-        break;
-      case "focusSidebarWhenOpenItem":
-        this.PREF.focusSidebarWhenOpenItems = prefBranch.getBoolPref(aData);
-        break;
-      case "useAsyncTransactions":
-        this.PREF.useAsyncTransactions = prefBranch.getBoolPref(aData);
-    }
-  },
-
-  initPref: function () {
-    const allPref = prefBranch.getChildList("", {});
-    for (let pref of allPref) { // eslint-disable-line prefer-const
-      this.prefObserve(null, pref);
-    }
-  },
-
   init: function () {
     Services.obs.addObserver(this, "quit-application-granted", true);
-
-    //Set Preferences Observer
-    prefBranch.addObserver("", this, true);
     //set user preferences
-    this.initPref();
+    this._pref = new PrefService();
   },
 
   destroy: function () {
     Services.obs.removeObserver(this, "quit-application-granted");
-    prefBranch.removeObserver("", this);
+    this._pref.destroy();
+    this._pref = null;
   },
 
 
