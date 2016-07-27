@@ -7,12 +7,6 @@
 /* global Components: false */
 "use strict";
 
-/*global
-  browserDragAndDrop: false,
-  PlacesControllerDragHelper: false,
-  InsertionPoint: false,
-*/
-
 /*global XPCOMUtils:false*/
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 /*global LinkplacesService:false*/
@@ -32,27 +26,3 @@ XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService", //eslint-disable-li
   const {createWidget} = Components.utils.import("chrome://linkplaces/content/LinkplacesUIWidget.js", {});
   createWidget();
 }
-
-window.LinkplacesBrowser = {
-
-  get service() {
-    return LinkplacesService;
-  },
-
-// based on bookmarksButtonObserver class and browserDragAndDrop class
-  ButtonOnDrop: function (aEvent) {
-    const service = this.service;
-    const ip = new InsertionPoint(service.folder,
-                                service.DEFAULT_INDEX,
-                                Components.interfaces.nsITreeView.DROP_ON);
-    PlacesControllerDragHelper.onDrop(ip, aEvent.dataTransfer);
-  },
-
-  ButtonOnDragOver: function (aEvent) {
-    browserDragAndDrop.dragOver(aEvent);
-    aEvent.dropEffect = "link"; // eslint-disable-line no-param-reassign
-  },
-
-  ButtonOnDragExit: function (/* aEvent */) { // eslint-disable-line no-empty-function
-  }
-};

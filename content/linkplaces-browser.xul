@@ -14,18 +14,6 @@
 
   <script type="application/javascript" src="chrome://linkplaces/content/linkplaces-browser.js"></script>
 
-  <toolbarpalette id="BrowserToolbarPalette">
-    <toolbarbutton id="linkplaces-button"
-                   class="toolbarbutton-1 chromeclass-toolbar-additional"
-                   tooltiptext="&linkplaces.overlay.button.tooltip;"
-                   observes="viewLinkplacesSidebar"
-                   ondrop="LinkplacesBrowser.ButtonOnDrop(event)"
-                   ondragover="LinkplacesBrowser.ButtonOnDragOver(event)"
-                   ondragenter="LinkplacesBrowser.ButtonOnDragOver(event)"
-                   ondragexit="LinkplacesBrowser.ButtonOnDragExit(event)"/>
-  </toolbarpalette>
-
-
   <!--
     Import from browser/components/customizableui/content/panelUI.inc.xul.
     Original codes are `#PanelUI-bookmarks` & `#PanelUI-history`.

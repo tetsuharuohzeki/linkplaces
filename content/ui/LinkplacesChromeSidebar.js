@@ -175,4 +175,5 @@ class LinkplacesChromeSidebar {
 
 module.exports = Object.freeze({
   LinkplacesChromeSidebar,
+  SIDEBAR_BROADCAST_ID,
 });

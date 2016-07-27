@@ -5,9 +5,6 @@
 <!-- Global Entities -->
 <!ENTITY linkplaces.global                              "LinkPlaces">
 
-<!-- Browser Overlay -->
-<!ENTITY linkplaces.overlay.button.tooltip              "Display &linkplaces.global; Sidebar">
-
 <!-- Options -->
 <!ENTITY linkplaces.option.title                        "&linkplaces.global; - Options">
 <!ENTITY linkplaces.option.pane.general                 "General">
