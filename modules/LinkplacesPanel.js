@@ -3,9 +3,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+/**eslint-env commonjs */
 "use strict";
 
-let EXPORTED_SYMBOLS = ["LinkplacesPanel"];
+// eslint-disable-next-line no-unused-vars
+const EXPORTED_SYMBOLS = ["LinkplacesPanel"];
 
 const Ci = Components.interfaces;
 const Cu = Components.utils;
