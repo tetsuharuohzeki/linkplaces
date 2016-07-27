@@ -4,7 +4,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 "use strict";
-
+/*global LinkplacesPanel:false*/
 Components.utils.import("resource://linkplaces/LinkplacesPanel.js");
 
 window.gLinkplacesPanel = new LinkplacesPanel(window);
