@@ -42,6 +42,7 @@ FILE    = \
   ./skin/classic/WINNT/button-panel@2x.png \
   ./skin/classic/WINNT/linkplaces.css \
   ./defaults/preferences/linkplaces-prefs.js \
+  bootstrap.js \
   chrome.manifest \
   install.rdf \
   icon.png
