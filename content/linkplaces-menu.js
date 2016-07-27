@@ -21,7 +21,10 @@ XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService", //eslint-disable-li
   "chrome://linkplaces/content/LinkplacesService.js");
 
 // Load immidiately to initialize the UI Widget.
-Components.utils.import("chrome://linkplaces/content/LinkplacesUIWidget.js");
+{
+  const {createWidget} = Components.utils.import("chrome://linkplaces/content/LinkplacesUIWidget.js", {});
+  createWidget();
+}
 
 window.LinkPlacesUI = {
 

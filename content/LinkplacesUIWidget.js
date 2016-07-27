@@ -3,11 +3,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/**eslint-env commonjs */
+/*eslint-env commonjs */
 "use strict";
 
 // eslint-disable-next-line no-unused-vars
-const EXPORTED_SYMBOLS = [""];
+const EXPORTED_SYMBOLS = ["createWidget", "destroyWidget"];
 
 const Cu = Components.utils;
 
@@ -18,36 +18,66 @@ const PLACES_VIEW_ID = "panelMenu_linkplacesMenu";
 const { CustomizableUI } = Cu.import("resource:///modules/CustomizableUI.jsm", {});
 const { LinkplacesService } = Cu.import("chrome://linkplaces/content/LinkplacesService.js", {});
 
-// If we call this register method with same id multiple times
-// (e.g. load in each browser window), this method fails to register except 1st time.
-// So we need to call this only once.
-CustomizableUI.createWidget({
-  id: BUTTON_ID,
-  type: "view",
-  label: LinkplacesService.stringBundle.GetStringFromName("linkplaces.widget.button.label"), // eslint-disable-line new-cap
-  viewId: PANEL_UI_ID,
-  tooltiptext: LinkplacesService.stringBundle.GetStringFromName("linkplaces.widget.button.tooltip"), // eslint-disable-line new-cap
-  defaultArea: CustomizableUI.AREA_PANEL,
+let registeredWidget = null;
+function isRegistered() {
+  if (registeredWidget === null) {
+    return false;
+  }
 
-  onViewShowing: function (aEvent) {
-    const win = aEvent.target.ownerDocument.defaultView;
+  const id = registeredWidget.id;
+  const registred = CustomizableUI.getWidget(id);
+  if (!!registred) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 
-    const query = LinkplacesService.QUERY_URI;
-    const viewId = PLACES_VIEW_ID;
-    const rootId = viewId;
-    const option = {
-      extraClasses: {
-        entry: "subviewbutton",
-        footer: "panel-subview-footer"
-      }
-    };
+function createWidget() {
+  // If we call this register method with same id multiple times
+  // (e.g. load in each browser window), this method fails to register except 1st time.
+  // So we need to call this only once.
+  if (isRegistered()) {
+    // noop
+    return;
+  }
 
-    this._panelMenuView = new win.PlacesPanelMenuView(query, viewId, rootId, option);
-  },
+  registeredWidget = CustomizableUI.createWidget({
+    id: BUTTON_ID,
+    type: "view",
+    label: LinkplacesService.stringBundle.GetStringFromName("linkplaces.widget.button.label"), // eslint-disable-line new-cap
+    viewId: PANEL_UI_ID,
+    tooltiptext: LinkplacesService.stringBundle.GetStringFromName("linkplaces.widget.button.tooltip"), // eslint-disable-line new-cap
+    defaultArea: CustomizableUI.AREA_PANEL,
 
-  onViewHiding: function (/* aEvent */) {
-    this._panelMenuView.uninit();
-    this._panelMenuView = null;
-  },
+    onViewShowing: function (aEvent) {
+      const win = aEvent.target.ownerDocument.defaultView;
 
-});
+      const query = LinkplacesService.QUERY_URI;
+      const viewId = PLACES_VIEW_ID;
+      const rootId = viewId;
+      const option = {
+        extraClasses: {
+          entry: "subviewbutton",
+          footer: "panel-subview-footer"
+        }
+      };
+
+      this._panelMenuView = new win.PlacesPanelMenuView(query, viewId, rootId, option);
+    },
+
+    onViewHiding: function (/* aEvent */) {
+      this._panelMenuView.uninit();
+      this._panelMenuView = null;
+    },
+
+  });
+}
+
+function destroyWidget(id) {
+  CustomizableUI.destroyWidget(id);
+}
+
+this.createWidget = createWidget; // eslint-disable-line no-invalid-this
+this.destroyWidget = destroyWidget; // eslint-disable-line no-invalid-this
