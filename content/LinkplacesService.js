@@ -33,10 +33,6 @@ XPCOMUtils.defineLazyModuleGetter(this, "Bookmarks", // eslint-disable-line no-i
 XPCOMUtils.defineLazyModuleGetter(this, "PlacesTransactions", // eslint-disable-line no-invalid-this
   "resource://gre/modules/PlacesTransactions.jsm");
 
-/*global prefBranch:false*/
-XPCOMUtils.defineLazyGetter(this, "prefBranch", function () { // eslint-disable-line no-invalid-this
-  return Services.prefs.getBranch(PREF_DOMAIN);
-});
 /*global stringBundle:false*/
 XPCOMUtils.defineLazyGetter(this, "stringBundle", function () { // eslint-disable-line no-invalid-this
   return Services.strings.createBundle(STRING_BUNDLE_URI);
@@ -53,18 +49,20 @@ class PrefTable {
 
 class PrefService {
   constructor() {
+    this._prefBranch = Services.prefs.getBranch(PREF_DOMAIN);
     this._table = new PrefTable();
     this.QueryInterface = XPCOMUtils.generateQI([Ci.nsIObserver,
                                                  Ci.nsISupportsWeakReference,
                                                  Ci.nsISupports]);
-    prefBranch.addObserver("", this, true);
+    this._prefBranch.addObserver("", this, true);
     this._initPref();
   }
 
   destroy() {
-    prefBranch.removeObserver("", this);
+    this._prefBranch.removeObserver("", this);
     this.QueryInterface = null;
     this._table = null;
+    this._prefBranch = null;
   }
 
   PREF() {
@@ -75,8 +73,8 @@ class PrefService {
     return PREF_DOMAIN;
   }
 
-  prefBranch() {
-    return prefBranch;
+  branch() {
+    return this._prefBranch;
   }
 
   openLinkTo() {
@@ -92,7 +90,7 @@ class PrefService {
   }
 
   _initPref() {
-    const allPref = prefBranch.getChildList("", {});
+    const allPref = this._prefBranch.getChildList("", {});
     for (let pref of allPref) { // eslint-disable-line prefer-const
       this._prefObserve(pref);
     }
@@ -102,7 +100,7 @@ class PrefService {
     const table = this._table;
     switch (aData) {
       case "openLinkToWhere":
-        switch (prefBranch.getIntPref(aData)) {
+        switch (this._prefBranch.getIntPref(aData)) {
           case 0:
             table.openLinkToWhere = "current";
             break;
@@ -118,10 +116,10 @@ class PrefService {
         }
         break;
       case "focusSidebarWhenOpenItem":
-        table.focusSidebarWhenOpenItems = prefBranch.getBoolPref(aData);
+        table.focusSidebarWhenOpenItems = this._prefBranch.getBoolPref(aData);
         break;
       case "useAsyncTransactions":
-        table.useAsyncTransactions = prefBranch.getBoolPref(aData);
+        table.useAsyncTransactions = this._prefBranch.getBoolPref(aData);
         break;
     }
   }
@@ -191,7 +189,7 @@ const LinkplacesService = {
    * @type {nsIPrefBranch}
    */
   get prefBranch() {
-    return prefBranch;
+    return this._pref.branch();
   },
 
   /**
