@@ -16,7 +16,7 @@ const PANEL_UI_ID = "PanelUI-linkplaces";
 const PLACES_VIEW_ID = "panelMenu_linkplacesMenu";
 
 const { CustomizableUI } = Cu.import("resource:///modules/CustomizableUI.jsm", {});
-const { LinkplacesService } = Cu.import("resource://linkplaces/LinkplacesService.js", {});
+const { LinkplacesService } = Cu.import("chrome://linkplaces/content/LinkplacesService.js", {});
 
 // If we call this register method with same id multiple times
 // (e.g. load in each browser window), this method fails to register except 1st time.

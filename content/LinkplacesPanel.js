@@ -12,7 +12,7 @@ const EXPORTED_SYMBOLS = ["LinkplacesPanel"];
 const Ci = Components.interfaces;
 const Cu = Components.utils;
 
-const { LinkplacesService } = Cu.import("resource://linkplaces/LinkplacesService.js", {});
+const { LinkplacesService } = Cu.import("chrome://linkplaces/content/LinkplacesService.js", {});
 const { PlacesUtils } = Cu.import("resource://gre/modules/PlacesUtils.jsm", {});
 const { PlacesUIUtils } = Cu.import("resource:///modules/PlacesUIUtils.jsm", {});
 

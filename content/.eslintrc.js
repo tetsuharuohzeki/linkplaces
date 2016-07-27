@@ -9,10 +9,6 @@
 // http://eslint.org/docs/configuring/#comments-in-configuration-files
 module.exports = {
 
-  'env': {
-    'browser': true
-  },
-
   'globals': {
     'Components': false,
   },

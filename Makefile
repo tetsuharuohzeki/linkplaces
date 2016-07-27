@@ -11,18 +11,18 @@ FILE    = \
   ./content/linkplaces-panel.xul \
   ./content/linkplaces-places.js \
   ./content/linkplaces-places.xul \
+  ./content/LinkplacesService.js \
+  ./content/LinkplacesPanel.js \
+  ./content/LinkplacesUIWidget.js \
   ./locale/en-US/linkplaces.dtd \
   ./locale/en-US/linkplaces.properties \
   ./skin/classic/Darwin/linkplaces-sidebar.css \
-  ./skin/classic/Darwin/button-toolbar-active.png \
-  ./skin/classic/Darwin/button-toolbar-active@2x.png \
   ./skin/classic/Darwin/button-toolbar.png \
   ./skin/classic/Darwin/button-toolbar@2x.png \
   ./skin/classic/Darwin/button-panel.png \
   ./skin/classic/Darwin/button-panel@2x.png \
   ./skin/classic/Darwin/linkplaces.css \
   ./skin/classic/Linux/linkplaces-sidebar.css \
-  ./skin/classic/Linux/button-toolbar-large.png \
   ./skin/classic/Linux/button-toolbar.png \
   ./skin/classic/Linux/button-panel.png \
   ./skin/classic/Linux/button-panel@2x.png \
@@ -34,9 +34,6 @@ FILE    = \
   ./skin/classic/WINNT/button-panel.png \
   ./skin/classic/WINNT/button-panel@2x.png \
   ./skin/classic/WINNT/linkplaces.css \
-  ./modules/LinkplacesService.js \
-  ./modules/LinkplacesPanel.js \
-  ./modules/LinkplacesUIWidget.js \
   ./defaults/preferences/linkplaces-prefs.js \
   chrome.manifest \
   install.rdf \
