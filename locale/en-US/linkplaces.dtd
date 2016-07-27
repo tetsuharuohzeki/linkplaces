@@ -11,13 +11,6 @@
 <!ENTITY linkplaces.overlay.sidebar.title               "&linkplaces.global;">
 <!ENTITY linkplaces.overlay.commandkey                  "L">
 
-<!-- Context menu -->
-<!ENTITY linkplaces.ctx.tab.saveThisTab                 "Add Tab to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.multipletab.saveSelected        "Add Selected Tabs to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.content.savePage                "Add Page to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.content.saveLink                "Add Link to &linkplaces.global;">
-<!ENTITY linkplaces.ctx.places.saveItems                "Add to &linkplaces.global;">
-
 <!-- Options -->
 <!ENTITY linkplaces.option.title                        "&linkplaces.global; - Options">
 <!ENTITY linkplaces.option.pane.general                 "General">

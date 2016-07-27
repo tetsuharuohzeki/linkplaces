@@ -10,7 +10,6 @@ skin     linkplaces  classic/1.0  skin/classic/Linux/ os=Linux
 
 ## Overlay
 overlay  chrome://browser/content/browser.xul  chrome://linkplaces/content/linkplaces-browser.xul
-overlay  chrome://browser/content/places/placesOverlay.xul   chrome://linkplaces/content/linkplaces-places.xul
 
 ## styles
 style    chrome://global/content/customizeToolbar.xul  chrome://linkplaces/skin/linkplaces.css

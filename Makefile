@@ -9,12 +9,15 @@ FILE    = \
   ./content/linkplaces-options.xul \
   ./content/linkplaces-panel.js \
   ./content/linkplaces-panel.xul \
-  ./content/linkplaces-places.js \
-  ./content/linkplaces-places.xul \
+  ./content/LinkplacesChrome.js \
   ./content/LinkplacesService.js \
   ./content/LinkplacesPanel.js \
   ./content/LinkplacesUIWidget.js \
+  ./content/service/ChromeDocObserver.js \
   ./content/service/pref.js \
+  ./content/ui/contextmenu.js \
+  ./content/ui/LinkplacesChromeCtxMenu.js \
+  ./content/ui/LinkplacesChromePlaces.js \
   ./locale/en-US/linkplaces.dtd \
   ./locale/en-US/linkplaces.properties \
   ./skin/classic/Darwin/linkplaces-sidebar.css \

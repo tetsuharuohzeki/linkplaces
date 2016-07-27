@@ -79,22 +79,4 @@
                  sidebarurl="chrome://linkplaces/content/linkplaces-panel.xul"
                  oncommand="SidebarUI.toggle('viewLinkplacesSidebar');"/>
   </broadcasterset>
-
-   <menupopup id="tabContextMenu">
-    <menuitem id="linkplaces-tabCtx-saveTab"
-              label="&linkplaces.ctx.tab.saveThisTab;"
-              insertafter="context_bookmarkAllTabs"
-              oncommand="LinkplacesBrowser.saveThisTab();"/>
-   </menupopup>
-
-  <menupopup id="contentAreaContextMenu">
-    <menuitem id="linkplaces-contentCtx-savePage"
-              label="&linkplaces.ctx.content.savePage;"
-              insertbefore="context-savepage"
-              oncommand="LinkplacesBrowser.saveThisPage();"/>
-    <menuitem id="linkplaces-contentCtx-saveLink"
-              label="&linkplaces.ctx.content.saveLink;"
-              insertafter="context-bookmarklink"
-              oncommand="LinkplacesBrowser.saveLink();"/>
-  </menupopup>
 </overlay>

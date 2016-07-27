@@ -17,6 +17,7 @@ const QUERY_URI = "place:queryType=1&folder=UNFILED_BOOKMARKS";
 const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 
 const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
+const { require } = Cu.import("resource://gre/modules/commonjs/toolkit/require.js", {});
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
 const {
   PlacesUtils,
@@ -37,7 +38,9 @@ XPCOMUtils.defineLazyGetter(this, "stringBundle", function () { // eslint-disabl
   return Services.strings.createBundle(STRING_BUNDLE_URI);
 });
 
+const { ChromeDocObserver } = Cu.import("chrome://linkplaces/content/service/ChromeDocObserver.js", {});
 const { PrefService } = Cu.import("chrome://linkplaces/content/service/pref.js", {});
+const { LinkplacesChromePlaces } = require("./ui/LinkplacesChromePlaces.js");
 
 /**
  * LinkplacesService
@@ -148,10 +151,25 @@ const LinkplacesService = {
     Services.obs.addObserver(this, "quit-application-granted", true);
     //set user preferences
     this._pref = new PrefService();
+    this._chromeDocOpening = new ChromeDocObserver({
+      onDOMContentLoaded: (win) => {
+        const uri = win.location.href;
+        switch (uri) {
+          case "chrome://browser/content/browser.xul":
+          case "chrome://browser/content/history/history-panel.xul":
+          case "chrome://browser/content/bookmarks/bookmarksPanel.xul":
+          case "chrome://browser/content/places/places.xul":
+            LinkplacesChromePlaces.create(win, LinkplacesService);
+            break;
+        }
+      },
+    });
   },
 
   destroy: function () {
     Services.obs.removeObserver(this, "quit-application-granted");
+    this._chromeDocOpening.destroy();
+    this._chromeDocOpening = null;
     this._pref.destroy();
     this._pref = null;
   },
