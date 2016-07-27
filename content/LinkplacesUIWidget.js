@@ -75,8 +75,14 @@ function createWidget() {
   });
 }
 
-function destroyWidget(id) {
+function destroyWidget() {
+  if (!isRegistered()) {
+    return;
+  }
+
+  const id = registeredWidget.id;
   CustomizableUI.destroyWidget(id);
+  registeredWidget = null;
 }
 
 this.createWidget = createWidget; // eslint-disable-line no-invalid-this
