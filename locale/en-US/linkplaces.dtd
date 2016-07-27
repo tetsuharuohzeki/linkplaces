@@ -11,9 +11,6 @@
 <!ENTITY linkplaces.overlay.sidebar.title               "&linkplaces.global;">
 <!ENTITY linkplaces.overlay.commandkey                  "L">
 
-<!-- Context menu -->
-<!ENTITY linkplaces.ctx.places.saveItems                "Add to &linkplaces.global;">
-
 <!-- Options -->
 <!ENTITY linkplaces.option.title                        "&linkplaces.global; - Options">
 <!ENTITY linkplaces.option.pane.general                 "General">

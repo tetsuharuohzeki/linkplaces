@@ -9,13 +9,4 @@
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
          id="linkplaces-places">
   <script type="application/javascript" src="chrome://linkplaces/content/linkplaces-places.js"></script>
-
-  <menupopup id="placesContext">
-    <menuitem id="linkplaces-placesCtx-saveItems"
-              label="&linkplaces.ctx.places.saveItems;"
-              insertafter="placesContext_cut"
-              selection="link"
-              forcehideselection="bookmark"
-              oncommand="LinkplacesPlaces.saveAllItems();"/>
-  </menupopup>
 </overlay>

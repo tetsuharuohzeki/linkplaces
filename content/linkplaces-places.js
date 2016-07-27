@@ -4,43 +4,17 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* eslint-env browser */
-/* global Components: false */
-/*global
-  PlacesUtils: false,
-  PlacesUIUtils:false,
-*/
-
 "use strict";
 
-/*global XPCOMUtils:false*/
-Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
-/*global LinkplacesService:false*/
-XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService", //eslint-disable-line no-invalid-this
-  "chrome://linkplaces/content/LinkplacesService.js");
+{
+  const Cu = Components.utils;
+  const { LinkplacesService } = Cu.import("chrome://linkplaces/content/LinkplacesService.js", {});
+  const { require } = Cu.import("resource://gre/modules/commonjs/toolkit/require.js", {});
+  const { LinkplacesChromePlaces } = require("./ui/LinkplacesChromePlaces.js");
 
-window.LinkplacesPlaces = {
+  window.addEventListener("load", function onLoad() {
+    window.removeEventListener("load", onLoad, false);
 
-  get service() {
-    return LinkplacesService;
-  },
-
-  get ctxMenu() {
-    return document.getElementById("placesContext");
-  },
-
-  saveAllItems: function () {
-    const triggerNode = this.ctxMenu.triggerNode;
-    const nodesArray = PlacesUIUtils.getViewForNode(triggerNode).selectedNodes;
-    const items = [];
-    for (let node of nodesArray) { //eslint-disable-line prefer-const
-      if (PlacesUtils.nodeIsURI(node)) {
-        items.push({
-          uri  : node.uri,
-          title: node.title,
-        });
-      }
-    }
-    this.service.saveItems(items);
-  },
-
-};
+    LinkplacesChromePlaces.create(window, LinkplacesService);
+  }, false);
+}
