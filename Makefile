@@ -14,6 +14,7 @@ FILE    = \
   ./content/LinkplacesService.js \
   ./content/LinkplacesPanel.js \
   ./content/LinkplacesUIWidget.js \
+  ./content/service/pref.js \
   ./locale/en-US/linkplaces.dtd \
   ./locale/en-US/linkplaces.properties \
   ./skin/classic/Darwin/linkplaces-sidebar.css \
