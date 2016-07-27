@@ -5,16 +5,27 @@
 
 "use strict";
 
+/*global
+  gContextMenu: false,
+  browserDragAndDrop: false,
+  TabContextMenu: false,
+  gBrowser: false,
+  PlacesControllerDragHelper: false,
+  InsertionPoint: false,
+*/
+
+/*global XPCOMUtils:false*/
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService",
-                                  "resource://linkplaces/LinkplacesService.jsm");
+/*global LinkplacesService:false*/
+XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService", //eslint-disable-line no-invalid-this
+  "resource://linkplaces/LinkplacesService.js");
 
-var LinkplacesBrowser = {
+window.LinkplacesBrowser = {
 
-  ElmId_contentCtxSavePage: "linkplaces-contentCtx-savePage",
-  ElmId_contentCtxSaveLink: "linkplaces-contentCtx-saveLink",
+  ElmId_contentCtxSavePage: "linkplaces-contentCtx-savePage", //eslint-disable-line camelcase
+  ElmId_contentCtxSaveLink: "linkplaces-contentCtx-saveLink", //eslint-disable-line camelcase
 
-  get service () {
+  get service() {
     return LinkplacesService;
   },
 
@@ -49,12 +60,12 @@ var LinkplacesBrowser = {
   },
 
   initContext: function () {
-    let contentAreaCtx = document.getElementById("contentAreaContextMenu");
+    const contentAreaCtx = document.getElementById("contentAreaContextMenu");
     contentAreaCtx.addEventListener("popupshowing", this, false);
   },
 
   finalizeContext: function () {
-    let contentAreaCtx = document.getElementById("contentAreaContextMenu");
+    const contentAreaCtx = document.getElementById("contentAreaContextMenu");
     contentAreaCtx.removeEventListener("popupshowing", this, false);
   },
 
@@ -87,8 +98,8 @@ var LinkplacesBrowser = {
 
 // based on bookmarksButtonObserver class and browserDragAndDrop class
   ButtonOnDrop: function (aEvent) {
-    let service = this.service;
-    let ip = new InsertionPoint(service.folder,
+    const service = this.service;
+    const ip = new InsertionPoint(service.folder,
                                 service.DEFAULT_INDEX,
                                 Components.interfaces.nsITreeView.DROP_ON);
     PlacesControllerDragHelper.onDrop(ip, aEvent.dataTransfer);
@@ -96,11 +107,11 @@ var LinkplacesBrowser = {
 
   ButtonOnDragOver: function (aEvent) {
     browserDragAndDrop.dragOver(aEvent);
-    aEvent.dropEffect = "link";
+    aEvent.dropEffect = "link"; // eslint-disable-line no-param-reassign
   },
 
-  ButtonOnDragExit: function (aEvent) {
+  ButtonOnDragExit: function (/* aEvent */) { // eslint-disable-line no-empty-function
   }
 
 };
-window.addEventListener("load", LinkplacesBrowser, false);
+window.addEventListener("load", window.LinkplacesBrowser, false);

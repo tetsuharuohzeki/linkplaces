@@ -3,18 +3,24 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+/**eslint-env commonjs */
 "use strict";
 
-let EXPORTED_SYMBOLS = ["LinkplacesPanel"];
+// eslint-disable-next-line no-unused-vars
+const EXPORTED_SYMBOLS = ["LinkplacesPanel"];
 
 const Ci = Components.interfaces;
 const Cu = Components.utils;
 
-Cu.import("resource://linkplaces/LinkplacesService.jsm");
+/*global LinkplacesService:false*/
+Cu.import("resource://linkplaces/LinkplacesService.js");
+/*global PlacesUtils:false*/
 Cu.import("resource://gre/modules/PlacesUtils.jsm");
+/*global PlacesUIUtils:false*/
 Cu.import("resource:///modules/PlacesUIUtils.jsm");
 
-function LinkplacesPanel (aWindow) {
+// eslint-disable-next-line no-implicit-globals
+function LinkplacesPanel(aWindow) {
   this.window = aWindow;
   this.treeView = null;
   this.ctxMenu = null;
@@ -51,7 +57,7 @@ LinkplacesPanel.prototype = {
   },
 
   onLoad: function () {
-    let window = this.window;
+    const window = this.window;
     window.removeEventListener("load", this, false);
 
     // initialize
@@ -72,7 +78,7 @@ LinkplacesPanel.prototype = {
 
     this.finalizePlacesView();
 
-    this.ctxMenu  = null;
+    this.ctxMenu = null;
     this.placesController = null;
     this.treeView = null;
   },
@@ -82,10 +88,10 @@ LinkplacesPanel.prototype = {
   },
 
   initPlacesView: function() {
-    let window = this.window;
+    const window = this.window;
 
-    let treeView = window.document.getElementById("linkplaces-view");
-    let placesController = createCustomPlacesController(window.PlacesController, treeView, this);
+    const treeView = window.document.getElementById("linkplaces-view");
+    const placesController = createCustomPlacesController(window.PlacesController, treeView, this);
 
     treeView.place = LinkplacesService.QUERY_URI;
     treeView.controllers.insertControllerAt(0, placesController);
@@ -109,15 +115,15 @@ LinkplacesPanel.prototype = {
   },
 
   overrideCmdOpenMultipleItem: function () {
-    let cmdValue = `
+    const cmdValue = `
       var triggerNode = window.gLinkplacesPanel.ctxMenu.triggerNode;
       var controller = PlacesUIUtils.getViewForNode(triggerNode).controller;
       window.gLinkplacesPanel.openSelectionInTabs(controller, event);
     `;
-    let document = this.window.document;
-    let list = ["placesContext_openContainer:tabs",
+    const document = this.window.document;
+    const list = ["placesContext_openContainer:tabs",
                 "placesContext_openLinks:tabs"];
-    for (let id of list) {
+    for (let id of list) { // eslint-disable-line prefer-const
       document.getElementById(id).setAttribute("oncommand", cmdValue);
     }
   },
@@ -129,22 +135,27 @@ LinkplacesPanel.prototype = {
       return;
     }
 
-    let tree = aEvent.target.parentNode;
-    let treeBoxObj = tree.treeBoxObject;
-    let row = {}, col = {}, obj = {};
+    const tree = aEvent.target.parentNode;
+    const treeBoxObj = tree.treeBoxObject;
+    const row = {};
+    const col = {};
+    const obj = {};
     treeBoxObj.getCellAt(aEvent.clientX, aEvent.clientY, row, col, obj);
 
-    if (row.value === -1 ||  obj.value === "twisty") {
+    if (row.value === -1 || obj.value === "twisty") {
       return;
     }
 
     // whether mouse in opening item area or not.
     let mouseInGutter = false;
-    let cellX = {}, cellY = {}, cellW = {}, cellH = {};
+    const cellX = {};
+    const cellY = {};
+    const cellW = {};
+    const cellH = {};
     if (aGutterSelect) {
       treeBoxObj.getCoordsForCellItem(row.value, col.value, "image", cellX, cellY, cellW, cellH);
 
-      let isRTL = (this.window.getComputedStyle(tree, null).direction === "rtl");
+      const isRTL = (this.window.getComputedStyle(tree, null).direction === "rtl");
       if (isRTL) {
         mouseInGutter = (aEvent.clientX > cellX.value);
       }
@@ -153,9 +164,9 @@ LinkplacesPanel.prototype = {
       }
     }
 
-    let modifKey = (aEvent.ctrlKey || aEvent.metaKey) || aEvent.shiftKey;
-    let isContainer = treeBoxObj.view.isContainer(row.value);
-    let openInTabs = isContainer &&// Is the node container?
+    const modifKey = (aEvent.ctrlKey || aEvent.metaKey) || aEvent.shiftKey;
+    const isContainer = treeBoxObj.view.isContainer(row.value);
+    const openInTabs = isContainer &&// Is the node container?
                      // Is event is middle-click, or left-click with ctrlkey?
                      (aEvent.button === 1 || (aEvent.button === 0 && modifKey)) &&
                      //Does the node have child URI node?
@@ -181,7 +192,7 @@ LinkplacesPanel.prototype = {
 
   handleTreeKeyPress: function (aEvent) {
     if (aEvent.keyCode === Ci.nsIDOMKeyEvent.DOM_VK_RETURN) {
-      let node = aEvent.target.selectedNode;
+      const node = aEvent.target.selectedNode;
       if (PlacesUtils.nodeIsURI(node)) {
         this.openNodeWithEvent(node, aEvent, this.treeView);
       }
@@ -193,13 +204,15 @@ LinkplacesPanel.prototype = {
       return;
     }
 
-    let tree = aEvent.target.parentNode;
-    let treeBoxObj = tree.treeBoxObject;
-    let row = {}, col = {}, obj = {};
+    const tree = aEvent.target.parentNode;
+    const treeBoxObj = tree.treeBoxObject;
+    const row = {};
+    const col = {};
+    const obj = {};
     treeBoxObj.getCellAt(aEvent.clientX, aEvent.clientY, row, col, obj);
 
     if (row.value !== -1) {
-      let node = tree.view.nodeForTreeIndex(row.value);
+      const node = tree.view.nodeForTreeIndex(row.value);
       if (PlacesUtils.nodeIsURI(node)) {
         this.setMouseoverURL(node.uri);
       }
@@ -213,7 +226,7 @@ LinkplacesPanel.prototype = {
   },
 
   setMouseoverURL: function (aURI) {
-    let XULBrowserWindow = this.window.top.XULBrowserWindow;
+    const XULBrowserWindow = this.window.top.XULBrowserWindow;
     // When the browser window is closed with an open sidebar, the sidebar
     // unload event happens after the browser's one.  In this case
     // top.XULBrowserWindow has been nullified already.
@@ -223,7 +236,7 @@ LinkplacesPanel.prototype = {
   },
 
   openNodeWithEvent: function (aNode, aEvent, aView) {
-    let where = this.whereToOpenLink(aEvent, aNode.uri);
+    const where = this.whereToOpenLink(aEvent, aNode.uri);
 
     PlacesUIUtils.openNodeIn(aNode, where, aView);
 
@@ -234,12 +247,12 @@ LinkplacesPanel.prototype = {
 
   whereToOpenLink: function (aEvent, aURI) {
     let rv = "";
-    if (aURI.startsWith("javascript:")) {
+    if (aURI.startsWith("javascript:")) { // eslint-disable-line no-script-url
       // for bookmarklet
       rv = "current";
     }
     else {
-      let where = this.window.whereToOpenLink(aEvent);
+      const where = this.window.whereToOpenLink(aEvent);
       switch (where) {
         case "current":
           rv = LinkplacesService.PREF.openLinkToWhere;
@@ -272,14 +285,15 @@ LinkplacesPanel.prototype = {
 
 
 /*
- *  @param  {function(new:PlacesController)}  aControllerConstructor
+ *  @param  {function(new:PlacesController)}  ControllerConstructor
  *  @param  {Element}                         aTreeView
  *  @param  {LinkplacesPanel}                 aLinkplacesPanel
  *  @return {PlacesController}
  */
-function createCustomPlacesController (aControllerConstructor, aTreeView, aLinkplacesPanel) {
-  let placesController = new aControllerConstructor(aTreeView);
-  placesController._isCommandEnabled = placesController.isCommandEnabled;
+// eslint-disable-next-line no-implicit-globals
+function createCustomPlacesController(ControllerConstructor, aTreeView, aLinkplacesPanel) {
+  const placesController = new ControllerConstructor(aTreeView);
+  placesController._isCommandEnabled = placesController.isCommandEnabled; // eslint-disable-line no-underscore-dangle
   placesController.isCommandEnabled = function (aCmd) {
     switch (aCmd) {
       case "placesCmd_new:bookmark":
@@ -295,7 +309,7 @@ function createCustomPlacesController (aControllerConstructor, aTreeView, aLinkp
     }
   };
 
-  placesController._doCommand = placesController.doCommand;
+  placesController._doCommand = placesController.doCommand; // eslint-disable-line no-underscore-dangle
   placesController.doCommand = function (aCmd) {
     this._doCommand(aCmd);
     switch (aCmd) {

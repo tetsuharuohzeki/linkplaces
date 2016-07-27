@@ -3,42 +3,51 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+/*global
+  PlacesUtils: false,
+  PlacesUIUtils:false,
+  PlacesCommandHook:false,
+  PanelUI:false,
+*/
+
 "use strict";
 
+/*global XPCOMUtils:false*/
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService",
-  "resource://linkplaces/LinkplacesService.jsm");
+/*global LinkplacesService:false*/
+XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService", //eslint-disable-line no-invalid-this
+  "resource://linkplaces/LinkplacesService.js");
 
 // Load immidiately to initialize the UI Widget.
-Components.utils.import("resource://linkplaces/LinkplacesUIWidget.jsm");
+Components.utils.import("resource://linkplaces/LinkplacesUIWidget.js");
 
-var LinkPlacesUI = {
+window.LinkPlacesUI = {
 
-  onPanelMenuViewCommand: function BUI_onPanelMenuViewCommand(aEvent, aView) {
-    let target = aEvent.originalTarget;
-    if (!target._placesNode) {
+  onPanelMenuViewCommand(aEvent, aView) { // eslint-disable-line camelcase
+    const target = aEvent.originalTarget;
+    if (!target._placesNode) { // eslint-disable-line no-underscore-dangle
       return;
     }
-    if (PlacesUtils.nodeIsContainer(target._placesNode)) {
-      PlacesCommandHook.showPlacesOrganizer([ "BookmarksMenu", target._placesNode.itemId ]);
+    if (PlacesUtils.nodeIsContainer(target._placesNode)) { // eslint-disable-line no-underscore-dangle
+      PlacesCommandHook.showPlacesOrganizer([ "BookmarksMenu", target._placesNode.itemId ]); // eslint-disable-line no-underscore-dangle
     }
     else {
-      let node = target._placesNode;
-      let where = this.whereToOpenLink(aEvent, node.uri);
+      const node = target._placesNode; // eslint-disable-line no-underscore-dangle
+      const where = this.whereToOpenLink(aEvent, node.uri);
       PlacesUIUtils.openNodeIn(node, where, aView);
       LinkplacesService.removeItem(node.itemId);
     }
     PanelUI.hide();
   },
 
-  whereToOpenLink: function (aEvent, aURI) {
+  whereToOpenLink(aEvent, aURI) {
     let rv = "";
-    if (aURI.startsWith("javascript:")) {
+    if (aURI.startsWith("javascript:")) { // eslint-disable-line no-script-url
       // for bookmarklet
       rv = "current";
     }
     else {
-      let where = window.whereToOpenLink(aEvent);
+      const where = window.whereToOpenLink(aEvent);
       switch (where) {
         case "current":
           rv = LinkplacesService.PREF.openLinkToWhere;
