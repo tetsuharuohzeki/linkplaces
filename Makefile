@@ -18,6 +18,7 @@ FILE    = \
   ./content/ui/contextmenu.js \
   ./content/ui/LinkplacesChromeCtxMenu.js \
   ./content/ui/LinkplacesChromePlaces.js \
+  ./content/ui/LinkplacesChromeSidebar.js \
   ./locale/en-US/linkplaces.dtd \
   ./locale/en-US/linkplaces.properties \
   ./skin/classic/Darwin/linkplaces-sidebar.css \

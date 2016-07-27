@@ -15,7 +15,6 @@ const {
   LinkplacesChromeContentCtxMenu,
   LinkplacesChromeTabCtxMenu,
 } = require("./ui/LinkplacesChromeCtxMenu.js");
-const { LinkplacesChromeSidebar } = require("./ui/LinkplacesChromeSidebar.js");
 
 class LinkplacesChrome {
   static create(win, service){
@@ -28,34 +27,27 @@ class LinkplacesChrome {
     this._service = service;
     this._contextCtxMenu = null;
     this._tabCtx = null;
-    this._sidebar = null;
     win.gLinkplacesBrowserUI = this; // eslint-disable-line no-param-reassign
-
-    Object.seal(this);
-    this._init();
   }
 
   destroy() {
-    this._finalize();
+    this.finalize();
 
     this._win.gLinkplacesBrowserUI = null;
-    this._sidebar = null;
     this._tabCtx = null;
     this._contextCtxMenu = null;
     this._service = null;
     this._win = null;
   }
 
-  _init() {
+  init() {
     this._contextCtxMenu = new LinkplacesChromeContentCtxMenu(this._win, this);
     this._tabCtx = new LinkplacesChromeTabCtxMenu(this._win, this);
-    this._sidebar = new LinkplacesChromeSidebar(this._win, this);
 
     this._win.addEventListener("unload", this, false);
   }
 
-  _finalize() {
-    this._sidebar.destroy();
+  finalize() {
     this._tabCtx.destroy();
     this._ctxMenu.destroy();
   }

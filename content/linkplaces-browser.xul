@@ -55,28 +55,4 @@
       </vbox>
     </panelview>
   </panelmultiview>
-
-  <keyset id="mainKeyset">
-    <key id="linkplaces-key-toggleSidebar"
-         key="&linkplaces.overlay.commandkey;"
-         command="viewLinkplacesSidebar"
-         modifiers="accel,alt"/>
-  </keyset>
-
-  <menupopup id="viewSidebarMenu">
-    <menuitem id="linkplaces-menu-sidebar"
-              key="linkplaces-key-toggleSidebar"
-              observes="viewLinkplacesSidebar"/>
-  </menupopup>
-
-  <broadcasterset id="mainBroadcasterSet">
-    <broadcaster id="viewLinkplacesSidebar"
-                 label="&linkplaces.overlay.broadcaster.label;"
-                 autoCheck="false"
-                 type="checkbox"
-                 group="sidebar"
-                 sidebartitle="&linkplaces.overlay.sidebar.title;"
-                 sidebarurl="chrome://linkplaces/content/linkplaces-panel.xul"
-                 oncommand="SidebarUI.toggle('viewLinkplacesSidebar');"/>
-  </broadcasterset>
 </overlay>

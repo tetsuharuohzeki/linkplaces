@@ -6,10 +6,7 @@
 <!ENTITY linkplaces.global                              "LinkPlaces">
 
 <!-- Browser Overlay -->
-<!ENTITY linkplaces.overlay.broadcaster.label           "&linkplaces.global; (Sidebar)">
 <!ENTITY linkplaces.overlay.button.tooltip              "Display &linkplaces.global; Sidebar">
-<!ENTITY linkplaces.overlay.sidebar.title               "&linkplaces.global;">
-<!ENTITY linkplaces.overlay.commandkey                  "L">
 
 <!-- Options -->
 <!ENTITY linkplaces.option.title                        "&linkplaces.global; - Options">
