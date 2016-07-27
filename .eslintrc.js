@@ -23,8 +23,6 @@ module.exports = {
       'SwitchCase': 1
     }],
 
-    'prefer-const': 0,
-
     'quotes': [2, 'double', {
       'avoidEscape': true,
       'allowTemplateLiterals': true,

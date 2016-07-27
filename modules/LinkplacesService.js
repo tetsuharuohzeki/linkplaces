@@ -9,30 +9,42 @@
 // eslint-disable-next-line no-unused-vars
 const EXPORTED_SYMBOLS = ["LinkplacesService"];
 
-const Cc = Components.classes;
 const Ci = Components.interfaces;
 const Cu = Components.utils;
 
-const PREF_DOMAIN        = "extensions.linkplaces.";
-const TXNNAME_SAVEITEMS  = "LinkplacesService:sevesItems";
+const PREF_DOMAIN = "extensions.linkplaces.";
+const TXNNAME_SAVEITEMS = "LinkplacesService:sevesItems";
 const QUERY_URI = "place:queryType=1&folder=UNFILED_BOOKMARKS";
 const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 
 
 //Import JS Utils module
+
+/*global XPCOMUtils:false*/
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
+/*global Services:false*/
 Cu.import("resource://gre/modules/Services.jsm");
+/*global
+  PlacesUtils:false,
+  PlacesCreateBookmarkTransaction:false,
+  PlacesAggregatedTransaction:false,
+  PlacesRemoveItemTransaction:false
+*/
 Cu.import("resource://gre/modules/PlacesUtils.jsm");
 
-XPCOMUtils.defineLazyModuleGetter(this, "Bookmarks",
+/*global Bookmarks:false*/
+XPCOMUtils.defineLazyModuleGetter(this, "Bookmarks", // eslint-disable-line no-invalid-this
   "resource://gre/modules/Bookmarks.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "PlacesTransactions",
+/*global PlacesTransactions:false*/
+XPCOMUtils.defineLazyModuleGetter(this, "PlacesTransactions", // eslint-disable-line no-invalid-this
   "resource://gre/modules/PlacesTransactions.jsm");
 
-XPCOMUtils.defineLazyGetter(this, "prefBranch", function () {
+/*global prefBranch:false*/
+XPCOMUtils.defineLazyGetter(this, "prefBranch", function () { // eslint-disable-line no-invalid-this
   return Services.prefs.getBranch(PREF_DOMAIN);
 });
-XPCOMUtils.defineLazyGetter(this, "stringBundle", function () {
+/*global stringBundle:false*/
+XPCOMUtils.defineLazyGetter(this, "stringBundle", function () { // eslint-disable-line no-invalid-this
   return Services.strings.createBundle(STRING_BUNDLE_URI);
 });
 
@@ -41,7 +53,7 @@ XPCOMUtils.defineLazyGetter(this, "stringBundle", function () {
  *
  * This service provides primary methods & properties for LinkPlaces.
  */
-let LinkplacesService = {
+const LinkplacesService = {
 
   QueryInterface: XPCOMUtils.generateQI([Ci.nsIObserver,
                                          Ci.nsISupportsWeakReference,
@@ -52,7 +64,7 @@ let LinkplacesService = {
    *   Preference domain of this service.
    * @type {string}
    */
-  get PREF_DOMAIN () {
+  get PREF_DOMAIN() {
     return PREF_DOMAIN;
   },
 
@@ -61,7 +73,7 @@ let LinkplacesService = {
    *  The places query uri for linkplaces folder.
    * @type {string}
    */
-  get QUERY_URI () {
+  get QUERY_URI() {
     return QUERY_URI;
   },
 
@@ -71,7 +83,7 @@ let LinkplacesService = {
    */
   PREF: Object.seal({
     openLinkToWhere: "",
-    focusWhenItemsOpened_Sidebar: false,
+    focusWhenItemsOpened_Sidebar: false, // eslint-disable-line camelcase
     useAsyncTransactions: false,
   }),
 
@@ -79,7 +91,7 @@ let LinkplacesService = {
    * Cache preferences service.
    * @type {nsIPrefBranch}
    */
-  get prefBranch () {
+  get prefBranch() {
     return prefBranch;
   },
 
@@ -87,7 +99,7 @@ let LinkplacesService = {
    * Cache strings bundle.
    * @type {nsIStringBundle}
    */
-  get stringBundle () {
+  get stringBundle() {
     return stringBundle;
   },
 
@@ -97,7 +109,7 @@ let LinkplacesService = {
    * Returns LinkPlaces folder's id.
    * @type {number}
    */
-  get folder () {
+  get folder() {
     return PlacesUtils.bookmarks.unfiledBookmarksFolder;
   },
 
@@ -105,7 +117,7 @@ let LinkplacesService = {
    * Returns LinkPlaces folder's id.
    * @type {string}
    */
-  get folderGuid () {
+  get folderGuid() {
     return Bookmarks.unfiledGuid;
   },
 
@@ -113,7 +125,7 @@ let LinkplacesService = {
    * Returns default inserted index in Places bookmarks.
    * @type {number}
    */
-  get DEFAULT_INDEX () {
+  get DEFAULT_INDEX() {
     return Bookmarks.DEFAULT_INDEX;
   },
 
@@ -126,6 +138,7 @@ let LinkplacesService = {
    *   Indicates the specific change or action.
    * @param {wstring}     aData
    *   An optional parameter or other auxiliary data further describing the change or action.
+   * @return {void}
    */
   observe: function (aSubject, aTopic, aData) {
     switch (aTopic) {
@@ -138,9 +151,6 @@ let LinkplacesService = {
     }
   },
 
-  /**
-   * Set pref values to cache.
-   */
   prefObserve: function (aSubject, aData) {
     switch (aData) {
       case "openLinkToWhere":
@@ -160,26 +170,20 @@ let LinkplacesService = {
         }
         break;
       case "focusWhenItemsOpened.sidebar":
-        this.PREF.focusWhenItemsOpened_Sidebar = prefBranch.getBoolPref(aData);
+        this.PREF.focusWhenItemsOpened_Sidebar = prefBranch.getBoolPref(aData); // eslint-disable-line camelcase
         break;
       case "useAsyncTransactions":
         this.PREF.useAsyncTransactions = prefBranch.getBoolPref(aData);
     }
   },
 
-  /**
-   * Initialize cache of preferences
-   */
   initPref: function () {
-    let allPref = prefBranch.getChildList("", {});
-    for (let pref of allPref) {
+    const allPref = prefBranch.getChildList("", {});
+    for (let pref of allPref) { // eslint-disable-line prefer-const
       this.prefObserve(null, pref);
     }
   },
 
-  /**
-   * Initialize this service. This methods must be called before using this service.
-   */
   init: function () {
     Services.obs.addObserver(this, "quit-application-granted", true);
 
@@ -189,9 +193,6 @@ let LinkplacesService = {
     this.initPref();
   },
 
-  /**
-   * Unregister this object from observer.
-   */
   destroy: function () {
     Services.obs.removeObserver(this, "quit-application-granted");
     prefBranch.removeObserver("", this);
@@ -207,9 +208,10 @@ let LinkplacesService = {
    *   The item's title.
    * @param {number=} aIndex (optional)
    *   The index which item inserted point.
+   * @return {void}
    */
   saveItem: function (aURI, aTitle, aIndex) {
-    let item = {
+    const item = {
       uri  : aURI,
       title: aTitle,
     };
@@ -222,43 +224,44 @@ let LinkplacesService = {
    * @param {Array.<{ uri:string, title:string }>} aItems
    *   The array of saved items.
    *   Items must have the following fields set:
-   *   @ {string} uri
+   *   - {string} uri
    *     The item's URI.
-   *   @ {string} title
+   *   - {string} title
    *     The item's title.
    *
    * @param {number=} aIndex (optional)
    *   The index which items inserted point.
+   * @return {void}
    */
   saveItems: function (aItems, aIndex = this.DEFAULT_INDEX) {
     if (this.PREF.useAsyncTransactions) {
       this._saveItemAsync(aItems, aIndex);
     }
     else {
-      let containerId  = this.folder;
-      let transactions = aItems.map(function createTxns(item) {
-        let uri   = Services.io.newURI(item.uri, null, null);
-        let title = item.title;
-        let txn   = new PlacesCreateBookmarkTransaction(uri, containerId,
+      const containerId = this.folder;
+      const transactions = aItems.map(function createTxns(item) {
+        const uri = Services.io.newURI(item.uri, null, null);
+        const title = item.title;
+        const txn = new PlacesCreateBookmarkTransaction(uri, containerId,
                                                         aIndex, title);
         return txn;
       });
 
-      let finalTxn = new PlacesAggregatedTransaction(TXNNAME_SAVEITEMS,
+      const finalTxn = new PlacesAggregatedTransaction(TXNNAME_SAVEITEMS,
                                                      transactions);
       PlacesUtils.transactionManager.doTransaction(finalTxn);
     }
   },
 
   _saveItemAsync: function (aItems, aInsertionPoint) {
-    let parentId = this.folderGuid;
-    let txnGenarator = function* () {
-      for (let item of aItems) {
+    const parentId = this.folderGuid;
+    const txnGenarator = function* () {
+      for (let item of aItems) { // eslint-disable-line prefer-const
 
-        let uri = Services.io.newURI(item.uri, null, null);
-        let title = item.title;
+        const uri = Services.io.newURI(item.uri, null, null);
+        const title = item.title;
 
-        let txn = new PlacesTransactions.NewBookmark({
+        const txn = new PlacesTransactions.NewBookmark({
           url: uri,
           title: title,
           parentGuid: parentId,
@@ -280,21 +283,22 @@ let LinkplacesService = {
    *
    * @param {number} aItemId
    *   The item's id.
+   * @return {void}
    */
   removeItem: function (aItemId) {
     if (this.PREF.useAsyncTransactions) {
       this._removeItemAsync(aItemId);
     }
     else {
-      let txn = new PlacesRemoveItemTransaction(aItemId);
+      const txn = new PlacesRemoveItemTransaction(aItemId);
       PlacesUtils.transactionManager.doTransaction(txn);
     }
   },
 
   _removeItemAsync: function (aItemId) {
-    let itemId = PlacesUtils.promiseItemGuid(aItemId);
+    const itemId = PlacesUtils.promiseItemGuid(aItemId);
     itemId.then(function(guid){
-      let txn = new PlacesTransactions.Remove({
+      const txn = new PlacesTransactions.Remove({
         guid: guid,
       });
 
