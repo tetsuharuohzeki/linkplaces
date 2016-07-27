@@ -42,11 +42,15 @@ FILE    = \
   install.rdf \
   icon.png
 
+.PHONY: lint
 
-all: clean xpi
+all: clean lint xpi
 
-xpi: $(FILES)
+xpi: $(FILES) lint
 	$(ZIP) $(OPTION) $(PACKAGE) $(FILE)
 
 clean:
 	-rm -rf $(PACKAGE)
+
+lint:
+	npm test
