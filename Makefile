@@ -34,9 +34,9 @@ FILE    = \
   ./skin/classic/WINNT/button-panel.png \
   ./skin/classic/WINNT/button-panel@2x.png \
   ./skin/classic/WINNT/linkplaces.css \
-  ./modules/LinkplacesService.jsm \
-  ./modules/LinkplacesPanel.jsm \
-  ./modules/LinkplacesUIWidget.jsm \
+  ./modules/LinkplacesService.js \
+  ./modules/LinkplacesPanel.js \
+  ./modules/LinkplacesUIWidget.js \
   ./defaults/preferences/linkplaces-prefs.js \
   chrome.manifest \
   install.rdf \

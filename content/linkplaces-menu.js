@@ -7,10 +7,10 @@
 
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService",
-  "resource://linkplaces/LinkplacesService.jsm");
+  "resource://linkplaces/LinkplacesService.js");
 
 // Load immidiately to initialize the UI Widget.
-Components.utils.import("resource://linkplaces/LinkplacesUIWidget.jsm");
+Components.utils.import("resource://linkplaces/LinkplacesUIWidget.js");
 
 var LinkPlacesUI = {
 

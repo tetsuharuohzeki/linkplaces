@@ -5,6 +5,6 @@
 
 "use strict";
 
-Components.utils.import("resource://linkplaces/LinkplacesPanel.jsm");
+Components.utils.import("resource://linkplaces/LinkplacesPanel.js");
 
 window.gLinkplacesPanel = new LinkplacesPanel(window);

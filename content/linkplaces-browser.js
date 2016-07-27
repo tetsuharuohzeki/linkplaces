@@ -7,7 +7,7 @@
 
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService",
-                                  "resource://linkplaces/LinkplacesService.jsm");
+                                  "resource://linkplaces/LinkplacesService.js");
 
 var LinkplacesBrowser = {
 
