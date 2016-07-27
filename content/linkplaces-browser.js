@@ -8,10 +8,7 @@
 "use strict";
 
 /*global
-  gContextMenu: false,
   browserDragAndDrop: false,
-  TabContextMenu: false,
-  gBrowser: false,
   PlacesControllerDragHelper: false,
   InsertionPoint: false,
 */
@@ -21,81 +18,20 @@ Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 /*global LinkplacesService:false*/
 XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService", //eslint-disable-line no-invalid-this
   "chrome://linkplaces/content/LinkplacesService.js");
+{
+  const { LinkplacesChrome } = Components.utils.import("chrome://linkplaces/content/LinkplacesChrome.js");
+
+  window.addEventListener("load", function onLoad() {
+    window.removeEventListener("load", onLoad, false);
+
+    LinkplacesChrome.create(window, LinkplacesService);
+  }, false);
+}
 
 window.LinkplacesBrowser = {
 
-  ElmIdContentCtxSavePage: "linkplaces-contentCtx-savePage",
-  ElmIdContentCtxSaveLink: "linkplaces-contentCtx-saveLink",
-
   get service() {
     return LinkplacesService;
-  },
-
-  handleEvent: function (aEvent) {
-    switch (aEvent.type) {
-      case "load":
-        this.onLoad();
-        break;
-      case "popupshowing":
-        if (aEvent.target.id === "contentAreaContextMenu") {
-          this.handleContentCtxPopup();
-        }
-        break;
-      case "unload":
-        this.onUnLoad();
-        break;
-    }
-  },
-
-  onLoad: function () {
-    window.removeEventListener("load", this, false);
-    window.addEventListener("unload", this, false);
-
-    //set Context menu
-    this.initContext();
-  },
-
-  onUnLoad: function() {
-    window.removeEventListener("unload", this, false);
-
-    this.finalizeContext();
-  },
-
-  initContext: function () {
-    const contentAreaCtx = document.getElementById("contentAreaContextMenu");
-    contentAreaCtx.addEventListener("popupshowing", this, false);
-  },
-
-  finalizeContext: function () {
-    const contentAreaCtx = document.getElementById("contentAreaContextMenu");
-    contentAreaCtx.removeEventListener("popupshowing", this, false);
-  },
-
-  handleContentCtxPopup: function () {
-    gContextMenu.showItem(this.ElmIdContentCtxSavePage,
-                          !(gContextMenu.isContentSelected || gContextMenu.onTextInput || gContextMenu.onLink ||
-                            gContextMenu.onImage || gContextMenu.onVideo || gContextMenu.onAudio));
-    gContextMenu.showItem(this.ElmIdContentCtxSaveLink,
-                          gContextMenu.onLink && !gContextMenu.onMailtoLink);
-  },
-
-  saveLink: function () {
-    this.service.saveItem(gContextMenu.linkURL, gContextMenu.linkTextStr);
-  },
-
-  saveThisPage: function () {
-    this.saveTab(gBrowser.selectedTab);
-  },
-
-  saveThisTab: function () {
-    this.saveTab(TabContextMenu.contextTab);
-  },
-
-  saveTab: function (aTab) {
-    const browser = aTab.linkedBrowser;
-    const uri = browser.currentURI.spec;
-    const title = browser.contentTitle || uri;
-    this.service.saveItem(uri, title);
   },
 
 // based on bookmarksButtonObserver class and browserDragAndDrop class
@@ -116,4 +52,3 @@ window.LinkplacesBrowser = {
   }
 
 };
-window.addEventListener("load", window.LinkplacesBrowser, false);

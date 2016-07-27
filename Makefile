@@ -11,10 +11,12 @@ FILE    = \
   ./content/linkplaces-panel.xul \
   ./content/linkplaces-places.js \
   ./content/linkplaces-places.xul \
+  ./content/LinkplacesChrome.js \
   ./content/LinkplacesService.js \
   ./content/LinkplacesPanel.js \
   ./content/LinkplacesUIWidget.js \
   ./content/service/pref.js \
+  ./content/ui/LinkplacesChromeCtxMenu.js \
   ./locale/en-US/linkplaces.dtd \
   ./locale/en-US/linkplaces.properties \
   ./skin/classic/Darwin/linkplaces-sidebar.css \
