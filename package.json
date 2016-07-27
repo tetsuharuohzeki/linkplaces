@@ -1,0 +1,22 @@
+{
+  "name": "linkplaces",
+  "version": "1.2.3",
+  "description": "This is a add-on for Mozilla Firefox. This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saneyuki/linkplaces.git"
+  },
+  "author": {
+    "name": "Tetsuharu OHZEKI",
+    "email": "saneyuki.snyk@gmail.com",
+    "url": "https://github.com/saneyuki/"
+  },
+  "license": "MPL",
+  "bugs": {
+    "url": "https://github.com/saneyuki/linkplaces/issues"
+  },
+  "homepage": "https://github.com/saneyuki/linkplaces"
+}
