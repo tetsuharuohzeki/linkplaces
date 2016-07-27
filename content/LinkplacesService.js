@@ -83,7 +83,7 @@ class PrefService {
     return this._table.openLinkToWhere;
   }
 
-  shouldFocusOnSidebarIfOpenItem() {
+  shouldFocusOnSidebarWhenOpenItem() {
     return this._table.focusSidebarWhenOpenItems;
   }
 
@@ -158,6 +158,7 @@ const LinkplacesService = {
                                          Ci.nsISupports]),
 
   /**
+   * @deprecated
    * @const
    *   Preference domain of this service.
    * @type {string}
@@ -176,6 +177,7 @@ const LinkplacesService = {
   },
 
   /**
+   * @deprecated
    * Cache this service's preferences value.
    * @type {object}
    */
@@ -184,6 +186,7 @@ const LinkplacesService = {
   },
 
   /**
+   * @deprecated
    * Cache preferences service.
    * @type {nsIPrefBranch}
    */
@@ -223,6 +226,10 @@ const LinkplacesService = {
    */
   get DEFAULT_INDEX() {
     return Bookmarks.DEFAULT_INDEX;
+  },
+
+  config() {
+    return this._pref;
   },
 
   /**
@@ -292,7 +299,7 @@ const LinkplacesService = {
    * @return {void}
    */
   saveItems: function (aItems, aIndex = this.DEFAULT_INDEX) {
-    if (this.PREF.useAsyncTransactions) {
+    if (this._pref.useAsyncTransactions()) {
       this._saveItemAsync(aItems, aIndex);
     }
     else {
@@ -344,7 +351,7 @@ const LinkplacesService = {
    * @return {void}
    */
   removeItem: function (aItemId) {
-    if (this.PREF.useAsyncTransactions) {
+    if (this._pref.useAsyncTransactions()) {
       this._removeItemAsync(aItemId);
     }
     else {

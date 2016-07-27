@@ -52,7 +52,7 @@ window.LinkPlacesUI = {
       const where = window.whereToOpenLink(aEvent);
       switch (where) {
         case "current":
-          rv = LinkplacesService.PREF.openLinkToWhere;
+          rv = LinkplacesService.config().openLinkTo();
           break;
         default:
           rv = where;

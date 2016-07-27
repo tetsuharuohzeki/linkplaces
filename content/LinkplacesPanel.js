@@ -252,7 +252,7 @@ LinkplacesPanel.prototype = {
       const where = this.window.whereToOpenLink(aEvent);
       switch (where) {
         case "current":
-          rv = LinkplacesService.PREF.openLinkToWhere;
+          rv = LinkplacesService.config().openLinkTo();
           break;
         default:
           rv = where;
@@ -273,7 +273,7 @@ LinkplacesPanel.prototype = {
   },
 
   focusSidebarWhenItemsOpened: function () {
-    if (LinkplacesService.PREF.focusSidebarWhenOpenItems) {
+    if (LinkplacesService.config().shouldFocusOnSidebarWhenOpenItem()) {
       this.treeView.focus();
     }
   },
