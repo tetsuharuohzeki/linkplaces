@@ -76,7 +76,7 @@ const LinkplacesService = {
    * @type {object}
    */
   PREF: Object.seal({
-    openLinkToWhere: "",
+    openLinkToWhere: "tab",
     focusSidebarWhenOpenItems: false,
     useAsyncTransactions: false,
   }),
