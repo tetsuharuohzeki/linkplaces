@@ -163,7 +163,7 @@ const LinkplacesService = {
             break;
         }
         break;
-      case "focusWhenItemsOpened.sidebar":
+      case "focusSidebarWhenOpenItem":
         this.PREF.focusSidebarWhenOpenItems = prefBranch.getBoolPref(aData);
         break;
       case "useAsyncTransactions":
