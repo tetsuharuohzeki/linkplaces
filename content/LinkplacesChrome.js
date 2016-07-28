@@ -67,7 +67,7 @@ class LinkplacesChrome {
     this._panel.destroy();
     this._sidebar.destroy();
     this._tabCtx.destroy();
-    this._ctxMenu.destroy();
+    this._contextCtxMenu.destroy();
   }
 
   service() {
