@@ -11,6 +11,7 @@ class ContextMenuItem {
     this._dom = null;
     this._onCommand = null;
 
+    Object.seal(this);
     this._init(win, param);
   }
 

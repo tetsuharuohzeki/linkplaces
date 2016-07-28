@@ -24,6 +24,7 @@ class LinkplacesChromePlaces {
     this._saveItems = null;
     win.gLinkplacesChromePlaces = this; // eslint-disable-line no-param-reassign
 
+    Object.seal(this);
     this._init();
   }
 

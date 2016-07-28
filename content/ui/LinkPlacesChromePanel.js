@@ -12,6 +12,7 @@ class LinkPlacesChromePanel {
     this._win = win;
     this._service = service;
 
+    Object.seal(this);
     this._init();
   }
 

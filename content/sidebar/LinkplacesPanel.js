@@ -22,6 +22,7 @@ function LinkplacesPanel(aWindow) {
   this.treeView = null;
   this.ctxMenu = null;
   this.placesController = null;
+  Object.seal(this);
 
   aWindow.addEventListener("load", this, false);
 }

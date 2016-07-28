@@ -27,6 +27,7 @@ class LinkplacesChromeTabCtxMenu {
       mountpoint: "#context_bookmarkAllTabs + menuitem"
     });
 
+    Object.seal(this);
     this._init();
   }
 
@@ -68,6 +69,7 @@ class LinkplacesChromeContentCtxMenu {
       mountpoint: "#context-bookmarklink + menuitem",
     });
 
+    Object.seal(this);
     this._init();
   }
 

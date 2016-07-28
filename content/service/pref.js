@@ -56,7 +56,7 @@ class PrefService {
     this.QueryInterface = XPCOMUtils.generateQI([Ci.nsIObserver,
                                                  Ci.nsISupportsWeakReference,
                                                  Ci.nsISupports]);
-    this._prefBranch.addObserver("", this, true);
+    Object.seal(this);
     this._init();
   }
 
@@ -92,6 +92,7 @@ class PrefService {
   }
 
   _init() {
+    this._prefBranch.addObserver("", this, true);
     const allPref = this._prefBranch.getChildList("", {});
     for (let pref of allPref) { // eslint-disable-line prefer-const
       this._prefObserve(pref);
