@@ -12,59 +12,7 @@ const ID_TAB_CTX_SAVE_TAB = "linkplaces-tabCtx-saveTab";
 const ID_CONTENT_SAVE_PAGE = "linkplaces-contentCtx-savePage";
 const ID_CONTENT_SAVE_LINK = "linkplaces-contentCtx-saveLink";
 
-class ContextMenuItem {
-  constructor(win, param) {
-    this._dom = null;
-    this._onCommand = null;
-
-    this._init(win, param);
-  }
-
-  destroy() {
-    this._finalize();
-
-    this._onCommand = null;
-    this._dom = null;
-  }
-
-  _init(win, { id, label, onCommand, mountpoint, }) {
-    const dom = win.document.createElement("menuitem");
-    dom.setAttribute("id", id);
-    dom.setAttribute("label", label);
-    dom.addEventListener("command", this, false);
-
-    this._dom = dom;
-    this._onCommand = onCommand;
-
-    const mp = win.document.querySelector(mountpoint);
-    mp.parentNode.insertBefore(dom, mp);
-  }
-
-  _finalize() {
-    this._dom.parentNode.removeChild(this._dom);
-    this._dom.removeEventListener("command", this, false);
-  }
-
-  handleEvent(event) {
-    switch (event.type) {
-      case "command":
-        this._onCommand(event);
-        break;
-    }
-  }
-
-  finalize() {
-    this._dom.parentNode.removeChild(this._dom);
-
-    this._dom.removeEventListener("command", this, false);
-    this._onCommand = null;
-    this._dom = null;
-  }
-
-  onCommand() {
-    this._onCommand();
-  }
-}
+const { ContextMenuItem } = require("./contextmenu");
 
 class LinkplacesChromeTabCtxMenu {
   constructor(win, parent) {
