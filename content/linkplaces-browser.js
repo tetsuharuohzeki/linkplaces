@@ -12,6 +12,7 @@
   const { require } = Cu.import("resource://gre/modules/commonjs/toolkit/require.js", {});
   const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm");
   const { LinkplacesChrome } = require("chrome://linkplaces/content/LinkplacesChrome.js");
+  const { createWidget } = Cu.import("chrome://linkplaces/content/LinkplacesUIWidget.js", {});
 
   /*global LinkplacesService:false */
   XPCOMUtils.defineLazyModuleGetter(window, "LinkplacesService",
@@ -21,9 +22,6 @@
     window.removeEventListener("load", onLoad, false);
 
     LinkplacesChrome.create(window, LinkplacesService);
+    createWidget();
   }, false);
-
-  // Load immidiately to initialize the UI Widget.
-  const { createWidget } = Cu.import("chrome://linkplaces/content/LinkplacesUIWidget.js", {});
-  createWidget();
 }
