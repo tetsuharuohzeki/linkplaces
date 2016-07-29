@@ -40,40 +40,12 @@ const LinkplacesService = {
                                          Ci.nsISupports]),
 
   /**
-   * @deprecated
-   * @const
-   *   Preference domain of this service.
-   * @type {string}
-   */
-  get PREF_DOMAIN() {
-    return this._pref.DOMAIN;
-  },
-
-  /**
    * @const
    *  The places query uri for linkplaces folder.
    * @type {string}
    */
   get QUERY_URI() {
     return LinkplacesRepository.QUERY_URI;
-  },
-
-  /**
-   * @deprecated
-   * Cache this service's preferences value.
-   * @type {object}
-   */
-  get PREF() {
-    return this._pref.PREF;
-  },
-
-  /**
-   * @deprecated
-   * Cache preferences service.
-   * @type {nsIPrefBranch}
-   */
-  get prefBranch() {
-    return this._pref.branch();
   },
 
   /**

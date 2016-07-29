@@ -39,8 +39,6 @@ class LinkplacesRepository {
   }
 
   /**
-   * @obsolatd
-   *
    * Returns LinkPlaces folder's id.
    * @returns {number}
    */
