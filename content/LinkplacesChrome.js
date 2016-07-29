@@ -6,11 +6,6 @@
 /*eslint-env commonjs */
 "use strict";
 
-// eslint-disable-next-line no-unused-vars
-const EXPORTED_SYMBOLS = ["LinkplacesChrome"];
-
-const Cu = Components.utils;
-const { require } = Cu.import("resource://gre/modules/commonjs/toolkit/require.js", {});
 const {
   LinkplacesChromeContentCtxMenu,
   LinkplacesChromeTabCtxMenu,
@@ -117,4 +112,7 @@ class LinkplacesChrome {
     return this._toolbar;
   }
 }
-this.LinkplacesChrome = LinkplacesChrome; // eslint-disable-line no-invalid-this
+
+module.exports = Object.freeze({
+  LinkplacesChrome,
+});

@@ -7,22 +7,23 @@
 /* global Components: false */
 "use strict";
 
-/*global XPCOMUtils:false*/
-Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
-/*global LinkplacesService:false*/
-XPCOMUtils.defineLazyModuleGetter(this, "LinkplacesService", //eslint-disable-line no-invalid-this
-  "chrome://linkplaces/content/LinkplacesService.js");
 {
-  const { LinkplacesChrome } = Components.utils.import("chrome://linkplaces/content/LinkplacesChrome.js");
+  const Cu = Components.utils;
+  const { require } = Cu.import("resource://gre/modules/commonjs/toolkit/require.js", {});
+  const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm");
+  const { LinkplacesChrome } = require("chrome://linkplaces/content/LinkplacesChrome.js");
+
+  /*global LinkplacesService:false */
+  XPCOMUtils.defineLazyModuleGetter(window, "LinkplacesService",
+    "chrome://linkplaces/content/LinkplacesService.js");
 
   window.addEventListener("load", function onLoad() {
     window.removeEventListener("load", onLoad, false);
 
     LinkplacesChrome.create(window, LinkplacesService);
   }, false);
-}
-// Load immidiately to initialize the UI Widget.
-{
-  const {createWidget} = Components.utils.import("chrome://linkplaces/content/LinkplacesUIWidget.js", {});
+
+  // Load immidiately to initialize the UI Widget.
+  const { createWidget } = Cu.import("chrome://linkplaces/content/LinkplacesUIWidget.js", {});
   createWidget();
 }
