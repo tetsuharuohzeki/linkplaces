@@ -12,26 +12,11 @@ const EXPORTED_SYMBOLS = ["LinkplacesService"];
 const Ci = Components.interfaces;
 const Cu = Components.utils;
 
-const TXNNAME_SAVEITEMS = "LinkplacesService:sevesItems";
-const QUERY_URI = "place:queryType=1&folder=UNFILED_BOOKMARKS";
 const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 
 const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
 const { require } = Cu.import("resource://gre/modules/commonjs/toolkit/require.js", {});
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
-const {
-  PlacesUtils,
-  PlacesCreateBookmarkTransaction,
-  PlacesAggregatedTransaction,
-  PlacesRemoveItemTransaction,
-} = Cu.import("resource://gre/modules/PlacesUtils.jsm", {});
-
-/*global Bookmarks:false*/
-XPCOMUtils.defineLazyModuleGetter(this, "Bookmarks", // eslint-disable-line no-invalid-this
-  "resource://gre/modules/Bookmarks.jsm");
-/*global PlacesTransactions:false*/
-XPCOMUtils.defineLazyModuleGetter(this, "PlacesTransactions", // eslint-disable-line no-invalid-this
-  "resource://gre/modules/PlacesTransactions.jsm");
 
 /*global stringBundle:false*/
 XPCOMUtils.defineLazyGetter(this, "stringBundle", function () { // eslint-disable-line no-invalid-this
@@ -39,6 +24,7 @@ XPCOMUtils.defineLazyGetter(this, "stringBundle", function () { // eslint-disabl
 });
 
 const { ChromeDocObserver } = Cu.import("chrome://linkplaces/content/service/ChromeDocObserver.js", {});
+const { LinkplacesRepository } = Cu.import("chrome://linkplaces/content/service/LinkplacesRepository.js", {});
 const { PrefService } = Cu.import("chrome://linkplaces/content/service/pref.js", {});
 const { LinkplacesChromePlaces } = require("./ui/LinkplacesChromePlaces.js");
 
@@ -69,7 +55,7 @@ const LinkplacesService = {
    * @type {string}
    */
   get QUERY_URI() {
-    return QUERY_URI;
+    return LinkplacesRepository.QUERY_URI;
   },
 
   /**
@@ -105,7 +91,7 @@ const LinkplacesService = {
    * @type {number}
    */
   get folder() {
-    return PlacesUtils.bookmarks.unfiledBookmarksFolder;
+    return LinkplacesRepository.folder();
   },
 
   /**
@@ -113,7 +99,7 @@ const LinkplacesService = {
    * @type {string}
    */
   get folderGuid() {
-    return Bookmarks.unfiledGuid;
+    return LinkplacesRepository.folderGuid();
   },
 
   /**
@@ -121,7 +107,7 @@ const LinkplacesService = {
    * @type {number}
    */
   get DEFAULT_INDEX() {
-    return Bookmarks.DEFAULT_INDEX;
+    return LinkplacesRepository.DEFAULT_INDEX;
   },
 
   config() {
@@ -195,8 +181,6 @@ const LinkplacesService = {
   },
 
   /**
-   * Save plural items to LinkPlaces folder
-   *
    * @param {Array.<{ uri:string, title:string }>} aItems
    *   The array of saved items.
    *   Items must have the following fields set:
@@ -209,79 +193,28 @@ const LinkplacesService = {
    *   The index which items inserted point.
    * @return {void}
    */
-  saveItems: function (aItems, aIndex = this.DEFAULT_INDEX) {
+  saveItems: function (aItems, aIndex = LinkplacesRepository.DEFAULT_INDEX) {
     if (this._pref.useAsyncTransactions()) {
-      this._saveItemAsync(aItems, aIndex);
+      LinkplacesRepository.saveItemAsync(aItems, aIndex);
     }
     else {
-      const containerId = this.folder;
-      const transactions = aItems.map(function createTxns(item) {
-        const uri = Services.io.newURI(item.uri, null, null);
-        const title = item.title;
-        const txn = new PlacesCreateBookmarkTransaction(uri, containerId,
-                                                        aIndex, title);
-        return txn;
-      });
-
-      const finalTxn = new PlacesAggregatedTransaction(TXNNAME_SAVEITEMS,
-                                                     transactions);
-      PlacesUtils.transactionManager.doTransaction(finalTxn);
+      LinkplacesRepository.saveItems(aItems, aIndex);
     }
-  },
-
-  _saveItemAsync: function (aItems, aInsertionPoint) {
-    const parentId = this.folderGuid;
-    const txnGenarator = function* () {
-      for (let item of aItems) { // eslint-disable-line prefer-const
-
-        const uri = Services.io.newURI(item.uri, null, null);
-        const title = item.title;
-
-        const txn = new PlacesTransactions.NewBookmark({
-          url: uri,
-          title: title,
-          parentGuid: parentId,
-          index: aInsertionPoint,
-        });
-
-        yield txn.transact();
-      }
-
-      return;
-    };
-
-    return PlacesTransactions.batch(txnGenarator)
-      .catch(Cu.reportError);
   },
 
   /**
-   * Wrapper to remove the bookmark item.
-   *
    * @param {number} aItemId
    *   The item's id.
    * @return {void}
    */
   removeItem: function (aItemId) {
     if (this._pref.useAsyncTransactions()) {
-      this._removeItemAsync(aItemId);
+      LinkplacesRepository.removeItemAsync(aItemId);
     }
     else {
-      const txn = new PlacesRemoveItemTransaction(aItemId);
-      PlacesUtils.transactionManager.doTransaction(txn);
+      LinkplacesRepository.removeItem(aItemId);
     }
   },
-
-  _removeItemAsync: function (aItemId) {
-    const itemId = PlacesUtils.promiseItemGuid(aItemId);
-    itemId.then(function(guid){
-      const txn = new PlacesTransactions.Remove({
-        guid: guid,
-      });
-
-      return PlacesTransactions.batch([txn]);
-    }).catch(Cu.reportError);
-  },
-
 };
 LinkplacesService.init();
 this.LinkplacesService = LinkplacesService; // eslint-disable-line no-invalid-this

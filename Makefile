@@ -10,6 +10,7 @@ FILE    = \
   ./content/LinkplacesService.js \
   ./content/LinkplacesUIWidget.js \
   ./content/service/ChromeDocObserver.js \
+  ./content/service/LinkplacesRepository.js \
   ./content/service/pref.js \
   ./content/sidebar/linkplaces-panel.js \
   ./content/sidebar/linkplaces-panel.xul \
