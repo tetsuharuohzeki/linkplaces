@@ -31,7 +31,7 @@ class LinkplacesChromePlaces {
   destroy() {
     this._finalize();
 
-    this.gLinkplacesChromePlaces = null;
+    this._win.gLinkplacesChromePlaces = null;
     this._saveItems = null;
     this._service = null;
     this._win = null;
