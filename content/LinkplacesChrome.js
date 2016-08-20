@@ -12,7 +12,6 @@ const {
 } = require("./ui/LinkplacesChromeCtxMenu.js");
 const { LinkplacesChromeSidebar } = require("./ui/LinkplacesChromeSidebar.js");
 const { LinkPlacesChromePanel } = require("./ui/LinkPlacesChromePanel.js");
-const { LinkplacesChromeToolbar } = require("./ui/LinkplacesChromeToolbar.js");
 
 class LinkplacesChrome {
   static create(win, service){
@@ -52,7 +51,6 @@ class LinkplacesChrome {
     this._tabCtx = new LinkplacesChromeTabCtxMenu(this._win, this);
     this._sidebar = new LinkplacesChromeSidebar(this._win, this);
     this._panel = new LinkPlacesChromePanel(this._win, this._service);
-    this._toolbar = new LinkplacesChromeToolbar(this._win, this._service);
 
     this._win.addEventListener("unload", this, false);
   }
@@ -106,10 +104,6 @@ class LinkplacesChrome {
 
   panel() {
     return this._panel;
-  }
-
-  toolbarToggleButton() {
-    return this._toolbar;
   }
 }
 

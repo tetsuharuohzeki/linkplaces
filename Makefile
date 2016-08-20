@@ -20,7 +20,6 @@ FILE    = \
   ./content/ui/LinkPlacesChromePanel.js \
   ./content/ui/LinkplacesChromePlaces.js \
   ./content/ui/LinkplacesChromeSidebar.js \
-  ./content/ui/LinkplacesChromeToolbar.js \
   ./locale/en-US/linkplaces.dtd \
   ./locale/en-US/linkplaces.properties \
   ./skin/classic/Darwin/linkplaces-sidebar.css \

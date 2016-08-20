@@ -18,9 +18,6 @@ const PLACES_VIEW_ID = "panelMenu_linkplacesMenu";
 const { CustomizableUI } = Cu.import("resource:///modules/CustomizableUI.jsm", {});
 const { LinkplacesService } = Cu.import("chrome://linkplaces/content/LinkplacesService.js", {});
 
-const { require } = Cu.import("resource://gre/modules/commonjs/toolkit/require.js", {});
-const { createToolbarButton, DOM_ID_TOOLBAR_BUTTON, } = require("./ui/LinkplacesChromeToolbar.js");
-
 let registeredWidget = null;
 function isRegistered() {
   if (registeredWidget === null) {
@@ -75,15 +72,6 @@ function createWidget() {
       this._panelMenuView = null;
     },
 
-  });
-
-  CustomizableUI.createWidget({
-    id: DOM_ID_TOOLBAR_BUTTON,
-    type: "custom",
-    defaultArea: CustomizableUI.AREA_PANEL,
-    onBuild(doc) {
-      return createToolbarButton(doc.defaultView, LinkplacesService);
-    }
   });
 }
 
