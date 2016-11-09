@@ -19,8 +19,10 @@
   XPCOMUtils.defineLazyModuleGetter(window, "LinkplacesService",
     "chrome://linkplaces/content/LinkplacesService.js");
 
-  window.addEventListener("load", function onLoad() {
-    window.removeEventListener("load", onLoad, false);
+  // Use `DOMContentLoaded` to avoid the error.
+  // see https://blog.mozilla.org/addons/2014/03/06/australis-for-add-on-developers-2/
+  window.addEventListener("DOMContentLoaded", function onLoad() {
+    window.removeEventListener("DOMContentLoaded", onLoad, false);
 
     LinkplacesChrome.create(window, LinkplacesService);
     createWidget();

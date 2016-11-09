@@ -6,39 +6,7 @@
 
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 
-<!DOCTYPE overlay SYSTEM "chrome://linkplaces/locale/linkplaces.dtd">
-
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
          id="linkplaces-browser">
-
   <script type="application/javascript" src="chrome://linkplaces/content/linkplaces-browser.js"></script>
-
-  <!--
-    Import from browser/components/customizableui/content/panelUI.inc.xul.
-    Original codes are `#PanelUI-bookmarks` & `#PanelUI-history`.
-  -->
-  <panelmultiview id="PanelUI-multiView" mainViewId="PanelUI-mainView">
-    <panelview id="PanelUI-linkplaces" flex="1" class="PanelUI-subView">
-      <label value="&linkplaces.global;" class="panel-subview-header"/>
-      <vbox class="panel-subview-body">
-        <toolbarbutton id="panelMenu_viewLinkplacesSidebar"
-                       label="&linkplaces.widget.menuitem.toggleSidebar;"
-                       class="subviewbutton"
-                       key="linkplaces-key-toggleSidebar"
-                       oncommand="SidebarUI.toggle('viewLinkplacesSidebar'); PanelUI.hide();">
-          <observes element="viewLinkplacesSidebar" attribute="checked"/>
-        </toolbarbutton>
-        <toolbarseparator/>
-        <toolbaritem id="panelMenu_linkplacesMenu"
-                     orient="vertical"
-                     smoothscroll="false"
-                     onclick="if (event.button == 1) { gLinkplacesBrowserUI.panel().onPanelMenuViewCommand(event, this._placesView); }"
-                     oncommand="gLinkplacesBrowserUI.panel().onPanelMenuViewCommand(event, this._placesView);"
-                     flatList="true"
-                     tooltip="bhTooltip">
-          <!-- bookmarks menu items will go here -->
-        </toolbaritem>
-      </vbox>
-    </panelview>
-  </panelmultiview>
 </overlay>
