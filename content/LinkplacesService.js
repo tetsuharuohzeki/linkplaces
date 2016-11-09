@@ -26,6 +26,7 @@ XPCOMUtils.defineLazyGetter(this, "stringBundle", function () { // eslint-disabl
 
 const { ChromeDocObserver } = Cu.import("chrome://linkplaces/content/service/ChromeDocObserver.js", {});
 const { LinkplacesRepository } = Cu.import("chrome://linkplaces/content/service/LinkplacesRepository.js", {});
+const { StyleLoader } = Cu.import("chrome://linkplaces/content/service/StyleLoader.js", {});
 const { PrefService } = Cu.import("chrome://linkplaces/content/service/pref.js", {});
 const { LinkplacesChromePlaces } = require("./ui/LinkplacesChromePlaces.js");
 
@@ -125,10 +126,13 @@ const LinkplacesService = {
         }
       },
     });
+    this._styleService = StyleLoader.create();
   },
 
   destroy: function () {
     Services.obs.removeObserver(this, "quit-application-granted");
+    this._styleService.destroy();
+    this._styleService = null;
     this._chromeDocOpening.destroy();
     this._chromeDocOpening = null;
     this._pref.destroy();

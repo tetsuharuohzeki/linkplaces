@@ -12,6 +12,7 @@ FILE    = \
   ./content/service/ChromeDocObserver.js \
   ./content/service/LinkplacesRepository.js \
   ./content/service/pref.js \
+  ./content/service/StyleLoader.js \
   ./content/sidebar/linkplaces-panel.js \
   ./content/sidebar/linkplaces-panel.xul \
   ./content/sidebar/LinkplacesPanel.js \
