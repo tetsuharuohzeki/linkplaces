@@ -7,7 +7,11 @@
 
 "use strict";
 
-const { classes: Cc, interfaces: Ci, utils: Cu } = Components;
+const { interfaces: Ci, utils: Cu } = Components;
+const { require } = Cu.import("resource://gre/modules/commonjs/toolkit/require.js", {});
+const { LinkplacesChrome } = require("chrome://linkplaces/content/LinkplacesChrome.js");
+const { LinkplacesService } = Cu.import("chrome://linkplaces/content/LinkplacesService.js", {});
+const { createWidget, destroyWidget, } = Cu.import("chrome://linkplaces/content/LinkplacesUIWidget.js", {});
 
 // Bootstrap Addon Reason Constants:
 // const APP_STARTUP = 1;
@@ -21,6 +25,8 @@ const APP_SHUTDOWN = 2;
 
 const {Services} = Cu.import("resource://gre/modules/Services.jsm", {});
 
+const windowMap = new WeakMap();
+
 const SetupHelper = {
   /**
    * @param {Window} aDomWindow
@@ -33,13 +39,21 @@ const SetupHelper = {
     if (windowType !== "navigator:browser") {
       return;
     }
+
+    const handler = LinkplacesChrome.create(aDomWindow, LinkplacesService);
+    windowMap.set(aDomWindow, handler);
   },
 
   /**
    * @param {Window} aDomWindow
    * @returns {void}
    */
-  teardown(/*aDomWindow*/) {}, // eslint-disable-line no-empty-function
+  teardown(aDomWindow) {
+    const handler = windowMap.get(aDomWindow);
+    windowMap.delete(aDomWindow);
+
+    handler.destroy();
+  },
 };
 
 // nsIWindowMediatorListener
@@ -51,11 +65,13 @@ const WindowListener = {
    */
   onOpenWindow(aXulWindow) {
     const domWindow = aXulWindow.QueryInterface(Ci.nsIInterfaceRequestor) // eslint-disable-line new-cap
-                    .getInterface(Ci.nsIDOMWindow);
+      .getInterface(Ci.nsIDOMWindow);
 
     // Wait finish loading
-    domWindow.addEventListener("load", function onLoad(/* aEvent */) {
-      domWindow.removeEventListener("load", onLoad, false);
+    // Use `DOMContentLoaded` to avoid the error.
+    // see https://blog.mozilla.org/addons/2014/03/06/australis-for-add-on-developers-2/
+    domWindow.addEventListener("DOMContentLoaded", function onLoad(/* aEvent */) {
+      domWindow.removeEventListener("DOMContentLoaded", onLoad, false);
       SetupHelper.setup(domWindow);
     }, false);
   },
@@ -81,6 +97,8 @@ function startup(aData, aReason) { // eslint-disable-line no-unused-vars
     const domWindow = windows.getNext().QueryInterface(Ci.nsIDOMWindow); // eslint-disable-line new-cap
     SetupHelper.setup(domWindow);
   }
+
+  createWidget();
 }
 
 /**
@@ -95,6 +113,8 @@ function shutdown(aData, aReason) { // eslint-disable-line no-unused-vars
   if (aReason === APP_SHUTDOWN) {
     return;
   }
+
+  destroyWidget();
 
   const windows = Services.wm.getEnumerator("navigator:browser");
   while (windows.hasMoreElements()) {

@@ -3,8 +3,6 @@ OPTION  = -6
 # IGNORE  = -x .DS_Store
 PACKAGE = linkplaces.xpi
 FILE    = \
-  ./content/linkplaces-browser.js \
-  ./content/linkplaces-browser.xul \
   ./content/linkplaces-options.xul \
   ./content/LinkplacesChrome.js \
   ./content/LinkplacesService.js \
