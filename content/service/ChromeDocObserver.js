@@ -4,6 +4,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /*eslint-env commonjs */
+
 "use strict";
 
 // eslint-disable-next-line no-unused-vars
@@ -18,9 +19,11 @@ const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
 class ChromeDocObserver {
   constructor({ onDOMContentLoaded }) {
     this._onDOMContentLoaded = onDOMContentLoaded;
-    this.QueryInterface = XPCOMUtils.generateQI([Ci.nsIObserver,
-                                                 Ci.nsISupportsWeakReference,
-                                                 Ci.nsISupports]);
+    this.QueryInterface = XPCOMUtils.generateQI([
+      Ci.nsIObserver,
+      Ci.nsISupportsWeakReference,
+      Ci.nsISupports,
+    ]);
     Object.seal(this);
     this._init();
   }

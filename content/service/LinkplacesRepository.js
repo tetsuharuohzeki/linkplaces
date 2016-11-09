@@ -3,6 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /*eslint-env commonjs */
+
 "use strict";
 
 this.EXPORTED_SYMBOLS = ["LinkplacesRepository"]; // eslint-disable-line no-invalid-this
@@ -120,8 +121,6 @@ class LinkplacesRepository {
 
         yield txn.transact();
       }
-
-      return;
     };
 
     return PlacesTransactions.batch(txnGenarator)

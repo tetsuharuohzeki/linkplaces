@@ -4,6 +4,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /*eslint-env commonjs */
+
 "use strict";
 
 const ID_PLACES_CTX_MENU = "placesContext";

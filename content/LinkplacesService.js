@@ -4,6 +4,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /**eslint-env commonjs */
+
 "use strict";
 
 // eslint-disable-next-line no-unused-vars
@@ -35,9 +36,11 @@ const { LinkplacesChromePlaces } = require("./ui/LinkplacesChromePlaces.js");
  */
 const LinkplacesService = {
 
-  QueryInterface: XPCOMUtils.generateQI([Ci.nsIObserver,
-                                         Ci.nsISupportsWeakReference,
-                                         Ci.nsISupports]),
+  QueryInterface: XPCOMUtils.generateQI([
+    Ci.nsIObserver,
+    Ci.nsISupportsWeakReference,
+    Ci.nsISupports,
+  ]),
 
   /**
    * @const

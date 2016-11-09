@@ -5,6 +5,7 @@
 
 /* eslint-env browser */
 /* global Components: false */
+
 "use strict";
 
 {

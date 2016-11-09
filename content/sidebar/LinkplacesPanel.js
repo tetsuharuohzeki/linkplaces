@@ -4,6 +4,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /**eslint-env commonjs */
+
 "use strict";
 
 // eslint-disable-next-line no-unused-vars
@@ -119,8 +120,10 @@ LinkplacesPanel.prototype = {
       window.gLinkplacesPanel.openSelectionInTabs(controller, event);
     `;
     const document = this.window.document;
-    const list = ["placesContext_openContainer:tabs",
-                "placesContext_openLinks:tabs"];
+    const list = [
+      "placesContext_openContainer:tabs",
+      "placesContext_openLinks:tabs",
+    ];
     for (let id of list) { // eslint-disable-line prefer-const
       document.getElementById(id).setAttribute("oncommand", cmdValue);
     }
@@ -172,7 +175,6 @@ LinkplacesPanel.prototype = {
 
     if (aEvent.button === 0 && isContainer && !openInTabs) {
       treeBoxObj.view.toggleOpenState(row.value);
-      return;
     }
     else if (!mouseInGutter && aEvent.originalTarget.localName === "treechildren") {
       if (openInTabs) {
