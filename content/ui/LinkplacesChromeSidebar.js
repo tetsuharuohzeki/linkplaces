@@ -168,6 +168,12 @@ class LinkplacesChromeSidebar {
   }
 
   _finalize() {
+    // Close sidebar to release the reference to it from the current window.
+    const win = this._win;
+    if (win.SidebarUI.currentID === SIDEBAR_BROADCAST_ID) {
+      win.SidebarUI.hide();
+    }
+
     this._shortcut.destroy();
     this._menubar.destroy();
     this._broadcaster.destroy();

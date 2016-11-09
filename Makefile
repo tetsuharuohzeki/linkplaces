@@ -3,8 +3,6 @@ OPTION  = -6
 # IGNORE  = -x .DS_Store
 PACKAGE = linkplaces.xpi
 FILE    = \
-  ./content/linkplaces-browser.js \
-  ./content/linkplaces-browser.xul \
   ./content/linkplaces-options.xul \
   ./content/LinkplacesChrome.js \
   ./content/LinkplacesService.js \
@@ -42,6 +40,7 @@ FILE    = \
   ./skin/classic/WINNT/button-panel@2x.png \
   ./skin/classic/WINNT/linkplaces.css \
   ./defaults/preferences/linkplaces-prefs.js \
+  bootstrap.js \
   chrome.manifest \
   install.rdf \
   icon.png
