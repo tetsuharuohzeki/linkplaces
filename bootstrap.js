@@ -10,8 +10,6 @@
 const { interfaces: Ci, utils: Cu } = Components;
 const { require } = Cu.import("resource://gre/modules/commonjs/toolkit/require.js", {});
 const { LinkplacesChrome } = require("chrome://linkplaces/content/LinkplacesChrome.js");
-const { LinkplacesService } = Cu.import("chrome://linkplaces/content/LinkplacesService.js", {});
-const { createWidget, destroyWidget, } = Cu.import("chrome://linkplaces/content/LinkplacesUIWidget.js", {});
 
 // Bootstrap Addon Reason Constants:
 // const APP_STARTUP = 1;
@@ -26,6 +24,9 @@ const APP_SHUTDOWN = 2;
 const {Services} = Cu.import("resource://gre/modules/Services.jsm", {});
 
 const windowMap = new WeakMap();
+let gLinkplacesService = null;
+let gCreateWidget = null;
+let gDestroyWidget = null;
 
 const SetupHelper = {
   /**
@@ -40,7 +41,7 @@ const SetupHelper = {
       return;
     }
 
-    const handler = LinkplacesChrome.create(aDomWindow, LinkplacesService);
+    const handler = LinkplacesChrome.create(aDomWindow, gLinkplacesService);
     windowMap.set(aDomWindow, handler);
   },
 
@@ -90,6 +91,13 @@ const WindowListener = {
  * @returns {void}
  */
 function startup(aData, aReason) { // eslint-disable-line no-unused-vars
+  // Defer loading modules registered by this package.
+  const { LinkplacesService } = Cu.import("chrome://linkplaces/content/LinkplacesService.js", {});
+  gLinkplacesService = LinkplacesService;
+  const { createWidget, destroyWidget, } = Cu.import("chrome://linkplaces/content/LinkplacesUIWidget.js", {});
+  gCreateWidget = createWidget;
+  gDestroyWidget = destroyWidget;
+
   Services.wm.addListener(WindowListener);
 
   const windows = Services.wm.getEnumerator("navigator:browser");
@@ -98,7 +106,7 @@ function startup(aData, aReason) { // eslint-disable-line no-unused-vars
     SetupHelper.setup(domWindow);
   }
 
-  createWidget();
+  gCreateWidget();
 }
 
 /**
@@ -107,20 +115,23 @@ function startup(aData, aReason) { // eslint-disable-line no-unused-vars
  * @returns {void}
  */
 function shutdown(aData, aReason) { // eslint-disable-line no-unused-vars
-  Services.wm.removeListener(WindowListener);
-
   // if the application is shutdown time, we don't have to call these step.
   if (aReason === APP_SHUTDOWN) {
     return;
   }
 
-  destroyWidget();
+  Services.wm.removeListener(WindowListener);
+
+  gDestroyWidget();
 
   const windows = Services.wm.getEnumerator("navigator:browser");
   while (windows.hasMoreElements()) {
     const domWindow = windows.getNext().QueryInterface(Ci.nsIDOMWindow); // eslint-disable-line new-cap
     SetupHelper.teardown(domWindow);
   }
+
+  Cu.unload("chrome://linkplaces/content/LinkplacesUIWidget.js");
+  Cu.unload("chrome://linkplaces/content/LinkplacesService.js");
 }
 
 /**
