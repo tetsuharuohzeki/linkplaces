@@ -1,13 +1,21 @@
 {
+  "title": "LinkPlaces",
   "name": "linkplaces",
-  "version": "1.2.3",
-  "description": "This is a add-on for Mozilla Firefox. This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
+  "id": "linkplaces@saneyuki_s",
+  "version": "0.10.0",
+  "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
   "engines": {
     "firefox": ">= 52.0a1"
   },
+  "permissions": {
+    "multiprocess": true,
+    "private-browsing": true
+  },
+  "main": "main.js",
   "scripts": {
     "lint": "eslint --ext=js,jsm content/ tools/ modules/ .",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "jpm": "jpm"
   },
   "repository": {
     "type": "git",
