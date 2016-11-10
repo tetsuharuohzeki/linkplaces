@@ -1,0 +1,10 @@
+.*
+*
+!/content/**
+!/locale/**
+!/skin/**
+!/chrome.manifest
+!/icon.png
+!/main.js
+!/package.json
+!/README.md

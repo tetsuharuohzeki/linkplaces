@@ -1,10 +1,21 @@
 {
+  "title": "LinkPlaces",
   "name": "linkplaces",
-  "version": "1.2.3",
-  "description": "This is a add-on for Mozilla Firefox. This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
+  "id": "linkplaces@saneyuki_s",
+  "version": "0.10.0",
+  "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
+  "engines": {
+    "firefox": ">= 52.0a1"
+  },
+  "permissions": {
+    "multiprocess": true,
+    "private-browsing": true
+  },
+  "main": "main.js",
   "scripts": {
     "lint": "eslint --ext=js,jsm content/ tools/ modules/ .",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "jpm": "jpm"
   },
   "repository": {
     "type": "git",
@@ -21,6 +32,49 @@
   },
   "homepage": "https://github.com/saneyuki/linkplaces",
   "devDependencies": {
-    "eslint": "^3.9.1"
-  }
+    "eslint": "^3.9.1",
+    "jpm": "^1.2.2"
+  },
+  "preferences-branch": "linkplaces",
+  "preferences": [
+    {
+        "type": "radio",
+        "name": "openLinkToWhere",
+        "title": "When click, Open the item to",
+        "value": 1,
+        "options": [
+            {
+                "value": 0,
+                "label": "Current Tab"
+            },
+            {
+                "value": 1,
+                "label": "New Tab"
+            },
+            {
+                "value": 2,
+                "label": "New Background Tab"
+            },
+            {
+                "value": 3,
+                "label": "New Window"
+            }
+        ]
+    },
+    {
+      "type": "bool",
+      "name": "focusSidebarWhenOpenItem",
+      "title": "Focus when item opened",
+      "description": "Whether to focus the sidebar when item is opening.",
+      "value": true
+    },
+    {
+      "type": "bool",
+      "name": "useAsyncTransactions",
+      "title": "Use async transaction",
+      "description": "Use the same backend with `browser.places.useAsyncTransactions`.",
+      "value": false,
+      "hidden": true
+    }
+  ]
 }
