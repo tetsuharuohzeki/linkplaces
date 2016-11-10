@@ -3,7 +3,6 @@ OPTION  = -6
 # IGNORE  = -x .DS_Store
 PACKAGE = linkplaces.xpi
 FILE    = \
-  ./content/linkplaces-options.xul \
   ./content/LinkplacesChrome.js \
   ./content/LinkplacesService.js \
   ./content/LinkplacesUIWidget.js \
@@ -19,7 +18,6 @@ FILE    = \
   ./content/ui/LinkPlacesChromePanel.js \
   ./content/ui/LinkplacesChromePlaces.js \
   ./content/ui/LinkplacesChromeSidebar.js \
-  ./locale/en-US/linkplaces.dtd \
   ./locale/en-US/linkplaces.properties \
   ./skin/classic/Darwin/linkplaces-sidebar.css \
   ./skin/classic/Darwin/button-toolbar.png \
@@ -39,7 +37,6 @@ FILE    = \
   ./skin/classic/WINNT/button-panel.png \
   ./skin/classic/WINNT/button-panel@2x.png \
   ./skin/classic/WINNT/linkplaces.css \
-  ./defaults/preferences/linkplaces-prefs.js \
   bootstrap.js \
   chrome.manifest \
   install.rdf \
