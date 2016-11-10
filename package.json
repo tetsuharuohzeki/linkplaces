@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/saneyuki/linkplaces",
   "devDependencies": {
-    "eslint": "^3.9.1"
+    "eslint": "^3.9.1",
+    "jpm": "^1.2.2"
   }
 }
