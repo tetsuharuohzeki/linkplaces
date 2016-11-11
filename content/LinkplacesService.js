@@ -1,22 +1,16 @@
-/* vim: set filetype=javascript shiftwidth=2 tabstop=2 expandtab: */
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/**eslint-env commonjs */
+/*eslint-env commonjs */
 
 "use strict";
 
-// eslint-disable-next-line no-unused-vars
-const EXPORTED_SYMBOLS = ["LinkplacesService"];
-
-const Ci = Components.interfaces;
-const Cu = Components.utils;
+const { Ci, Cu, } = require("chrome");
 
 const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 
 const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
-const { require } = Cu.import("resource://gre/modules/commonjs/toolkit/require.js", {});
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
 
 /*global stringBundle:false*/
@@ -196,4 +190,7 @@ const LinkplacesService = {
   },
 };
 LinkplacesService.init();
-this.LinkplacesService = LinkplacesService; // eslint-disable-line no-invalid-this
+
+module.exports = Object.freeze({
+  LinkplacesService,
+});
