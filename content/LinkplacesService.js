@@ -20,7 +20,7 @@ XPCOMUtils.defineLazyGetter(this, "stringBundle", function () { // eslint-disabl
 
 const { ChromeDocObserver } = require("chrome://linkplaces/content/service/ChromeDocObserver.js");
 const { LinkplacesRepository } = require("chrome://linkplaces/content/service/LinkplacesRepository.js");
-const { StyleLoader } = Cu.import("chrome://linkplaces/content/service/StyleLoader.js", {});
+const { StyleLoader } = require("chrome://linkplaces/content/service/StyleLoader.js");
 const { PrefService } = Cu.import("chrome://linkplaces/content/service/pref.js", {});
 const { LinkplacesChromePlaces } = require("./ui/LinkplacesChromePlaces.js");
 

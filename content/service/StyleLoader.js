@@ -2,14 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+/*eslint-env commonjs */
+
 "use strict";
 
-// eslint-disable-next-line no-unused-vars
-const EXPORTED_SYMBOLS = ["StyleLoader"];
-
-const Cc = Components.classes;
-const Ci = Components.interfaces;
-const Cu = Components.utils;
+const { Cc, Ci, Cu, } = require("chrome");
 
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
 
@@ -50,4 +47,6 @@ class StyleLoader {
   }
 }
 
-this.StyleLoader = StyleLoader; // eslint-disable-line no-invalid-this
+module.exports = Object.freeze({
+  StyleLoader,
+});
