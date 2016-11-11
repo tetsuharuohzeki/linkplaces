@@ -7,10 +7,7 @@
 
 "use strict";
 
-// eslint-disable-next-line no-unused-vars
-const EXPORTED_SYMBOLS = ["createWidget", "destroyWidget"];
-
-const Cu = Components.utils;
+const { Cu, } = require("chrome");
 
 const BUTTON_ID = "linkplaces-menu-button";
 const PANEL_UI_ID = "PanelUI-linkplaces";
@@ -86,5 +83,7 @@ function destroyWidget() {
   registeredWidget = null;
 }
 
-this.createWidget = createWidget; // eslint-disable-line no-invalid-this
-this.destroyWidget = destroyWidget; // eslint-disable-line no-invalid-this
+module.exports = Object.freeze({
+  createWidget,
+  destroyWidget,
+});
