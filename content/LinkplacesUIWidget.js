@@ -7,17 +7,14 @@
 
 "use strict";
 
-// eslint-disable-next-line no-unused-vars
-const EXPORTED_SYMBOLS = ["createWidget", "destroyWidget"];
-
-const Cu = Components.utils;
+const { Cu, } = require("chrome");
 
 const BUTTON_ID = "linkplaces-menu-button";
 const PANEL_UI_ID = "PanelUI-linkplaces";
 const PLACES_VIEW_ID = "panelMenu_linkplacesMenu";
 
 const { CustomizableUI } = Cu.import("resource:///modules/CustomizableUI.jsm", {});
-const { LinkplacesService } = Cu.import("chrome://linkplaces/content/LinkplacesService.js", {});
+const { LinkplacesService } = require("chrome://linkplaces/content/LinkplacesService.js");
 
 let registeredWidget = null;
 function isRegistered() {
@@ -86,5 +83,7 @@ function destroyWidget() {
   registeredWidget = null;
 }
 
-this.createWidget = createWidget; // eslint-disable-line no-invalid-this
-this.destroyWidget = destroyWidget; // eslint-disable-line no-invalid-this
+module.exports = Object.freeze({
+  createWidget,
+  destroyWidget,
+});

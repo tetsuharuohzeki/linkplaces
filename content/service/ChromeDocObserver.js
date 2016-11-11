@@ -7,11 +7,7 @@
 
 "use strict";
 
-// eslint-disable-next-line no-unused-vars
-const EXPORTED_SYMBOLS = ["ChromeDocObserver"];
-
-const Ci = Components.interfaces;
-const Cu = Components.utils;
+const { Ci, Cu, } = require("chrome");
 
 const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
@@ -78,4 +74,6 @@ class ChromeDocObserver {
   }
 }
 
-this.ChromeDocObserver = ChromeDocObserver; // eslint-disable-line no-invalid-this
+module.exports = Object.freeze({
+  ChromeDocObserver,
+});
