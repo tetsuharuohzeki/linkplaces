@@ -6,7 +6,7 @@
 
 "use strict";
 
-const { Ci, Cu, } = require("chrome");
+const { Cu, } = require("chrome");
 
 const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 
@@ -30,12 +30,6 @@ const { LinkplacesChromePlaces } = require("./ui/LinkplacesChromePlaces.js");
  * This service provides primary methods & properties for LinkPlaces.
  */
 const LinkplacesService = {
-
-  QueryInterface: XPCOMUtils.generateQI([
-    Ci.nsIObserver,
-    Ci.nsISupportsWeakReference,
-    Ci.nsISupports,
-  ]),
 
   /**
    * @const
@@ -84,27 +78,7 @@ const LinkplacesService = {
     return this._pref;
   },
 
-  /**
-   * Observer method.
-   *
-   * @param {nsISupports} aSubject
-   *   In general reflects the object whose change or action is being observed.
-   * @param {string}      aTopic
-   *   Indicates the specific change or action.
-   * @param {wstring}     aData
-   *   An optional parameter or other auxiliary data further describing the change or action.
-   * @return {void}
-   */
-  observe: function (aSubject, aTopic/*, aData*/) {
-    switch (aTopic) {
-      case "quit-application-granted":
-        this.destroy();
-        break;
-    }
-  },
-
   init: function () {
-    Services.obs.addObserver(this, "quit-application-granted", true);
     //set user preferences
     this._pref = new PrefService();
     this._chromeDocOpening = new ChromeDocObserver({
@@ -124,7 +98,6 @@ const LinkplacesService = {
   },
 
   destroy: function () {
-    Services.obs.removeObserver(this, "quit-application-granted");
     this._styleService.destroy();
     this._styleService = null;
     this._chromeDocOpening.destroy();
@@ -189,7 +162,6 @@ const LinkplacesService = {
     }
   },
 };
-LinkplacesService.init();
 
 module.exports = Object.freeze({
   LinkplacesService,

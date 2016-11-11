@@ -77,6 +77,7 @@ const WindowListener = {
  *
  */
 exports.main = function (options, callbacks) { // eslint-disable-line no-unused-vars
+  LinkplacesService.init();
   Cu.import("chrome://linkplaces/content/sidebar/LinkplacesPanel.js");
 
   Services.wm.addListener(WindowListener);
@@ -113,4 +114,5 @@ exports.onUnload = function (reason) { // eslint-disable-line no-unused-vars
   }
 
   Cu.unload("chrome://linkplaces/content/sidebar/LinkplacesPanel.js");
+  LinkplacesService.destroy();
 };
