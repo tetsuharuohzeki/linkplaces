@@ -13,7 +13,6 @@ const EXPORTED_SYMBOLS = ["LinkplacesPanel"];
 const Ci = Components.interfaces;
 const Cu = Components.utils;
 
-const { LinkplacesService } = Cu.import("chrome://linkplaces/content/LinkplacesService.js", {});
 const { PlacesUtils } = Cu.import("resource://gre/modules/PlacesUtils.jsm", {});
 const { PlacesUIUtils } = Cu.import("resource:///modules/PlacesUIUtils.jsm", {});
 
@@ -23,6 +22,8 @@ function LinkplacesPanel(aWindow) {
   this.treeView = null;
   this.ctxMenu = null;
   this.placesController = null;
+  this._service = aWindow.top.gLinkplacesBrowserUI.service();
+
   Object.seal(this);
 
   aWindow.addEventListener("load", this, false);
@@ -77,6 +78,7 @@ LinkplacesPanel.prototype = {
 
     this.finalizePlacesView();
 
+    this._service = null;
     this.ctxMenu = null;
     this.placesController = null;
     this.treeView = null;
@@ -92,7 +94,7 @@ LinkplacesPanel.prototype = {
     const treeView = window.document.getElementById("linkplaces-view");
     const placesController = createCustomPlacesController(window.PlacesController, treeView, this);
 
-    treeView.place = LinkplacesService.QUERY_URI;
+    treeView.place = this._service.QUERY_URI;
     treeView.controllers.insertControllerAt(0, placesController);
 
     treeView.addEventListener("click", this, false);
@@ -181,7 +183,7 @@ LinkplacesPanel.prototype = {
         treeBoxObj.view.selection.select(row.value);
         PlacesUIUtils.openContainerNodeInTabs(tree.selectedNode, aEvent);
         this.focusSidebarWhenItemsOpened();
-        LinkplacesService.removeItem(tree.selectedNode.itemId);
+        this._service.removeItem(tree.selectedNode.itemId);
       }
       else if (!isContainer) {
         treeBoxObj.view.selection.select(row.value);
@@ -242,7 +244,7 @@ LinkplacesPanel.prototype = {
 
     this.focusSidebarWhenItemsOpened();
 
-    LinkplacesService.removeItem(aNode.itemId);
+    this._service.removeItem(aNode.itemId);
   },
 
   whereToOpenLink: function (aEvent, aURI) {
@@ -255,7 +257,7 @@ LinkplacesPanel.prototype = {
       const where = this.window.whereToOpenLink(aEvent);
       switch (where) {
         case "current":
-          rv = LinkplacesService.config().openLinkTo();
+          rv = this._service.config().openLinkTo();
           break;
         default:
           rv = where;
@@ -276,7 +278,7 @@ LinkplacesPanel.prototype = {
   },
 
   focusSidebarWhenItemsOpened: function () {
-    if (LinkplacesService.config().shouldFocusOnSidebarWhenOpenItem()) {
+    if (this._service.config().shouldFocusOnSidebarWhenOpenItem()) {
       this.treeView.focus();
     }
   },
@@ -317,7 +319,7 @@ function createCustomPlacesController(ControllerConstructor, aTreeView, aLinkpla
       case "placesCmd_open:window":
       case "placesCmd_open:tab":
         aLinkplacesPanel.focusSidebarWhenItemsOpened();
-        LinkplacesService.removeItem(this._view.selectedNode.itemId);
+        this._service.removeItem(this._view.selectedNode.itemId);
         break;
     }
   };
