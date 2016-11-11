@@ -77,6 +77,8 @@ const WindowListener = {
  *
  */
 exports.main = function (options, callbacks) { // eslint-disable-line no-unused-vars
+  Cu.import("chrome://linkplaces/content/sidebar/LinkplacesPanel.js");
+
   Services.wm.addListener(WindowListener);
 
   const windows = Services.wm.getEnumerator("navigator:browser");
@@ -109,4 +111,6 @@ exports.onUnload = function (reason) { // eslint-disable-line no-unused-vars
     const domWindow = windows.getNext().QueryInterface(Ci.nsIDOMWindow); // eslint-disable-line new-cap
     SetupHelper.teardown(domWindow);
   }
+
+  Cu.unload("chrome://linkplaces/content/sidebar/LinkplacesPanel.js");
 };
