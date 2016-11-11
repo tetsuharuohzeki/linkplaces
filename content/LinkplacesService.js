@@ -116,14 +116,14 @@ const LinkplacesService = {
    *   The item's title.
    * @param {number=} aIndex (optional)
    *   The index which item inserted point.
-   * @return {void}
+   * @return {Promise<void>}
    */
   saveItem: function (aURI, aTitle, aIndex) {
     const item = {
       uri  : aURI,
       title: aTitle,
     };
-    this.saveItems([item], aIndex);
+    return this.saveItems([item], aIndex);
   },
 
   /**
@@ -137,28 +137,30 @@ const LinkplacesService = {
    *
    * @param {number=} aIndex (optional)
    *   The index which items inserted point.
-   * @return {void}
+   * @return {Promise<void>}
    */
   saveItems: function (aItems, aIndex = LinkplacesRepository.DEFAULT_INDEX) {
     if (this._pref.useAsyncTransactions()) {
-      LinkplacesRepository.saveItemAsync(aItems, aIndex);
+      return LinkplacesRepository.saveItemAsync(aItems, aIndex);
     }
     else {
       LinkplacesRepository.saveItems(aItems, aIndex);
+      return Promise.resolve();
     }
   },
 
   /**
    * @param {number} aItemId
    *   The item's id.
-   * @return {void}
+   * @return {Promise<void>}
    */
   removeItem: function (aItemId) {
     if (this._pref.useAsyncTransactions()) {
-      LinkplacesRepository.removeItemAsync(aItemId);
+      return LinkplacesRepository.removeItemAsync(aItemId);
     }
     else {
       LinkplacesRepository.removeItem(aItemId);
+      return Promise.resolve();
     }
   },
 };
