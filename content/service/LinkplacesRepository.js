@@ -6,9 +6,8 @@
 
 "use strict";
 
-this.EXPORTED_SYMBOLS = ["LinkplacesRepository"]; // eslint-disable-line no-invalid-this
+const { Cu, } = require("chrome");
 
-const Cu = Components.utils;
 
 const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
@@ -155,4 +154,6 @@ class LinkplacesRepository {
   }
 }
 
-this.LinkplacesRepository = LinkplacesRepository; // eslint-disable-line no-invalid-this
+module.exports = Object.freeze({
+  LinkplacesRepository,
+});
