@@ -14,7 +14,7 @@ const PANEL_UI_ID = "PanelUI-linkplaces";
 const PLACES_VIEW_ID = "panelMenu_linkplacesMenu";
 
 const { CustomizableUI } = Cu.import("resource:///modules/CustomizableUI.jsm", {});
-const { LinkplacesService } = require("chrome://linkplaces/content/LinkplacesService.js");
+const { LinkplacesService } = require("./LinkplacesService.js");
 
 let registeredWidget = null;
 function isRegistered() {

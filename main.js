@@ -8,9 +8,9 @@
 
 const { Ci, Cu } = require("chrome");
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
-const { LinkplacesChrome } = require("chrome://linkplaces/content/LinkplacesChrome.js");
-const { LinkplacesService } = require("chrome://linkplaces/content/LinkplacesService.js");
-const { createWidget, destroyWidget, } = require("chrome://linkplaces/content/LinkplacesUIWidget.js");
+const { LinkplacesChrome } = require("./content/LinkplacesChrome.js");
+const { LinkplacesService } = require("./content/LinkplacesService.js");
+const { createWidget, destroyWidget, } = require("./content/LinkplacesUIWidget.js");
 
 const windowMap = new WeakMap();
 
