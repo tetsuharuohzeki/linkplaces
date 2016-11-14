@@ -11,9 +11,10 @@
     "multiprocess": true,
     "private-browsing": true
   },
+  "hasEmbeddedWebExtension": true,
   "main": "main.js",
   "scripts": {
-    "lint": "eslint --ext=js,jsm content/ tools/ modules/ .",
+    "lint": "eslint --ext=js,jsm content/ tools/ modules/ webextension/ .",
     "test": "npm run lint",
     "jpm": "jpm"
   },
