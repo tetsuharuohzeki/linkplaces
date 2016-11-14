@@ -3,8 +3,11 @@
   "name": "LinkPlaces",
   "version": "0.0.1",
   "permissions": [
+    "tabs"
   ],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "background.js"
+    ]
   }
 }

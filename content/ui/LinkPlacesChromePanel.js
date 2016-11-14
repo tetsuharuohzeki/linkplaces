@@ -59,9 +59,28 @@ class LinkPlacesChromePanel {
     }
     else {
       const node = placesNode;
-      const where = this.whereToOpenLink(aEvent, node.uri);
-      window.PlacesUIUtils.openNodeIn(node, where, aView);
-      this._service.removeItem(node.itemId);
+      const uri = node.uri;
+      const where = this.whereToOpenLink(aEvent, uri);
+      const service = this._service;
+      let result = null;
+      if (window.PlacesUtils.nodeIsSeparator(node)) {
+        result = Promise.resolve({ ok: true });
+      }
+      else if (service.isPrivilegedScheme(uri)) {
+        window.PlacesUIUtils.openNodeIn(node, where, aView);
+        result = Promise.resolve({ ok: true });
+      }
+      else {
+        result = service.openTab(uri, where);
+      }
+      result.then((result) => {
+        if (result.ok) {
+          service.removeItem(node.itemId);
+        }
+        else {
+          this.window.console.error(result.error);
+        }
+      });
     }
     window.PanelUI.hide();
   }

@@ -11,6 +11,7 @@ const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
 const { LinkplacesChrome } = require("./content/LinkplacesChrome.js");
 const { LinkplacesService } = require("./content/LinkplacesService.js");
 const { createWidget, destroyWidget, } = require("./content/LinkplacesUIWidget.js");
+const webext = require("sdk/webextension");
 
 const windowMap = new WeakMap();
 
@@ -77,18 +78,20 @@ const WindowListener = {
  *
  */
 exports.main = function (options, callbacks) { // eslint-disable-line no-unused-vars
-  LinkplacesService.init();
-  Cu.import("chrome://linkplaces/content/sidebar/LinkplacesPanel.js");
+  webext.startup().then(({browser}) => {
+    LinkplacesService.init(browser);
+    Cu.import("chrome://linkplaces/content/sidebar/LinkplacesPanel.js");
 
-  Services.wm.addListener(WindowListener);
+    Services.wm.addListener(WindowListener);
 
-  const windows = Services.wm.getEnumerator("navigator:browser");
-  while (windows.hasMoreElements()) {
-    const domWindow = windows.getNext().QueryInterface(Ci.nsIDOMWindow); // eslint-disable-line new-cap
-    SetupHelper.setup(domWindow);
-  }
+    const windows = Services.wm.getEnumerator("navigator:browser");
+    while (windows.hasMoreElements()) {
+      const domWindow = windows.getNext().QueryInterface(Ci.nsIDOMWindow); // eslint-disable-line new-cap
+      SetupHelper.setup(domWindow);
+    }
 
-  createWidget();
+    createWidget();
+  });
 };
 
 /**
