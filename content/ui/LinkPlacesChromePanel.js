@@ -6,6 +6,10 @@
 
 "use strict";
 
+const { SIDEBAR_BROADCAST_ID, SHORTCUT_ID, } = require("./LinkplacesChromeSidebar");
+
+const PANEL_UI_ID = "PanelUI-linkplaces";
+
 class LinkPlacesChromePanel {
 
   constructor(win, service) {
@@ -87,6 +91,7 @@ class LinkPlacesChromePanel {
 module.exports = Object.freeze({
   LinkPlacesChromePanel,
   createDOM,
+  PANEL_UI_ID,
 });
 
 /**
@@ -124,7 +129,7 @@ function createDOM(document, service) {
   const stringBundle = service.stringBundle;
 
   const panelview = document.createElement("panelview");
-  panelview.setAttribute("id", "PanelUI-linkplaces");
+  panelview.setAttribute("id", PANEL_UI_ID);
   panelview.setAttribute("flex", "1");
   panelview.setAttribute("class", "PanelUI-subView");
 
@@ -139,11 +144,11 @@ function createDOM(document, service) {
   toolbarbutton.setAttribute("id", "panelMenu_viewLinkplacesSidebar");
   toolbarbutton.setAttribute("label", stringBundle.GetStringFromName("linkplaces.widget.panel.toggleSidebar")); // eslint-disable-line new-cap
   toolbarbutton.setAttribute("class", "subviewbutton");
-  toolbarbutton.setAttribute("key", "linkplaces-key-toggleSidebar");
-  toolbarbutton.setAttribute("oncommand", "SidebarUI.toggle('viewLinkplacesSidebar'); PanelUI.hide();");
+  toolbarbutton.setAttribute("key", SHORTCUT_ID);
+  toolbarbutton.setAttribute("oncommand", `SidebarUI.toggle("${SIDEBAR_BROADCAST_ID}"); PanelUI.hide();`);
 
   const observes = document.createElement("observes");
-  observes.setAttribute("element", "viewLinkplacesSidebar");
+  observes.setAttribute("element", SIDEBAR_BROADCAST_ID);
   observes.setAttribute("attribute", "checked");
 
   const toolbarseparator = document.createElement("toolbarseparator");

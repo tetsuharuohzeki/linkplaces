@@ -9,11 +9,11 @@
 const { Cu, } = require("chrome");
 
 const BUTTON_ID = "linkplaces-menu-button";
-const PANEL_UI_ID = "PanelUI-linkplaces";
 const PLACES_VIEW_ID = "panelMenu_linkplacesMenu";
 
 const { CustomizableUI } = Cu.import("resource:///modules/CustomizableUI.jsm", {});
 const { LinkplacesService } = require("./LinkplacesService.js");
+const { PANEL_UI_ID } = require("./ui/LinkPlacesChromePanel");
 
 let registeredWidget = null;
 function isRegistered() {

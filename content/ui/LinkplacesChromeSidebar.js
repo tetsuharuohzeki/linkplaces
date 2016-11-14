@@ -7,6 +7,8 @@
 "use strict";
 
 const SIDEBAR_BROADCAST_ID = "viewLinkplacesSidebar";
+const SHORTCUT_ID = "linkplaces-key-toggleSidebar";
+
 const BROADCASTER_CONTAINER_ID = "mainBroadcasterSet";
 const MENUBAR_CONTAINER_ID = "viewSidebarMenu";
 const SHORTCUT_CONTAINER_ID = "mainKeyset";
@@ -133,7 +135,7 @@ class LinkplacesChromeSidebar {
     this._shortcut = new ShortcutKey(this._win, {
       subrootId: SHORTCUT_CONTAINER_ID,
       attr: new Map([
-        ["id", "linkplaces-key-toggleSidebar"],
+        ["id", SHORTCUT_ID],
         ["key", parent.service().stringBundle.GetStringFromName("linkplaces.chrome.commandkey")], // eslint-disable-line new-cap,
         ["modifiers", "accel,alt"],
         ["command", SIDEBAR_BROADCAST_ID],
@@ -144,7 +146,7 @@ class LinkplacesChromeSidebar {
       subrootId: MENUBAR_CONTAINER_ID,
       attr: new Map([
         ["id", "linkplaces-menu-sidebar"],
-        ["key", "linkplaces-key-toggleSidebar"],
+        ["key", SHORTCUT_ID],
         ["observes", SIDEBAR_BROADCAST_ID],
       ]),
     });
@@ -182,4 +184,5 @@ class LinkplacesChromeSidebar {
 module.exports = Object.freeze({
   LinkplacesChromeSidebar,
   SIDEBAR_BROADCAST_ID,
+  SHORTCUT_ID,
 });
