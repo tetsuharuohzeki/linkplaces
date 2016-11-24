@@ -60,7 +60,7 @@ class LinkPlacesChromePanel {
     else {
       const node = placesNode;
       const uri = node.uri;
-      const where = this.whereToOpenLink(aEvent, uri);
+      const where = this._service.whereToOpenLink(window.whereToOpenLink, aEvent, uri);
       const service = this._service;
       let result = null;
       if (window.PlacesUtils.nodeIsSeparator(node)) {
@@ -83,27 +83,6 @@ class LinkPlacesChromePanel {
       });
     }
     window.PanelUI.hide();
-  }
-
-  whereToOpenLink(aEvent, aURI) {
-    let rv = "";
-    if (aURI.startsWith("javascript:")) { // eslint-disable-line no-script-url
-      // for bookmarklet
-      rv = "current";
-    }
-    else {
-      const window = this._win;
-      const where = window.whereToOpenLink(aEvent);
-      switch (where) {
-        case "current":
-          rv = this._service.config().openLinkTo();
-          break;
-        default:
-          rv = where;
-          break;
-      }
-    }
-    return rv;
   }
 }
 

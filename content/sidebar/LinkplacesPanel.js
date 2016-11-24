@@ -241,8 +241,9 @@ LinkplacesPanel.prototype = {
 
   openNodeWithEvent: function (aNode, aEvent, aView) {
     const uri = aNode.uri;
-    const where = this.whereToOpenLink(aEvent, uri);
+    const win = this.window;
     const service = this._service;
+    const where = service.whereToOpenLink(win.whereToOpenLink, aEvent, uri);
     let result = null;
     if (PlacesUtils.nodeIsSeparator(aNode)) {
       result = Promise.resolve({ ok: true });
@@ -263,26 +264,6 @@ LinkplacesPanel.prototype = {
         this.window.console.error(result.error);
       }
     });
-  },
-
-  whereToOpenLink: function (aEvent, aURI) {
-    let rv = "";
-    if (aURI.startsWith("javascript:")) { // eslint-disable-line no-script-url
-      // for bookmarklet
-      rv = "current";
-    }
-    else {
-      const where = this.window.whereToOpenLink(aEvent);
-      switch (where) {
-        case "current":
-          rv = this._service.config().openLinkTo();
-          break;
-        default:
-          rv = where;
-          break;
-      }
-    }
-    return rv;
   },
 
   openSelectionInTabs: function(aController, aEvent) {

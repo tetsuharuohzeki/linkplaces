@@ -190,6 +190,33 @@ const LinkplacesService = {
       where,
     });
   },
+
+  /**
+   *  @param  {!function(string): string} aOriginal
+   *    The original `whereToOpenLink()`
+   *  @param  {!Event} aEvent
+   *  @param  {string}  aURI
+   *  @returns  {string}
+   */
+  whereToOpenLink(aOriginal, aEvent, aURI) {
+    let rv = "";
+    if (aURI.startsWith("javascript:")) { // eslint-disable-line no-script-url
+      // for bookmarklet
+      rv = "current";
+    }
+    else {
+      const where = aOriginal(aEvent);
+      switch (where) {
+        case "current":
+          rv = this.config().openLinkTo();
+          break;
+        default:
+          rv = where;
+          break;
+      }
+    }
+    return rv;
+  }
 };
 
 module.exports = Object.freeze({
