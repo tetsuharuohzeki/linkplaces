@@ -22,6 +22,7 @@ const { ChromeDocObserver } = require("./service/ChromeDocObserver.js");
 const { LinkplacesRepository } = require("./service/LinkplacesRepository.js");
 const { StyleLoader } = require("./service/StyleLoader.js");
 const { PrefService } = require("./service/pref.js");
+const { WebExtRTMessageChannel } = require("./service/WebExtRTMessageChannel.js");
 const { LinkplacesChromePlaces } = require("./ui/LinkplacesChromePlaces.js");
 
 /**
@@ -78,7 +79,17 @@ const LinkplacesService = {
     return this._pref;
   },
 
-  init: function () {
+
+  /**
+   *  @param  { { runtime: ? } } browser
+   *  @returns  {void}
+   */
+  init: function (browser) {
+    this._runtime = null;
+    WebExtRTMessageChannel.create(browser).then((rt) => {
+      this._runtime = rt;
+    });
+
     //set user preferences
     this._pref = new PrefService();
     this._chromeDocOpening = new ChromeDocObserver({
@@ -103,9 +114,9 @@ const LinkplacesService = {
     this._chromeDocOpening.destroy();
     this._chromeDocOpening = null;
     this._pref.destroy();
-    this._pref = null;
+    this._runtime.destroy();
+    this._runtime = null;
   },
-
 
   /**
    * Save item to LinkPlaces folder
@@ -162,6 +173,22 @@ const LinkplacesService = {
       LinkplacesRepository.removeItem(aItemId);
       return Promise.resolve();
     }
+  },
+
+  /**
+   *  @param  {string}  url
+   *  @returns  {boolean}
+   */
+  isPrivilegedScheme(url) {
+    // see https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create
+    return /^(chrome|about|data|javascript):/.test(url);
+  },
+
+  openTab(url, where) {
+    return this._runtime.postMessage("linkplaces-open-tab", {
+      url,
+      where,
+    });
   },
 };
 

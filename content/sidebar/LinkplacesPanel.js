@@ -238,13 +238,29 @@ LinkplacesPanel.prototype = {
   },
 
   openNodeWithEvent: function (aNode, aEvent, aView) {
-    const where = this.whereToOpenLink(aEvent, aNode.uri);
-
-    PlacesUIUtils.openNodeIn(aNode, where, aView);
-
-    this.focusSidebarWhenItemsOpened();
-
-    this._service.removeItem(aNode.itemId);
+    const uri = aNode.uri;
+    const where = this.whereToOpenLink(aEvent, uri);
+    const service = this._service;
+    let result = null;
+    if (PlacesUtils.nodeIsSeparator(aNode)) {
+      result = Promise.resolve({ ok: true });
+    }
+    else if (service.isPrivilegedScheme(uri)) {
+      this.window.PlacesUIUtils.openNodeIn(aNode, where, aView);
+      result = Promise.resolve({ ok: true });
+    }
+    else {
+      result = service.openTab(uri, where);
+    }
+    result.then((result) => {
+      if (result.ok) {
+        this.focusSidebarWhenItemsOpened();
+        service.removeItem(aNode.itemId);
+      }
+      else {
+        this.window.console.error(result.error);
+      }
+    });
   },
 
   whereToOpenLink: function (aEvent, aURI) {
