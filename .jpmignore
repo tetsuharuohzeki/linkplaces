@@ -3,7 +3,8 @@
 !/content/**
 !/locale/**
 !/skin/**
-!/webextension/**
+!/webextension/background.js
+!/webextension/manifest.json
 !/chrome.manifest
 !/icon.png
 !/main.js
