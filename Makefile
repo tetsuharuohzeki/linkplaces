@@ -2,12 +2,14 @@ PACKAGE := linkplaces.xpi
 
 .PHONY: lint
 
-all: clean lint xpi
+all: xpi
 
-xpi: lint
+xpi: clean_xpi lint
 	npm run jpm -- xpi
 
-clean:
+clean: clean_xpi
+
+clean_xpi:
 	-rm -rf $(PACKAGE)
 
 lint:
