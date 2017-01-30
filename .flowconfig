@@ -1,0 +1,12 @@
+[ignore]
+.*/__dist/.*
+.*/node_modules/.*
+
+[include]
+
+[libs]
+
+[options]
+
+[version]
+0.38.0

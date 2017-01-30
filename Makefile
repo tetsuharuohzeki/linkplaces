@@ -17,6 +17,7 @@ clean_xpi:
 # build
 xpi: clean_xpi \
      lint \
+     flowcheck \
      chrome.manifest \
      content/ \
      icon.png \
@@ -54,3 +55,6 @@ webextension/: clean_dist
 # Test
 lint:
 	npm test
+
+flowcheck:
+	$(NPM_BIN)/flow check
