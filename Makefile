@@ -26,7 +26,7 @@ xpi: clean_xpi \
      package.json \
      skin/ \
      webextension/
-	npm run jpm -- xpi --dest-dir=$(CURDIR) --addon-dir=$(CURDIR)/__dist
+	$(NPM_BIN)/jpm xpi --dest-dir=$(CURDIR) --addon-dir=$(CURDIR)/__dist
 
 chrome.manifest: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/src/$@ $(CURDIR)/__dist --preserve
@@ -53,8 +53,10 @@ webextension/: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*.{js,json}' $(CURDIR)/__dist/$@ --preserve
 
 # Test
+test: lint flowcheck
+
 lint:
-	npm test
+	$(NPM_BIN)/eslint --ext=js,jsm src/ $(CURDIR)
 
 flowcheck:
 	$(NPM_BIN)/flow check

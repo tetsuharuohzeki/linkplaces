@@ -14,9 +14,7 @@
   "hasEmbeddedWebExtension": true,
   "main": "main.js",
   "scripts": {
-    "lint": "eslint --ext=js,jsm content/ tools/ modules/ src/",
-    "test": "npm run lint",
-    "jpm": "jpm"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
