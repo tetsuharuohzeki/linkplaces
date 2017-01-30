@@ -1,19 +1,28 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
+/* @flow */
 
 "use strict";
 
 /*global browser: false */
 /* eslint-disable no-implicit-globals */
 
-const port = browser.runtime.connect({});
-port.onMessage.addListener((msg) => {
+/*::
+  type IPCMsg<T> = {|
+    id: number;
+    type: string;
+    value: T;
+  |};
+*/
+
+const port = browser.runtime.connect("");
+port.onMessage.addListener((msg /* :IPCMsg<{| where: string; url: string; |}> */) => {
   const { type, id, value } = msg;
   switch (type) {
     case "linkplaces-open-tab": {
       const { url, where } = value;
-      const response = {
+      const response /* :IPCMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null> */ = {
         id,
         type: "linkplaces-open-tab-result",
         value: null,
@@ -45,7 +54,7 @@ port.onMessage.addListener((msg) => {
  *  @returns  {number}
  *    `tabs.Tab.id`. integer.
  */
-async function createTab(url, where) {
+async function createTab(url /* :string */, where /* :string */) /* :Promise<number> */ {
   const tabList = await browser.tabs.query({
     active: true,
     currentWindow: true,
@@ -57,10 +66,14 @@ async function createTab(url, where) {
 
   const currentTab = tabList[0];
   const currentId = currentTab.id;
+  if (currentId === undefined || currentId === null) {
+    throw new TypeError("currentId should not null");
+  }
+
   const option = {
     active: false,
     url,
-    windowId: null,
+    windowId: undefined,
   };
 
   switch (where) {
@@ -81,17 +94,22 @@ async function createTab(url, where) {
   }
 
   const newTab = await browser.tabs.create(option);
-  return newTab.id;
+  const id = newTab.id;
+  if (id === undefined || id === null) {
+    throw new TypeError("id should not null");
+  }
+
+  return id;
 }
 
-async function openInCurrent(tabId, url) {
+async function openInCurrent(tabId /* :number */, url /* :string */) /*: Promise<number> */ {
   browser.tabs.update(tabId, {
     url,
   });
   return tabId;
 }
 
-async function openInNewWindow(url) {
+async function openInNewWindow(url /* :string */) /* :Promise<number> */ {
   const current = await browser.windows.getCurrent({
     windowTypes: ["normal"],
   });
@@ -104,6 +122,20 @@ async function openInNewWindow(url) {
     state: "normal",
     incognito: current.incognito,
   });
-  const tab = window.tabs[0];
-  return tab.id;
+  const tabs /* :?Array<webext$tabs$Tab> */ = window.tabs;
+  if (!tabs) {
+    throw new TypeError("window.tabs should not be null");
+  }
+
+  const tab = tabs[0];
+  if (!tab) {
+    throw new TypeError("window.tabs[0] would be the current tab");
+  }
+
+  const id = tab.id;
+  if (id === undefined || id === null) {
+    throw new TypeError("id should not null");
+  }
+
+  return id;
 }
