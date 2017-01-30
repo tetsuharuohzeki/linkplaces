@@ -1,6 +1,9 @@
 # distribited package
 linkplaces.xpi
 
+## generated files
+__dist/
+
 # npm
 node_modules/
 npm-debug.log
