@@ -13,32 +13,32 @@ clean_dist:
 	$(NPM_BIN)/del $(CURDIR)/__dist --force
 
 clean_xpi:
-	-$(NPM_BIN)/del $(PACKAGE)
+	$(NPM_BIN)/del $(PACKAGE)
 
 # build
 xpi: clean_xpi \
      lint \
      flowcheck \
      chrome.manifest \
-     content/ \
+     content \
      icon.png \
-     locale/ \
+     locale \
      main.js \
      package.json \
-     skin/ \
-     webextension/
+     skin \
+     webextension
 	$(NPM_BIN)/jpm xpi --dest-dir=$(CURDIR) --addon-dir=$(CURDIR)/__dist
 
 chrome.manifest: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/src/$@ $(CURDIR)/__dist --preserve
 
-content/: clean_dist
+content: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*' $(CURDIR)/__dist/$@ --preserve
 
 icon.png: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/$@ $(CURDIR)/__dist --preserve
 
-locale/: clean_dist
+locale: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*' $(CURDIR)/__dist/$@ --preserve
 
 main.js: clean_dist
@@ -47,10 +47,10 @@ main.js: clean_dist
 package.json: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/$@ $(CURDIR)/__dist --preserve
 
-skin/: clean_dist
+skin: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*' $(CURDIR)/__dist/$@ --preserve
 
-webextension/: clean_dist
+webextension: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*.{js,json}' $(CURDIR)/__dist/$@ --preserve
 
 # Test
