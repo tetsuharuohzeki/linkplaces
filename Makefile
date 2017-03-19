@@ -1,5 +1,6 @@
 PACKAGE := linkplaces.xpi
-NPM_BIN := ./node_modules/.bin
+NODE_MOD := $(CURDIR)/node_modules
+NPM_BIN := $(NODE_MOD)/.bin
 
 .PHONY: lint
 
