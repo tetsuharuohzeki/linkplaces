@@ -5,7 +5,7 @@
 
 "use strict";
 
-/*global browser: false */
+/*global browser: false, console: false */
 /* eslint-disable no-implicit-globals */
 
 /*::
@@ -22,31 +22,45 @@ port.onMessage.addListener((msg /* :IPCMsg<{| where: string; url: string; |}> */
   switch (type) {
     case "linkplaces-open-tab": {
       const { url, where } = value;
-      const response /* :IPCMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null> */ = {
-        id,
-        type: "linkplaces-open-tab-result",
-        value: null,
-      };
-      const creating = createTab(url, where);
-      creating.then((tabId) => {
-        response.value = {
-          ok: true,
-          tabId: tabId,
-          error: null,
-        };
+      onMessageCreateTab(id, url, where).then((response) => {
         port.postMessage(response);
-      }, (e) => {
-        response.value = {
-          ok: false,
-          tabId: null,
-          error: e.message,
-        };
-        port.postMessage(response);
-      });
+      }, (err) => console.error(err));
       break;
     }
   }
 });
+
+/**
+ *  @param  {number}  msgId
+ *  @param  {string}  url
+ *  @param  {string}  where
+ *  @returns  {!Promise<{ ok: boolean, tabId: ?number, error: ?string, }>}
+ */
+async function onMessageCreateTab(msgId /* :number */, url /* :string */, where /* :string */) /* :Promise<IPCMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null>> */ {
+  const response /* :IPCMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null> */ = {
+    id: msgId,
+    type: "linkplaces-open-tab-result",
+    value: null,
+  };
+
+  try {
+    const tabId = await createTab(url, where);
+    response.value = {
+      ok: true,
+      tabId: tabId,
+      error: null,
+    };
+  }
+  catch (e) {
+    response.value = {
+      ok: false,
+      tabId: null,
+      error: e.message,
+    };
+  }
+
+  return response;
+}
 
 /**
  *  @param  {string}  url
