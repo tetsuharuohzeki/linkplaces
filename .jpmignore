@@ -4,8 +4,7 @@
 !/content/**
 !/locale/**
 !/skin/**
-!/webextension/background.js
-!/webextension/manifest.json
+!/webextension/**
 !/chrome.manifest
 !/icon.png
 !/main.js

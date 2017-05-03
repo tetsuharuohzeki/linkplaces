@@ -7,7 +7,7 @@
   ],
   "background": {
     "scripts": [
-      "background.js"
+      "bundled_background.js"
     ]
   }
 }

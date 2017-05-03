@@ -51,7 +51,8 @@ skin: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*' $(CURDIR)/__dist/$@ --preserve
 
 webextension: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*.{js,json}' $(CURDIR)/__dist/$@ --preserve
+	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*.json' $(CURDIR)/__dist/$@ --preserve
+	$(NPM_BIN)/rollup $(CURDIR)/src/$@/background/index.js --format iife --output $(CURDIR)/__dist/$@/bundled_background.js
 
 # Test
 test: lint flowcheck
