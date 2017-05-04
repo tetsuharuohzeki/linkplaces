@@ -3,6 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 /* @flow */
 
+import { BrowserMessagePort } from "./BrowserMessagePort";
 import { createTab } from "./TabOpener";
 
 /*global browser: false, console: false */
@@ -16,16 +17,19 @@ import { createTab } from "./TabOpener";
   |};
 */
 
-const port = browser.runtime.connect("");
-port.onMessage.addListener((msg /* :IPCMsg<{| where: string; url: string; |}> */) => {
+BrowserMessagePort.create(browser, async (msg /* :IPCMsg<{| where: string; url: string; |}> */,
+                                          sender /* :webext$runtime$MessageSender & webext$runtime$Port */) => {
   const { type, id, value } = msg;
   switch (type) {
     case "linkplaces-open-tab": {
       const { url, where } = value;
-      onMessageCreateTab(id, url, where).then((response) => {
-        port.postMessage(response);
-      }, (err) => console.error(err));
-      break;
+      try {
+        const res = await onMessageCreateTab(id, url, where);
+        sender.postMessage(res);
+      }
+      catch (e) {
+        console.error(e);
+      }
     }
   }
 });

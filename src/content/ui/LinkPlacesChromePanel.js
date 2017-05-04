@@ -80,7 +80,7 @@ class LinkPlacesChromePanel {
         else {
           this.window.console.error(result.error);
         }
-      });
+      }).catch(this.window.console.error);
     }
     window.PanelUI.hide();
   }
