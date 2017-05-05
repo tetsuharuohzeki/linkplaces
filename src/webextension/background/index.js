@@ -4,24 +4,21 @@
 /* @flow */
 
 import { BrowserMessagePort } from "./BrowserMessagePort";
+import { MSG_TYPE_OPEN_URL, MSG_TYPE_OPEN_URL_RESULT } from "./IpcMsg";
 import { createTab } from "./TabOpener";
 
 /*global browser: false, console: false */
 /* eslint-disable no-implicit-globals */
 
 /*::
-  type IPCMsg<T> = {|
-    id: number;
-    type: string;
-    value: T;
-  |};
+  import type { IpcMsg, OpenUrlMsg } from "./IpcMsg";
 */
 
-BrowserMessagePort.create(browser, async (msg /* :IPCMsg<{| where: string; url: string; |}> */,
+BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: string; |}> */,
                                           sender /* :webext$runtime$MessageSender & webext$runtime$Port */) => {
   const { type, id, value } = msg;
   switch (type) {
-    case "linkplaces-open-tab": {
+    case MSG_TYPE_OPEN_URL: {
       const { url, where } = value;
       try {
         const res = await onMessageCreateTab(id, url, where);
@@ -40,28 +37,30 @@ BrowserMessagePort.create(browser, async (msg /* :IPCMsg<{| where: string; url: 
  *  @param  {string}  where
  *  @returns  {!Promise<{ ok: boolean, tabId: ?number, error: ?string, }>}
  */
-async function onMessageCreateTab(msgId /* :number */, url /* :string */, where /* :string */) /* :Promise<IPCMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null>> */ {
-  const response /* :IPCMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null> */ = {
-    id: msgId,
-    type: "linkplaces-open-tab-result",
-    value: null,
-  };
+async function onMessageCreateTab(msgId /* :number */, url /* :string */, where /* :string */) /* :Promise<IpcMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null>> */ {
+  let value; // eslint-disable-line init-declarations
 
   try {
     const tabId = await createTab(url, where);
-    response.value = {
+    value = {
       ok: true,
       tabId: tabId,
       error: null,
     };
   }
   catch (e) {
-    response.value = {
+    value = {
       ok: false,
       tabId: null,
       error: e.message,
     };
   }
+
+  const response = {
+    id: msgId,
+    type: MSG_TYPE_OPEN_URL_RESULT,
+    value,
+  };
 
   return response;
 }

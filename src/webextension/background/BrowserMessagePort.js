@@ -5,25 +5,18 @@
 /* @flow */
 
 /*::
-  type IPCMsg<T> = {|
-    id: number;
-    type: string;
-    value: T;
-  |};
+  import type { IpcMsg } from "./IpcMsg";
+*/
 
-  type ListenerFn<R1, R2> = (msg: IPCMsg<{| where: string; url: string; |}>,
+/*::
+  type ListenerFn<R1, R2> = (msg: IpcMsg<{| where: string; url: string; |}>,
                              sender: webext$runtime$MessageSender,
                              sendResponse: (res: R1) => void) => (boolean | Promise<R2>);
 */
 
 export class BrowserMessagePort {
 
-  /**
-   *  @param  {?} browser
-   *  @param  {Function}  listener
-   *  @return   {BrowserMessagePort}
-   */
-  static create(browser /* :any */, listener /* :ListenerFn<any, any> */) /* :BrowserMessagePort */ {
+  static create(browser /* :typeof browser */, listener /* :ListenerFn<any, any> */) /* :BrowserMessagePort */ {
     const r = new BrowserMessagePort(browser.runtime, listener);
     return r;
   }
