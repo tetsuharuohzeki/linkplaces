@@ -50,12 +50,6 @@ BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: 
   }
 });
 
-/**
- *  @param  {number}  msgId
- *  @param  {string}  url
- *  @param  {string}  where
- *  @returns  {!Promise<{ ok: boolean, tabId: ?number, error: ?string, }>}
- */
 async function onMessageCreateTab(msgId /* :number */, url /* :string */, where /* :string */) /* :Promise<IpcMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null>> */ {
   let value; // eslint-disable-line init-declarations
 
