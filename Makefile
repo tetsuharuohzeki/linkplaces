@@ -68,3 +68,6 @@ lint:
 
 flowcheck:
 	$(NPM_BIN)/flow check
+
+tscheck:
+	$(NPM_BIN)/tsc -p ./tsconfig.json --noEmit --allowJs
