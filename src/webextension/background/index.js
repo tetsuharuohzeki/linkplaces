@@ -4,7 +4,12 @@
 /* @flow */
 
 import { BrowserMessagePort } from "./BrowserMessagePort";
-import { MSG_TYPE_OPEN_URL, MSG_TYPE_OPEN_URL_RESULT } from "./IpcMsg";
+import {
+  MSG_TYPE_OPEN_URL,
+  MSG_TYPE_OPEN_URL_RESULT,
+  MSG_TYPE_ENABLE_WEBEXT_CTXMENU,
+  MSG_TYPE_DISABLE_WEBEXT_CTXMENU,
+} from "./IpcMsg";
 import { createTab } from "./TabOpener";
 
 /*global browser: false, console: false */
@@ -27,7 +32,18 @@ BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: 
       catch (e) {
         console.error(e);
       }
+      break;
     }
+    case MSG_TYPE_ENABLE_WEBEXT_CTXMENU:
+      sender.postMessage({
+        id,
+      });
+      break;
+    case MSG_TYPE_DISABLE_WEBEXT_CTXMENU:
+      sender.postMessage({
+        id,
+      });
+      break;
   }
 });
 

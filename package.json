@@ -78,6 +78,13 @@
       "description": "Use the same backend with `browser.places.useAsyncTransactions`.",
       "value": false,
       "hidden": true
+    },
+    {
+      "type": "bool",
+      "name": "useWebExtContextMenu",
+      "title": "Use context menus provided by Web Extensions",
+      "description": "Whether to use context menus construced with Web Extensions API",
+      "value": false
     }
   ]
 }

@@ -18,6 +18,7 @@ class PrefTable {
     this._openLinkToWhere = "tab";
     this.focusSidebarWhenOpenItems = false;
     this.useAsyncTransactions = false;
+    this.useWebExtContextMenu = false;
     Object.seal(this);
   }
 
@@ -54,12 +55,19 @@ class PrefService {
       Ci.nsISupportsWeakReference,
       Ci.nsISupports,
     ]);
+
+    this._listenerSet = new Set();
+
     Object.seal(this);
     this._init();
   }
 
   destroy() {
     this._prefBranch.removeObserver("", this);
+
+    this._listenerSet.clear();
+    this._listenerSet = null;
+
     this.QueryInterface = null;
     this._table = null;
     this._prefBranch = null;
@@ -89,6 +97,10 @@ class PrefService {
     return this._table.useAsyncTransactions;
   }
 
+  useWebExtContextMenu() {
+    return this._table.useWebExtContextMenu;
+  }
+
   _init() {
     this._prefBranch.addObserver("", this, true);
     const allPref = this._prefBranch.getChildList("", {});
@@ -115,6 +127,19 @@ class PrefService {
         table.useAsyncTransactions = value;
         break;
       }
+      case "useWebExtContextMenu": {
+        const value = this._prefBranch.getBoolPref(aData);
+        table.useWebExtContextMenu = value;
+        break;
+      }
+    }
+
+    this._callListeners(aData, table);
+  }
+
+  _callListeners(aName, aTable) {
+    for (const listener of this._listenerSet) {
+      listener(aName, aTable);
     }
   }
 
@@ -135,6 +160,14 @@ class PrefService {
         this._prefObserve(aData);
         break;
     }
+  }
+
+  addListener(aListener) {
+    this._listenerSet.add(aListener);
+  }
+
+  removeListener(aListener) {
+    this._listenerSet.delete(aListener);
   }
 }
 

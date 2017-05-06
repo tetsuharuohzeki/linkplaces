@@ -88,6 +88,13 @@ const LinkplacesService = {
     this._runtime = null;
     WebExtRTMessageChannel.create(browser).then((rt) => {
       this._runtime = rt;
+
+      if (this._pref.PREF.useWebExtContextMenu) {
+        this._runtime.postMessage("linkplaces-enable-webext-ctxmenu", {});
+      }
+      else {
+        this._runtime.postMessage("linkplaces-disable-webext-ctxmenu", {});
+      }
     });
 
     //set user preferences
@@ -106,9 +113,23 @@ const LinkplacesService = {
       },
     });
     this._styleService = StyleLoader.create();
+
+    this._prefListener = (name, table) => {
+      if (name === "useWebExtContextMenu") {
+        if (table.useWebExtContextMenu) {
+          this._runtime.postMessage("linkplaces-enable-webext-ctxmenu", {});
+        }
+        else {
+          this._runtime.postMessage("linkplaces-disable-webext-ctxmenu", {});
+        }
+      }
+    };
+    this._pref.addListener(this._prefListener);
   },
 
   destroy: function () {
+    this._pref.removeListener(this._prefListener);
+    this._prefListener = null;
     this._styleService.destroy();
     this._styleService = null;
     this._chromeDocOpening.destroy();
