@@ -1,6 +1,7 @@
 .*
 *
 !/__dist/**
+!/__obj/**
 !/content/**
 !/locale/**
 !/skin/**

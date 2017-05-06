@@ -3,6 +3,7 @@ linkplaces.xpi
 
 ## generated files
 __dist/
+__obj/
 
 # npm
 node_modules/
