@@ -37,15 +37,9 @@ BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: 
     }
     case MSG_TYPE_ENABLE_WEBEXT_CTXMENU:
       createContextMenu();
-      sender.postMessage({
-        id,
-      });
       break;
     case MSG_TYPE_DISABLE_WEBEXT_CTXMENU:
       await removeContextMenu();
-      sender.postMessage({
-        id,
-      });
       break;
   }
 });

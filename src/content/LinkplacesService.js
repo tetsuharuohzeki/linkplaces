@@ -90,10 +90,10 @@ const LinkplacesService = {
       this._runtime = rt;
 
       if (this._pref.PREF.useWebExtContextMenu) {
-        this._runtime.postMessage("linkplaces-enable-webext-ctxmenu", {});
+        this._runtime.postOneShotMessage("linkplaces-enable-webext-ctxmenu", {});
       }
       else {
-        this._runtime.postMessage("linkplaces-disable-webext-ctxmenu", {});
+        this._runtime.postOneShotMessage("linkplaces-disable-webext-ctxmenu", {});
       }
     });
 

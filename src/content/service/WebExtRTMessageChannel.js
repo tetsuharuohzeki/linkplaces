@@ -90,6 +90,26 @@ class WebExtRTMessageChannel {
   }
 
   /**
+   *  @template T, R
+   *  @param  {string}  type
+   *  @param  {T} value
+   *  @returns  {void}
+   */
+  postOneShotMessage(type, value) {
+    const message = {
+      type,
+      value,
+    };
+
+    const port = this._port;
+    if (!port) {
+      throw new TypeError("`this._port` is null");
+    }
+
+    port.postMessage(message);
+  }
+
+  /**
    *  @template T
    *  @param  { { id: number, type: string, value: T, } }  msg
    *  @returns  {void}
