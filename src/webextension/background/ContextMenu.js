@@ -2,6 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 /* @flow */
+
+import { createBookmarkItem } from "./Bookmark";
+
 /*global browser: false, console:false */
 
 const CTXMENU_ID_TAB_SAVE_TAB = "linkplaces-ctx-tab-save-tab";
@@ -45,18 +48,39 @@ export function removeContextMenu() {
 
 function onClicked(info /* :webext$contextMenusInternal$OnClickData */, tab /* :?webext$tabs$Tab */) {
   switch (info.menuItemId) {
-    case CTXMENU_ID_TAB_SAVE_TAB:
+    case CTXMENU_ID_TAB_SAVE_TAB: {
       if (!tab) {
         throw new TypeError();
       }
-      console.log(tab.url);
+
+      const { title, url } = tab;
+      if (typeof title !== "string" || typeof url !== "string") {
+        throw new TypeError();
+      }
+      createBookmarkItem(url, title).catch(console.error);
       break;
-    case CTXMENU_ID_CONTENT_SAVE_TAB:
-      console.log(info.pageUrl);
+    }
+    case CTXMENU_ID_CONTENT_SAVE_TAB: {
+      const url = info.pageUrl;
+      if (typeof url !== "string") {
+        throw new TypeError();
+      }
+
+      const title /* :string */ = ( (!!tab) && (typeof tab.title === "string") ) ? tab.title : url;
+      createBookmarkItem(url, title).catch(console.error);
       break;
-    case CTXMENU_ID_LINK_SAVE_LINK:
-      console.log(info.linkUrl);
+    }
+    case CTXMENU_ID_LINK_SAVE_LINK: {
+      const url = info.linkUrl;
+      if (typeof url !== "string") {
+        throw new TypeError();
+      }
+      // `OnClickData` does not have a property containing the link title.
+      // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus/OnClickData
+      // So we'll skip it.
+      createBookmarkItem(url, url).catch(console.error);
       break;
+    }
     default:
       throw new RangeError("unexpected `info.menuItemId`");
   }
