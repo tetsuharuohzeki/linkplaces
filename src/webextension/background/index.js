@@ -4,6 +4,7 @@
 /* @flow */
 
 import { BrowserMessagePort } from "./BrowserMessagePort";
+import { createContextMenu, removeContextMenu } from "./ContextMenu";
 import {
   MSG_TYPE_OPEN_URL,
   MSG_TYPE_OPEN_URL_RESULT,
@@ -35,11 +36,13 @@ BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: 
       break;
     }
     case MSG_TYPE_ENABLE_WEBEXT_CTXMENU:
+      createContextMenu();
       sender.postMessage({
         id,
       });
       break;
     case MSG_TYPE_DISABLE_WEBEXT_CTXMENU:
+      await removeContextMenu();
       sender.postMessage({
         id,
       });

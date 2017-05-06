@@ -3,6 +3,7 @@
   "name": "LinkPlaces",
   "version": "0.0.1",
   "permissions": [
+    "contextMenus",
     "tabs"
   ],
   "background": {
