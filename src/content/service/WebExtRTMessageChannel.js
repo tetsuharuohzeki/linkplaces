@@ -24,6 +24,7 @@ class WebExtRTMessageChannel {
   _port: webext$runtime$Port | null;
   _callback: Map<number, PromiseTuple>;
   _callbackId: number;
+  _listeners: Set<{| onWebExtMessage: (type: string, value: any) => void |}>;
 */
 
   constructor(browser /* :{| runtime: webext$runtime$runtime |} */) {
@@ -32,6 +33,8 @@ class WebExtRTMessageChannel {
     this._callback = new Map();
     this._callbackId = 0;
 
+    this._listeners = new Set();
+
     Object.seal(this);
     this._init();
   }
@@ -39,6 +42,7 @@ class WebExtRTMessageChannel {
   destroy() {
     this._finalize();
 
+    //this._listeners = null; // XXX: we think this need not because this is a builtin object.
     // this._callback = null; // XXX: we think this need not because this is a builtin object.
     this._runtime = null;
     this._port = null;
@@ -60,6 +64,7 @@ class WebExtRTMessageChannel {
 
   _finalize() {
     this._callback.clear();
+    this._listeners.clear();
   }
 
   /**
@@ -115,9 +120,13 @@ class WebExtRTMessageChannel {
    *  @returns  {void}
    */
   _onPortMessage(msg) {
-    const callbackMap = this._callback;
+    const { id, value, isRequest, } = msg;
+    if (isRequest !== undefined && isRequest === true) {
+      this._callListeners(msg);
+      return;
+    }
 
-    const { id, value, } = msg;
+    const callbackMap = this._callback;
     const tuple = callbackMap.get(id);
     if (!tuple) {
       throw new TypeError("no promise resolver");
@@ -131,6 +140,24 @@ class WebExtRTMessageChannel {
     if (callbackMap.size === 0) {
       this._callbackId = 0;
     }
+  }
+
+  _callListeners(msg) {
+    const { type, value, } = msg;
+    for (const listener of this._listeners) {
+      listener.onWebExtMessage(type, value);
+    }
+  }
+
+  addListener(listener /* :{| onWebExtMessage: (type: string, value: any) => void |} */) {
+    if ( !("onWebExtMessage" in listener) ) {
+      throw new TypeError();
+    }
+    this._listeners.add(listener);
+  }
+
+  removeListener(listener /* :{| onWebExtMessage: (type: string, value: any) => void |} */) {
+    this._listeners.delete(listener);
   }
 }
 

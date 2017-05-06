@@ -45,4 +45,19 @@ export class BrowserMessagePort {
     this._listener = null;
     this._port = null;
   }
+
+  postOneShotMessage(type /* :string */, value /* :any */) {
+    const message = {
+      type,
+      value,
+      isRequest: true,
+    };
+
+    const port = this._port;
+    if (!port) {
+      throw new TypeError("`this._port` is null");
+    }
+
+    port.postMessage(message);
+  }
 }
