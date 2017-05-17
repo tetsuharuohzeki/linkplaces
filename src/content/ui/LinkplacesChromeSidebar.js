@@ -137,10 +137,7 @@ class HeaderSwitcher {
     dom.appendChild(observes);
 
     const container = win.document.getElementById(subrootId);
-    win.console.dir(container);
-    win.console.log("querySelector" in container);
     const ip = container.querySelector(insertionPoint);
-    win.console.dir(ip);
     container.insertBefore(dom, ip.nextSibling);
   }
 
