@@ -12,6 +12,7 @@ const SHORTCUT_ID = "linkplaces-key-toggleSidebar";
 const BROADCASTER_CONTAINER_ID = "mainBroadcasterSet";
 const MENUBAR_CONTAINER_ID = "viewSidebarMenu";
 const SHORTCUT_CONTAINER_ID = "mainKeyset";
+const SIDEBAR_HEADER_SWITCH_CONTAINER_ID = "sidebarMenu-popup";
 
 class ShortcutKey {
   constructor(win, param) {
@@ -106,6 +107,48 @@ class Broadcaster {
   }
 }
 
+class HeaderSwitcher {
+
+  constructor(win, param) {
+    this._win = win;
+    this._dom = null;
+
+    Object.seal(this);
+    this._init(win, param);
+  }
+
+  destroy() {
+    this._finalize();
+
+    this._dom = null;
+    this._win = null;
+  }
+
+  _init(win, { subrootId, insertionPoint, attr, }) {
+    const dom = win.document.createElement("toolbarbutton");
+    for (let [name, value] of attr.entries()) { // eslint-disable-line prefer-const
+      dom.setAttribute(name, value);
+    }
+    this._dom = dom;
+
+    const observes = win.document.createElement("observes");
+    observes.setAttribute("element", SIDEBAR_BROADCAST_ID);
+    observes.setAttribute("attribute", "checked");
+    dom.appendChild(observes);
+
+    const container = win.document.getElementById(subrootId);
+    win.console.dir(container);
+    win.console.log("querySelector" in container);
+    const ip = container.querySelector(insertionPoint);
+    win.console.dir(ip);
+    container.insertBefore(dom, ip.nextSibling);
+  }
+
+  _finalize() {
+    this._dom.parentNode.removeChild(this._dom);
+  }
+}
+
 class LinkplacesChromeSidebar {
 
   constructor(win, parent) {
@@ -114,6 +157,7 @@ class LinkplacesChromeSidebar {
     this._shortcut = null;
     this._menubar = null;
     this._broadcaster = null;
+    this._headerSwitcher = null;
 
     Object.seal(this);
     this._init();
@@ -122,6 +166,7 @@ class LinkplacesChromeSidebar {
   destroy() {
     this._finalize();
 
+    this._headerSwitcher = null;
     this._broadcaster = null;
     this._menubar = null;
     this._shortcut = null;
@@ -166,6 +211,19 @@ class LinkplacesChromeSidebar {
         ["oncommand", `SidebarUI.toggle("${SIDEBAR_BROADCAST_ID}")`],
       ]),
     });
+
+    this._headerSwitcher = new HeaderSwitcher(this._win, {
+      subrootId: SIDEBAR_HEADER_SWITCH_CONTAINER_ID,
+      insertionPoint: "#sidebar-switcher-tabs",
+      attr: new Map([
+        ["id", "sidebar-switcher-linkplaces"],
+        ["label", parent.service().stringBundle.GetStringFromName("linkplaces.chrome.sidebar.title")], // eslint-disable-line new-cap,
+        ["class", "subviewbutton subviewbutton-iconic"],
+        ["key", SHORTCUT_ID],
+        ["observes", SIDEBAR_BROADCAST_ID],
+        ["oncommand", `SidebarUI.show('${SIDEBAR_BROADCAST_ID}')`],
+      ]),
+    });
   }
 
   _finalize() {
@@ -178,6 +236,7 @@ class LinkplacesChromeSidebar {
     this._shortcut.destroy();
     this._menubar.destroy();
     this._broadcaster.destroy();
+    this._headerSwitcher.destroy();
   }
 }
 

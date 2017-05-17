@@ -31,3 +31,10 @@ toolbarpaletteitem[place="palette"] > #linkplaces-menu-button {
 #panelMenu_linkplacesMenu > .bookmark-item {
   max-width: none;
 }
+
+#sidebar-switcher-linkplaces > .toolbarbutton-icon,
+#sidebar-box[sidebarcommand="viewLinkplacesSidebar"] #sidebar-icon {
+  -moz-context-properties: fill;
+  fill: var(--icon-fill);
+  list-style-image: url("chrome://linkplaces/skin/button-toolbar.png");
+}

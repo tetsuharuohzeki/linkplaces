@@ -45,3 +45,10 @@ toolbarpaletteitem[place="palette"] > #linkplaces-menu-button {
 #linkplaces-menu-button:-moz-lwtheme-brighttext {
   list-style-image: url("chrome://linkplaces/skin/button-toolbar-inverted.png");
 }
+
+#sidebar-switcher-linkplaces > .toolbarbutton-icon,
+#sidebar-box[sidebarcommand="viewLinkplacesSidebar"] #sidebar-icon {
+  -moz-context-properties: fill;
+  fill: var(--icon-fill);
+  list-style-image: url("chrome://linkplaces/skin/button-toolbar.png");
+}
