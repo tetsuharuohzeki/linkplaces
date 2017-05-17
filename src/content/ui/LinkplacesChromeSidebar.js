@@ -138,7 +138,7 @@ class HeaderSwitcher {
 
     const container = win.document.getElementById(subrootId);
     const ip = container.querySelector(insertionPoint);
-    container.insertBefore(dom, ip.nextSibling);
+    container.insertBefore(dom, ip);
   }
 
   _finalize() {
@@ -211,7 +211,7 @@ class LinkplacesChromeSidebar {
 
     this._headerSwitcher = new HeaderSwitcher(this._win, {
       subrootId: SIDEBAR_HEADER_SWITCH_CONTAINER_ID,
-      insertionPoint: "#sidebar-switcher-tabs",
+      insertionPoint: "toolbarseparator",
       attr: new Map([
         ["id", "sidebar-switcher-linkplaces"],
         ["label", parent.service().stringBundle.GetStringFromName("linkplaces.chrome.sidebar.title")], // eslint-disable-line new-cap,
