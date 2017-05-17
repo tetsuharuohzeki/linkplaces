@@ -6,6 +6,10 @@
   list-style-image: url("chrome://linkplaces/skin/button-toolbar.png");
 }
 
+toolbar[brighttext] #linkplaces-menu-button {
+  list-style-image: url("chrome://linkplaces/skin/button-toolbar-inverted.png");
+}
+
 #linkplaces-menu-button[cui-areatype="menu-panel"],
 toolbarpaletteitem[place="palette"] > #linkplaces-menu-button {
   list-style-image: url("chrome://linkplaces/skin/button-panel.png");
@@ -27,16 +31,6 @@ toolbarpaletteitem[place="palette"] > #linkplaces-menu-button {
 /* extend places menu item's width */
 #panelMenu_linkplacesMenu > .bookmark-item {
   max-width: none;
-}
-
-
-/* ::: browser/themes/winstripe/browser-aero.css @161~@164 */
-:-moz-any(#toolbar-menubar, #nav-bar[tabsontop=false]) #linkplaces-menu-button  > .toolbarbutton-icon:not(:-moz-lwtheme),
-#TabsToolbar[tabsontop=true] #linkplaces-menu-button > .toolbarbutton-icon:not(:-moz-lwtheme),
-#nav-bar + #customToolbars + #PersonalToolbar[collapsed=true] + #TabsToolbar[tabsontop=false]:last-child #linkplaces-menu-button > .toolbarbutton-icon:not(:-moz-lwtheme),
-/* ::: browser/themes/winstripe/browser.css @661 */
-#linkplaces-menu-button:-moz-lwtheme-brighttext {
-  list-style-image: url("chrome://linkplaces/skin/button-toolbar-inverted.png");
 }
 
 #sidebar-switcher-linkplaces > .toolbarbutton-icon,

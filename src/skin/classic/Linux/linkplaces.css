@@ -6,6 +6,10 @@
   list-style-image: url("chrome://linkplaces/skin/button-toolbar.png");
 }
 
+toolbar[brighttext] #linkplaces-menu-button {
+  list-style-image: url("chrome://linkplaces/skin/button-toolbar-inverted.png");
+}
+
 #linkplaces-menu-button[cui-areatype="menu-panel"],
 toolbarpaletteitem[place="palette"] > #linkplaces-menu-button {
   list-style-image: url("chrome://linkplaces/skin/button-panel.png");
