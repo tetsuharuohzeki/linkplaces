@@ -2,28 +2,34 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+:root {
+  --linkplaces-toolbar-icon: url("chrome://linkplaces/skin/toolbaricon.svg");
+}
+
 #linkplaces-menu-button {
-  list-style-image: url("chrome://linkplaces/skin/button-toolbar.png");
+  -moz-context-properties: fill;
+  fill: var(--toolbarbutton-icon-fill);
+  list-style-image: var(--linkplaces-toolbar-icon);
 }
 
 toolbar[brighttext] #linkplaces-menu-button {
-  list-style-image: url("chrome://linkplaces/skin/button-toolbar-inverted.png");
+  fill: var(--toolbarbutton-icon-fill-inverted);
 }
 
 #linkplaces-menu-button[cui-areatype="menu-panel"],
 toolbarpaletteitem[place="palette"] > #linkplaces-menu-button {
-  list-style-image: url("chrome://linkplaces/skin/button-panel.png");
+  list-style-image: var(--linkplaces-toolbar-icon);
 }
 
 /*
 @media (min-resolution: 2dppx) {
   #linkplaces-menu-button {
-    list-style-image: url("chrome://linkplaces/skin/button-toolbar@2x.png");
+    list-style-image: var(--linkplaces-toolbar-icon);
   }
 
   #linkplaces-menu-button[cui-areatype="menu-panel"],
   toolbarpaletteitem[place="palette"] > #linkplaces-menu-button {
-    list-style-image: url("chrome://linkplaces/skin/button-panel@2x.png");
+    list-style-image: var(--linkplaces-toolbar-icon);
   }
 }
 */
@@ -37,5 +43,5 @@ toolbarpaletteitem[place="palette"] > #linkplaces-menu-button {
 #sidebar-box[sidebarcommand="viewLinkplacesSidebar"] #sidebar-icon {
   -moz-context-properties: fill;
   fill: var(--icon-fill);
-  list-style-image: url("chrome://linkplaces/skin/button-toolbar.png");
+  list-style-image: var(--linkplaces-toolbar-icon);
 }
