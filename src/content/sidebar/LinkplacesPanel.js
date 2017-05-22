@@ -15,24 +15,25 @@ const Cu = Components.utils;
 const { PlacesUtils } = Cu.import("resource://gre/modules/PlacesUtils.jsm", {});
 const { PlacesUIUtils } = Cu.import("resource:///modules/PlacesUIUtils.jsm", {});
 
-/**
- *  @constructor
- *  @param  {XulWindow} aWindow
- */
-function LinkplacesPanel(aWindow) { // eslint-disable-line no-implicit-globals
-  this.window = aWindow;
-  this.treeView = null;
-  this.ctxMenu = null;
-  this.placesController = null;
-  this._service = aWindow.top.gLinkplacesBrowserUI.service();
+class LinkplacesPanel {
 
-  Object.seal(this);
+  /**
+   *  @constructor
+   *  @param  {XulWindow} aWindow
+   */
+  constructor(aWindow) {
+    this.window = aWindow;
+    this.treeView = null;
+    this.ctxMenu = null;
+    this.placesController = null;
+    this._service = aWindow.top.gLinkplacesBrowserUI.service();
 
-  aWindow.addEventListener("load", this, false);
-}
-LinkplacesPanel.prototype = {
+    Object.seal(this);
 
-  handleEvent: function (aEvent) {
+    aWindow.addEventListener("load", this, false);
+  }
+
+  handleEvent(aEvent) {
     switch (aEvent.type) {
       case "load":
         this.onLoad();
@@ -56,9 +57,9 @@ LinkplacesPanel.prototype = {
         this.setMouseoverURL("");
         break;
     }
-  },
+  }
 
-  onLoad: function () {
+  onLoad() {
     const window = this.window;
     window.removeEventListener("load", this, false);
 
@@ -70,9 +71,9 @@ LinkplacesPanel.prototype = {
 
     window.addEventListener("unload", this, false);
     window.addEventListener("SidebarFocused", this, false);
-  },
+  }
 
-  onUnLoad: function() {
+  onUnLoad() {
     this.window.removeEventListener("unload", this, false);
     this.window.removeEventListener("SidebarFocused", this, false);
 
@@ -84,13 +85,13 @@ LinkplacesPanel.prototype = {
     this.ctxMenu = null;
     this.placesController = null;
     this.treeView = null;
-  },
+  }
 
-  onSidebarFocused: function () {
+  onSidebarFocused() {
     this.treeView.focus();
-  },
+  }
 
-  initPlacesView: function() {
+  initPlacesView() {
     const window = this.window;
 
     const treeView = window.document.getElementById("linkplaces-view");
@@ -105,9 +106,9 @@ LinkplacesPanel.prototype = {
     treeView.addEventListener("mouseout", this, false);
 
     return [treeView, placesController];
-  },
+  }
 
-  finalizePlacesView: function () {
+  finalizePlacesView() {
     this.treeView.removeEventListener("click", this, false);
     this.treeView.removeEventListener("keypress", this, false);
     this.treeView.removeEventListener("mousemove", this, false);
@@ -115,9 +116,9 @@ LinkplacesPanel.prototype = {
 
     // finalize
     this.treeView.controllers.removeControllerAt(0);
-  },
+  }
 
-  overrideCmdOpenMultipleItem: function () {
+  overrideCmdOpenMultipleItem() {
     const cmdValue = `
       var triggerNode = window.gLinkplacesPanel.ctxMenu.triggerNode;
       var controller = PlacesUIUtils.getViewForNode(triggerNode).controller;
@@ -131,10 +132,10 @@ LinkplacesPanel.prototype = {
     for (let id of list) { // eslint-disable-line prefer-const
       document.getElementById(id).setAttribute("oncommand", cmdValue);
     }
-  },
+  }
 
   // Based on "chrome://browser/content/bookmarks/sidebarUtils.js"
-  handleTreeClick: function (aEvent, aGutterSelect) {
+  handleTreeClick(aEvent, aGutterSelect) {
     // When right button click
     if (aEvent.button === 2) {
       return;
@@ -192,18 +193,18 @@ LinkplacesPanel.prototype = {
         this.openNodeWithEvent(tree.selectedNode, aEvent, this.treeView);
       }
     }
-  },
+  }
 
-  handleTreeKeyPress: function (aEvent) {
+  handleTreeKeyPress(aEvent) {
     if (aEvent.keyCode === Ci.nsIDOMKeyEvent.DOM_VK_RETURN) {
       const node = aEvent.target.selectedNode;
       if (PlacesUtils.nodeIsURI(node)) {
         this.openNodeWithEvent(node, aEvent, this.treeView);
       }
     }
-  },
+  }
 
-  handleTreeMouseMove: function (aEvent) {
+  handleTreeMouseMove(aEvent) {
     if (aEvent.target.localName !== "treechildren") {
       return;
     }
@@ -227,9 +228,9 @@ LinkplacesPanel.prototype = {
     else {
       this.setMouseoverURL("");
     }
-  },
+  }
 
-  setMouseoverURL: function (aURI) {
+  setMouseoverURL(aURI) {
     const XULBrowserWindow = this.window.top.XULBrowserWindow;
     // When the browser window is closed with an open sidebar, the sidebar
     // unload event happens after the browser's one.  In this case
@@ -237,9 +238,9 @@ LinkplacesPanel.prototype = {
     if (XULBrowserWindow) {
       XULBrowserWindow.setOverLink(aURI, null);
     }
-  },
+  }
 
-  openNodeWithEvent: function (aNode, aEvent, aView) {
+  openNodeWithEvent(aNode, aEvent, aView) {
     const uri = aNode.uri;
     const win = this.window;
     const service = this._service;
@@ -264,9 +265,9 @@ LinkplacesPanel.prototype = {
         this.window.console.error(result.error);
       }
     }).catch(this.window.console.error);
-  },
+  }
 
-  openSelectionInTabs: function(aController, aEvent) {
+  openSelectionInTabs(aController, aEvent) {
     aController.openSelectionInTabs(aEvent);
 
     this.focusSidebarWhenItemsOpened();
@@ -274,15 +275,14 @@ LinkplacesPanel.prototype = {
     if (aController && aController.isCommandEnabled("placesCmd_delete")) {
       aController.doCommand("placesCmd_delete");
     }
-  },
+  }
 
-  focusSidebarWhenItemsOpened: function () {
+  focusSidebarWhenItemsOpened() {
     if (this._service.config().shouldFocusOnSidebarWhenOpenItem()) {
       this.treeView.focus();
     }
-  },
-
-};
+  }
+}
 this.LinkplacesPanel = LinkplacesPanel; // eslint-disable-line no-invalid-this
 
 /*
