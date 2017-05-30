@@ -3,16 +3,12 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* @flow */
-/*eslint-env commonjs */
-
-"use strict";
-
 
 /*::
   type PromiseTuple = [(result?: mixed) => void, (error?: any) => void];
 */
 
-class WebExtRTMessageChannel {
+export class WebExtRTMessageChannel {
 
   static create(browser /* :{| runtime: webext$runtime$runtime |} */) /* :Promise<WebExtRTMessageChannel> */ {
     const inst = new WebExtRTMessageChannel(browser);
@@ -160,7 +156,3 @@ class WebExtRTMessageChannel {
     this._listeners.delete(listener);
   }
 }
-
-module.exports = Object.freeze({
-  WebExtRTMessageChannel,
-});

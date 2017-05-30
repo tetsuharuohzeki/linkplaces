@@ -2,17 +2,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/*eslint-env commonjs */
-
-"use strict";
-
-const { Cc, Ci, Cu, } = require("chrome");
+import { Cc, Ci, Cu } from "chrome";
 
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
 
 const URI = "chrome://linkplaces/skin/linkplaces.css";
 
-class StyleLoader {
+export class StyleLoader {
 
   static create() {
     const inst = new StyleLoader();
@@ -46,7 +42,3 @@ class StyleLoader {
     this._cssService = null;
   }
 }
-
-module.exports = Object.freeze({
-  StyleLoader,
-});

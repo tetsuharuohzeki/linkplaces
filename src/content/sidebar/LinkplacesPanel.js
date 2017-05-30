@@ -4,7 +4,8 @@
 
 /* global Components: false */
 
-"use strict";
+// XXX: This should be loaded from the sidebar script.
+"use strict"; // eslint-disable-line strict, lines-around-directive
 
 // eslint-disable-next-line no-unused-vars
 const EXPORTED_SYMBOLS = ["LinkplacesPanel"];

@@ -2,15 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/*eslint-env commonjs */
+import { SIDEBAR_BROADCAST_ID, SHORTCUT_ID, } from "./LinkplacesChromeSidebar";
 
-"use strict";
+export const PANEL_UI_ID = "PanelUI-linkplaces";
 
-const { SIDEBAR_BROADCAST_ID, SHORTCUT_ID, } = require("./LinkplacesChromeSidebar");
-
-const PANEL_UI_ID = "PanelUI-linkplaces";
-
-class LinkPlacesChromePanel {
+export class LinkPlacesChromePanel {
 
   constructor(win, service) {
     this._win = win;
@@ -85,12 +81,6 @@ class LinkPlacesChromePanel {
     window.PanelUI.hide();
   }
 }
-
-module.exports = Object.freeze({
-  LinkPlacesChromePanel,
-  createDOM,
-  PANEL_UI_ID,
-});
 
 /**
   <!--

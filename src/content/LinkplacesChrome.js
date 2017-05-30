@@ -2,18 +2,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/*eslint-env commonjs */
-
-"use strict";
-
-const {
+import {
   LinkplacesChromeContentCtxMenu,
   LinkplacesChromeTabCtxMenu,
-} = require("./ui/LinkplacesChromeCtxMenu.js");
-const { LinkplacesChromeSidebar } = require("./ui/LinkplacesChromeSidebar.js");
-const { LinkPlacesChromePanel } = require("./ui/LinkPlacesChromePanel.js");
+} from "./ui/LinkplacesChromeCtxMenu.js";
+import { LinkplacesChromeSidebar } from "./ui/LinkplacesChromeSidebar.js";
+import { LinkPlacesChromePanel } from "./ui/LinkPlacesChromePanel.js";
 
-class LinkplacesChrome {
+export class LinkplacesChrome {
   static create(win, service){
     const obj = new LinkplacesChrome(win, service);
     return obj;
@@ -147,7 +143,3 @@ class LinkplacesChrome {
     return this._panel;
   }
 }
-
-module.exports = Object.freeze({
-  LinkplacesChrome,
-});

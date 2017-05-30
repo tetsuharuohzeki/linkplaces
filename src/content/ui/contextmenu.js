@@ -2,11 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/*eslint-env commonjs */
-
-"use strict";
-
-class ContextMenuItem {
+export class ContextMenuItem {
   constructor(win, param) {
     this._dom = null;
     this._onCommand = null;
@@ -66,7 +62,3 @@ class ContextMenuItem {
     this._onCommand();
   }
 }
-
-module.exports = Object.freeze({
-  ContextMenuItem,
-});

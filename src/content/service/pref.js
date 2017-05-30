@@ -2,11 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/*eslint-env commonjs */
-
-"use strict";
-
-const { Ci, Cu, } = require("chrome");
+import { Ci, Cu } from "chrome";
 
 const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
@@ -46,7 +42,7 @@ class PrefTable {
   }
 }
 
-class PrefService {
+export class PrefService {
   constructor() {
     this._prefBranch = Services.prefs.getBranch(PREF_DOMAIN);
     this._table = new PrefTable();
@@ -170,7 +166,3 @@ class PrefService {
     this._listenerSet.delete(aListener);
   }
 }
-
-module.exports = Object.freeze({
-  PrefService,
-});

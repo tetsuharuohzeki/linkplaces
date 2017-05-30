@@ -2,9 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/*eslint-env commonjs */
-
-"use strict";
+import { ContextMenuItem } from "./contextmenu";
 
 const ID_CONTENT_CTX_MENU = "contentAreaContextMenu";
 
@@ -12,9 +10,7 @@ const ID_TAB_CTX_SAVE_TAB = "linkplaces-tabCtx-saveTab";
 const ID_CONTENT_SAVE_PAGE = "linkplaces-contentCtx-savePage";
 const ID_CONTENT_SAVE_LINK = "linkplaces-contentCtx-saveLink";
 
-const { ContextMenuItem } = require("./contextmenu");
-
-class LinkplacesChromeTabCtxMenu {
+export class LinkplacesChromeTabCtxMenu {
   constructor(win, parent) {
     this._win = win;
     this._parent = parent;
@@ -48,7 +44,7 @@ class LinkplacesChromeTabCtxMenu {
   }
 }
 
-class LinkplacesChromeContentCtxMenu {
+export class LinkplacesChromeContentCtxMenu {
   constructor(win, parent) {
     this._win = win;
     this._parent = parent;
@@ -115,8 +111,3 @@ class LinkplacesChromeContentCtxMenu {
                           gContextMenu.onLink && !gContextMenu.onMailtoLink);
   }
 }
-
-module.exports = Object.freeze({
-  LinkplacesChromeTabCtxMenu,
-  LinkplacesChromeContentCtxMenu,
-});

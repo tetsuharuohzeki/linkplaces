@@ -2,16 +2,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/*eslint-env commonjs */
-
-"use strict";
+import { ContextMenuItem } from "./contextmenu";
 
 const ID_PLACES_CTX_MENU = "placesContext";
 const ID_CTX_SAVE_ITEMS = "linkplaces-placesCtx-saveItems";
 
-const { ContextMenuItem } = require("./contextmenu");
-
-class LinkplacesChromePlaces {
+export class LinkplacesChromePlaces {
 
   static create(win, service) {
     const obj = new LinkplacesChromePlaces(win, service);
@@ -91,7 +87,3 @@ class LinkplacesChromePlaces {
     this.destroy();
   }
 }
-
-module.exports = Object.freeze({
-  LinkplacesChromePlaces,
-});

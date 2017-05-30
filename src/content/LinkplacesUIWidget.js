@@ -2,18 +2,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/*eslint-env commonjs */
+import { Cu } from "chrome";
 
-"use strict";
-
-const { Cu, } = require("chrome");
+import { LinkplacesService } from "./LinkplacesService.js";
+import { PANEL_UI_ID } from "./ui/LinkPlacesChromePanel";
 
 const BUTTON_ID = "linkplaces-menu-button";
 const PLACES_VIEW_ID = "panelMenu_linkplacesMenu";
 
 const { CustomizableUI } = Cu.import("resource:///modules/CustomizableUI.jsm", {});
-const { LinkplacesService } = require("./LinkplacesService.js");
-const { PANEL_UI_ID } = require("./ui/LinkPlacesChromePanel");
 
 let registeredWidget = null;
 function isRegistered() {
@@ -31,7 +28,7 @@ function isRegistered() {
   }
 }
 
-function createWidget() {
+export function createWidget() {
   // If we call this register method with same id multiple times
   // (e.g. load in each browser window), this method fails to register except 1st time.
   // So we need to call this only once.
@@ -72,7 +69,7 @@ function createWidget() {
   });
 }
 
-function destroyWidget() {
+export function destroyWidget() {
   if (!isRegistered()) {
     return;
   }
@@ -81,8 +78,3 @@ function destroyWidget() {
   CustomizableUI.destroyWidget(id);
   registeredWidget = null;
 }
-
-module.exports = Object.freeze({
-  createWidget,
-  destroyWidget,
-});

@@ -2,12 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/*eslint-env commonjs */
-
-"use strict";
-
-const SIDEBAR_BROADCAST_ID = "viewLinkplacesSidebar";
-const SHORTCUT_ID = "linkplaces-key-toggleSidebar";
+export const SIDEBAR_BROADCAST_ID = "viewLinkplacesSidebar";
+export const SHORTCUT_ID = "linkplaces-key-toggleSidebar";
 
 const BROADCASTER_CONTAINER_ID = "mainBroadcasterSet";
 const MENUBAR_CONTAINER_ID = "viewSidebarMenu";
@@ -146,7 +142,7 @@ class HeaderSwitcher {
   }
 }
 
-class LinkplacesChromeSidebar {
+export class LinkplacesChromeSidebar {
 
   constructor(win, parent) {
     this._win = win;
@@ -236,9 +232,3 @@ class LinkplacesChromeSidebar {
     this._headerSwitcher.destroy();
   }
 }
-
-module.exports = Object.freeze({
-  LinkplacesChromeSidebar,
-  SIDEBAR_BROADCAST_ID,
-  SHORTCUT_ID,
-});

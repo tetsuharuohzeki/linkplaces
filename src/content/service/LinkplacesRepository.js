@@ -2,12 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/*eslint-env commonjs */
-
-"use strict";
-
-const { Cu, } = require("chrome");
-
+import { Cu } from "chrome";
 
 const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
@@ -28,7 +23,7 @@ XPCOMUtils.defineLazyModuleGetter(this, "PlacesTransactions", // eslint-disable-
 const QUERY_URI = "place:queryType=1&folder=UNFILED_BOOKMARKS";
 const TXNNAME_SAVEITEMS = "LinkplacesService:sevesItems";
 
-class LinkplacesRepository {
+export class LinkplacesRepository {
   /**
    * @const
    *  The places query uri for linkplaces folder.
@@ -153,7 +148,3 @@ class LinkplacesRepository {
     return itemId;
   }
 }
-
-module.exports = Object.freeze({
-  LinkplacesRepository,
-});

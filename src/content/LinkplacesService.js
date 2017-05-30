@@ -2,11 +2,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/*eslint-env commonjs */
+import { Cu } from "chrome";
 
-"use strict";
-
-const { Cu, } = require("chrome");
+import { ChromeDocObserver } from "./service/ChromeDocObserver.js";
+import { LinkplacesRepository } from "./service/LinkplacesRepository.js";
+import { StyleLoader } from "./service/StyleLoader.js";
+import { PrefService } from "./service/pref.js";
+import { WebExtRTMessageChannel } from "./service/WebExtRTMessageChannel.js";
+import { LinkplacesChromePlaces } from "./ui/LinkplacesChromePlaces.js";
 
 const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 
@@ -18,19 +21,12 @@ XPCOMUtils.defineLazyGetter(this, "stringBundle", function () { // eslint-disabl
   return Services.strings.createBundle(STRING_BUNDLE_URI);
 });
 
-const { ChromeDocObserver } = require("./service/ChromeDocObserver.js");
-const { LinkplacesRepository } = require("./service/LinkplacesRepository.js");
-const { StyleLoader } = require("./service/StyleLoader.js");
-const { PrefService } = require("./service/pref.js");
-const { WebExtRTMessageChannel } = require("./service/WebExtRTMessageChannel.js");
-const { LinkplacesChromePlaces } = require("./ui/LinkplacesChromePlaces.js");
-
 /**
  * LinkplacesService
  *
  * This service provides primary methods & properties for LinkPlaces.
  */
-const LinkplacesService = {
+export const LinkplacesService = {
 
   /**
    * @const
@@ -239,7 +235,3 @@ const LinkplacesService = {
     return rv;
   }
 };
-
-module.exports = Object.freeze({
-  LinkplacesService,
-});
