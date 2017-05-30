@@ -54,7 +54,7 @@ skin: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*' $(CURDIR)/__dist/$@ --preserve
 
 webextension: clean_dist __obj
-	$(NPM_BIN)/cpx '$(CURDIR)/__obj/$@/**/*.json' $(CURDIR)/__dist/$@ --preserve
+	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/**.json' $(CURDIR)/__dist/$@ --preserve
 	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/$@/background/index.js --format iife --output $(CURDIR)/__dist/$@/bundled_background.js
 
 __obj: clean_obj
