@@ -35,8 +35,13 @@ xpi: clean_xpi \
 chrome.manifest: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/src/$@ $(CURDIR)/__dist --preserve
 
-content: clean_dist __obj
-	$(NPM_BIN)/cpx '$(CURDIR)/__obj/src/$@/**/*' $(CURDIR)/__dist/$@ --preserve
+content: content_cp content_js
+
+content_js: clean_dist __obj
+	$(NPM_BIN)/babel '$(CURDIR)/__obj/src/content' --out-dir '$(CURDIR)/__dist/content' --extensions=.js
+
+content_cp: clean_dist
+	$(NPM_BIN)/cpx '$(CURDIR)/src/content/**/*.xul' $(CURDIR)/__dist/content --preserve
 
 icon.png: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/$@ $(CURDIR)/__dist --preserve
