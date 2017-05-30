@@ -13,11 +13,11 @@ const {
   PlacesRemoveItemTransaction,
 } = Cu.import("resource://gre/modules/PlacesUtils.jsm", {});
 
-/*global Bookmarks:false*/
-XPCOMUtils.defineLazyModuleGetter(this, "Bookmarks", // eslint-disable-line no-invalid-this
+const modGlobal = Object.create(null);
+
+XPCOMUtils.defineLazyModuleGetter(modGlobal, "Bookmarks",
   "resource://gre/modules/Bookmarks.jsm");
-/*global PlacesTransactions:false*/
-XPCOMUtils.defineLazyModuleGetter(this, "PlacesTransactions", // eslint-disable-line no-invalid-this
+XPCOMUtils.defineLazyModuleGetter(modGlobal, "PlacesTransactions",
   "resource://gre/modules/PlacesTransactions.jsm");
 
 const QUERY_URI = "place:queryType=1&folder=UNFILED_BOOKMARKS";
@@ -46,7 +46,7 @@ export class LinkplacesRepository {
    * @returns {string}
    */
   static folderGuid() {
-    return Bookmarks.unfiledGuid;
+    return modGlobal.Bookmarks.unfiledGuid;
   }
 
   /**
@@ -54,7 +54,7 @@ export class LinkplacesRepository {
    * @type {number}
    */
   static get DEFAULT_INDEX() {
-    return Bookmarks.DEFAULT_INDEX;
+    return modGlobal.Bookmarks.DEFAULT_INDEX;
   }
 
   /**
@@ -106,7 +106,7 @@ export class LinkplacesRepository {
         const uri = Services.io.newURI(item.uri, null, null);
         const title = item.title;
 
-        const txn = new PlacesTransactions.NewBookmark({
+        const txn = new modGlobal.PlacesTransactions.NewBookmark({
           url: uri,
           title: title,
           parentGuid: parentId,
@@ -117,7 +117,7 @@ export class LinkplacesRepository {
       }
     };
 
-    return PlacesTransactions.batch(txnGenarator)
+    return modGlobal.PlacesTransactions.batch(txnGenarator)
       .catch(Cu.reportError);
   }
 
@@ -139,11 +139,11 @@ export class LinkplacesRepository {
   static removeItemAsync(aItemId) {
     const itemId = PlacesUtils.promiseItemGuid(aItemId)
       .then(function(guid){
-        const txn = new PlacesTransactions.Remove({
+        const txn = new modGlobal.PlacesTransactions.Remove({
           guid: guid,
         });
 
-        return PlacesTransactions.batch([txn]);
+        return modGlobal.PlacesTransactions.batch([txn]);
       }).catch(Cu.reportError);
     return itemId;
   }

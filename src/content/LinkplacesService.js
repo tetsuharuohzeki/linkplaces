@@ -16,8 +16,9 @@ const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
 
-/*global stringBundle:false*/
-XPCOMUtils.defineLazyGetter(this, "stringBundle", function () { // eslint-disable-line no-invalid-this
+const modGlobal = Object.create(null);
+
+XPCOMUtils.defineLazyGetter(modGlobal, "stringBundle", function () {
   return Services.strings.createBundle(STRING_BUNDLE_URI);
 });
 
@@ -42,7 +43,7 @@ export const LinkplacesService = {
    * @type {nsIStringBundle}
    */
   get stringBundle() {
-    return stringBundle;
+    return modGlobal.stringBundle;
   },
 
   /**
