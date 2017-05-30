@@ -16,7 +16,12 @@ const Cu = Components.utils;
 const { PlacesUtils } = Cu.import("resource://gre/modules/PlacesUtils.jsm", {});
 const { PlacesUIUtils } = Cu.import("resource:///modules/PlacesUIUtils.jsm", {});
 
-class LinkplacesPanel {
+// XXX:
+// Mozilla's [JavaScript Code Module](https://developer.mozilla.org/en/docs/Mozilla/JavaScript_code_modules)
+// treats this at top level in a source as a global object per module,
+// and `Cu.import()` depends on it.
+// So we need to some problem, use `var` for exported items.
+var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-unused-vars
 
   /**
    *  @constructor
@@ -283,8 +288,7 @@ class LinkplacesPanel {
       this.treeView.focus();
     }
   }
-}
-this.LinkplacesPanel = LinkplacesPanel; // eslint-disable-line no-invalid-this
+};
 
 /*
  *  @param  {function(new:PlacesController)}  ControllerConstructor

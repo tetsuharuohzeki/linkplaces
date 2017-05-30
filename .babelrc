@@ -1,11 +1,5 @@
 {
   "plugins": [
-    ["transform-es2015-modules-commonjs", {
-      // Mozilla's [JavaScript Code Module](https://developer.mozilla.org/en/docs/Mozilla/JavaScript_code_modules)
-      // treats this at top level in a source as a global object per module,
-      // and there some behaviors depending on it.
-      // So we need this to avoid the problem its behavior.
-      "allowTopLevelThis": true
-    }]
+    "transform-es2015-modules-commonjs"
   ]
 }
