@@ -53,9 +53,12 @@ package.json: clean_dist
 skin: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*' $(CURDIR)/__dist/$@ --preserve
 
-webextension: clean_dist __obj
-	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/**.json' $(CURDIR)/__dist/$@ --preserve
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/$@/background/index.js --format iife --output $(CURDIR)/__dist/$@/bundled_background.js
+webextension: webextension_cp webextension_bundle
+
+webextension_cp: clean_dist
+	$(NPM_BIN)/cpx '$(CURDIR)/src/webextension/**/**.json' $(CURDIR)/__dist/webextension --preserve
+webextension_bundle: clean_dist __obj
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/background/index.js --format iife --output $(CURDIR)/__dist/webextension/bundled_background.js
 
 __obj: clean_obj
 	$(NPM_BIN)/cpx '$(CURDIR)/src/**/*.js' $(CURDIR)/__obj/src/ --preserve
