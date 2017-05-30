@@ -1,5 +1,6 @@
 [ignore]
 .*/__dist/.*
+.*/__obj/.*
 .*/node_modules/.*
 
 [include]
