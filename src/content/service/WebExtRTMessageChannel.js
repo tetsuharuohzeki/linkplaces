@@ -8,9 +8,10 @@
 
 export class WebExtRTMessageChannel {
 
-  static create(browser /* :{| runtime: webext$runtime$runtime |} */) /* :Promise<WebExtRTMessageChannel> */ {
+  static async create(browser /* :{| runtime: webext$runtime$runtime |} */) /* :Promise<WebExtRTMessageChannel> */ {
     const inst = new WebExtRTMessageChannel(browser);
-    return Promise.resolve(inst);
+    await inst._init(); // eslint-disable-line no-underscore-dangle
+    return inst;
   }
 
   /*::
@@ -30,7 +31,6 @@ export class WebExtRTMessageChannel {
     this._listeners = new Set();
 
     Object.seal(this);
-    this._init();
   }
 
   destroy() {
@@ -48,12 +48,18 @@ export class WebExtRTMessageChannel {
       throw new TypeError();
     }
 
-    runtime.onConnect.addListener((port) => {
-      this._port = port;
-      port.onMessage.addListener((msg) => {
-        this._onPortMessage(msg);
+    const p = new Promise((resolve) => {
+      runtime.onConnect.addListener((port) => {
+        this._port = port;
+        port.onMessage.addListener((msg) => {
+          this._onPortMessage(msg);
+        });
+
+        resolve();
       });
     });
+
+    return p;
   }
 
   _finalize() {
