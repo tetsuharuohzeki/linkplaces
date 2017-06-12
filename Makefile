@@ -69,7 +69,7 @@ __obj: clean_obj
 	$(NPM_BIN)/cpx '$(CURDIR)/src/**/*.js' $(CURDIR)/__obj/src/ --preserve
 
 # Test
-test: lint flowcheck
+test: lint flowcheck tscheck
 
 lint:
 	$(NPM_BIN)/eslint --ext=js,jsm src/ $(CURDIR)
