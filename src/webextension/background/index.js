@@ -21,7 +21,7 @@ import { createTab } from "./TabOpener";
 */
 
 BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: string; |}> */,
-                                          sender /* :webext$runtime$MessageSender & webext$runtime$Port */) => {
+  sender /* :webext$runtime$MessageSender & webext$runtime$Port */) => {
   const { type, id, value } = msg;
   switch (type) {
     case MSG_TYPE_OPEN_URL: {

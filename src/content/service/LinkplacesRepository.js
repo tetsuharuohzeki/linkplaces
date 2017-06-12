@@ -76,12 +76,12 @@ export class LinkplacesRepository {
       const uri = Services.io.newURI(item.uri, null, null);
       const title = item.title;
       const txn = new PlacesCreateBookmarkTransaction(uri, containerId,
-                                                      aIndex, title);
+        aIndex, title);
       return txn;
     });
 
     const finalTxn = new PlacesAggregatedTransaction(TXNNAME_SAVEITEMS,
-                                                     transactions);
+      transactions);
     PlacesUtils.transactionManager.doTransaction(finalTxn);
   }
 

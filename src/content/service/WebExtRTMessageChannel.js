@@ -13,7 +13,7 @@ export class WebExtRTMessageChannel {
     return Promise.resolve(inst);
   }
 
-/*::
+  /*::
   _runtime: webext$runtime$runtime | null;
   _port: webext$runtime$Port | null;
   _callback: Map<number, PromiseTuple>;

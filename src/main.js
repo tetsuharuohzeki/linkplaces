@@ -22,7 +22,7 @@ const SetupHelper = {
    */
   setup(aDomWindow) {
     const windowType = aDomWindow.document.
-                     documentElement.getAttribute("windowtype");
+      documentElement.getAttribute("windowtype");
     // If this isn't a browser window then abort setup.
     if (windowType !== "navigator:browser") {
       return;

@@ -1,4 +1,4 @@
-// import from https://github.com/karen-irc/karen/blob/6188f14b519a257f542a8a12cbb1ffd3f0fe37dc/tools/eslint/eslintrc_core.js
+// import from https://github.com/karen-irc/karen/blob/27721039af844337264ad83adadc2c4bd3a1c568/tools/eslint/eslintrc_core.js
 /*eslint-env node */
 /*eslint
  quote-props: [2, "always"],
@@ -42,7 +42,12 @@ module.exports = {
 
     'rules': {
         // Possible Errors
-        'comma-dangle': [0, 'never'],
+
+        'for-direction': 0,
+        // We should reconsider about this after ECMA262 introduces
+        // [async iteration](https://github.com/tc39/proposal-async-iteration),
+        // But now, we enable this.
+        'no-await-in-loop': 1,
         'no-cond-assign': 2,
         'no-console': 0,
         'no-constant-condition': 1,
@@ -61,7 +66,7 @@ module.exports = {
         }],
         'no-extra-semi': 1,
         'no-func-assign': 2,
-        'no-inner-declarations': 2,
+        'no-inner-declarations': [2, 'functions'],
         'no-invalid-regexp': 2,
         'no-irregular-whitespace': 2,
         'no-obj-calls': 2,
@@ -71,8 +76,8 @@ module.exports = {
         'no-template-curly-in-string': 1,
         'no-unexpected-multiline': 1,
         'no-unreachable': 1,
-        'no-unsafe-negation': 2,
         'no-unsafe-finally': 2,
+        'no-unsafe-negation': 2,
         'use-isnan': 2,
         'valid-jsdoc': [2, {
             'requireReturn': true,
@@ -110,9 +115,9 @@ module.exports = {
         'no-caller': 2,
         'no-case-declarations': 2,
         'no-div-regex': 2,
+        'no-else-return': 0, // http://eslint.org/docs/rules/no-else-return
         'no-empty-function': 1, // http://eslint.org/docs/rules/no-empty-function
         'no-empty-pattern': 2,
-        'no-else-return': 0, // http://eslint.org/docs/rules/no-else-return
         'no-eq-null': 2,
         'no-eval': 2,
         'no-extend-native': 2, // http://eslint.org/docs/rules/no-extend-native
@@ -151,10 +156,12 @@ module.exports = {
         'no-param-reassign': [1, {
             'props': true
         }],
-        'no-process-env': 0, // http://eslint.org/docs/rules/no-process-env
         'no-proto': 2,
         'no-redeclare': 2,
+        'no-restricted-properties': [2, // http://eslint.org/docs/rules/no-restricted-properties
+        ],
         'no-return-assign': 2,
+        'no-return-await': 1,
         'no-script-url': 2,
         'no-self-assign': [2, {
             'props': true,
@@ -172,7 +179,11 @@ module.exports = {
         'no-void': 2, // We live in after ES5 : http://eslint.org/docs/rules/no-void
         'no-warning-comments': 0, // We need not always enable this : http://eslint.org/docs/rules/no-warning-comments
         'no-with': 2,
+        'prefer-promise-reject-errors': [1, {
+            'allowEmptyReject': true, // for creating empty rejected one to composite promise.
+        }],
         'radix': 2,
+        'require-await': 0, // we can define an async function which does not have `await` in its body.
         'vars-on-top': 0, // This is a ridiculous customs: http://eslint.org/docs/rules/vars-on-top
         'wrap-iife': 0, // http://eslint.org/docs/rules/wrap-iife
         'yoda': 0, // http://eslint.org/docs/rules/wrap-iife
@@ -187,6 +198,7 @@ module.exports = {
         'no-label-var': 2,
         'no-restricted-globals': [2,
             // We don't have any global variables which we'd like to ban yet. http://eslint.org/docs/rules/no-restricted-globals
+            'name', 'top', 'event'
         ],
         'no-shadow': 0,
         'no-shadow-restricted-names': 2,
@@ -207,20 +219,22 @@ module.exports = {
         // Node.js
         'callback-return': 0, // http://eslint.org/docs/rules/callback-return
         'global-require': 2,
+        'handle-callback-err': 0, // We are not always write for nodejs.
+        'no-buffer-constructor': 2,
         'no-mixed-requires': [2, {
             'grouping': true,
         }],
         'no-new-require': 2,
         'no-path-concat': 2,
+        'no-process-env': 0, // http://eslint.org/docs/rules/no-process-env
         'no-process-exit': 0,
-        'no-restricted-imports': 0, // http://eslint.org/docs/rules/no-restricted-imports
         'no-restricted-modules': 0, // http://eslint.org/docs/rules/no-restricted-modules
-        'no-restricted-properties': [2, // http://eslint.org/docs/rules/no-restricted-properties
-        ],
         'no-sync': 1, // Bann to use sync method. FIXME: enable this rules as an error.
 
         // Stylistic Issues
+        'array-bracket-newline ': 0,
         'array-bracket-spacing': 0, // http://eslint.org/docs/rules/array-bracket-spacing
+        'array-element-newline': 0,
         'block-spacing': 0, // http://eslint.org/docs/rules/block-spacing
         'brace-style': [0, 'stroustrup', { // http://eslint.org/docs/rules/brace-style
             'allowSingleLine': true
@@ -228,23 +242,35 @@ module.exports = {
         'camelcase': [2, {
             'properties': 'always'
         }],
+        'capitalized-comments': 0, // we don't think this causes some serious problem.
+        'comma-dangle': [0, 'never'],
         'comma-spacing': [2, {
             'before': false,
             'after': true
         }],
-        'comma-style': [2, 'last'],
+        'comma-style': [2, 'last', {
+            'exceptions': {
+                'ArrayPattern': false,
+                'ArrowFunctionExpression': false,
+                'CallExpression': false,
+                'FunctionDeclaration': false,
+                'FunctionExpression': false,
+                'ImportDeclaration': false,
+                'ObjectPattern': false,
+            },
+        }],
         'computed-property-spacing': [2, 'never'],
         'consistent-this': [2, 'that'],
         'eol-last': [0, 'always'], // we don't have to restrict this.
         'func-call-spacing': [2, 'never'], // enforce `fn();` style and ban `fn ();`.
         'func-name-matching': 1,
-        'func-names': 0, // we don't have to restrict this in most case.
+        'func-names': [0, 'as-needed'], // we don't have to restrict this in most case.
         'func-style': [0, 'declaration', {
             'allowArrowFunctions': true,
         }], // XXX: a top level functions should be a declaration, but it would be good to allow both forms of declaration/expression.
+        'id-blacklist': 0, // http://eslint.org/docs/rules/id-blacklist
         'id-length': 0, // http://eslint.org/docs/rules/id-length
         'id-match': 0, // http://eslint.org/docs/rules/id-match
-        'id-blacklist': 0, // http://eslint.org/docs/rules/id-blacklist
         'indent': [2, 4, {
             'SwitchCase': 1,
             'MemberExpression': 1,
@@ -261,7 +287,6 @@ module.exports = {
         'line-comment-position': 0, // We don't think this is a really important enforcement.
         'linebreak-style': [2, 'unix'],
         'lines-around-comment': 0, // http://eslint.org/docs/rules/lines-around-comment
-        'lines-around-directive': 1,
         'max-depth': [2, 10], // http://eslint.org/docs/rules/max-depth
         'max-len': [2, 256, 4, { // http://eslint.org/docs/rules/max-len
             'ignoreUrls': true,
@@ -285,8 +310,6 @@ module.exports = {
             'capIsNewExceptionPattern': '',
         }],
         'new-parens': 2,
-        'newline-after-var': 0, // http://eslint.org/docs/rules/newline-after-var
-        'newline-before-return': 0, // This is just miscellaneous stylistic issue.
         'newline-per-chained-call': [0, { // http://eslint.org/docs/rules/newline-per-chained-call
             'ignoreChainWithDepth': 4, // I don't feel this is a really problem at now...
         }],
@@ -295,11 +318,13 @@ module.exports = {
             'allow': [],
             'int32Hint': true,
         }],
+        'no-compare-neg-zero': 1,
         'no-continue': 0, // http://eslint.org/docs/rules/no-continue
         'no-inline-comments': 0, // http://eslint.org/docs/rules/no-inline-comments
         'no-lonely-if': 1, // http://eslint.org/docs/rules/no-lonely-if
         'no-mixed-operators': 2,
         'no-mixed-spaces-and-tabs': 2,
+        'no-multi-assign': 1,
         'no-multiple-empty-lines': 0, // Empty lines somtimes means a section of a program.
         'no-negated-condition': 0, // http://eslint.org/docs/rules/no-negated-condition
         'no-nested-ternary': 2, // http://eslint.org/docs/rules/no-nested-ternary
@@ -316,22 +341,41 @@ module.exports = {
             'allowAfterSuper': true, // Enable a `protected` property convention.
         }],
         'no-unneeded-ternary': 2,
-        'object-curly-spacing': 0, // http://eslint.org/docs/rules/object-curly-spacing
+        'no-whitespace-before-property': 1,
+        'nonblock-statement-body-position': 0,
         'object-curly-newline': 0, // http://eslint.org/docs/rules/object-curly-newline
+        'object-curly-spacing': 0, // http://eslint.org/docs/rules/object-curly-spacing
         'object-property-newline': 0, // I feel this is a trivial problem.
         'one-var': [2, 'never'], // http://eslint.org/docs/rules/one-var
         'one-var-declaration-per-line': 1, // http://eslint.org/docs/rules/one-var-declaration-per-line
+        'operator-assignment': 0, // This is not a problem.
         'operator-linebreak': [2, 'after'],
         'padded-blocks': 0,
+        'padding-line-between-statements': [1,
+            /**
+             *  This configuration is valid the case:
+             *
+             *  ```
+             *      "use strict";
+             *      "use asm";
+             *
+             *      foo();
+             *  ```
+             */
+            { 'blankLine': 'always', 'prev': 'directive', 'next': '*' },
+            { 'blankLine': 'any', 'prev': 'directive', 'next': 'directive' },
+        ],
         'quotes': [2, 'single', {
             'avoidEscape': true,
             'allowTemplateLiterals': true,
         }],
+        'quote-props': 0, // `bar-foo` without quote will be parse error if we disable this rules.
         'require-jsdoc': [0, {
             'require': {
                 'FunctionDeclaration': true,
                 'MethodDefinition': true,
-                'ClassDeclaration': true
+                'ClassDeclaration': true,
+                'ArrowFunctionExpression': true,
             }
         }],
         'semi': [2, 'always'],
@@ -339,9 +383,9 @@ module.exports = {
             'before': false,
             'after': true
         }],
+        'semi-style': [1, 'last'],
         'sort-keys': 0,
         'sort-vars': 0,
-        'sort-imports': 0,
         'space-before-blocks': 0, // http://eslint.org/docs/rules/space-before-blocks
         'space-before-function-paren': [1, { // http://eslint.org/docs/rules/space-before-function-parentheses
             'anonymous': 'ignore',
@@ -355,6 +399,11 @@ module.exports = {
             'nonwords': false
         }],
         'spaced-comment': 0,
+        'switch-colon-spacing': [1, {
+            'after': true,
+            'before': false,
+        }],
+        'template-tag-spacing': [1, 'never'],
         'unicode-bom': [2, 'never'],
         'wrap-regex': 0,
 
@@ -379,11 +428,11 @@ module.exports = {
         'no-duplicate-imports': 1, // http://eslint.org/docs/rules/no-duplicate-imports
         'no-new-symbol': 2,
         'no-this-before-super': 2,
+        'no-restricted-imports': 0, // http://eslint.org/docs/rules/no-restricted-imports
         'no-useless-computed-key': 1,
-        // 'no-useless-constructor': 2, // FIXME: this rule has the bag which deny to call `super()` in a derived class (ESLint v2b1)
+        'no-useless-constructor': 0,
         'no-useless-rename': 2,
         'no-var': 1,
-        'no-whitespace-before-property': 1,
         'object-shorthand': [0, 'consistent'],
         'prefer-arrow-callback': [0, {
             'allowNamedFunctions': true, // for debugging stack trace
@@ -392,12 +441,14 @@ module.exports = {
             'destructuring': 'any',
             'ignoreReadBeforeAssign': false,
         }],
-        'prefer-numeric-literals': 1,
+        'prefer-destructuring': 0, // It's not always true that to prefer destructuring.
+        'prefer-numeric-literals': 2,
         'prefer-rest-params': 1,
         'prefer-spread': 1,
         'prefer-template': 0,
         'require-yield': 2,
         'rest-spread-spacing': [2, 'never'], // clarify 'this is rest/spread operator'.
+        'sort-imports': 0,
         'symbol-description': 1, // http://eslint.org/docs/rules/symbol-description
         'template-curly-spacing': [1, 'never'], // http://eslint.org/docs/rules/template-curly-spacing
         'yield-star-spacing': [1, 'after'],

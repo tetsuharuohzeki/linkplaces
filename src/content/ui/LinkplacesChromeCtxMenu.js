@@ -105,9 +105,9 @@ export class LinkplacesChromeContentCtxMenu {
     const gContextMenu = this._win.gContextMenu;
 
     gContextMenu.showItem(ID_CONTENT_SAVE_PAGE,
-                          !(gContextMenu.isContentSelected || gContextMenu.onTextInput || gContextMenu.onLink ||
+      !(gContextMenu.isContentSelected || gContextMenu.onTextInput || gContextMenu.onLink ||
                             gContextMenu.onImage || gContextMenu.onVideo || gContextMenu.onAudio));
     gContextMenu.showItem(ID_CONTENT_SAVE_LINK,
-                          gContextMenu.onLink && !gContextMenu.onMailtoLink);
+      gContextMenu.onLink && !gContextMenu.onMailtoLink);
   }
 }
