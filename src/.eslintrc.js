@@ -8,19 +8,12 @@
 // ESLint Configuration Files enables to include comments.
 // http://eslint.org/docs/configuring/#comments-in-configuration-files
 module.exports = {
-  'parserOptions': {
-    'sourceType': 'module',
-    'ecmaFeatures': {
-        'jsx': true
-    },
-  },
-
   'rules': {
-    'indent': ['error', 4, {
+    'indent': [2, 2, {
       'SwitchCase': 1
     }],
 
-    'quotes': ['error', 'single', {
+    'quotes': [2, 'double', {
       'avoidEscape': true,
       'allowTemplateLiterals': true,
     }],

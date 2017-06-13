@@ -10,6 +10,7 @@
 module.exports = {
   'extends': [
     './tools/eslint/eslintrc_core.js',
+    './tools/eslint/eslintrc_react.js',
   ],
 
   'parserOptions': {
@@ -23,13 +24,5 @@ module.exports = {
   'root': true,
 
   'rules': {
-    'indent': [2, 2, {
-      'SwitchCase': 1
-    }],
-
-    'quotes': [2, 'double', {
-      'avoidEscape': true,
-      'allowTemplateLiterals': true,
-    }],
   }
 };
