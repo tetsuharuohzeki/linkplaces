@@ -68,7 +68,7 @@ webextension_bundle: webextension_bundle_background webextension_bundle_popup
 webextension_bundle_background: clean_dist __obj
 	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/background/index.js --format iife --output $(CURDIR)/__dist/webextension/bundled_background.js
 webextension_bundle_popup: clean_dist __obj
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/popup/index.js --format iife --output $(CURDIR)/__dist/webextension//popup/bundled.js
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/popup/index.js --config $(CURDIR)/rollup.config.js --output $(CURDIR)/__dist/webextension//popup/bundled.js
 
 __obj: clean_obj
 	$(NPM_BIN)/cpx '$(CURDIR)/src/**/*.js' $(CURDIR)/__obj/src/ --preserve
