@@ -2,13 +2,27 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+/* @flow */
+
 import { SIDEBAR_BROADCAST_ID, SHORTCUT_ID, } from "./LinkplacesChromeSidebar";
+
+/*::
+  import type { LinkplacesService } from "../LinkplacesService";
+*/
 
 export const PANEL_UI_ID = "PanelUI-linkplaces";
 
 export class LinkPlacesChromePanel {
 
-  constructor(win, service) {
+
+  /*::
+    _win: window;
+    _service: LinkplacesService;
+    _mountpoint: Node | null;
+    _dom: Element | null;
+  */
+
+  constructor(win /* :window */, service /* :LinkplacesService */) {
     this._win = win;
     this._service = service;
     this._mountpoint = null;
@@ -21,10 +35,11 @@ export class LinkPlacesChromePanel {
   destroy() {
     this._finalize();
 
-    this._dom = null;
-    this._mountpoint = null;
-    this._service = null;
-    this._win = null;
+    // XXX: release objects
+    this._dom = (null /*:: :any*/);
+    this._mountpoint = (null /*:: :any*/);
+    this._service = (null /*:: :any*/);
+    this._win = (null /*:: :any*/);
   }
 
   _init() {
@@ -39,10 +54,14 @@ export class LinkPlacesChromePanel {
   }
 
   _finalize() {
+    if (this._mountpoint === null || this._dom === null) {
+      throw new TypeError("`this._mountpoint` and `this._dom` should not be null");
+    }
+
     this._mountpoint.removeChild(this._dom);
   }
 
-  onPanelMenuViewCommand(aEvent, aView) {
+  onPanelMenuViewCommand(aEvent /* :any */, aView /*:any */) {
     const window = this._win;
     const target = aEvent.originalTarget;
     const placesNode = target._placesNode; // eslint-disable-line no-underscore-dangle
