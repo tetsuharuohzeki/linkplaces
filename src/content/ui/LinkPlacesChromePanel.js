@@ -74,9 +74,9 @@ export class LinkPlacesChromePanel {
           service.removeItem(node.itemId);
         }
         else {
-          this.window.console.error(result.error);
+          window.console.error(result.error);
         }
-      }).catch(this.window.console.error);
+      }).catch(window.console.error);
     }
     window.PanelUI.hide();
   }
