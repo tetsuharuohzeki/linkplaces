@@ -67,8 +67,13 @@ webextension_icon: clean_dist
 webextension_bundle: webextension_bundle_background webextension_bundle_popup
 webextension_bundle_background: clean_dist __obj
 	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/background/index.js --format iife --output $(CURDIR)/__dist/webextension/bundled_background.js
-webextension_bundle_popup: clean_dist __obj
+
+webextension_bundle_popup: clean_dist __obj __webextension_bundle_popup_dependencies_react __webextension_bundle_popup_dependencies_react_dom
 	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/popup/index.js --config $(CURDIR)/rollup.config.js --output $(CURDIR)/__dist/webextension//popup/bundled.js
+__webextension_bundle_popup_dependencies_react: clean_dist
+	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/react/umd/react.production.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
+__webextension_bundle_popup_dependencies_react_dom: clean_dist
+	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/react-dom/umd/react-dom.production.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
 
 __obj: clean_obj
 	$(NPM_BIN)/cpx '$(CURDIR)/src/**/*.js' $(CURDIR)/__obj/src/ --preserve

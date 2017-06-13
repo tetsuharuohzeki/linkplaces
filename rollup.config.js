@@ -9,6 +9,16 @@ module.exports = {
     useStrict: true,
     sourceMap: true,
     treeshake: true,
+
+    external: [
+        'react',
+        'react-dom',
+    ],
+    globals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM',
+    },
+
     plugins: [
     ],
 };

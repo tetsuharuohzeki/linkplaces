@@ -30,6 +30,10 @@
     "url": "https://github.com/saneyuki/linkplaces/issues"
   },
   "homepage": "https://github.com/saneyuki/linkplaces",
+  "dependencies": {
+    "react": "next",
+    "react-dom": "next"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
