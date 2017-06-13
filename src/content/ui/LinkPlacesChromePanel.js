@@ -18,14 +18,12 @@ export class LinkPlacesChromePanel {
   /*::
     _win: window;
     _service: LinkplacesService;
-    _mountpoint: Node | null;
     _dom: Element | null;
   */
 
   constructor(win /* :window */, service /* :LinkplacesService */) {
     this._win = win;
     this._service = service;
-    this._mountpoint = null;
     this._dom = null;
 
     Object.seal(this);
@@ -37,7 +35,6 @@ export class LinkPlacesChromePanel {
 
     // XXX: release objects
     this._dom = (null /*:: :any*/);
-    this._mountpoint = (null /*:: :any*/);
     this._service = (null /*:: :any*/);
     this._win = (null /*:: :any*/);
   }
@@ -46,19 +43,22 @@ export class LinkPlacesChromePanel {
     const document = this._win.document;
     this._dom = createDOM(document, this._service);
 
-    this._mountpoint = document.querySelector("panelmultiview#PanelUI-multiView");
-    if (this._mountpoint === null) {
+    const mountpoint = document.querySelector("panelmultiview#PanelUI-multiView");
+    if (mountpoint === null) {
       throw new TypeError();
     }
-    this._mountpoint.appendChild(this._dom);
+    mountpoint.appendChild(this._dom);
   }
 
   _finalize() {
-    if (this._mountpoint === null || this._dom === null) {
-      throw new TypeError("`this._mountpoint` and `this._dom` should not be null");
+    if (this._dom === null) {
+      throw new TypeError("`this._dom` should not be null");
     }
 
-    this._mountpoint.removeChild(this._dom);
+    const dom = this._dom;
+    if (dom.parentNode) {
+      dom.parentNode.removeChild(dom);
+    }
   }
 
   onPanelMenuViewCommand(aEvent /* :any */, aView /*:any */) {
