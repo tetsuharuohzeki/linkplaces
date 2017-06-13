@@ -5,6 +5,6 @@ declare global {
     const chrome: WebExtGlobal;
 }
 
-interface WebExtGlobal {
+export interface WebExtGlobal {
     runtime: Runtime;
 }
