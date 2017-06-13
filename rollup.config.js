@@ -1,6 +1,8 @@
 /* eslint-env commonjs */
 'use strict';
 
+const babel = require('rollup-plugin-babel');
+
 // https://github.com/rollup/rollup/wiki/JavaScript-API
 // https://github.com/rollup/rollup/wiki/Command-Line-Interface
 module.exports = {
@@ -20,5 +22,15 @@ module.exports = {
     },
 
     plugins: [
+        // https://github.com/rollup/rollup-plugin-babel
+        babel({
+            exclude: 'node_modules/**',
+            externalHelpers: false,
+            babelrc: false,
+            presets: [
+                'react'
+            ],
+            plugins: [],
+        }),
     ],
 };
