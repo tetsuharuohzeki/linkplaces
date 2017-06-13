@@ -58,12 +58,17 @@ package.json: clean_dist
 skin: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*' $(CURDIR)/__dist/$@ --preserve
 
-webextension: webextension_cp webextension_bundle
+webextension: webextension_cp webextension_icon webextension_bundle
 
 webextension_cp: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/src/webextension/**/**.json' $(CURDIR)/__dist/webextension --preserve
-webextension_bundle: clean_dist __obj
+	$(NPM_BIN)/cpx '$(CURDIR)/src/webextension/**/**.{json,html}' $(CURDIR)/__dist/webextension --preserve
+webextension_icon: clean_dist
+	$(NPM_BIN)/cpx '$(CURDIR)/src/skin/classic/toolbaricon.svg' $(CURDIR)/__dist/webextension --preserve
+webextension_bundle: webextension_bundle_background webextension_bundle_popup
+webextension_bundle_background: clean_dist __obj
 	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/background/index.js --format iife --output $(CURDIR)/__dist/webextension/bundled_background.js
+webextension_bundle_popup: clean_dist __obj
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/popup/index.js --format iife --output $(CURDIR)/__dist/webextension//popup/bundled.js
 
 __obj: clean_obj
 	$(NPM_BIN)/cpx '$(CURDIR)/src/**/*.js' $(CURDIR)/__obj/src/ --preserve
