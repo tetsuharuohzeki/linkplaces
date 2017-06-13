@@ -15,10 +15,12 @@ module.exports = {
     external: [
         'react',
         'react-dom',
+        'prop-types',
     ],
     globals: {
         'react': 'React',
         'react-dom': 'ReactDOM',
+        'prop-types': 'PropTypes',
     },
 
     plugins: [

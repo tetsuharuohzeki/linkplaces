@@ -1,5 +1,7 @@
 /* eslint-env browser, webextensions */
 
+import * as React from 'react';
+
 // http://design.firefox.com/StyleGuide/#/navigation
 export function createPanel(childFragment) {
     const outercontainer = document.createElement('div');
@@ -35,4 +37,7 @@ export function createListItem({ icon, text, shortcut }) {
     c.appendChild(shortcutDom);
 
     return c;
+}
+
+function ListItem(props) {
 }
