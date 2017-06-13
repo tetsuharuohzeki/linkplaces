@@ -1,9 +1,8 @@
 /* eslint-env browser, webextensions */
 
-import {
-    createPanel,
-    createListItem,
-} from './view/list';
+import * as ReactDOM from 'react-dom';
+
+import { Panel } from './view/list';
 
 function getUnfiledBoolmarkFolder() {
     // This code only works with Firefox.
@@ -14,15 +13,17 @@ function getUnfiledBoolmarkFolder() {
     const list = await getUnfiledBoolmarkFolder();
     console.dir(list);
 
-    const bag = document.createDocumentFragment();
-    for (const item of list) {
-        const i = createListItem({
-            icon: '',
+    const items = list.map((item) => {
+        return {
+            item: '',
             text: item.title,
             shortcut: '',
-        });
-        bag.appendChild(i);
-    }
+        };
+    });
 
-    createPanel(bag);
+    const mountpoint = document.getElementById('js-mountpoint');
+    const v = <Panel list={items}/>;
+    ReactDOM.render(v, mountpoint, () => {
+        console.log('complete');
+    });
 })().then(console.log, console.error);
