@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/saneyuki/linkplaces",
   "dependencies": {
+    "eslint-plugin-react": "^7.1.0",
     "prop-types": "^15.5.10",
     "react": "next",
     "react-dom": "next"

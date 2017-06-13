@@ -10,6 +10,7 @@
 module.exports = {
   'extends': [
     './tools/eslint/eslintrc_core.js',
+    './tools/eslint/eslintrc_react.js',
   ],
 
   'parserOptions': {

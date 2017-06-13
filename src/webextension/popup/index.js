@@ -1,8 +1,9 @@
 /* eslint-env browser, webextensions */
 
+import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { Panel } from './view/list';
+import { Panel } from './view/ListView';
 
 function getUnfiledBoolmarkFolder() {
     // This code only works with Firefox.
@@ -10,10 +11,10 @@ function getUnfiledBoolmarkFolder() {
 }
 
 (async function main(){
-    const list = await getUnfiledBoolmarkFolder();
-    console.dir(list);
+    const items = await getUnfiledBoolmarkFolder();
+    console.dir(items);
 
-    const items = list.map((item) => {
+    const list = items.map((item) => { // eslint-disable-line
         return {
             item: '',
             text: item.title,
@@ -21,8 +22,10 @@ function getUnfiledBoolmarkFolder() {
         };
     });
 
+    const v = React.createElement(Panel, {
+        list,
+    });
     const mountpoint = document.getElementById('js-mountpoint');
-    const v = <Panel list={items}/>;
     ReactDOM.render(v, mountpoint, () => {
         console.log('complete');
     });
