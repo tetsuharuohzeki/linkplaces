@@ -3,15 +3,15 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 /* @flow */
 
-import { BrowserMessagePort } from "./BrowserMessagePort";
-import { createContextMenu, removeContextMenu } from "./ContextMenu";
+import { BrowserMessagePort } from './BrowserMessagePort';
+import { createContextMenu, removeContextMenu } from './ContextMenu';
 import {
     MSG_TYPE_OPEN_URL,
     MSG_TYPE_OPEN_URL_RESULT,
     MSG_TYPE_ENABLE_WEBEXT_CTXMENU,
     MSG_TYPE_DISABLE_WEBEXT_CTXMENU,
-} from "./IpcMsg";
-import { createTab } from "./TabOpener";
+} from './IpcMsg';
+import { createTab } from './TabOpener';
 
 /*global browser: false, console: false */
 /* eslint-disable no-implicit-globals */

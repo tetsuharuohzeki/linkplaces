@@ -27,7 +27,7 @@ export class BrowserMessagePort {
     */
 
     constructor(runtime /* :webext$runtime$runtime */, listener /* :Function */) {
-        const port = runtime.connect("");
+        const port = runtime.connect('');
 
         this._port = port;
         this._listener = listener;
@@ -55,7 +55,7 @@ export class BrowserMessagePort {
 
         const port = this._port;
         if (!port) {
-            throw new TypeError("`this._port` is null");
+            throw new TypeError('`this._port` is null');
         }
 
         port.postMessage(message);

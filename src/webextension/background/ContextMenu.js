@@ -3,33 +3,33 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 /* @flow */
 
-import { createBookmarkItem } from "./Bookmark";
+import { createBookmarkItem } from './Bookmark';
 
 /*global browser: false, console:false */
 
-const CTXMENU_ID_TAB_SAVE_TAB = "linkplaces-ctx-tab-save-tab";
-const CTXMENU_ID_CONTENT_SAVE_TAB = "linkplaces-ctx-content-save-tab";
-const CTXMENU_ID_LINK_SAVE_LINK = "linkplaces-ctx-link-save-link";
+const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';
+const CTXMENU_ID_CONTENT_SAVE_TAB = 'linkplaces-ctx-content-save-tab';
+const CTXMENU_ID_LINK_SAVE_LINK = 'linkplaces-ctx-link-save-link';
 
 export function createContextMenu() {
     const list = [
         {
-            type: "normal",
+            type: 'normal',
             id: CTXMENU_ID_TAB_SAVE_TAB,
-            title: "Add Tab to LinkPlaces",
-            contexts: ["tab"],
+            title: 'Add Tab to LinkPlaces',
+            contexts: ['tab'],
         },
         {
-            type: "normal",
+            type: 'normal',
             id: CTXMENU_ID_CONTENT_SAVE_TAB,
-            title: "Add Page to LinkPlaces",
-            contexts: ["page"],
+            title: 'Add Page to LinkPlaces',
+            contexts: ['page'],
         },
         {
-            type: "normal",
+            type: 'normal',
             id: CTXMENU_ID_LINK_SAVE_LINK,
-            title: "Add Link to LinkPlaces",
-            contexts: ["link"],
+            title: 'Add Link to LinkPlaces',
+            contexts: ['link'],
         },
     ];
 
@@ -54,7 +54,7 @@ function onClicked(info /* :webext$contextMenusInternal$OnClickData */, tab /* :
             }
 
             const { title, url } = tab;
-            if (typeof title !== "string" || typeof url !== "string") {
+            if (typeof title !== 'string' || typeof url !== 'string') {
                 throw new TypeError();
             }
             createBookmarkItem(url, title).catch(console.error);
@@ -62,17 +62,17 @@ function onClicked(info /* :webext$contextMenusInternal$OnClickData */, tab /* :
         }
         case CTXMENU_ID_CONTENT_SAVE_TAB: {
             const url = info.pageUrl;
-            if (typeof url !== "string") {
+            if (typeof url !== 'string') {
                 throw new TypeError();
             }
 
-            const title /* :string */ = ((!!tab) && (typeof tab.title === "string")) ? tab.title : url;
+            const title /* :string */ = ((!!tab) && (typeof tab.title === 'string')) ? tab.title : url;
             createBookmarkItem(url, title).catch(console.error);
             break;
         }
         case CTXMENU_ID_LINK_SAVE_LINK: {
             const url = info.linkUrl;
-            if (typeof url !== "string") {
+            if (typeof url !== 'string') {
                 throw new TypeError();
             }
             // `OnClickData` does not have a property containing the link title.
@@ -82,6 +82,6 @@ function onClicked(info /* :webext$contextMenusInternal$OnClickData */, tab /* :
             break;
         }
         default:
-            throw new RangeError("unexpected `info.menuItemId`");
+            throw new RangeError('unexpected `info.menuItemId`');
     }
 }
