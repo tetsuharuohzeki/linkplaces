@@ -93,7 +93,7 @@ tscheck:
 	$(NPM_BIN)/tsc -p ./tsconfig.json --noEmit --allowJs
 
 stylelint:
-	$(NPM_BIN)/stylelint '$(CURDIR)/src/webextension/style/*.css' \
+	$(NPM_BIN)/stylelint '$(CURDIR)/src/webextension/**/*.css' \
 		--config=$(CURDIR)/stylelint.config.js \
 		-f verbose \
 		--color
