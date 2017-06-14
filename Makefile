@@ -78,7 +78,7 @@ __external_dependency_prop_types: clean_dist
 		$(NPM_BIN)/cpx '$(CURDIR)/node_modules/prop-types/prop-types.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
 
 __obj: clean_obj
-	$(NPM_BIN)/cpx '$(CURDIR)/src/**/*.js' $(CURDIR)/__obj/src/ --preserve
+	$(NPM_BIN)/tsc -p ./tsconfig.json --outDir $(CURDIR)/__obj/src/ --allowJs
 
 # Test
 test: lint flowcheck tscheck
