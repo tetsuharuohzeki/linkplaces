@@ -81,7 +81,7 @@ __obj: clean_obj
 	$(NPM_BIN)/tsc -p ./tsconfig.json --outDir $(CURDIR)/__obj/src/ --allowJs
 
 # Test
-test: lint flowcheck tscheck
+test: lint flowcheck tscheck stylelint
 
 lint:
 	$(NPM_BIN)/eslint --ext=js,jsm src/ $(CURDIR)
@@ -91,3 +91,9 @@ flowcheck:
 
 tscheck:
 	$(NPM_BIN)/tsc -p ./tsconfig.json --noEmit --allowJs
+
+stylelint:
+	$(NPM_BIN)/stylelint '$(CURDIR)/src/webextension/style/*.css' \
+		--config=$(CURDIR)/stylelint.config.js \
+		-f verbose \
+		--color
