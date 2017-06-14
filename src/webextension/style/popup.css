@@ -1,0 +1,12 @@
+@charset 'utf-8';
+
+:root {
+    /* sort with https://dxr.mozilla.org/mozilla-central/rev/91134c95d68cbcfe984211fa3cbd28d610361ef1/browser/themes/shared/customizableui/panelUI.inc.css#8 */
+    --popup-subview-width: 30em;
+}
+
+/*
+html, body {
+    max-width: var(--popup-subview-width);
+}
+*/

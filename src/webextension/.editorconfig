@@ -1,4 +1,4 @@
 # EditorConfig is awesome: http://EditorConfig.org
 
-[*.{html,js,jsx,ts,tsx}]
+[*.{html,js,jsx,ts,tsx,css}]
 indent_size = 4

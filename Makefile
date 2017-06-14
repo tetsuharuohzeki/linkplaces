@@ -61,7 +61,7 @@ skin: clean_dist
 webextension: webextension_cp webextension_icon webextension_bundle
 
 webextension_cp: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/src/webextension/**/**.{json,html}' $(CURDIR)/__dist/webextension --preserve
+	$(NPM_BIN)/cpx '$(CURDIR)/src/webextension/**/**.{json,html,css}' $(CURDIR)/__dist/webextension --preserve
 webextension_icon: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/skin/classic/toolbaricon.svg' $(CURDIR)/__dist/webextension --preserve
 webextension_bundle: webextension_bundle_background webextension_bundle_popup
@@ -81,7 +81,7 @@ __obj: clean_obj
 	$(NPM_BIN)/tsc -p ./tsconfig.json --outDir $(CURDIR)/__obj/src/ --allowJs
 
 # Test
-test: lint flowcheck tscheck
+test: lint flowcheck tscheck stylelint
 
 lint:
 	$(NPM_BIN)/eslint --ext=js,jsm src/ $(CURDIR)
@@ -91,3 +91,9 @@ flowcheck:
 
 tscheck:
 	$(NPM_BIN)/tsc -p ./tsconfig.json --noEmit --allowJs
+
+stylelint:
+	$(NPM_BIN)/stylelint '$(CURDIR)/src/webextension/style/*.css' \
+		--config=$(CURDIR)/stylelint.config.js \
+		-f verbose \
+		--color
