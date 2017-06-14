@@ -24,6 +24,5 @@ module.exports = {
   'root': true,
 
   'rules': {
-      'react/jsx-filename-extension': 0,
   }
 };
