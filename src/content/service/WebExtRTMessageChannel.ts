@@ -3,7 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { WebExtGlobal } from '../../../typings/webext';
-import { Runtime, Port } from '../../../typings/webext/runtime';
+import { WebExtRuntimeService, Port } from '../../../typings/webext/runtime';
 
 type PromiseTuple = Readonly<{
     resolve: (result?: any) => void;
@@ -32,13 +32,13 @@ export class WebExtRTMessageChannel {
         return inst;
     }
 
-    private _runtime: Runtime | null;
+    private _runtime: WebExtRuntimeService | null;
     private _port: Port<any> | null;
     private _callback: Map<number, PromiseTuple>;
     private _callbackId: number;
     private _listeners: Set<Listener>;
 
-    private constructor(runtime: Runtime) {
+    private constructor(runtime: WebExtRuntimeService) {
         this._runtime = runtime;
         this._port = null;
         this._callback = new Map();

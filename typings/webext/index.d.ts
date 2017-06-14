@@ -1,5 +1,5 @@
 import { WebExtBookmarkService } from './bookmarks';
-import { Runtime } from './runtime';
+import { WebExtRuntimeService } from './runtime';
 
 declare global {
     const browser: WebExtGlobal;
@@ -8,5 +8,5 @@ declare global {
 
 export interface WebExtGlobal {
     bookmarks: WebExtBookmarkService;
-    runtime: Runtime;
+    runtime: WebExtRuntimeService;
 }

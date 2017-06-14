@@ -50,7 +50,7 @@ export type OnInstalledReason = 'install' | 'update' | 'chrome_update' | 'shared
 export type OnRestartRequiredReason = 'app_update' | 'os_update' | 'periodic';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime
-export interface Runtime {
+export interface WebExtRuntimeService {
     readonly lastError: any;
     readonly id: string;
 
