@@ -4,15 +4,19 @@ import { createStore, Store, Unsubscribe } from 'redux';
 
 import { ViewContext } from '../shared/ViewContext';
 
+import { BookmarkTreeNode } from '../../../typings/webext/bookmarks';
+
 import { PopupMainView } from './view/PopupMainView';
 
 import { createReducer, PopupMainState } from './PopupMainState';
 
 export class PopupMainContext implements ViewContext {
 
+    private _list: Array<BookmarkTreeNode>;
     private _disposer: Unsubscribe | null;
 
-    constructor() {
+    constructor(list: Array<BookmarkTreeNode>) {
+        this._list = list;
         this._disposer = null;
     }
 
@@ -23,12 +27,15 @@ export class PopupMainContext implements ViewContext {
 
         const reducer = createReducer();
         const store: Store<PopupMainState> = createStore(reducer, {});
+        const list = this._list;
 
         const render = () => {
             const state: PopupMainState = store.getState();
 
             const view = React.createElement(PopupMainView, {
                 state,
+                store,
+                list,
             }, []);
             ReactDOM.render(view, mountpoint);
         };

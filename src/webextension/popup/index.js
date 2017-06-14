@@ -20,6 +20,6 @@ import { PopupMainContext } from './PopupMainContext';
         console.log('complete');
     });
 
-    const ctx = new PopupMainContext();
+    const ctx = new PopupMainContext(list);
     ctx.onActivate(mountpoint);
 })().then(console.log, console.error);

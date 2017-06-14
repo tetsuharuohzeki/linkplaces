@@ -1,16 +1,23 @@
 export const enum ActionType {
     OpenSidebar = 'POPUP_ACTION_OPEN_SIDEBAR',
     CloseSidebar = 'POPUP_ACTION_CLOSE_SIDEBAR',
+
+    ItemOpened = 'POPUP_ACTION_ITEM_OPEND',
 }
 
-export interface Action {
+export type Action =
+    OpenSidebarAction |
+    CloseSidebarAction |
+    ItemOpenedAction;
+
+interface ActionBase {
     type: ActionType;
 }
 
-export interface OpenSidebarAction extends Action {
+export interface OpenSidebarAction extends ActionBase {
     type: ActionType.OpenSidebar;
 }
-export function isOpenSidebarAction(v: Action): v is OpenSidebarAction {
+export function isOpenSidebarAction(v: ActionBase): v is OpenSidebarAction {
     return v.type === ActionType.OpenSidebar;
 }
 export function openSidebar(): OpenSidebarAction {
@@ -19,9 +26,25 @@ export function openSidebar(): OpenSidebarAction {
     };
 }
 
-export interface CloseSidebarAction extends Action {
+export interface CloseSidebarAction extends ActionBase {
     type: ActionType.CloseSidebar;
 }
-export function isCloseSidebarAction(v: Action): v is CloseSidebarAction {
+export function isCloseSidebarAction(v: ActionBase): v is CloseSidebarAction {
     return v.type === ActionType.CloseSidebar;
+}
+
+export interface ItemOpenedAction extends ActionBase {
+    type: ActionType.ItemOpened;
+    id: string;
+    url: string;
+}
+export function isOpenItemAction(v: Readonly<ActionBase>): v is ItemOpenedAction {
+    return v.type === ActionType.ItemOpened;
+}
+export function notifyItemOpened(id: string, url: string): ItemOpenedAction {
+    return {
+        type: ActionType.ItemOpened,
+        id,
+        url,
+    };
 }
