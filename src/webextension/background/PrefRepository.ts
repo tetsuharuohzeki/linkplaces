@@ -1,9 +1,18 @@
-export class PrefRepository {
+import { Observable, Subject } from 'rxjs';
+import { Repository } from '../shared/Repository';
+
+export class PrefRepository implements Repository<PrefTable> {
 
     private _table: PrefTable;
+    private _subject: Subject<PrefTable>;
 
     constructor() {
         this._table = new PrefTable();
+        this._subject = new Subject();
+    }
+
+    destroy(): void {
+        this._subject.unsubscribe();
     }
 
     get table(): PrefTable {
@@ -18,6 +27,11 @@ export class PrefRepository {
             default:
                 throw RangeError(`${action.type} is not undefined type`);
         }
+        this._subject.next(this._table);
+    }
+
+    asObservable(): Observable<PrefTable> {
+        return this._subject.asObservable();
     }
 }
 
