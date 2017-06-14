@@ -13,6 +13,11 @@ export interface OpenSidebarAction extends Action {
 export function isOpenSidebarAction(v: Action): v is OpenSidebarAction {
     return v.type === ActionType.OpenSidebar;
 }
+export function openSidebar(): OpenSidebarAction {
+    return {
+        type: ActionType.OpenSidebar,
+    };
+}
 
 export interface CloseSidebarAction extends Action {
     type: ActionType.CloseSidebar;

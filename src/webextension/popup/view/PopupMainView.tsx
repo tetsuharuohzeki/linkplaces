@@ -1,12 +1,19 @@
 import * as React from 'react';
+import { Store } from 'redux';
 //import * as PropTypes from 'prop-types';
 
+import { openSidebar } from '../PopupIntent';
+import { PopupMainState } from '../PopupMainState';
+
 export interface PopupMainViewProps {
+    state: PopupMainState;
+    store: Store<PopupMainState>;
 }
 
-export function PopupMainView(_props: PopupMainViewProps): JSX.Element {
+export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element {
     const onClick = (_event: React.MouseEvent<HTMLDivElement>) => {
-        console.log('toggle event dispatch!');//TODOß
+        const a = openSidebar();
+        props.store.dispatch(a);
     };
 
     return (
