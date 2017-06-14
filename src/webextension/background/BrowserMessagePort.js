@@ -16,48 +16,48 @@
 
 export class BrowserMessagePort {
 
-  static create(browser /* :typeof browser */, listener /* :ListenerFn<any, any> */) /* :BrowserMessagePort */ {
-    const r = new BrowserMessagePort(browser.runtime, listener);
-    return r;
-  }
-
-  /*::
-    _port: webext$runtime$Port | null;
-    _listener: Function | null;
-  */
-
-  constructor(runtime /* :webext$runtime$runtime */, listener /* :Function */) {
-    const port = runtime.connect("");
-
-    this._port = port;
-    this._listener = listener;
-
-    port.onMessage.addListener(listener);
-  }
-
-  destroy() {
-    if (this._port === null || this._listener === null) {
-      throw new TypeError();
+    static create(browser /* :typeof browser */, listener /* :ListenerFn<any, any> */) /* :BrowserMessagePort */ {
+        const r = new BrowserMessagePort(browser.runtime, listener);
+        return r;
     }
 
-    this._port.onMessage.removeListener(this._listener);
+    /*::
+      _port: webext$runtime$Port | null;
+      _listener: Function | null;
+    */
 
-    this._listener = null;
-    this._port = null;
-  }
+    constructor(runtime /* :webext$runtime$runtime */, listener /* :Function */) {
+        const port = runtime.connect("");
 
-  postOneShotMessage(type /* :string */, value /* :any */) {
-    const message = {
-      type,
-      value,
-      isRequest: true,
-    };
+        this._port = port;
+        this._listener = listener;
 
-    const port = this._port;
-    if (!port) {
-      throw new TypeError("`this._port` is null");
+        port.onMessage.addListener(listener);
     }
 
-    port.postMessage(message);
-  }
+    destroy() {
+        if (this._port === null || this._listener === null) {
+            throw new TypeError();
+        }
+
+        this._port.onMessage.removeListener(this._listener);
+
+        this._listener = null;
+        this._port = null;
+    }
+
+    postOneShotMessage(type /* :string */, value /* :any */) {
+        const message = {
+            type,
+            value,
+            isRequest: true,
+        };
+
+        const port = this._port;
+        if (!port) {
+            throw new TypeError("`this._port` is null");
+        }
+
+        port.postMessage(message);
+    }
 }

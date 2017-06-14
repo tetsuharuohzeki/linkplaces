@@ -6,11 +6,11 @@
 /*global browser: false */
 
 export async function createBookmarkItem(url /* :string*/, title /* :string*/) /* :Promise<webext$bookmarks$BookmarkTreeNode> */ {
-  // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/create
-  // Save to "Other Bookmarks" if there is no `parentId`
-  const result = browser.bookmarks.create({
-    url,
-    title,
-  });
-  return result;
+    // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/create
+    // Save to "Other Bookmarks" if there is no `parentId`
+    const result = browser.bookmarks.create({
+        url,
+        title,
+    });
+    return result;
 }

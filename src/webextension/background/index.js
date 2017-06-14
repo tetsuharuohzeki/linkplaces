@@ -6,10 +6,10 @@
 import { BrowserMessagePort } from "./BrowserMessagePort";
 import { createContextMenu, removeContextMenu } from "./ContextMenu";
 import {
-  MSG_TYPE_OPEN_URL,
-  MSG_TYPE_OPEN_URL_RESULT,
-  MSG_TYPE_ENABLE_WEBEXT_CTXMENU,
-  MSG_TYPE_DISABLE_WEBEXT_CTXMENU,
+    MSG_TYPE_OPEN_URL,
+    MSG_TYPE_OPEN_URL_RESULT,
+    MSG_TYPE_ENABLE_WEBEXT_CTXMENU,
+    MSG_TYPE_DISABLE_WEBEXT_CTXMENU,
 } from "./IpcMsg";
 import { createTab } from "./TabOpener";
 
@@ -21,53 +21,53 @@ import { createTab } from "./TabOpener";
 */
 
 BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: string; |}> */,
-  sender /* :webext$runtime$MessageSender & webext$runtime$Port */) => {
-  const { type, id, value } = msg;
-  switch (type) {
-    case MSG_TYPE_OPEN_URL: {
-      const { url, where } = value;
-      try {
-        const res = await onMessageCreateTab(id, url, where);
-        sender.postMessage(res);
-      }
-      catch (e) {
-        console.error(e);
-      }
-      break;
+    sender /* :webext$runtime$MessageSender & webext$runtime$Port */) => {
+    const { type, id, value } = msg;
+    switch (type) {
+        case MSG_TYPE_OPEN_URL: {
+            const { url, where } = value;
+            try {
+                const res = await onMessageCreateTab(id, url, where);
+                sender.postMessage(res);
+            }
+            catch (e) {
+                console.error(e);
+            }
+            break;
+        }
+        case MSG_TYPE_ENABLE_WEBEXT_CTXMENU:
+            createContextMenu();
+            break;
+        case MSG_TYPE_DISABLE_WEBEXT_CTXMENU:
+            await removeContextMenu();
+            break;
     }
-    case MSG_TYPE_ENABLE_WEBEXT_CTXMENU:
-      createContextMenu();
-      break;
-    case MSG_TYPE_DISABLE_WEBEXT_CTXMENU:
-      await removeContextMenu();
-      break;
-  }
 });
 
 async function onMessageCreateTab(msgId /* :number */, url /* :string */, where /* :string */) /* :Promise<IpcMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null>> */ {
-  let value; // eslint-disable-line init-declarations
+    let value; // eslint-disable-line init-declarations
 
-  try {
-    const tabId = await createTab(url, where);
-    value = {
-      ok: true,
-      tabId: tabId,
-      error: null,
+    try {
+        const tabId = await createTab(url, where);
+        value = {
+            ok: true,
+            tabId: tabId,
+            error: null,
+        };
+    }
+    catch (e) {
+        value = {
+            ok: false,
+            tabId: null,
+            error: e.message,
+        };
+    }
+
+    const response = {
+        id: msgId,
+        type: MSG_TYPE_OPEN_URL_RESULT,
+        value,
     };
-  }
-  catch (e) {
-    value = {
-      ok: false,
-      tabId: null,
-      error: e.message,
-    };
-  }
 
-  const response = {
-    id: msgId,
-    type: MSG_TYPE_OPEN_URL_RESULT,
-    value,
-  };
-
-  return response;
+    return response;
 }
