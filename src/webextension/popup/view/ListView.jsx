@@ -5,7 +5,7 @@
 import * as React from 'react'; // eslint-disable-line no-unused-vars
 import * as PropTypes from 'prop-types';
 
-import { BookmarkTreeNode } from '../../../../typings/webext/bookmark'; // eslint-disable-line no-unused-vars
+import { BookmarkTreeNode } from '../../../../typings/webext/bookmarks'; // eslint-disable-line no-unused-vars
 
 /**
  *  @param  { { list: Array<BookmarkTreeNode>, } } props

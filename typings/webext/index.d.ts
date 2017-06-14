@@ -1,3 +1,4 @@
+import { WebExtBookmarkService } from './bookmarks';
 import { Runtime } from './runtime';
 
 declare global {
@@ -6,5 +7,6 @@ declare global {
 }
 
 export interface WebExtGlobal {
+    bookmarks: WebExtBookmarkService;
     runtime: Runtime;
 }
