@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { Panel } from './view/ListView';
+import { BookmarkPanel } from './view/ListView';
 
 function getUnfiledBoolmarkFolder() {
     // This code only works with Firefox.
@@ -11,18 +11,10 @@ function getUnfiledBoolmarkFolder() {
 }
 
 (async function main(){
-    const items = await getUnfiledBoolmarkFolder();
-    console.dir(items);
+    const list = await getUnfiledBoolmarkFolder();
+    console.dir(list);
 
-    const list = items.map((item) => { // eslint-disable-line
-        return {
-            item: '',
-            text: item.title,
-            shortcut: '',
-        };
-    });
-
-    const v = React.createElement(Panel, {
+    const v = React.createElement(BookmarkPanel, {
         list,
     });
     const mountpoint = document.getElementById('js-mountpoint');

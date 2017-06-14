@@ -3,9 +3,9 @@
 import * as React from 'react'; // eslint-disable-line no-unused-vars
 import * as PropTypes from 'prop-types';
 
-export function Panel({ list }) {
-    const l = list.map(({ icon, text, shortcut, }, i) => {
-        const v = <ListItem key={i} icon={icon} text={text} shortcut={shortcut} />;
+export function BookmarkPanel({ list }) {
+    const l = list.map((item, i) => {
+        const v = <ListItem key={i} icon={''} text={item.title} shortcut={''} />;
         return v;
     });
 
@@ -15,7 +15,7 @@ export function Panel({ list }) {
         </div>
     );
 }
-Panel.propTypes = {
+BookmarkPanel.propTypes = {
     list: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
