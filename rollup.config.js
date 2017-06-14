@@ -19,6 +19,7 @@ module.exports = {
         'prop-types',
         'redux',
         'rxjs',
+        'redux-observable',
     ],
     globals: {
         'react': 'React',
@@ -26,6 +27,7 @@ module.exports = {
         'prop-types': 'PropTypes',
         'redux': 'Redux',
         'rxjs': 'Rx',
+        'redux-observable': 'ReduxObservable',
     },
 
     plugins: [

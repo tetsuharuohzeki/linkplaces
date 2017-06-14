@@ -2,6 +2,12 @@
 # yarn lockfile v1
 
 
+"@reactivex/rxjs@^6.0.0-alpha.0":
+  version "6.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@reactivex/rxjs/-/rxjs-6.0.0-alpha.0.tgz#c0df6b3b126ba7a0a551f9e585128b61da96839c"
+  dependencies:
+    symbol-observable "^1.0.1"
+
 "@types/prop-types@^15.5.1":
   version "15.5.1"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.1.tgz#1ecf52621299e65b855374337fb11fd2d1066fc1"
@@ -2854,6 +2860,10 @@ redent@^1.0.0:
   dependencies:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
+
+redux-observable@^0.14.1:
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/redux-observable/-/redux-observable-0.14.1.tgz#9f3d870c69388fdc427ded6770a3e326f3b69693"
 
 redux@^3.6.0:
   version "3.6.0"

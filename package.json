@@ -31,12 +31,14 @@
   },
   "homepage": "https://github.com/saneyuki/linkplaces",
   "dependencies": {
+    "@reactivex/rxjs": "^6.0.0-alpha.0",
     "@types/react-dom": "^15.5.0",
     "eslint-plugin-react": "^7.1.0",
     "prop-types": "^15.5.10",
     "react": "next",
     "react-dom": "next",
     "redux": "^3.6.0",
+    "redux-observable": "^0.14.1",
     "rxjs": "^6.0.0-alpha.0"
   },
   "devDependencies": {
