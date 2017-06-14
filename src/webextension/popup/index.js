@@ -6,6 +6,8 @@ import * as ReactDOM from 'react-dom';
 import { getUnfiledBoolmarkFolder } from './Bookmark';
 import { BookmarkPanel } from './view/ListView';
 
+import { PopupMainContext } from './PopupMainContext';
+
 (async function main(){
     const list = await getUnfiledBoolmarkFolder();
     console.dir(list);
@@ -17,4 +19,7 @@ import { BookmarkPanel } from './view/ListView';
     ReactDOM.render(v, mountpoint, () => {
         console.log('complete');
     });
+
+    const ctx = new PopupMainContext();
+    ctx.onActivate(mountpoint);
 })().then(console.log, console.error);
