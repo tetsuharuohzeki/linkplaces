@@ -22,5 +22,9 @@
     "default_icon": "toolbaricon.svg",
     "default_title": "LinkPlaces WebExt",
     "default_panel": "sidebar/index.html"
+  },
+  "options_ui": {
+    "browser_style": true,
+    "page": "options/index.html"
   }
 }
