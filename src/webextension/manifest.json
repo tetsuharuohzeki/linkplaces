@@ -17,5 +17,10 @@
     "default_icon": "toolbaricon.svg",
     "default_title": "LinkPlaces popup (WebExt)",
     "default_popup": "popup/index.html"
+  },
+  "sidebar_action": {
+    "default_icon": "toolbaricon.svg",
+    "default_title": "LinkPlaces WebExt",
+    "default_panel": "sidebar/index.html"
   }
 }
