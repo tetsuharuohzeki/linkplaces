@@ -17,11 +17,13 @@ module.exports = {
         'react',
         'react-dom',
         'prop-types',
+        'redux',
     ],
     globals: {
         'react': 'React',
         'react-dom': 'ReactDOM',
         'prop-types': 'PropTypes',
+        'redux': 'Redux',
     },
 
     plugins: [
