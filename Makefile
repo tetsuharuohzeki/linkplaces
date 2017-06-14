@@ -61,7 +61,7 @@ skin: clean_dist
 webextension: webextension_cp webextension_icon webextension_bundle
 
 webextension_cp: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/src/webextension/**/**.{json,html}' $(CURDIR)/__dist/webextension --preserve
+	$(NPM_BIN)/cpx '$(CURDIR)/src/webextension/**/**.{json,html,css}' $(CURDIR)/__dist/webextension --preserve
 webextension_icon: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/skin/classic/toolbaricon.svg' $(CURDIR)/__dist/webextension --preserve
 webextension_bundle: webextension_bundle_background webextension_bundle_popup
