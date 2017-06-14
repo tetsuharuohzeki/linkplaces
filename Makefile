@@ -68,10 +68,17 @@ webextension_bundle: webextension_bundle_background webextension_bundle_popup we
 webextension_bundle_background: clean_dist __obj
 	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/background/index.js --format iife --output $(CURDIR)/__dist/webextension/bundled_background.js
 
-webextension_bundle_popup: clean_dist __obj __external_dependency_react __external_dependency_react_dom __external_dependency_prop_types __external_dependency_redux
+webextension_bundle_popup: clean_dist __obj __external_dependency
 	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/popup/index.js --config $(CURDIR)/rollup.config.js --output $(CURDIR)/__dist/webextension/popup/bundled.js
-webextension_bundle_sidebar: clean_dist __obj __external_dependency_react __external_dependency_react_dom __external_dependency_prop_types __external_dependency_redux
+webextension_bundle_sidebar: clean_dist __obj __external_dependency
 	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/sidebar/index.js --config $(CURDIR)/rollup.config.js --output $(CURDIR)/__dist/webextension/sidebar/bundled.js
+
+__external_dependency: \
+	__external_dependency_react \
+	__external_dependency_react_dom \
+	__external_dependency_prop_types \
+	__external_dependency_redux \
+	__external_dependency_rxjs
 
 __external_dependency_react: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/react/umd/react.production.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
@@ -81,6 +88,8 @@ __external_dependency_prop_types: clean_dist
 		$(NPM_BIN)/cpx '$(CURDIR)/node_modules/prop-types/prop-types.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
 __external_dependency_redux: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/redux/dist/redux.js' $(CURDIR)/__dist/webextension/third_party --preserve
+__external_dependency_rxjs: clean_dist
+	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/rxjs/bundles/Rx.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
 
 __obj: clean_obj
 	$(NPM_BIN)/tsc -p ./tsconfig.json --outDir $(CURDIR)/__obj/src/ --allowJs
