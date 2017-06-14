@@ -3,12 +3,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+import { getUnfiledBoolmarkFolder } from './Bookmark';
 import { BookmarkPanel } from './view/ListView';
-
-function getUnfiledBoolmarkFolder() {
-    // This code only works with Firefox.
-    return browser.bookmarks.getChildren('unfiled_____');
-}
 
 (async function main(){
     const list = await getUnfiledBoolmarkFolder();
