@@ -1,30 +1,25 @@
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
-import { removeBookmarkItem, getLinkSchemeType } from '../shared/Bookmark';
-import { notifyItemOpened, notifyItemOpening } from './PopupIntent';
+import { getLinkSchemeType } from '../shared/Bookmark';
 import { PopupMainState } from './PopupMainState';
+import { Channel } from './PopupMessageChannel';
 
-export function openItem(id: string, url: string): ThunkAction<Promise<void>, PopupMainState, void> {
-    return function openItemActual(dispatch: Dispatch<PopupMainState>, _: PopupMainState): Promise<void> {
+export type ThunkArguments = Readonly<{
+    channel: Channel;
+}>;
+
+export function openItem(id: string, url: string): ThunkAction<Promise<void>, PopupMainState, ThunkArguments> {
+    return function openItemActual(_dispatch: Dispatch<PopupMainState>, _1: PopupMainState, dependencies: ThunkArguments): Promise<void> {
         if (getLinkSchemeType(url).isPrivileged) {
             return Promise.resolve().then(() => {
                 window.close();
             });
         }
 
-        return Promise.resolve()
-            .then(() => {
-                dispatch(notifyItemOpening(id, url));
-            })
-            .then(() => {
-                return removeBookmarkItem(id);
-            })
-            .then(() => {
-                dispatch(notifyItemOpened(id, url));
-            })
-            .then(() => {
-                window.close();
-            }).catch(console.exception);
+        dependencies.channel.postOneShotMessage('linkplaces-open-url-from-popup', { id, url });
+        return Promise.resolve().then(() => {
+            window.close();
+        });
     };
 }

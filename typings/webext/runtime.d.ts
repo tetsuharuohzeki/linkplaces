@@ -54,6 +54,11 @@ export interface WebExtRuntimeService {
     readonly lastError: any;
     readonly id: string;
 
+    // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/connect
+    connect<T>(): Promise<Port<T>>;
+    connect<T>(connectInfo: { name?: string; includeTlsChannelId?: boolean; }): Promise<Port<T>>;
+    connect<T>(extensionId: string, connectInfo?: { name?: string; includeTlsChannelId?: boolean; }): Promise<Port<T>>;
+
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/getBackgroundPage
     getBackgroundPage(): Promise<Window>;
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/openOptionsPage

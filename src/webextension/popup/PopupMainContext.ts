@@ -10,13 +10,17 @@ import { BookmarkTreeNode } from '../../../typings/webext/bookmarks';
 import { PopupMainView } from './view/PopupMainView';
 
 import { createReducer, PopupMainState } from './PopupMainState';
+import { ThunkArguments } from './PopupMainThunk';
+import { Channel } from './PopupMessageChannel';
 
 export class PopupMainContext implements ViewContext {
 
+    private _channel: Channel;
     private _list: Array<BookmarkTreeNode>;
     private _disposer: Unsubscribe | null;
 
-    constructor(list: Array<BookmarkTreeNode>) {
+    constructor(channel: Channel, list: Array<BookmarkTreeNode>) {
+        this._channel = channel;
         this._list = list;
         this._disposer = null;
     }
@@ -27,7 +31,10 @@ export class PopupMainContext implements ViewContext {
         }
 
         const reducer = createReducer();
-        const store: Store<PopupMainState> = createStore(reducer, applyMiddleware(thunk));
+        const middleware = thunk.withExtraArgument({
+            channel: this._channel,
+        } as ThunkArguments);
+        const store: Store<PopupMainState> = createStore(reducer, applyMiddleware(middleware));
         const list = this._list;
 
         const render = () => {

@@ -56,7 +56,9 @@ function ListItem(props: ListItemProps): JSX.Element {
     const id = item.id;
     const url = (item as BookmarkTreeNodeItem).url;
 
-    const onClick = (_: React.SyntheticEvent<HTMLAnchorElement>) => {
+    const onClick = (event: React.SyntheticEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+
         const a = openItem(id, url);
         store.dispatch(a);
     };

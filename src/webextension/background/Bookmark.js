@@ -8,7 +8,7 @@
 // @ts-ignore
 import * as _ from '../../../typings/webext/index'; // eslint-disable-line no-unused-vars
 import { BookmarkTreeNode } from '../../../typings/webext/bookmarks'; // eslint-disable-line no-unused-vars
-export { getLinkSchemeType } from '../shared/Bookmark';
+export { getLinkSchemeType, removeBookmarkItem } from '../shared/Bookmark';
 
 /**
  *  @param {string} url

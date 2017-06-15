@@ -3,6 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 /* @flow */
 
+import { removeBookmarkItem } from './Bookmark';
 import { BrowserMessagePort } from './BrowserMessagePort';
 import { createContextMenu, removeContextMenu } from './ContextMenu';
 import {
@@ -10,6 +11,7 @@ import {
     MSG_TYPE_OPEN_URL_RESULT,
     MSG_TYPE_ENABLE_WEBEXT_CTXMENU,
     MSG_TYPE_DISABLE_WEBEXT_CTXMENU,
+    MSG_TYPE_OPEN_URL_FROM_POPUP,
 } from './IpcMsg';
 import { createTab } from './TabOpener';
 
@@ -44,6 +46,15 @@ BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: 
     }
 });
 
+browser.runtime.onConnect.addListener((s) => {
+    console.log(s);
+    s.onMessage.addListener(onMessageFromPopup);
+    s.onDisconnect.addListener(function onDisconnect() {
+        s.onDisconnect.removeListener(onDisconnect);
+        s.onMessage.removeListener(onMessageFromPopup);
+    });
+});
+
 async function onMessageCreateTab(msgId /* :number */, url /* :string */, where /* :string */) /* :Promise<IpcMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null>> */ {
     let value; // eslint-disable-line init-declarations
 
@@ -70,4 +81,22 @@ async function onMessageCreateTab(msgId /* :number */, url /* :string */, where 
     };
 
     return response;
+}
+
+function onMessageFromPopup(msg) {
+    const { type, value, } = msg;
+    switch (type) {
+        case MSG_TYPE_OPEN_URL_FROM_POPUP: {
+            const { id, url } = value;
+            openUrlFromPopup(url, id).catch(console.error);
+            break;
+        }
+        default:
+            throw new RangeError(`undefined type: ${JSON.stringify(msg)}`);
+    }
+}
+
+async function openUrlFromPopup(url, bookmarkId) {
+    await createTab(url, 'tab');
+    await removeBookmarkItem(bookmarkId);
 }
