@@ -19,7 +19,7 @@ toolbarpaletteitem[place="palette"] > #linkplaces-menu-button {
 
 /* extend places menu item's width */
 #panelMenu_linkplacesMenu > .bookmark-item {
-  max-width: none;
+  max-width: 33em;
 }
 
 #sidebar-switcher-linkplaces > .toolbarbutton-icon,
