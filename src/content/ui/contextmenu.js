@@ -38,7 +38,7 @@ export class ContextMenuItem {
   }
 
   _finalize() {
-    this._dom.parentNode.removeChild(this._dom);
+    this._dom.remove();
     this._dom.removeEventListener("command", this, false);
   }
 
@@ -51,7 +51,7 @@ export class ContextMenuItem {
   }
 
   finalize() {
-    this._dom.parentNode.removeChild(this._dom);
+    this._dom.remove();
 
     this._dom.removeEventListener("command", this, false);
     this._onCommand = null;

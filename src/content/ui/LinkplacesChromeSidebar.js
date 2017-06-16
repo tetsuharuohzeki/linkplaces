@@ -37,7 +37,7 @@ class ShortcutKey {
   }
 
   _finalize() {
-    this._dom.parentNode.removeChild(this._dom);
+    this._dom.remove();
   }
 }
 
@@ -68,7 +68,7 @@ class MenubarItem {
   }
 
   _finalize() {
-    this._dom.parentNode.removeChild(this._dom);
+    this._dom.remove();
   }
 }
 
@@ -99,7 +99,7 @@ class Broadcaster {
   }
 
   _finalize() {
-    this._dom.parentNode.removeChild(this._dom);
+    this._dom.remove();
   }
 }
 
@@ -138,7 +138,7 @@ class HeaderSwitcher {
   }
 
   _finalize() {
-    this._dom.parentNode.removeChild(this._dom);
+    this._dom.remove();
   }
 }
 

@@ -55,10 +55,7 @@ export class LinkPlacesChromePanel {
       throw new TypeError("`this._dom` should not be null");
     }
 
-    const dom = this._dom;
-    if (dom.parentNode) {
-      dom.parentNode.removeChild(dom);
-    }
+    this._dom.remove();
   }
 
   onPanelMenuViewCommand(aEvent /* :any */, aView /*:any */) {
