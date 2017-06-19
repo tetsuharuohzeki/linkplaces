@@ -2,13 +2,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Cu } from "chrome";
+import { Cc, Ci, Cu } from "chrome";
 
 import { ChromeDocObserver } from "./service/ChromeDocObserver.js";
 import { LinkplacesRepository } from "./service/LinkplacesRepository.js";
 import { StyleLoader } from "./service/StyleLoader.js";
 import { PrefService } from "./service/pref.js";
 import { WebExtRTMessageChannel } from "./service/WebExtRTMessageChannel.js";
+import { SIDEBAR_BROADCAST_ID } from "./ui/LinkplacesChromeSidebar";
 import { LinkplacesChromePlaces } from "./ui/LinkplacesChromePlaces.js";
 
 const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
@@ -92,6 +93,8 @@ export const LinkplacesService = {
       else {
         this._runtime.postOneShotMessage("linkplaces-disable-webext-ctxmenu", {});
       }
+
+      this._runtime.addListener(this);
     });
 
     //set user preferences
@@ -125,6 +128,10 @@ export const LinkplacesService = {
   },
 
   destroy: function () {
+    if (this._runtime !== null) {
+      this._runtime.removeListener(this);
+    }
+
     this._pref.removeListener(this._prefListener);
     this._prefListener = null;
     this._styleService.destroy();
@@ -229,7 +236,21 @@ export const LinkplacesService = {
       }
     }
     return rv;
-  }
+  },
+
+  onWebExtMessage(type/*, value*/) {
+    switch (type) {
+      case "linkplaces-open-privileged-url":
+        break;
+      case "linkplaces-open-xul-sidebar": {
+        const w = getMostRecentWindow();
+        w.SidebarUI.show(SIDEBAR_BROADCAST_ID);
+        break;
+      }
+      case "linkplaces-open-folder-bookmark-in-library":
+        break;
+    }
+  },
 };
 
 function getLinkSchemeType(url) {
@@ -246,4 +267,11 @@ function getLinkSchemeType(url) {
     isPrivileged: true,
     type,
   };
+}
+
+function getMostRecentWindow() {
+  const wm = Cc["@mozilla.org/appshell/window-mediator;1"]
+    .getService(Ci.nsIWindowMediator);
+  const w = wm.getMostRecentWindow("navigator:browser");
+  return w;
 }
