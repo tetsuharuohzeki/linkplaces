@@ -61,7 +61,7 @@ function ListItem(props: ListItemProps): JSX.Element {
     };
 
     return (
-        <li style={ { 'display': 'block', 'text-overflow': 'ellipsis', 'max-width': '30em' } } >
+        <li className={'popup__listitem'}>
             <a className={''} href={url} onClick={onClick}>
                 {item.title}
             </a>

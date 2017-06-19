@@ -5,8 +5,8 @@
     --popup-subview-width: 30em;
 }
 
-/*
-html, body {
+.popup__listitem {
+    display: block;
+    text-overflow: 'ellipsis';
     max-width: var(--popup-subview-width);
 }
-*/
