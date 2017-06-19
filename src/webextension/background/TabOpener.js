@@ -2,7 +2,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 /* @flow */
-/*global browser: false */
+/*eslint-env webextensions */
+/*global console: false */
+
+import { getLinkSchemeType } from './Bookmark';
 
 /**
  *  @param  {string}  url
@@ -59,9 +62,21 @@ export async function createTab(url /* :string */, where /* :string */) /* :Prom
 }
 
 export async function openInCurrent(tabId /* :number */, url /* :string */) /*: Promise<number> */ {
-    browser.tabs.update(tabId, {
-        url,
-    });
+    const { isPrivileged, type } = getLinkSchemeType(url);
+    if (isPrivileged && type === 'javascript') {
+        const code = url.replace(/^javascript:/, '');
+        browser.tabs.executeScript(tabId, {
+            allFrames: false, // for top level frame.
+            code: decodeURIComponent(code),
+            matchAboutBlank: false,
+        }).catch(console.error);
+    }
+    else {
+        browser.tabs.update(tabId, {
+            url,
+        }).catch(console.error);
+    }
+
     return tabId;
 }
 

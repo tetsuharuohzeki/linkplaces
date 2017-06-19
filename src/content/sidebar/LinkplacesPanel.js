@@ -179,10 +179,10 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     const modifKey = (aEvent.ctrlKey || aEvent.metaKey) || aEvent.shiftKey;
     const isContainer = treeBoxObj.view.isContainer(row.value);
     const openInTabs = isContainer &&// Is the node container?
-                     // Is event is middle-click, or left-click with ctrlkey?
-                     (aEvent.button === 1 || (aEvent.button === 0 && modifKey)) &&
-                     //Does the node have child URI node?
-                     PlacesUtils.hasChildURIs(treeBoxObj.view.nodeForTreeIndex(row.value));
+      // Is event is middle-click, or left-click with ctrlkey?
+      (aEvent.button === 1 || (aEvent.button === 0 && modifKey)) &&
+      //Does the node have child URI node?
+      PlacesUtils.hasChildURIs(treeBoxObj.view.nodeForTreeIndex(row.value));
 
     if (aEvent.button === 0 && isContainer && !openInTabs) {
       treeBoxObj.view.toggleOpenState(row.value);
@@ -255,12 +255,15 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     if (PlacesUtils.nodeIsSeparator(aNode)) {
       result = Promise.resolve({ ok: true });
     }
-    else if (service.isPrivilegedScheme(uri)) {
-      this.window.PlacesUIUtils.openNodeIn(aNode, where, aView);
-      result = Promise.resolve({ ok: true });
-    }
     else {
-      result = service.openTab(uri, where);
+      const { isPrivileged, type } = service.getLinkSchemeType(uri);
+      if (isPrivileged && type !== "javascript") {
+        this.window.PlacesUIUtils.openNodeIn(aNode, where, aView);
+        result = Promise.resolve({ ok: true });
+      }
+      else {
+        result = service.openTab(uri, where);
+      }
     }
     result.then((result) => {
       if (result.ok) {

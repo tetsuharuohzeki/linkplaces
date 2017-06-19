@@ -193,14 +193,6 @@ export const LinkplacesService = {
     }
   },
 
-  /**
-   *  @param  {string}  url
-   *  @returns  {boolean}
-   */
-  isPrivilegedScheme(url) {
-    return getLinkSchemeType(url).isPrivileged;
-  },
-
   getLinkSchemeType(url) {
     return getLinkSchemeType(url);
   },

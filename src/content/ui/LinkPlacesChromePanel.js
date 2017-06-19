@@ -78,12 +78,15 @@ export class LinkPlacesChromePanel {
       if (window.PlacesUtils.nodeIsSeparator(node)) {
         result = Promise.resolve({ ok: true });
       }
-      else if (service.isPrivilegedScheme(uri)) {
-        window.PlacesUIUtils.openNodeIn(node, where, aView);
-        result = Promise.resolve({ ok: true });
-      }
       else {
-        result = service.openTab(uri, where);
+        const { isPrivileged, type } = service.getLinkSchemeType(uri);
+        if (isPrivileged && type !== "javascript") {
+          window.PlacesUIUtils.openNodeIn(node, where, aView);
+          result = Promise.resolve({ ok: true });
+        }
+        else {
+          result = service.openTab(uri, where);
+        }
       }
       result.then((result) => {
         if (result.ok) {
