@@ -198,8 +198,11 @@ export const LinkplacesService = {
    *  @returns  {boolean}
    */
   isPrivilegedScheme(url) {
-    // see https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create
-    return /^(chrome|about|data|javascript):/.test(url);
+    return getLinkSchemeType(url).isPrivileged;
+  },
+
+  getLinkSchemeType(url) {
+    return getLinkSchemeType(url);
   },
 
   openTab(url, where) {
@@ -236,3 +239,19 @@ export const LinkplacesService = {
     return rv;
   }
 };
+
+function getLinkSchemeType(url) {
+  // see https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create
+  const r = /^(chrome|about|data|javascript):/.exec(url);
+  if (r === null) {
+    return {
+      isPrivileged: false,
+    };
+  }
+
+  const [, type] = r;
+  return {
+    isPrivileged: true,
+    type,
+  };
+}

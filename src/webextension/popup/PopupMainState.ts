@@ -1,5 +1,5 @@
 import { combineReducers, Reducer, } from 'redux';
-import { removeBookmarkItem, isPrivilegedScheme } from './Bookmark'
+import { removeBookmarkItem, getLinkSchemeType } from './Bookmark'
 import { Action, ActionType } from './PopupIntent';
 
 export interface PopupMainState {
@@ -11,7 +11,7 @@ export function reducePopupMain(prev: PopupMainState, action: Action): PopupMain
             console.log('open sidebar');
             return prev;
         case ActionType.ItemOpened:
-            if (isPrivilegedScheme(action.url)) {
+            if (getLinkSchemeType(action.url).isPrivileged) {
                 window.close();
                 return prev;
             }

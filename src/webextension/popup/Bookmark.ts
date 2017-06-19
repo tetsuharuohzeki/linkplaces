@@ -10,7 +10,22 @@ export function removeBookmarkItem(id: string): Promise<void> {
     return r;
 }
 
-export function isPrivilegedScheme(url: string): boolean {
+export type LinkSchemeType =
+    { isPrivileged: false; } |
+    { isPrivileged: true; type: string; };
+
+export function getLinkSchemeType(url: string): LinkSchemeType {
     // see https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create
-    return /^(chrome|about|data|javascript):/.test(url);
+    const r = /^(chrome|about|data|javascript):/.exec(url);
+    if (r === null) {
+        return {
+            isPrivileged: false,
+        };
+    }
+
+    const [,type] = r;
+    return {
+        isPrivileged: true,
+        type,
+    };
 }
