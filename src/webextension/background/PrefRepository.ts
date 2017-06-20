@@ -41,7 +41,7 @@ export class PrefTable {
     focusSidebarWhenOpenItems: boolean;
 
     constructor() {
-        this._openLinkToWhere = "tab";
+        this._openLinkToWhere = 'tab';
         this.focusSidebarWhenOpenItems = false;
         Object.seal(this);
     }
@@ -53,19 +53,19 @@ export class PrefTable {
     setOpenLinkToWhere(v: number): void {
         switch (v) {
             case 0:
-                this._openLinkToWhere = "current";
+                this._openLinkToWhere = 'current';
                 break;
             case 1:
-                this._openLinkToWhere = "tab";
+                this._openLinkToWhere = 'tab';
                 break;
             case 2:
-                this._openLinkToWhere = "tabshifted";
+                this._openLinkToWhere = 'tabshifted';
                 break;
             case 3:
-                this._openLinkToWhere = "window";
+                this._openLinkToWhere = 'window';
                 break;
             default:
-                throw new RangeError("found undefined value");
+                throw new RangeError('found undefined value');
         }
     }
 }

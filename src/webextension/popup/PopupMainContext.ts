@@ -54,9 +54,9 @@ export class PopupMainContext implements ViewContext {
     }
 
     onResume(_mountpoint: Element): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
     onSuspend(_mountpoint: Element): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 }
