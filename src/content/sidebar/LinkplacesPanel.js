@@ -39,6 +39,10 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     aWindow.addEventListener("load", this, false);
   }
 
+  service() {
+    return this._service;
+  }
+
   handleEvent(aEvent) {
     switch (aEvent.type) {
       case "load":
@@ -325,7 +329,7 @@ function createCustomPlacesController(ControllerConstructor, aTreeView, aLinkpla
       case "placesCmd_open:window":
       case "placesCmd_open:tab":
         aLinkplacesPanel.focusSidebarWhenItemsOpened();
-        this._service.removeItem(this._view.selectedNode.itemId);
+        aLinkplacesPanel.service().removeItem(this._view.selectedNode.itemId);
         break;
     }
   };
