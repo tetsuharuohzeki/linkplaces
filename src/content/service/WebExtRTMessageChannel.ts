@@ -102,7 +102,7 @@ export class WebExtRTMessageChannel {
 
             const port = this._port;
             if (!port) {
-                throw new TypeError("`this._port` is null");
+              throw new TypeError('`this._port` is null');
             }
 
             port.postMessage(message);
@@ -118,7 +118,7 @@ export class WebExtRTMessageChannel {
 
         const port = this._port;
         if (!port) {
-            throw new TypeError("`this._port` is null");
+            throw new TypeError('`this._port` is null');
         }
 
         port.postMessage(message);
@@ -134,7 +134,7 @@ export class WebExtRTMessageChannel {
         const callbackMap = this._callback;
         const tuple = callbackMap.get(id);
         if (!tuple) {
-            throw new TypeError("no promise resolver");
+            throw new TypeError('no promise resolver');
         }
 
         const { resolve } = tuple;
