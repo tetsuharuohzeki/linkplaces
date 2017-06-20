@@ -1,0 +1,8 @@
+{
+  "defaultSeverity": "warn",
+  "rules": {
+    "indent": [true, "spaces", 4],
+    "quotemark": [true, "single", "jsx-single", "avoid-escape"], // Sort with ESLint
+    "semicolon": [true, "always"]
+  }
+}
