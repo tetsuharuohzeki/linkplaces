@@ -1,6 +1,6 @@
 /* eslint-env browser, webextensions */
 
-import { getUnfiledBoolmarkFolder } from './Bookmark';
+import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
 import { PopupMainContext } from './PopupMainContext';
 
 (async function main(){

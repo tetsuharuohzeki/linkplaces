@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
-import { removeBookmarkItem, getLinkSchemeType } from './Bookmark';
+import { removeBookmarkItem, getLinkSchemeType } from '../shared/Bookmark';
 import { notifyItemOpened, notifyItemOpening } from './PopupIntent';
 import { PopupMainState } from './PopupMainState';
 

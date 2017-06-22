@@ -1,5 +1,5 @@
 /* eslint-env browser */
-import { getUnfiledBoolmarkFolder } from '../popup/Bookmark';
+import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
 import { SidebarContext } from './SidebarContext';
 
 (async function main(){
