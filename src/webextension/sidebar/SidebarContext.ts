@@ -8,7 +8,7 @@ import { BookmarkTreeNode } from '../../../typings/webext/bookmarks';
 
 import { SidebarView, SidebarViewProps } from './SidebarView';
 
-import { PopupMainViewEpic } from './SidebarEpic';
+import { SidebarViewEpic } from './SidebarEpic';
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarState } from './SidebarState';
 import { SidebarStore } from './SidebarStore';
@@ -21,7 +21,7 @@ export class SidebarContext implements ViewContext {
 
     private _intent: SidebarIntent;
     private _repo: SidebarRepository;
-    private _epic: PopupMainViewEpic;
+    private _epic: SidebarViewEpic;
     private _store: SidebarStore;
 
     constructor(list: Array<BookmarkTreeNode>) {
@@ -30,7 +30,7 @@ export class SidebarContext implements ViewContext {
 
         const intent = this._intent = new SidebarIntent();
         this._repo = new SidebarRepository();
-        this._epic = new PopupMainViewEpic(intent, this._repo);
+        this._epic = new SidebarViewEpic(intent, this._repo);
         this._store = new SidebarStore(intent, this._repo);
     }
 

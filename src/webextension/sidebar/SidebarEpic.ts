@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarRepository } from './SidebarRepository';
 
-export class PopupMainViewEpic {
+export class SidebarViewEpic {
 
     private _subscription: Subscription | null;
     private _intent: SidebarIntent;
