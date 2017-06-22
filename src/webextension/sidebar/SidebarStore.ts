@@ -1,10 +1,12 @@
 import { Observable } from 'rxjs';
 
+import { Store } from '../shared/Store';
+
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarRepository } from './SidebarRepository';
 import { SidebarState } from './SidebarState';
 
-export class SidebarStore {
+export class SidebarStore implements Store<SidebarState> {
 
     private _intent: SidebarIntent;
     private _repo: SidebarRepository;

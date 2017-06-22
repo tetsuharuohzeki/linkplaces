@@ -1,6 +1,8 @@
 import { Observable, Subject } from 'rxjs';
 
-export class SidebarIntent {
+import { Dispatchable } from '../shared/Intent';
+
+export class SidebarIntent implements Dispatchable<Action> {
 
     private _subject: Subject<Action>;
 

@@ -1,9 +1,11 @@
 import { Subscription } from 'rxjs';
 
+import { Epic } from '../shared/Epic';
+
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarRepository } from './SidebarRepository';
 
-export class SidebarViewEpic {
+export class SidebarViewEpic implements Epic {
 
     private _subscription: Subscription | null;
     private _intent: SidebarIntent;
