@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createStore, Store, Unsubscribe } from 'redux';
+import { applyMiddleware, createStore, Store, Unsubscribe } from 'redux';
+import thunk from 'redux-thunk';
 
 import { ViewContext } from '../shared/ViewContext';
 
@@ -26,7 +27,7 @@ export class PopupMainContext implements ViewContext {
         }
 
         const reducer = createReducer();
-        const store: Store<PopupMainState> = createStore(reducer, {});
+        const store: Store<PopupMainState> = createStore(reducer, applyMiddleware(thunk));
         const list = this._list;
 
         const render = () => {
