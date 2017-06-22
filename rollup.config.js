@@ -20,7 +20,6 @@ module.exports = {
         'redux',
         'redux-thunk',
         'rxjs',
-        'redux-observable',
     ],
     globals: {
         'react': 'React',
@@ -29,7 +28,6 @@ module.exports = {
         'redux': 'Redux',
         'redux-thunk': 'window.ReduxThunk.default',
         'rxjs': 'Rx',
-        'redux-observable': 'ReduxObservable',
     },
 
     plugins: [
