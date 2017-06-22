@@ -39,6 +39,7 @@
     "react-dom": "next",
     "redux": "^3.7.0",
     "redux-observable": "^0.14.1",
+    "redux-thunk": "^2.2.0",
     "rxjs": "^6.0.0-alpha.0",
     "tslint": "^5.4.3",
     "tslint-language-service": "^0.9.6"

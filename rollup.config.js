@@ -18,6 +18,7 @@ module.exports = {
         'react-dom',
         'prop-types',
         'redux',
+        'redux-thunk',
         'rxjs',
         'redux-observable',
     ],
@@ -26,6 +27,7 @@ module.exports = {
         'react-dom': 'ReactDOM',
         'prop-types': 'PropTypes',
         'redux': 'Redux',
+        'redux-thunk': 'window.ReduxThunk.default',
         'rxjs': 'Rx',
         'redux-observable': 'ReduxObservable',
     },
@@ -35,6 +37,7 @@ module.exports = {
         nodeResolve({
             module: true,
             main: true,
+            jsnext: true,
             browser: true, // for browser
             preferBuiltins: false, // linking for browser
 
