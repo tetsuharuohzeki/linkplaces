@@ -4,8 +4,9 @@ import { Store } from 'redux';
 
 import { BookmarkTreeNode, BookmarkTreeNodeItem } from '../../../../typings/webext/bookmarks';
 
-import { openSidebar, notifyItemOpened } from '../PopupIntent';
+import { openSidebar } from '../PopupIntent';
 import { PopupMainState } from '../PopupMainState';
+import { openItem } from '../PopupMainThunk';
 
 export interface PopupMainViewProps {
     state: PopupMainState;
@@ -56,7 +57,7 @@ function ListItem(props: ListItemProps): JSX.Element {
     const url = (item as BookmarkTreeNodeItem).url;
 
     const onClick = (_: React.SyntheticEvent<HTMLAnchorElement>) => {
-        const a = notifyItemOpened(id, url);
+        const a = openItem(id, url);
         store.dispatch(a);
     };
 
