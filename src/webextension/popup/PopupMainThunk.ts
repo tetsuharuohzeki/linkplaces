@@ -2,8 +2,9 @@ import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
 import { getLinkSchemeType } from '../shared/Bookmark';
+import { Channel } from '../shared/Channel';
+
 import { PopupMainState } from './PopupMainState';
-import { Channel } from './PopupMessageChannel';
 
 export type ThunkArguments = Readonly<{
     channel: Channel;

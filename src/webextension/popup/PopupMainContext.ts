@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Store, Unsubscribe } from 'redux';
 import thunk from 'redux-thunk';
 
+import { Channel } from '../shared/Channel';
 import { ViewContext } from '../shared/ViewContext';
 
 import { BookmarkTreeNode } from '../../../typings/webext/bookmarks';
@@ -11,7 +12,6 @@ import { PopupMainView } from './view/PopupMainView';
 
 import { createReducer, PopupMainState } from './PopupMainState';
 import { ThunkArguments } from './PopupMainThunk';
-import { Channel } from './PopupMessageChannel';
 
 export class PopupMainContext implements ViewContext {
 
