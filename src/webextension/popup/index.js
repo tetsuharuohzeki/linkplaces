@@ -9,7 +9,7 @@ import { createChannel } from './PopupMessageChannel';
     console.dir(list);
 
     const channel = await createChannel();
-    window.addEventListener('close', function onClose(event) {
+    window.addEventListener('unload', function onClose(event) {
         window.removeEventListener(event.type, onClose);
         channel.destroy();
     });

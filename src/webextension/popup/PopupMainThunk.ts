@@ -11,13 +11,10 @@ export type ThunkArguments = Readonly<{
 
 export function openItem(id: string, url: string): ThunkAction<Promise<void>, PopupMainState, ThunkArguments> {
     return function openItemActual(_dispatch: Dispatch<PopupMainState>, _1: PopupMainState, dependencies: ThunkArguments): Promise<void> {
-        if (getLinkSchemeType(url).isPrivileged) {
-            return Promise.resolve().then(() => {
-                window.close();
-            });
+        if (!getLinkSchemeType(url).isPrivileged) {
+            dependencies.channel.postOneShotMessage('linkplaces-open-url-from-popup', { id, url });
         }
 
-        dependencies.channel.postOneShotMessage('linkplaces-open-url-from-popup', { id, url });
         return Promise.resolve().then(() => {
             window.close();
         });

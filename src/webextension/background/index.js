@@ -47,7 +47,6 @@ BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: 
 });
 
 browser.runtime.onConnect.addListener((s) => {
-    console.log(s);
     s.onMessage.addListener(onMessageFromPopup);
     s.onDisconnect.addListener(function onDisconnect() {
         s.onDisconnect.removeListener(onDisconnect);
