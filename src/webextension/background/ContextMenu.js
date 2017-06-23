@@ -1,7 +1,7 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
-/* @flow */
+// @ts-check
 
 import { createBookmarkItem } from './Bookmark';
 
@@ -34,18 +34,23 @@ export function createContextMenu() {
     ];
 
     for (const item of list) {
+        // @ts-ignore
         browser.contextMenus.create(item);
     }
 
+    // @ts-ignore
     browser.contextMenus.onClicked.addListener(onClicked);
 }
 
 export function removeContextMenu() {
+    // @ts-ignore
     browser.contextMenus.onClicked.removeListener(onClicked);
 
+    // @ts-ignore
     return browser.contextMenus.removeAll();
 }
 
+// @ts-ignore
 function onClicked(info /* :webext$contextMenusInternal$OnClickData */, tab /* :?webext$tabs$Tab */) {
     switch (info.menuItemId) {
         case CTXMENU_ID_TAB_SAVE_TAB: {

@@ -1,9 +1,7 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
-
-/* @flow */
-
+// @ts-check
 /*::
   import type { IpcMsg } from "./IpcMsg";
 */
@@ -16,6 +14,7 @@
 
 export class BrowserMessagePort {
 
+    // @ts-ignore
     static create(browser /* :typeof browser */, listener /* :ListenerFn<any, any> */) /* :BrowserMessagePort */ {
         const r = new BrowserMessagePort(browser.runtime, listener);
         return r;
@@ -26,7 +25,9 @@ export class BrowserMessagePort {
       _listener: Function | null;
     */
 
-    constructor(runtime /* :webext$runtime$runtime */, listener /* :Function */) {
+    constructor(
+        // @ts-ignore
+        runtime /* :webext$runtime$runtime */, listener /* :Function */) {
         const port = runtime.connect('');
 
         this._port = port;
@@ -46,6 +47,7 @@ export class BrowserMessagePort {
         this._port = null;
     }
 
+    // @ts-ignore
     postOneShotMessage(type /* :string */, value /* :any */) {
         const message = {
             type,

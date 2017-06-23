@@ -1,8 +1,7 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
-/* @flow */
-
+// @ts-check
 import { removeBookmarkItem } from './Bookmark';
 import { BrowserMessagePort } from './BrowserMessagePort';
 import { createContextMenu, removeContextMenu } from './ContextMenu';
@@ -22,7 +21,9 @@ import { createTab } from './TabOpener';
   import type { IpcMsg, OpenUrlMsg } from "./IpcMsg";
 */
 
+// @ts-ignore
 BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: string; |}> */,
+    // @ts-ignore
     sender /* :webext$runtime$MessageSender & webext$runtime$Port */) => {
     const { type, id, value } = msg;
     switch (type) {
@@ -48,12 +49,16 @@ BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: 
 
 browser.runtime.onConnect.addListener((s) => {
     s.onMessage.addListener(onMessageFromPopup);
+    // @ts-ignore
     s.onDisconnect.addListener(function onDisconnect() {
+        // @ts-ignore
         s.onDisconnect.removeListener(onDisconnect);
+        // @ts-ignore
         s.onMessage.removeListener(onMessageFromPopup);
     });
 });
 
+// @ts-ignore
 async function onMessageCreateTab(msgId /* :number */, url /* :string */, where /* :string */) /* :Promise<IpcMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null>> */ {
     let value; // eslint-disable-line init-declarations
 
@@ -82,6 +87,7 @@ async function onMessageCreateTab(msgId /* :number */, url /* :string */, where 
     return response;
 }
 
+// @ts-ignore
 function onMessageFromPopup(msg) {
     const { type, value, } = msg;
     switch (type) {
@@ -95,6 +101,7 @@ function onMessageFromPopup(msg) {
     }
 }
 
+// @ts-ignore
 async function openUrlFromPopup(url, bookmarkId) {
     await createTab(url, 'tab');
     await removeBookmarkItem(bookmarkId);
