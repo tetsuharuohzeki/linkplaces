@@ -95,7 +95,7 @@ __external_dependency_rxjs: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/rxjs/bundles/Rx.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
 
 __obj: clean_obj
-	$(NPM_BIN)/tsc -p ./tsconfig.json --outDir $(CURDIR)/__obj/src/ --allowJs
+	$(NPM_BIN)/tsc -p ./tsconfig.json --outDir $(CURDIR)/__obj/src/
 
 # Test
 test: eslint tslint flowcheck tscheck stylelint
@@ -110,7 +110,7 @@ flowcheck:
 	$(NPM_BIN)/flow check
 
 tscheck:
-	$(NPM_BIN)/tsc -p ./tsconfig.json --noEmit --allowJs
+	$(NPM_BIN)/tsc -p ./tsconfig.json --noEmit
 
 stylelint:
 	$(NPM_BIN)/stylelint '$(CURDIR)/src/webextension/**/*.css' \
