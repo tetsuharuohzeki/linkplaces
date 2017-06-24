@@ -244,6 +244,10 @@ export const LinkplacesService = {
         break;
       case "linkplaces-open-xul-sidebar": {
         const w = getMostRecentWindow();
+        // Due to bug 528706, getMostRecentWindow can return closed windows.
+        if (!w || w.closed) {
+          return;
+        }
         w.SidebarUI.show(SIDEBAR_BROADCAST_ID);
         break;
       }
@@ -270,8 +274,6 @@ function getLinkSchemeType(url) {
 }
 
 function getMostRecentWindow() {
-  const wm = Cc["@mozilla.org/appshell/window-mediator;1"]
-    .getService(Ci.nsIWindowMediator);
-  const w = wm.getMostRecentWindow("navigator:browser");
+  const w = Services.wm.getMostRecentWindow("navigator:browser");
   return w;
 }
