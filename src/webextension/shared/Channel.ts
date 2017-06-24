@@ -87,6 +87,7 @@ export class Channel {
         const message = {
             type,
             value,
+            isRequest: true,
         };
 
         const port = this._port;
