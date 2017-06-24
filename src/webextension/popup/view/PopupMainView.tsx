@@ -70,12 +70,12 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
 
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
-        <div className={'popup__listitem panel-list-item'}>
+        <div className={'panel-list-item'}>
             <div className={'icon'}>
                 <img className={'popup__listitem_icon_folder'}  src={'../shared/image/icon/folder-16.svg'} alt={''}/>
             </div>
             <div className={'text'}>
-                <span className={''}>
+                <span className={'popup__listitem_text_inner'}>
                     {item.title}
                 </span>
             </div>
@@ -104,12 +104,12 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
 
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
-        <div className={'popup__listitem panel-list-item'}>
+        <div className={'panel-list-item'}>
             <div className={'icon'}>
                 <img className={'popup__listitem_icon_item'} src={'../shared/image/icon/identity-not-secure.svg'} alt={''}/>
             </div>
             <div className={'text'}>
-                <a className={''} href={url} title={tooltiptext} onClick={onClick}>
+                <a className={'popup__listitem_text_inner'} href={url} title={tooltiptext} onClick={onClick}>
                     {item.title}
                 </a>
             </div>

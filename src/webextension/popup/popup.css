@@ -5,7 +5,8 @@
     --popup-subview-width: 30em;
 }
 
-.popup__listitem {
+.popup__listitem_text_inner {
+    display: inline-block;
     max-width: var(--popup-subview-width);
     overflow: hidden;
     text-overflow: ellipsis;
