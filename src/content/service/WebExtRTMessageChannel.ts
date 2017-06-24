@@ -27,26 +27,29 @@ type Msg<T> = Readonly<{
 export class WebExtRTMessageChannel {
 
     static async create(browser: WebExtGlobal): Promise<WebExtRTMessageChannel> {
-        const inst = new WebExtRTMessageChannel(browser.runtime);
-        await inst._init();
+        const port = await getPort(browser.runtime);
+        const inst = new WebExtRTMessageChannel(port);
         return inst;
     }
 
-    private _runtime: WebExtRuntimeService | null;
     private _port: Port<any> | null;
     private _callback: Map<number, PromiseTuple>;
     private _callbackId: number;
     private _listeners: Set<Listener>;
 
-    private constructor(runtime: WebExtRuntimeService) {
-        this._runtime = runtime;
-        this._port = null;
+    private _onMessageListener: ((msg: Msg<any>) => void) | null;
+
+    private constructor(port: Port<any>) {
+        this._port = port;
         this._callback = new Map();
         this._callbackId = 0;
 
         this._listeners = new Set();
+        this._onMessageListener = null;
 
         Object.seal(this);
+
+        this._init();
     }
 
     destroy() {
@@ -54,33 +57,31 @@ export class WebExtRTMessageChannel {
 
         //this._listeners = null; // XXX: we think this need not because this is a builtin object.
         // this._callback = null; // XXX: we think this need not because this is a builtin object.
+        this._onMessageListener = null;
         this._listeners = null as any;
         this._callback = null as any;
-        this._runtime = null;
         this._port = null;
     }
 
     private _init() {
-        const runtime = this._runtime;
-        if (runtime === null) {
+        const port = this._port;
+        if (port === null) {
             throw new TypeError();
         }
 
-        const p = new Promise((resolve) => {
-            runtime.onConnect.addListener((port: Port<any>) => {
-                this._port = port;
-                port.onMessage.addListener((msg: Msg<any>) => {
-                    this._onPortMessage(msg);
-                });
+        this._onMessageListener = (msg: Msg<any>) => {
+            this._onPortMessage(msg);
+        };
 
-                resolve();
-            });
-        });
-
-        return p;
+        port.onMessage.addListener(this._onMessageListener);
     }
 
     private _finalize() {
+        if (this._port === null) {
+          throw new TypeError();
+        }
+
+        this._port.onMessage.removeListener(this._onMessageListener);
         this._callback.clear();
         this._listeners.clear();
     }
@@ -164,4 +165,14 @@ export class WebExtRTMessageChannel {
     removeListener(listener: Listener): void {
         this._listeners.delete(listener);
     }
+}
+
+function getPort(runtime: WebExtRuntimeService): Promise<Port<any>> {
+  const port: Promise<Port<any>> = new Promise((resolve) => {
+    runtime.onConnect.addListener(function onConnect(port: Port<any>) {
+      runtime.onConnect.removeListener(onConnect);
+      resolve(port);
+    });
+  });
+  return port;
 }
