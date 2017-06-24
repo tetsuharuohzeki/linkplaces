@@ -6,7 +6,6 @@ import {
     MSG_TYPE_OPEN_URL_FROM_POPUP,
     MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP,
 } from '../background/IpcMsg';
-import { getLinkSchemeType } from '../shared/Bookmark';
 import { Channel } from '../shared/Channel';
 
 import {
@@ -21,9 +20,7 @@ export type ThunkArguments = Readonly<{
 
 export function openItem(id: string, url: string): ThunkAction<Promise<void>, PopupMainState, ThunkArguments> {
     return function openItemActual(_dispatch: Dispatch<PopupMainState>, _1: PopupMainState, dependencies: ThunkArguments): Promise<void> {
-        if (!getLinkSchemeType(url).isPrivileged) {
-            dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_URL_FROM_POPUP, { id, url });
-        }
+        dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_URL_FROM_POPUP, { id, url });
 
         return Promise.resolve().then(() => {
             window.close();

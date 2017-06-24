@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 // @ts-check
-import { removeBookmarkItem } from './Bookmark';
+import { removeBookmarkItem, getLinkSchemeType } from './Bookmark';
 import { BrowserMessagePort } from './BrowserMessagePort';
 import { createContextMenu, removeContextMenu } from './ContextMenu';
 import {
@@ -95,6 +95,15 @@ function onMessageFromPopup(msg) {
     switch (type) {
         case MSG_TYPE_OPEN_URL_FROM_POPUP: {
             const { id, url } = value;
+            const schemeType = getLinkSchemeType(url);
+            if (schemeType.isPrivileged) {
+                gClassicRuntimePort.postOneShotMessage('linkplaces-open-privileged-url', {
+                    url,
+                });
+                removeBookmarkItem(id).catch(console.error);
+                return;
+            }
+
             openUrlFromPopup(url, id).catch(console.error);
             break;
         }

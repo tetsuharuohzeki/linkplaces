@@ -240,8 +240,17 @@ export const LinkplacesService = {
 
   onWebExtMessage(type, value) {
     switch (type) {
-      case "linkplaces-open-privileged-url":
+      case "linkplaces-open-privileged-url": {
+        const { url } = value;
+        const w = getMostRecentActiveWindow();
+        if (w === null) {
+          return;
+        }
+        // FIXME: this code cannot handle javascript scheme properly.
+        const where = this._pref.openLinkTo();
+        w.openUILinkIn(url, where);
         break;
+      }
       case "linkplaces-open-xul-sidebar": {
         const w = getMostRecentActiveWindow();
         if (w === null) {
