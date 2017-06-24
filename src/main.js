@@ -10,7 +10,6 @@ const { Ci, Cu } = require("chrome");
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
 const { LinkplacesChrome } = require("./content/LinkplacesChrome.js");
 const { LinkplacesService } = require("./content/LinkplacesService.js");
-const { createWidget, destroyWidget, } = require("./content/LinkplacesUIWidget.js");
 const webext = require("sdk/webextension");
 
 const windowMap = new WeakMap();
@@ -89,10 +88,6 @@ exports.main = function (options, callbacks) { // eslint-disable-line no-unused-
       const domWindow = windows.getNext().QueryInterface(Ci.nsIDOMWindow); // eslint-disable-line new-cap
       SetupHelper.setup(domWindow);
     }
-
-    if (LinkplacesService.config().useXULPopupWindow()) {
-      createWidget();
-    }
   });
 };
 
@@ -109,8 +104,6 @@ exports.onUnload = function (reason) { // eslint-disable-line no-unused-vars
   }
 
   Services.wm.removeListener(WindowListener);
-
-  destroyWidget();
 
   const windows = Services.wm.getEnumerator("navigator:browser");
   while (windows.hasMoreElements()) {

@@ -3,7 +3,6 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { LinkplacesChromeSidebar } from "./ui/LinkplacesChromeSidebar.js";
-import { LinkPlacesChromePanel } from "./ui/LinkPlacesChromePanel.js";
 
 export class LinkplacesChrome {
   static create(win, service){
@@ -15,7 +14,6 @@ export class LinkplacesChrome {
     this._win = win;
     this._service = service;
     this._sidebar = null;
-    this._panel = null;
     this._prefListener = null;
     win.gLinkplacesBrowserUI = this; // eslint-disable-line no-param-reassign
 
@@ -28,7 +26,6 @@ export class LinkplacesChrome {
 
     this._win.gLinkplacesBrowserUI = null;
     this._prefListener = null;
-    this._panel = null;
     this._sidebar = null;
     this._service = null;
     this._win = null;
@@ -36,10 +33,6 @@ export class LinkplacesChrome {
 
   _init() {
     this._sidebar = new LinkplacesChromeSidebar(this._win, this);
-
-    if (this._service.config().useXULPopupWindow()) {
-      this._panel = new LinkPlacesChromePanel(this._win, this._service);
-    }
 
     this._win.addEventListener("unload", this, false);
 
@@ -50,10 +43,6 @@ export class LinkplacesChrome {
 
   _finalize() {
     this._service.config().removeListener(this._prefListener);
-
-    if (this._panel !== null) {
-      this._panel.destroy();
-    }
 
     this._sidebar.destroy();
   }
@@ -73,9 +62,5 @@ export class LinkplacesChrome {
   onUnload() {
     this._win.removeEventListener("unload", this, false);
     this.destroy();
-  }
-
-  panel() {
-    return this._panel;
   }
 }

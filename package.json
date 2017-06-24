@@ -66,13 +66,6 @@
       "title": "Focus when item opened",
       "description": "Whether to focus the sidebar when item is opening.",
       "value": true
-    },
-    {
-      "type": "bool",
-      "name": "useXULPopupWindow",
-      "title": "Use XUL based popup menu implemened by CustomizableUI",
-      "description": "This requires to restart this addon.",
-      "value": true
     }
   ]
 }

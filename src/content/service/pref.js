@@ -12,7 +12,6 @@ const PREF_DOMAIN = "extensions.linkplaces.";
 class PrefTable {
   constructor() {
     this.focusSidebarWhenOpenItems = false;
-    this.useXULPopupWindow = true;
     Object.seal(this);
   }
 }
@@ -56,10 +55,6 @@ export class PrefService {
     return this._table.focusSidebarWhenOpenItems;
   }
 
-  useXULPopupWindow() {
-    return this._table.useXULPopupWindow;
-  }
-
   _init() {
     this._prefBranch.addObserver("", this, true);
     const allPref = this._prefBranch.getChildList("", {});
@@ -76,11 +71,6 @@ export class PrefService {
       case "focusSidebarWhenOpenItem": {
         const value = this._prefBranch.getBoolPref(aData);
         table.focusSidebarWhenOpenItems = value;
-        break;
-      }
-      case "useXULPopupWindow": {
-        const value = this._prefBranch.getBoolPref(aData);
-        table.useXULPopupWindow = value;
         break;
       }
     }

@@ -4,7 +4,7 @@
 // @ts-check
 
 export const SIDEBAR_BROADCAST_ID = "viewLinkplacesSidebar";
-export const SHORTCUT_ID = "linkplaces-key-toggleSidebar";
+const SHORTCUT_ID = "linkplaces-key-toggleSidebar";
 
 const BROADCASTER_CONTAINER_ID = "mainBroadcasterSet";
 const MENUBAR_CONTAINER_ID = "viewSidebarMenu";
