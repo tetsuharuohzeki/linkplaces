@@ -243,9 +243,8 @@ export const LinkplacesService = {
       case "linkplaces-open-privileged-url":
         break;
       case "linkplaces-open-xul-sidebar": {
-        const w = getMostRecentWindow();
-        // Due to bug 528706, getMostRecentWindow can return closed windows.
-        if (!w || w.closed) {
+        const w = getMostRecentActiveWindow();
+        if (w === null) {
           return;
         }
         w.SidebarUI.show(SIDEBAR_BROADCAST_ID);
@@ -276,21 +275,29 @@ function getLinkSchemeType(url) {
   };
 }
 
-function getMostRecentWindow() {
-  const w = Services.wm.getMostRecentWindow("navigator:browser");
-  return w;
-}
-
 async function openPlacesOrganizeWindow(guid) {
   // This is trick to use WebExt's `bookmarks.BookmarkTreeNode.id` is the same value with
   // Places internal guid.
   const id = await LinkplacesRepository.getItemId(guid);
-  const w = getMostRecentWindow();
-  // Due to bug 528706, getMostRecentWindow can return closed windows.
-  if (!w || w.closed) {
+  const w = getMostRecentActiveWindow();
+  if (w === null) {
     return;
   }
 
   w.PlacesCommandHook.showPlacesOrganizer(["BookmarksMenu", id]);
   //showPlacesOrganizer(["BookmarksMenu", id]);
+}
+
+function getMostRecentActiveWindow() {
+  const w = getMostRecentWindow();
+  // Due to bug 528706, getMostRecentWindow can return closed windows.
+  if (!w || w.closed) {
+    return null;
+  }
+  return w;
+}
+
+function getMostRecentWindow() {
+  const w = Services.wm.getMostRecentWindow("navigator:browser");
+  return w;
 }
