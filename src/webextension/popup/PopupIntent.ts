@@ -1,6 +1,5 @@
 export const enum ActionType {
     OpenSidebar = 'POPUP_ACTION_OPEN_SIDEBAR',
-    CloseSidebar = 'POPUP_ACTION_CLOSE_SIDEBAR',
 
     OpenOpenLibraryWindow = 'POPUP_ACTION_OPEN_LIBRARY_WINDOW',
 
@@ -10,7 +9,6 @@ export const enum ActionType {
 
 export type Action =
     OpenSidebarAction |
-    CloseSidebarAction |
     OpenLibraryWindowAction |
     ItemOpenedAction;
 
@@ -28,13 +26,6 @@ export function createOpenSidebarAction(): OpenSidebarAction {
     return {
         type: ActionType.OpenSidebar,
     };
-}
-
-export interface CloseSidebarAction extends ActionBase {
-    type: ActionType.CloseSidebar;
-}
-export function isCloseSidebarAction(v: ActionBase): v is CloseSidebarAction {
-    return v.type === ActionType.CloseSidebar;
 }
 
 export interface ItemOpeningAction extends ActionBase {
