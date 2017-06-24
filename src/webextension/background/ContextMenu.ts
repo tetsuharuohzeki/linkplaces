@@ -1,46 +1,36 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
-// @ts-check
 
-// @ts-ignore
-import * as _ from '../../../typings/webext/index'; // eslint-disable-line no-unused-vars
-import { OnClickData, CreateArgument } from '../../../typings/webext/contextMenus'; // eslint-disable-line no-unused-vars
-import { Tab } from '../../../typings/webext/tabs'; // eslint-disable-line no-unused-vars
+import { OnClickData, CreateArgument } from '../../../typings/webext/contextMenus';
+import { Tab } from '../../../typings/webext/tabs';
 
 import { createBookmarkItem } from './Bookmark';
-
-/* eslint-env browser, webextensions */
 
 const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';
 const CTXMENU_ID_CONTENT_SAVE_TAB = 'linkplaces-ctx-content-save-tab';
 const CTXMENU_ID_LINK_SAVE_LINK = 'linkplaces-ctx-link-save-link';
 
-/**
- *  @return {void}
- */
-export function createContextMenu() {
-    /** @type   {Array<CreateArgument>} */
-    // @ts-ignore
-    const list = [
+export function createContextMenu(): void {
+    const list: Array<CreateArgument> = [
         {
             type: 'normal',
             id: CTXMENU_ID_TAB_SAVE_TAB,
             title: 'Add Tab to LinkPlaces',
             contexts: ['tab'],
-        },
+        } as CreateArgument,
         {
             type: 'normal',
             id: CTXMENU_ID_CONTENT_SAVE_TAB,
             title: 'Add Page to LinkPlaces',
             contexts: ['page'],
-        },
+        } as CreateArgument,
         {
             type: 'normal',
             id: CTXMENU_ID_LINK_SAVE_LINK,
             title: 'Add Link to LinkPlaces',
             contexts: ['link'],
-        },
+        } as CreateArgument,
     ];
 
     for (const item of list) {
@@ -50,21 +40,13 @@ export function createContextMenu() {
     browser.contextMenus.onClicked.addListener(onClicked);
 }
 
-/**
- *  @return {void}
- */
-export function removeContextMenu() {
+export function removeContextMenu(): Promise<void> {
     browser.contextMenus.onClicked.removeListener(onClicked);
 
     return browser.contextMenus.removeAll();
 }
 
-/**
- *  @param  {OnClickData} info
- *  @param  {Tab} tab
- *  @return {void}
- */
-function onClicked(info, tab) {
+function onClicked(info: OnClickData, tab: Tab): void {
     switch (info.menuItemId) {
         case CTXMENU_ID_TAB_SAVE_TAB: {
             if (!tab) {
@@ -84,7 +66,7 @@ function onClicked(info, tab) {
                 throw new TypeError();
             }
 
-            const title /* :string */ = ((!!tab) && (typeof tab.title === 'string')) ? tab.title : url;
+            const title: string = ((!!tab) && (typeof tab.title === 'string')) ? tab.title : url;
             createBookmarkItem(url, title).catch(console.error);
             break;
         }
