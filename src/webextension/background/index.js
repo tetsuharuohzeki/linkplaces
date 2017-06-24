@@ -11,6 +11,7 @@ import {
     MSG_TYPE_ENABLE_WEBEXT_CTXMENU,
     MSG_TYPE_DISABLE_WEBEXT_CTXMENU,
     MSG_TYPE_OPEN_URL_FROM_POPUP,
+    MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP,
 } from './IpcMsg';
 import { createTab } from './TabOpener';
 
@@ -22,7 +23,7 @@ import { createTab } from './TabOpener';
 */
 
 // @ts-ignore
-BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: string; |}> */,
+const gClassicRuntimePort = BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: string; |}> */,
     // @ts-ignore
     sender /* :webext$runtime$MessageSender & webext$runtime$Port */) => {
     const { type, id, value } = msg;
@@ -94,6 +95,10 @@ function onMessageFromPopup(msg) {
         case MSG_TYPE_OPEN_URL_FROM_POPUP: {
             const { id, url } = value;
             openUrlFromPopup(url, id).catch(console.error);
+            break;
+        }
+        case MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP: {
+            gClassicRuntimePort.postOneShotMessage('linkplaces-open-xul-sidebar', null);
             break;
         }
         default:

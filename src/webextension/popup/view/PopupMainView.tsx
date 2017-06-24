@@ -4,9 +4,8 @@ import { Store } from 'redux';
 
 import { BookmarkTreeNode, BookmarkTreeNodeItem } from '../../../../typings/webext/bookmarks';
 
-import { openSidebar } from '../PopupIntent';
 import { PopupMainState } from '../PopupMainState';
-import { openItem } from '../PopupMainThunk';
+import { openItem, openSidebar } from '../PopupMainThunk';
 
 export interface PopupMainViewProps {
     state: PopupMainState;
