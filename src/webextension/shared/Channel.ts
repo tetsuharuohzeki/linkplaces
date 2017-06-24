@@ -19,7 +19,7 @@ export class Channel {
     private _port: Port<any> | null;
     private _callback: Map<number, PromiseTuple>;
     private _callbackId: number;
-    private _subject: Subject<any>;
+    private _subject: Subject<Msg<any>>;
 
     private _listener: Function;
 
@@ -120,7 +120,7 @@ export class Channel {
         }
     }
 
-    asObservable(): Observable<any> {
+    asObservable(): Observable<Msg<any>> {
         return this._subject.asObservable();
     }
 }
