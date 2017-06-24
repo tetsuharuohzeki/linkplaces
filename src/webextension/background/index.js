@@ -14,7 +14,7 @@ import {
     MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP,
     MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP,
 } from './IpcMsg';
-import { createTab } from './TabOpener';
+import { createTab, openBookmarklet } from './TabOpener';
 
 /*global browser: false, console: false */
 /* eslint-disable no-implicit-globals */
@@ -62,10 +62,22 @@ browser.runtime.onConnect.addListener((s) => {
 
 // @ts-ignore
 async function onMessageCreateTab(msgId /* :number */, url /* :string */, where /* :string */) /* :Promise<IpcMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null>> */ {
-    let value; // eslint-disable-line init-declarations
+    const { isPrivileged, type } = getLinkSchemeType(url);
+    if (isPrivileged && type !== 'javascript') {
+        throw new URIError(`it should not be sent to here: ${url}`);
+    }
 
+    let value; // eslint-disable-line init-declarations
     try {
-        const tabId = await createTab(url, where);
+        let tabId; // eslint-disable-line init-declarations
+
+        if (isPrivileged) {
+            tabId = await openBookmarklet(url);
+        }
+        else {
+            tabId = await createTab(url, where);
+        }
+
         value = {
             ok: true,
             tabId: tabId,
@@ -95,15 +107,6 @@ function onMessageFromPopup(msg) {
     switch (type) {
         case MSG_TYPE_OPEN_URL_FROM_POPUP: {
             const { id, url } = value;
-            const schemeType = getLinkSchemeType(url);
-            if (schemeType.isPrivileged) {
-                gClassicRuntimePort.postOneShotMessage('linkplaces-open-privileged-url', {
-                    url,
-                });
-                removeBookmarkItem(id).catch(console.error);
-                return;
-            }
-
             openUrlFromPopup(url, id).catch(console.error);
             break;
         }
@@ -125,6 +128,20 @@ function onMessageFromPopup(msg) {
 
 // @ts-ignore
 async function openUrlFromPopup(url, bookmarkId) {
-    await createTab(url, 'tab');
+    const schemeType = getLinkSchemeType(url);
+    if (schemeType.isPrivileged) {
+        if (schemeType.type === 'javascript') {
+            await openBookmarklet(url);
+        }
+        else {
+            gClassicRuntimePort.postOneShotMessage('linkplaces-open-privileged-url', {
+                url,
+            });
+        }
+    }
+    else {
+        await createTab(url, 'tab');
+    }
+
     await removeBookmarkItem(bookmarkId);
 }

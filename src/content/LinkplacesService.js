@@ -246,7 +246,6 @@ export const LinkplacesService = {
         if (w === null) {
           return;
         }
-        // FIXME: this code cannot handle javascript scheme properly.
         const where = this._pref.openLinkTo();
         w.openUILinkIn(url, where);
         break;

@@ -5,8 +5,6 @@
 /*eslint-env webextensions */
 /*global console: false */
 
-import { getLinkSchemeType } from './Bookmark';
-
 /**
  *  @param  {string}  url
  *  @param  {string}  where
@@ -14,21 +12,7 @@ import { getLinkSchemeType } from './Bookmark';
  *    `tabs.Tab.id`. integer.
  */
 export async function createTab(url, where) {
-    const tabList = await browser.tabs.query({
-        active: true,
-        currentWindow: true,
-        windowType: 'normal',
-    });
-    if (tabList.length === 0) {
-        throw new Error("assert!: don't get the current tab");
-    }
-
-    const currentTab = tabList[0];
-    // @ts-ignore
-    const currentId = currentTab.id;
-    if (currentId === undefined || currentId === null) {
-        throw new TypeError('currentId should not null');
-    }
+    const currentId = await getCurrentTabId();
 
     const option = {
         active: false,
@@ -63,6 +47,50 @@ export async function createTab(url, where) {
     return id;
 }
 
+async function getCurrentTabId() {
+    const tabList = await browser.tabs.query({
+        active: true,
+        currentWindow: true,
+        windowType: 'normal',
+    });
+    if (tabList.length === 0) {
+        throw new Error("assert!: don't get the current tab");
+    }
+
+    const currentTab = tabList[0];
+    // @ts-ignore
+    const currentId = currentTab.id;
+    if (currentId === undefined || currentId === null) {
+        throw new TypeError('currentId should not null');
+    }
+
+    return currentId;
+}
+
+/**
+ *  @param {number} tabId
+ *  @param {string} url
+ *  @return {Promise<void>}
+ */
+async function execBookmarkletInTab(tabId, url) {
+    const code = url.replace(/^javascript:/, '');
+    browser.tabs.executeScript(tabId, {
+        allFrames: false, // for top level frame.
+        code: decodeURIComponent(code),
+        matchAboutBlank: false,
+    }).catch(console.error);
+}
+
+/**
+ *  @param {string} url
+ *  @return {Promise<number>}
+ */
+export async function openBookmarklet(url) {
+    const currentId = await getCurrentTabId();
+    await execBookmarkletInTab(currentId, url);
+    return currentId;
+}
+
 /**
  *  @param {number} tabId
  *  @param {string} url
@@ -70,21 +98,9 @@ export async function createTab(url, where) {
  */
 export async function openInCurrent(tabId, url) {
     // @ts-ignore
-    const { isPrivileged, type } = getLinkSchemeType(url);
-    if (isPrivileged && type === 'javascript') {
-        const code = url.replace(/^javascript:/, '');
-        browser.tabs.executeScript(tabId, {
-            allFrames: false, // for top level frame.
-            code: decodeURIComponent(code),
-            matchAboutBlank: false,
-        }).catch(console.error);
-    }
-    else {
-        // @ts-ignore
-        browser.tabs.update(tabId, {
-            url,
-        }).catch(console.error);
-    }
+    await browser.tabs.update(tabId, {
+        url,
+    });
 
     return tabId;
 }
