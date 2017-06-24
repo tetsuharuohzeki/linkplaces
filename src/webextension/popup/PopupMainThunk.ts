@@ -10,8 +10,8 @@ import { getLinkSchemeType } from '../shared/Bookmark';
 import { Channel } from '../shared/Channel';
 
 import {
-    openSidebar as createOpenSidebarAction,
-    openLibraryWindow as createOpenLibraryWindow,
+    createOpenSidebarAction as createOpenSidebarAction,
+    createOpenLibraryWindow as createOpenLibraryWindow,
 } from './PopupIntent';
 import { PopupMainState } from './PopupMainState';
 

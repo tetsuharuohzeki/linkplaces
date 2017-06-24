@@ -24,7 +24,7 @@ export interface OpenSidebarAction extends ActionBase {
 export function isOpenSidebarAction(v: ActionBase): v is OpenSidebarAction {
     return v.type === ActionType.OpenSidebar;
 }
-export function openSidebar(): OpenSidebarAction {
+export function createOpenSidebarAction(): OpenSidebarAction {
     return {
         type: ActionType.OpenSidebar,
     };
@@ -76,7 +76,7 @@ export interface OpenLibraryWindowAction extends ActionBase {
 export function isOpenLibraryWindowAction(v: Readonly<ActionBase>): v is OpenLibraryWindowAction {
     return v.type === ActionType.OpenOpenLibraryWindow;
 }
-export function openLibraryWindow(id: string): OpenLibraryWindowAction {
+export function createOpenLibraryWindow(id: string): OpenLibraryWindowAction {
     return {
         type: ActionType.OpenOpenLibraryWindow,
         id,
