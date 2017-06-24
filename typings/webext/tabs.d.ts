@@ -4,6 +4,8 @@ import { RunAt } from './extensionTypes';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/Tab
 export interface Tab {
+    title?: string;
+    url?: string;
 }
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/WindowType

@@ -1,6 +1,6 @@
 export interface Listener<T> {
     addListener(arg: T): void;
-    removeListener(): void;
+    removeListener(arg: T): void;
 }
 
 export interface ListenerHasCheckable<T> {
