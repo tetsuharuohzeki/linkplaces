@@ -7,7 +7,7 @@ import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '
 import { isBookmarkTreeNodeItem } from '../../shared/Bookmark';
 
 import { PopupMainState } from '../PopupMainState';
-import { openItem, openSidebar } from '../PopupMainThunk';
+import { openItem, openSidebar, openLibraryWindow } from '../PopupMainThunk';
 
 export interface PopupMainViewProps {
     state: PopupMainState;
@@ -52,7 +52,7 @@ function ListItem(props: ListItemProps): JSX.Element {
 
     let node: JSX.Element;
     if (!isBookmarkTreeNodeItem(item)) {
-        node = <FolderListItem item={item}/>;
+        node = <FolderListItem item={item} store={store}/>;
     }
     else{
         node = <ItemListItem item={item} store={store}/>;
@@ -63,14 +63,23 @@ function ListItem(props: ListItemProps): JSX.Element {
 
 interface FolderListItemProps {
     item: BookmarkTreeNodeFolder;
-    //store: Store<PopupMainState>;
+    store: Store<PopupMainState>;
 }
 function FolderListItem(props: FolderListItemProps): JSX.Element {
-    const { item, } = props;
+    const { item, store } = props;
+
+    const id = item.id;
+
+    const onClick = (event: React.SyntheticEvent<HTMLDivElement>) => {
+        event.preventDefault();
+
+        const a = openLibraryWindow(id);
+        store.dispatch(a);
+    };
 
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
-        <div className={'panel-list-item'}>
+        <div className={'panel-list-item'} onClick={onClick}>
             <div className={'icon'}>
                 <img className={'popup__listitem_icon_folder'}  src={'../shared/image/icon/folder-16.svg'} alt={''}/>
             </div>

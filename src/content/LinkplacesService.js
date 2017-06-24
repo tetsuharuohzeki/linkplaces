@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Cc, Ci, Cu } from "chrome";
+import { Cu } from "chrome";
 
 import { ChromeDocObserver } from "./service/ChromeDocObserver.js";
 import { LinkplacesRepository } from "./service/LinkplacesRepository.js";
@@ -238,7 +238,7 @@ export const LinkplacesService = {
     return rv;
   },
 
-  onWebExtMessage(type/*, value*/) {
+  onWebExtMessage(type, value) {
     switch (type) {
       case "linkplaces-open-privileged-url":
         break;
@@ -251,8 +251,11 @@ export const LinkplacesService = {
         w.SidebarUI.show(SIDEBAR_BROADCAST_ID);
         break;
       }
-      case "linkplaces-open-folder-bookmark-in-library":
+      case "linkplaces-open-folder-bookmark-in-library": {
+        const { id } = value;
+        openPlacesOrganizeWindow(id);
         break;
+      }
     }
   },
 };
@@ -276,4 +279,18 @@ function getLinkSchemeType(url) {
 function getMostRecentWindow() {
   const w = Services.wm.getMostRecentWindow("navigator:browser");
   return w;
+}
+
+async function openPlacesOrganizeWindow(guid) {
+  // This is trick to use WebExt's `bookmarks.BookmarkTreeNode.id` is the same value with
+  // Places internal guid.
+  const id = await LinkplacesRepository.getItemId(guid);
+  const w = getMostRecentWindow();
+  // Due to bug 528706, getMostRecentWindow can return closed windows.
+  if (!w || w.closed) {
+    return;
+  }
+
+  w.PlacesCommandHook.showPlacesOrganizer(["BookmarksMenu", id]);
+  //showPlacesOrganizer(["BookmarksMenu", id]);
 }

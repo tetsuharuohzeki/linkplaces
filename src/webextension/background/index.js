@@ -12,6 +12,7 @@ import {
     MSG_TYPE_DISABLE_WEBEXT_CTXMENU,
     MSG_TYPE_OPEN_URL_FROM_POPUP,
     MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP,
+    MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP,
 } from './IpcMsg';
 import { createTab } from './TabOpener';
 
@@ -99,6 +100,13 @@ function onMessageFromPopup(msg) {
         }
         case MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP: {
             gClassicRuntimePort.postOneShotMessage('linkplaces-open-xul-sidebar', null);
+            break;
+        }
+        case MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP: {
+            const { bookmarkId: id } = value;
+            gClassicRuntimePort.postOneShotMessage('linkplaces-open-folder-bookmark-in-library', {
+                id,
+            });
             break;
         }
         default:

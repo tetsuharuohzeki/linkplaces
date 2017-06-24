@@ -147,4 +147,19 @@ export class LinkplacesRepository {
       }).catch(Cu.reportError);
     return itemId;
   }
+
+  /**
+   * Get the item id for an item (a bookmark, a folder or a separator) given
+   * its unique id.
+   *
+   * @param {string}  aGuid
+   *        an item GUID
+   * @return {Promise}
+   *  @resolves to the GUID.
+   *  @rejects if there's no item for the given GUID.
+   */
+  static getItemId(aGuid) {
+    const id = PlacesUtils.promiseItemId(aGuid);
+    return id;
+  }
 }
