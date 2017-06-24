@@ -11,3 +11,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.popup__listitem_icon_item {
+    margin-inline-end: 1em;
+}
+
+.popup__listitem_icon_folder {
+    margin-inline-end: 2em;
+}

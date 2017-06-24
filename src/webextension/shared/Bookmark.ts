@@ -1,4 +1,7 @@
-import { BookmarkTreeNode } from '../../../typings/webext/bookmarks';
+import {
+    BookmarkTreeNode,
+    BookmarkTreeNodeItem,
+} from '../../../typings/webext/bookmarks';
 
 export function getUnfiledBoolmarkFolder(): Promise<Array<BookmarkTreeNode>> {
     // This code only works with Firefox.
@@ -28,4 +31,9 @@ export function getLinkSchemeType(url: string): LinkSchemeType {
         isPrivileged: true,
         type,
     };
+}
+
+export function isBookmarkTreeNodeItem(v: BookmarkTreeNode): v is BookmarkTreeNodeItem {
+    const is = typeof (v as any).url === 'string';
+    return is;
 }

@@ -2,7 +2,9 @@ import * as React from 'react';
 import { Store } from 'redux';
 //import * as PropTypes from 'prop-types';
 
-import { BookmarkTreeNode, BookmarkTreeNodeItem } from '../../../../typings/webext/bookmarks';
+import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../../../typings/webext/bookmarks';
+
+import { isBookmarkTreeNodeItem } from '../../shared/Bookmark';
 
 import { PopupMainState } from '../PopupMainState';
 import { openItem, openSidebar } from '../PopupMainThunk';
@@ -47,8 +49,48 @@ interface ListItemProps {
 }
 function ListItem(props: ListItemProps): JSX.Element {
     const { item, store, } = props;
+
+    let node: JSX.Element;
+    if (!isBookmarkTreeNodeItem(item)) {
+        node = <FolderListItem item={item}/>;
+    }
+    else{
+        node = <ItemListItem item={item} store={store}/>;
+    }
+
+    return node;
+}
+
+interface FolderListItemProps {
+    item: BookmarkTreeNodeFolder;
+    //store: Store<PopupMainState>;
+}
+function FolderListItem(props: FolderListItemProps): JSX.Element {
+    const { item, } = props;
+
+    // http://design.firefox.com/StyleGuide/#/navigation
+    return (
+        <div className={'popup__listitem panel-list-item'}>
+            <div className={'icon'}>
+                <img className={'popup__listitem_icon_folder'}  src={'../shared/image/icon/folder-16.svg'} alt={''}/>
+            </div>
+            <div className={'text'}>
+                <span className={''}>
+                    {item.title}
+                </span>
+            </div>
+        </div>
+    );
+}
+
+interface ItemListItemProps {
+    item: BookmarkTreeNodeItem;
+    store: Store<PopupMainState>;
+}
+function ItemListItem(props: ItemListItemProps): JSX.Element {
+    const { item, store } = props;
+    const url = item.url;
     const id = item.id;
-    const url = (item as BookmarkTreeNodeItem).url;
 
     const onClick = (event: React.SyntheticEvent<HTMLAnchorElement>) => {
         event.preventDefault();
@@ -63,7 +105,9 @@ function ListItem(props: ListItemProps): JSX.Element {
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
         <div className={'popup__listitem panel-list-item'}>
-            <div className={'icon'}></div>
+            <div className={'icon'}>
+                <img className={'popup__listitem_icon_item'} src={'../shared/image/icon/identity-not-secure.svg'} alt={''}/>
+            </div>
             <div className={'text'}>
                 <a className={''} href={url} title={tooltiptext} onClick={onClick}>
                     {item.title}
