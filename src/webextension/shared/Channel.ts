@@ -21,13 +21,15 @@ export class Channel {
     private _callbackId: number;
     private _subject: Subject<any>;
 
+    private _listener: Function;
+
     constructor(port: Port<any>) {
         this._port = port;
         this._callback = new Map();
         this._callbackId = 0;
         this._subject = new Subject();
 
-        const listener = (msg: Msg<any>) => {
+        const listener = this._listener = (msg: Msg<any>) => {
             this._onPortMessage(msg);
         };
 
@@ -41,6 +43,7 @@ export class Channel {
 
         //this._listeners = null; // XXX: we think this need not because this is a builtin object.
         // this._callback = null; // XXX: we think this need not because this is a builtin object.
+        this._listener = null as any;
         this._callback = null as any;
         this._port = null;
     }
@@ -50,6 +53,7 @@ export class Channel {
             throw new TypeError(`this port must not be null`);
         }
         this._port.disconnect();
+        this._port.onMessage.removeListener(this._listener);
         this._callback.clear();
         this._subject.unsubscribe();
     }
