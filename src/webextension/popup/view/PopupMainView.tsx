@@ -33,12 +33,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
                 </div>
             </div>
             <div className={'panel-section panel-section-list'}>
-                <ul>
-                    <li>{'item 1'}</li>
-                    <li>{'item 2'}</li>
-                    <li>{'item 3'}</li>
-                    {items}
-                </ul>
+                {items}
             </div>
         </div>
     );
@@ -62,11 +57,18 @@ function ListItem(props: ListItemProps): JSX.Element {
         store.dispatch(a);
     };
 
+    const title = item.title;
+    const tooltiptext = `"${title}"\n${url}`;
+
+    // http://design.firefox.com/StyleGuide/#/navigation
     return (
-        <li className={'popup__listitem'}>
-            <a className={''} href={url} onClick={onClick}>
-                {item.title}
-            </a>
-        </li>
+        <div className={'popup__listitem panel-list-item'}>
+            <div className={'icon'}></div>
+            <div className={'text'}>
+                <a className={''} href={url} title={tooltiptext} onClick={onClick}>
+                    {item.title}
+                </a>
+            </div>
+        </div>
     );
 }

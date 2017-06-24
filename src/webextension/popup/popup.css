@@ -6,7 +6,8 @@
 }
 
 .popup__listitem {
-    display: block;
-    text-overflow: 'ellipsis';
     max-width: var(--popup-subview-width);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
