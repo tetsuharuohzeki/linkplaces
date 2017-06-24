@@ -20,8 +20,7 @@ clean_xpi:
 
 # build
 xpi: clean_xpi \
-     lint \
-     flowcheck \
+     test \
      chrome.manifest \
      content \
      icon.png \
