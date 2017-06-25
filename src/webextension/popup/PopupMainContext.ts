@@ -10,8 +10,8 @@ import { BookmarkTreeNode, OnChangeInfo } from '../../../typings/webext/bookmark
 
 import { PopupMainView } from './view/PopupMainView';
 
-import { createItemChangedAction } from './PopupIntent';
-import { createReducer, PopupMainState } from './PopupMainState';
+import { createItemChangedAction, createInitAction } from './PopupIntent';
+import { createReducer, PopupMainStateTree } from './PopupMainState';
 import { ThunkArguments } from './PopupMainThunk';
 
 export class PopupMainContext implements ViewContext {
@@ -35,16 +35,14 @@ export class PopupMainContext implements ViewContext {
         const middleware = thunk.withExtraArgument({
             channel: this._channel,
         } as ThunkArguments);
-        const store: Store<PopupMainState> = createStore(reducer, applyMiddleware(middleware));
-        const list = this._list;
+        const store: Store<PopupMainStateTree> = createStore(reducer, applyMiddleware(middleware));
 
         const render = () => {
-            const state: PopupMainState = store.getState();
+            const { reducePopupMain: state, } = store.getState();
 
             const view = React.createElement(PopupMainView, {
                 state,
                 store,
-                list,
             }, []);
             ReactDOM.render(view, mountpoint);
         };
@@ -55,10 +53,14 @@ export class PopupMainContext implements ViewContext {
         };
         browser.bookmarks.onChanged.addListener(onChanged);
 
+        store.dispatch(createInitAction(this._list));
+
         this._disposerSet = new Set([
             store.subscribe(render),
             () => { browser.bookmarks.onChanged.removeListener(onChanged); }
         ]);
+
+        // ignite the first rendering
         render();
     }
 

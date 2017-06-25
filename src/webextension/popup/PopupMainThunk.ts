@@ -12,14 +12,14 @@ import {
     createOpenSidebarAction as createOpenSidebarAction,
     createOpenLibraryWindow as createOpenLibraryWindow,
 } from './PopupIntent';
-import { PopupMainState } from './PopupMainState';
+import { PopupMainState, PopupMainStateTree } from './PopupMainState';
 
 export type ThunkArguments = Readonly<{
     channel: Channel;
 }>;
 
-export function openItem(id: string, url: string): ThunkAction<Promise<void>, PopupMainState, ThunkArguments> {
-    return function openItemActual(_dispatch: Dispatch<PopupMainState>, _1: PopupMainState, dependencies: ThunkArguments): Promise<void> {
+export function openItem(id: string, url: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
+    return function openItemActual(_dispatch: Dispatch<PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
         dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_URL_FROM_POPUP, { id, url });
 
         return Promise.resolve().then(() => {
@@ -28,8 +28,8 @@ export function openItem(id: string, url: string): ThunkAction<Promise<void>, Po
     };
 }
 
-export function openSidebar(): ThunkAction<Promise<void>, PopupMainState, ThunkArguments> {
-    return function openItemActual(dispatch: Dispatch<PopupMainState>, _1: PopupMainState, dependencies: ThunkArguments): Promise<void> {
+export function openSidebar(): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
+    return function openItemActual(dispatch: Dispatch<PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
         dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP, null);
 
         dispatch(createOpenSidebarAction());
@@ -40,8 +40,8 @@ export function openSidebar(): ThunkAction<Promise<void>, PopupMainState, ThunkA
     };
 }
 
-export function openLibraryWindow(bookmarkId: string): ThunkAction<Promise<void>, PopupMainState, ThunkArguments> {
-    return function openItemActual(dispatch: Dispatch<PopupMainState>, _1: PopupMainState, dependencies: ThunkArguments): Promise<void> {
+export function openLibraryWindow(bookmarkId: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
+    return function openItemActual(dispatch: Dispatch<PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
         dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP, {
             bookmarkId,
         });

@@ -1,6 +1,11 @@
-import { OnChangeInfo } from '../../../typings/webext/bookmarks';
+import {
+    OnChangeInfo,
+    BookmarkTreeNode,
+} from '../../../typings/webext/bookmarks';
 
 export const enum ActionType {
+    Init = 'POPUP_ACTION_INIT',
+
     OpenSidebar = 'POPUP_ACTION_OPEN_SIDEBAR',
 
     OpenOpenLibraryWindow = 'POPUP_ACTION_OPEN_LIBRARY_WINDOW',
@@ -12,6 +17,7 @@ export const enum ActionType {
 }
 
 export type Action =
+    InitAction |
     OpenSidebarAction |
     OpenLibraryWindowAction |
     ItemOpenedAction |
@@ -19,6 +25,20 @@ export type Action =
 
 interface ActionBase {
     type: ActionType;
+}
+
+export interface InitAction extends ActionBase {
+    type: ActionType.Init;
+    list: Array<BookmarkTreeNode>;
+}
+export function isInitAction(v: ActionBase): v is InitAction {
+    return v.type === ActionType.Init;
+}
+export function createInitAction(list: Array<BookmarkTreeNode>): InitAction {
+    return {
+        type: ActionType.Init,
+        list,
+    };
 }
 
 export interface OpenSidebarAction extends ActionBase {

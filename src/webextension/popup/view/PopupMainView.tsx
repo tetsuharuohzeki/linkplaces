@@ -6,23 +6,24 @@ import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '
 
 import { isBookmarkTreeNodeItem } from '../../shared/Bookmark';
 
-import { PopupMainState } from '../PopupMainState';
+import { PopupMainState, PopupMainStateTree } from '../PopupMainState';
 import { openItem, openSidebar, openLibraryWindow } from '../PopupMainThunk';
 
 export interface PopupMainViewProps {
     state: PopupMainState;
-    store: Store<PopupMainState>;
-    list: Array<BookmarkTreeNode>;
+    store: Store<PopupMainStateTree>;
 }
 
 export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element {
+    const { state, store, } = props;
+
     const onClick = (_event: React.MouseEvent<HTMLDivElement>) => {
         const a = openSidebar();
-        props.store.dispatch(a);
+        store.dispatch(a);
     };
 
-    const items = props.list.map((item, i) => {
-        const v = <ListItem key={i} item={item} store={props.store} />;
+    const items = state.list.map((item, i) => {
+        const v = <ListItem key={i} item={item} store={store} />;
         return v;
     });
 
@@ -51,7 +52,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
 
 interface ListItemProps {
     item: BookmarkTreeNode;
-    store: Store<PopupMainState>;
+    store: Store<PopupMainStateTree>;
 }
 function ListItem(props: ListItemProps): JSX.Element {
     const { item, store, } = props;
@@ -69,7 +70,7 @@ function ListItem(props: ListItemProps): JSX.Element {
 
 interface FolderListItemProps {
     item: BookmarkTreeNodeFolder;
-    store: Store<PopupMainState>;
+    store: Store<PopupMainStateTree>;
 }
 function FolderListItem(props: FolderListItemProps): JSX.Element {
     const { item, store } = props;
@@ -100,7 +101,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
 
 interface ItemListItemProps {
     item: BookmarkTreeNodeItem;
-    store: Store<PopupMainState>;
+    store: Store<PopupMainStateTree>;
 }
 function ItemListItem(props: ItemListItemProps): JSX.Element {
     const { item, store } = props;
