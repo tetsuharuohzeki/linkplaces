@@ -1,5 +1,3 @@
-/* eslint-env browser, webextensions */
-
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
 import { PopupMainContext } from './PopupMainContext';
 import { createChannel } from './PopupMessageChannel';
@@ -14,6 +12,10 @@ import { createChannel } from './PopupMessageChannel';
     });
 
     const mountpoint = document.getElementById('js-mountpoint');
+    if (mountpoint === null) {
+        throw new TypeError('not found mountpoint');
+    }
+
     const ctx = new PopupMainContext(channel, list);
     ctx.onActivate(mountpoint);
 })().catch(console.error);

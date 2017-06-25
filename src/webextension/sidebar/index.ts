@@ -1,4 +1,3 @@
-/* eslint-env browser */
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
 import { SidebarContext } from './SidebarContext';
 
@@ -6,6 +5,10 @@ import { SidebarContext } from './SidebarContext';
     const list = await getUnfiledBoolmarkFolder();
 
     const mountpoint = document.getElementById('js-mountpoint');
+    if (mountpoint === null) {
+        throw new TypeError('not found mountpoint');
+    }
+
     const ctx = new SidebarContext(list);
     ctx.onActivate(mountpoint);
 })().catch(console.error);
