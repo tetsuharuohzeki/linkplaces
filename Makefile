@@ -20,7 +20,7 @@ clean_xpi:
 
 # build
 xpi: clean_xpi \
-     test \
+     lint \
      chrome.manifest \
      content \
      icon.png \
@@ -97,7 +97,9 @@ __obj: clean_obj
 	$(NPM_BIN)/tsc -p ./tsconfig.json --outDir $(CURDIR)/__obj/src/
 
 # Test
-test: eslint tslint flowcheck tscheck stylelint
+test: lint tscheck
+
+lint: eslint tslint flowcheck stylelint
 
 eslint:
 	$(NPM_BIN)/eslint --ext=js,jsm src/ $(CURDIR)
