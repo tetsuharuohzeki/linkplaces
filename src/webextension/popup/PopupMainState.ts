@@ -13,10 +13,8 @@ export function reducePopupMain(prev: PopupMainState, action: Action): PopupMain
             return prev;
         }
         case ActionType.OpenSidebar:
-            console.log('open sidebar');
             return prev;
         case ActionType.ItemOpened:
-            console.log('opend item');
             return prev;
         case ActionType.ItemChanged: {
             return prev;
