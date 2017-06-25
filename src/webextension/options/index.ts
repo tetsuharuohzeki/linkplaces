@@ -2,5 +2,5 @@
 
 (async function main(){
     const mountpoint = document.getElementById('js-mountpoint');
-    mountpoint.innerHTML = 'This is experimental implementations';
+    mountpoint!.innerHTML = 'This is experimental implementations';
 })().catch(console.error);
