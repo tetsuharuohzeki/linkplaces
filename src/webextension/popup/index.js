@@ -6,7 +6,6 @@ import { createChannel } from './PopupMessageChannel';
 
 (async function main(){
     const list = await getUnfiledBoolmarkFolder();
-    console.dir(list);
 
     const channel = await createChannel();
     window.addEventListener('unload', function onClose(event) {
