@@ -3,7 +3,7 @@ import { Port } from '../../../typings/webext/runtime';
 import { Channel } from '../shared/Channel';
 import { CONNECTION_PING_FROM_POPUP } from '../shared/MessageValue';
 
-function connectToBgScript(pingMessage: string): Promise<Port<void>> {
+function connectToBgScript(pingMessage: string): Promise<Port> {
     const p = browser.runtime.connect<void>({
         name: pingMessage,
     });

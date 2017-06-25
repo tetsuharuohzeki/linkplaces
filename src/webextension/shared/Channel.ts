@@ -16,14 +16,14 @@ export type Msg<T> = Readonly<{
 
 export class Channel {
 
-    private _port: Port<any> | null;
+    private _port: Port | null;
     private _callback: Map<number, PromiseTuple>;
     private _callbackId: number;
     private _subject: Subject<Msg<any>>;
 
-    private _listener: Function;
+    private _listener: (msg: Msg<any>) => void;
 
-    constructor(port: Port<any>) {
+    constructor(port: Port) {
         this._port = port;
         this._callback = new Map();
         this._callbackId = 0;

@@ -32,20 +32,22 @@ export class WebExtRTMessageChannel {
         return inst;
     }
 
-    private _port: Port<any> | null;
+    private _port: Port | null;
     private _callback: Map<number, PromiseTuple>;
     private _callbackId: number;
     private _listeners: Set<Listener>;
 
-    private _onMessageListener: ((msg: Msg<any>) => void) | null;
+    private _onMessageListener: (msg: Msg<any>) => void;
 
-    private constructor(port: Port<any>) {
+    private constructor(port: Port) {
         this._port = port;
         this._callback = new Map();
         this._callbackId = 0;
 
         this._listeners = new Set();
-        this._onMessageListener = null;
+        this._onMessageListener = (msg: Msg<any>) => {
+            this._onPortMessage(msg);
+        };
 
         Object.seal(this);
 
@@ -57,7 +59,7 @@ export class WebExtRTMessageChannel {
 
         //this._listeners = null; // XXX: we think this need not because this is a builtin object.
         // this._callback = null; // XXX: we think this need not because this is a builtin object.
-        this._onMessageListener = null;
+        this._onMessageListener = null as any;
         this._listeners = null as any;
         this._callback = null as any;
         this._port = null;
@@ -68,10 +70,6 @@ export class WebExtRTMessageChannel {
         if (port === null) {
             throw new TypeError();
         }
-
-        this._onMessageListener = (msg: Msg<any>) => {
-            this._onPortMessage(msg);
-        };
 
         port.onMessage.addListener(this._onMessageListener);
     }
@@ -167,9 +165,9 @@ export class WebExtRTMessageChannel {
     }
 }
 
-function getPort(runtime: WebExtRuntimeService): Promise<Port<any>> {
-  const port: Promise<Port<any>> = new Promise((resolve) => {
-    runtime.onConnect.addListener(function onConnect(port: Port<any>) {
+function getPort(runtime: WebExtRuntimeService): Promise<Port> {
+  const port: Promise<Port> = new Promise((resolve) => {
+    runtime.onConnect.addListener(function onConnect(port: Port) {
       runtime.onConnect.removeListener(onConnect);
       resolve(port);
     });

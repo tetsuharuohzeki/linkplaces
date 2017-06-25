@@ -3,18 +3,18 @@
 import { Listener, FullListener } from './event';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/Port
-export interface Port<T> {
+export interface Port {
     readonly name: string;
     disconnect(): void;
     readonly error: Error;
 
-    readonly onDisconnect: Listener<this>;
-    readonly onMessage: Listener<T>;
-    postMessage(value: T): void;
+    readonly onDisconnect: Listener<(port: this) => void>;
+    readonly onMessage: Listener<(object: any) => void>;
+    postMessage<T>(value: T): void;
 }
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/MessageSender
-export interface PortHasSender<T> extends Port<T> {
+export interface PortHasSender extends Port {
     readonly sender: MessageSender;
 }
 
@@ -55,9 +55,9 @@ export interface WebExtRuntimeService {
     readonly id: string;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/connect
-    connect<T>(): Promise<Port<T>>;
-    connect<T>(connectInfo: { name?: string; includeTlsChannelId?: boolean; }): Promise<Port<T>>;
-    connect<T>(extensionId: string, connectInfo?: { name?: string; includeTlsChannelId?: boolean; }): Promise<Port<T>>;
+    connect<T>(): Promise<Port>;
+    connect<T>(connectInfo: { name?: string; includeTlsChannelId?: boolean; }): Promise<Port>;
+    connect<T>(extensionId: string, connectInfo?: { name?: string; includeTlsChannelId?: boolean; }): Promise<Port>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/getBackgroundPage
     getBackgroundPage(): Promise<Window>;
@@ -77,5 +77,5 @@ export interface WebExtRuntimeService {
     }): Promise<R>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/onConnect
-    readonly onConnect: FullListener<(port: PortHasSender<any>) => void>;
+    readonly onConnect: FullListener<(port: PortHasSender) => void>;
 }
