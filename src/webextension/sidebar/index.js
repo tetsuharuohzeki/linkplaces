@@ -8,4 +8,4 @@ import { SidebarContext } from './SidebarContext';
     const mountpoint = document.getElementById('js-mountpoint');
     const ctx = new SidebarContext(list);
     ctx.onActivate(mountpoint);
-})().then(console.log, console.error);
+})().catch(console.error);

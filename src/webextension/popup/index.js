@@ -16,4 +16,4 @@ import { createChannel } from './PopupMessageChannel';
     const mountpoint = document.getElementById('js-mountpoint');
     const ctx = new PopupMainContext(channel, list);
     ctx.onActivate(mountpoint);
-})().then(console.log, console.error);
+})().catch(console.error);
