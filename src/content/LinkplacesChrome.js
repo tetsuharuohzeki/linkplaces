@@ -22,7 +22,6 @@ export class LinkplacesChrome {
     this._tabCtx = null;
     this._sidebar = null;
     this._panel = null;
-    this._panelDOM = null;
     this._prefListener = null;
     win.gLinkplacesBrowserUI = this; // eslint-disable-line no-param-reassign
 
@@ -35,7 +34,6 @@ export class LinkplacesChrome {
 
     this._win.gLinkplacesBrowserUI = null;
     this._prefListener = null;
-    this._panelDOM = null;
     this._panel = null;
     this._sidebar = null;
     this._tabCtx = null;
