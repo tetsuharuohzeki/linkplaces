@@ -6,10 +6,11 @@ import thunk from 'redux-thunk';
 import { Channel } from '../shared/Channel';
 import { ViewContext } from '../shared/ViewContext';
 
-import { BookmarkTreeNode } from '../../../typings/webext/bookmarks';
+import { BookmarkTreeNode, OnChangeInfo } from '../../../typings/webext/bookmarks';
 
 import { PopupMainView } from './view/PopupMainView';
 
+import { createItemChangedAction } from './PopupIntent';
 import { createReducer, PopupMainState } from './PopupMainState';
 import { ThunkArguments } from './PopupMainThunk';
 
@@ -17,16 +18,16 @@ export class PopupMainContext implements ViewContext {
 
     private _channel: Channel;
     private _list: Array<BookmarkTreeNode>;
-    private _disposer: Unsubscribe | null;
+    private _disposerSet: Set<Unsubscribe> | null;
 
     constructor(channel: Channel, list: Array<BookmarkTreeNode>) {
         this._channel = channel;
         this._list = list;
-        this._disposer = null;
+        this._disposerSet = null;
     }
 
     onActivate(mountpoint: Element): void {
-        if (this._disposer !== null) {
+        if (this._disposerSet !== null) {
             throw new TypeError();
         }
 
@@ -48,16 +49,28 @@ export class PopupMainContext implements ViewContext {
             ReactDOM.render(view, mountpoint);
         };
 
-        this._disposer = store.subscribe(render);
+        const onChanged = (id: string, info: OnChangeInfo) => {
+            const a = createItemChangedAction(id, info);
+            store.dispatch(a);
+        };
+        browser.bookmarks.onChanged.addListener(onChanged);
+
+        this._disposerSet = new Set([
+            store.subscribe(render),
+            () => { browser.bookmarks.onChanged.removeListener(onChanged); }
+        ]);
         render();
     }
 
     onDestroy(mountpoint: Element): void {
-        if (this._disposer === null) {
+        if (this._disposerSet === null) {
             throw new TypeError();
         }
 
-        this._disposer();
+        this._disposerSet.forEach((fn) => fn());
+        this._disposerSet.clear();
+        this._disposerSet = null;
+
         ReactDOM.unmountComponentAtNode(mountpoint);
     }
 

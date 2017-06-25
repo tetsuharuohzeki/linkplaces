@@ -1,3 +1,5 @@
+import { OnChangeInfo } from '../../../typings/webext/bookmarks';
+
 export const enum ActionType {
     OpenSidebar = 'POPUP_ACTION_OPEN_SIDEBAR',
 
@@ -5,12 +7,15 @@ export const enum ActionType {
 
     ItemOpening = 'POPUP_ACTION_ITEM_OPENING',
     ItemOpened = 'POPUP_ACTION_ITEM_OPEND',
+
+    ItemChanged = 'POPUP_ACTION_ITEM_CHANGED',
 }
 
 export type Action =
     OpenSidebarAction |
     OpenLibraryWindowAction |
-    ItemOpenedAction;
+    ItemOpenedAction |
+    ItemChangedAction;
 
 interface ActionBase {
     type: ActionType;
@@ -71,5 +76,21 @@ export function createOpenLibraryWindow(id: string): OpenLibraryWindowAction {
     return {
         type: ActionType.OpenOpenLibraryWindow,
         id,
+    };
+}
+
+export interface ItemChangedAction extends ActionBase {
+    type: ActionType.ItemChanged;
+    id: string;
+    changeInfo: OnChangeInfo;
+}
+export function isItemChangedActionAction(v: Readonly<ActionBase>): v is ItemChangedAction {
+    return v.type === ActionType.ItemChanged;
+}
+export function createItemChangedAction(id: string, changeInfo: OnChangeInfo): ItemChangedAction {
+    return {
+        type: ActionType.ItemChanged,
+        id,
+        changeInfo,
     };
 }

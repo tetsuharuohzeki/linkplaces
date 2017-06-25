@@ -12,6 +12,9 @@ export function reducePopupMain(prev: PopupMainState, action: Action): PopupMain
         case ActionType.ItemOpened:
             console.log('opend item');
             return prev;
+        case ActionType.ItemChanged: {
+            return prev;
+        }
         default: {
             const state = (prev === undefined) ? {} : prev;
             return state;

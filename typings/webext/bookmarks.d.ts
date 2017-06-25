@@ -1,3 +1,5 @@
+import { FullListener } from './event';
+
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks
 export interface WebExtBookmarkService {
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/create
@@ -32,12 +34,17 @@ export interface WebExtBookmarkService {
     // TODO: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/update
     // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onCreated
     // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onRemoved
-    // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onChanged
+
+    // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onChanged
+    onChanged: FullListener<(id: string, changeInfo: OnChangeInfo) => void>;
+
     // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onMoved
     // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onChildrenReordered
     // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onImportBegan
     // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onImportEnded
 }
+
+export type OnChangeInfo = Readonly<{title: string; url?: string; }>;
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/BookmarkTreeNodeUnmodifiable
 export type BookmarkTreeNodeUnmodifiable = 'managed';
