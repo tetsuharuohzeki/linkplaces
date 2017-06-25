@@ -22,16 +22,22 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
     };
 
     const items = props.list.map((item, i) => {
-        const v = <ListItem key={i} item={item} store={props.store}/>;
+        const v = <ListItem key={i} item={item} store={props.store} />;
         return v;
     });
 
     return (
         <div className={'panel'}>
-            <div className={'panel-section panel-section-footer'}>
-                <div className={'panel-section-footer-button'}
-                    onClick={onClick}>
-                    {'View LinkPlaces Sidebar'}
+            <div className={'panel-section panel-section-list'}>
+                <div className={'panel-list-item'} onClick={onClick}>
+                    <div className={'icon'}>
+                        <img className={'popup__listitem_icon_item'} src={'../shared/image/icon/sidebar-16.svg'} alt={''} />
+                    </div>
+                    <div className={'text'}>
+                        <span className={'popup__listitem_text_inner'}>
+                            {'View LinkPlaces Sidebar'}
+                        </span>
+                    </div>
                 </div>
             </div>
             <div className={'panel-section panel-section-list'}>
@@ -52,10 +58,10 @@ function ListItem(props: ListItemProps): JSX.Element {
 
     let node: JSX.Element;
     if (!isBookmarkTreeNodeItem(item)) {
-        node = <FolderListItem item={item} store={store}/>;
+        node = <FolderListItem item={item} store={store} />;
     }
-    else{
-        node = <ItemListItem item={item} store={store}/>;
+    else {
+        node = <ItemListItem item={item} store={store} />;
     }
 
     return node;
@@ -81,7 +87,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
     return (
         <div className={'panel-list-item'} onClick={onClick}>
             <div className={'icon'}>
-                <img className={'popup__listitem_icon_folder'}  src={'../shared/image/icon/folder-16.svg'} alt={''}/>
+                <img className={'popup__listitem_icon_folder'} src={'../shared/image/icon/folder-16.svg'} alt={''} />
             </div>
             <div className={'text'}>
                 <span className={'popup__listitem_text_inner'}>
@@ -115,7 +121,7 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
     return (
         <div className={'panel-list-item'}>
             <div className={'icon'}>
-                <img className={'popup__listitem_icon_item'} src={'../shared/image/icon/identity-not-secure.svg'} alt={''}/>
+                <img className={'popup__listitem_icon_item'} src={'../shared/image/icon/identity-not-secure.svg'} alt={''} />
             </div>
             <div className={'text'}>
                 <a className={'popup__listitem_text_inner'} href={url} title={tooltiptext} onClick={onClick}>
