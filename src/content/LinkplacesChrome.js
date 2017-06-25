@@ -48,7 +48,10 @@ export class LinkplacesChrome {
     }
 
     this._sidebar = new LinkplacesChromeSidebar(this._win, this);
-    this._panel = new LinkPlacesChromePanel(this._win, this._service);
+
+    if (this._service.config().useXULPopupWindow()) {
+      this._panel = new LinkPlacesChromePanel(this._win, this._service);
+    }
 
     this._win.addEventListener("unload", this, false);
 
@@ -70,7 +73,10 @@ export class LinkplacesChrome {
   _finalize() {
     this._service.config().removeListener(this._prefListener);
 
-    this._panel.destroy();
+    if (this._panel !== null) {
+      this._panel.destroy();
+    }
+
     this._sidebar.destroy();
 
     this._destroyCtxMenu();
