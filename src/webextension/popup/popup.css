@@ -11,6 +11,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: inherit;
+    text-decoration: none;
 }
 
 .popup__listitem_icon_item {
