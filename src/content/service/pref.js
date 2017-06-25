@@ -97,6 +97,10 @@ export class PrefService {
     return this._table.useWebExtContextMenu;
   }
 
+  useXULPopupWindow() {
+    return this._prefBranch.getBoolPref("useXULPopupWindow");
+  }
+
   _init() {
     this._prefBranch.addObserver("", this, true);
     const allPref = this._prefBranch.getChildList("", {});

@@ -90,7 +90,9 @@ exports.main = function (options, callbacks) { // eslint-disable-line no-unused-
       SetupHelper.setup(domWindow);
     }
 
-    createWidget();
+    if (LinkplacesService.config().useXULPopupWindow()) {
+      createWidget();
+    }
   });
 };
 
