@@ -105,7 +105,6 @@ export const LinkplacesService = {
         switch (uri) {
           case "chrome://browser/content/browser.xul":
           case "chrome://browser/content/history/history-panel.xul":
-          case "chrome://browser/content/bookmarks/bookmarksPanel.xul":
           case "chrome://browser/content/places/places.xul":
             LinkplacesChromePlaces.create(win, LinkplacesService);
             break;
