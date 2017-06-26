@@ -32,19 +32,47 @@ export interface WebExtBookmarkService {
     }): Promise<Array<BookmarkTreeNode>>;
 
     // TODO: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/update
-    // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onCreated
-    // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onRemoved
+
+    // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onCreated
+    onCreated: FullListener<(id: string, bookmark: BookmarkTreeNode) => void>;
+
+    // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onRemoved
+    onRemoved: FullListener<(id: string, removeInfo: OnRemoveInfo) => void>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onChanged
     onChanged: FullListener<(id: string, changeInfo: OnChangeInfo) => void>;
 
-    // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onMoved
-    // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onChildrenReordered
-    // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onImportBegan
-    // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onImportEnded
+    // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onMoved
+    onMoved: FullListener<(id: string, moveInfo: OnMoveInfo) => void>;
+
+    // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onChildrenReordered
+    onChildrenReordered: FullListener<(id: string, reorderInfo: OnReorderInfo) => void>;
+
+    // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onImportBegan
+    onImportBegan: FullListener<() => void>;
+
+    // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onImportEnded
+    onImportEnded: FullListener<() => void>;
 }
 
-export type OnChangeInfo = Readonly<{title: string; url?: string; }>;
+export type OnRemoveInfo = Readonly<{
+    parentId: string;
+    index: number;
+    node: BookmarkTreeNode;
+}>;
+export type OnChangeInfo = Readonly<{
+    title: string;
+    url?: string;
+}>;
+export type OnMoveInfo = Readonly<{
+    parentId: string;
+    index: number;
+    oldParentId: string;
+    oldIndex: number;
+}>;
+export type OnReorderInfo = Readonly<{
+    childIds: Array<string>;
+}>;
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/BookmarkTreeNodeUnmodifiable
 export type BookmarkTreeNodeUnmodifiable = 'managed';
