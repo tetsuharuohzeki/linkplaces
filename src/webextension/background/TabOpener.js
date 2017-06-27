@@ -8,7 +8,7 @@
 /**
  *  @param  {string}  url
  *  @param  {string}  where
- *  @returns  {number}
+ *  @returns  {Promise<number>}
  *    `tabs.Tab.id`. integer.
  */
 export async function createTab(url, where) {
