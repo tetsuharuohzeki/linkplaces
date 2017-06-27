@@ -15,6 +15,7 @@ import { LinkplacesChromePlaces } from "./ui/LinkplacesChromePlaces.js";
 const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 
 const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
+const { PlacesUIUtils } = Cu.import("resource:///modules/PlacesUIUtils.jsm", {});
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
 
 const modGlobal = Object.create(null);
@@ -175,7 +176,7 @@ export const LinkplacesService = {
    * @return {Promise<void>}
    */
   saveItems: function (aItems, aIndex = LinkplacesRepository.DEFAULT_INDEX) {
-    if (this._pref.useAsyncTransactions()) {
+    if (PlacesUIUtils.useAsyncTransactions) {
       return LinkplacesRepository.saveItemAsync(aItems, aIndex);
     }
     else {
@@ -190,7 +191,7 @@ export const LinkplacesService = {
    * @return {Promise<void>}
    */
   removeItem: function (aItemId) {
-    if (this._pref.useAsyncTransactions()) {
+    if (PlacesUIUtils.useAsyncTransactions) {
       return LinkplacesRepository.removeItemAsync(aItemId);
     }
     else {

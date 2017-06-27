@@ -13,7 +13,6 @@ class PrefTable {
   constructor() {
     this._openLinkToWhere = "tab";
     this.focusSidebarWhenOpenItems = false;
-    this.useAsyncTransactions = false;
     this.useWebExtContextMenu = false;
     this.useXULPopupWindow = true;
     Object.seal(this);
@@ -90,10 +89,6 @@ export class PrefService {
     return this._table.focusSidebarWhenOpenItems;
   }
 
-  useAsyncTransactions() {
-    return this._table.useAsyncTransactions;
-  }
-
   useWebExtContextMenu() {
     return this._table.useWebExtContextMenu;
   }
@@ -108,6 +103,8 @@ export class PrefService {
     for (let pref of allPref) { // eslint-disable-line prefer-const
       this._prefObserve(pref);
     }
+
+    this._prefObserve("");
   }
 
   _prefObserve(aData) {
@@ -121,11 +118,6 @@ export class PrefService {
       case "focusSidebarWhenOpenItem": {
         const value = this._prefBranch.getBoolPref(aData);
         table.focusSidebarWhenOpenItems = value;
-        break;
-      }
-      case "useAsyncTransactions": {
-        const value = this._prefBranch.getBoolPref(aData);
-        table.useAsyncTransactions = value;
         break;
       }
       case "useWebExtContextMenu": {
