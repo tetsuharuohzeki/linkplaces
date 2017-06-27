@@ -53,7 +53,7 @@
     "skipLibCheck": true, // Caused by https://github.com/ReactiveX/rxjs/issues/2539
 
     "plugins": [
-      { "name": "tslint-language-service"}
+      //{ "name": "tslint-language-service"}
     ]
   },
 
