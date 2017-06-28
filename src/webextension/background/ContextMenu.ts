@@ -75,10 +75,10 @@ function onClicked(info: OnClickData, tab: Tab): void {
             if (typeof url !== 'string') {
                 throw new TypeError();
             }
-            // `OnClickData` does not have a property containing the link title.
-            // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus/OnClickData
-            // So we'll skip it.
-            createBookmarkItem(url, url).catch(console.error);
+
+            const linkText = info.linkText;
+            const title = (typeof linkText === 'string') ? linkText : url;
+            createBookmarkItem(url, title).catch(console.error);
             break;
         }
         default:

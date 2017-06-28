@@ -18,6 +18,7 @@ export type OnClickData = {
     checked?: boolean;
     editable: boolean;
     frameUrl?: string;
+    linkText?: string;
     linkUrl?: string;
     mediaType?: 'image' | 'vide' | 'audio';
     menuItemId: MenuItemId;
