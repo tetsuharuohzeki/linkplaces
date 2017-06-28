@@ -9,16 +9,35 @@
 import * as _ from '../../../typings/webext/index'; // eslint-disable-line no-unused-vars
 import {
     removeBookmarkItem as removeBookmarkItemWebExt,
+    createBookmarkItem as createBookmarkItemWebExt,
 } from '../shared/Bookmark';
 import { gClassicRuntimePort } from './port';
 
 export {
     getLinkSchemeType,
-    createBookmarkItem,
 } from '../shared/Bookmark';
 
 // workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1375981
 export const useClassicBookmarkBackend = true;
+
+/**
+ *  @param {string} url
+ *  @param {string} title
+ *  @return {Promise<void>}
+ */
+export function createBookmarkItem(url, title) {
+    if (useClassicBookmarkBackend) {
+        gClassicRuntimePort.postOneShotMessage('linkplaces-classic-create-item', {
+            url,
+            title,
+        });
+        return Promise.resolve();
+    }
+    else {
+        // @ts-ignore
+        return createBookmarkItemWebExt(url, title);
+    }
+}
 
 /**
  *  @param {string}  id

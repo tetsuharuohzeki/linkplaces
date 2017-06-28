@@ -237,6 +237,11 @@ export const LinkplacesService = {
         openPlacesOrganizeWindow(id);
         break;
       }
+      case "linkplaces-classic-create-item": {
+        const { url, title } = value;
+        this.saveItem(url, title, LinkplacesRepository.DEFAULT_INDEX).catch(Cu.reportError);
+        break;
+      }
       case "linkplaces-classic-remove-item": {
         const { id: guid } = value;
         const itemId = LinkplacesRepository.getItemId(guid);
