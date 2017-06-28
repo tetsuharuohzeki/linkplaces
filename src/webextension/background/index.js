@@ -3,6 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 // @ts-check
 import { removeBookmarkItem, getLinkSchemeType } from './Bookmark';
+import { createContextMenu } from './ContextMenu';
 import {
     MSG_TYPE_OPEN_URL_FROM_POPUP,
     MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP,
@@ -19,6 +20,9 @@ import { createTab, openBookmarklet } from './TabOpener';
 */
 
 (function main() {
+
+    createContextMenu();
+
     browser.runtime.onConnect.addListener((s) => {
         s.onMessage.addListener(onMessageFromPopup);
         // @ts-ignore

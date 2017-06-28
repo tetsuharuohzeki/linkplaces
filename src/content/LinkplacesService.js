@@ -63,14 +63,6 @@ export const LinkplacesService = {
     this._runtime = null;
     WebExtRTMessageChannel.create(browser).then((rt) => {
       this._runtime = rt;
-
-      if (this._pref.useWebExtContextMenu()) {
-        this._runtime.postOneShotMessage("linkplaces-enable-webext-ctxmenu", {});
-      }
-      else {
-        this._runtime.postOneShotMessage("linkplaces-disable-webext-ctxmenu", {});
-      }
-
       this._runtime.addListener(this);
     });
 
@@ -88,15 +80,7 @@ export const LinkplacesService = {
     });
     this._styleService = StyleLoader.create();
 
-    this._prefListener = (name, table) => {
-      if (name === "useWebExtContextMenu") {
-        if (table.useWebExtContextMenu) {
-          this._runtime.postMessage("linkplaces-enable-webext-ctxmenu", {});
-        }
-        else {
-          this._runtime.postMessage("linkplaces-disable-webext-ctxmenu", {});
-        }
-      }
+    this._prefListener = (/*name, table*/) => {// eslint-disable-line no-empty-function
     };
     this._pref.addListener(this._prefListener);
   },

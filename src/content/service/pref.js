@@ -13,7 +13,6 @@ class PrefTable {
   constructor() {
     this._openLinkToWhere = "tab";
     this.focusSidebarWhenOpenItems = false;
-    this.useWebExtContextMenu = false;
     this.useXULPopupWindow = true;
     Object.seal(this);
   }
@@ -85,10 +84,6 @@ export class PrefService {
     return this._table.focusSidebarWhenOpenItems;
   }
 
-  useWebExtContextMenu() {
-    return this._table.useWebExtContextMenu;
-  }
-
   useXULPopupWindow() {
     return this._table.useXULPopupWindow;
   }
@@ -114,11 +109,6 @@ export class PrefService {
       case "focusSidebarWhenOpenItem": {
         const value = this._prefBranch.getBoolPref(aData);
         table.focusSidebarWhenOpenItems = value;
-        break;
-      }
-      case "useWebExtContextMenu": {
-        const value = this._prefBranch.getBoolPref(aData);
-        table.useWebExtContextMenu = value;
         break;
       }
       case "useXULPopupWindow": {

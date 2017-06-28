@@ -4,11 +4,8 @@
 // @ts-check
 import { getLinkSchemeType } from './Bookmark';
 import { BrowserMessagePort } from './BrowserMessagePort';
-import { createContextMenu, removeContextMenu } from './ContextMenu';
 import {
     MSG_TYPE_OPEN_URL,
-    MSG_TYPE_ENABLE_WEBEXT_CTXMENU,
-    MSG_TYPE_DISABLE_WEBEXT_CTXMENU,
     MSG_TYPE_OPEN_URL_RESULT,
 } from './IpcMsg';
 import { createTab, openBookmarklet } from './TabOpener';
@@ -33,12 +30,6 @@ export const gClassicRuntimePort = BrowserMessagePort.create(browser, async (msg
             }
             break;
         }
-        case MSG_TYPE_ENABLE_WEBEXT_CTXMENU:
-            createContextMenu();
-            break;
-        case MSG_TYPE_DISABLE_WEBEXT_CTXMENU:
-            await removeContextMenu();
-            break;
     }
 });
 
