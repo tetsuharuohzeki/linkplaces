@@ -18,16 +18,18 @@ import { createTab, openBookmarklet } from './TabOpener';
   import type { IpcMsg, OpenUrlMsg } from "./IpcMsg";
 */
 
-browser.runtime.onConnect.addListener((s) => {
-    s.onMessage.addListener(onMessageFromPopup);
-    // @ts-ignore
-    s.onDisconnect.addListener(function onDisconnect() {
+(function main() {
+    browser.runtime.onConnect.addListener((s) => {
+        s.onMessage.addListener(onMessageFromPopup);
         // @ts-ignore
-        s.onDisconnect.removeListener(onDisconnect);
-        // @ts-ignore
-        s.onMessage.removeListener(onMessageFromPopup);
+        s.onDisconnect.addListener(function onDisconnect() {
+            // @ts-ignore
+            s.onDisconnect.removeListener(onDisconnect);
+            // @ts-ignore
+            s.onMessage.removeListener(onMessageFromPopup);
+        });
     });
-});
+})();
 
 // @ts-ignore
 function onMessageFromPopup(msg) {
