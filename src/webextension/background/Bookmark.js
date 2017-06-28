@@ -7,23 +7,8 @@
 
 // @ts-ignore
 import * as _ from '../../../typings/webext/index'; // eslint-disable-line no-unused-vars
-import { BookmarkTreeNode } from '../../../typings/webext/bookmarks'; // eslint-disable-line no-unused-vars
-export { getLinkSchemeType, removeBookmarkItem } from '../shared/Bookmark';
-
-/**
- *  @param {string} url
- *  @param {string} title
- *  @return {Promise<BookmarkTreeNode>}
- */
-export async function createBookmarkItem(url, title) {
-    // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/create
-    // Save to "Other Bookmarks" if there is no `parentId`
-    const result = browser.bookmarks.create({
-        url,
-        title,
-    });
-    return result;
-}
+//import { BookmarkTreeNode } from '../../../typings/webext/bookmarks'; // eslint-disable-line no-unused-vars
+export { getLinkSchemeType, removeBookmarkItem, createBookmarkItem } from '../shared/Bookmark';
 
 // workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1375981
 export const useClassicBookmarkBackend = true;

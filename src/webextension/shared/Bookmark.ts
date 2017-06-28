@@ -8,6 +8,16 @@ export function getUnfiledBoolmarkFolder(): Promise<Array<BookmarkTreeNode>> {
     return browser.bookmarks.getChildren('unfiled_____');
 }
 
+export async function createBookmarkItem(url: string, title: string): Promise<BookmarkTreeNode> {
+    // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/create
+    // Save to "Other Bookmarks" if there is no `parentId`
+    const result = browser.bookmarks.create({
+        url,
+        title,
+    });
+    return result;
+}
+
 export function removeBookmarkItem(id: string): Promise<void> {
     const r = browser.bookmarks.remove(id);
     return r;
