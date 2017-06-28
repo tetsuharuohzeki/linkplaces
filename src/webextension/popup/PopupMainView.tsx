@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Store } from 'redux';
 //import * as PropTypes from 'prop-types';
 
-import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../../../typings/webext/bookmarks';
+import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../../typings/webext/bookmarks';
 
-import { isBookmarkTreeNodeItem } from '../../shared/Bookmark';
+import { isBookmarkTreeNodeItem } from '../shared/Bookmark';
 
-import { PopupMainState, PopupMainStateTree } from '../PopupMainState';
-import { openItem, openSidebar, openLibraryWindow } from '../PopupMainThunk';
+import { PopupMainState, PopupMainStateTree } from './PopupMainState';
+import { openItem, openSidebar, openLibraryWindow } from './PopupMainThunk';
 
 export interface PopupMainViewProps {
     state: PopupMainState;

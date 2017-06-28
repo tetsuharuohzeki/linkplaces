@@ -8,7 +8,7 @@ import { ViewContext } from '../shared/ViewContext';
 
 import { BookmarkTreeNode, OnChangeInfo } from '../../../typings/webext/bookmarks';
 
-import { PopupMainView } from './view/PopupMainView';
+import { PopupMainView } from './PopupMainView';
 
 import { createItemChangedAction, createInitAction } from './PopupAction';
 import { createReducer, PopupMainStateTree } from './PopupMainState';
