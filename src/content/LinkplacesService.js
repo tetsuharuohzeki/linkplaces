@@ -91,7 +91,7 @@ export const LinkplacesService = {
     WebExtRTMessageChannel.create(browser).then((rt) => {
       this._runtime = rt;
 
-      if (this._pref.PREF.useWebExtContextMenu) {
+      if (this._pref.useWebExtContextMenu()) {
         this._runtime.postOneShotMessage("linkplaces-enable-webext-ctxmenu", {});
       }
       else {

@@ -69,10 +69,6 @@ export class PrefService {
     this._prefBranch = null;
   }
 
-  PREF() {
-    return this._table;
-  }
-
   DOMAIN() {
     return PREF_DOMAIN;
   }
