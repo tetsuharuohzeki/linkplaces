@@ -84,6 +84,9 @@ export const LinkplacesService = {
    *  @returns  {void}
    */
   init: function (browser) {
+    //set user preferences
+    this._pref = new PrefService();
+
     this._runtime = null;
     WebExtRTMessageChannel.create(browser).then((rt) => {
       this._runtime = rt;
@@ -98,8 +101,6 @@ export const LinkplacesService = {
       this._runtime.addListener(this);
     });
 
-    //set user preferences
-    this._pref = new PrefService();
     this._chromeDocOpening = new ChromeDocObserver({
       onDOMContentLoaded: (win) => {
         const uri = win.location.href;
