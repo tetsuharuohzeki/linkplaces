@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 // @ts-check
-import { removeBookmarkItem, getLinkSchemeType } from './Bookmark';
+import { removeBookmarkItem, getLinkSchemeType, useClassicBookmarkBackend } from './Bookmark';
 import { BrowserMessagePort } from './BrowserMessagePort';
 import { createContextMenu, removeContextMenu } from './ContextMenu';
 import {
@@ -143,5 +143,12 @@ async function openUrlFromPopup(url, bookmarkId) {
         await createTab(url, 'tab');
     }
 
-    await removeBookmarkItem(bookmarkId);
+    if (useClassicBookmarkBackend) {
+        gClassicRuntimePort.postOneShotMessage('linkplaces-classic-remove-item', {
+            id: bookmarkId,
+        });
+    }
+    else {
+        await removeBookmarkItem(bookmarkId);
+    }
 }

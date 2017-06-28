@@ -24,3 +24,6 @@ export async function createBookmarkItem(url, title) {
     });
     return result;
 }
+
+// workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1375981
+export const useClassicBookmarkBackend = true;
