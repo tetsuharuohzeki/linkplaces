@@ -3,17 +3,12 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 // @ts-check
 import { removeBookmarkItem, getLinkSchemeType, useClassicBookmarkBackend } from './Bookmark';
-import { BrowserMessagePort } from './BrowserMessagePort';
-import { createContextMenu, removeContextMenu } from './ContextMenu';
 import {
-    MSG_TYPE_OPEN_URL,
-    MSG_TYPE_OPEN_URL_RESULT,
-    MSG_TYPE_ENABLE_WEBEXT_CTXMENU,
-    MSG_TYPE_DISABLE_WEBEXT_CTXMENU,
     MSG_TYPE_OPEN_URL_FROM_POPUP,
     MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP,
     MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP,
 } from './IpcMsg';
+import { gClassicRuntimePort } from './port';
 import { createTab, openBookmarklet } from './TabOpener';
 
 /*global browser: false, console: false */
@@ -22,32 +17,6 @@ import { createTab, openBookmarklet } from './TabOpener';
 /*::
   import type { IpcMsg, OpenUrlMsg } from "./IpcMsg";
 */
-
-// @ts-ignore
-const gClassicRuntimePort = BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: string; |}> */,
-    // @ts-ignore
-    sender /* :webext$runtime$MessageSender & webext$runtime$Port */) => {
-    const { type, id, value } = msg;
-    switch (type) {
-        case MSG_TYPE_OPEN_URL: {
-            const { url, where } = value;
-            try {
-                const res = await onMessageCreateTab(id, url, where);
-                sender.postMessage(res);
-            }
-            catch (e) {
-                console.error(e);
-            }
-            break;
-        }
-        case MSG_TYPE_ENABLE_WEBEXT_CTXMENU:
-            createContextMenu();
-            break;
-        case MSG_TYPE_DISABLE_WEBEXT_CTXMENU:
-            await removeContextMenu();
-            break;
-    }
-});
 
 browser.runtime.onConnect.addListener((s) => {
     s.onMessage.addListener(onMessageFromPopup);
@@ -59,47 +28,6 @@ browser.runtime.onConnect.addListener((s) => {
         s.onMessage.removeListener(onMessageFromPopup);
     });
 });
-
-// @ts-ignore
-async function onMessageCreateTab(msgId /* :number */, url /* :string */, where /* :string */) /* :Promise<IpcMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null>> */ {
-    const { isPrivileged, type } = getLinkSchemeType(url);
-    if (isPrivileged && type !== 'javascript') {
-        throw new URIError(`it should not be sent to here: ${url}`);
-    }
-
-    let value; // eslint-disable-line init-declarations
-    try {
-        let tabId; // eslint-disable-line init-declarations
-
-        if (isPrivileged) {
-            tabId = await openBookmarklet(url);
-        }
-        else {
-            tabId = await createTab(url, where);
-        }
-
-        value = {
-            ok: true,
-            tabId: tabId,
-            error: null,
-        };
-    }
-    catch (e) {
-        value = {
-            ok: false,
-            tabId: null,
-            error: e.message,
-        };
-    }
-
-    const response = {
-        id: msgId,
-        type: MSG_TYPE_OPEN_URL_RESULT,
-        value,
-    };
-
-    return response;
-}
 
 // @ts-ignore
 function onMessageFromPopup(msg) {
