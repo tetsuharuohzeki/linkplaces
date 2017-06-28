@@ -49,24 +49,6 @@ export const LinkplacesService = {
   },
 
   /**
-   * @obsolatd
-   *
-   * Returns LinkPlaces folder's id.
-   * @type {number}
-   */
-  get folder() {
-    return LinkplacesRepository.folder();
-  },
-
-  /**
-   * Returns LinkPlaces folder's id.
-   * @type {string}
-   */
-  get folderGuid() {
-    return LinkplacesRepository.folderGuid();
-  },
-
-  /**
    * Returns default inserted index in Places bookmarks.
    * @type {number}
    */
@@ -77,7 +59,6 @@ export const LinkplacesService = {
   config() {
     return this._pref;
   },
-
 
   /**
    *  @param  { { runtime: ? } } browser
