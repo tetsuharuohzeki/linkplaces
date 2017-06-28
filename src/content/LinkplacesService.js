@@ -48,14 +48,6 @@ export const LinkplacesService = {
     return modGlobal.stringBundle;
   },
 
-  /**
-   * Returns default inserted index in Places bookmarks.
-   * @type {number}
-   */
-  get DEFAULT_INDEX() {
-    return LinkplacesRepository.DEFAULT_INDEX;
-  },
-
   config() {
     return this._pref;
   },
