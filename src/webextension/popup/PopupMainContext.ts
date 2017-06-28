@@ -10,7 +10,7 @@ import { BookmarkTreeNode, OnChangeInfo } from '../../../typings/webext/bookmark
 
 import { PopupMainView } from './view/PopupMainView';
 
-import { createItemChangedAction, createInitAction } from './PopupIntent';
+import { createItemChangedAction, createInitAction } from './PopupAction';
 import { createReducer, PopupMainStateTree } from './PopupMainState';
 import { ThunkArguments } from './PopupMainThunk';
 

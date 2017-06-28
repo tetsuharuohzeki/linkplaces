@@ -11,7 +11,7 @@ import { Channel } from '../shared/Channel';
 import {
     createOpenSidebarAction as createOpenSidebarAction,
     createOpenLibraryWindow as createOpenLibraryWindow,
-} from './PopupIntent';
+} from './PopupAction';
 import { PopupMainState, PopupMainStateTree } from './PopupMainState';
 
 export type ThunkArguments = Readonly<{

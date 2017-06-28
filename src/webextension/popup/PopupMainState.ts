@@ -1,6 +1,6 @@
 import { combineReducers, Reducer, } from 'redux';
 import { BookmarkTreeNode } from '../../../typings/webext/bookmarks';
-import { Action, ActionType } from './PopupIntent';
+import { Action, ActionType } from './PopupAction';
 
 export interface PopupMainState {
     list: Array<BookmarkTreeNode>;
