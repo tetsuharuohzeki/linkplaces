@@ -10,9 +10,6 @@ export const enum ActionType {
 
     OpenOpenLibraryWindow = 'POPUP_ACTION_OPEN_LIBRARY_WINDOW',
 
-    ItemOpening = 'POPUP_ACTION_ITEM_OPENING',
-    ItemOpened = 'POPUP_ACTION_ITEM_OPEND',
-
     ItemChanged = 'POPUP_ACTION_ITEM_CHANGED',
 }
 
@@ -20,7 +17,6 @@ export type Action =
     InitAction |
     OpenSidebarAction |
     OpenLibraryWindowAction |
-    ItemOpenedAction |
     ItemChangedAction;
 
 interface ActionBase {
@@ -50,38 +46,6 @@ export function isOpenSidebarAction(v: ActionBase): v is OpenSidebarAction {
 export function createOpenSidebarAction(): OpenSidebarAction {
     return {
         type: ActionType.OpenSidebar,
-    };
-}
-
-export interface ItemOpeningAction extends ActionBase {
-    type: ActionType.ItemOpening;
-    id: string;
-    url: string;
-}
-export function isOpeningItemAction(v: Readonly<ActionBase>): v is ItemOpenedAction {
-    return v.type === ActionType.ItemOpening;
-}
-export function notifyItemOpening(id: string, url: string): ItemOpeningAction {
-    return {
-        type: ActionType.ItemOpening,
-        id,
-        url,
-    };
-}
-
-export interface ItemOpenedAction extends ActionBase {
-    type: ActionType.ItemOpened;
-    id: string;
-    url: string;
-}
-export function isOpenItemAction(v: Readonly<ActionBase>): v is ItemOpenedAction {
-    return v.type === ActionType.ItemOpened;
-}
-export function notifyItemOpened(id: string, url: string): ItemOpenedAction {
-    return {
-        type: ActionType.ItemOpened,
-        id,
-        url,
     };
 }
 

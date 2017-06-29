@@ -20,8 +20,6 @@ export function reducePopupMain(prev: PopupMainState = createInitialPopupMainSta
         }
         case ActionType.OpenSidebar:
             return prev;
-        case ActionType.ItemOpened:
-            return prev;
         case ActionType.ItemChanged: {
             return prev;
         }
