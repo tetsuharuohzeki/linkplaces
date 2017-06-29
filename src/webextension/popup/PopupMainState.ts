@@ -6,9 +6,9 @@ export interface PopupMainState {
     list: Array<BookmarkTreeNode>;
 }
 
-function createInitialPopupMainState(): PopupMainState {
+function createInitialPopupMainState(list: Array<BookmarkTreeNode> = []): PopupMainState {
     return {
-        list: [],
+        list: list,
     };
 }
 
@@ -35,9 +35,9 @@ export type PopupMainStateTree = {
     reducePopupMain: PopupMainState;
 };
 
-export function createInitialPopupMainStateTree(): PopupMainStateTree {
+export function createInitialPopupMainStateTree(list: Array<BookmarkTreeNode>): PopupMainStateTree {
     return {
-        reducePopupMain: createInitialPopupMainState(),
+        reducePopupMain: createInitialPopupMainState(list),
     };
 }
 
