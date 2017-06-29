@@ -8,7 +8,7 @@ import { Tab } from '../../../typings/webext/tabs';
 import { createBookmarkItem } from './Bookmark';
 
 const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';
-const CTXMENU_ID_CONTENT_SAVE_TAB = 'linkplaces-ctx-content-save-tab';
+const CTXMENU_ID_CONTENT_SAVE_PAGE = 'linkplaces-ctx-content-save-page';
 const CTXMENU_ID_LINK_SAVE_LINK = 'linkplaces-ctx-link-save-link';
 
 export function createContextMenu(): void {
@@ -21,7 +21,7 @@ export function createContextMenu(): void {
         } as CreateArgument,
         {
             type: 'normal',
-            id: CTXMENU_ID_CONTENT_SAVE_TAB,
+            id: CTXMENU_ID_CONTENT_SAVE_PAGE,
             title: 'Add Page to LinkPlaces',
             contexts: ['page'],
         } as CreateArgument,
@@ -60,7 +60,7 @@ function onClicked(info: OnClickData, tab: Tab): void {
             createBookmarkItem(url, title).catch(console.error);
             break;
         }
-        case CTXMENU_ID_CONTENT_SAVE_TAB: {
+        case CTXMENU_ID_CONTENT_SAVE_PAGE: {
             const url = info.pageUrl;
             if (typeof url !== 'string') {
                 throw new TypeError();
