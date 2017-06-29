@@ -11,7 +11,7 @@ import { BookmarkTreeNode, OnChangeInfo } from '../../../typings/webext/bookmark
 import { PopupMainView } from './PopupMainView';
 
 import { createItemChangedAction, createInitAction } from './PopupAction';
-import { createReducer, PopupMainStateTree } from './PopupMainState';
+import { createReducer, PopupMainStateTree, createInitialPopupMainStateTree } from './PopupMainState';
 import { ThunkArguments } from './PopupMainThunk';
 
 export class PopupMainContext implements ViewContext {
@@ -35,7 +35,9 @@ export class PopupMainContext implements ViewContext {
         const middleware = thunk.withExtraArgument({
             channel: this._channel,
         } as ThunkArguments);
-        const store: Store<PopupMainStateTree> = createStore(reducer, applyMiddleware(middleware));
+
+        const initial = createInitialPopupMainStateTree();
+        const store: Store<PopupMainStateTree> = createStore<PopupMainStateTree>(reducer, initial, applyMiddleware(middleware));
 
         const render = () => {
             const { reducePopupMain: state, } = store.getState();

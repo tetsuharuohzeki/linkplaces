@@ -6,7 +6,13 @@ export interface PopupMainState {
     list: Array<BookmarkTreeNode>;
 }
 
-export function reducePopupMain(prev: PopupMainState, action: Action): PopupMainState {
+function createInitialPopupMainState(): PopupMainState {
+    return {
+        list: [],
+    };
+}
+
+export function reducePopupMain(prev: PopupMainState = createInitialPopupMainState(), action: Action): PopupMainState {
     switch (action.type) {
         case ActionType.Init: {
             prev.list = action.list;
@@ -20,10 +26,7 @@ export function reducePopupMain(prev: PopupMainState, action: Action): PopupMain
             return prev;
         }
         default: {
-            const state = (prev === undefined) ? {
-                list: [],
-            } : prev;
-            return state;
+            return prev;
         }
     }
 }
@@ -31,6 +34,12 @@ export function reducePopupMain(prev: PopupMainState, action: Action): PopupMain
 export type PopupMainStateTree = {
     reducePopupMain: PopupMainState;
 };
+
+export function createInitialPopupMainStateTree(): PopupMainStateTree {
+    return {
+        reducePopupMain: createInitialPopupMainState(),
+    };
+}
 
 export function createReducer(): Reducer<PopupMainStateTree> {
     const reducer = combineReducers<PopupMainStateTree>({
