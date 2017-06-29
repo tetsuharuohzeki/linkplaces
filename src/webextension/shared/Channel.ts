@@ -60,6 +60,11 @@ export class Channel {
 
     postMessage<R>(type: string, value: any): Promise<R> {
         const task = new Promise<R>((resolve, reject) => {
+            const port = this._port;
+            if (!port) {
+                throw new TypeError('`this._port` is null');
+            }
+
             const id = this._callbackId;
             this._callbackId = id + 1;
 
@@ -68,15 +73,11 @@ export class Channel {
                 id,
                 value,
             };
+
             this._callback.set(id, {
                 resolve,
                 reject,
             });
-
-            const port = this._port;
-            if (!port) {
-                throw new TypeError('`this._port` is null');
-            }
 
             port.postMessage(message);
         });
