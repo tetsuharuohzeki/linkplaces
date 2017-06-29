@@ -46,42 +46,59 @@ export function removeContextMenu(): Promise<void> {
     return browser.contextMenus.removeAll();
 }
 
-function onClicked(info: OnClickData, tab: Tab): void {
+function onClicked(info: OnClickData, tab: Tab | null | undefined): void {
     switch (info.menuItemId) {
         case CTXMENU_ID_TAB_SAVE_TAB: {
-            if (!tab) {
-                throw new TypeError();
+            if (tab === null || tab === undefined) {
+                throw new TypeError('could not find `tab`');
             }
-
-            const { title, url } = tab;
-            if (typeof title !== 'string' || typeof url !== 'string') {
-                throw new TypeError();
-            }
-            createBookmarkItem(url, title).catch(console.error);
+            onClickSaveTab(tab).catch(console.error);
             break;
         }
         case CTXMENU_ID_CONTENT_SAVE_PAGE: {
-            const url = info.pageUrl;
-            if (typeof url !== 'string') {
-                throw new TypeError();
+            if (tab === null || tab === undefined) {
+                throw new TypeError('could not find `tab`');
             }
-
-            const title: string = ((!!tab) && (typeof tab.title === 'string')) ? tab.title : url;
-            createBookmarkItem(url, title).catch(console.error);
+            onClickSavePage(info, tab).catch(console.error);
             break;
         }
         case CTXMENU_ID_LINK_SAVE_LINK: {
-            const url = info.linkUrl;
-            if (typeof url !== 'string') {
-                throw new TypeError();
-            }
-
-            const linkText = info.linkText;
-            const title = (typeof linkText === 'string') ? linkText : url;
-            createBookmarkItem(url, title).catch(console.error);
+            onClickSaveLink(info).catch(console.error);
             break;
         }
         default:
-            throw new RangeError('unexpected `info.menuItemId`');
+            throw new RangeError(`unexpected \`info.menuItemId\`. info: ${JSON.stringify(info)}`);
     }
+}
+
+function onClickSaveTab(tab: Tab): Promise<void> {
+    const { title, url } = tab;
+    if (typeof title !== 'string' || typeof url !== 'string') {
+        throw new TypeError('Cannot found both of `title` & `url`');
+    }
+    const created = createBookmarkItem(url, title);
+    return created;
+}
+
+function onClickSavePage(info: OnClickData, tab: Tab): Promise<void> {
+    const url = info.pageUrl;
+    if (typeof url !== 'string') {
+        throw new TypeError('Cannot found `info.linkUrl`');
+    }
+
+    const title: string = (typeof tab.title === 'string') ? tab.title : url;
+    const created = createBookmarkItem(url, title);
+    return created;
+}
+
+function onClickSaveLink(info: OnClickData): Promise<void> {
+    const url = info.linkUrl;
+    if (typeof url !== 'string') {
+        throw new TypeError('Cannot found `info.linkUrl`');
+    }
+
+    const linkText = info.linkText;
+    const title = (typeof linkText === 'string') ? linkText : url;
+    const created = createBookmarkItem(url, title);
+    return created;
 }

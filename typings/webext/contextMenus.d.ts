@@ -59,7 +59,7 @@ export interface WebExtContextMenuService {
     removeAll(): Promise<void>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus/onClicked
-    onClicked: FullListener<(this: void, info: OnClickData, tab: Tab) => void>;
+    onClicked: FullListener<(this: void, info: OnClickData, tab: Tab | null | undefined) => void>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus/ACTION_MENU_TOP_LEVEL_LIMIT
     readonly ACTION_MENU_TOP_LEVEL_LIMIT: number;
