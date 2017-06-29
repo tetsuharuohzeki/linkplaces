@@ -17,7 +17,7 @@
   ],
   "background": {
     "scripts": [
-      "bundled_background.js"
+      "background/bundled.js"
     ]
   },
   "browser_action": {
