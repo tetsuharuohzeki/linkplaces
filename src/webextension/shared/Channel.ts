@@ -11,7 +11,7 @@ export type Msg<T> = Readonly<{
     id: number;
     type: string;
     value: T;
-    isRequest?: boolean;
+    isRequest: boolean;
 }>;
 
 export class Channel {
@@ -68,10 +68,11 @@ export class Channel {
             const id = this._callbackId;
             this._callbackId = id + 1;
 
-            const message = {
+            const message: Msg<any> = {
                 type,
                 id,
                 value,
+                isRequest: true,
             };
 
             this._callback.set(id, {
@@ -89,6 +90,21 @@ export class Channel {
             type,
             value,
             isRequest: true,
+        };
+
+        const port = this._port;
+        if (!port) {
+            throw new TypeError('`this._port` is null');
+        }
+
+        port.postMessage(message);
+    }
+
+    replyOneShot(type: string, value: any): void {
+        const message = {
+            type,
+            value,
+            isRequest: false,
         };
 
         const port = this._port;
