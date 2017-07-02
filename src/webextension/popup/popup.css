@@ -6,8 +6,8 @@
 }
 
 .popup__listitem_text_inner {
-    display: inline-block;
-    max-width: var(--popup-subview-width);
+    display: block;
+    width: var(--popup-subview-width);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
