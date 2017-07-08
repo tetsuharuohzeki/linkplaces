@@ -13,6 +13,7 @@ const EXPORTED_SYMBOLS = ["LinkplacesPanel"];
 const Ci = Components.interfaces;
 const Cu = Components.utils;
 
+const { AppConstants } = Cu.import("resource://gre/modules/AppConstants.jsm", {});
 const { PlacesUtils } = Cu.import("resource://gre/modules/PlacesUtils.jsm", {});
 const { PlacesUIUtils } = Cu.import("resource:///modules/PlacesUIUtils.jsm", {});
 
@@ -144,90 +145,94 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     }
   }
 
-  // Based on "chrome://browser/content/bookmarks/sidebarUtils.js"
+  // Based on mozilla-central/source/browser/components/places/content/sidebarUtils.js
   handleTreeClick(aEvent, aGutterSelect) {
-    // When right button click
+    // right-clicks are not handled here
     if (aEvent.button === 2) {
       return;
     }
 
-    const tree = aEvent.target.parentNode;
-    const treeBoxObj = tree.treeBoxObject;
-    const row = {};
-    const col = {};
-    const obj = {};
-    treeBoxObj.getCellAt(aEvent.clientX, aEvent.clientY, row, col, obj);
+    const window = this.window;
+    const aTree = aEvent.currentTarget;
 
-    if (row.value === -1 || obj.value === "twisty") {
+    const tbo = aTree.treeBoxObject;
+    const cell = tbo.getCellAt(aEvent.clientX, aEvent.clientY);
+
+    if (cell.row === -1 || cell.childElt === "twisty") {
       return;
     }
 
-    // whether mouse in opening item area or not.
     let mouseInGutter = false;
-    const cellX = {};
-    const cellY = {};
-    const cellW = {};
-    const cellH = {};
     if (aGutterSelect) {
-      treeBoxObj.getCoordsForCellItem(row.value, col.value, "image", cellX, cellY, cellW, cellH);
-
-      const isRTL = (this.window.getComputedStyle(tree, null).direction === "rtl");
+      const rect = tbo.getCoordsForCellItem(cell.row, cell.col, "image");
+      // getCoordsForCellItem returns the x coordinate in logical coordinates
+      // (i.e., starting from the left and right sides in LTR and RTL modes,
+      // respectively.)  Therefore, we make sure to exclude the blank area
+      // before the tree item icon (that is, to the left or right of it in
+      // LTR and RTL modes, respectively) from the click target area.
+      const isRTL = window.getComputedStyle(aTree).direction === "rtl";
       if (isRTL) {
-        mouseInGutter = (aEvent.clientX > cellX.value);
+        mouseInGutter = aEvent.clientX > rect.x;
       }
       else {
-        mouseInGutter = (aEvent.clientX < cellX.value);
+        mouseInGutter = aEvent.clientX < rect.x;
       }
     }
 
-    const modifKey = (aEvent.ctrlKey || aEvent.metaKey) || aEvent.shiftKey;
-    const isContainer = treeBoxObj.view.isContainer(row.value);
+    const metaKey = AppConstants.platform === "macosx" ?
+      aEvent.metaKey :
+      aEvent.ctrlKey;
+    const modifKey = metaKey || aEvent.shiftKey;
+    const isContainer = tbo.view.isContainer(cell.row);
     const openInTabs = isContainer &&// Is the node container?
       // Is event is middle-click, or left-click with ctrlkey?
       (aEvent.button === 1 || (aEvent.button === 0 && modifKey)) &&
       //Does the node have child URI node?
-      PlacesUtils.hasChildURIs(treeBoxObj.view.nodeForTreeIndex(row.value));
+      PlacesUtils.hasChildURIs(tbo.view.nodeForTreeIndex(cell.row));
 
     if (aEvent.button === 0 && isContainer && !openInTabs) {
-      treeBoxObj.view.toggleOpenState(row.value);
-    }
-    else if (!mouseInGutter && aEvent.originalTarget.localName === "treechildren") {
-      if (openInTabs) {
-        treeBoxObj.view.selection.select(row.value);
-        PlacesUIUtils.openContainerNodeInTabs(tree.selectedNode, aEvent);
-        this.focusSidebarWhenItemsOpened();
-        this._service.removeItem(tree.selectedNode.itemId);
-      }
-      else if (!isContainer) {
-        treeBoxObj.view.selection.select(row.value);
-        this.openNodeWithEvent(tree.selectedNode, aEvent, this.treeView);
-      }
+      tbo.view.toggleOpenState(cell.row);
+    } else if (!mouseInGutter && openInTabs &&
+            aEvent.originalTarget.localName === "treechildren") {
+      tbo.view.selection.select(cell.row);
+      PlacesUIUtils.openContainerNodeInTabs(aTree.selectedNode, aEvent, aTree);
+      this.focusSidebarWhenItemsOpened();
+      this._service.removeItem(aTree.selectedNode.itemId);
+    } else if (!mouseInGutter && !isContainer &&
+             aEvent.originalTarget.localName === "treechildren") {
+      // Clear all other selection since we're loading a link now. We must
+      // do this *before* attempting to load the link since openURL uses
+      // selection as an indication of which link to load.
+      tbo.view.selection.select(cell.row);
+      this.openNodeWithEvent(aTree.selectedNode, aEvent, this.treeView);
     }
   }
 
+  // Based on mozilla-central/source/browser/components/places/content/sidebarUtils.js
   handleTreeKeyPress(aEvent) {
     if (aEvent.keyCode === Ci.nsIDOMKeyEvent.DOM_VK_RETURN) {
       const node = aEvent.target.selectedNode;
-      if (PlacesUtils.nodeIsURI(node)) {
+      if (node) {
         this.openNodeWithEvent(node, aEvent, this.treeView);
       }
     }
   }
 
+  // Based on mozilla-central/source/browser/components/places/content/sidebarUtils.js
   handleTreeMouseMove(aEvent) {
     if (aEvent.target.localName !== "treechildren") {
       return;
     }
 
     const tree = aEvent.target.parentNode;
-    const treeBoxObj = tree.treeBoxObject;
-    const row = {};
-    const col = {};
-    const obj = {};
-    treeBoxObj.getCellAt(aEvent.clientX, aEvent.clientY, row, col, obj);
+    const tbo = tree.treeBoxObject;
+    const cell = tbo.getCellAt(aEvent.clientX, aEvent.clientY);
 
-    if (row.value !== -1) {
-      const node = tree.view.nodeForTreeIndex(row.value);
+    // cell.row is -1 when the mouse is hovering an empty area within the tree.
+    // To avoid showing a URL from a previously hovered node for a currently
+    // hovered non-url node, we must clear the moused-over URL in these cases.
+    if (cell.row !== -1) {
+      const node = tree.view.nodeForTreeIndex(cell.row);
       if (PlacesUtils.nodeIsURI(node)) {
         this.setMouseoverURL(node.uri);
       }
@@ -240,13 +245,14 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     }
   }
 
-  setMouseoverURL(aURI) {
-    const XULBrowserWindow = this.window.top.XULBrowserWindow;
+  // Based on mozilla-central/source/browser/components/places/content/sidebarUtils.js
+  setMouseoverURL(aURL) {
+    const top = this.window.top;
     // When the browser window is closed with an open sidebar, the sidebar
     // unload event happens after the browser's one.  In this case
     // top.XULBrowserWindow has been nullified already.
-    if (XULBrowserWindow) {
-      XULBrowserWindow.setOverLink(aURI, null);
+    if (top.XULBrowserWindow) {
+      top.XULBrowserWindow.setOverLink(aURL, null);
     }
   }
 
