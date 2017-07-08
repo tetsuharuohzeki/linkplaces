@@ -3090,9 +3090,9 @@ rx-lite@*, rx-lite@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-4.0.8.tgz#0b1e11af8bc44836f04a6407e92da42467b79444"
 
-rxjs@^6.0.0-alpha.0:
-  version "6.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.0.0-alpha.0.tgz#d757d2e5c10cc1bb3a3b3b48f6ca26a21e73222f"
+rxjs@^5.4.2:
+  version "5.4.2"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.4.2.tgz#2a3236fcbf03df57bae06fd6972fd99e5c08fcf7"
   dependencies:
     symbol-observable "^1.0.1"
 
