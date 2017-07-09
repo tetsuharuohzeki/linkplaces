@@ -90,7 +90,7 @@ export class LinkPlacesChromePanel {
       }
       result.then((result) => {
         if (result.ok) {
-          service.removeItem(node.itemId);
+          service.removeItem(node.bookmarkGuid);
         }
         else {
           window.console.error(result.error);

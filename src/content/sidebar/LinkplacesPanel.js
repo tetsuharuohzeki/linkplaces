@@ -197,7 +197,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
       tbo.view.selection.select(cell.row);
       PlacesUIUtils.openContainerNodeInTabs(aTree.selectedNode, aEvent, aTree);
       this.focusSidebarWhenItemsOpened();
-      this._service.removeItem(aTree.selectedNode.itemId);
+      this._service.removeItem(aTree.selectedNode.bookmarkGuid);
     } else if (!mouseInGutter && !isContainer &&
              aEvent.originalTarget.localName === "treechildren") {
       // Clear all other selection since we're loading a link now. We must
@@ -278,7 +278,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     result.then((result) => {
       if (result.ok) {
         this.focusSidebarWhenItemsOpened();
-        service.removeItem(aNode.itemId);
+        service.removeItem(aNode.bookmarkGuid);
       }
       else {
         this.window.console.error(result.error);
@@ -335,7 +335,7 @@ function createCustomPlacesController(ControllerConstructor, aTreeView, aLinkpla
       case "placesCmd_open:window":
       case "placesCmd_open:tab":
         aLinkplacesPanel.focusSidebarWhenItemsOpened();
-        aLinkplacesPanel.service().removeItem(this._view.selectedNode.itemId);
+        aLinkplacesPanel.service().removeItem(this._view.selectedNode.bookmarkGuid);
         break;
     }
   };

@@ -159,17 +159,16 @@ export const LinkplacesService = {
   },
 
   /**
-   * @param {number} aItemId
-   *   The item's id.
+   * @param {number} aItemGuid
+   *   The item's guid.
    * @return {Promise<void>}
    */
-  removeItem: function (aItemId) {
+  removeItem(aItemGuid) {
     if (PlacesUIUtils.useAsyncTransactions) {
-      return LinkplacesRepository.removeItemAsync(aItemId);
+      return LinkplacesRepository.removeItemAsync(aItemGuid);
     }
     else {
-      LinkplacesRepository.removeItem(aItemId);
-      return Promise.resolve();
+      return LinkplacesRepository.removeItem(aItemGuid);
     }
   },
 
@@ -242,9 +241,8 @@ export const LinkplacesService = {
         break;
       }
       case "linkplaces-classic-remove-item": {
-        const { id: guid } = value;
-        const itemId = LinkplacesRepository.getItemId(guid);
-        itemId.then((id) => this.removeItem(id)).catch(Cu.reportError);
+        const { id } = value;
+        this.removeItem(id).catch(Cu.reportError);
         break;
       }
     }

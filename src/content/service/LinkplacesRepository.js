@@ -114,30 +114,34 @@ export class LinkplacesRepository {
   }
 
   /**
-   * @param {number} aItemId
-   *   The item's id.
-   * @return {void}
+   * @param {number} aItemGuid
+   *   The item's guid.
+   * @return {Promise<?>}
    */
-  static removeItem(aItemId) {
-    const txn = new PlacesRemoveItemTransaction(aItemId);
-    PlacesUtils.transactionManager.doTransaction(txn);
+  static removeItem(aItemGuid) {
+    const id = PlacesUtils.promiseItemId(aItemGuid);
+    const txn = id.then((id) => {
+      const txn = new PlacesRemoveItemTransaction(id);
+      return txn;
+    });
+    const finalTxn = txn.then((txn) => {
+      const finalTxn = PlacesUtils.transactionManager.doTransaction(txn);
+      return finalTxn;
+    });
+    return finalTxn.catch(Cu.reportError);
   }
 
   /**
-   * @param {number} aItemId
-   *   The item's id.
-   * @return {PromiseLike<?>}
+   * @param {number} aItemGuid
+   *   The item's guid.
+   * @return {Promise<?>}
    */
-  static removeItemAsync(aItemId) {
-    const itemId = PlacesUtils.promiseItemGuid(aItemId)
-      .then(function(guid){
-        const txn = new modGlobal.PlacesTransactions.Remove({
-          guid: guid,
-        });
+  static removeItemAsync(aItemGuid) {
+    const txn = new modGlobal.PlacesTransactions.Remove({
+      guid: aItemGuid,
+    });
 
-        return modGlobal.PlacesTransactions.batch([txn]);
-      }).catch(Cu.reportError);
-    return itemId;
+    return modGlobal.PlacesTransactions.batch([txn]);
   }
 
   /**
