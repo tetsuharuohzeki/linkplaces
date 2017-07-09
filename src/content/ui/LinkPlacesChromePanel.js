@@ -90,10 +90,10 @@ export class LinkPlacesChromePanel {
       }
       result.then((result) => {
         if (result.ok) {
-          service.removeItem(node.bookmarkGuid);
+          return service.removeItem(node.bookmarkGuid);
         }
         else {
-          window.console.error(result.error);
+          return Promise.reject(result.error);
         }
       }).catch(window.console.error);
     }

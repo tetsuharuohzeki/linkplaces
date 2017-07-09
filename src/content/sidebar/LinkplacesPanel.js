@@ -278,10 +278,10 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     result.then((result) => {
       if (result.ok) {
         this.focusSidebarWhenItemsOpened();
-        service.removeItem(aNode.bookmarkGuid);
+        return service.removeItem(aNode.bookmarkGuid);
       }
       else {
-        this.window.console.error(result.error);
+        return Promise.reject(result.error);
       }
     }).catch(this.window.console.error);
   }

@@ -232,7 +232,7 @@ export const LinkplacesService = {
       }
       case "linkplaces-open-folder-bookmark-in-library": {
         const { id } = value;
-        openPlacesOrganizeWindow(id);
+        openPlacesOrganizeWindow(id).catch(Cu.reportError);
         break;
       }
       case "linkplaces-classic-create-item": {
