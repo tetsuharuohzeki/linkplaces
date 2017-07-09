@@ -154,8 +154,7 @@ export const LinkplacesService = {
       return LinkplacesRepository.saveItemAsync(aItems, aIndex);
     }
     else {
-      LinkplacesRepository.saveItems(aItems, aIndex);
-      return Promise.resolve();
+      return LinkplacesRepository.saveItems(aItems, aIndex);
     }
   },
 

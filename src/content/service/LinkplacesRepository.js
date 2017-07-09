@@ -35,14 +35,6 @@ export class LinkplacesRepository {
 
   /**
    * Returns LinkPlaces folder's id.
-   * @returns {number}
-   */
-  static folder() {
-    return PlacesUtils.bookmarks.unfiledBookmarksFolder;
-  }
-
-  /**
-   * Returns LinkPlaces folder's id.
    * @returns {string}
    */
   static folderGuid() {
@@ -68,10 +60,10 @@ export class LinkplacesRepository {
    *
    * @param {number}  aIndex
    *   The index which items inserted point.
-   * @return {void}
+   * @return {Promise<void>}
    */
-  static saveItems(aItems, aIndex) {
-    const containerId = LinkplacesRepository.folder();
+  static async saveItems(aItems, aIndex) {
+    const containerId = await PlacesUtils.promiseItemId(modGlobal.Bookmarks.unfiledGuid);
     const transactions = aItems.map(function createTxns(item) {
       const uri = Services.io.newURI(item.uri, null, null);
       const title = item.title;
