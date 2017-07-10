@@ -51,7 +51,20 @@ export const gClassicRuntimePort = BrowserMessagePort.create(browser, async (msg
 async function onMessageCreateTab(msgId, url, where) /* :Promise<IpcMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null>> */ {
     const { isPrivileged, type } = getLinkSchemeType(url);
     if (isPrivileged && type !== 'javascript') {
-        throw new URIError(`it should not be sent to here: ${url}`);
+        gClassicRuntimePort.postOneShotMessage('linkplaces-open-privileged-url', {
+            url,
+        });
+
+        const response = {
+            id: msgId,
+            type: MSG_TYPE_OPEN_URL_RESULT,
+            value: {
+                ok: true,
+                tabId: null,
+                error: null,
+            },
+        };
+        return response;
     }
 
     let value; // eslint-disable-line init-declarations

@@ -58,7 +58,7 @@ export class LinkPlacesChromePanel {
     this._dom.remove();
   }
 
-  onPanelMenuViewCommand(aEvent /* :any */, aView /*:any */) {
+  onPanelMenuViewCommand(aEvent /* :any */) {
     const window = this._win;
     const target = aEvent.originalTarget;
     const placesNode = target._placesNode; // eslint-disable-line no-underscore-dangle
@@ -79,14 +79,7 @@ export class LinkPlacesChromePanel {
         result = Promise.resolve({ ok: true });
       }
       else {
-        const { isPrivileged, type } = service.getLinkSchemeType(uri);
-        if (isPrivileged && type !== "javascript") {
-          window.PlacesUIUtils.openNodeIn(node, where, aView);
-          result = Promise.resolve({ ok: true });
-        }
-        else {
-          result = service.openTab(uri, where);
-        }
+        result = service.openTab(uri, where);
       }
       result.then((result) => {
         if (result.ok) {

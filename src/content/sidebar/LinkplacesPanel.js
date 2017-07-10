@@ -204,7 +204,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
       // do this *before* attempting to load the link since openURL uses
       // selection as an indication of which link to load.
       tbo.view.selection.select(cell.row);
-      this.openNodeWithEvent(aTree.selectedNode, aEvent, this.treeView);
+      this.openNodeWithEvent(aTree.selectedNode, aEvent);
     }
   }
 
@@ -213,7 +213,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     if (aEvent.keyCode === Ci.nsIDOMKeyEvent.DOM_VK_RETURN) {
       const node = aEvent.target.selectedNode;
       if (node) {
-        this.openNodeWithEvent(node, aEvent, this.treeView);
+        this.openNodeWithEvent(node, aEvent);
       }
     }
   }
@@ -256,7 +256,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     }
   }
 
-  openNodeWithEvent(aNode, aEvent, aView) {
+  openNodeWithEvent(aNode, aEvent) {
     const uri = aNode.uri;
     const win = this.window;
     const service = this._service;
@@ -266,14 +266,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
       result = Promise.resolve({ ok: true });
     }
     else {
-      const { isPrivileged, type } = service.getLinkSchemeType(uri);
-      if (isPrivileged && type !== "javascript") {
-        this.window.PlacesUIUtils.openNodeIn(aNode, where, aView);
-        result = Promise.resolve({ ok: true });
-      }
-      else {
-        result = service.openTab(uri, where);
-      }
+      result = service.openTab(uri, where);
     }
     result.then((result) => {
       if (result.ok) {
