@@ -29,10 +29,10 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
    *  @param  {XulWindow} aWindow
    */
   constructor(aWindow) {
-    this.window = aWindow;
-    this.treeView = null;
-    this.ctxMenu = null;
-    this.placesController = null;
+    this._window = aWindow;
+    this._treeView = null;
+    this._ctxMenu = null;
+    this._placesController = null;
     this._service = aWindow.top.gLinkplacesBrowserUI.service();
 
     Object.seal(this);
@@ -42,6 +42,10 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
 
   service() {
     return this._service;
+  }
+
+  get ctxMenu() {
+    return this._ctxMenu;
   }
 
   handleEvent(aEvent) {
@@ -71,13 +75,13 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
   }
 
   onLoad() {
-    const window = this.window;
+    const window = this._window;
     window.removeEventListener("load", this, false);
 
     // initialize
-    [this.treeView, this.placesController] = this.initPlacesView();
+    [this._treeView, this._placesController] = this.initPlacesView();
 
-    this.ctxMenu = window.document.getElementById("placesContext");
+    this._ctxMenu = window.document.getElementById("placesContext");
     this.overrideCmdOpenMultipleItem();
 
     window.addEventListener("unload", this, false);
@@ -85,25 +89,25 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
   }
 
   onUnLoad() {
-    this.window.removeEventListener("unload", this, false);
-    this.window.removeEventListener("SidebarFocused", this, false);
+    this._window.removeEventListener("unload", this, false);
+    this._window.removeEventListener("SidebarFocused", this, false);
 
     this.setMouseoverURL("");
 
     this.finalizePlacesView();
 
     this._service = null;
-    this.ctxMenu = null;
-    this.placesController = null;
-    this.treeView = null;
+    this._ctxMenu = null;
+    this._placesController = null;
+    this._treeView = null;
   }
 
   onSidebarFocused() {
-    this.treeView.focus();
+    this._treeView.focus();
   }
 
   initPlacesView() {
-    const window = this.window;
+    const window = this._window;
 
     const treeView = window.document.getElementById("linkplaces-view");
     const placesController = createCustomPlacesController(window.PlacesController, treeView, this);
@@ -120,13 +124,13 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
   }
 
   finalizePlacesView() {
-    this.treeView.removeEventListener("click", this, false);
-    this.treeView.removeEventListener("keypress", this, false);
-    this.treeView.removeEventListener("mousemove", this, false);
-    this.treeView.removeEventListener("mouseout", this, false);
+    this._treeView.removeEventListener("click", this, false);
+    this._treeView.removeEventListener("keypress", this, false);
+    this._treeView.removeEventListener("mousemove", this, false);
+    this._treeView.removeEventListener("mouseout", this, false);
 
     // finalize
-    this.treeView.controllers.removeControllerAt(0);
+    this._treeView.controllers.removeControllerAt(0);
   }
 
   overrideCmdOpenMultipleItem() {
@@ -135,7 +139,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
       var controller = PlacesUIUtils.getViewForNode(triggerNode).controller;
       window.gLinkplacesPanel.openSelectionInTabs(controller, event);
     `;
-    const document = this.window.document;
+    const document = this._window.document;
     const list = [
       "placesContext_openContainer:tabs",
       "placesContext_openLinks:tabs",
@@ -152,7 +156,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
       return;
     }
 
-    const window = this.window;
+    const window = this._window;
     const aTree = aEvent.currentTarget;
 
     const tbo = aTree.treeBoxObject;
@@ -247,7 +251,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
 
   // Based on mozilla-central/source/browser/components/places/content/sidebarUtils.js
   setMouseoverURL(aURL) {
-    const top = this.window.top;
+    const top = this._window.top;
     // When the browser window is closed with an open sidebar, the sidebar
     // unload event happens after the browser's one.  In this case
     // top.XULBrowserWindow has been nullified already.
@@ -258,7 +262,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
 
   openNodeWithEvent(aNode, aEvent) {
     const uri = aNode.uri;
-    const win = this.window;
+    const win = this._window;
     const service = this._service;
     const where = service.whereToOpenLink(win.whereToOpenLink, aEvent, uri);
     let result = null;
@@ -276,7 +280,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
       else {
         return Promise.reject(result.error);
       }
-    }).catch(this.window.console.error);
+    }).catch(this._window.console.error);
   }
 
   openSelectionInTabs(aController, aEvent) {
@@ -291,7 +295,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
 
   focusSidebarWhenItemsOpened() {
     if (this._service.config().shouldFocusOnSidebarWhenOpenItem()) {
-      this.treeView.focus();
+      this._treeView.focus();
     }
   }
 };
