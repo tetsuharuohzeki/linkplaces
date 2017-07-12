@@ -30,7 +30,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
    */
   constructor(aWindow) {
     this._window = aWindow;
-    this.treeView = null;
+    this._treeView = null;
     this.ctxMenu = null;
     this.placesController = null;
     this._service = aWindow.top.gLinkplacesBrowserUI.service();
@@ -75,7 +75,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     window.removeEventListener("load", this, false);
 
     // initialize
-    [this.treeView, this.placesController] = this.initPlacesView();
+    [this._treeView, this.placesController] = this.initPlacesView();
 
     this.ctxMenu = window.document.getElementById("placesContext");
     this.overrideCmdOpenMultipleItem();
@@ -95,11 +95,11 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     this._service = null;
     this.ctxMenu = null;
     this.placesController = null;
-    this.treeView = null;
+    this._treeView = null;
   }
 
   onSidebarFocused() {
-    this.treeView.focus();
+    this._treeView.focus();
   }
 
   initPlacesView() {
@@ -120,13 +120,13 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
   }
 
   finalizePlacesView() {
-    this.treeView.removeEventListener("click", this, false);
-    this.treeView.removeEventListener("keypress", this, false);
-    this.treeView.removeEventListener("mousemove", this, false);
-    this.treeView.removeEventListener("mouseout", this, false);
+    this._treeView.removeEventListener("click", this, false);
+    this._treeView.removeEventListener("keypress", this, false);
+    this._treeView.removeEventListener("mousemove", this, false);
+    this._treeView.removeEventListener("mouseout", this, false);
 
     // finalize
-    this.treeView.controllers.removeControllerAt(0);
+    this._treeView.controllers.removeControllerAt(0);
   }
 
   overrideCmdOpenMultipleItem() {
@@ -291,7 +291,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
 
   focusSidebarWhenItemsOpened() {
     if (this._service.config().shouldFocusOnSidebarWhenOpenItem()) {
-      this.treeView.focus();
+      this._treeView.focus();
     }
   }
 };
