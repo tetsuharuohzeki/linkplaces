@@ -4,13 +4,11 @@
 
 import { Cu } from "chrome";
 
-import { ChromeDocObserver } from "./service/ChromeDocObserver.js";
 import { LinkplacesRepository } from "./service/LinkplacesRepository.js";
 import { StyleLoader } from "./service/StyleLoader.js";
 import { PrefService } from "./service/pref.js";
 import { WebExtRTMessageChannel } from "./service/WebExtRTMessageChannel.js";
 import { SIDEBAR_BROADCAST_ID } from "./ui/LinkplacesChromeSidebar";
-import { LinkplacesChromePlaces } from "./ui/LinkplacesChromePlaces.js";
 
 const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 
@@ -66,18 +64,6 @@ export const LinkplacesService = {
       this._runtime.addListener(this);
     });
 
-    this._chromeDocOpening = new ChromeDocObserver({
-      onDOMContentLoaded: (win) => {
-        const uri = win.location.href;
-        switch (uri) {
-          case "chrome://browser/content/browser.xul":
-          case "chrome://browser/content/history/history-panel.xul":
-          case "chrome://browser/content/places/places.xul":
-            LinkplacesChromePlaces.create(win, LinkplacesService);
-            break;
-        }
-      },
-    });
     this._styleService = StyleLoader.create();
 
     this._prefListener = (/*name, table*/) => {// eslint-disable-line no-empty-function
@@ -94,8 +80,6 @@ export const LinkplacesService = {
     this._prefListener = null;
     this._styleService.destroy();
     this._styleService = null;
-    this._chromeDocOpening.destroy();
-    this._chromeDocOpening = null;
     this._pref.destroy();
     this._runtime.destroy();
     this._runtime = null;
