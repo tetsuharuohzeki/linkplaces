@@ -32,7 +32,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     this._window = aWindow;
     this._treeView = null;
     this._ctxMenu = null;
-    this.placesController = null;
+    this._placesController = null;
     this._service = aWindow.top.gLinkplacesBrowserUI.service();
 
     Object.seal(this);
@@ -79,7 +79,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     window.removeEventListener("load", this, false);
 
     // initialize
-    [this._treeView, this.placesController] = this.initPlacesView();
+    [this._treeView, this._placesController] = this.initPlacesView();
 
     this._ctxMenu = window.document.getElementById("placesContext");
     this.overrideCmdOpenMultipleItem();
@@ -98,7 +98,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
 
     this._service = null;
     this._ctxMenu = null;
-    this.placesController = null;
+    this._placesController = null;
     this._treeView = null;
   }
 
