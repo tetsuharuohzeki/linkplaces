@@ -29,7 +29,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
    *  @param  {XulWindow} aWindow
    */
   constructor(aWindow) {
-    this.window = aWindow;
+    this._window = aWindow;
     this.treeView = null;
     this.ctxMenu = null;
     this.placesController = null;
@@ -71,7 +71,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
   }
 
   onLoad() {
-    const window = this.window;
+    const window = this._window;
     window.removeEventListener("load", this, false);
 
     // initialize
@@ -85,8 +85,8 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
   }
 
   onUnLoad() {
-    this.window.removeEventListener("unload", this, false);
-    this.window.removeEventListener("SidebarFocused", this, false);
+    this._window.removeEventListener("unload", this, false);
+    this._window.removeEventListener("SidebarFocused", this, false);
 
     this.setMouseoverURL("");
 
@@ -103,7 +103,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
   }
 
   initPlacesView() {
-    const window = this.window;
+    const window = this._window;
 
     const treeView = window.document.getElementById("linkplaces-view");
     const placesController = createCustomPlacesController(window.PlacesController, treeView, this);
@@ -135,7 +135,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
       var controller = PlacesUIUtils.getViewForNode(triggerNode).controller;
       window.gLinkplacesPanel.openSelectionInTabs(controller, event);
     `;
-    const document = this.window.document;
+    const document = this._window.document;
     const list = [
       "placesContext_openContainer:tabs",
       "placesContext_openLinks:tabs",
@@ -152,7 +152,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
       return;
     }
 
-    const window = this.window;
+    const window = this._window;
     const aTree = aEvent.currentTarget;
 
     const tbo = aTree.treeBoxObject;
@@ -247,7 +247,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
 
   // Based on mozilla-central/source/browser/components/places/content/sidebarUtils.js
   setMouseoverURL(aURL) {
-    const top = this.window.top;
+    const top = this._window.top;
     // When the browser window is closed with an open sidebar, the sidebar
     // unload event happens after the browser's one.  In this case
     // top.XULBrowserWindow has been nullified already.
@@ -258,7 +258,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
 
   openNodeWithEvent(aNode, aEvent) {
     const uri = aNode.uri;
-    const win = this.window;
+    const win = this._window;
     const service = this._service;
     const where = service.whereToOpenLink(win.whereToOpenLink, aEvent, uri);
     let result = null;
@@ -276,7 +276,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
       else {
         return Promise.reject(result.error);
       }
-    }).catch(this.window.console.error);
+    }).catch(this._window.console.error);
   }
 
   openSelectionInTabs(aController, aEvent) {
