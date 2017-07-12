@@ -3,9 +3,11 @@ import { PopupMainContext } from './PopupMainContext';
 import { createChannel } from './PopupMessageChannel';
 
 (async function main(){
-    const list = await getUnfiledBoolmarkFolder();
+    const [list, channel] = await Promise.all([
+        getUnfiledBoolmarkFolder(),
+        createChannel(),
+    ]);
 
-    const channel = await createChannel();
     window.addEventListener('unload', function onClose(event) {
         window.removeEventListener(event.type, onClose);
         channel.destroy();
