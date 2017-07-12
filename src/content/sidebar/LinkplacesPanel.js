@@ -31,7 +31,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
   constructor(aWindow) {
     this._window = aWindow;
     this._treeView = null;
-    this.ctxMenu = null;
+    this._ctxMenu = null;
     this.placesController = null;
     this._service = aWindow.top.gLinkplacesBrowserUI.service();
 
@@ -42,6 +42,10 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
 
   service() {
     return this._service;
+  }
+
+  get ctxMenu() {
+    return this._ctxMenu;
   }
 
   handleEvent(aEvent) {
@@ -77,7 +81,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     // initialize
     [this._treeView, this.placesController] = this.initPlacesView();
 
-    this.ctxMenu = window.document.getElementById("placesContext");
+    this._ctxMenu = window.document.getElementById("placesContext");
     this.overrideCmdOpenMultipleItem();
 
     window.addEventListener("unload", this, false);
@@ -93,7 +97,7 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
     this.finalizePlacesView();
 
     this._service = null;
-    this.ctxMenu = null;
+    this._ctxMenu = null;
     this.placesController = null;
     this._treeView = null;
   }
