@@ -80,7 +80,7 @@ export async function saveItems(aItems, aIndex) {
  *
  * @param {number}  aInsertionPoint
  *   The index which items inserted point.
- * @return {PromiseLike<?>}
+ * @return {Promise<?>}
  */
 export function saveItemAsync(aItems, aInsertionPoint) {
   const parentId = folderGuid();
@@ -144,7 +144,7 @@ export function removeItemAsync(aItemGuid) {
  *
  * @param {string}  aGuid
  *        an item GUID
- * @return {Promise}
+ * @return {Promise<number>}
  *  @resolves to the GUID.
  *  @rejects if there's no item for the given GUID.
  */

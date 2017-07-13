@@ -1,7 +1,7 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
-
+// @ts-check
 import { Cu } from "chrome";
 
 import {
@@ -29,6 +29,11 @@ const modGlobal = Object.create(null);
 XPCOMUtils.defineLazyGetter(modGlobal, "stringBundle", function () {
   return Services.strings.createBundle(STRING_BUNDLE_URI);
 });
+
+/**
+ *  @typedef  {object} nsIStringBundle
+ *  @property {function(string):(string|null)}  GetStringFromName
+ */
 
 /**
  * LinkplacesService
@@ -59,7 +64,7 @@ export const LinkplacesService = {
   },
 
   /**
-   *  @param  { { runtime: ? } } browser
+   *  @param  { { runtime: any } } browser
    *  @returns  {void}
    */
   init: function (browser) {
@@ -67,6 +72,7 @@ export const LinkplacesService = {
     this._pref = new PrefService();
 
     this._runtime = null;
+    // @ts-ignore
     WebExtRTMessageChannel.create(browser).then((rt) => {
       this._runtime = rt;
       this._runtime.addListener(this);
@@ -148,6 +154,11 @@ export const LinkplacesService = {
     }
   },
 
+  /**
+   *  @param {string} url
+   *  @param {string} where
+   *  @returns  {Promise<?>}
+   */
   openTab(url, where) {
     return this._runtime.postMessage("linkplaces-open-tab", {
       url,
@@ -156,7 +167,7 @@ export const LinkplacesService = {
   },
 
   /**
-   *  @param  {!function(string): string} aOriginal
+   *  @param  {!function(Event): string} aOriginal
    *    The original `whereToOpenLink()`
    *  @param  {!Event} aEvent
    *  @param  {string}  aURI
@@ -182,6 +193,11 @@ export const LinkplacesService = {
     return rv;
   },
 
+  /**
+   *  @param {string} type
+   *  @param {*} value
+   *  @return {void}
+   */
   onWebExtMessage(type, value) {
     switch (type) {
       case "linkplaces-open-privileged-url": {
@@ -222,6 +238,10 @@ export const LinkplacesService = {
   },
 };
 
+/**
+ *  @param {string} guid
+ *  @return {Promise<void>}
+ */
 async function openPlacesOrganizeWindow(guid) {
   // This is trick to use WebExt's `bookmarks.BookmarkTreeNode.id` is the same value with
   // Places internal guid.
