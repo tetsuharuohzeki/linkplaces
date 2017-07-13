@@ -1,22 +1,16 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
-// @ts-check
+
 import { removeBookmarkItem, } from './Bookmark';
 import { createContextMenu } from './ContextMenu';
 import {
+    RemoteActionMsg,
     MSG_TYPE_OPEN_URL_FROM_POPUP,
     MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP,
     MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP,
 } from './IpcMsg';
 import { gClassicRuntimePort, openUrl } from './port';
-
-/*global browser: false, console: false */
-/* eslint-disable no-implicit-globals */
-
-/*::
-  import type { IpcMsg, OpenUrlMsg } from "./IpcMsg";
-*/
 
 (function main() {
 
@@ -34,12 +28,10 @@ import { gClassicRuntimePort, openUrl } from './port';
     });
 })();
 
-// @ts-ignore
-function onMessageFromPopup(msg) {
-    const { type, value, } = msg;
-    switch (type) {
+function onMessageFromPopup(msg: RemoteActionMsg) {
+    switch (msg.type) {
         case MSG_TYPE_OPEN_URL_FROM_POPUP: {
-            const { id, url } = value;
+            const { id, url } = msg.value;
             openUrlFromPopup(url, id).catch(console.error);
             break;
         }
@@ -48,7 +40,7 @@ function onMessageFromPopup(msg) {
             break;
         }
         case MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP: {
-            const { bookmarkId: id } = value;
+            const { bookmarkId: id } = msg.value;
             gClassicRuntimePort.postOneShotMessage('linkplaces-open-folder-bookmark-in-library', {
                 id,
             });
@@ -59,12 +51,7 @@ function onMessageFromPopup(msg) {
     }
 }
 
-/**
- * @param {string} url
- * @param {string} bookmarkId
- * @return  {Promise<void>}
- */
-async function openUrlFromPopup(url, bookmarkId) {
+async function openUrlFromPopup(url: string, bookmarkId: string): Promise<void> {
     await openUrl(url, 'tab');
     await removeBookmarkItem(bookmarkId);
 }
