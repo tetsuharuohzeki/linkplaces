@@ -36,7 +36,6 @@ export class StyleLoader {
       if (cssService.sheetRegistered(io, cssService.AUTHOR_SHEET)) {
         cssService.unregisterSheet(io, cssService.AUTHOR_SHEET);
       }
-      cssService.loadAndRegisterSheet(io, cssService.AUTHOR_SHEET);
     }
 
     this._cssService = null;
