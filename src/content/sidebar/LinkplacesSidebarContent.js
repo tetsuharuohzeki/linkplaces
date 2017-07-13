@@ -208,7 +208,7 @@ var LinkplacesSidebarContent = class LinkplacesSidebarContent { // eslint-disabl
       // do this *before* attempting to load the link since openURL uses
       // selection as an indication of which link to load.
       tbo.view.selection.select(cell.row);
-      this.openNodeWithEvent(aTree.selectedNode, aEvent);
+      this.openNodeWithEvent(aTree.selectedNode);
     }
   }
 
@@ -217,7 +217,7 @@ var LinkplacesSidebarContent = class LinkplacesSidebarContent { // eslint-disabl
     if (aEvent.keyCode === Ci.nsIDOMKeyEvent.DOM_VK_RETURN) {
       const node = aEvent.target.selectedNode;
       if (node) {
-        this.openNodeWithEvent(node, aEvent);
+        this.openNodeWithEvent(node);
       }
     }
   }
@@ -260,17 +260,15 @@ var LinkplacesSidebarContent = class LinkplacesSidebarContent { // eslint-disabl
     }
   }
 
-  openNodeWithEvent(aNode, aEvent) {
+  openNodeWithEvent(aNode) {
     const uri = aNode.uri;
-    const win = this._window;
     const service = this._service;
-    const where = service.whereToOpenLink(win.whereToOpenLink, aEvent, uri);
     let result = null;
     if (PlacesUtils.nodeIsSeparator(aNode)) {
       result = Promise.resolve({ ok: true });
     }
     else {
-      result = service.openTab(uri, where);
+      result = service.openTab(uri);
     }
     result.then((result) => {
       if (result.ok) {

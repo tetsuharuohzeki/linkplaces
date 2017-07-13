@@ -11,33 +11,9 @@ const PREF_DOMAIN = "extensions.linkplaces.";
 
 class PrefTable {
   constructor() {
-    this._openLinkToWhere = "tab";
     this.focusSidebarWhenOpenItems = false;
     this.useXULPopupWindow = true;
     Object.seal(this);
-  }
-
-  get openLinkToWhere() {
-    return this._openLinkToWhere;
-  }
-
-  set openLinkToWhere(v) {
-    switch (v) {
-      case 0:
-        this._openLinkToWhere = "current";
-        break;
-      case 1:
-        this._openLinkToWhere = "tab";
-        break;
-      case 2:
-        this._openLinkToWhere = "tabshifted";
-        break;
-      case 3:
-        this._openLinkToWhere = "window";
-        break;
-      default:
-        throw new Error("found undefined value");
-    }
   }
 }
 
@@ -76,10 +52,6 @@ export class PrefService {
     return this._prefBranch;
   }
 
-  openLinkTo() {
-    return this._table.openLinkToWhere;
-  }
-
   shouldFocusOnSidebarWhenOpenItem() {
     return this._table.focusSidebarWhenOpenItems;
   }
@@ -101,11 +73,6 @@ export class PrefService {
   _prefObserve(aData) {
     const table = this._table;
     switch (aData) {
-      case "openLinkToWhere": {
-        const value = this._prefBranch.getIntPref(aData);
-        table.openLinkToWhere = value;
-        break;
-      }
       case "focusSidebarWhenOpenItem": {
         const value = this._prefBranch.getBoolPref(aData);
         table.focusSidebarWhenOpenItems = value;

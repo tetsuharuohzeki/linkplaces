@@ -156,41 +156,13 @@ export const LinkplacesService = {
 
   /**
    *  @param {string} url
-   *  @param {string} where
    *  @returns  {Promise<?>}
    */
-  openTab(url, where) {
+  openTab(url) {
     return this._runtime.postMessage("linkplaces-open-tab", {
       url,
-      where,
+      where: "tab",
     });
-  },
-
-  /**
-   *  @param  {!function(Event): string} aOriginal
-   *    The original `whereToOpenLink()`
-   *  @param  {!Event} aEvent
-   *  @param  {string}  aURI
-   *  @returns  {string}
-   */
-  whereToOpenLink(aOriginal, aEvent, aURI) {
-    let rv = "";
-    if (aURI.startsWith("javascript:")) { // eslint-disable-line no-script-url
-      // for bookmarklet
-      rv = "current";
-    }
-    else {
-      const where = aOriginal(aEvent);
-      switch (where) {
-        case "current":
-          rv = this.config().openLinkTo();
-          break;
-        default:
-          rv = where;
-          break;
-      }
-    }
-    return rv;
   },
 
   /**
@@ -206,8 +178,7 @@ export const LinkplacesService = {
         if (w === null) {
           return;
         }
-        const where = this._pref.openLinkTo();
-        w.openUILinkIn(url, where);
+        w.openUILinkIn(url, "tab");
         break;
       }
       case "linkplaces-open-xul-sidebar": {

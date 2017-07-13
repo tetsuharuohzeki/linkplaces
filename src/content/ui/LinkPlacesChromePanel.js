@@ -72,14 +72,13 @@ export class LinkPlacesChromePanel {
     else {
       const node = placesNode;
       const uri = node.uri;
-      const where = this._service.whereToOpenLink(window.whereToOpenLink, aEvent, uri);
       const service = this._service;
       let result = null;
       if (window.PlacesUtils.nodeIsSeparator(node)) {
         result = Promise.resolve({ ok: true });
       }
       else {
-        result = service.openTab(uri, where);
+        result = service.openTab(uri);
       }
       result.then((result) => {
         if (result.ok) {

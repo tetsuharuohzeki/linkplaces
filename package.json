@@ -61,30 +61,6 @@
   "preferences-branch": "linkplaces",
   "preferences": [
     {
-      "type": "radio",
-      "name": "openLinkToWhere",
-      "title": "When click, Open the item to",
-      "value": 1,
-      "options": [
-        {
-          "value": 0,
-          "label": "Current Tab"
-        },
-        {
-          "value": 1,
-          "label": "New Tab"
-        },
-        {
-          "value": 2,
-          "label": "New Background Tab"
-        },
-        {
-          "value": 3,
-          "label": "New Window"
-        }
-      ]
-    },
-    {
       "type": "bool",
       "name": "focusSidebarWhenOpenItem",
       "title": "Focus when item opened",
