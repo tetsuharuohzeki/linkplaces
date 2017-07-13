@@ -80,7 +80,7 @@ const WindowListener = {
 exports.main = function (options, callbacks) { // eslint-disable-line no-unused-vars
   webext.startup().then(({browser}) => {
     LinkplacesService.init(browser);
-    Cu.import("chrome://linkplaces/content/sidebar/LinkplacesPanel.js");
+    Cu.import("chrome://linkplaces/content/sidebar/LinkplacesSidebarContent.js");
 
     Services.wm.addListener(WindowListener);
 
@@ -118,6 +118,6 @@ exports.onUnload = function (reason) { // eslint-disable-line no-unused-vars
     SetupHelper.teardown(domWindow);
   }
 
-  Cu.unload("chrome://linkplaces/content/sidebar/LinkplacesPanel.js");
+  Cu.unload("chrome://linkplaces/content/sidebar/LinkplacesSidebarContent.js");
   LinkplacesService.destroy();
 };

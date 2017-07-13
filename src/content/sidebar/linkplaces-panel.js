@@ -8,5 +8,5 @@
 // XXX: to avoid the error sourceType is not module.
 "use strict"; // eslint-disable-line strict, lines-around-directive
 
-const { LinkplacesPanel } = Components.utils.import("chrome://linkplaces/content/sidebar/LinkplacesPanel.js", {});
-window.gLinkplacesPanel = new LinkplacesPanel(window);
+const { LinkplacesSidebarContent } = Components.utils.import("chrome://linkplaces/content/sidebar/LinkplacesSidebarContent.js", {});
+window.gLinkplacesSidebarContent = new LinkplacesSidebarContent(window);

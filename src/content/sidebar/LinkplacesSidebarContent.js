@@ -8,7 +8,7 @@
 "use strict"; // eslint-disable-line strict, lines-around-directive
 
 // eslint-disable-next-line no-unused-vars
-const EXPORTED_SYMBOLS = ["LinkplacesPanel"];
+const EXPORTED_SYMBOLS = ["LinkplacesSidebarContent"];
 
 const Ci = Components.interfaces;
 const Cu = Components.utils;
@@ -22,7 +22,7 @@ const { PlacesUIUtils } = Cu.import("resource:///modules/PlacesUIUtils.jsm", {})
 // treats this at top level in a source as a global object per module,
 // and `Cu.import()` depends on it.
 // So we need to some problem, use `var` for exported items.
-var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-unused-vars
+var LinkplacesSidebarContent = class LinkplacesSidebarContent { // eslint-disable-line no-var, no-unused-vars
 
   /**
    *  @constructor
@@ -135,9 +135,9 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
 
   overrideCmdOpenMultipleItem() {
     const cmdValue = `
-      var triggerNode = window.gLinkplacesPanel.ctxMenu.triggerNode;
+      var triggerNode = window.gLinkplacesSidebarContent.ctxMenu.triggerNode;
       var controller = PlacesUIUtils.getViewForNode(triggerNode).controller;
-      window.gLinkplacesPanel.openSelectionInTabs(controller, event);
+      window.gLinkplacesSidebarContent.openSelectionInTabs(controller, event);
     `;
     const document = this._window.document;
     const list = [
@@ -303,11 +303,11 @@ var LinkplacesPanel = class LinkplacesPanel { // eslint-disable-line no-var, no-
 /*
  *  @param  {function(new:PlacesController)}  ControllerConstructor
  *  @param  {Element}                         aTreeView
- *  @param  {LinkplacesPanel}                 aLinkplacesPanel
+ *  @param  {LinkplacesSidebarContent}                 aLinkplacesSidebarContent
  *  @return {PlacesController}
  */
 // eslint-disable-next-line no-implicit-globals
-function createCustomPlacesController(ControllerConstructor, aTreeView, aLinkplacesPanel) {
+function createCustomPlacesController(ControllerConstructor, aTreeView, aLinkplacesSidebarContent) {
   const placesController = new ControllerConstructor(aTreeView);
   placesController._isCommandEnabled = placesController.isCommandEnabled; // eslint-disable-line no-underscore-dangle
   placesController.isCommandEnabled = function (aCmd) {
@@ -331,8 +331,8 @@ function createCustomPlacesController(ControllerConstructor, aTreeView, aLinkpla
       case "placesCmd_open":
       case "placesCmd_open:window":
       case "placesCmd_open:tab":
-        aLinkplacesPanel.focusSidebarWhenItemsOpened();
-        aLinkplacesPanel.service().removeItem(this._view.selectedNode.bookmarkGuid);
+        aLinkplacesSidebarContent.focusSidebarWhenItemsOpened();
+        aLinkplacesSidebarContent.service().removeItem(this._view.selectedNode.bookmarkGuid);
         break;
     }
   };
