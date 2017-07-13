@@ -139,7 +139,7 @@ export class LinkplacesChromeSidebar {
       ["type", "checkbox"],
       ["group", "sidebar"],
       ["sidebartitle", parent.service().stringBundle.GetStringFromName("linkplaces.chrome.sidebar.title")], // eslint-disable-line new-cap,
-      ["sidebarurl", "chrome://linkplaces/content/sidebar/linkplaces-panel.xul"],
+      ["sidebarurl", "chrome://linkplaces/content/sidebar/linkplaces-sidebar.xul"],
 
       // XXX: Does not work with `addEventListener()`
       ["oncommand", `SidebarUI.toggle("${SIDEBAR_BROADCAST_ID}")`],
