@@ -2,15 +2,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 // @ts-check
-import { removeBookmarkItem, getLinkSchemeType } from './Bookmark';
+import { removeBookmarkItem, } from './Bookmark';
 import { createContextMenu } from './ContextMenu';
 import {
     MSG_TYPE_OPEN_URL_FROM_POPUP,
     MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP,
     MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP,
 } from './IpcMsg';
-import { gClassicRuntimePort } from './port';
-import { createTab, openBookmarklet } from './TabOpener';
+import { gClassicRuntimePort, openUrl } from './port';
 
 /*global browser: false, console: false */
 /* eslint-disable no-implicit-globals */
@@ -60,22 +59,12 @@ function onMessageFromPopup(msg) {
     }
 }
 
-// @ts-ignore
+/**
+ * @param {string} url
+ * @param {string} bookmarkId
+ * @return  {Promise<void>}
+ */
 async function openUrlFromPopup(url, bookmarkId) {
-    const schemeType = getLinkSchemeType(url);
-    if (schemeType.isPrivileged) {
-        if (schemeType.type === 'javascript') {
-            await openBookmarklet(url);
-        }
-        else {
-            gClassicRuntimePort.postOneShotMessage('linkplaces-open-privileged-url', {
-                url,
-            });
-        }
-    }
-    else {
-        await createTab(url, 'tab');
-    }
-
+    await openUrl(url, 'tab');
     await removeBookmarkItem(bookmarkId);
 }

@@ -39,36 +39,10 @@ export const gClassicRuntimePort = BrowserMessagePort.create(browser, async (msg
  *  @param {string} where
  *  @returns {Promise<*>}
  */
-async function onMessageCreateTab(msgId, url, where) /* :Promise<IpcMsg<{| ok: boolean; tabId: ?number; error: ?string; |} | null>> */ {
-    const { isPrivileged, type } = getLinkSchemeType(url);
-    if (isPrivileged && type !== 'javascript') {
-        gClassicRuntimePort.postOneShotMessage('linkplaces-open-privileged-url', {
-            url,
-        });
-
-        const response = {
-            id: msgId,
-            type: MSG_TYPE_OPEN_URL_RESULT,
-            value: {
-                ok: true,
-                tabId: null,
-                error: null,
-            },
-        };
-        return response;
-    }
-
-    let value; // eslint-disable-line init-declarations
+async function onMessageCreateTab(msgId, url, where) {
+    let value = null;
     try {
-        let tabId; // eslint-disable-line init-declarations
-
-        if (isPrivileged) {
-            tabId = await openBookmarklet(url);
-        }
-        else {
-            tabId = await createTab(url, where);
-        }
-
+        const tabId = await openUrl(url, where);
         value = {
             ok: true,
             tabId: tabId,
@@ -90,4 +64,30 @@ async function onMessageCreateTab(msgId, url, where) /* :Promise<IpcMsg<{| ok: b
     };
 
     return response;
+}
+
+/**
+ *  @param {string} url
+ *  @param {string} where
+ *  @returns {Promise<number> | Promise<null>}
+ */
+export function openUrl(url, where) {
+    const { isPrivileged, type } = getLinkSchemeType(url);
+    let opened = null;
+    if (isPrivileged) {
+        if (type === 'javascript') {
+            opened = openBookmarklet(url);
+        }
+        else {
+            gClassicRuntimePort.postOneShotMessage('linkplaces-open-privileged-url', {
+                url,
+            });
+            opened = Promise.resolve(null);
+        }
+    }
+    else {
+        opened = createTab(url, where);
+    }
+
+    return opened;
 }
