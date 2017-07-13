@@ -4,7 +4,15 @@
 
 import { Cu } from "chrome";
 
-import { LinkplacesRepository } from "./service/LinkplacesRepository.js";
+import {
+  QUERY_URI,
+  getDefaultIndex,
+  saveItems,
+  saveItemAsync,
+  removeItem,
+  removeItemAsync,
+  getItemId,
+} from "./service/LinkplacesRepository.js";
 import { StyleLoader } from "./service/StyleLoader.js";
 import { PrefService } from "./service/pref.js";
 import { WebExtRTMessageChannel } from "./service/WebExtRTMessageChannel.js";
@@ -35,7 +43,7 @@ export const LinkplacesService = {
    * @type {string}
    */
   get QUERY_URI() {
-    return LinkplacesRepository.QUERY_URI;
+    return QUERY_URI;
   },
 
   /**
@@ -92,7 +100,7 @@ export const LinkplacesService = {
    *   The item's URI.
    * @param {string} aTitle
    *   The item's title.
-   * @param {number=} aIndex (optional)
+   * @param {number} aIndex
    *   The index which item inserted point.
    * @return {Promise<void>}
    */
@@ -113,16 +121,16 @@ export const LinkplacesService = {
    *   - {string} title
    *     The item's title.
    *
-   * @param {number=} aIndex (optional)
+   * @param {number} aIndex
    *   The index which items inserted point.
    * @return {Promise<void>}
    */
-  saveItems: function (aItems, aIndex = LinkplacesRepository.DEFAULT_INDEX) {
+  saveItems: function (aItems, aIndex) {
     if (PlacesUIUtils.useAsyncTransactions) {
-      return LinkplacesRepository.saveItemAsync(aItems, aIndex);
+      return saveItemAsync(aItems, aIndex);
     }
     else {
-      return LinkplacesRepository.saveItems(aItems, aIndex);
+      return saveItems(aItems, aIndex);
     }
   },
 
@@ -133,10 +141,10 @@ export const LinkplacesService = {
    */
   removeItem(aItemGuid) {
     if (PlacesUIUtils.useAsyncTransactions) {
-      return LinkplacesRepository.removeItemAsync(aItemGuid);
+      return removeItemAsync(aItemGuid);
     }
     else {
-      return LinkplacesRepository.removeItem(aItemGuid);
+      return removeItem(aItemGuid);
     }
   },
 
@@ -201,7 +209,8 @@ export const LinkplacesService = {
       }
       case "linkplaces-classic-create-item": {
         const { url, title } = value;
-        this.saveItem(url, title, LinkplacesRepository.DEFAULT_INDEX).catch(Cu.reportError);
+        const ip = getDefaultIndex();
+        this.saveItem(url, title, ip).catch(Cu.reportError);
         break;
       }
       case "linkplaces-classic-remove-item": {
@@ -216,7 +225,7 @@ export const LinkplacesService = {
 async function openPlacesOrganizeWindow(guid) {
   // This is trick to use WebExt's `bookmarks.BookmarkTreeNode.id` is the same value with
   // Places internal guid.
-  const id = await LinkplacesRepository.getItemId(guid);
+  const id = await getItemId(guid);
   const w = getMostRecentActiveWindow();
   if (w === null) {
     return;
