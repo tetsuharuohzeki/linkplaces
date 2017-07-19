@@ -8,7 +8,7 @@
 
 const { Ci, Cu } = require("chrome");
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
-const { LinkplacesChrome } = require("./content/LinkplacesChrome.js");
+const { LinkplacesChrome } = require("./content/ui/LinkplacesChrome.js");
 const { LinkplacesService } = require("./content/LinkplacesService.js");
 const webext = require("sdk/webextension");
 
