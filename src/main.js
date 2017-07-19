@@ -9,7 +9,7 @@
 const { Ci, Cu } = require("chrome");
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
 const { LinkplacesChrome } = require("./content/ui/LinkplacesChrome.js");
-const { LinkplacesService } = require("./content/LinkplacesService.js");
+const { LinkplacesService } = require("./content/service/LinkplacesService.js");
 const webext = require("sdk/webextension");
 
 const windowMap = new WeakMap();

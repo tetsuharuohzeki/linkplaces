@@ -12,11 +12,11 @@ import {
   removeItem,
   removeItemAsync,
   getItemId,
-} from "./service/LinkplacesRepository.js";
-import { StyleLoader } from "./service/StyleLoader.js";
-import { PrefService } from "./service/pref.js";
-import { WebExtRTMessageChannel } from "./service/WebExtRTMessageChannel.js";
-import { SIDEBAR_BROADCAST_ID } from "./ui/LinkplacesChromeSidebar";
+} from "./LinkplacesRepository.js";
+import { StyleLoader } from "./StyleLoader.js";
+import { PrefService } from "./pref.js";
+import { WebExtRTMessageChannel } from "./WebExtRTMessageChannel.js";
+import { SIDEBAR_BROADCAST_ID } from "../ui/LinkplacesChromeSidebar";
 
 const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 
