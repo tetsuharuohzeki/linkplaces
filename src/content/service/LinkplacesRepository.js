@@ -84,24 +84,17 @@ export async function saveItems(aItems, aIndex) {
  */
 export function saveItemAsync(aItems, aInsertionPoint) {
   const parentId = folderGuid();
-  const txnGenarator = function* () {
-    for (let item of aItems) { // eslint-disable-line prefer-const
-
-      const uri = Services.io.newURI(item.uri, null, null);
-      const title = item.title;
-
-      const txn = new modGlobal.PlacesTransactions.NewBookmark({
-        url: uri,
-        title: title,
-        parentGuid: parentId,
-        index: aInsertionPoint,
-      });
-
-      yield txn.transact();
-    }
-  };
-
-  return modGlobal.PlacesTransactions.batch(txnGenarator)
+  const txns = aItems.map(({ title, uri }) => {
+    const url = Services.io.newURI(uri, null, null);
+    const txn = new modGlobal.PlacesTransactions.NewBookmark({
+      url,
+      title,
+      parentGuid: parentId,
+      index: aInsertionPoint,
+    });
+    return txn;
+  });
+  return modGlobal.PlacesTransactions.batch(txns)
     .catch(Cu.reportError);
 }
 
