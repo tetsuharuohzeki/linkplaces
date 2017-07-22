@@ -27,7 +27,7 @@ export type LinkSchemeType = { isPrivileged: boolean; type: string; };
 
 export function getLinkSchemeType(url: string): LinkSchemeType {
     // see https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create
-    const r = /^(chrome|about|data|javascript):/.exec(url);
+    const r = /^(chrome|resource|about|data|javascript):/.exec(url);
     if (r === null) {
         return {
             isPrivileged: false,
