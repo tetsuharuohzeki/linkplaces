@@ -29,6 +29,8 @@ const modGlobal = Object.create(null);
 XPCOMUtils.defineLazyGetter(modGlobal, "stringBundle", function () {
   return Services.strings.createBundle(STRING_BUNDLE_URI);
 });
+XPCOMUtils.defineLazyModuleGetter(modGlobal, "RecentWindow",
+  "resource:///modules/RecentWindow.jsm");
 
 /**
  *  @typedef  {object} nsIStringBundle
@@ -227,15 +229,8 @@ async function openPlacesOrganizeWindow(guid) {
 }
 
 function getMostRecentActiveWindow() {
-  const w = getMostRecentWindow();
-  // Due to bug 528706, getMostRecentWindow can return closed windows.
-  if (!w || w.closed) {
-    return null;
-  }
-  return w;
-}
-
-function getMostRecentWindow() {
-  const w = Services.wm.getMostRecentWindow("navigator:browser");
+  const w = modGlobal.RecentWindow.getMostRecentBrowserWindow({
+    allowPopups: false,
+  });
   return w;
 }
