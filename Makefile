@@ -103,16 +103,13 @@ __obj: clean_obj
 # Test
 test: lint tscheck
 
-lint: eslint tslint flowcheck stylelint
+lint: eslint tslint stylelint
 
 eslint:
 	$(NPM_BIN)/eslint --ext=js,jsm src/ $(CURDIR)
 
 tslint:
 	$(NPM_BIN)/tslint --config $(CURDIR)/tslint.json '$(CURDIR)/src/**/*.ts{,x}'
-
-flowcheck:
-	$(NPM_BIN)/flow check
 
 tscheck:
 	$(NPM_BIN)/tsc -p ./tsconfig.json --noEmit
