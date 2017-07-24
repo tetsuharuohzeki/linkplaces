@@ -58,9 +58,10 @@ const WindowListener = {
     // Wait finish loading
     // Use `DOMContentLoaded` to avoid the error.
     // see https://blog.mozilla.org/addons/2014/03/06/australis-for-add-on-developers-2/
-    domWindow.addEventListener("DOMContentLoaded", function onLoad(/* aEvent */) {
-      domWindow.removeEventListener("DOMContentLoaded", onLoad, false);
-      SetupHelper.setup(domWindow);
+    domWindow.addEventListener("DOMContentLoaded", function onLoad(aEvent) {
+      const w = aEvent.currentTarget;
+      w.removeEventListener("DOMContentLoaded", onLoad, false);
+      SetupHelper.setup(w);
     }, false);
   },
 
