@@ -12,7 +12,6 @@
     "private-browsing": true
   },
   "hasEmbeddedWebExtension": true,
-  "main": "main.js",
   "scripts": {
     "test": "make test"
   },
