@@ -6,43 +6,17 @@
 
 "use strict"; // eslint-disable-line strict
 
+import {
+  setupBrowserWindow,
+  teardownBrowserWindow,
+  initializeService,
+  destroyService,
+} from "./content/boot/setup.js";
+
 import { Ci, Cu, } from "./content/service/chrome";
-import { LinkplacesChrome } from "./content/ui/LinkplacesChrome.js";
-import { LinkplacesService } from "./content/service/LinkplacesService.js";
 
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
 const webext = require("sdk/webextension");
-
-const windowMap = new WeakMap();
-
-const SetupHelper = {
-  /**
-   * @param {Window} aDomWindow
-   * @returns {void}
-   */
-  setup(aDomWindow) {
-    const windowType = aDomWindow.document.
-      documentElement.getAttribute("windowtype");
-    // If this isn't a browser window then abort setup.
-    if (windowType !== "navigator:browser") {
-      return;
-    }
-
-    const handler = LinkplacesChrome.create(aDomWindow, LinkplacesService);
-    windowMap.set(aDomWindow, handler);
-  },
-
-  /**
-   * @param {Window} aDomWindow
-   * @returns {void}
-   */
-  teardown(aDomWindow) {
-    const handler = windowMap.get(aDomWindow);
-    windowMap.delete(aDomWindow);
-
-    handler.destroy();
-  },
-};
 
 // nsIWindowMediatorListener
 const WindowListener = {
@@ -61,7 +35,7 @@ const WindowListener = {
     domWindow.addEventListener("DOMContentLoaded", function onLoad(aEvent) {
       const w = aEvent.currentTarget;
       w.removeEventListener("DOMContentLoaded", onLoad, false);
-      SetupHelper.setup(w);
+      setupBrowserWindow(w);
     }, false);
   },
 
@@ -80,15 +54,14 @@ const WindowListener = {
  */
 exports.main = function (options, callbacks) { // eslint-disable-line no-unused-vars
   webext.startup().then(({browser}) => {
-    LinkplacesService.init(browser);
-    Cu.import("chrome://linkplaces/content/sidebar/LinkplacesSidebarContent.js");
+    initializeService(browser);
 
     Services.wm.addListener(WindowListener);
 
     const windows = Services.wm.getEnumerator("navigator:browser");
     while (windows.hasMoreElements()) {
       const domWindow = windows.getNext().QueryInterface(Ci.nsIDOMWindow); // eslint-disable-line new-cap
-      SetupHelper.setup(domWindow);
+      setupBrowserWindow(domWindow);
     }
   });
 };
@@ -110,9 +83,8 @@ exports.onUnload = function (reason) { // eslint-disable-line no-unused-vars
   const windows = Services.wm.getEnumerator("navigator:browser");
   while (windows.hasMoreElements()) {
     const domWindow = windows.getNext().QueryInterface(Ci.nsIDOMWindow); // eslint-disable-line new-cap
-    SetupHelper.teardown(domWindow);
+    teardownBrowserWindow(domWindow);
   }
 
-  Cu.unload("chrome://linkplaces/content/sidebar/LinkplacesSidebarContent.js");
-  LinkplacesService.destroy();
+  destroyService();
 };
