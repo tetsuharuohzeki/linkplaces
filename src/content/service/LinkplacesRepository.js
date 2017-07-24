@@ -4,7 +4,7 @@
 
 // @ts-check
 
-import { Cu } from "chrome";
+import { Cu } from "./chrome";
 
 const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});

@@ -36,8 +36,10 @@ chrome.manifest: clean_dist
 
 content: content_cp content_js
 
-content_js: clean_dist __obj
-	$(NPM_BIN)/babel '$(CURDIR)/__obj/src/content' --out-dir '$(CURDIR)/__dist/content' --extensions=.js
+content_js: clean_dist __obj __dist/content/sidebar
+
+__dist/content/sidebar: clean_dist __obj
+	$(NPM_BIN)/cpx '$(CURDIR)/__obj/src/content/sidebar/*.js' $(CURDIR)/__dist/content/sidebar --preserve
 
 content_cp: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/content/**/*.xul' $(CURDIR)/__dist/content --preserve
@@ -49,7 +51,7 @@ locale: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*' $(CURDIR)/__dist/$@ --preserve
 
 main.js: clean_dist __obj
-	$(NPM_BIN)/cpx $(CURDIR)/__obj/src/$@ $(CURDIR)/__dist --preserve
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/$@ --config $(CURDIR)/rollup.config.jsm.js --output $(CURDIR)/__dist/$@
 
 package.json: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/$@ $(CURDIR)/__dist --preserve
