@@ -4,7 +4,8 @@
 
 // @ts-check
 
-import { Cu } from "chrome";
+// @ts-ignore
+const { Cu } = require("chrome"); // eslint-disable-line no-undef
 
 const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
