@@ -4,7 +4,7 @@
 // @ts-check
 
 // @ts-ignore
-const { Cu } = require("chrome"); // eslint-disable-line no-undef
+import { Cu } from "./chrome";
 
 import {
   QUERY_URI,

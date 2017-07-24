@@ -6,10 +6,11 @@
 
 "use strict"; // eslint-disable-line strict
 
-const { Ci, Cu } = require("chrome");
-const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
+import { Ci, Cu, } from "./content/service/chrome";
 import { LinkplacesChrome } from "./content/ui/LinkplacesChrome.js";
 import { LinkplacesService } from "./content/service/LinkplacesService.js";
+
+const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
 const webext = require("sdk/webextension");
 
 const windowMap = new WeakMap();
