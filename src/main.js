@@ -4,12 +4,12 @@
 
 /* eslint-env commonjs */
 
-"use strict";
+"use strict"; // eslint-disable-line strict
 
 const { Ci, Cu } = require("chrome");
 const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
-const { LinkplacesChrome } = require("./content/ui/LinkplacesChrome.js");
-const { LinkplacesService } = require("./content/service/LinkplacesService.js");
+import { LinkplacesChrome } from "./content/ui/LinkplacesChrome.js";
+import { LinkplacesService } from "./content/service/LinkplacesService.js";
 const webext = require("sdk/webextension");
 
 const windowMap = new WeakMap();
