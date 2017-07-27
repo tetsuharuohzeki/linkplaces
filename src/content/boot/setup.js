@@ -34,7 +34,9 @@ export function teardownBrowserWindow(aDomWindow) {
   const handler = windowMap.get(aDomWindow);
   windowMap.delete(aDomWindow);
 
-  handler.destroy();
+  if (!!handler) {
+    handler.destroy();
+  }
 }
 
 export function initializeService(browser) {
