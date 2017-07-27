@@ -85,9 +85,9 @@ __external_dependency: \
 	__external_dependency_rxjs
 
 __external_dependency_react: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/react/umd/react.production.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
+	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/react/dist/react.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
 __external_dependency_react_dom: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/react-dom/umd/react-dom.production.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
+	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/react-dom/dist/react-dom.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
 __external_dependency_prop_types: clean_dist
 		$(NPM_BIN)/cpx '$(CURDIR)/node_modules/prop-types/prop-types.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
 __external_dependency_redux: clean_dist
