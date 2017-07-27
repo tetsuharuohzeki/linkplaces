@@ -4,15 +4,6 @@
   "id": "linkplaces@saneyuki_s",
   "version": "0.10.0",
   "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
-  "engines": {
-    "firefox": ">= 52.0a1"
-  },
-  "permissions": {
-    "multiprocess": true,
-    "private-browsing": true
-  },
-  "hasEmbeddedWebExtension": true,
-  "main": "main.js",
   "scripts": {
     "test": "make test"
   },
@@ -40,7 +31,6 @@
     "del-cli": "^1.1.0",
     "eslint": "^4.3.0",
     "eslint-plugin-react": "^7.1.0",
-    "jpm": "^1.3.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -55,15 +45,5 @@
     "tslint": "^5.5.0",
     "tslint-language-service": "^0.9.6",
     "typescript": "^2.4.2"
-  },
-  "preferences-branch": "linkplaces",
-  "preferences": [
-    {
-      "type": "bool",
-      "name": "focusSidebarWhenOpenItem",
-      "title": "Focus when item opened",
-      "description": "Whether to focus the sidebar when item is opening.",
-      "value": true
-    }
-  ]
+  }
 }

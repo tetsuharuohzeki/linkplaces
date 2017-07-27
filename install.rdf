@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+<Description about="urn:mozilla:install-manifest">
+
+  <!-- Extension Identifier -->
+  <em:id>linkplaces@saneyuki_s</em:id>
+  <em:version>0.10</em:version>
+  <em:type>2</em:type>
+  <em:bootstrap>true</em:bootstrap>
+  <em:unpack>false</em:unpack>
+  <em:multiprocessCompatible>true</em:multiprocessCompatible>
+  <em:hasEmbeddedWebExtension>true</em:hasEmbeddedWebExtension>
+
+  <!-- Metadata -->
+  <em:name>LinkPlaces</em:name>
+  <em:description>This provides Sidebar to display &quot;Unsorted Bookmarks&quot; folder in Places, as &quot;Temporary Links&quot;</em:description>
+  <em:homepageURL>http://github.com/saneyuki/LinkPlaces/</em:homepageURL>
+  <em:creator>Tetsuharu OHZEKI</em:creator>
+
+  <!-- Target Application -->
+  <!-- Firefox -->
+  <em:targetApplication>
+    <Description>
+      <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+      <em:minVersion>38.0a1</em:minVersion>
+      <em:maxVersion>*</em:maxVersion>
+    </Description>
+  </em:targetApplication>
+
+</Description>
+</RDF>

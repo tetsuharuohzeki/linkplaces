@@ -5,7 +5,8 @@
 // https://github.com/rollup/rollup/wiki/Command-Line-Interface
 module.exports = {
     format: 'cjs',
-    exports: 'named',
+    context: 'this',
+
     useStrict: true,
     sourceMap: true,
     treeshake: true,

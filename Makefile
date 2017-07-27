@@ -1,4 +1,4 @@
-PACKAGE := linkplaces.xpi
+PACKAGE := $(CURDIR)/linkplaces.xpi
 NODE_MOD := $(CURDIR)/node_modules
 NPM_BIN := $(NODE_MOD)/.bin
 
@@ -24,12 +24,14 @@ xpi: clean_xpi \
      chrome.manifest \
      content \
      icon.png \
+     install.rdf \
      locale \
-     main.js \
+     bootstrap.js \
      package.json \
      skin \
-     webextension
-	$(NPM_BIN)/jpm xpi --dest-dir=$(CURDIR) --addon-dir=$(CURDIR)/__dist
+     webextension \
+     __dist/Makefile
+	$(MAKE) xpi -C $(CURDIR)/__dist
 
 chrome.manifest: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/src/$@ $(CURDIR)/__dist --preserve
@@ -50,14 +52,20 @@ icon.png: clean_dist
 locale: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*' $(CURDIR)/__dist/$@ --preserve
 
-main.js: clean_dist __obj
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/$@ --config $(CURDIR)/rollup.config.jsm.js --output $(CURDIR)/__dist/$@
-
 package.json: clean_dist
+	$(NPM_BIN)/cpx $(CURDIR)/$@ $(CURDIR)/__dist --preserve
+
+bootstrap.js: clean_dist __obj
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/$@ --config $(CURDIR)/rollup.config.bootstrap.js --output $(CURDIR)/__dist/$@
+
+install.rdf: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/$@ $(CURDIR)/__dist --preserve
 
 skin: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*' $(CURDIR)/__dist/$@ --preserve
+
+__dist/Makefile: clean_dist
+	$(NPM_BIN)/cpx $(CURDIR)/src/Makefile $(CURDIR)/__dist --preserve
 
 webextension: webextension_cp webextension_icon webextension_bundle
 

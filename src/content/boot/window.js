@@ -22,20 +22,24 @@ const WindowListener = {
     const domWindow = aXulWindow.QueryInterface(Ci.nsIInterfaceRequestor) // eslint-disable-line new-cap
       .getInterface(Ci.nsIDOMWindow);
 
-    // Wait finish loading
-    // Use `DOMContentLoaded` to avoid the error.
-    // see https://blog.mozilla.org/addons/2014/03/06/australis-for-add-on-developers-2/
-    domWindow.addEventListener("DOMContentLoaded", function onLoad(aEvent) {
-      const w = aEvent.currentTarget;
-      w.removeEventListener("DOMContentLoaded", onLoad, false);
-      setupBrowserWindow(w);
-    }, false);
+    initializeOnDOMContentLoaded(domWindow);
   },
 
   onCloseWindow(/*aXulWindow*/) {}, // eslint-disable-line no-empty-function
 
   onWindowTitleChange(/*aWindow, aNewTitle*/) {}, // eslint-disable-line no-empty-function
 };
+
+function initializeOnDOMContentLoaded(domWindow) {
+  // Wait finish loading
+  // Use `DOMContentLoaded` to avoid the error.
+  // see https://blog.mozilla.org/addons/2014/03/06/australis-for-add-on-developers-2/
+  domWindow.addEventListener("DOMContentLoaded", function onLoad(aEvent) {
+    const w = aEvent.currentTarget;
+    w.removeEventListener("DOMContentLoaded", onLoad, false);
+    setupBrowserWindow(w);
+  }, false);
+}
 
 function attachWindowListener() {
   Services.wm.addListener(WindowListener);
@@ -51,7 +55,7 @@ export function initializeUIForEachChromeWindow() {
   const windows = Services.wm.getEnumerator("navigator:browser");
   while (windows.hasMoreElements()) {
     const domWindow = windows.getNext().QueryInterface(Ci.nsIDOMWindow); // eslint-disable-line new-cap
-    setupBrowserWindow(domWindow);
+    initializeOnDOMContentLoaded(domWindow);
   }
 }
 

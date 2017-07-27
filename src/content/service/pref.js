@@ -11,7 +11,7 @@ const PREF_DOMAIN = "extensions.linkplaces.";
 
 class PrefTable {
   constructor() {
-    this.focusSidebarWhenOpenItems = false;
+    this.focusSidebarWhenOpenItems = true;
     Object.seal(this);
   }
 }
