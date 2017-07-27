@@ -3,6 +3,14 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 // @ts-check
 
+import {
+  IPC_MSG_TYPE_CLASSIC_CREATE_ITEM,
+  IPC_MSG_TYPE_CLASSIC_REMOVE_ITEM,
+  IPC_MSG_TYPE_OPEN_CLASSIC_SIDEBAR,
+  IPC_MSG_TYPE_OPEN_PRIVILEGED_URL,
+  IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY,
+} from "../../webextension/shared/MessageValue";
+
 // @ts-ignore
 import {
   Cu,
@@ -178,7 +186,7 @@ export const LinkplacesService = {
    */
   onWebExtMessage(type, value) {
     switch (type) {
-      case "linkplaces-open-privileged-url": {
+      case IPC_MSG_TYPE_OPEN_PRIVILEGED_URL: {
         const { url } = value;
         const w = getMostRecentActiveWindow();
         if (w === null) {
@@ -187,7 +195,7 @@ export const LinkplacesService = {
         w.openUILinkIn(url, "tab");
         break;
       }
-      case "linkplaces-open-xul-sidebar": {
+      case IPC_MSG_TYPE_OPEN_CLASSIC_SIDEBAR: {
         const w = getMostRecentActiveWindow();
         if (w === null) {
           return;
@@ -195,18 +203,18 @@ export const LinkplacesService = {
         w.SidebarUI.show(SIDEBAR_BROADCAST_ID);
         break;
       }
-      case "linkplaces-open-folder-bookmark-in-library": {
+      case IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY: {
         const { id } = value;
         openPlacesOrganizeWindow(id).catch(Cu.reportError);
         break;
       }
-      case "linkplaces-classic-create-item": {
+      case IPC_MSG_TYPE_CLASSIC_CREATE_ITEM: {
         const { url, title } = value;
         const ip = getDefaultIndex();
         this.saveItem(url, title, ip).catch(Cu.reportError);
         break;
       }
-      case "linkplaces-classic-remove-item": {
+      case IPC_MSG_TYPE_CLASSIC_REMOVE_ITEM: {
         const { id } = value;
         this.removeItem(id).catch(Cu.reportError);
         break;

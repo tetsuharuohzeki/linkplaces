@@ -2,6 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 // @ts-check
+
+import {
+    IPC_MSG_TYPE_OPEN_PRIVILEGED_URL
+} from '../shared/MessageValue';
+
 import { getLinkSchemeType } from './Bookmark';
 import { BrowserMessagePort } from './BrowserMessagePort';
 import {
@@ -79,7 +84,7 @@ export function openUrl(url, where) {
             opened = openBookmarklet(url);
         }
         else {
-            gClassicRuntimePort.postOneShotMessage('linkplaces-open-privileged-url', {
+            gClassicRuntimePort.postOneShotMessage(IPC_MSG_TYPE_OPEN_PRIVILEGED_URL, {
                 url,
             });
             opened = Promise.resolve(null);

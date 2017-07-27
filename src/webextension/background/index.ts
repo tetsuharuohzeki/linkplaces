@@ -10,6 +10,10 @@ import {
     MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP,
     MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP,
 } from './IpcMsg';
+import {
+    IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY,
+    IPC_MSG_TYPE_OPEN_CLASSIC_SIDEBAR,
+} from '../shared/MessageValue';
 import { gClassicRuntimePort, openUrl } from './port';
 
 (function main() {
@@ -36,12 +40,12 @@ function onMessageFromPopup(msg: RemoteActionMsg) {
             break;
         }
         case MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP: {
-            gClassicRuntimePort.postOneShotMessage('linkplaces-open-xul-sidebar', null);
+            gClassicRuntimePort.postOneShotMessage(IPC_MSG_TYPE_OPEN_CLASSIC_SIDEBAR, null);
             break;
         }
         case MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP: {
             const { bookmarkId: id } = msg.value;
-            gClassicRuntimePort.postOneShotMessage('linkplaces-open-folder-bookmark-in-library', {
+            gClassicRuntimePort.postOneShotMessage(IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY, {
                 id,
             });
             break;
