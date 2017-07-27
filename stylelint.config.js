@@ -12,5 +12,6 @@ module.exports = {
 
     // http://stylelint.io/user-guide/rules/
     'rules': {
+        'indentation': 4,
     },
 };
