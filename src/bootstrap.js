@@ -44,6 +44,12 @@ this.startup = function startup({ webExtension }, aReason) { // eslint-disable-l
  * @returns {void}
  */
 this.shutdown = function shutdown(aData, aReason) { // eslint-disable-line no-unused-vars, no-invalid-this
+  if (aReason === APP_SHUTDOWN) {
+    return;
+  }
+
+  destroyUIForEachChromeWindow();
+  destroyService();
 };
 
 /**
@@ -60,10 +66,4 @@ this.install = function install(aData, aReason) { // eslint-disable-line no-unus
  * @returns {void}
  */
 this.uninstall = function uninstall(aData, aReason) { // eslint-disable-line no-unused-vars, no-invalid-this
-  if (aReason === APP_SHUTDOWN) {
-    return;
-  }
-
-  destroyUIForEachChromeWindow();
-  destroyService();
 };
