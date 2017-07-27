@@ -51,7 +51,7 @@ export function createContextMenu(): void {
     }
 
     Promise.all(onCreateList).then(() => {
-        browser.contextMenus.onClicked.addListener(onClicked)
+        browser.contextMenus.onClicked.addListener(onClicked);
     }, console.error);
 }
 
