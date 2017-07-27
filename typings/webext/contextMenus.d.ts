@@ -47,7 +47,7 @@ export type CreateArgument = {
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus
 export interface WebExtContextMenuService {
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/contextMenus/create
-    create(createProperties: CreateArgument, callback?: (this: void) => void): Promise<MenuItemId>;
+    create(createProperties: CreateArgument, callback: (this: void) => void): MenuItemId;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus/update
     update(id: MenuItemId, updateProperties: CreateArgument): Promise<void>;

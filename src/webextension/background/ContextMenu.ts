@@ -33,11 +33,26 @@ export function createContextMenu(): void {
         } as CreateArgument,
     ];
 
+    const onCreateList: Array<Promise<void>> = [];
     for (const item of list) {
-        browser.contextMenus.create(item);
+        const menu: Promise<void> = new Promise((resolve, reject) => {
+            browser.contextMenus.create(item, () => {
+                const e = browser.runtime.lastError;
+                if (!!e) {
+                    reject(e);
+                }
+                else {
+                    resolve();
+                }
+            });
+        });
+
+        onCreateList.push(menu);
     }
 
-    browser.contextMenus.onClicked.addListener(onClicked);
+    Promise.all(onCreateList).then(() => {
+        browser.contextMenus.onClicked.addListener(onClicked)
+    }, console.error);
 }
 
 export function removeContextMenu(): Promise<void> {
