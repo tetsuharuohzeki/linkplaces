@@ -2,10 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Ci, Cu } from "./chrome";
-
-const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
-const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
+import {
+  Ci,
+  Services,
+  XPCOMUtils,
+} from "./chrome";
 
 const PREF_DOMAIN = "extensions.linkplaces.";
 

@@ -6,3 +6,6 @@
 export const Cc = Components.classes;
 export const Ci = Components.interfaces;
 export const Cu = Components.utils;
+
+export const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
+export const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});

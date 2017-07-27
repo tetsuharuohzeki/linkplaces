@@ -7,9 +7,7 @@ import {
   teardownBrowserWindow,
 } from "./setup.js";
 
-import { Ci, Cu, } from "../service/chrome.js";
-
-const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
+import { Ci, Services } from "../service/chrome.js";
 
 // nsIWindowMediatorListener
 const WindowListener = {

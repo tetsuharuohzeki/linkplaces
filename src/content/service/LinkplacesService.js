@@ -4,7 +4,11 @@
 // @ts-check
 
 // @ts-ignore
-import { Cu } from "./chrome";
+import {
+  Cu,
+  Services,
+  XPCOMUtils,
+} from "./chrome";
 
 import {
   QUERY_URI,
@@ -22,9 +26,7 @@ import { SIDEBAR_BROADCAST_ID } from "../ui/LinkplacesChromeSidebar";
 
 const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 
-const { XPCOMUtils } = Cu.import("resource://gre/modules/XPCOMUtils.jsm", {});
 const { PlacesUIUtils } = Cu.import("resource:///modules/PlacesUIUtils.jsm", {});
-const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
 
 const modGlobal = Object.create(null);
 

@@ -2,9 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Cc, Ci, Cu } from "./chrome";
-
-const { Services } = Cu.import("resource://gre/modules/Services.jsm", {});
+import { Cc, Ci, Services } from "./chrome";
 
 const URI = "chrome://linkplaces/skin/linkplaces.css";
 
