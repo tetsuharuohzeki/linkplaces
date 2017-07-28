@@ -36,6 +36,8 @@ export class LinkplacesChrome {
   }
 
   _finalize() {
+    this._win.removeEventListener("unload", this, false);
+
     this._sidebar.destroy();
   }
 
@@ -46,13 +48,8 @@ export class LinkplacesChrome {
   handleEvent(event) {
     switch (event.type) {
       case "unload":
-        this.onUnload(event);
+        this.destroy();
         break;
     }
-  }
-
-  onUnload() {
-    this._win.removeEventListener("unload", this, false);
-    this.destroy();
   }
 }
