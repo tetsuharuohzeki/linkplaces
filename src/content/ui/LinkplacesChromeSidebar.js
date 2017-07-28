@@ -3,6 +3,8 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 // @ts-check
 
+import { getStringBundle } from "../service/LinkplacesService";
+
 export const SIDEBAR_BROADCAST_ID = "viewLinkplacesSidebar";
 const SHORTCUT_ID = "linkplaces-key-toggleSidebar";
 
@@ -85,11 +87,9 @@ export class LinkplacesChromeSidebar {
 
   /**
    *  @param  {Window}  win
-   *  @param  {*} parent
    */
-  constructor(win, parent) {
+  constructor(win) {
     this._win = win;
-    this._parent = parent;
     this._shortcut = null;
     this._menubar = null;
     this._broadcaster = null;
@@ -106,20 +106,32 @@ export class LinkplacesChromeSidebar {
     this._broadcaster = null;
     this._menubar = null;
     this._shortcut = null;
-    this._parent = null;
     this._win = null;
   }
 
   _init() {
-    const parent = this._parent;
     /** @type {Window} */
     const
       // @ts-ignore
       win = this._win;
 
+    const stringBundle = getStringBundle();
+
+    /**
+     *  @param  {string}  name
+     *  @return {string}
+     */
+    const getLabel = (name) => {
+      const l = stringBundle.GetStringFromName(name); // eslint-disable-line new-cap,
+      if (l === null) {
+        throw new TypeError(`not found ${name} in stringBundle`);
+      }
+      return l;
+    };
+
     this._shortcut = DOMbuilder.create(win, "key", new Map([
       ["id", SHORTCUT_ID],
-      ["key", parent.service().stringBundle.GetStringFromName("linkplaces.chrome.commandkey")], // eslint-disable-line new-cap,
+      ["key", getLabel("linkplaces.chrome.commandkey")],
       ["modifiers", "accel,alt"],
       ["command", SIDEBAR_BROADCAST_ID],
     ]), []);
@@ -134,11 +146,11 @@ export class LinkplacesChromeSidebar {
 
     this._broadcaster = DOMbuilder.create(win, "broadcaster", new Map([
       ["id", SIDEBAR_BROADCAST_ID],
-      ["label", parent.service().stringBundle.GetStringFromName("linkplaces.chrome.broadcaster.label")], // eslint-disable-line new-cap,
+      ["label", getLabel("linkplaces.chrome.broadcaster.label")],
       ["autoCheck", "false"],
       ["type", "checkbox"],
       ["group", "sidebar"],
-      ["sidebartitle", parent.service().stringBundle.GetStringFromName("linkplaces.chrome.sidebar.title")], // eslint-disable-line new-cap,
+      ["sidebartitle", getLabel("linkplaces.chrome.sidebar.title")],
       ["sidebarurl", "chrome://linkplaces/content/sidebar/linkplaces-sidebar.xul"],
 
       // XXX: Does not work with `addEventListener()`
@@ -148,7 +160,7 @@ export class LinkplacesChromeSidebar {
 
     this._headerSwitcher = DOMbuilder.create(win, "toolbarbutton", new Map([
       ["id", "sidebar-switcher-linkplaces"],
-      ["label", parent.service().stringBundle.GetStringFromName("linkplaces.chrome.sidebar.title")], // eslint-disable-line new-cap,
+      ["label", getLabel("linkplaces.chrome.sidebar.title")],
       ["class", "subviewbutton subviewbutton-iconic"],
       ["key", SHORTCUT_ID],
       ["observes", SIDEBAR_BROADCAST_ID],
@@ -159,6 +171,7 @@ export class LinkplacesChromeSidebar {
         ["attribute", "checked"],
       ]), []),
     ]);
+
     {
       const container = win.document.getElementById(SIDEBAR_HEADER_SWITCH_CONTAINER_ID);
       // @ts-ignore

@@ -30,7 +30,7 @@ export class LinkplacesChrome {
   }
 
   _init() {
-    this._sidebar = new LinkplacesChromeSidebar(this._win, this);
+    this._sidebar = new LinkplacesChromeSidebar(this._win);
 
     this._win.addEventListener("unload", this, false);
   }

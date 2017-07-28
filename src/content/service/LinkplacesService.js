@@ -50,6 +50,14 @@ XPCOMUtils.defineLazyModuleGetter(modGlobal, "RecentWindow",
  */
 
 /**
+ * Cache strings bundle.
+ * @returns {nsIStringBundle}
+ */
+export function getStringBundle() {
+  return modGlobal.stringBundle;
+}
+
+/**
  * LinkplacesService
  *
  * This service provides primary methods & properties for LinkPlaces.
@@ -83,14 +91,6 @@ export class LinkplacesService {
    */
   get QUERY_URI() {
     return QUERY_URI;
-  }
-
-  /**
-   * Cache strings bundle.
-   * @type {nsIStringBundle}
-   */
-  get stringBundle() {
-    return modGlobal.stringBundle;
   }
 
   config() {
