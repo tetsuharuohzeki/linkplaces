@@ -10,19 +10,16 @@ import {
   XPCOMUtils,
 } from "./chrome";
 
-const {
-  PlacesUtils,
-  PlacesCreateBookmarkTransaction,
-  PlacesAggregatedTransaction,
-  PlacesRemoveItemTransaction,
-} = Cu.import("resource://gre/modules/PlacesUtils.jsm", {});
-
 const modGlobal = Object.create(null);
 
 XPCOMUtils.defineLazyModuleGetter(modGlobal, "Bookmarks",
   "resource://gre/modules/Bookmarks.jsm");
 XPCOMUtils.defineLazyModuleGetter(modGlobal, "PlacesTransactions",
   "resource://gre/modules/PlacesTransactions.jsm");
+XPCOMUtils.defineLazyModuleGetter(modGlobal, "PlacesUtils",
+  "resource://gre/modules/PlacesUtils.jsm");
+XPCOMUtils.defineLazyModuleGetter(modGlobal, "PlacesUIUtils",
+  "resource:///modules/PlacesUIUtils.jsm");
 
 export const QUERY_URI = "place:queryType=1&folder=UNFILED_BOOKMARKS";
 const TXNNAME_SAVEITEMS = "LinkplacesService:sevesItems";
@@ -57,18 +54,16 @@ export function getDefaultIndex() {
  * @return {Promise<void>}
  */
 export async function saveItems(aItems, aIndex) {
-  const containerId = await PlacesUtils.promiseItemId(modGlobal.Bookmarks.unfiledGuid);
+  const containerId = await modGlobal.PlacesUtils.promiseItemId(modGlobal.Bookmarks.unfiledGuid);
   const transactions = aItems.map(function createTxns(item) {
     const uri = Services.io.newURI(item.uri, null, null);
     const title = item.title;
-    const txn = new PlacesCreateBookmarkTransaction(uri, containerId,
-      aIndex, title);
+    const txn = modGlobal.PlacesUIUtils.ptm.createItem(uri, containerId, aIndex, title);
     return txn;
   });
 
-  const finalTxn = new PlacesAggregatedTransaction(TXNNAME_SAVEITEMS,
-    transactions);
-  PlacesUtils.transactionManager.doTransaction(finalTxn);
+  const finalTxn = modGlobal.PlacesUIUtils.ptm.aggregateTransactions(TXNNAME_SAVEITEMS, transactions);
+  modGlobal.PlacesUtils.transactionManager.doTransaction(finalTxn);
 }
 
 /**
@@ -106,15 +101,15 @@ export function saveItemAsync(aItems, aInsertionPoint) {
  * @return {Promise<?>}
  */
 export function removeItem(aItemGuid) {
-  const id = PlacesUtils.promiseItemId(aItemGuid);
+  const id = modGlobal.PlacesUtils.promiseItemId(aItemGuid);
   // @ts-ignore
   const txn = id.then((id) => {
-    const txn = new PlacesRemoveItemTransaction(id);
+    const txn = modGlobal.PlacesUIUtils.ptm.removeItem(id);
     return txn;
   });
   // @ts-ignore
   const finalTxn = txn.then((txn) => {
-    const finalTxn = PlacesUtils.transactionManager.doTransaction(txn);
+    const finalTxn = modGlobal.PlacesUtils.transactionManager.doTransaction(txn);
     return finalTxn;
   });
   return finalTxn.catch(Cu.reportError);
@@ -144,6 +139,6 @@ export function removeItemAsync(aItemGuid) {
  *  @rejects if there's no item for the given GUID.
  */
 export function getItemId(aGuid) {
-  const id = PlacesUtils.promiseItemId(aGuid);
+  const id = modGlobal.PlacesUtils.promiseItemId(aGuid);
   return id;
 }
