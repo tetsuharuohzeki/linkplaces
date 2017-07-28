@@ -79,7 +79,12 @@ export class WebExtRTMessageChannel {
           throw new TypeError();
         }
 
-        this._port.onMessage.removeListener(this._onMessageListener);
+        // XXX:
+        // By the current Firefox' implementation, WebExt object will be dead before
+        // calling `shutdown` code of an extension. This means that our current design
+        // cannot finalize this object. So we abandon to remove listeners correctly :(
+        // cf: https://hg.mozilla.org/mozilla-central/file/36f95aeb4c77f7cf3b3366583008cd6e4b6b1dba/toolkit/mozapps/extensions/internal/XPIProvider.jsm#l4381
+        // this._port.onMessage.removeListener(this._onMessageListener);
         this._callback.clear();
         this._listeners.clear();
     }
