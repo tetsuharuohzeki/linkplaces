@@ -7,6 +7,7 @@ import { LinkplacesChromeSidebar } from "./LinkplacesChromeSidebar.js";
 export class LinkplacesChrome {
   static create(win, service){
     const obj = new LinkplacesChrome(win, service);
+    win.gLinkplacesBrowserUI = obj; // eslint-disable-line no-param-reassign
     return obj;
   }
 
@@ -14,7 +15,6 @@ export class LinkplacesChrome {
     this._win = win;
     this._service = service;
     this._sidebar = null;
-    win.gLinkplacesBrowserUI = this; // eslint-disable-line no-param-reassign
 
     Object.seal(this);
     this._init();
