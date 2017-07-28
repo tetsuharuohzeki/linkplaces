@@ -14,7 +14,6 @@ export class LinkplacesChrome {
     this._win = win;
     this._service = service;
     this._sidebar = null;
-    this._prefListener = null;
     win.gLinkplacesBrowserUI = this; // eslint-disable-line no-param-reassign
 
     Object.seal(this);
@@ -25,7 +24,6 @@ export class LinkplacesChrome {
     this._finalize();
 
     this._win.gLinkplacesBrowserUI = null;
-    this._prefListener = null;
     this._sidebar = null;
     this._service = null;
     this._win = null;
@@ -35,15 +33,9 @@ export class LinkplacesChrome {
     this._sidebar = new LinkplacesChromeSidebar(this._win, this);
 
     this._win.addEventListener("unload", this, false);
-
-    this._prefListener = (/*name, table*/) => { // eslint-disable-line no-empty-function
-    };
-    this._service.config().addListener(this._prefListener);
   }
 
   _finalize() {
-    this._service.config().removeListener(this._prefListener);
-
     this._sidebar.destroy();
   }
 
