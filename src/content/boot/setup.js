@@ -9,6 +9,7 @@ import { LinkplacesChrome } from "../ui/LinkplacesChrome.js";
 const SIDEBAR_MOD_NAME = "chrome://linkplaces/content/sidebar/LinkplacesSidebarContent.js";
 
 const windowMap = new WeakMap();
+let service = null;
 
 /**
  * @param {Window} aDomWindow
@@ -22,7 +23,7 @@ export function setupBrowserWindow(aDomWindow) {
     return;
   }
 
-  const handler = LinkplacesChrome.create(aDomWindow, LinkplacesService);
+  const handler = LinkplacesChrome.create(aDomWindow, service);
   windowMap.set(aDomWindow, handler);
 }
 
@@ -40,11 +41,12 @@ export function teardownBrowserWindow(aDomWindow) {
 }
 
 export function initializeService(browser) {
-  LinkplacesService.init(browser);
+  service = LinkplacesService.create(browser);
   Cu.import(SIDEBAR_MOD_NAME);
 }
 
 export function destroyService() {
   Cu.unload(SIDEBAR_MOD_NAME);
-  LinkplacesService.destroy();
+  service.destroy();
+  service = null;
 }

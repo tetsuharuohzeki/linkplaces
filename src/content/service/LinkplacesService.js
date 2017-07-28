@@ -54,7 +54,27 @@ XPCOMUtils.defineLazyModuleGetter(modGlobal, "RecentWindow",
  *
  * This service provides primary methods & properties for LinkPlaces.
  */
-export const LinkplacesService = {
+export class LinkplacesService {
+
+  /**
+   *  @param  { { runtime: any } } browser
+   *  @returns  {LinkplacesService}
+   */
+  static create(browser) {
+    const s = new LinkplacesService();
+    s._init(browser); // eslint-disable-line no-underscore-dangle
+    return s;
+  }
+
+  /**
+   *  @private
+   */
+  constructor() {
+    this._pref = null;
+    this._runtime = null;
+    this._styleService = null;
+    this._prefListener = null;
+  }
 
   /**
    * @const
@@ -63,7 +83,7 @@ export const LinkplacesService = {
    */
   get QUERY_URI() {
     return QUERY_URI;
-  },
+  }
 
   /**
    * Cache strings bundle.
@@ -71,21 +91,21 @@ export const LinkplacesService = {
    */
   get stringBundle() {
     return modGlobal.stringBundle;
-  },
+  }
 
   config() {
     return this._pref;
-  },
+  }
 
   /**
+   *  @private
    *  @param  { { runtime: any } } browser
    *  @returns  {void}
    */
-  init: function (browser) {
+  _init(browser) {
     //set user preferences
     this._pref = new PrefService();
 
-    this._runtime = null;
     // @ts-ignore
     WebExtRTMessageChannel.create(browser).then((rt) => {
       this._runtime = rt;
@@ -97,21 +117,24 @@ export const LinkplacesService = {
     this._prefListener = (/*name, table*/) => {// eslint-disable-line no-empty-function
     };
     this._pref.addListener(this._prefListener);
-  },
+  }
 
-  destroy: function () {
+  destroy() {
     if (this._runtime !== null) {
       this._runtime.removeListener(this);
     }
 
+    // @ts-ignore
     this._pref.removeListener(this._prefListener);
     this._prefListener = null;
+    // @ts-ignore
     this._styleService.destroy();
     this._styleService = null;
+    // @ts-ignore
     this._pref.destroy();
     this._runtime.destroy();
     this._runtime = null;
-  },
+  }
 
   /**
    * Save item to LinkPlaces folder
@@ -124,13 +147,13 @@ export const LinkplacesService = {
    *   The index which item inserted point.
    * @return {Promise<void>}
    */
-  saveItem: function (aURI, aTitle, aIndex) {
+  saveItem(aURI, aTitle, aIndex) {
     const item = {
       uri  : aURI,
       title: aTitle,
     };
     return this.saveItems([item], aIndex);
-  },
+  }
 
   /**
    * @param {Array.<{ uri:string, title:string }>} aItems
@@ -145,14 +168,14 @@ export const LinkplacesService = {
    *   The index which items inserted point.
    * @return {Promise<void>}
    */
-  saveItems: function (aItems, aIndex) {
+  saveItems(aItems, aIndex) {
     if (PlacesUIUtils.useAsyncTransactions) {
       return saveItemAsync(aItems, aIndex);
     }
     else {
       return saveItems(aItems, aIndex);
     }
-  },
+  }
 
   /**
    * @param {number} aItemGuid
@@ -166,7 +189,7 @@ export const LinkplacesService = {
     else {
       return removeItem(aItemGuid);
     }
-  },
+  }
 
   /**
    *  @param {string} url
@@ -177,7 +200,7 @@ export const LinkplacesService = {
       url,
       where: "tab",
     });
-  },
+  }
 
   /**
    *  @param {string} type
@@ -220,8 +243,8 @@ export const LinkplacesService = {
         break;
       }
     }
-  },
-};
+  }
+}
 
 /**
  *  @param {string} guid
