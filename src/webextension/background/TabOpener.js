@@ -3,7 +3,6 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 // @ts-check
 /*eslint-env webextensions */
-/*global console: false */
 
 /**
  *  @param  {string}  url
@@ -64,30 +63,6 @@ async function getCurrentTabId() {
         throw new TypeError('currentId should not null');
     }
 
-    return currentId;
-}
-
-/**
- *  @param {number} tabId
- *  @param {string} url
- *  @return {Promise<void>}
- */
-async function execBookmarkletInTab(tabId, url) {
-    const code = url.replace(/^javascript:/, '');
-    browser.tabs.executeScript(tabId, {
-        allFrames: false, // for top level frame.
-        code: decodeURIComponent(code),
-        matchAboutBlank: false,
-    }).catch(console.error);
-}
-
-/**
- *  @param {string} url
- *  @return {Promise<number>}
- */
-export async function openBookmarklet(url) {
-    const currentId = await getCurrentTabId();
-    await execBookmarkletInTab(currentId, url);
     return currentId;
 }
 

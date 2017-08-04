@@ -9,8 +9,6 @@
     }
   },
   "permissions": [
-    "*://*/*",
-    "activeTab",
     "bookmarks",
     "contextMenus",
     "tabs"

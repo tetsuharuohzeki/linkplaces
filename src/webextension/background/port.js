@@ -13,7 +13,7 @@ import {
     MSG_TYPE_OPEN_URL,
     MSG_TYPE_OPEN_URL_RESULT,
 } from './IpcMsg';
-import { createTab, openBookmarklet } from './TabOpener';
+import { createTab } from './TabOpener';
 
 /*eslint-env webextensions */
 /* global console: false */
@@ -81,7 +81,7 @@ export function openUrl(url, where) {
     let opened = null;
     if (isPrivileged) {
         if (type === 'javascript') {
-            opened = openBookmarklet(url);
+            throw new EvalError('Linkplaces does not support `javascript:` scheme.');
         }
         else {
             gClassicRuntimePort.postOneShotMessage(IPC_MSG_TYPE_OPEN_PRIVILEGED_URL, {
