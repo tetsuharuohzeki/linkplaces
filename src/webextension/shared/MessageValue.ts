@@ -1,4 +1,5 @@
-export const CONNECTION_PING_FROM_POPUP = 'CONNECTION_PING_FROM';
+export const CONNECTION_PING_FROM_POPUP = 'CONNECTION_PING_FROM_POPUP';
+export const CONNECTION_PING_FROM_SIDEBAR = 'CONNECTION_PING_FROM_SIDEBAR';
 
 export const IPC_MSG_TYPE_CLASSIC_CREATE_ITEM = 'linkplaces-classic-create-item';
 export const IPC_MSG_TYPE_CLASSIC_REMOVE_ITEM = 'linkplaces-classic-remove-item';
