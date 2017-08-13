@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Subscription } from 'rxjs';
 
+import { Channel } from '../shared/Channel';
 import { ViewContext } from '../shared/ViewContext';
 
 import { BookmarkTreeNode } from '../../../typings/webext/bookmarks';
@@ -24,13 +25,13 @@ export class SidebarContext implements ViewContext {
     private _epic: SidebarViewEpic;
     private _store: SidebarStore;
 
-    constructor(list: Array<BookmarkTreeNode>) {
+    constructor(list: Array<BookmarkTreeNode>, channel: Channel) {
         this._list = list;
         this._subscription = null;
 
         const intent = this._intent = new SidebarIntent();
         this._repo = new SidebarRepository();
-        this._epic = new SidebarViewEpic(intent, this._repo);
+        this._epic = new SidebarViewEpic(intent, this._repo, channel);
         this._store = new SidebarStore(intent, this._repo);
     }
 
