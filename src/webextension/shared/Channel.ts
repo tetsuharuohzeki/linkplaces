@@ -142,3 +142,16 @@ export class Channel {
         return this._subject.asObservable();
     }
 }
+
+function connectToBgScript(pingMessage: string): Promise<Port> {
+    const p = browser.runtime.connect<void>({
+        name: pingMessage,
+    });
+    return p;
+}
+
+export async function createChannel(pingMessage: string): Promise<Channel> {
+    const port = await connectToBgScript(pingMessage);
+    const c = new Channel(port);
+    return c;
+}

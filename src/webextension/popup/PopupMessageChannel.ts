@@ -1,17 +1,6 @@
-import { Port } from '../../../typings/webext/runtime';
-
-import { Channel } from '../shared/Channel';
+import { createChannel as create, Channel } from '../shared/Channel';
 import { CONNECTION_PING_FROM_POPUP } from '../shared/MessageValue';
 
-function connectToBgScript(pingMessage: string): Promise<Port> {
-    const p = browser.runtime.connect<void>({
-        name: pingMessage,
-    });
-    return p;
-}
-
 export async function createChannel(): Promise<Channel> {
-    const port = await connectToBgScript(CONNECTION_PING_FROM_POPUP);
-    const c = new Channel(port);
-    return c;
+    return create(CONNECTION_PING_FROM_POPUP);
 }
