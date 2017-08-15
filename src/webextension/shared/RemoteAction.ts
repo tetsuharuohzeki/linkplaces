@@ -8,7 +8,7 @@ interface RemoteActionBase {
     type: string;
 }
 
-interface OpenUrlActionFromPopup extends RemoteActionBase {
+interface OpenUrlAction extends RemoteActionBase {
     type: typeof MSG_TYPE_OPEN_URL_FROM_POPUP;
     value: {
         id: string;
@@ -16,12 +16,12 @@ interface OpenUrlActionFromPopup extends RemoteActionBase {
     };
 }
 
-interface OpenSidebarActionFromPopup extends RemoteActionBase {
+interface OpenClassocSidebarAction extends RemoteActionBase {
     type: typeof MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP;
     value: null;
 }
 
-interface OpenClassicPlacesOrganizerFromPopup extends RemoteActionBase {
+interface OpenClassicPlacesOrganizer extends RemoteActionBase {
     type: typeof MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP;
     value: {
         bookmarkId: string;
@@ -29,6 +29,6 @@ interface OpenClassicPlacesOrganizerFromPopup extends RemoteActionBase {
 }
 
 export type RemoteActionMsg =
-    OpenUrlActionFromPopup |
-    OpenSidebarActionFromPopup |
-    OpenClassicPlacesOrganizerFromPopup;
+    OpenUrlAction |
+    OpenClassocSidebarAction |
+    OpenClassicPlacesOrganizer;
