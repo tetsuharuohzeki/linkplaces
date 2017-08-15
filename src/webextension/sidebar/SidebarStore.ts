@@ -17,6 +17,8 @@ export class SidebarStore implements Store<SidebarState> {
     }
 
     compose(initial: Readonly<SidebarState>): Observable<SidebarState> {
-        return Observable.of(initial);
+        const init = Observable.of(initial);
+        const changed: Observable<SidebarState> = this._repo.asObservable().map( (list) => ({ list }) );
+        return init.merge(changed);
     }
 }
