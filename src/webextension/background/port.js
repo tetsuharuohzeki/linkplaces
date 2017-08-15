@@ -12,7 +12,7 @@ import { BrowserMessagePort } from './BrowserMessagePort';
 import {
     MSG_TYPE_OPEN_URL,
     MSG_TYPE_OPEN_URL_RESULT,
-} from './IpcMsg';
+} from '../shared/RemoteAction';
 import { createTab } from './TabOpener';
 
 /*eslint-env webextensions */

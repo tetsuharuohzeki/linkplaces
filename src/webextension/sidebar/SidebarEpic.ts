@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 
-import { MSG_TYPE_OPEN_URL_FROM_POPUP } from '../background/IpcMsg';
+import { MSG_TYPE_OPEN_URL_FROM_POPUP } from '../shared/RemoteAction';
 import { Channel } from '../shared/Channel';
 import { Epic } from '../shared/Epic';
 
