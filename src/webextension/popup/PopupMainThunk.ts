@@ -1,12 +1,12 @@
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
-import {
-    MSG_TYPE_OPEN_ORGANIZE_WINDOW,
-    MSG_TYPE_OPEN_URL,
-    MSG_TYPE_OPEN_SIDEBAR,
-} from '../shared/RemoteAction';
 import { Channel } from '../shared/Channel';
+import {
+    openItem as openItemViaChannel,
+    openPlacesOrganizeWindow,
+    openClassicSidebar,
+} from '../shared/RemoteCall';
 
 import {
     createOpenSidebarAction as createOpenSidebarAction,
@@ -20,7 +20,7 @@ export type ThunkArguments = Readonly<{
 
 export function openItem(id: string, url: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
     return function openItemActual(_dispatch: Dispatch<PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
-        dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_URL, { id, url });
+        openItemViaChannel(dependencies.channel, id, url);
 
         return Promise.resolve().then(() => {
             window.close();
@@ -30,7 +30,7 @@ export function openItem(id: string, url: string): ThunkAction<Promise<void>, Po
 
 export function openSidebar(): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
     return function openItemActual(dispatch: Dispatch<PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
-        dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_SIDEBAR, null);
+        openClassicSidebar(dependencies.channel);
 
         dispatch(createOpenSidebarAction());
 
@@ -42,9 +42,7 @@ export function openSidebar(): ThunkAction<Promise<void>, PopupMainStateTree, Th
 
 export function openLibraryWindow(bookmarkId: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
     return function openItemActual(dispatch: Dispatch<PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
-        dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_ORGANIZE_WINDOW, {
-            bookmarkId,
-        });
+        openPlacesOrganizeWindow(dependencies.channel, bookmarkId);
 
         dispatch(createOpenLibraryWindow(bookmarkId));
 

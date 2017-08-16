@@ -2,7 +2,7 @@ import { Subscription } from 'rxjs';
 
 import { Channel } from '../shared/Channel';
 import { Epic } from '../shared/Epic';
-import { MSG_TYPE_OPEN_URL } from '../shared/RemoteAction';
+import { openItem } from '../shared/RemoteCall';
 
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarRepository } from './SidebarRepository';
@@ -30,7 +30,7 @@ export class SidebarViewEpic implements Epic {
         this._subscription = s;
 
         s.add( this._intent.openItem().subscribe(({ id, url,}) => {
-            openItemChannel(this._channel, id, url);
+            openItem(this._channel, id, url);
         }, console.error) );
     }
 
@@ -43,8 +43,4 @@ export class SidebarViewEpic implements Epic {
         s.unsubscribe();
         this._subscription = null;
     }
-}
-
-function openItemChannel(chan: Channel, id: string, url: string): void {
-    chan.postOneShotMessage(MSG_TYPE_OPEN_URL, { id, url });
 }
