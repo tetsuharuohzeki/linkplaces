@@ -16,7 +16,7 @@ export class SidebarRepository implements Repository<Array<BookmarkTreeNode>>, O
                 }).catch(console.error);
             };
             bookmarks.onChanged.addListener(callback);
-            bookmarks.onChildrenReordered.addListener(callback);
+            // bookmarks.onChildrenReordered.addListener(callback); // unimplemted in Fireofxma
             bookmarks.onMoved.addListener(callback);
             bookmarks.onCreated.addListener(callback);
             bookmarks.onRemoved.addListener(callback);
