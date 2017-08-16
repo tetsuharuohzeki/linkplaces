@@ -8,8 +8,11 @@ import { createChannel } from './PopupMessageChannel';
         createChannel(),
     ]);
 
+    window.addEventListener('contextmenu', disableCtxMenu);
+
     window.addEventListener('unload', function onClose(event) {
         window.removeEventListener(event.type, onClose);
+        window.removeEventListener('contextmenu', disableCtxMenu);
         channel.destroy();
     });
 
@@ -21,3 +24,7 @@ import { createChannel } from './PopupMessageChannel';
     const ctx = new PopupMainContext(channel, list);
     ctx.onActivate(mountpoint);
 })().catch(console.error);
+
+function disableCtxMenu(event: MouseEvent) {
+    event.preventDefault();
+}
