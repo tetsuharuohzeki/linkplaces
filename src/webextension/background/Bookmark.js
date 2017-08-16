@@ -14,7 +14,7 @@ import {
 import {
     IPC_MSG_TYPE_CLASSIC_CREATE_ITEM,
     IPC_MSG_TYPE_CLASSIC_REMOVE_ITEM
-} from '../shared/MessageValue';
+} from '../shared/OverIpcAction';
 import { gClassicRuntimePort } from './port';
 
 export {

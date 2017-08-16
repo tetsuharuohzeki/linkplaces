@@ -9,7 +9,8 @@ import {
   IPC_MSG_TYPE_OPEN_CLASSIC_SIDEBAR,
   IPC_MSG_TYPE_OPEN_PRIVILEGED_URL,
   IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY,
-} from "../../webextension/shared/MessageValue";
+  IPC_MSG_TYPE_OPEN_TAB,
+} from "../../webextension/shared/OverIpcAction";
 
 // @ts-ignore
 import {
@@ -196,7 +197,7 @@ export class LinkplacesService {
    *  @returns  {Promise<?>}
    */
   openTab(url) {
-    return this._runtime.postMessage("linkplaces-open-tab", {
+    return this._runtime.postMessage(IPC_MSG_TYPE_OPEN_TAB, {
       url,
       where: "tab",
     });

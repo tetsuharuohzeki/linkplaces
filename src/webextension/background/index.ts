@@ -5,15 +5,15 @@
 import { removeBookmarkItem, } from './Bookmark';
 import { createContextMenu } from './ContextMenu';
 import {
-    RemoteActionMsg,
-    MSG_TYPE_OPEN_URL_FROM_POPUP,
-    MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP,
-    MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP,
+    RemoteAction,
+    MSG_TYPE_OPEN_URL,
+    MSG_TYPE_OPEN_SIDEBAR,
+    MSG_TYPE_OPEN_ORGANIZE_WINDOW,
 } from '../shared/RemoteAction';
 import {
     IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY,
     IPC_MSG_TYPE_OPEN_CLASSIC_SIDEBAR,
-} from '../shared/MessageValue';
+} from '../shared/OverIpcAction';
 import { gClassicRuntimePort, openUrl } from './port';
 
 (function main() {
@@ -32,18 +32,18 @@ import { gClassicRuntimePort, openUrl } from './port';
     });
 })();
 
-function onMessageFromPopup(msg: RemoteActionMsg) {
+function onMessageFromPopup(msg: RemoteAction) {
     switch (msg.type) {
-        case MSG_TYPE_OPEN_URL_FROM_POPUP: {
+        case MSG_TYPE_OPEN_URL: {
             const { id, url } = msg.value;
             openUrlFromPopup(url, id).catch(console.error);
             break;
         }
-        case MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP: {
+        case MSG_TYPE_OPEN_SIDEBAR: {
             gClassicRuntimePort.postOneShotMessage(IPC_MSG_TYPE_OPEN_CLASSIC_SIDEBAR, null);
             break;
         }
-        case MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP: {
+        case MSG_TYPE_OPEN_ORGANIZE_WINDOW: {
             const { bookmarkId: id } = msg.value;
             gClassicRuntimePort.postOneShotMessage(IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY, {
                 id,

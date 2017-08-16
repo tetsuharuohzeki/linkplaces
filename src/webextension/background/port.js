@@ -4,15 +4,13 @@
 // @ts-check
 
 import {
-    IPC_MSG_TYPE_OPEN_PRIVILEGED_URL
-} from '../shared/MessageValue';
+    IPC_MSG_TYPE_OPEN_PRIVILEGED_URL,
+    IPC_MSG_TYPE_OPEN_TAB,
+    IPC_MSG_TYPE_OPEN_TAB_RESULT,
+} from '../shared/OverIpcAction';
 
 import { getLinkSchemeType } from './Bookmark';
 import { BrowserMessagePort } from './BrowserMessagePort';
-import {
-    MSG_TYPE_OPEN_URL,
-    MSG_TYPE_OPEN_URL_RESULT,
-} from '../shared/RemoteAction';
 import { createTab } from './TabOpener';
 
 /*eslint-env webextensions */
@@ -24,7 +22,7 @@ export const gClassicRuntimePort = BrowserMessagePort.create(browser, async (msg
     sender /* :webext$runtime$MessageSender & webext$runtime$Port */) => {
     const { type, id, value } = msg;
     switch (type) {
-        case MSG_TYPE_OPEN_URL: {
+        case IPC_MSG_TYPE_OPEN_TAB: {
             const { url, where } = value;
             try {
                 const res = await onMessageCreateTab(id, url, where);
@@ -64,7 +62,7 @@ async function onMessageCreateTab(msgId, url, where) {
 
     const response = {
         id: msgId,
-        type: MSG_TYPE_OPEN_URL_RESULT,
+        type: IPC_MSG_TYPE_OPEN_TAB_RESULT,
         value,
     };
 

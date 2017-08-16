@@ -2,9 +2,9 @@ import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
 import {
-    MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP,
-    MSG_TYPE_OPEN_URL_FROM_POPUP,
-    MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP,
+    MSG_TYPE_OPEN_ORGANIZE_WINDOW,
+    MSG_TYPE_OPEN_URL,
+    MSG_TYPE_OPEN_SIDEBAR,
 } from '../shared/RemoteAction';
 import { Channel } from '../shared/Channel';
 
@@ -20,7 +20,7 @@ export type ThunkArguments = Readonly<{
 
 export function openItem(id: string, url: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
     return function openItemActual(_dispatch: Dispatch<PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
-        dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_URL_FROM_POPUP, { id, url });
+        dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_URL, { id, url });
 
         return Promise.resolve().then(() => {
             window.close();
@@ -30,7 +30,7 @@ export function openItem(id: string, url: string): ThunkAction<Promise<void>, Po
 
 export function openSidebar(): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
     return function openItemActual(dispatch: Dispatch<PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
-        dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_SIDEBAR_FROM_POPUP, null);
+        dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_SIDEBAR, null);
 
         dispatch(createOpenSidebarAction());
 
@@ -42,7 +42,7 @@ export function openSidebar(): ThunkAction<Promise<void>, PopupMainStateTree, Th
 
 export function openLibraryWindow(bookmarkId: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
     return function openItemActual(dispatch: Dispatch<PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
-        dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_ORGANIZE_WINDOW_FROM_POPUP, {
+        dependencies.channel.postOneShotMessage(MSG_TYPE_OPEN_ORGANIZE_WINDOW, {
             bookmarkId,
         });
 

@@ -1,8 +1,8 @@
 import { Subscription } from 'rxjs';
 
-import { MSG_TYPE_OPEN_URL_FROM_POPUP } from '../shared/RemoteAction';
 import { Channel } from '../shared/Channel';
 import { Epic } from '../shared/Epic';
+import { MSG_TYPE_OPEN_URL } from '../shared/RemoteAction';
 
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarRepository } from './SidebarRepository';
@@ -46,5 +46,5 @@ export class SidebarViewEpic implements Epic {
 }
 
 function openItemChannel(chan: Channel, id: string, url: string): void {
-    chan.postOneShotMessage(MSG_TYPE_OPEN_URL_FROM_POPUP, { id, url });
+    chan.postOneShotMessage(MSG_TYPE_OPEN_URL, { id, url });
 }
