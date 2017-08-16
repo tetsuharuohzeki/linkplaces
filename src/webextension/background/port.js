@@ -7,7 +7,7 @@ import {
     IPC_MSG_TYPE_OPEN_PRIVILEGED_URL,
     IPC_MSG_TYPE_OPEN_TAB,
     IPC_MSG_TYPE_OPEN_TAB_RESULT,
-} from '../shared/OverIpcAction';
+} from './OverIpcAction';
 
 import { getLinkSchemeType } from './Bookmark';
 import { BrowserMessagePort } from './BrowserMessagePort';

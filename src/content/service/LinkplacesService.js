@@ -10,7 +10,7 @@ import {
   IPC_MSG_TYPE_OPEN_PRIVILEGED_URL,
   IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY,
   IPC_MSG_TYPE_OPEN_TAB,
-} from "../../webextension/shared/OverIpcAction";
+} from "../../webextension/background/OverIpcAction";
 
 // @ts-ignore
 import {

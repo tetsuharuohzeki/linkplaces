@@ -13,7 +13,7 @@ import {
 import {
     IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY,
     IPC_MSG_TYPE_OPEN_CLASSIC_SIDEBAR,
-} from '../shared/OverIpcAction';
+} from './OverIpcAction';
 import { gClassicRuntimePort, openUrl } from './port';
 
 (function main() {
