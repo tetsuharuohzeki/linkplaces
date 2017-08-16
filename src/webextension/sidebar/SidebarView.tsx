@@ -18,7 +18,7 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
     });
 
     return (
-        <ul>
+        <ul className={'sidebar__list_container'}>
             {items}
         </ul>
     );
@@ -40,9 +40,10 @@ function ListItem(props: ListItemProps): JSX.Element {
         intent.dispatch(a);
     };
 
+    const title = `${item.title}\n${url}`;
     return (
-        <li className={''}>
-            <a className={''} href={url} onClick={onClick}>
+        <li className={'sidebar__listitem_container'}>
+            <a className={'sidebar__listitem_text_inner'} href={url} onClick={onClick} title={title}>
                 {item.title}
             </a>
         </li>

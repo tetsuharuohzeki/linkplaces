@@ -1,1 +1,18 @@
 @charset 'utf-8';
+
+.sidebar__list_container {
+    margin: 0;
+    padding: 0 0 0 2em;
+}
+
+.sidebar__listitem_container {
+    margin: 1px 0;
+}
+
+.sidebar__listitem_text_inner {
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
