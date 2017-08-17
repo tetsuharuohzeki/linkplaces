@@ -17,7 +17,7 @@ interface OpenUrlAction extends RemoteActionBase {
     };
 }
 
-interface OpenClassocSidebarAction extends RemoteActionBase {
+interface OpenClassicSidebarAction extends RemoteActionBase {
     type: typeof MSG_TYPE_OPEN_SIDEBAR;
     value: null;
 }
@@ -31,5 +31,5 @@ interface OpenClassicPlacesOrganizer extends RemoteActionBase {
 
 export type RemoteAction =
     OpenUrlAction |
-    OpenClassocSidebarAction |
+    OpenClassicSidebarAction |
     OpenClassicPlacesOrganizer;
