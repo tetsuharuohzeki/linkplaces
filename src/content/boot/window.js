@@ -29,6 +29,11 @@ const WindowListener = {
 };
 
 function initializeOnDOMContentLoaded(domWindow) {
+  // Bail out if it's hidden windows.
+  if (domWindow.location.href !== domWindow.getBrowserURL()) {
+    return;
+  }
+
   // Wait finish loading
   // Use `DOMContentLoaded` to avoid the error.
   // see https://blog.mozilla.org/addons/2014/03/06/australis-for-add-on-developers-2/
