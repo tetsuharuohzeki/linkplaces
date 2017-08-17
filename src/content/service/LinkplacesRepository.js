@@ -77,7 +77,7 @@ export async function saveItems(aItems, aIndex) {
  *
  * @param {number}  aInsertionPoint
  *   The index which items inserted point.
- * @return {Promise<?>}
+ * @return {Promise<void>}
  */
 export function saveItemAsync(aItems, aInsertionPoint) {
   const parentId = folderGuid();
@@ -98,7 +98,7 @@ export function saveItemAsync(aItems, aInsertionPoint) {
 /**
  * @param {number} aItemGuid
  *   The item's guid.
- * @return {Promise<?>}
+ * @return {!Promise<void>}
  */
 export function removeItem(aItemGuid) {
   const id = modGlobal.PlacesUtils.promiseItemId(aItemGuid);
@@ -118,7 +118,7 @@ export function removeItem(aItemGuid) {
 /**
  * @param {number} aItemGuid
  *   The item's guid.
- * @return {Promise<?>}
+ * @return {!Promise<void>}
  */
 export function removeItemAsync(aItemGuid) {
   const txn = new modGlobal.PlacesTransactions.Remove({

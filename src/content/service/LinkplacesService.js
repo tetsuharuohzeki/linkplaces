@@ -194,7 +194,7 @@ export class LinkplacesService {
 
   /**
    *  @param {string} url
-   *  @returns  {Promise<?>}
+   *  @returns  {Promise<any>}
    */
   openTab(url) {
     return this._runtime.postMessage(IPC_MSG_TYPE_OPEN_TAB, {

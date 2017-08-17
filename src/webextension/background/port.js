@@ -40,7 +40,7 @@ export const gClassicRuntimePort = BrowserMessagePort.create(browser, async (msg
  *  @param {number} msgId
  *  @param {string} url
  *  @param {string} where
- *  @returns {Promise<*>}
+ *  @returns {Promise<any>}
  */
 async function onMessageCreateTab(msgId, url, where) {
     let value = null;
