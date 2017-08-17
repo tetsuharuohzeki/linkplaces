@@ -30,7 +30,7 @@ const WindowListener = {
 
 function initializeOnDOMContentLoaded(domWindow) {
   // Bail out if it's hidden windows.
-  if (domWindow.location.href !== domWindow.getBrowserURL()) {
+  if (typeof domWindow.getBrowserURL !== "function" || domWindow.location.href !== domWindow.getBrowserURL()) {
     return;
   }
 
