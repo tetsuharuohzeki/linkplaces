@@ -2,6 +2,8 @@ import { Observable, Subject } from 'rxjs';
 
 import { Port } from '../../../typings/webext/runtime';
 
+import { RemoteActionBase } from './RemoteAction';
+
 type PromiseTuple = Readonly<{
     resolve: (result?: any) => void;
     reject: (e?: any) => void;
@@ -58,7 +60,8 @@ export class Channel {
         this._subject.unsubscribe();
     }
 
-    postMessage<R>(type: string, value: any): Promise<R> {
+    postMessage<TMessage extends RemoteActionBase, R>(msg: TMessage): Promise<R> {
+        const { type, value } = msg;
         const task = new Promise<R>((resolve, reject) => {
             const port = this._port;
             if (!port) {
@@ -85,7 +88,8 @@ export class Channel {
         return task;
     }
 
-    postOneShotMessage(type: string, value: any): void {
+    postOneShotMessage<TMessage extends RemoteActionBase>(msg: TMessage): void {
+        const { type, value } = msg;
         const message = {
             type,
             value,
@@ -100,7 +104,8 @@ export class Channel {
         port.postMessage(message);
     }
 
-    replyOneShot(type: string, value: any): void {
+    replyOneShot<TMessage extends RemoteActionBase>(msg: TMessage): void {
+        const { type, value } = msg;
         const message = {
             type,
             value,

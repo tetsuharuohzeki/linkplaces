@@ -2,17 +2,19 @@ import { WebExtSidebarActionService } from '../../../typings/webext/sidebarActio
 
 import { Channel } from './Channel';
 import {
-    MSG_TYPE_OPEN_URL,
-    MSG_TYPE_OPEN_ORGANIZE_WINDOW,
-    MSG_TYPE_OPEN_SIDEBAR,
+    createOpenUrlAction,
+    createOpenClassicSidebarAction,
+    createOpenClassicPlacesOrganizerAction,
 } from './RemoteAction';
 
 export function openItem(chan: Channel, bookmarkId: string, url: string): void {
-    chan.postOneShotMessage(MSG_TYPE_OPEN_URL, { id: bookmarkId, url });
+    const a = createOpenUrlAction(bookmarkId, url);
+    chan.postOneShotMessage(a);
 }
 
 export function openClassicSidebar(chan: Channel): void {
-    chan.postOneShotMessage(MSG_TYPE_OPEN_SIDEBAR, null);
+    const a = createOpenClassicSidebarAction();
+    chan.postOneShotMessage(a);
 }
 
 export function openWebExtSidebar(sidebarAction: WebExtSidebarActionService): void {
@@ -21,8 +23,7 @@ export function openWebExtSidebar(sidebarAction: WebExtSidebarActionService): vo
 }
 
 export function openPlacesOrganizeWindow(chan: Channel, bookmarkId: string): void {
-    chan.postOneShotMessage(MSG_TYPE_OPEN_ORGANIZE_WINDOW, {
-        bookmarkId,
-    });
+    const a = createOpenClassicPlacesOrganizerAction(bookmarkId);
+    chan.postOneShotMessage(a);
 }
 
