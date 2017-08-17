@@ -35,9 +35,7 @@ export function openClassicSidebar(): ThunkAction<Promise<void>, PopupMainStateT
 
         dispatch(createOpenSidebarAction());
 
-        return Promise.resolve().then(() => {
-            window.close();
-        });
+        return closeWindow();
     };
 }
 
@@ -47,9 +45,7 @@ export function openWebExtSidebar(): ThunkAction<Promise<void>, PopupMainStateTr
 
         dispatch(createOpenSidebarAction());
 
-        return Promise.resolve().then(() => {
-            window.close();
-        });
+        return closeWindow();
     };
 }
 
@@ -59,8 +55,10 @@ export function openLibraryWindow(bookmarkId: string): ThunkAction<Promise<void>
 
         dispatch(createOpenLibraryWindow(bookmarkId));
 
-        return Promise.resolve().then(() => {
-            window.close();
-        });
+        return closeWindow();
     };
+}
+
+async function closeWindow(): Promise<void> {
+    window.close();
 }
