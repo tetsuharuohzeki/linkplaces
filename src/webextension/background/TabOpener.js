@@ -37,7 +37,6 @@ export async function createTab(url, where) {
     }
 
     const newTab = await browser.tabs.create(option);
-    // @ts-ignore
     const id = newTab.id;
     if (id === undefined || id === null) {
         throw new TypeError('id should not null');
@@ -57,7 +56,6 @@ async function getCurrentTabId() {
     }
 
     const currentTab = tabList[0];
-    // @ts-ignore
     const currentId = currentTab.id;
     if (currentId === undefined || currentId === null) {
         throw new TypeError('currentId should not null');
@@ -72,7 +70,6 @@ async function getCurrentTabId() {
  *  @return {Promise<number>}
  */
 export async function openInCurrent(tabId, url) {
-    // @ts-ignore
     await browser.tabs.update(tabId, {
         url,
     });

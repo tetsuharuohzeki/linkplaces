@@ -6,6 +6,7 @@ import { RunAt } from './extensionTypes';
 export interface Tab {
     title?: string;
     url?: string;
+    id?: number;
 }
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/WindowType
@@ -66,5 +67,17 @@ export interface WebExtTabsService {
         windowType?: WindowType;
     }): Promise<ReadonlyArray<Tab>>;
 
-    // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/update
+    // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/update
+    update(updateProperties: TabUpdateArg): Promise<Readonly<Tab>>;
+    update(tabId: number, updateProperties: TabUpdateArg): Promise<Readonly<Tab>>;
 }
+
+type TabUpdateArg = {
+    active?: boolean;
+    autoDiscardable?: boolean;
+    highlighted?: boolean;
+    muted?: boolean;
+    openerTabId?: number;
+    pinned?: boolean;
+    url?: string;
+};
