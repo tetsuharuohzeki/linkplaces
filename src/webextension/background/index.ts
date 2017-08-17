@@ -15,6 +15,7 @@ import {
     IPC_MSG_TYPE_OPEN_CLASSIC_SIDEBAR,
 } from './OverIpcAction';
 import { gClassicRuntimePort, openUrl } from './port';
+import { Packet } from '../shared/Channel';
 
 (function main() {
 
@@ -32,7 +33,8 @@ import { gClassicRuntimePort, openUrl } from './port';
     });
 })();
 
-function onMessageFromPopup(msg: RemoteAction) {
+function onMessageFromPopup(packet: Packet<RemoteAction>) {
+    const { payload: msg } = packet;
     switch (msg.type) {
         case MSG_TYPE_OPEN_URL: {
             const { id, url } = msg.value;

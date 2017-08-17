@@ -9,10 +9,9 @@ type PromiseTuple = Readonly<{
     reject: (e?: any) => void;
 }>;
 
-export type Msg<T> = Readonly<{
-    id: number;
-    type: string;
-    value: T;
+export type Packet<T> = Readonly<{
+    id?: number;
+    payload: T;
     isRequest: boolean;
 }>;
 
@@ -21,9 +20,9 @@ export class Channel {
     private _port: Port | null;
     private _callback: Map<number, PromiseTuple>;
     private _callbackId: number;
-    private _subject: Subject<Msg<any>>;
+    private _subject: Subject<Packet<any>>;
 
-    private _listener: (msg: Msg<any>) => void;
+    private _listener: (msg: Packet<any>) => void;
 
     constructor(port: Port) {
         this._port = port;
@@ -31,7 +30,7 @@ export class Channel {
         this._callbackId = 0;
         this._subject = new Subject();
 
-        const listener = this._listener = (msg: Msg<any>) => {
+        const listener = this._listener = (msg: Packet<any>) => {
             this._onPortMessage(msg);
         };
 
@@ -61,7 +60,6 @@ export class Channel {
     }
 
     postMessage<TMessage extends RemoteActionBase, R>(msg: TMessage): Promise<R> {
-        const { type, value } = msg;
         const task = new Promise<R>((resolve, reject) => {
             const port = this._port;
             if (!port) {
@@ -71,10 +69,9 @@ export class Channel {
             const id = this._callbackId;
             this._callbackId = id + 1;
 
-            const message: Msg<any> = {
-                type,
+            const message: Packet<TMessage> = {
                 id,
-                value,
+                payload: msg,
                 isRequest: true,
             };
 
@@ -89,10 +86,8 @@ export class Channel {
     }
 
     postOneShotMessage<TMessage extends RemoteActionBase>(msg: TMessage): void {
-        const { type, value } = msg;
-        const message = {
-            type,
-            value,
+        const message: Packet<TMessage> = {
+            payload: msg,
             isRequest: true,
         };
 
@@ -101,14 +96,12 @@ export class Channel {
             throw new TypeError('`this._port` is null');
         }
 
-        port.postMessage(message);
+        port.postMessage<Packet<TMessage>>(message);
     }
 
     replyOneShot<TMessage extends RemoteActionBase>(msg: TMessage): void {
-        const { type, value } = msg;
-        const message = {
-            type,
-            value,
+        const message: Packet<TMessage> = {
+            payload: msg,
             isRequest: false,
         };
 
@@ -120,8 +113,12 @@ export class Channel {
         port.postMessage(message);
     }
 
-    private _onPortMessage(msg: Msg<any>): void {
-        const { id, value, isRequest, } = msg;
+    private _onPortMessage<T extends RemoteActionBase>(msg: Packet<T>): void {
+        const { id, payload, isRequest, } = msg;
+        if (id === undefined) {
+            throw new TypeError('in this path, Packet.id must not be undefined.');
+        }
+
         if (isRequest !== undefined && isRequest === true) {
             this._subject.next(msg);
             return;
@@ -136,14 +133,14 @@ export class Channel {
         const { resolve } = tuple;
 
         callbackMap.delete(id);
-        resolve(value);
+        resolve(payload.value);
 
         if (callbackMap.size === 0) {
             this._callbackId = 0;
         }
     }
 
-    asObservable(): Observable<Msg<any>> {
+    asObservable(): Observable<Packet<any>> {
         return this._subject.asObservable();
     }
 }
