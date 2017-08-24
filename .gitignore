@@ -4,6 +4,7 @@ linkplaces.xpi
 ## generated files
 __dist/
 __obj/
+web-ext-artifacts/
 
 # npm
 node_modules/

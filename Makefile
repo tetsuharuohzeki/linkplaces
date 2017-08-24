@@ -7,7 +7,7 @@ NPM_BIN := $(NODE_MOD)/.bin
 all: xpi
 
 ## clean
-clean: clean_xpi clean_dist clean_obj
+clean: clean_xpi clean_dist clean_obj clean_webext_artifacts
 
 clean_dist:
 	$(NPM_BIN)/del $(CURDIR)/__dist --force
@@ -17,6 +17,10 @@ clean_obj:
 
 clean_xpi:
 	$(NPM_BIN)/del $(PACKAGE)
+
+clean_webext_artifacts:
+	$(NPM_BIN)/del $(CURDIR)/web-ext-artifacts
+
 
 # build
 xpi: clean_xpi \
@@ -32,6 +36,11 @@ xpi: clean_xpi \
      webextension \
      __dist/Makefile
 	$(MAKE) xpi -C $(CURDIR)/__dist
+
+webext_xpi: clean_webext_artifacts \
+     lint \
+     webextension
+	$(NPM_BIN)/web-ext build -s $(CURDIR)/__dist/webextension
 
 chrome.manifest: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/src/$@ $(CURDIR)/__dist --preserve
@@ -114,7 +123,7 @@ test: lint tscheck
 lint: eslint tslint stylelint
 
 eslint:
-	$(NPM_BIN)/eslint --ext=js,jsm src/ $(CURDIR)
+	$(NODE_MOD)/eslint/bin/eslint.js --ext=js,jsm src/ $(CURDIR)
 
 tslint:
 	$(NPM_BIN)/tslint --config $(CURDIR)/tslint.json '$(CURDIR)/src/**/*.ts{,x}'
