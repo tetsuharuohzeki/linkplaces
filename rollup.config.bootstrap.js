@@ -4,12 +4,14 @@
 // https://github.com/rollup/rollup/wiki/JavaScript-API
 // https://github.com/rollup/rollup/wiki/Command-Line-Interface
 module.exports = {
-    format: 'cjs',
     context: 'this',
-
-    useStrict: true,
-    sourceMap: true,
+    strict: true,
+    sourcemap: true,
     treeshake: true,
+
+    output: {
+        format: 'cjs',
+    },
 
     external: [
     ],

@@ -7,11 +7,14 @@ const nodeResolve = require('rollup-plugin-node-resolve');
 // https://github.com/rollup/rollup/wiki/JavaScript-API
 // https://github.com/rollup/rollup/wiki/Command-Line-Interface
 module.exports = {
-    format: 'iife',
-    exports: 'none',
-    useStrict: true,
-    sourceMap: true,
+    strict: true,
     treeshake: true,
+    sourcemap: true,
+
+    output: {
+        format: 'iife',
+        exports: 'none',
+    },
 
     external: [
         'react',

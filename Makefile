@@ -65,7 +65,7 @@ package.json: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/$@ $(CURDIR)/__dist --preserve
 
 bootstrap.js: clean_dist __obj
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/$@ --config $(CURDIR)/rollup.config.bootstrap.js --output $(CURDIR)/__dist/$@
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/$@ --config $(CURDIR)/rollup.config.bootstrap.js --output.file $(CURDIR)/__dist/$@ --output.format cjs
 
 install.rdf: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/$@ $(CURDIR)/__dist --preserve
@@ -84,14 +84,14 @@ webextension_icon: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/skin/classic/toolbaricon.svg' $(CURDIR)/__dist/webextension --preserve
 webextension_bundle: webextension_bundle_background webextension_bundle_popup webextension_bundle_sidebar webextension_bundle_options
 webextension_bundle_background: clean_dist __obj
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/background/index.js --config $(CURDIR)/rollup.config.js --output $(CURDIR)/__dist/webextension/background/bundled.js
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/background/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/webextension/background/bundled.js --output.format iife
 
 webextension_bundle_popup: clean_dist __obj __external_dependency
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/popup/index.js --config $(CURDIR)/rollup.config.js --output $(CURDIR)/__dist/webextension/popup/bundled.js
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/popup/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/webextension/popup/bundled.js --output.format iife
 webextension_bundle_sidebar: clean_dist __obj __external_dependency
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/sidebar/index.js --config $(CURDIR)/rollup.config.js --output $(CURDIR)/__dist/webextension/sidebar/bundled.js
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/sidebar/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/webextension/sidebar/bundled.js --output.format iife
 webextension_bundle_options: clean_dist __obj __external_dependency
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/options/index.js --config $(CURDIR)/rollup.config.js --output $(CURDIR)/__dist/webextension/options/bundled.js
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/options/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/webextension/options/bundled.js --output.format iife
 
 __external_dependency: \
 	__external_dependency_react \
