@@ -3,6 +3,8 @@ import * as React from 'react';
 
 import { BookmarkTreeNode, BookmarkTreeNodeItem } from '../../../typings/webext/bookmarks';
 
+import { isBookmarkTreeNodeItem } from '../shared/Bookmark';
+
 import { SidebarIntent, notifyOpenItem } from './SidebarIntent';
 import { SidebarState } from './SidebarState';
 
@@ -35,10 +37,17 @@ function ListItem(props: ListItemProps): JSX.Element {
     const id = item.id;
     const url = (item as BookmarkTreeNodeItem).url;
 
-    const onClick = (_: React.SyntheticEvent<HTMLAnchorElement>) => {
-        const a = notifyOpenItem(id, url);
-        intent.dispatch(a);
-    };
+    let onClick: (e: React.SyntheticEvent<HTMLAnchorElement>) => void;
+    if (isBookmarkTreeNodeItem(item)) {
+        onClick = (_) => {
+            const a = notifyOpenItem(id, url);
+            intent.dispatch(a);
+        };
+    }
+    else {
+        onClick = (_) => {
+        };
+    }
 
     const title = `${item.title}\n${url}`;
     return (
