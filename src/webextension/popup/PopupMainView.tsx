@@ -7,7 +7,7 @@ import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '
 import { isBookmarkTreeNodeItem } from '../shared/Bookmark';
 
 import { PopupMainState, PopupMainStateTree } from './PopupMainState';
-import { openItem, openClassicSidebar, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';
+import { openItem, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';
 
 export interface PopupMainViewProps {
     state: PopupMainState;
@@ -16,11 +16,6 @@ export interface PopupMainViewProps {
 
 export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element {
     const { state, store, } = props;
-
-    const onClickOpenClassicSidebar = (_event: React.MouseEvent<HTMLDivElement>) => {
-        const a = openClassicSidebar();
-        store.dispatch(a);
-    };
 
     const onClickOpenWebExtSidebar = (_event: React.MouseEvent<HTMLDivElement>) => {
         const a = openWebExtSidebar();
@@ -35,16 +30,6 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
     return (
         <div className={'panel'}>
             <div className={'panel-section panel-section-list'}>
-                <div className={'panel-list-item'} onClick={onClickOpenClassicSidebar}>
-                    <div className={'icon'}>
-                        <img className={'popup__listitem_icon_item'} src={'../shared/image/icon/sidebar-16.svg'} alt={''} />
-                    </div>
-                    <div className={'text'}>
-                        <span className={'popup__listitem_text_inner'}>
-                            {'View LinkPlaces XUL Sidebar'}
-                        </span>
-                    </div>
-                </div>
                 <div className={'panel-list-item'} onClick={onClickOpenWebExtSidebar}>
                     <div className={'icon'}>
                         <img className={'popup__listitem_icon_item'} src={'../shared/image/icon/sidebar-16.svg'} alt={''} />

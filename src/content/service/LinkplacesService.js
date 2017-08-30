@@ -6,7 +6,6 @@
 import {
   IPC_MSG_TYPE_CLASSIC_CREATE_ITEM,
   IPC_MSG_TYPE_CLASSIC_REMOVE_ITEM,
-  IPC_MSG_TYPE_OPEN_CLASSIC_SIDEBAR,
   IPC_MSG_TYPE_OPEN_PRIVILEGED_URL,
   IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY,
   IPC_MSG_TYPE_OPEN_TAB,
@@ -31,7 +30,6 @@ import {
 import { StyleLoader } from "./StyleLoader.js";
 import { PrefService } from "./pref.js";
 import { WebExtRTMessageChannel } from "./WebExtRTMessageChannel.js";
-import { SIDEBAR_BROADCAST_ID } from "../ui/LinkplacesChromeSidebar";
 
 const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
 
@@ -217,14 +215,6 @@ export class LinkplacesService {
           return;
         }
         w.openUILinkIn(url, "tab");
-        break;
-      }
-      case IPC_MSG_TYPE_OPEN_CLASSIC_SIDEBAR: {
-        const w = getMostRecentActiveWindow();
-        if (w === null) {
-          return;
-        }
-        w.SidebarUI.show(SIDEBAR_BROADCAST_ID);
         break;
       }
       case IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY: {

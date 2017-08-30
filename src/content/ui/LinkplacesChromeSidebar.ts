@@ -4,7 +4,7 @@
 
 import { getStringBundle } from '../service/LinkplacesService';
 
-export const SIDEBAR_BROADCAST_ID = 'viewLinkplacesSidebar';
+const SIDEBAR_BROADCAST_ID = 'viewLinkplacesSidebar';
 const SHORTCUT_ID = 'linkplaces-key-toggleSidebar';
 
 const BROADCASTER_CONTAINER_ID = 'mainBroadcasterSet';

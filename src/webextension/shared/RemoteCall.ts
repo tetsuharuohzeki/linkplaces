@@ -3,17 +3,11 @@ import { WebExtSidebarActionService } from '../../../typings/webext/sidebarActio
 import { Channel } from './Channel';
 import {
     createOpenUrlAction,
-    createOpenClassicSidebarAction,
     createOpenClassicPlacesOrganizerAction,
 } from './RemoteAction';
 
 export function openItem(chan: Channel, bookmarkId: string, url: string): void {
     const a = createOpenUrlAction(bookmarkId, url);
-    chan.postOneShotMessage(a);
-}
-
-export function openClassicSidebar(chan: Channel): void {
-    const a = createOpenClassicSidebarAction();
     chan.postOneShotMessage(a);
 }
 

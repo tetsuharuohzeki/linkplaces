@@ -5,7 +5,6 @@ import { Channel } from '../shared/Channel';
 import {
     openItem as openItemViaChannel,
     openPlacesOrganizeWindow,
-    openClassicSidebar as openClassicSidebarViaChannel,
     openWebExtSidebar as openWebExtSidebarDirect,
 } from '../shared/RemoteCall';
 
@@ -26,16 +25,6 @@ export function openItem(id: string, url: string): ThunkAction<Promise<void>, Po
         return Promise.resolve().then(() => {
             window.close();
         });
-    };
-}
-
-export function openClassicSidebar(): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
-    return function openClassicSidebarActual(dispatch: Dispatch<PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
-        openClassicSidebarViaChannel(dependencies.channel);
-
-        dispatch(createOpenSidebarAction());
-
-        return closeWindow();
     };
 }
 

@@ -7,12 +7,10 @@ import { createContextMenu } from './ContextMenu';
 import {
     RemoteAction,
     MSG_TYPE_OPEN_URL,
-    MSG_TYPE_OPEN_SIDEBAR,
     MSG_TYPE_OPEN_ORGANIZE_WINDOW,
 } from '../shared/RemoteAction';
 import {
     IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY,
-    IPC_MSG_TYPE_OPEN_CLASSIC_SIDEBAR,
 } from './OverIpcAction';
 import { gClassicRuntimePort, openUrl } from './port';
 import { Packet } from '../shared/Channel';
@@ -39,10 +37,6 @@ function onMessageFromPopup(packet: Packet<RemoteAction>) {
         case MSG_TYPE_OPEN_URL: {
             const { id, url } = msg.value;
             openUrlFromPopup(url, id).catch(console.error);
-            break;
-        }
-        case MSG_TYPE_OPEN_SIDEBAR: {
-            gClassicRuntimePort.postOneShotMessage(IPC_MSG_TYPE_OPEN_CLASSIC_SIDEBAR, null);
             break;
         }
         case MSG_TYPE_OPEN_ORGANIZE_WINDOW: {
