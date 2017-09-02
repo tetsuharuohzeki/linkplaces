@@ -10,8 +10,6 @@
 
 <?xul-overlay href="chrome://global/content/editMenuOverlay.xul"?>
 
-<?xml-stylesheet href="chrome://linkplaces/skin/linkplaces-sidebar.css"?>
-
 <page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
       xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
       id="linkplaces-sidebar">
