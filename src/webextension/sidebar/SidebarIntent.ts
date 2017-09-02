@@ -22,10 +22,15 @@ export class SidebarIntent implements Dispatchable<Action> {
     openItem(): Observable<OpenItemAction> {
         return this._subject.asObservable().filter(isOpenItemAction);
     }
+
+    selectItem(): Observable<SelectItemAction> {
+        return this._subject.asObservable().filter(isSelectItemAction);
+    }
 }
 
 export const enum ActionType {
     OpenItem = 'SIDEBAR_ACTION_ITEM_OPEND',
+    SelectItem = 'SIDEBAR_ACTION_SELECT_ITEM'
 }
 
 export type Action =
@@ -50,3 +55,18 @@ export function notifyOpenItem(id: string, url: string): OpenItemAction {
         url,
     };
 }
+
+export interface SelectItemAction extends ActionBase {
+    type: ActionType.SelectItem;
+    id: string;
+}
+export function isSelectItemAction(v: Readonly<ActionBase>): v is SelectItemAction {
+    return v.type === ActionType.SelectItem;
+}
+export function notifySelectItemAction(id: string): SelectItemAction {
+    return {
+        type: ActionType.SelectItem,
+        id,
+    };
+}
+
