@@ -32,7 +32,6 @@ xpi: clean_xpi \
      locale \
      bootstrap.js \
      package.json \
-     skin \
      webextension \
      __dist/Makefile
 	$(MAKE) xpi -C $(CURDIR)/__dist
@@ -70,18 +69,13 @@ bootstrap.js: clean_dist __obj
 install.rdf: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/$@ $(CURDIR)/__dist --preserve
 
-skin: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*' $(CURDIR)/__dist/$@ --preserve
-
 __dist/Makefile: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/src/Makefile $(CURDIR)/__dist --preserve
 
-webextension: webextension_cp webextension_icon webextension_bundle
+webextension: webextension_cp webextension_bundle
 
 webextension_cp: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/webextension/**/**.{json,html,css,svg}' $(CURDIR)/__dist/webextension --preserve
-webextension_icon: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/src/skin/classic/toolbaricon.svg' $(CURDIR)/__dist/webextension --preserve
 webextension_bundle: webextension_bundle_background webextension_bundle_popup webextension_bundle_sidebar webextension_bundle_options
 webextension_bundle_background: clean_dist __obj
 	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/webextension/background/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/webextension/background/bundled.js --output.format iife

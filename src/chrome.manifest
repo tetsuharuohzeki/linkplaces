@@ -4,7 +4,6 @@
 
 ## Defines the package
 content  linkplaces               content/
-skin     linkplaces  classic/1.0  skin/classic/
 
 ## Locale
 locale   linkplaces   en-US       locale/en-US/

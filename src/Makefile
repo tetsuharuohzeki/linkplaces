@@ -6,8 +6,6 @@ FILE    = \
   content/sidebar/linkplaces-sidebar.xul \
   content/sidebar/LinkplacesSidebarContent.js \
   locale/en-US/linkplaces.properties \
-  skin/classic/linkplaces.css \
-  skin/classic/toolbaricon.svg \
   webextension/background/bundled.js \
   webextension/background/bundled.js.map \
   webextension/options/bundled.js \

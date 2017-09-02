@@ -27,7 +27,6 @@ import {
   removeItemAsync,
   getItemId,
 } from "./LinkplacesRepository.js";
-import { StyleLoader } from "./StyleLoader.js";
 import { PrefService } from "./pref.js";
 import { WebExtRTMessageChannel } from "./WebExtRTMessageChannel.js";
 
@@ -79,7 +78,6 @@ export class LinkplacesService {
   constructor() {
     this._pref = null;
     this._runtime = null;
-    this._styleService = null;
     this._prefListener = null;
   }
 
@@ -111,8 +109,6 @@ export class LinkplacesService {
       this._runtime.addListener(this);
     });
 
-    this._styleService = StyleLoader.create();
-
     this._prefListener = (/*name, table*/) => {// eslint-disable-line no-empty-function
     };
     this._pref.addListener(this._prefListener);
@@ -126,9 +122,6 @@ export class LinkplacesService {
     // @ts-ignore
     this._pref.removeListener(this._prefListener);
     this._prefListener = null;
-    // @ts-ignore
-    this._styleService.destroy();
-    this._styleService = null;
     // @ts-ignore
     this._pref.destroy();
     this._runtime.destroy();
