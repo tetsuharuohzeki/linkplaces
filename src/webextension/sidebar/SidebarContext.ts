@@ -9,6 +9,7 @@ import { BookmarkTreeNode } from '../../../typings/webext/bookmarks';
 
 import { SidebarView, SidebarViewProps } from './SidebarView';
 
+import { mapToSidebarItemEntity } from './SidebarDomain';
 import { SidebarViewEpic } from './SidebarEpic';
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarState } from './SidebarState';
@@ -42,7 +43,7 @@ export class SidebarContext implements ViewContext {
 
         this._epic.activate();
         const state = this._store.compose({
-            list: this._list,
+            list: this._list.map(mapToSidebarItemEntity),
         });
 
         this._subscription = state.subscribe((state: Readonly<SidebarState>) => {
