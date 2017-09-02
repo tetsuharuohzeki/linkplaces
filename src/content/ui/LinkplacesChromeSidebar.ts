@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { getStringBundle } from '../service/LinkplacesService';
+const ADDON_NAME = 'LinkPlaces';
 
 const SIDEBAR_BROADCAST_ID = 'viewLinkplacesSidebar';
 
@@ -95,15 +95,6 @@ export class LinkplacesChromeSidebar {
 
   private _init() {
     const win = this._win;
-    const stringBundle = getStringBundle();
-
-    const getLabel = (name: string): string => {
-      const l = stringBundle.GetStringFromName(name); // eslint-disable-line new-cap,
-      if (l === null) {
-        throw new TypeError(`not found ${name} in stringBundle`);
-      }
-      return l;
-    };
 
     this._menubar = DOMbuilder.create(win, 'menuitem', new Map([
       ['id', 'linkplaces-menu-sidebar'],
@@ -113,11 +104,11 @@ export class LinkplacesChromeSidebar {
 
     this._broadcaster = DOMbuilder.create(win, 'broadcaster', new Map([
       ['id', SIDEBAR_BROADCAST_ID],
-      ['label', getLabel('linkplaces.chrome.broadcaster.label')],
+      ['label', ADDON_NAME],
       ['autoCheck', 'false'],
       ['type', 'checkbox'],
       ['group', 'sidebar'],
-      ['sidebartitle', getLabel('linkplaces.chrome.sidebar.title')],
+      ['sidebartitle', ADDON_NAME],
       ['sidebarurl', 'chrome://linkplaces/content/sidebar/linkplaces-sidebar.xul'],
 
       // XXX: Does not work with `addEventListener()`
@@ -127,7 +118,7 @@ export class LinkplacesChromeSidebar {
 
     this._headerSwitcher = DOMbuilder.create(win, 'toolbarbutton', new Map([
       ['id', 'sidebar-switcher-linkplaces'],
-      ['label', getLabel('linkplaces.chrome.sidebar.title')],
+      ['label', ADDON_NAME],
       ['class', 'subviewbutton subviewbutton-iconic'],
       ['observes', SIDEBAR_BROADCAST_ID],
       ['oncommand', `SidebarUI.show('${SIDEBAR_BROADCAST_ID}')`],

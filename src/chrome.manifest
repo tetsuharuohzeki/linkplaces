@@ -4,6 +4,3 @@
 
 ## Defines the package
 content  linkplaces               content/
-
-## Locale
-locale   linkplaces   en-US       locale/en-US/

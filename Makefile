@@ -29,7 +29,6 @@ xpi: clean_xpi \
      content \
      icon.png \
      install.rdf \
-     locale \
      bootstrap.js \
      package.json \
      webextension \
@@ -56,9 +55,6 @@ content_cp: clean_dist
 
 icon.png: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/$@ $(CURDIR)/__dist --preserve
-
-locale: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/src/$@/**/*' $(CURDIR)/__dist/$@ --preserve
 
 package.json: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/$@ $(CURDIR)/__dist --preserve

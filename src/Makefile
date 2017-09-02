@@ -5,7 +5,6 @@ FILE    = \
   content/sidebar/linkplaces-sidebar.js \
   content/sidebar/linkplaces-sidebar.xul \
   content/sidebar/LinkplacesSidebarContent.js \
-  locale/en-US/linkplaces.properties \
   webextension/background/bundled.js \
   webextension/background/bundled.js.map \
   webextension/options/bundled.js \

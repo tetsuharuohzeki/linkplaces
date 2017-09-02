@@ -14,7 +14,6 @@ import {
 // @ts-ignore
 import {
   Cu,
-  Services,
   XPCOMUtils,
 } from "./chrome";
 
@@ -30,30 +29,12 @@ import {
 import { PrefService } from "./pref.js";
 import { WebExtRTMessageChannel } from "./WebExtRTMessageChannel.js";
 
-const STRING_BUNDLE_URI = "chrome://linkplaces/locale/linkplaces.properties";
-
 const { PlacesUIUtils } = Cu.import("resource:///modules/PlacesUIUtils.jsm", {});
 
 const modGlobal = Object.create(null);
 
-XPCOMUtils.defineLazyGetter(modGlobal, "stringBundle", function () {
-  return Services.strings.createBundle(STRING_BUNDLE_URI);
-});
 XPCOMUtils.defineLazyModuleGetter(modGlobal, "RecentWindow",
   "resource:///modules/RecentWindow.jsm");
-
-/**
- *  @typedef  {object} nsIStringBundle
- *  @property {function(string):(string|null)}  GetStringFromName
- */
-
-/**
- * Cache strings bundle.
- * @returns {nsIStringBundle}
- */
-export function getStringBundle() {
-  return modGlobal.stringBundle;
-}
 
 /**
  * LinkplacesService
