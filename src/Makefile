@@ -22,8 +22,8 @@ FILE    = \
   webextension/sidebar/index.html \
   webextension/sidebar/sidebar.css \
   webextension/third_party/prop-types.min.js \
-  webextension/third_party/react-dom.min.js \
-  webextension/third_party/react.min.js \
+  webextension/third_party/react-dom.production.min.js \
+  webextension/third_party/react.production.min.js \
   webextension/third_party/redux-thunk.js \
   webextension/third_party/redux.js \
   webextension/third_party/Rx.min.js \
