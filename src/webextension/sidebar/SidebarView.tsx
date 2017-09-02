@@ -55,9 +55,17 @@ function ListItem(props: ListItemProps): JSX.Element {
     }
 
     const title = `${bookmark.title}\n${url}`;
+
+    let outerClass = 'sidebar__listitem_container';
+    let innerClass = 'sidebar__listitem_text_inner';
+    if (item.isSelected) {
+        outerClass += ' .sidebar__listitem_container--is_selected';
+        innerClass += ' .sidebar__listitem_text_inner--is_selected';
+    }
+
     return (
-        <li className={'sidebar__listitem_container'}>
-            <a className={'sidebar__listitem_text_inner'} href={url} onClick={onClick} title={title}>
+        <li className={outerClass}>
+            <a className={innerClass} href={url} onClick={onClick} title={title}>
                 {bookmark.title}
             </a>
         </li>

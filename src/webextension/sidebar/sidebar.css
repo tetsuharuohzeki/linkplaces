@@ -9,10 +9,18 @@
     margin: 1px 0;
 }
 
+.sidebar__listitem_container--is_selected {
+    background-color: blue;
+}
+
 .sidebar__listitem_text_inner {
     display: inline-block;
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.sidebar__listitem_text_inner--is_selected {
+    color: white;
 }
