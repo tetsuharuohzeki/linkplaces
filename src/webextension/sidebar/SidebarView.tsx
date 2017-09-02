@@ -39,13 +39,16 @@ function ListItem(props: ListItemProps): JSX.Element {
 
     let onClick: (e: React.SyntheticEvent<HTMLAnchorElement>) => void;
     if (isBookmarkTreeNodeItem(item)) {
-        onClick = (_) => {
+        onClick = (evt) => {
+            evt.preventDefault();
+
             const a = notifyOpenItem(id, url);
             intent.dispatch(a);
         };
     }
     else {
-        onClick = (_) => {
+        onClick = (evt) => {
+            evt.preventDefault();
         };
     }
 
