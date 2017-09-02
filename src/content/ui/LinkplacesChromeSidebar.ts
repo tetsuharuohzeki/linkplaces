@@ -5,11 +5,9 @@
 import { getStringBundle } from '../service/LinkplacesService';
 
 const SIDEBAR_BROADCAST_ID = 'viewLinkplacesSidebar';
-const SHORTCUT_ID = 'linkplaces-key-toggleSidebar';
 
 const BROADCASTER_CONTAINER_ID = 'mainBroadcasterSet';
 const MENUBAR_CONTAINER_ID = 'viewSidebarMenu';
-const SHORTCUT_CONTAINER_ID = 'mainKeyset';
 const SIDEBAR_HEADER_SWITCH_CONTAINER_ID = 'sidebarMenu-popup';
 
 class DOMbuilder {
@@ -72,14 +70,12 @@ class DOMbuilder {
 export class LinkplacesChromeSidebar {
 
   private _win: Window;
-  private _shortcut: DOMbuilder | null;
   private _menubar: DOMbuilder | null;
   private _broadcaster: DOMbuilder | null;
   private _headerSwitcher: DOMbuilder | null;
 
   constructor(win: Window) {
     this._win = win;
-    this._shortcut = null;
     this._menubar = null;
     this._broadcaster = null;
     this._headerSwitcher = null;
@@ -94,7 +90,6 @@ export class LinkplacesChromeSidebar {
     this._headerSwitcher = null;
     this._broadcaster = null;
     this._menubar = null;
-    this._shortcut = null;
     this._win = null as any;
   }
 
@@ -110,17 +105,8 @@ export class LinkplacesChromeSidebar {
       return l;
     };
 
-    this._shortcut = DOMbuilder.create(win, 'key', new Map([
-      ['id', SHORTCUT_ID],
-      ['key', getLabel('linkplaces.chrome.commandkey')],
-      ['modifiers', 'accel,alt'],
-      ['command', SIDEBAR_BROADCAST_ID],
-    ]), []);
-    this._shortcut.appendToById(SHORTCUT_CONTAINER_ID);
-
     this._menubar = DOMbuilder.create(win, 'menuitem', new Map([
       ['id', 'linkplaces-menu-sidebar'],
-      ['key', SHORTCUT_ID],
       ['observes', SIDEBAR_BROADCAST_ID],
     ]), []);
     this._menubar.appendToById(MENUBAR_CONTAINER_ID);
@@ -143,7 +129,6 @@ export class LinkplacesChromeSidebar {
       ['id', 'sidebar-switcher-linkplaces'],
       ['label', getLabel('linkplaces.chrome.sidebar.title')],
       ['class', 'subviewbutton subviewbutton-iconic'],
-      ['key', SHORTCUT_ID],
       ['observes', SIDEBAR_BROADCAST_ID],
       ['oncommand', `SidebarUI.show('${SIDEBAR_BROADCAST_ID}')`],
     ]), [
@@ -167,7 +152,6 @@ export class LinkplacesChromeSidebar {
       (win as any).SidebarUI.hide();
     }
 
-    this._shortcut!.destroy();
     this._menubar!.destroy();
     this._broadcaster!.destroy();
     this._headerSwitcher!.destroy();
