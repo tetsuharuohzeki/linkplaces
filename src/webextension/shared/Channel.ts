@@ -1,5 +1,3 @@
-import { Observable, Subject } from 'rxjs';
-
 import { Port } from '../../../typings/webext/runtime';
 
 import { RemoteActionBase } from './RemoteAction';
@@ -56,7 +54,7 @@ export class Channel {
         this._port.disconnect();
         this._port.onMessage.removeListener(this._listener);
         this._callback.clear();
-        this._subject.unsubscribe();
+        this._subject.destroy();
     }
 
     postMessage<TMessage extends RemoteActionBase, R>(msg: TMessage): Promise<R> {
@@ -140,8 +138,12 @@ export class Channel {
         }
     }
 
-    asObservable(): Observable<Packet<any>> {
-        return this._subject.asObservable();
+    addListener(callback: (v: Packet<any>) => void): void {
+        this._subject.addListener(callback);
+    }
+
+    removeListener(callback: (v: Packet<any>) => void): void {
+        this._subject.removeListener(callback);
     }
 }
 
@@ -156,4 +158,35 @@ export async function createChannelToBackground(pingMessage: string): Promise<Ch
     const port = await connectToBgScript(pingMessage);
     const c = new Channel(port);
     return c;
+}
+
+class Subject<T> {
+    private _callbackset: Set<(v: T) => void>;
+
+    constructor() {
+        this._callbackset = new Set();
+    }
+
+    destroy(): void {
+        this._callbackset.clear();
+    }
+
+    next(v: T): void {
+        for (const c of this._callbackset) {
+            try {
+                c(v);
+            }
+            catch (e) {
+                console.error(e);
+            }
+        }
+    }
+
+    addListener(callback: (v: T) => void): void {
+        this._callbackset.add(callback);
+    }
+
+    removeListener(callback: (v: T) => void): void {
+        this._callbackset.delete(callback);
+    }
 }
