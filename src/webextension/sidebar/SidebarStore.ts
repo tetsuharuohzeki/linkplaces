@@ -5,6 +5,7 @@ import { Store } from '../shared/Store';
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarRepository } from './SidebarRepository';
 import { SidebarState } from './SidebarState';
+import { mapToSidebarItemEntity } from './SidebarDomain';
 
 export class SidebarStore implements Store<SidebarState> {
 
@@ -18,7 +19,10 @@ export class SidebarStore implements Store<SidebarState> {
 
     compose(initial: Readonly<SidebarState>): Observable<SidebarState> {
         const init = Observable.of(initial);
-        const changed: Observable<SidebarState> = this._repo.asObservable().map( (list) => ({ list }) );
+        const changed: Observable<SidebarState> = this._repo.asObservable().map( (list) => {
+            const l = list.map(mapToSidebarItemEntity);
+            return { list: l };
+        });
         return init.merge(changed);
     }
 }

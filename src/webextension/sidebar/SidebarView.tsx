@@ -1,10 +1,11 @@
 import * as React from 'react';
 //import * as PropTypes from 'prop-types';
 
-import { BookmarkTreeNode, BookmarkTreeNodeItem } from '../../../typings/webext/bookmarks';
+import { BookmarkTreeNodeItem } from '../../../typings/webext/bookmarks';
 
 import { isBookmarkTreeNodeItem } from '../shared/Bookmark';
 
+import { SidebarItemViewValue } from './SidebarDomain';
 import { SidebarIntent, notifyOpenItem } from './SidebarIntent';
 import { SidebarState } from './SidebarState';
 
@@ -29,16 +30,17 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
 };
 
 interface ListItemProps {
-    item: BookmarkTreeNode;
+    item: SidebarItemViewValue;
     intent: SidebarIntent;
 }
 function ListItem(props: ListItemProps): JSX.Element {
     const { item, intent, } = props;
-    const id = item.id;
-    const url = (item as BookmarkTreeNodeItem).url;
+    const bookmark = item.bookmark;
+    const id = bookmark.id;
+    const url = (bookmark as BookmarkTreeNodeItem).url;
 
     let onClick: (e: React.SyntheticEvent<HTMLAnchorElement>) => void;
-    if (isBookmarkTreeNodeItem(item)) {
+    if (isBookmarkTreeNodeItem(bookmark)) {
         onClick = (evt) => {
             evt.preventDefault();
 
@@ -52,11 +54,11 @@ function ListItem(props: ListItemProps): JSX.Element {
         };
     }
 
-    const title = `${item.title}\n${url}`;
+    const title = `${bookmark.title}\n${url}`;
     return (
         <li className={'sidebar__listitem_container'}>
             <a className={'sidebar__listitem_text_inner'} href={url} onClick={onClick} title={title}>
-                {item.title}
+                {bookmark.title}
             </a>
         </li>
     );

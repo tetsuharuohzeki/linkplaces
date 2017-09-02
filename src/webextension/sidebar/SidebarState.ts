@@ -1,5 +1,5 @@
-import { BookmarkTreeNode } from '../../../typings/webext/bookmarks';
+import { SidebarItemViewValue } from './SidebarDomain';
 
 export interface SidebarState {
-    list: ReadonlyArray<BookmarkTreeNode>;
+    list: ReadonlyArray<SidebarItemViewValue>;
 }
