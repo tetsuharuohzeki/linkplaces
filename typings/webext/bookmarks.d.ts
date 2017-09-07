@@ -74,11 +74,17 @@ export type OnReorderInfo = Readonly<{
     childIds: Array<string>;
 }>;
 
+export const enum BookmarkTreeNodeType {
+    Bookmark = 'bookmark',
+    Folder = 'folder',
+    Separator = 'separator',
+}
+
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/BookmarkTreeNodeUnmodifiable
 export type BookmarkTreeNodeUnmodifiable = 'managed';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/BookmarkTreeNode
-export type BookmarkTreeNode = BookmarkTreeNodeFolder | BookmarkTreeNodeItem;
+export type BookmarkTreeNode = BookmarkTreeNodeFolder | BookmarkTreeNodeItem | BookmarkTreeNodeSeparator;
 
 interface BookmarkTreeNodeBase {
     readonly id: string;
@@ -88,14 +94,21 @@ interface BookmarkTreeNodeBase {
     readonly dateAdded?: number;
     readonly dateGroupModified?: number;
     readonly unmodifiable?: BookmarkTreeNodeUnmodifiable;
+    readonly type?: BookmarkTreeNodeType;
 }
 
 export interface BookmarkTreeNodeItem extends BookmarkTreeNodeBase {
     readonly url: string;
+    readonly type?: BookmarkTreeNodeType.Bookmark;
 }
 
 export interface BookmarkTreeNodeFolder extends BookmarkTreeNodeBase {
     readonly children: Array<BookmarkTreeNode>;
+    readonly type?: BookmarkTreeNodeType.Folder;
+}
+
+export interface BookmarkTreeNodeSeparator extends BookmarkTreeNodeBase {
+    readonly type?: BookmarkTreeNodeType.Separator;
 }
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/CreateDetails

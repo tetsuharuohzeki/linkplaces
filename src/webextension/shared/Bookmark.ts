@@ -1,6 +1,8 @@
 import {
     BookmarkTreeNode,
     BookmarkTreeNodeItem,
+    BookmarkTreeNodeFolder,
+    BookmarkTreeNodeSeparator,
 } from '../../../typings/webext/bookmarks';
 
 export function getUnfiledBoolmarkFolder(): Promise<Array<BookmarkTreeNode>> {
@@ -43,6 +45,27 @@ export function getLinkSchemeType(url: string): LinkSchemeType {
 }
 
 export function isBookmarkTreeNodeItem(v: BookmarkTreeNode): v is BookmarkTreeNodeItem {
+    if (typeof v.type === 'string' && v.type === 'bookmark') {
+        return true;
+    }
+
     const is = typeof (v as any).url === 'string';
     return is;
 }
+
+export function isBookmarkTreeNodeFolder(v: BookmarkTreeNode): v is BookmarkTreeNodeFolder {
+    if (typeof v.type === 'string' && v.type === 'folder') {
+        return true;
+    }
+
+    return (!isBookmarkTreeNodeItem(v) && !isBookmarkTreeNodeSeparator(v));
+}
+
+export function isBookmarkTreeNodeSeparator(v: BookmarkTreeNode): v is BookmarkTreeNodeSeparator {
+    if (typeof v.type === 'string' && v.type === 'separator') {
+        return true;
+    }
+
+    return false;
+}
+
