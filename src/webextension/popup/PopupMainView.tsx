@@ -4,7 +4,7 @@ import { Store } from 'redux';
 
 import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../../typings/webext/bookmarks';
 
-import { isBookmarkTreeNodeItem } from '../shared/Bookmark';
+import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../shared/Bookmark';
 
 import { PopupMainState, PopupMainStateTree } from './PopupMainState';
 import { openItem, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';
@@ -58,11 +58,14 @@ function ListItem(props: ListItemProps): JSX.Element {
     const { item, store, } = props;
 
     let node: JSX.Element;
-    if (!isBookmarkTreeNodeItem(item)) {
-        node = <FolderListItem item={item} store={store} />;
+    if (isBookmarkTreeNodeSeparator(item)) {
+        node = <hr/>;
+    }
+    else if (isBookmarkTreeNodeItem(item)) {
+        node = <ItemListItem item={item} store={store} />;
     }
     else {
-        node = <ItemListItem item={item} store={store} />;
+        node = <FolderListItem item={item} store={store} />;
     }
 
     return node;

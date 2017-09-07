@@ -3,7 +3,10 @@ import * as React from 'react';
 
 import { BookmarkTreeNodeItem } from '../../../typings/webext/bookmarks';
 
-import { isBookmarkTreeNodeItem } from '../shared/Bookmark';
+import {
+    isBookmarkTreeNodeItem,
+    isBookmarkTreeNodeSeparator,
+} from '../shared/Bookmark';
 
 import { SidebarItemViewValue } from './SidebarDomain';
 import { SidebarIntent, notifyOpenItem } from './SidebarIntent';
@@ -15,15 +18,48 @@ export interface SidebarViewProps {
 }
 
 export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
-    const items = props.state.list.map((item, i) => {
-        const v = <ListItem key={i} item={item} intent={props.intent}/>;
-        return v;
-    });
+    const items: Array<Array<JSX.Element> | null> = [
+    ];
+    let level = 0;
+    for (let list = props.state.list, i = 0, l = list.length; i < l; ++i) {
+        const item = list[i];
+        let inner = items[level];
+        if (inner === undefined) {
+            inner = [];
+            items[level] = inner;
+        }
+        else if (inner === null) {
+            throw new TypeError();
+        }
 
+        if (isBookmarkTreeNodeSeparator(item.bookmark)) {
+            items.push(null);
+            level = level + 2;
+            items[level] = [];
+        }
+        else {
+            const v = <ListItem key={i} item={item} intent={props.intent}/>;
+            inner.push(v);
+        }
+    }
+
+    const r: Array<JSX.Element> = [];
+    for (const inner of items) {
+        if (inner === null) {
+            r.push(<hr/>);
+        }
+        else {
+            r.push(
+                <ul className={'sidebar__list_container'}>
+                    {inner}
+                </ul>
+            );
+        }
+    }
     return (
-        <ul className={'sidebar__list_container'}>
-            {items}
-        </ul>
+        <div>
+            {r}
+        </div>
     );
 }
 (SidebarView as React.StatelessComponent<SidebarViewProps>).propTypes = {
