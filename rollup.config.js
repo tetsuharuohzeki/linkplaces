@@ -1,8 +1,12 @@
-/* eslint-env commonjs */
+/* eslint-env commonjs, node */
 'use strict';
 
 const babel = require('rollup-plugin-babel');
 const nodeResolve = require('rollup-plugin-node-resolve');
+const replace = require('rollup-plugin-replace');
+
+const IS_WEBEXT_BUILD = (process.env.IS_WEBEXT_BUILD === undefined) ?
+    false : !!process.env.IS_WEBEXT_BUILD;
 
 // https://github.com/rollup/rollup/wiki/JavaScript-API
 // https://github.com/rollup/rollup/wiki/Command-Line-Interface
@@ -45,6 +49,15 @@ module.exports = {
             // rollup does not have 'extensions' option,
             // so we need to specify this option at here to import jsx file.
             extensions: ['.js', '.jsx'],
+        }),
+
+        replace({
+            //include: 'config.js',
+            exclude: 'node_modules/**',
+            delimiters: ['', ''],
+            values: {
+                'process.env.IS_WEBEXT_BUILD': IS_WEBEXT_BUILD,
+            },
         }),
 
         // https://github.com/rollup/rollup-plugin-babel

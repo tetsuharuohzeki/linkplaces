@@ -22,7 +22,9 @@ export {
 } from '../shared/Bookmark';
 
 // workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1375981
-export const useClassicBookmarkBackend = true;
+export const useClassicBookmarkBackend =
+    // @ts-ignore
+    !process.env.IS_WEBEXT_BUILD;// eslint-disable-line no-undef
 
 /**
  *  @param {string} url
