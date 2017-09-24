@@ -23,6 +23,19 @@ export class SidebarStore implements Store<SidebarState> {
             const l = list.map(mapToSidebarItemEntity);
             return { list: l };
         });
-        return init.merge(changed);
+        const result = init.merge(changed).share();
+
+        const enableIsOpening: Observable<SidebarState> = this._intent.openItem()
+            .withLatestFrom(result, (action, state) => {
+                const { id } = action;
+                for (const item of state.list) {
+                    if (item.bookmark.id === id) {
+                        item.isOpening = true;
+                    }
+                }
+                return state;
+            });
+
+        return result.merge(enableIsOpening);
     }
 }

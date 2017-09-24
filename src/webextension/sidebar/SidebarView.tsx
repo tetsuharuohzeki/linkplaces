@@ -94,6 +94,18 @@ function ListItem(props: ListItemProps): JSX.Element {
 
     let outerClass = 'sidebar__listitem_container';
     let innerClass = 'sidebar__listitem_text_inner';
+
+    if (item.isOpening) {
+        return (
+            <li className={outerClass}>
+                <span className={innerClass} title={title}>
+                    {bookmark.title}
+                </span>
+            </li>
+        );
+    }
+
+
     if (item.isSelected) {
         outerClass += ' .sidebar__listitem_container--is_selected';
         innerClass += ' .sidebar__listitem_text_inner--is_selected';
