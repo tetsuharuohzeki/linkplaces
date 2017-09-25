@@ -41,7 +41,7 @@ xpi: clean_xpi \
      __dist/Makefile
 	$(MAKE) xpi -C $(CURDIR)/__dist
 
-webext_xpi:
+webext:
 	$(MAKE) __webext_xpi -C $(CURDIR) IS_WEBEXT_BUILD=true
 
 __webext_xpi: clean_webext_artifacts \
