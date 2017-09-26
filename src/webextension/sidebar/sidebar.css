@@ -13,6 +13,10 @@
     background-color: blue;
 }
 
+.sidebar__listitem_container--is_opening {
+    cursor: pointer;
+}
+
 .sidebar__listitem_text_inner {
     display: inline-block;
     width: 100%;

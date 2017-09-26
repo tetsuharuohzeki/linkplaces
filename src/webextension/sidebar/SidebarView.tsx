@@ -96,6 +96,8 @@ function ListItem(props: ListItemProps): JSX.Element {
     let innerClass = 'sidebar__listitem_text_inner';
 
     if (item.isOpening) {
+        outerClass += 'sidebar__listitem_container--is_opening';
+
         return (
             <li className={outerClass}>
                 <span className={innerClass} title={title}>
