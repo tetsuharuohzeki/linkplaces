@@ -1,3 +1,4 @@
+import { Nullable } from 'option-t/es6/Nullable';
 import { Subscription } from 'rxjs';
 
 import { Channel } from '../shared/Channel';
@@ -9,7 +10,7 @@ import { SidebarRepository } from './SidebarRepository';
 
 export class SidebarViewEpic implements Epic {
 
-    private _subscription: Subscription | null;
+    private _subscription: Nullable<Subscription>;
     private _intent: SidebarIntent;
     private _repository: SidebarRepository;
     private _channel: Channel;

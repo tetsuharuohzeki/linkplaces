@@ -1,3 +1,4 @@
+import { Nullable } from 'option-t/es6/Nullable';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Store, Unsubscribe } from 'redux';
@@ -18,7 +19,7 @@ export class PopupMainContext implements ViewContext {
 
     private _channel: Channel;
     private _list: Array<BookmarkTreeNode>;
-    private _disposerSet: Set<Unsubscribe> | null;
+    private _disposerSet: Nullable<Set<Unsubscribe>>;
 
     constructor(channel: Channel, list: Array<BookmarkTreeNode>) {
         this._channel = channel;

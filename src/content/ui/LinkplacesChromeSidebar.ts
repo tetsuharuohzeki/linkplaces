@@ -2,6 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+import { Nullable } from 'option-t/es6/Nullable';
+
 const ADDON_NAME = 'LinkPlaces';
 
 const SIDEBAR_BROADCAST_ID = 'viewLinkplacesSidebar';
@@ -26,7 +28,7 @@ class DOMbuilder {
     return wrapper;
   }
 
-  private _dom: Element | null;
+  private _dom: Nullable<Element>;
 
   private constructor(dom: Element) {
     this._dom = dom;
@@ -70,9 +72,9 @@ class DOMbuilder {
 export class LinkplacesChromeSidebar {
 
   private _win: Window;
-  private _menubar: DOMbuilder | null;
-  private _broadcaster: DOMbuilder | null;
-  private _headerSwitcher: DOMbuilder | null;
+  private _menubar: Nullable<DOMbuilder>;
+  private _broadcaster: Nullable<DOMbuilder>;
+  private _headerSwitcher: Nullable<DOMbuilder>;
 
   constructor(win: Window) {
     this._win = win;

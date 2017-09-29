@@ -1,3 +1,5 @@
+import { Nullable } from 'option-t/es6/Nullable';
+
 import { Port } from '../../../typings/webext/runtime';
 
 import { RemoteActionBase } from './RemoteAction';
@@ -15,7 +17,7 @@ export type Packet<T> = Readonly<{
 
 export class Channel {
 
-    private _port: Port | null;
+    private _port: Nullable<Port>;
     private _callback: Map<number, PromiseTuple>;
     private _callbackId: number;
     private _subject: Subject<Packet<any>>;

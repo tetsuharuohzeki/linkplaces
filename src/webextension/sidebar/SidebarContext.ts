@@ -1,3 +1,4 @@
+import { Nullable } from 'option-t/es6/Nullable';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Subscription } from 'rxjs';
@@ -19,7 +20,7 @@ import { SidebarRepository } from './SidebarRepository';
 export class SidebarContext implements ViewContext {
 
     private _list: Array<BookmarkTreeNode>;
-    private _subscription: Subscription | null;
+    private _subscription: Nullable<Subscription>;
 
     private _intent: SidebarIntent;
     private _repo: SidebarRepository;

@@ -1,3 +1,4 @@
+import { Nullable } from 'option-t/es6/Nullable';
 import * as React from 'react';
 //import * as PropTypes from 'prop-types';
 
@@ -18,7 +19,7 @@ export interface SidebarViewProps {
 }
 
 export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
-    const items: Array<Array<JSX.Element> | null> = [
+    const items: Array<Nullable<Array<JSX.Element>>> = [
     ];
     let level = 0;
     for (let list = props.state.list, i = 0, l = list.length; i < l; ++i) {

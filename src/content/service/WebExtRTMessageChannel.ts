@@ -2,6 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+import { Nullable } from 'option-t/es6/Nullable';
+
 import { WebExtGlobal } from '../../../typings/webext';
 import { WebExtRuntimeService, Port } from '../../../typings/webext/runtime';
 
@@ -32,7 +34,7 @@ export class WebExtRTMessageChannel {
         return inst;
     }
 
-    private _port: Port | null;
+    private _port: Nullable<Port>;
     private _callback: Map<number, PromiseTuple>;
     private _callbackId: number;
     private _listeners: Set<Listener>;
