@@ -10,8 +10,8 @@
 // http://eslint.org/docs/configuring/#comments-in-configuration-files
 module.exports = {
     'extends': [
-        './tools/eslint/eslintrc_core.js',
-        './tools/eslint/eslintrc_react.js',
+        './node_modules/eslint-config-fluct/config/eslintrc_core.js',
+        './node_modules/eslint-config-fluct/config/eslintrc_react.js',
     ],
 
     'parserOptions': {
@@ -25,5 +25,6 @@ module.exports = {
     'root': true,
 
     'rules': {
+        'no-magic-numbers': 'off',
     }
 };
