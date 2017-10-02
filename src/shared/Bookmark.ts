@@ -3,7 +3,7 @@ import {
     BookmarkTreeNodeItem,
     BookmarkTreeNodeFolder,
     BookmarkTreeNodeSeparator,
-} from '../../../typings/webext/bookmarks';
+} from '../../typings/webext/bookmarks';
 
 export function getUnfiledBoolmarkFolder(): Promise<Array<BookmarkTreeNode>> {
     // This code only works with Firefox.

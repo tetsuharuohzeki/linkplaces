@@ -1,6 +1,6 @@
 import { Nullable } from 'option-t/es6/Nullable';
 
-import { Port } from '../../../typings/webext/runtime';
+import { Port } from '../../typings/webext/runtime';
 
 import { RemoteActionBase } from './RemoteAction';
 

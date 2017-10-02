@@ -32,7 +32,7 @@ webext:
 __webext_xpi: clean_webext_artifacts \
      lint \
      webextension
-	$(NPM_BIN)/web-ext build -s $(CURDIR)/__dist/webextension
+	$(NPM_BIN)/web-ext build -s $(CURDIR)/__dist
 
 icon.png: clean_dist
 	$(NPM_BIN)/cpx $(CURDIR)/$@ $(CURDIR)/__dist --preserve
@@ -40,17 +40,17 @@ icon.png: clean_dist
 webextension: webextension_cp webextension_bundle
 
 webextension_cp: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/src/webextension/**/**.{json,html,css,svg}' $(CURDIR)/__dist/webextension --preserve
+	$(NPM_BIN)/cpx '$(CURDIR)/src/**/**.{json,html,css,svg}' $(CURDIR)/__dist --preserve
 webextension_bundle: webextension_bundle_background webextension_bundle_popup webextension_bundle_sidebar webextension_bundle_options
 webextension_bundle_background: clean_dist __obj
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/background/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/webextension/background/bundled.js --output.format iife
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/background/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/background/bundled.js --output.format iife
 
 webextension_bundle_popup: clean_dist __obj __external_dependency
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/popup/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/webextension/popup/bundled.js --output.format iife
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/popup/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/popup/bundled.js --output.format iife
 webextension_bundle_sidebar: clean_dist __obj __external_dependency
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/sidebar/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/webextension/sidebar/bundled.js --output.format iife
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/sidebar/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/sidebar/bundled.js --output.format iife
 webextension_bundle_options: clean_dist __obj __external_dependency
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/options/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/webextension/options/bundled.js --output.format iife
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/options/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/options/bundled.js --output.format iife
 
 __external_dependency: \
 	__external_dependency_react \
@@ -61,17 +61,17 @@ __external_dependency: \
 	__external_dependency_rxjs
 
 __external_dependency_react: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/react/umd/react.production.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
+	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/react/umd/react.production.min.js' $(CURDIR)/__dist/third_party --preserve
 __external_dependency_react_dom: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/react-dom/umd/react-dom.production.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
+	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/react-dom/umd/react-dom.production.min.js' $(CURDIR)/__dist/third_party --preserve
 __external_dependency_prop_types: clean_dist
-		$(NPM_BIN)/cpx '$(CURDIR)/node_modules/prop-types/prop-types.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
+		$(NPM_BIN)/cpx '$(CURDIR)/node_modules/prop-types/prop-types.min.js' $(CURDIR)/__dist/third_party --preserve
 __external_dependency_redux: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/redux/dist/redux.js' $(CURDIR)/__dist/webextension/third_party --preserve
+	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/redux/dist/redux.js' $(CURDIR)/__dist/third_party --preserve
 __external_dependency_redux_thunk: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/redux-thunk/dist/redux-thunk.js' $(CURDIR)/__dist/webextension/third_party --preserve
+	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/redux-thunk/dist/redux-thunk.js' $(CURDIR)/__dist/third_party --preserve
 __external_dependency_rxjs: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/rxjs/bundles/Rx.min.js' $(CURDIR)/__dist/webextension/third_party --preserve
+	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/rxjs/bundles/Rx.min.js' $(CURDIR)/__dist/third_party --preserve
 
 __obj: clean_obj
 	$(NPM_BIN)/tsc -p ./tsconfig.json --outDir $(CURDIR)/__obj/src/
@@ -91,7 +91,7 @@ tscheck:
 	$(NPM_BIN)/tsc -p ./tsconfig.json --noEmit
 
 stylelint:
-	$(NPM_BIN)/stylelint '$(CURDIR)/src/webextension/**/*.css' \
+	$(NPM_BIN)/stylelint '$(CURDIR)/src/**/*.css' \
 		--config=$(CURDIR)/stylelint.config.js \
 		-f verbose \
 		--color

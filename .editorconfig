@@ -11,7 +11,7 @@ trim_trailing_whitespace=true
 indent_style = space
 indent_size = 2
 
-[*.{html,js,ts}]
+[*.{html,js,jsx,ts,tsx,css}]
 indent_size = 4
 
 [tools/eslint/**.js]

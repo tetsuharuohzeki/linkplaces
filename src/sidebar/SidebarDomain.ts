@@ -1,4 +1,4 @@
-import { BookmarkTreeNode } from '../../../typings/webext/bookmarks';
+import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
 export interface SidebarItemViewValue {
     bookmark: BookmarkTreeNode;

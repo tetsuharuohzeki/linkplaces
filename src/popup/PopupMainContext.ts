@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import { Channel } from '../shared/Channel';
 import { ViewContext } from '../shared/ViewContext';
 
-import { BookmarkTreeNode, OnChangeInfo } from '../../../typings/webext/bookmarks';
+import { BookmarkTreeNode, OnChangeInfo } from '../../typings/webext/bookmarks';
 
 import { PopupMainView } from './PopupMainView';
 

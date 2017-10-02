@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { Channel } from '../shared/Channel';
 import { ViewContext } from '../shared/ViewContext';
 
-import { BookmarkTreeNode } from '../../../typings/webext/bookmarks';
+import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
 import { SidebarView, SidebarViewProps } from './SidebarView';
 

@@ -2,7 +2,7 @@ import { Nullable } from 'option-t/es6/Nullable';
 import * as React from 'react';
 //import * as PropTypes from 'prop-types';
 
-import { BookmarkTreeNodeItem } from '../../../typings/webext/bookmarks';
+import { BookmarkTreeNodeItem } from '../../typings/webext/bookmarks';
 
 import {
     isBookmarkTreeNodeItem,

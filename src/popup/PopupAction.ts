@@ -1,7 +1,7 @@
 import {
     OnChangeInfo,
     BookmarkTreeNode,
-} from '../../../typings/webext/bookmarks';
+} from '../../typings/webext/bookmarks';
 
 export const enum ActionType {
     Init = 'POPUP_ACTION_INIT',

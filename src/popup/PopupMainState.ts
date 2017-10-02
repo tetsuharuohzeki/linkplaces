@@ -1,5 +1,5 @@
 import { combineReducers, Reducer, } from 'redux';
-import { BookmarkTreeNode } from '../../../typings/webext/bookmarks';
+import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 import { Action, ActionType } from './PopupAction';
 
 export interface PopupMainState {

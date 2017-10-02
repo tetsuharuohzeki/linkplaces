@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Store } from 'redux';
 //import * as PropTypes from 'prop-types';
 
-import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../../typings/webext/bookmarks';
+import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../typings/webext/bookmarks';
 
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../shared/Bookmark';
 

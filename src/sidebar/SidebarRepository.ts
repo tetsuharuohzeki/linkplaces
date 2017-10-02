@@ -1,6 +1,6 @@
 import { Observable, Observer, Subject } from 'rxjs';
 
-import { BookmarkTreeNode, WebExtBookmarkService } from '../../../typings/webext/bookmarks';
+import { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bookmarks';
 
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
 import { Repository } from '../shared/Repository';

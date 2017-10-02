@@ -1,4 +1,4 @@
-import { WebExtSidebarActionService } from '../../../typings/webext/sidebarAction';
+import { WebExtSidebarActionService } from '../../typings/webext/sidebarAction';
 
 import { Channel } from './Channel';
 import {

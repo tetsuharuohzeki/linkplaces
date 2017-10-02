@@ -6,7 +6,7 @@
 /* eslint-env webextensions */
 
 // @ts-ignore
-import * as _ from '../../../typings/webext/index'; // eslint-disable-line no-unused-vars
+import * as _ from '../typings/webext/index'; // eslint-disable-line no-unused-vars
 import {
     removeBookmarkItem as removeBookmarkItemWebExt,
     createBookmarkItem as createBookmarkItemWebExt,
