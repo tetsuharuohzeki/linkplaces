@@ -3,71 +3,9 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 // @ts-check
 
-import {
-    IPC_MSG_TYPE_OPEN_PRIVILEGED_URL,
-    IPC_MSG_TYPE_OPEN_TAB,
-    IPC_MSG_TYPE_OPEN_TAB_RESULT,
-} from './OverIpcAction';
-
 import { getLinkSchemeType } from './Bookmark';
-import { BrowserMessagePort } from './BrowserMessagePort';
 import { createTab } from './TabOpener';
-
-/*eslint-env webextensions */
-/* global console: false */
-
-// @ts-ignore
-export const gClassicRuntimePort = BrowserMessagePort.create(browser, async (msg /* :IpcMsg<{| where: string; url: string; |}> */,
-    // @ts-ignore
-    sender /* :webext$runtime$MessageSender & webext$runtime$Port */) => {
-    const { type, id, value } = msg;
-    switch (type) {
-        case IPC_MSG_TYPE_OPEN_TAB: {
-            const { url, where } = value;
-            try {
-                const res = await onMessageCreateTab(id, url, where);
-                sender.postMessage(res);
-            }
-            catch (e) {
-                console.error(e);
-            }
-            break;
-        }
-    }
-});
-
-/**
- *  @param {number} msgId
- *  @param {string} url
- *  @param {string} where
- *  @returns {Promise<any>}
- */
-async function onMessageCreateTab(msgId, url, where) {
-    let value = null;
-    try {
-        const tabId = await openUrl(url, where);
-        value = {
-            ok: true,
-            tabId: tabId,
-            error: null,
-        };
-    }
-    catch (e) {
-        value = {
-            ok: false,
-            tabId: null,
-            error: e.message,
-        };
-    }
-
-    const response = {
-        id: msgId,
-        type: IPC_MSG_TYPE_OPEN_TAB_RESULT,
-        value,
-    };
-
-    return response;
-}
+import { NoImplementationError } from '../shared/NoImplementationError';
 
 /**
  *  @param {string} url
@@ -75,18 +13,11 @@ async function onMessageCreateTab(msgId, url, where) {
  *  @returns {Promise<number> | Promise<null>}
  */
 export function openUrl(url, where) {
-    const { isPrivileged, type } = getLinkSchemeType(url);
+    const { isPrivileged } = getLinkSchemeType(url);
     let opened = null;
     if (isPrivileged) {
-        if (type === 'javascript') {
-            throw new EvalError('Linkplaces does not support `javascript:` scheme.');
-        }
-        else {
-            gClassicRuntimePort.postOneShotMessage(IPC_MSG_TYPE_OPEN_PRIVILEGED_URL, {
-                url,
-            });
-            opened = Promise.resolve(null);
-        }
+        const e = new NoImplementationError('opening a privileged url');
+        opened = Promise.reject(e);
     }
     else {
         opened = createTab(url, where);

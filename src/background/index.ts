@@ -9,11 +9,9 @@ import {
     MSG_TYPE_OPEN_URL,
     MSG_TYPE_OPEN_ORGANIZE_WINDOW,
 } from '../shared/RemoteAction';
-import {
-    IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY,
-} from './OverIpcAction';
-import { gClassicRuntimePort, openUrl } from './port';
 import { Packet } from '../shared/Channel';
+import { NoImplementationError } from '../shared/NoImplementationError';
+import { openUrl } from './port';
 
 (function main() {
 
@@ -40,11 +38,8 @@ function onMessageFromPopup(packet: Packet<RemoteAction>) {
             break;
         }
         case MSG_TYPE_OPEN_ORGANIZE_WINDOW: {
-            const { bookmarkId: id } = msg.value;
-            gClassicRuntimePort.postOneShotMessage(IPC_MSG_TYPE_CLASSIC_OPEN_FOLDER_IN_LIBRARY, {
-                id,
-            });
-            break;
+            const e = new NoImplementationError('opening the places organizer window');
+            throw e;
         }
         default:
             throw new RangeError(`undefined type: ${JSON.stringify(msg)}`);

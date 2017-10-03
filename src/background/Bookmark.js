@@ -11,11 +11,6 @@ import {
     removeBookmarkItem as removeBookmarkItemWebExt,
     createBookmarkItem as createBookmarkItemWebExt,
 } from '../shared/Bookmark';
-import {
-    IPC_MSG_TYPE_CLASSIC_CREATE_ITEM,
-    IPC_MSG_TYPE_CLASSIC_REMOVE_ITEM
-} from './OverIpcAction';
-import { gClassicRuntimePort } from './port';
 
 export {
     getLinkSchemeType,
@@ -33,10 +28,6 @@ export const useClassicBookmarkBackend =
  */
 export function createBookmarkItem(url, title) {
     if (useClassicBookmarkBackend) {
-        gClassicRuntimePort.postOneShotMessage(IPC_MSG_TYPE_CLASSIC_CREATE_ITEM, {
-            url,
-            title,
-        });
         return Promise.resolve();
     }
     else {
@@ -51,9 +42,6 @@ export function createBookmarkItem(url, title) {
  */
 export function removeBookmarkItem(id) {
     if (useClassicBookmarkBackend) {
-        gClassicRuntimePort.postOneShotMessage(IPC_MSG_TYPE_CLASSIC_REMOVE_ITEM, {
-            id,
-        });
         return Promise.resolve();
     }
     else {
