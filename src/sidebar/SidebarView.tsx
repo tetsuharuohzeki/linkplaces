@@ -1,3 +1,6 @@
+import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/map';
+import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
+
 import { Nullable } from 'option-t/es6/Nullable';
 import * as React from 'react';
 //import * as PropTypes from 'prop-types';
@@ -44,19 +47,20 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
         }
     }
 
-    const r: Array<JSX.Element> = [];
-    for (const inner of items) {
+    const mapped = mapIx(items, (inner: Nullable<Array<JSX.Element>>) => {
         if (inner === null) {
-            r.push(<hr/>);
+            return (<hr/>);
         }
         else {
-            r.push(
+            return (
                 <ul className={'sidebar__list_container'}>
                     {inner}
                 </ul>
             );
         }
-    }
+    });
+    const r: Array<JSX.Element> = toArrayFromIx(mapped);
+
     return (
         <div>
             {r}
