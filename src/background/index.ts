@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { removeBookmarkItem, } from './Bookmark';
+import { removeBookmarkItem, getLinkSchemeType, } from './Bookmark';
 import { createContextMenu } from './ContextMenu';
 import {
     RemoteAction,
@@ -11,7 +11,7 @@ import {
 } from '../shared/RemoteAction';
 import { Packet } from '../shared/Channel';
 import { NoImplementationError } from '../shared/NoImplementationError';
-import { openUrl } from './port';
+import { createTab } from './TabOpener';
 
 (function main() {
 
@@ -49,4 +49,18 @@ function onMessageFromPopup(packet: Packet<RemoteAction>) {
 async function openUrlFromPopup(url: string, bookmarkId: string): Promise<void> {
     await openUrl(url, 'tab');
     await removeBookmarkItem(bookmarkId);
+}
+
+function openUrl(url: string, where: string): Promise<number> {
+    const { isPrivileged } = getLinkSchemeType(url);
+    let opened = null;
+    if (isPrivileged) {
+        const e = new NoImplementationError('opening a privileged url');
+        opened = Promise.reject(e);
+    }
+    else {
+        opened = createTab(url, where);
+    }
+
+    return opened;
 }
