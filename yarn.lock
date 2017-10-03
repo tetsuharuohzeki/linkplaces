@@ -2,6 +2,12 @@
 # yarn lockfile v1
 
 
+"@reactivex/ix-esnext-esm@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@reactivex/ix-esnext-esm/-/ix-esnext-esm-2.1.2.tgz#5826fdabf0accef69366ebdeb92afa80602fa3be"
+  dependencies:
+    tslib "^1.7.1"
+
 "@types/prop-types@^15.5.1":
   version "15.5.2"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.2.tgz#3c6b8dceb2906cc87fe4358e809f9d20c8d59be1"

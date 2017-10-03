@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/saneyuki/linkplaces",
   "dependencies": {
+    "@reactivex/ix-esnext-esm": "^2.1.2",
     "@types/prop-types": "^15.5.1",
     "@types/react": "^16.0.7",
     "@types/react-dom": "^15.5.5",
