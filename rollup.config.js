@@ -48,7 +48,7 @@ module.exports = {
 
             // rollup does not have 'extensions' option,
             // so we need to specify this option at here to import jsx file.
-            extensions: ['.js', '.jsx'],
+            extensions: ['.mjs', '.js', '.jsx'],
         }),
 
         replace({
