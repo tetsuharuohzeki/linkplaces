@@ -1,4 +1,4 @@
-import { Nullable } from 'option-t/es6/Nullable';
+import { Nullable } from 'option-t/esm/Nullable';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Store, Unsubscribe } from 'redux';

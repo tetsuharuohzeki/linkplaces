@@ -1,7 +1,7 @@
 import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/map';
 import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
 
-import { Nullable } from 'option-t/es6/Nullable';
+import { Nullable } from 'option-t/esm/Nullable';
 import * as React from 'react';
 //import * as PropTypes from 'prop-types';
 

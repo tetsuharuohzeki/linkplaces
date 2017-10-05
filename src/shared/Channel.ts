@@ -1,4 +1,4 @@
-import { Nullable } from 'option-t/es6/Nullable';
+import { Nullable } from 'option-t/esm/Nullable';
 
 import { Port } from '../../typings/webext/runtime';
 

@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Maybe } from 'option-t/es6/Maybe';
+import { Maybe } from 'option-t/esm/Maybe';
 import { OnClickData, CreateArgument } from '../../typings/webext/contextMenus';
 import { Tab } from '../../typings/webext/tabs';
 
