@@ -54,6 +54,8 @@
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
 
+    "skipLibCheck": true, // Workaround the error TS2415 on node_modules/rxjs/scheduler/VirtualTimeScheduler.d.ts
+
     "plugins": [
       //{ "name": "tslint-language-service"}
     ]

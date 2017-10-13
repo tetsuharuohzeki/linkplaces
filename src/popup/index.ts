@@ -25,6 +25,6 @@ import { createChannel } from './PopupMessageChannel';
     ctx.onActivate(mountpoint);
 })().catch(console.error);
 
-function disableCtxMenu(event: MouseEvent) {
+function disableCtxMenu(event: Event) {
     event.preventDefault();
 }

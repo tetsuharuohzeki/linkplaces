@@ -12,13 +12,11 @@ export class SidebarViewEpic implements Epic {
 
     private _subscription: Nullable<Subscription>;
     private _intent: SidebarIntent;
-    private _repository: SidebarRepository;
     private _channel: Channel;
 
-    constructor(intent: SidebarIntent, repository: SidebarRepository, channel: Channel) {
+    constructor(intent: SidebarIntent, _repository: SidebarRepository, channel: Channel) {
         this._subscription = null;
         this._intent = intent;
-        this._repository = repository;
         this._channel = channel;
     }
 

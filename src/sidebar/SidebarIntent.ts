@@ -34,7 +34,7 @@ export const enum ActionType {
 }
 
 export type Action =
-    OpenItemAction;
+    OpenItemAction | SelectItemAction;
 
 interface ActionBase {
     type: ActionType;
