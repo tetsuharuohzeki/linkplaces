@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/saneyuki/linkplaces",
   "dependencies": {
-    "@reactivex/ix-esnext-esm": "^2.1.4",
+    "@reactivex/ix-esnext-esm": "^2.2.0",
     "@types/prop-types": "^15.5.1",
     "@types/react": "^16.0.10",
     "@types/react-dom": "^16.0.1",
@@ -30,7 +30,7 @@
     "babel-preset-react": "^6.24.1",
     "cpx": "^1.5.0",
     "del-cli": "^1.1.0",
-    "eslint": "^4.5.0",
+    "eslint": "^4.9.0",
     "eslint-config-fluct": "https://github.com/voyagegroup/eslint-config-fluct/archive/3714e0ab5ef6b142f544dd48f5f1504bc2594f4f.tar.gz",
     "eslint-plugin-react": "^7.3.0",
     "option-t": "^9.0.1",
@@ -49,6 +49,6 @@
     "tslint": "^5.7.0",
     "tslint-language-service": "^0.9.6",
     "typescript": "^2.6.0-rc",
-    "web-ext": "^2.0.0"
+    "web-ext": "^2.2.2"
   }
 }
