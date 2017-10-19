@@ -1,7 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "LinkPlaces (WebExt)",
+  "name": "LinkPlaces",
   "version": "0.0.1",
+  "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
   "applications": {
     "gecko": {
       "id": "linkplaces.webext@saneyuki_s",
