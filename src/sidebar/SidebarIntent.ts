@@ -1,4 +1,4 @@
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, operators } from 'rxjs';
 
 import { Dispatchable } from '../shared/Intent';
 
@@ -20,11 +20,17 @@ export class SidebarIntent implements Dispatchable<Action> {
     }
 
     openItem(): Observable<OpenItemAction> {
-        return this._subject.asObservable().filter(isOpenItemAction);
+        return this._subject.asObservable()
+            .pipe(
+                operators.filter(isOpenItemAction),
+            );
     }
 
     selectItem(): Observable<SelectItemAction> {
-        return this._subject.asObservable().filter(isSelectItemAction);
+        return this._subject.asObservable()
+            .pipe(
+                operators.filter(isSelectItemAction)
+            );
     }
 }
 
