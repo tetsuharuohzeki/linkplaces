@@ -1,7 +1,5 @@
 {
-  "title": "LinkPlaces",
   "name": "linkplaces",
-  "id": "linkplaces@saneyuki_s",
   "version": "0.10.0",
   "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
   "scripts": {
