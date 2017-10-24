@@ -44,7 +44,7 @@
     "rxjs": "^5.5.0",
     "stylelint": "^8.2.0",
     "stylelint-config-standard": "^17.0.0",
-    "tslint": "^5.7.0",
+    "tslint": "^5.8.0",
     "tslint-language-service": "^0.9.6",
     "typescript": "^2.6.0-rc",
     "web-ext": "^2.2.2"
