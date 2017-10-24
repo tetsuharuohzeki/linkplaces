@@ -45,6 +45,7 @@
     "stylelint": "^8.2.0",
     "stylelint-config-standard": "^17.0.0",
     "tslint": "^5.8.0",
+    "tslint-config-fluct": "https://github.com/voyagegroup/tslint-config-fluct/archive/fa9ff65ad23ddcf6c92b86c23f9b2b4517c5a8b8.tar.gz",
     "tslint-language-service": "^0.9.6",
     "typescript": "^2.6.0-rc",
     "web-ext": "^2.2.2"

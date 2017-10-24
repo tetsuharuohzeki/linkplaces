@@ -4377,6 +4377,10 @@ tslib@^1.7.1:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.8.0.tgz#dc604ebad64bcbf696d613da6c954aa0e7ea1eb6"
 
+"tslint-config-fluct@https://github.com/voyagegroup/tslint-config-fluct/archive/fa9ff65ad23ddcf6c92b86c23f9b2b4517c5a8b8.tar.gz":
+  version "0.0.0"
+  resolved "https://github.com/voyagegroup/tslint-config-fluct/archive/fa9ff65ad23ddcf6c92b86c23f9b2b4517c5a8b8.tar.gz#9130f303b32ddda70657bc3fa9bf9c49c9925977"
+
 tslint-language-service@^0.9.6:
   version "0.9.6"
   resolved "https://registry.yarnpkg.com/tslint-language-service/-/tslint-language-service-0.9.6.tgz#882bb0704cf8397b332ddc0af7168c7f22f279ea"
