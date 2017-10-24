@@ -20,16 +20,16 @@
   version "15.5.2"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.2.tgz#3c6b8dceb2906cc87fe4358e809f9d20c8d59be1"
 
-"@types/react-dom@^16.0.1":
+"@types/react-dom@^16.0.2":
   version "16.0.2"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.2.tgz#2da9de21fd83f0140b64794ad9c47930230aedae"
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.0.14":
-  version "16.0.15"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.15.tgz#1b1eba408fc75735b3e53a83333c346eeeb0022b"
+"@types/react@*", "@types/react@^16.0.18":
+  version "16.0.18"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.18.tgz#c08eea79ada55bf10b5353e18c21797dd17afa23"
 
 JSONSelect@0.2.1:
   version "0.2.1"

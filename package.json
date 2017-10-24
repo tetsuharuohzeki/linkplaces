@@ -22,8 +22,8 @@
   "dependencies": {
     "@reactivex/ix-esnext-esm": "^2.2.0",
     "@types/prop-types": "^15.5.1",
-    "@types/react": "^16.0.14",
-    "@types/react-dom": "^16.0.1",
+    "@types/react": "^16.0.18",
+    "@types/react-dom": "^16.0.2",
     "babel-core": "^6.26.0",
     "babel-preset-react": "^6.24.1",
     "cpx": "^1.5.0",
