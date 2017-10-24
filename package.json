@@ -29,7 +29,7 @@
     "cpx": "^1.5.0",
     "del-cli": "^1.1.0",
     "eslint": "^4.9.0",
-    "eslint-config-fluct": "https://github.com/voyagegroup/eslint-config-fluct/archive/3714e0ab5ef6b142f544dd48f5f1504bc2594f4f.tar.gz",
+    "eslint-config-fluct": "https://github.com/voyagegroup/eslint-config-fluct/archive/e90dfbe615494c52281b6a85952cff339262289b.tar.gz",
     "eslint-plugin-react": "^7.3.0",
     "option-t": "^9.0.1",
     "prop-types": "^15.5.10",
