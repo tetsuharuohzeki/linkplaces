@@ -38,7 +38,7 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
 
         if (isBookmarkTreeNodeSeparator(item.bookmark)) {
             items.push(null);
-            level = level + 2;
+            level = level + 2; // tslint:disable-line:no-magic-numbers
             items[level] = [];
         }
         else {

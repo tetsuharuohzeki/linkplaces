@@ -7,7 +7,6 @@
 
   "rules": {
     "member-ordering": false,
-    "no-magic-numbers": false,
     "no-object-literal-type-assertion": false
   }
 }
