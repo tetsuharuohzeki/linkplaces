@@ -6,7 +6,7 @@ export const MSG_TYPE_OPEN_ORGANIZE_WINDOW = 'linkplaces-open-classic-organize-w
 
 export interface RemoteActionBase {
     type: string;
-    value?: any;
+    value?: any; // tslint:disable-line: no-any
 }
 
 export interface OpenUrlAction extends RemoteActionBase {

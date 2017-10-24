@@ -49,7 +49,7 @@ export function isBookmarkTreeNodeItem(v: BookmarkTreeNode): v is BookmarkTreeNo
         return true;
     }
 
-    const is = typeof (v as any).url === 'string';
+    const is = typeof (v as any).url === 'string'; // tslint:disable-line: no-any
     return is;
 }
 
