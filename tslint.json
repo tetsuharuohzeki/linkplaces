@@ -6,7 +6,6 @@
   "defaultSeverity": "warn",
 
   "rules": {
-    "member-ordering": false,
-    "no-object-literal-type-assertion": false
+    "member-ordering": false
   }
 }

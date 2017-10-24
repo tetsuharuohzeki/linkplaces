@@ -3,7 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { Maybe } from 'option-t/esm/Maybe';
-import { OnClickData, CreateArgument } from '../../typings/webext/contextMenus';
+import { OnClickData, CreateArgument, ContextType } from '../../typings/webext/contextMenus';
 import { Tab } from '../../typings/webext/tabs';
 
 import { createBookmarkItem } from './Bookmark';
@@ -12,26 +12,20 @@ const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';
 const CTXMENU_ID_CONTENT_SAVE_PAGE = 'linkplaces-ctx-content-save-page';
 const CTXMENU_ID_LINK_SAVE_LINK = 'linkplaces-ctx-link-save-link';
 
+function createCtxMenuArg(id: string, title: string, contexts: Array<ContextType>): CreateArgument {
+    return {
+        type: 'normal',
+        id,
+        title,
+        contexts,
+    };
+}
+
 export function createContextMenu(): void {
     const list: Array<CreateArgument> = [
-        {
-            type: 'normal',
-            id: CTXMENU_ID_TAB_SAVE_TAB,
-            title: 'Add Tab to LinkPlaces',
-            contexts: ['tab'],
-        } as CreateArgument,
-        {
-            type: 'normal',
-            id: CTXMENU_ID_CONTENT_SAVE_PAGE,
-            title: 'Add Page to LinkPlaces',
-            contexts: ['page'],
-        } as CreateArgument,
-        {
-            type: 'normal',
-            id: CTXMENU_ID_LINK_SAVE_LINK,
-            title: 'Add Link to LinkPlaces',
-            contexts: ['link'],
-        } as CreateArgument,
+        createCtxMenuArg(CTXMENU_ID_TAB_SAVE_TAB, 'Add Tab to LinkPlaces', ['tab']),
+        createCtxMenuArg(CTXMENU_ID_CONTENT_SAVE_PAGE, 'Add Page to LinkPlaces', ['page']),
+        createCtxMenuArg(CTXMENU_ID_LINK_SAVE_LINK, 'Add Link to LinkPlaces', ['link']),
     ];
 
     const onCreateList: Array<Promise<void>> = [];
