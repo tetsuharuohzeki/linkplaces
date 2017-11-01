@@ -1,4 +1,4 @@
-import { Nullable } from 'option-t/esm/Nullable';
+import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Store, Unsubscribe } from 'redux';
@@ -28,7 +28,7 @@ export class PopupMainContext implements ViewContext {
     }
 
     onActivate(mountpoint: Element): void {
-        if (this._disposerSet !== null) {
+        if (isNotNull(this._disposerSet)) {
             throw new TypeError();
         }
 
@@ -67,7 +67,7 @@ export class PopupMainContext implements ViewContext {
     }
 
     onDestroy(mountpoint: Element): void {
-        if (this._disposerSet === null) {
+        if (isNull(this._disposerSet)) {
             throw new TypeError();
         }
 

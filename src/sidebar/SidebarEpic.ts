@@ -1,4 +1,5 @@
-import { Nullable } from 'option-t/esm/Nullable';
+import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
+import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import { Subscription } from 'rxjs';
 
 import { Channel } from '../shared/Channel';
@@ -21,7 +22,7 @@ export class SidebarViewEpic implements Epic {
     }
 
     activate(): void {
-        if (this._subscription !== null) {
+        if (isNotNull(this._subscription)) {
             throw new TypeError('This has been activated. You cannot activate twice in the same lifecycle.');
         }
 
@@ -34,11 +35,7 @@ export class SidebarViewEpic implements Epic {
     }
 
     destroy(): void {
-        const s = this._subscription;
-        if (s === null) {
-            return;
-        }
-
+        const s = expectNotNull(this._subscription, 'This has been destroyed');
         s.unsubscribe();
         this._subscription = null;
     }

@@ -1,3 +1,4 @@
+import { isNull } from 'option-t/esm/Nullable/Nullable';
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
 import { SidebarContext } from './SidebarContext';
 import { createChannel } from './SidebarMessageChannel';
@@ -17,7 +18,7 @@ import { createChannel } from './SidebarMessageChannel';
     });
 
     const mountpoint = document.getElementById('js-mountpoint');
-    if (mountpoint === null) {
+    if (isNull(mountpoint)) {
         throw new TypeError('not found mountpoint');
     }
 

@@ -4,6 +4,9 @@
 // @ts-check
 /*eslint-env webextensions */
 
+import { expectNotNullAndUndefined } from 'option-t/esm/Maybe/expect';
+import { expectNotUndefined } from 'option-t/esm/Undefinable/expect';
+
 /**
  *  @param  {string}  url
  *  @param  {string}  where
@@ -37,10 +40,7 @@ export async function createTab(url, where) {
     }
 
     const newTab = await browser.tabs.create(option);
-    const id = newTab.id;
-    if (id === undefined || id === null) {
-        throw new TypeError('id should not null');
-    }
+    const id = expectNotNullAndUndefined(newTab.id, 'id should not null');
 
     return id;
 }
@@ -56,10 +56,7 @@ async function getCurrentTabId() {
     }
 
     const currentTab = tabList[0];
-    const currentId = currentTab.id;
-    if (currentId === undefined || currentId === null) {
-        throw new TypeError('currentId should not null');
-    }
+    const currentId = expectNotNullAndUndefined(currentTab.id, 'currentId should not null');
 
     return currentId;
 }
@@ -96,20 +93,8 @@ export async function openInNewWindow(url) {
         state: 'normal',
         incognito: current.incognito,
     });
-    const tabs /* :?Array<webext$tabs$Tab> */ = window.tabs;
-    if (!tabs) {
-        throw new TypeError('window.tabs should not be null');
-    }
-
-    const tab = tabs[0];
-    if (!tab) {
-        throw new TypeError('window.tabs[0] would be the current tab');
-    }
-
-    const id = tab.id;
-    if (id === undefined || id === null) {
-        throw new TypeError('id should not null');
-    }
-
+    const tabs = expectNotNullAndUndefined(window.tabs, 'window.tabs should not be null');
+    const tab = expectNotUndefined(tabs[0], 'window.tabs[0] would be the current tab');
+    const id = expectNotNullAndUndefined(tab.id, 'id should not null');
     return id;
 }

@@ -1,3 +1,5 @@
+import { isNull } from 'option-t/esm/Nullable/Nullable';
+
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
 import { PopupMainContext } from './PopupMainContext';
 import { createChannel } from './PopupMessageChannel';
@@ -17,7 +19,7 @@ import { createChannel } from './PopupMessageChannel';
     });
 
     const mountpoint = document.getElementById('js-mountpoint');
-    if (mountpoint === null) {
+    if (isNull(mountpoint)) {
         throw new TypeError('not found mountpoint');
     }
 

@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { Maybe } from 'option-t/esm/Maybe';
+import { Maybe, isNullOrUndefined } from 'option-t/esm/Maybe';
 import { OnClickData, CreateArgument, ContextType } from '../../typings/webext/contextMenus';
 import { Tab } from '../../typings/webext/tabs';
 
@@ -59,14 +59,14 @@ export function removeContextMenu(): Promise<void> {
 function onClicked(info: OnClickData, tab: Maybe<Tab>): void {
     switch (info.menuItemId) {
         case CTXMENU_ID_TAB_SAVE_TAB: {
-            if (tab === null || tab === undefined) {
+            if (isNullOrUndefined(tab)) {
                 throw new TypeError('could not find `tab`');
             }
             onClickSaveTab(tab).catch(console.error);
             break;
         }
         case CTXMENU_ID_CONTENT_SAVE_PAGE: {
-            if (tab === null || tab === undefined) {
+            if (isNullOrUndefined(tab)) {
                 throw new TypeError('could not find `tab`');
             }
             onClickSavePage(info, tab).catch(console.error);

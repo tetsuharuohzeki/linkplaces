@@ -1,7 +1,10 @@
 import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/map';
 import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
 
-import { Nullable } from 'option-t/esm/Nullable';
+import { Nullable, isNull } from 'option-t/esm/Nullable/Nullable';
+import { mapOrElseForNullable } from 'option-t/esm/Nullable/mapOrElse';
+import { isUndefined } from 'option-t/esm/Undefinable/Undefinable';
+
 import * as React from 'react';
 //import * as PropTypes from 'prop-types';
 
@@ -28,11 +31,11 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
     for (let list = props.state.list, i = 0, l = list.length; i < l; ++i) {
         const item = list[i];
         let inner = items[level];
-        if (inner === undefined) {
+        if (isUndefined(inner)) {
             inner = [];
             items[level] = inner;
         }
-        else if (inner === null) {
+        else if (isNull(inner)) {
             throw new TypeError();
         }
 
@@ -48,16 +51,16 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
     }
 
     const mapped = mapIx(items, (inner: Nullable<Array<JSX.Element>>) => {
-        if (inner === null) {
+        const element = mapOrElseForNullable(inner, () => {
             return (<hr/>);
-        }
-        else {
+        }, (inner) => {
             return (
                 <ul className={'sidebar__list_container'}>
                     {inner}
                 </ul>
             );
-        }
+        });
+        return element;
     });
     const r: Array<JSX.Element> = toArrayFromIx(mapped);
 

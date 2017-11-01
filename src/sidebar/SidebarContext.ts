@@ -1,4 +1,5 @@
-import { Nullable } from 'option-t/esm/Nullable';
+import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
+import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Subscription } from 'rxjs';
@@ -38,7 +39,7 @@ export class SidebarContext implements ViewContext {
     }
 
     onActivate(mountpoint: Element): void {
-        if (this._subscription !== null) {
+        if (isNotNull(this._subscription)) {
             throw new TypeError();
         }
 
@@ -60,11 +61,9 @@ export class SidebarContext implements ViewContext {
     }
 
     onDestroy(mountpoint: Element): void {
-        if (this._subscription === null) {
-            throw new TypeError();
-        }
+        const subscription = expectNotNull(this._subscription, '');
+        subscription.unsubscribe();
 
-        this._subscription.unsubscribe();
         this._subscription = null;
 
         ReactDOM.unmountComponentAtNode(mountpoint);

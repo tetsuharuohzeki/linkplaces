@@ -1,4 +1,6 @@
-import { Nullable } from 'option-t/esm/Nullable';
+import { Nullable } from 'option-t/esm/Nullable/Nullable';
+import { expectNotNull } from 'option-t/esm/Nullable/expect';
+import { isNotUndefined, isUndefined } from 'option-t/esm/Undefinable/Undefinable';
 
 import { Port } from '../../typings/webext/runtime';
 
@@ -50,21 +52,18 @@ export class Channel {
     }
 
     private _finalize() {
-        if (this._port === null) {
-            throw new TypeError(`this port must not be null`);
-        }
-        this._port.disconnect();
-        this._port.onMessage.removeListener(this._listener);
+        const port = expectNotNull(this._port, 'this port must not be null');
+
+        port.disconnect();
+        port.onMessage.removeListener(this._listener);
+
         this._callback.clear();
         this._subject.destroy();
     }
 
     postMessage<TMessage extends RemoteActionBase, R>(msg: TMessage): Promise<R> {
         const task = new Promise<R>((resolve, reject) => {
-            const port = this._port;
-            if (!port) {
-                throw new TypeError('`this._port` is null');
-            }
+            const port = expectNotNull(this._port, 'this._port` is null');
 
             const id = this._callbackId;
             this._callbackId = id + 1;
@@ -105,21 +104,17 @@ export class Channel {
             isRequest: false,
         };
 
-        const port = this._port;
-        if (!port) {
-            throw new TypeError('`this._port` is null');
-        }
-
+        const port = expectNotNull(this._port, 'this._port` is null');
         port.postMessage(message);
     }
 
     private _onPortMessage<T extends RemoteActionBase>(msg: Packet<T>): void {
         const { id, payload, isRequest, } = msg;
-        if (id === undefined) {
+        if (isUndefined(id)) {
             throw new TypeError('in this path, Packet.id must not be undefined.');
         }
 
-        if (isRequest !== undefined && isRequest === true) {
+        if (isNotUndefined(isRequest) && isRequest === true) {
             this._subject.next(msg);
             return;
         }
