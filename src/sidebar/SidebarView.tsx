@@ -25,11 +25,9 @@ export interface SidebarViewProps {
 }
 
 export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
-    const items: Array<Nullable<Array<JSX.Element>>> = [
-    ];
+    const items: Array<Nullable<Array<JSX.Element>>> = [];
     let level = 0;
-    for (let list = props.state.list, i = 0, l = list.length; i < l; ++i) {
-        const item = list[i];
+    for (const [i, item] of props.state.list.entries()) {
         let inner = items[level];
         if (isUndefined(inner)) {
             inner = [];
