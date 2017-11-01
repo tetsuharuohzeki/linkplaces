@@ -22,7 +22,7 @@
   "dependencies": {
     "@reactivex/ix-esnext-esm": "^2.2.0",
     "@types/prop-types": "^15.5.1",
-    "@types/react": "^16.0.18",
+    "@types/react": "^16.0.19",
     "@types/react-dom": "^16.0.2",
     "babel-core": "^6.26.0",
     "babel-preset-react": "^6.24.1",
@@ -31,7 +31,7 @@
     "eslint": "^4.10.0",
     "eslint-config-fluct": "https://github.com/voyagegroup/eslint-config-fluct/archive/e90dfbe615494c52281b6a85952cff339262289b.tar.gz",
     "eslint-plugin-react": "^7.3.0",
-    "option-t": "^9.0.3",
+    "option-t": "^10.0.0",
     "prop-types": "^15.5.10",
     "react": "^16.0.0-rc.2",
     "react-dom": "^16.0.0-rc.2",
