@@ -13,7 +13,10 @@ function getUrl(path: string): { url: string; title: string; } {
 
 (async function main(){
     const view = React.createElement(OptionsView, {
-        popup: getUrl('popup/index.html'),
+        list: [
+            getUrl('popup/index.html'),
+            getUrl('sidebar/index.html'),
+        ],
     }, []);
     const mountpoint = document.getElementById('js-mountpoint');
     ReactDOM.render(view, mountpoint);
