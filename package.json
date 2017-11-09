@@ -37,7 +37,7 @@
     "react-dom": "^16.0.0-rc.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "rollup": "^0.50.0",
+    "rollup": "^0.51.2",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^2.0.0",
