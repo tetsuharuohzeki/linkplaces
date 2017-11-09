@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@reactivex/ix-esnext-esm@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@reactivex/ix-esnext-esm/-/ix-esnext-esm-2.3.0.tgz#48a0d852135798aa7eb96143ab26dd89d8fb33dc"
+"@reactivex/ix-esnext-esm@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@reactivex/ix-esnext-esm/-/ix-esnext-esm-2.3.1.tgz#5fad04cd54a8cbda8d5ae49ffec819aef063de38"
   dependencies:
     tslib "^1.8.0"
 
