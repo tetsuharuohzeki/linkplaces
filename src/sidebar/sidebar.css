@@ -6,7 +6,7 @@
 }
 
 .sidebar__listitem_container {
-    margin: 1px 0;
+    margin: 5px 0;
 }
 
 .sidebar__listitem_container--is_selected {
@@ -23,8 +23,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    vertical-align: text-top;
 }
 
 .sidebar__listitem_text_inner--is_selected {
     color: white;
+}
+
+.sidebar__listitem_text_inner--is_separator {
+    list-style-type: none;
 }
