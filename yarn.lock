@@ -1362,9 +1362,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-"eslint-config-fluct@https://github.com/voyagegroup/eslint-config-fluct/archive/e90dfbe615494c52281b6a85952cff339262289b.tar.gz":
+"eslint-config-fluct@https://github.com/voyagegroup/eslint-config-fluct/archive/110c24e6ff2797e3d98d137a5085b4e597ebb5c4.tar.gz":
   version "0.0.0"
-  resolved "https://github.com/voyagegroup/eslint-config-fluct/archive/e90dfbe615494c52281b6a85952cff339262289b.tar.gz#69f30bbc1e3aee5bd5e56a6a98607f8b8683da67"
+  resolved "https://github.com/voyagegroup/eslint-config-fluct/archive/110c24e6ff2797e3d98d137a5085b4e597ebb5c4.tar.gz#da26b18ffa6c26bcfb4bd0d996984d7f61454c7f"
   optionalDependencies:
     eslint-plugin-node "^5.2.0"
     eslint-plugin-react "^7.4.0"
@@ -4386,9 +4386,9 @@ tslib@^1.7.1, tslib@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.8.0.tgz#dc604ebad64bcbf696d613da6c954aa0e7ea1eb6"
 
-"tslint-config-fluct@https://github.com/voyagegroup/tslint-config-fluct/archive/bea4ae2a364209a14003a6f8c7763078aa53e208.tar.gz":
+"tslint-config-fluct@https://github.com/voyagegroup/tslint-config-fluct/archive/46c4a274f7ac6e838192a005331c95fd0099b660.tar.gz":
   version "0.0.0"
-  resolved "https://github.com/voyagegroup/tslint-config-fluct/archive/bea4ae2a364209a14003a6f8c7763078aa53e208.tar.gz#cb794d05f837257b94bbf902dcf2b75846498efe"
+  resolved "https://github.com/voyagegroup/tslint-config-fluct/archive/46c4a274f7ac6e838192a005331c95fd0099b660.tar.gz#982e3c020160b9b0f77679f59dbe746cd805ebc6"
 
 tslint-language-service@^0.9.6:
   version "0.9.6"
