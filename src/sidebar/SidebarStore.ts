@@ -5,8 +5,6 @@ import { Store } from '../shared/Store';
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarRepository } from './SidebarRepository';
 import { SidebarState } from './SidebarState';
-import { mapToSidebarItemEntity } from './SidebarDomain';
-import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
 const { map, merge, share, withLatestFrom } = operators;
 
@@ -24,9 +22,8 @@ export class SidebarStore implements Store<SidebarState> {
         const init = Observable.of(initial);
         const changed: Observable<SidebarState> = this._repo.asObservable()
             .pipe(
-                map((list: Array<BookmarkTreeNode>) => {
-                    const l = list.map(mapToSidebarItemEntity);
-                    return { list: l };
+                map((list) => {
+                    return { list, };
                 })
             );
         const result = init.pipe(

@@ -1,14 +1,20 @@
-import { Observable, Observer, Subject } from 'rxjs';
+import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
+import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
+import { Observable, Observer, Subject, operators } from 'rxjs';
 
 import { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bookmarks';
 
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
 import { Repository } from '../shared/Repository';
+import { SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain';
+import { Nullable } from 'option-t/esm/Nullable/Nullable';
 
-export class SidebarRepository implements Repository<Array<BookmarkTreeNode>>, Observer<Array<BookmarkTreeNode>> {
+const { map: mapRx } = operators;
 
-    static create(bookmarks: WebExtBookmarkService, _init: Array<BookmarkTreeNode>): SidebarRepository {
-        const s = new SidebarRepository();
+export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>>, Observer<Array<BookmarkTreeNode>> {
+
+    static create(bookmarks: WebExtBookmarkService, _init: Array<BookmarkTreeNode>): BookmarkRepository {
+        const s = new BookmarkRepository();
 
         const callback = () => {
             getUnfiledBoolmarkFolder().then((list) => {
@@ -48,4 +54,41 @@ export class SidebarRepository implements Repository<Array<BookmarkTreeNode>>, O
     asObservable(): Observable<Array<BookmarkTreeNode>> {
         return this._subject;
     }
+}
+
+export class SidebarRepository implements Repository<Iterable<SidebarItemViewModelEntity>> {
+
+    static create(bookmarks: WebExtBookmarkService, _init: Array<BookmarkTreeNode>): SidebarRepository {
+        const driver = BookmarkRepository.create(bookmarks, _init);
+        const s = new SidebarRepository(driver);
+        return s;
+    }
+
+    private _driver: BookmarkRepository;
+    private _obs: Nullable<Observable<IterableX<SidebarItemViewModelEntity>>>;
+
+    private constructor(driver: BookmarkRepository) {
+        this._driver = driver;
+        this._obs = null;
+    }
+
+    destroy(): void {
+        this._driver.destroy();
+    }
+
+    asObservable(): Observable<IterableX<SidebarItemViewModelEntity>> {
+        if (this._obs === null) {
+            const o = this._driver.asObservable().pipe(
+                mapRx(mapBookmarkTreeNodeToSidebarItemViewModelEntity),
+            );
+            this._obs = o;
+        }
+        return this._obs;
+    }
+}
+
+function mapBookmarkTreeNodeToSidebarItemViewModelEntity(input: Iterable<BookmarkTreeNode>): IterableX<SidebarItemViewModelEntity> {
+    const mapper = mapIx(mapToSidebarItemEntity);
+    const iter = IterableX.from(input).pipe(mapper);
+    return iter;
 }
