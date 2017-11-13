@@ -85,12 +85,20 @@ function ListItemInner(props: ListItemInnerProps): JSX.Element {
         return <hr />;
     }
 
-    const bookmark = item.bookmark;
-    const id = bookmark.id;
-    const url = isBookmarkTreeNodeItem(bookmark) ? bookmark.url : '';
-    const title = `${bookmark.title}\n${url}`;
-
     let innerClass = 'sidebar__listitem_text_inner';
+
+    const bookmark = item.bookmark;
+    if (!isBookmarkTreeNodeItem(bookmark)) {
+        return (
+            <span className={innerClass}>
+                {bookmark.title}
+            </span>
+        );
+    }
+
+    const id = bookmark.id;
+    const url = bookmark.url;
+    const title = `${bookmark.title}\n${url}`;
 
     if (item.isOpening) {
         return (
