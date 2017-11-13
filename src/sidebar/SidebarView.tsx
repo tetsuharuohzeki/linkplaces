@@ -12,7 +12,7 @@ import {
     isBookmarkTreeNodeSeparator,
 } from '../shared/Bookmark';
 
-import { SidebarItemViewValue } from './SidebarDomain';
+import { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarIntent, notifyOpenItem } from './SidebarIntent';
 import { SidebarState } from './SidebarState';
 
@@ -47,7 +47,7 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
 };
 
 interface ListItemProps {
-    item: Nullable<SidebarItemViewValue>;
+    item: Nullable<SidebarItemViewModelEntity>;
     intent: SidebarIntent;
 }
 function ListItem(props: ListItemProps): JSX.Element {
@@ -76,7 +76,7 @@ function ListItem(props: ListItemProps): JSX.Element {
 }
 
 interface ListItemInnerProps {
-    item: Nullable<SidebarItemViewValue>;
+    item: Nullable<SidebarItemViewModelEntity>;
     intent: SidebarIntent;
 }
 function ListItemInner(props: ListItemInnerProps): JSX.Element {

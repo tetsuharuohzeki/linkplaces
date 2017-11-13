@@ -1,15 +1,35 @@
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
-export interface SidebarItemViewValue {
-    bookmark: BookmarkTreeNode;
-    isSelected: boolean;
-    isOpening: boolean;
+export class SidebarItemViewModelEntity {
+
+    static create(bookmark: BookmarkTreeNode): SidebarItemViewModelEntity {
+        const s = new SidebarItemViewModelEntity(bookmark);
+        return s;
+    }
+
+    private _bookmark: BookmarkTreeNode;
+    private _isOpening: boolean;
+    readonly isSelected: boolean;
+
+    private constructor(bookmark: BookmarkTreeNode) {
+        this._bookmark = bookmark;
+        this._isOpening = false;
+        this.isSelected = false;
+    }
+
+    get bookmark(): BookmarkTreeNode {
+        return this._bookmark;
+    }
+
+    get isOpening(): boolean {
+        return this._isOpening;
+    }
+
+    setIsOpening(): void {
+        this._isOpening = true;
+    }
 }
 
-export function mapToSidebarItemEntity(bookmark: BookmarkTreeNode): SidebarItemViewValue {
-    return {
-        bookmark,
-        isSelected: false,
-        isOpening: false,
-    };
+export function mapToSidebarItemEntity(bookmark: BookmarkTreeNode): SidebarItemViewModelEntity {
+    return SidebarItemViewModelEntity.create(bookmark);
 }

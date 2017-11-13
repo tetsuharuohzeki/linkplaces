@@ -1,5 +1,5 @@
-import { SidebarItemViewValue } from './SidebarDomain';
+import { SidebarItemViewModelEntity } from './SidebarDomain';
 
 export interface SidebarState {
-    list: ReadonlyArray<SidebarItemViewValue>;
+    list: ReadonlyArray<SidebarItemViewModelEntity>;
 }

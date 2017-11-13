@@ -40,7 +40,7 @@ export class SidebarStore implements Store<SidebarState> {
                     const { id } = action;
                     for (const item of state.list) {
                         if (item.bookmark.id === id) {
-                            item.isOpening = true;
+                            item.setIsOpening();
                         }
                     }
                     return state;
