@@ -105,6 +105,9 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
 
     destroy(): void {
         this._disposer.unsubscribe();
+        this._isOpeningMap.clear();
+        this._obs = null;
+        this._emitter.unsubscribe();
         this._driver.destroy();
     }
 
