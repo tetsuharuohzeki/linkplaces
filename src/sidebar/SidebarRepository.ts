@@ -3,7 +3,6 @@ import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
 import { tap as tapIx } from '@reactivex/ix-esnext-esm/iterable/pipe/tap';
 import { Observable, Observer, Subject, operators, Subscription, BehaviorSubject } from 'rxjs';
 import { Nullable } from 'option-t/esm/Nullable/Nullable';
-import { doOnNullable } from 'option-t/esm/Nullable/do';
 
 import { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bookmarks';
 
