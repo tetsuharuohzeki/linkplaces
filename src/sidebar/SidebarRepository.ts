@@ -1,9 +1,8 @@
 import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
 import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
 import { tap as tapIx } from '@reactivex/ix-esnext-esm/iterable/pipe/tap';
-import { Observable, Observer, Subject, operators, Subscription } from 'rxjs';
+import { Observable, Observer, Subject, operators, Subscription, BehaviorSubject } from 'rxjs';
 import { Nullable } from 'option-t/esm/Nullable/Nullable';
-import { doOnNullable } from 'option-t/esm/Nullable/do';
 
 import { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bookmarks';
 
@@ -17,8 +16,8 @@ type BookmarkId = string;
 
 export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>>, Observer<Array<BookmarkTreeNode>> {
 
-    static create(bookmarks: WebExtBookmarkService, _init: Array<BookmarkTreeNode>): BookmarkRepository {
-        const s = new BookmarkRepository();
+    static create(bookmarks: WebExtBookmarkService, init: Array<BookmarkTreeNode>): BookmarkRepository {
+        const s = new BookmarkRepository(init);
 
         const callback = () => {
             getUnfiledBoolmarkFolder().then((list) => {
@@ -30,18 +29,22 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>>, 
         bookmarks.onMoved.addListener(callback);
         bookmarks.onCreated.addListener(callback);
         bookmarks.onRemoved.addListener((id: BookmarkId, _info) => {
-            s._onRemoveSubject.next(id);
+            s._onRemoved(id);
             callback();
         });
         return s;
     }
 
-    private _subject: Subject<Array<BookmarkTreeNode>>;
+    private _subject: BehaviorSubject<Array<BookmarkTreeNode>>;
     private _onRemoveSubject: Subject<BookmarkId>;
 
-    private constructor() {
-        this._subject = new Subject();
+    private constructor(init: Array<BookmarkTreeNode>) {
+        this._subject = new BehaviorSubject(init);
         this._onRemoveSubject = new Subject();
+    }
+
+    latestValue(): Array<BookmarkTreeNode> {
+        return this._subject.getValue();
     }
 
     next(v: Array<BookmarkTreeNode>): void {
@@ -65,7 +68,11 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>>, 
         return this._subject;
     }
 
-    onRemoved(): Observable<BookmarkId> {
+    private _onRemoved(id: BookmarkId): void {
+        this._onRemoveSubject.next(id);
+    }
+
+    onRemovedObservable(): Observable<BookmarkId> {
         return this._onRemoveSubject.asObservable();
     }
 }
@@ -80,7 +87,6 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
 
     private _driver: BookmarkRepository;
     private _emitter: Subject<Array<BookmarkTreeNode>>;
-    private _lastCache: Nullable<Array<BookmarkTreeNode>>;
     private _obs: Nullable<Observable<IterableX<SidebarItemViewModelEntity>>>;
     private _isOpeningMap: Set<BookmarkId>;
     private _disposer: Subscription;
@@ -88,26 +94,28 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
     private constructor(driver: BookmarkRepository) {
         this._driver = driver;
         this._emitter = new Subject();
-        this._lastCache = null;
         this._obs = null;
         this._isOpeningMap = new Set();
 
-        this._disposer = driver.onRemoved().subscribe((id: BookmarkId) => {
+        this._disposer = driver.onRemovedObservable().subscribe((id: BookmarkId) => {
             this._unsetIsOpening(id);
         }, console.error);
     }
 
     destroy(): void {
         this._disposer.unsubscribe();
+        this._isOpeningMap.clear();
+        this._obs = null;
+        this._emitter.unsubscribe();
         this._driver.destroy();
     }
 
     asObservable(): Observable<IterableX<SidebarItemViewModelEntity>> {
         if (this._obs === null) {
-            const original = this._driver.asObservable();
-            const o = original.pipe(mergeRx(this._emitter)).pipe(
+            const source = this._driver.asObservable()
+                .pipe(mergeRx(this._emitter));
+            const o = source.pipe(
                 mapRx((input) => {
-                    this._lastCache = input;
                     const o = mapBookmarkTreeNodeToSidebarItemViewModelEntity(input, this._isOpeningMap);
                     return o;
                 }),
@@ -119,9 +127,9 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
 
     setIsOpening(id: BookmarkId): void {
         this._isOpeningMap.add(id);
-        doOnNullable(this._lastCache, (lastCache) => {
-            this._emitter.next(lastCache);
-        });
+
+        const lastvalue = this._driver.latestValue();
+        this._emitter.next(lastvalue);
     }
 
     private _unsetIsOpening(id: BookmarkId): void {
