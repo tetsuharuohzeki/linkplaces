@@ -32,8 +32,8 @@ export class SidebarViewEpic implements Epic {
         this._subscription = s;
 
         s.add( this._intent.openItem().subscribe(({ id, url,}) => {
-            openItem(this._channel, id, url);
             this._repository.setIsOpening(id);
+            openItem(this._channel, id, url);
         }, console.error) );
     }
 
