@@ -14,11 +14,13 @@ export class SidebarViewEpic implements Epic {
     private _subscription: Nullable<Subscription>;
     private _intent: SidebarIntent;
     private _channel: Channel;
+    private _repository: SidebarRepository;
 
-    constructor(intent: SidebarIntent, _repository: SidebarRepository, channel: Channel) {
+    constructor(intent: SidebarIntent, repository: SidebarRepository, channel: Channel) {
         this._subscription = null;
         this._intent = intent;
         this._channel = channel;
+        this._repository = repository;
     }
 
     activate(): void {
@@ -31,6 +33,7 @@ export class SidebarViewEpic implements Epic {
 
         s.add( this._intent.openItem().subscribe(({ id, url,}) => {
             openItem(this._channel, id, url);
+            this._repository.setIsOpening(id);
         }, console.error) );
     }
 
@@ -38,5 +41,8 @@ export class SidebarViewEpic implements Epic {
         const s = expectNotNull(this._subscription, 'This has been destroyed');
         s.unsubscribe();
         this._subscription = null;
+        this._intent = null as any; // tslint:disable-line:no-any
+        this._channel = null as any; // tslint:disable-line:no-any
+        this._repository = null as any; // tslint:disable-line:no-any
     }
 }
