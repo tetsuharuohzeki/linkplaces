@@ -30,7 +30,7 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>>, 
         bookmarks.onMoved.addListener(callback);
         bookmarks.onCreated.addListener(callback);
         bookmarks.onRemoved.addListener((id: BookmarkId, _info) => {
-            s._onRemoveSubject.next(id);
+            s._onRemoved(id);
             callback();
         });
         return s;
@@ -65,7 +65,11 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>>, 
         return this._subject;
     }
 
-    onRemoved(): Observable<BookmarkId> {
+    private _onRemoved(id: BookmarkId): void {
+        this._onRemoveSubject.next(id);
+    }
+
+    onRemovedObservable(): Observable<BookmarkId> {
         return this._onRemoveSubject.asObservable();
     }
 }
@@ -92,7 +96,7 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
         this._obs = null;
         this._isOpeningMap = new Set();
 
-        this._disposer = driver.onRemoved().subscribe((id: BookmarkId) => {
+        this._disposer = driver.onRemovedObservable().subscribe((id: BookmarkId) => {
             this._unsetIsOpening(id);
         }, console.error);
     }
