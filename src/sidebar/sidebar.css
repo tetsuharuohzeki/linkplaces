@@ -14,7 +14,7 @@
 }
 
 .sidebar__listitem_container--is_opening {
-    cursor: pointer;
+    cursor: default;
 }
 
 .sidebar__listitem_text_inner {
