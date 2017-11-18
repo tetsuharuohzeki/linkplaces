@@ -9,8 +9,10 @@ import {
 } from '../shared/RemoteCall';
 
 import {
-    createOpenSidebarAction as createOpenSidebarAction,
-    createOpenLibraryWindow as createOpenLibraryWindow,
+    createOpenSidebarAction,
+    createOpenLibraryWindow,
+    OpenSidebarAction,
+    OpenLibraryWindowAction,
 } from './PopupAction';
 import { PopupMainState, PopupMainStateTree } from './PopupMainState';
 
@@ -19,7 +21,7 @@ export type ThunkArguments = Readonly<{
 }>;
 
 export function openItem(id: string, url: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
-    return function openItemActual(_dispatch: Dispatch<PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
+    return function openItemActual(_dispatch: Dispatch<never, PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
         openItemViaChannel(dependencies.channel, id, url);
 
         return Promise.resolve().then(() => {
@@ -29,7 +31,7 @@ export function openItem(id: string, url: string): ThunkAction<Promise<void>, Po
 }
 
 export function openWebExtSidebar(): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
-    return function openWebExtActual(dispatch: Dispatch<PopupMainState>, _, _dependencies: ThunkArguments): Promise<void> {
+    return function openWebExtActual(dispatch: Dispatch<OpenSidebarAction, PopupMainState>, _, _dependencies: ThunkArguments): Promise<void> {
         openWebExtSidebarDirect(browser.sidebarAction);
 
         dispatch(createOpenSidebarAction());
@@ -39,7 +41,7 @@ export function openWebExtSidebar(): ThunkAction<Promise<void>, PopupMainStateTr
 }
 
 export function openLibraryWindow(bookmarkId: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
-    return function openItemActual(dispatch: Dispatch<PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
+    return function openItemActual(dispatch: Dispatch<OpenLibraryWindowAction, PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
         openPlacesOrganizeWindow(dependencies.channel, bookmarkId);
 
         dispatch(createOpenLibraryWindow(bookmarkId));

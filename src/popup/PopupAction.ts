@@ -1,4 +1,8 @@
 import {
+    Action as ActionArcheType
+} from 'redux';
+
+import {
     OnChangeInfo,
     BookmarkTreeNode,
 } from '../../typings/webext/bookmarks';
@@ -19,9 +23,7 @@ export type Action =
     OpenLibraryWindowAction |
     ItemChangedAction;
 
-interface ActionBase {
-    type: ActionType;
-}
+type ActionBase = ActionArcheType<ActionType>;
 
 export interface InitAction extends ActionBase {
     type: ActionType.Init;
