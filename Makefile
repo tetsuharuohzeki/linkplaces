@@ -2,6 +2,10 @@ PACKAGE := $(CURDIR)/linkplaces.xpi
 NODE_MOD := $(CURDIR)/node_modules
 NPM_BIN := $(NODE_MOD)/.bin
 
+# Sorry. These are depends on *nix way...
+export GIT_REVISION := $(shell git rev-parse --verify HEAD)
+export BUILD_DATE := $(shell date '+%Y/%m/%d %H:%M:%S %z')
+
 .PHONY: lint
 
 all: help
