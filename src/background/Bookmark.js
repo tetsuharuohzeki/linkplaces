@@ -16,24 +16,14 @@ export {
     getLinkSchemeType,
 } from '../shared/Bookmark';
 
-// workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1375981
-export const useClassicBookmarkBackend =
-    // @ts-ignore
-    !process.env.IS_WEBEXT_BUILD;// eslint-disable-line no-undef
-
 /**
  *  @param {string} url
  *  @param {string} title
  *  @return {Promise<void>}
  */
 export function createBookmarkItem(url, title) {
-    if (useClassicBookmarkBackend) {
-        return Promise.resolve();
-    }
-    else {
-        // @ts-ignore
-        return createBookmarkItemWebExt(url, title);
-    }
+    // @ts-ignore
+    return createBookmarkItemWebExt(url, title);
 }
 
 /**
@@ -41,10 +31,5 @@ export function createBookmarkItem(url, title) {
  *  @returns    {Promise<void>}
  */
 export function removeBookmarkItem(id) {
-    if (useClassicBookmarkBackend) {
-        return Promise.resolve();
-    }
-    else {
-        return removeBookmarkItemWebExt(id);
-    }
+    return removeBookmarkItemWebExt(id);
 }

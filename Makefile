@@ -31,7 +31,7 @@ clean_webext_artifacts:
 
 # build
 webext:
-	$(MAKE) __webext_xpi -C $(CURDIR) IS_WEBEXT_BUILD=true
+	$(MAKE) __webext_xpi -C $(CURDIR)
 
 __webext_xpi: clean_webext_artifacts \
      lint \
