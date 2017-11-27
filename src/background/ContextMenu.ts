@@ -3,10 +3,12 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { Maybe, isNullOrUndefined } from 'option-t/esm/Maybe';
+
+import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 import { OnClickData, CreateArgument, ContextType } from '../../typings/webext/contextMenus';
 import { Tab } from '../../typings/webext/tabs';
 
-import { createBookmarkItem } from './Bookmark';
+import { createBookmarkItem } from '../shared/Bookmark';
 
 const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';
 const CTXMENU_ID_CONTENT_SAVE_PAGE = 'linkplaces-ctx-content-save-page';
@@ -81,7 +83,7 @@ function onClicked(info: OnClickData, tab: Maybe<Tab>): void {
     }
 }
 
-function onClickSaveTab(tab: Tab): Promise<void> {
+function onClickSaveTab(tab: Tab): Promise<BookmarkTreeNode> {
     const { title, url } = tab;
     if (typeof title !== 'string' || typeof url !== 'string') {
         throw new TypeError('Cannot found both of `title` & `url`');
@@ -90,7 +92,7 @@ function onClickSaveTab(tab: Tab): Promise<void> {
     return created;
 }
 
-function onClickSavePage(info: OnClickData, tab: Tab): Promise<void> {
+function onClickSavePage(info: OnClickData, tab: Tab): Promise<BookmarkTreeNode> {
     const url = info.pageUrl;
     if (typeof url !== 'string') {
         throw new TypeError('Cannot found `info.linkUrl`');
@@ -101,7 +103,7 @@ function onClickSavePage(info: OnClickData, tab: Tab): Promise<void> {
     return created;
 }
 
-function onClickSaveLink(info: OnClickData): Promise<void> {
+function onClickSaveLink(info: OnClickData): Promise<BookmarkTreeNode> {
     const url = info.linkUrl;
     if (typeof url !== 'string') {
         throw new TypeError('Cannot found `info.linkUrl`');
