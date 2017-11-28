@@ -1,7 +1,7 @@
 /* eslint-env commonjs, node */
 'use strict';
 
-const MaybeMod = require('option-t/lib/Maybe');
+const MaybeMod = require('option-t/cjs/Maybe');
 
 const babel = require('rollup-plugin-babel');
 const nodeResolve = require('rollup-plugin-node-resolve');
