@@ -28,7 +28,15 @@ module.exports = {
         'prop-types',
         'redux',
         'redux-thunk',
+
         'rxjs',
+        'rxjs/BehaviorSubject',
+        'rxjs/operators',
+        'rxjs/Observable',
+        'rxjs/Observer',
+        'rxjs/Subject',
+        'rxjs/Subscription',
+        'rxjs/scheduler/animationFrame',
     ],
     globals: {
         'react': 'React',
@@ -37,6 +45,15 @@ module.exports = {
         'redux': 'Redux',
         'redux-thunk': 'window.ReduxThunk.default',
         'rxjs': 'Rx',
+
+        // I know these are pretty messy approach.
+        // But rxjs does not support properly TypeScript+rollup
+        'rxjs/BehaviorSubject': 'Rx',
+        'rxjs/Observable': 'Rx',
+        'rxjs/operators': 'Rx.operators',
+        'rxjs/Subject': 'Rx',
+        'rxjs/Subscription': 'Rx',
+        'rxjs/scheduler/animationFrame': 'Rx.Scheduler',
     },
 
     plugins: [

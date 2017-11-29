@@ -2,7 +2,14 @@ import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Subscription, Scheduler } from 'rxjs';
+
+import {
+    observeOn,
+} from 'rxjs/operators';
+import { Subscription } from 'rxjs/Subscription';
+import {
+    animationFrame as animationFrameRxScheduler,
+} from 'rxjs/scheduler/animationFrame';
 
 import { Channel } from '../shared/Channel';
 import { ViewContext } from '../shared/ViewContext';
@@ -48,7 +55,10 @@ export class SidebarContext implements ViewContext {
             list: this._list.map(mapToSidebarItemEntity),
         });
 
-        this._subscription = state.observeOn(Scheduler.animationFrame).subscribe((state: Readonly<SidebarState>) => {
+        this._subscription = state
+            .pipe(
+                observeOn(animationFrameRxScheduler),
+            ).subscribe((state: Readonly<SidebarState>) => {
             const props: SidebarViewProps = {
                 state,
                 intent: this._intent,

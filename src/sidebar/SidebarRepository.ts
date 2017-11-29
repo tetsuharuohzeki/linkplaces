@@ -1,7 +1,17 @@
 import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
 import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
 import { tap as tapIx } from '@reactivex/ix-esnext-esm/iterable/pipe/tap';
-import { Observable, Observer, Subject, operators, Subscription, BehaviorSubject } from 'rxjs';
+
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+import {
+    map as mapRx,
+    merge as mergeRx,
+} from 'rxjs/operators';
+import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
+
 import { Nullable } from 'option-t/esm/Nullable/Nullable';
 
 import { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bookmarks';
@@ -9,8 +19,6 @@ import { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bo
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
 import { Repository } from '../shared/Repository';
 import { SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain';
-
-const { map: mapRx, merge: mergeRx, } = operators;
 
 type BookmarkId = string;
 
