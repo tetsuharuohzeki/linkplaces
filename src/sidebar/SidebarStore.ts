@@ -1,12 +1,15 @@
-import { Observable, operators, } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import {
+    map as mapRx,
+    share as shareRx,
+    startWith as startWithRx,
+} from 'rxjs/operators';
 
 import { Store } from '../shared/Store';
 
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarRepository } from './SidebarRepository';
 import { SidebarState } from './SidebarState';
-
-const { map, merge, share } = operators;
 
 export class SidebarStore implements Store<SidebarState> {
 
@@ -17,18 +20,14 @@ export class SidebarStore implements Store<SidebarState> {
     }
 
     compose(initial: Readonly<SidebarState>): Observable<SidebarState> {
-        const init = Observable.of(initial);
         const changed: Observable<SidebarState> = this._repo.asObservable()
             .pipe(
-                map((list) => {
+                mapRx((list) => {
                     return { list, };
-                })
+                }),
+                shareRx(),
+                startWithRx(initial),
             );
-        const result = init.pipe(
-            merge(changed),
-            share(),
-        );
-
-        return result;
+        return changed;
     }
 }
