@@ -31,7 +31,7 @@
     "eslint": "^4.12.0",
     "eslint-config-fluct": "https://github.com/voyagegroup/eslint-config-fluct/archive/4878c6860b026b96b0bf0bb4ce1f6c153579d297.tar.gz",
     "eslint-plugin-react": "^7.5.1",
-    "option-t": "^12.0.0",
+    "option-t": "^13.0.0",
     "prop-types": "^15.5.10",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
