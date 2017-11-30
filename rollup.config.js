@@ -8,7 +8,7 @@ const nodeResolve = require('rollup-plugin-node-resolve');
 const replace = require('rollup-plugin-replace');
 
 const GIT_REVISION = MaybeMod.mapOr(process.env.GIT_REVISION, 'unknown', String);
-const BUILD_DATE = MaybeMod.unwrapOr(process.env.BUILD_DATE, 'unknown', String);
+const BUILD_DATE = MaybeMod.mapOr(process.env.BUILD_DATE, 'unknown', String);
 
 // https://github.com/rollup/rollup/wiki/JavaScript-API
 // https://github.com/rollup/rollup/wiki/Command-Line-Interface
