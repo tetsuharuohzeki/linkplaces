@@ -41,7 +41,7 @@
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^2.0.0",
-    "rxjs": "^5.5.2",
+    "rxjs": "^5.5.4",
     "stylelint": "^8.3.1",
     "stylelint-config-standard": "^18.0.0",
     "tslint": "^5.8.0",
