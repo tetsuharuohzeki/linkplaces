@@ -4510,9 +4510,9 @@ tslib@^1.7.1, tslib@^1.8.0:
   version "0.0.0"
   resolved "https://github.com/voyagegroup/tslint-config-fluct/archive/46c4a274f7ac6e838192a005331c95fd0099b660.tar.gz#982e3c020160b9b0f77679f59dbe746cd805ebc6"
 
-tslint-language-service@^0.9.6:
-  version "0.9.6"
-  resolved "https://registry.yarnpkg.com/tslint-language-service/-/tslint-language-service-0.9.6.tgz#882bb0704cf8397b332ddc0af7168c7f22f279ea"
+tslint-language-service@^0.9.7:
+  version "0.9.7"
+  resolved "https://registry.yarnpkg.com/tslint-language-service/-/tslint-language-service-0.9.7.tgz#94a35442bc1163e4629df8804e6fa694ced549ff"
 
 tslint@^5.8.0:
   version "5.8.0"
