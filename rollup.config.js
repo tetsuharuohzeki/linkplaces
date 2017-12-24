@@ -57,6 +57,8 @@ module.exports = {
         'rxjs/scheduler/animationFrame',
     ],
 
+    experimentalDynamicImport: true,
+
     plugins: [
         // https://github.com/rollup/rollup-plugin-node-resolve
         nodeResolve({
