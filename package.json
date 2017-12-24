@@ -25,6 +25,7 @@
     "@types/react": "^16.0.31",
     "@types/react-dom": "^16.0.3",
     "babel-core": "^6.26.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-react": "^6.24.1",
     "cpx": "^1.5.0",
     "del-cli": "^1.1.0",
