@@ -15,11 +15,29 @@ const BUILD_DATE = MaybeMod.mapOr(process.env.BUILD_DATE, 'unknown', String);
 module.exports = {
     strict: true,
     treeshake: true,
-    sourcemap: true,
 
     output: {
         format: 'iife',
         exports: 'none',
+
+        sourcemap: true,
+        globals: {
+            'react': 'React',
+            'react-dom': 'ReactDOM',
+            'prop-types': 'PropTypes',
+            'redux': 'Redux',
+            'redux-thunk': 'window.ReduxThunk.default',
+            'rxjs': 'Rx',
+
+            // I know these are pretty messy approach.
+            // But rxjs does not support properly TypeScript+rollup
+            'rxjs/BehaviorSubject': 'Rx',
+            'rxjs/Observable': 'Rx',
+            'rxjs/operators': 'Rx.operators',
+            'rxjs/Subject': 'Rx',
+            'rxjs/Subscription': 'Rx',
+            'rxjs/scheduler/animationFrame': 'Rx.Scheduler',
+        },
     },
 
     external: [
@@ -38,23 +56,6 @@ module.exports = {
         'rxjs/Subscription',
         'rxjs/scheduler/animationFrame',
     ],
-    globals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM',
-        'prop-types': 'PropTypes',
-        'redux': 'Redux',
-        'redux-thunk': 'window.ReduxThunk.default',
-        'rxjs': 'Rx',
-
-        // I know these are pretty messy approach.
-        // But rxjs does not support properly TypeScript+rollup
-        'rxjs/BehaviorSubject': 'Rx',
-        'rxjs/Observable': 'Rx',
-        'rxjs/operators': 'Rx.operators',
-        'rxjs/Subject': 'Rx',
-        'rxjs/Subscription': 'Rx',
-        'rxjs/scheduler/animationFrame': 'Rx.Scheduler',
-    },
 
     plugins: [
         // https://github.com/rollup/rollup-plugin-node-resolve
