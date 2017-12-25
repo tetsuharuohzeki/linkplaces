@@ -89,10 +89,10 @@ module.exports = {
             externalHelpers: false,
             babelrc: false,
             presets: [
-                'react'
+                '@babel/preset-react',
             ],
             plugins: [
-                'syntax-dynamic-import',
+                '@babel/plugin-syntax-dynamic-import',
             ],
         }),
     ],
