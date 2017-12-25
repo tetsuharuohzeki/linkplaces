@@ -91,7 +91,9 @@ module.exports = {
             presets: [
                 'react'
             ],
-            plugins: [],
+            plugins: [
+                'syntax-dynamic-import',
+            ],
         }),
     ],
 };
