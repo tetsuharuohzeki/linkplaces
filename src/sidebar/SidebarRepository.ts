@@ -120,14 +120,14 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
 
     asObservable(): Observable<IterableX<SidebarItemViewModelEntity>> {
         if (this._obs === null) {
-            const source = this._driver.asObservable()
-                .pipe(mergeRx(this._emitter));
-            const o = source.pipe(
-                mapRx((input) => {
-                    const o = mapBookmarkTreeNodeToSidebarItemViewModelEntity(input, this._isOpeningMap);
-                    return o;
-                }),
-            );
+            const o = this._driver.asObservable()
+                .pipe(
+                    mergeRx(this._emitter),
+                    mapRx((input) => {
+                        const o = mapBookmarkTreeNodeToSidebarItemViewModelEntity(input, this._isOpeningMap);
+                        return o;
+                    }),
+                );
             this._obs = o;
         }
         return this._obs;
