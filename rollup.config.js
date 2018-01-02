@@ -13,10 +13,10 @@ const BUILD_DATE = MaybeMod.mapOr(process.env.BUILD_DATE, 'unknown', String);
 // https://github.com/rollup/rollup/wiki/JavaScript-API
 // https://github.com/rollup/rollup/wiki/Command-Line-Interface
 module.exports = {
-    strict: true,
     treeshake: true,
 
     output: {
+        strict: true,
         format: 'iife',
         exports: 'none',
 
