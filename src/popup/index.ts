@@ -12,10 +12,11 @@ import { createChannel } from './PopupMessageChannel';
 
     window.addEventListener('contextmenu', disableCtxMenu);
 
-    window.addEventListener('unload', function onClose(event) {
-        window.removeEventListener(event.type, onClose);
+    window.addEventListener('unload', function onClose(_event) {
         window.removeEventListener('contextmenu', disableCtxMenu);
         channel.destroy();
+    }, {
+        once: true,
     });
 
     const mountpoint = document.getElementById('js-mountpoint');
