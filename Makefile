@@ -78,7 +78,7 @@ __external_dependency_rxjs: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/rxjs/bundles/Rx.min.js' $(CURDIR)/__dist/third_party --preserve
 
 __obj: clean_obj
-	$(NPM_BIN)/tsc -p ./tsconfig.json --outDir $(CURDIR)/__obj/src/
+	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --outDir $(CURDIR)/__obj/src/
 
 # Test
 test: lint
@@ -92,7 +92,7 @@ tslint:
 	$(NPM_BIN)/tslint --config $(CURDIR)/tslint.json '$(CURDIR)/src/**/*.ts{,x}'
 
 tscheck:
-	$(NPM_BIN)/tsc -p ./tsconfig.json --noEmit
+	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --noEmit
 
 stylelint:
 	$(NPM_BIN)/stylelint '$(CURDIR)/src/**/*.css' \
