@@ -81,9 +81,9 @@ __obj: clean_obj
 	$(NPM_BIN)/tsc -p ./tsconfig.json --outDir $(CURDIR)/__obj/src/
 
 # Test
-test: lint tscheck
+test: lint
 
-lint: eslint tslint stylelint
+lint: eslint tslint stylelint tscheck
 
 eslint:
 	$(NODE_MOD)/eslint/bin/eslint.js --ext=js,jsm src/ $(CURDIR)
