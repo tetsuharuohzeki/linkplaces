@@ -4,6 +4,10 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Channel } from '../shared/Channel';
 import { Epic } from '../shared/Epic';
+import {
+    WhereToOpenItem,
+    WHERE_TO_OPEN_ITEM_TO_TAB,
+} from '../shared/RemoteAction';
 import { openItem } from '../shared/RemoteCall';
 
 import { SidebarIntent } from './SidebarIntent';
@@ -33,7 +37,8 @@ export class SidebarViewEpic implements Epic {
 
         s.add( this._intent.openItem().subscribe(({ id, url,}) => {
             this._repository.setIsOpening(id);
-            openItem(this._channel, id, url);
+            const where: WhereToOpenItem = WHERE_TO_OPEN_ITEM_TO_TAB;
+            openItem(this._channel, id, url, where);
         }, console.error) );
     }
 

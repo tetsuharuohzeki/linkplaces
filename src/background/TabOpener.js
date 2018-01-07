@@ -8,6 +8,13 @@ import { expectNotNullAndUndefined } from 'option-t/esm/Maybe/expect';
 import { expectNotUndefined } from 'option-t/esm/Undefinable/expect';
 
 import { NoImplementationError } from '../shared/NoImplementationError';
+import {
+    WHERE_TO_OPEN_ITEM_TO_TAB,
+    WHERE_TO_OPEN_ITEM_TO_TABSHIFTED,
+    WHERE_TO_OPEN_ITEM_TO_WINDOW,
+    WHERE_TO_OPEN_ITEM_TO_CURRENT,
+    WHERE_TO_OPEN_ITEM_TO_SAVE,
+} from '../shared/RemoteAction';
 
 /**
  *  @param  {string}  url
@@ -25,17 +32,17 @@ export async function createTab(url, where) {
     };
 
     switch (where) {
-        case 'current':
+        case WHERE_TO_OPEN_ITEM_TO_CURRENT:
             return openInCurrent(currentId, url);
-        case 'save':
+        case WHERE_TO_OPEN_ITEM_TO_SAVE:
             // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/downloads/download
             throw new NoImplementationError('unimplemented!: where is `save`');
-        case 'window':
+        case WHERE_TO_OPEN_ITEM_TO_WINDOW:
             return openInNewWindow(url);
-        case 'tab':
+        case WHERE_TO_OPEN_ITEM_TO_TAB:
             option.active = true;
             break;
-        case 'tabshifted':
+        case WHERE_TO_OPEN_ITEM_TO_TABSHIFTED:
             break;
         default:
             throw new RangeError('unexpeced where type');

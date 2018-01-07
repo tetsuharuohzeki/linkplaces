@@ -3,6 +3,10 @@ import { ThunkAction } from 'redux-thunk';
 
 import { Channel } from '../shared/Channel';
 import {
+    WhereToOpenItem,
+    WHERE_TO_OPEN_ITEM_TO_TAB,
+} from '../shared/RemoteAction';
+import {
     openItem as openItemViaChannel,
     openPlacesOrganizeWindow,
     openWebExtSidebar as openWebExtSidebarDirect,
@@ -22,7 +26,8 @@ export type ThunkArguments = Readonly<{
 
 export function openItem(id: string, url: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
     return function openItemActual(_dispatch: Dispatch<never, PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
-        openItemViaChannel(dependencies.channel, id, url);
+        const where: WhereToOpenItem = WHERE_TO_OPEN_ITEM_TO_TAB;
+        openItemViaChannel(dependencies.channel, id, url, where);
 
         return Promise.resolve().then(() => {
             window.close();
