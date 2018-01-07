@@ -8,6 +8,7 @@ import {
     RemoteAction,
     MSG_TYPE_OPEN_URL,
     MSG_TYPE_OPEN_ORGANIZE_WINDOW,
+    WhereToOpenItem,
 } from '../shared/RemoteAction';
 import { Packet } from '../shared/Channel';
 import { NoImplementationError } from '../shared/NoImplementationError';
@@ -33,8 +34,8 @@ function onMessageFromPopup(packet: Packet<RemoteAction>) {
     const { payload: msg } = packet;
     switch (msg.type) {
         case MSG_TYPE_OPEN_URL: {
-            const { id, url } = msg.value;
-            openUrlFromPopup(url, id).catch(console.error);
+            const { id, url, where } = msg.value;
+            openUrlFromPopup(url, id, where).catch(console.error);
             break;
         }
         case MSG_TYPE_OPEN_ORGANIZE_WINDOW: {
@@ -46,12 +47,12 @@ function onMessageFromPopup(packet: Packet<RemoteAction>) {
     }
 }
 
-async function openUrlFromPopup(url: string, bookmarkId: string): Promise<void> {
-    await openUrl(url, 'tab');
+async function openUrlFromPopup(url: string, bookmarkId: string, where: WhereToOpenItem): Promise<void> {
+    await openUrl(url, where);
     await removeBookmarkItem(bookmarkId);
 }
 
-function openUrl(url: string, where: string): Promise<number> {
+function openUrl(url: string, where: WhereToOpenItem): Promise<number> {
     const { isPrivileged } = getLinkSchemeType(url);
     let opened = null;
     if (isPrivileged) {
