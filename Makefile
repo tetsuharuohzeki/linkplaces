@@ -86,7 +86,7 @@ test: lint
 lint: eslint tslint stylelint tscheck
 
 eslint:
-	$(NODE_MOD)/eslint/bin/eslint.js --ext=js,jsm src/ $(CURDIR)
+	$(NODE_MOD)/eslint/bin/eslint.js --ext=js,jsm $(CURDIR)
 
 tslint:
 	$(NPM_BIN)/tslint --config $(CURDIR)/tslint.json '$(CURDIR)/src/**/*.ts{,x}'
