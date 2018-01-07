@@ -7,6 +7,8 @@
 import { expectNotNullAndUndefined } from 'option-t/esm/Maybe/expect';
 import { expectNotUndefined } from 'option-t/esm/Undefinable/expect';
 
+import { NoImplementationError } from '../shared/NoImplementationError';
+
 /**
  *  @param  {string}  url
  *  @param  {string}  where
@@ -27,7 +29,7 @@ export async function createTab(url, where) {
             return openInCurrent(currentId, url);
         case 'save':
             // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/downloads/download
-            throw new RangeError('unimplemented!: where is `save`');
+            throw new NoImplementationError('unimplemented!: where is `save`');
         case 'window':
             return openInNewWindow(url);
         case 'tab':
