@@ -3,6 +3,9 @@ import { filter as filterRx } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
 
 import { Dispatchable } from '../shared/Intent';
+import {
+    WhereToOpenItem,
+} from '../shared/RemoteAction';
 
 export class SidebarIntent implements Dispatchable<Action> {
 
@@ -52,15 +55,17 @@ export interface OpenItemAction extends ActionBase {
     type: ActionType.OpenItem;
     id: string;
     url: string;
+    where: WhereToOpenItem;
 }
 export function isOpenItemAction(v: Readonly<ActionBase>): v is OpenItemAction {
     return v.type === ActionType.OpenItem;
 }
-export function notifyOpenItem(id: string, url: string): OpenItemAction {
+export function notifyOpenItem(id: string, url: string, where: WhereToOpenItem): OpenItemAction {
     return {
         type: ActionType.OpenItem,
         id,
         url,
+        where,
     };
 }
 

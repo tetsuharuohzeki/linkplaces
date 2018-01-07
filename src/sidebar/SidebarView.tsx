@@ -11,6 +11,11 @@ import {
     isBookmarkTreeNodeItem,
     isBookmarkTreeNodeSeparator,
 } from '../shared/Bookmark';
+import {
+    WhereToOpenItem,
+    WHERE_TO_OPEN_ITEM_TO_TAB,
+    WHERE_TO_OPEN_ITEM_TO_WINDOW,
+} from '../shared/RemoteAction';
 
 import { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarIntent, notifyOpenItem } from './SidebarIntent';
@@ -113,7 +118,8 @@ function ListItemInner(props: ListItemInnerProps): JSX.Element {
         onClick = (evt) => {
             evt.preventDefault();
 
-            const a = notifyOpenItem(id, url);
+            const where = whereToOpenItem(evt);
+            const a = notifyOpenItem(id, url, where);
             intent.dispatch(a);
         };
     }
@@ -132,4 +138,17 @@ function ListItemInner(props: ListItemInnerProps): JSX.Element {
             {bookmark.title}
         </a>
     );
+}
+
+function whereToOpenItem(syntheticEvent: React.SyntheticEvent<HTMLAnchorElement>): WhereToOpenItem {
+    const event = syntheticEvent.nativeEvent;
+    if ( !(event instanceof MouseEvent || event instanceof KeyboardEvent) ) {
+        throw new TypeError(`mouseevent should be MouseEvent`);
+    }
+
+    if (event.shiftKey) {
+        return WHERE_TO_OPEN_ITEM_TO_WINDOW;
+    }
+
+    return WHERE_TO_OPEN_ITEM_TO_TAB;
 }
