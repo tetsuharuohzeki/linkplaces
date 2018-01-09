@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/saneyuki/linkplaces",
   "dependencies": {
-    "@babel/core": "^7.0.0-beta.36",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.36",
-    "@babel/preset-react": "^7.0.0-beta.36",
+    "@babel/core": "^7.0.0-beta.37",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.37",
+    "@babel/preset-react": "^7.0.0-beta.37",
     "@reactivex/ix-esnext-esm": "^2.3.4",
     "@types/prop-types": "^15.5.1",
     "@types/react": "^16.0.34",
@@ -49,6 +49,6 @@
     "tslint-config-fluct": "https://github.com/voyagegroup/tslint-config-fluct/archive/46c4a274f7ac6e838192a005331c95fd0099b660.tar.gz",
     "tslint-language-service": "^0.9.7",
     "typescript": "2.7.0-dev.20171209",
-    "web-ext": "^2.2.2"
+    "web-ext": "^2.3.1"
   }
 }
