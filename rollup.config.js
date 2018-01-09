@@ -17,7 +17,7 @@ module.exports = {
 
     output: {
         strict: true,
-        format: 'iife',
+        format: 'es',
         exports: 'none',
 
         sourcemap: true,
