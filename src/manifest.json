@@ -15,9 +15,7 @@
     "tabs"
   ],
   "background": {
-    "scripts": [
-      "background/bundled.js"
-    ]
+    "page": "background/index.html"
   },
   "browser_action": {
     "browser_style": true,
