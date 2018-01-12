@@ -6,6 +6,11 @@ import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '
 
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../shared/Bookmark';
 
+import {
+    ReactPopupFolderIconElement,
+    ReactPopupItemIconElement,
+} from './component/PopupIconElement';
+
 import { PopupMainState, PopupMainStateTree } from './PopupMainState';
 import { openItem, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';
 
@@ -31,9 +36,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
         <div className={'panel'}>
             <div className={'panel-section panel-section-list'}>
                 <div className={'panel-list-item'} onClick={onClickOpenWebExtSidebar}>
-                    <div className={'icon'}>
-                        <img className={'popup__listitem_icon_item'} src={'../shared/image/icon/sidebar-16.svg'} alt={''} />
-                    </div>
+                    <ReactPopupItemIconElement data-src={'../shared/image/icon/sidebar-16.svg'} />
                     <div className={'text'}>
                         <span className={'popup__listitem_text_inner'}>
                             {'View LinkPlaces WebExt Sidebar'}
@@ -90,9 +93,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
         <div className={'panel-list-item'} onClick={onClick}>
-            <div className={'icon'}>
-                <img className={'popup__listitem_icon_folder'} src={'../shared/image/icon/folder-16.svg'} alt={''} />
-            </div>
+            <ReactPopupFolderIconElement data-src={'../shared/image/icon/folder-16.svg'} />
             <div className={'text'}>
                 <span className={'popup__listitem_text_inner'}>
                     {item.title}
@@ -124,9 +125,7 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
         <div className={'panel-list-item'}>
-            <div className={'icon'}>
-                <img className={'popup__listitem_icon_item'} src={'../shared/image/icon/identity-not-secure.svg'} alt={''} />
-            </div>
+            <ReactPopupItemIconElement data-src={'../shared/image/icon/identity-not-secure.svg'} />
             <div className={'text'}>
                 <a className={'popup__listitem_text_inner'} href={url} title={tooltiptext} onClick={onClick}>
                     {item.title}
