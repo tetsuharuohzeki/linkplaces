@@ -48,7 +48,7 @@
     "tslint": "^5.9.1",
     "tslint-config-fluct": "https://github.com/voyagegroup/tslint-config-fluct/archive/281e6422dca4a3303230f49a04bf427bffcf6bf9.tar.gz",
     "tslint-language-service": "^0.9.8",
-    "typescript": "2.7.0-dev.20171209",
+    "typescript": "2.7.0-rc",
     "web-ext": "^2.3.1"
   }
 }
