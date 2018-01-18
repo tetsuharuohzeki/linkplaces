@@ -30,7 +30,7 @@
     "cpx": "^1.5.0",
     "del-cli": "^1.1.0",
     "eslint": "^4.15.0",
-    "eslint-config-fluct": "https://github.com/voyagegroup/eslint-config-fluct/archive/4878c6860b026b96b0bf0bb4ce1f6c153579d297.tar.gz",
+    "eslint-config-fluct": "https://github.com/voyagegroup/eslint-config-fluct/archive/5d4ad9cb063131a1972c75b32c1c2f077a7f1e52.tar.gz",
     "eslint-plugin-react": "^7.5.1",
     "option-t": "^13.1.2",
     "prop-types": "^15.5.10",
@@ -46,7 +46,7 @@
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^18.0.0",
     "tslint": "^5.9.1",
-    "tslint-config-fluct": "https://github.com/voyagegroup/tslint-config-fluct/archive/46c4a274f7ac6e838192a005331c95fd0099b660.tar.gz",
+    "tslint-config-fluct": "https://github.com/voyagegroup/tslint-config-fluct/archive/281e6422dca4a3303230f49a04bf427bffcf6bf9.tar.gz",
     "tslint-language-service": "^0.9.8",
     "typescript": "2.7.0-dev.20171209",
     "web-ext": "^2.3.1"
