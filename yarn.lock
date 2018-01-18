@@ -3240,9 +3240,9 @@ open@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/open/-/open-0.0.5.tgz#42c3e18ec95466b6bf0dc42f3a2945c3f0cad8fc"
 
-option-t@^13.1.2:
-  version "13.1.2"
-  resolved "https://registry.yarnpkg.com/option-t/-/option-t-13.1.2.tgz#d5c8966359c9b21c946ad091f3318d607eed78af"
+option-t@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/option-t/-/option-t-14.0.0.tgz#6bed1421fc47e7afd9cf2bd22c63635f66edb34f"
 
 optionator@^0.8.2:
   version "0.8.2"
