@@ -81,7 +81,7 @@ __obj: clean_obj
 	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --outDir $(CURDIR)/__obj/src/
 
 # Test
-test: lint
+test: lint ava
 
 lint: eslint tslint stylelint tscheck
 
@@ -99,3 +99,6 @@ stylelint:
 		--config=$(CURDIR)/stylelint.config.js \
 		-f verbose \
 		--color
+
+ava: __obj
+	$(NPM_BIN)/ava test/
