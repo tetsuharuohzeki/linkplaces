@@ -4805,9 +4805,9 @@ option-chain@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/option-chain/-/option-chain-1.0.0.tgz#938d73bd4e1783f948d34023644ada23669e30f2"
 
-option-t@^15.0.1:
-  version "15.0.1"
-  resolved "https://registry.yarnpkg.com/option-t/-/option-t-15.0.1.tgz#77e8853465cb4ab5e59661f722036f454c3ddd0d"
+option-t@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/option-t/-/option-t-16.0.0.tgz#455d554f39446c76d4db59d4acb8671b9f0679ec"
 
 optionator@^0.8.2:
   version "0.8.2"
