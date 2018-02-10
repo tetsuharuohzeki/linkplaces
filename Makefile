@@ -105,4 +105,7 @@ ava: __obj
 
 
 # Tools
-fmt: # Apply formetters for files.
+fmt: fmt_css # Apply formetters for files.
+
+fmt_css:
+	$(NPM_BIN)/prettier --single-quote --write '$(CURDIR)/src/**/*.css'
