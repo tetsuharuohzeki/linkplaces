@@ -39,7 +39,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
                     <ReactPopupItemIconElement data-src={'../shared/image/icon/sidebar-16.svg'} />
                     <div className={'text'}>
                         <span className={'popup__listitem_text_inner'}>
-                            {'View LinkPlaces WebExt Sidebar'}
+                            {'View LinkPlaces Sidebar'}
                         </span>
                     </div>
                 </div>
