@@ -16,7 +16,7 @@ help:
 	@exit 1
 
 
-## clean
+# clean
 clean: clean_dist clean_obj clean_webext_artifacts
 
 clean_dist:
@@ -102,3 +102,10 @@ stylelint:
 
 ava: __obj
 	$(NPM_BIN)/ava test/
+
+
+# Tools
+fmt: fmt_css # Apply formetters for files.
+
+fmt_css:
+	$(NPM_BIN)/prettier --single-quote --write '$(CURDIR)/src/**/*.css'
