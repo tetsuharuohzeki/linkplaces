@@ -2,12 +2,12 @@
 linkplaces.xpi
 
 ## generated files
-__dist/
-__obj/
-web-ext-artifacts/
+__dist/*
+__obj/*
+web-ext-artifacts/*
 
 # npm
-node_modules/
+node_modules/*
 npm-debug.log
 
 # yarn
