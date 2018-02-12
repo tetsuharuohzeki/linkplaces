@@ -125,7 +125,7 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
         <div className={'panel-list-item'}>
-            <ReactPopupItemIconElement data-src={'../shared/image/icon/identity-not-secure.svg'} />
+            <ReactPopupItemIconElement data-src={'../shared/image/icon/defaultFavicon.svg'} />
             <div className={'text'}>
                 <a className={'popup__listitem_text_inner'} href={url} title={tooltiptext} onClick={onClick}>
                     {item.title}
