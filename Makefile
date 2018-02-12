@@ -81,7 +81,7 @@ __obj: clean_obj
 	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --outDir $(CURDIR)/__obj/src/
 
 # Test
-test: lint ava
+test: lint ava git_diff
 
 lint: eslint tslint stylelint tscheck
 
@@ -102,6 +102,9 @@ stylelint:
 
 ava: __obj
 	$(NPM_BIN)/ava test/
+
+git_diff: # Test whether there is no committed changes.
+	git diff --exit-code
 
 
 # Tools
