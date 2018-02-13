@@ -101,6 +101,9 @@ stylelint:
 		--color
 
 ava: __obj
+	$(MAKE) run_ava
+
+run_ava:
 	$(NPM_BIN)/ava test/
 
 git_diff: # Test whether there is no committed changes.
