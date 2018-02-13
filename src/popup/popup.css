@@ -15,10 +15,7 @@
     text-decoration: none;
 }
 
-.popup__listitem_icon_item {
-    margin-inline-end: 1em;
-}
-
+.popup__listitem_icon_item,
 .popup__listitem_icon_folder {
-    margin-inline-end: 2em;
+    margin-inline-end: 1em;
 }
