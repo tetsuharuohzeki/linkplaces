@@ -39,6 +39,7 @@ export class PopupMainContext implements ViewContext {
         const middleware = thunk.withExtraArgument(args);
 
         const initial = createInitialPopupMainStateTree(this._list);
+        // @ts-ignore
         const store: Store<PopupMainStateTree> = createStore<PopupMainStateTree, Action, never>(reducer, initial, applyMiddleware(middleware));
 
         const render = () => {
