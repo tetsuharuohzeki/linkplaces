@@ -1,6 +1,6 @@
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Store, Unsubscribe, Middleware } from 'redux';
 import thunk from 'redux-thunk';
 

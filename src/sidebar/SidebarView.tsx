@@ -4,7 +4,7 @@ import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toar
 
 import { Nullable, isNull, isNotNull } from 'option-t/esm/Nullable/Nullable';
 
-import * as React from 'react';
+import React from 'react';
 //import * as PropTypes from 'prop-types';
 
 import {
