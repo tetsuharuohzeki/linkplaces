@@ -17,15 +17,18 @@ import {
     createOpenLibraryWindow,
     OpenSidebarAction,
     OpenLibraryWindowAction,
+    Action as PopupAction,
 } from './PopupAction';
 import { PopupMainState, PopupMainStateTree } from './PopupMainState';
+
+export type ThunkDispatch<A extends PopupAction = PopupAction> = Dispatch<A, PopupMainState>;
 
 export type ThunkArguments = Readonly<{
     channel: Channel;
 }>;
 
 export function openItem(id: string, url: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
-    return function openItemActual(_dispatch: Dispatch<never, PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
+    return function openItemActual(_dispatch: ThunkDispatch<never>, _, dependencies: ThunkArguments): Promise<void> {
         const where: WhereToOpenItem = WHERE_TO_OPEN_ITEM_TO_TAB;
         openItemViaChannel(dependencies.channel, id, url, where);
 
@@ -36,7 +39,7 @@ export function openItem(id: string, url: string): ThunkAction<Promise<void>, Po
 }
 
 export function openWebExtSidebar(): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
-    return function openWebExtActual(dispatch: Dispatch<OpenSidebarAction, PopupMainState>, _, _dependencies: ThunkArguments): Promise<void> {
+    return function openWebExtActual(dispatch: ThunkDispatch<OpenSidebarAction>, _, _dependencies: ThunkArguments): Promise<void> {
         openWebExtSidebarDirect(browser.sidebarAction);
 
         dispatch(createOpenSidebarAction());
@@ -46,7 +49,7 @@ export function openWebExtSidebar(): ThunkAction<Promise<void>, PopupMainStateTr
 }
 
 export function openLibraryWindow(bookmarkId: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
-    return function openItemActual(dispatch: Dispatch<OpenLibraryWindowAction, PopupMainState>, _, dependencies: ThunkArguments): Promise<void> {
+    return function openItemActual(dispatch: ThunkDispatch<OpenLibraryWindowAction>, _, dependencies: ThunkArguments): Promise<void> {
         openPlacesOrganizeWindow(dependencies.channel, bookmarkId);
 
         dispatch(createOpenLibraryWindow(bookmarkId));

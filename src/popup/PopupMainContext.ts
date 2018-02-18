@@ -1,7 +1,7 @@
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { applyMiddleware, createStore, Store, Unsubscribe } from 'redux';
+import { applyMiddleware, createStore, Store, Unsubscribe, Middleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import { Channel } from '../shared/Channel';
@@ -13,7 +13,7 @@ import { PopupMainView } from './PopupMainView';
 
 import { createItemChangedAction, Action } from './PopupAction';
 import { createReducer, PopupMainStateTree, createInitialPopupMainStateTree } from './PopupMainState';
-import { ThunkArguments } from './PopupMainThunk';
+import { ThunkArguments, ThunkDispatch } from './PopupMainThunk';
 
 export class PopupMainContext implements ViewContext {
 
@@ -36,11 +36,11 @@ export class PopupMainContext implements ViewContext {
         const args: ThunkArguments = {
             channel: this._channel,
         };
-        const middleware = thunk.withExtraArgument(args);
+        const middleware: Middleware<{}, PopupMainStateTree, ThunkDispatch> = thunk.withExtraArgument(args);
+        const enhancer = applyMiddleware(middleware);
 
         const initial = createInitialPopupMainStateTree(this._list);
-        // @ts-ignore
-        const store: Store<PopupMainStateTree> = createStore<PopupMainStateTree, Action, never>(reducer, initial, applyMiddleware(middleware));
+        const store: Store<PopupMainStateTree> = createStore<PopupMainStateTree, Action, {}, ThunkDispatch>(reducer, initial, enhancer);
 
         const render = () => {
             const { reducePopupMain: state, } = store.getState();
