@@ -21,6 +21,7 @@
   "homepage": "https://github.com/saneyuki/linkplaces",
   "dependencies": {
     "@babel/core": "^7.0.0-beta.40",
+    "@babel/plugin-syntax-async-generators": "^7.0.0-beta.40",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.40",
     "@babel/preset-react": "^7.0.0-beta.40",
     "@reactivex/ix-esnext-esm": "^2.3.5",
