@@ -1,3 +1,4 @@
+import { Result, createErr, createOk } from 'option-t/esm/PlainResult/Result';
 import { isNull } from 'option-t/esm/Nullable/Nullable';
 
 import {
@@ -7,19 +8,28 @@ import {
     BookmarkTreeNodeSeparator,
 } from '../../typings/webext/bookmarks';
 
+const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/;
+
 export function getUnfiledBoolmarkFolder(): Promise<Array<BookmarkTreeNode>> {
     // This code only works with Firefox.
     return browser.bookmarks.getChildren('unfiled_____');
 }
 
-export async function createBookmarkItem(url: string, title: string): Promise<BookmarkTreeNode> {
+export async function createBookmarkItem(url: string, title: string): Promise<Result<BookmarkTreeNode, Error>> {
+    if (PRIVILEGED_SCHEME_PATTERN.test(url)) {
+        // By WebExtensions permission model, we cannot open `about:`
+        const msg = `${url} is not opend from this extension. Thus this extension does not save this url`;
+        const e = createErr(new URIError(msg));
+        return e;
+    }
+
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/create
     // Save to "Other Bookmarks" if there is no `parentId`
-    const result = browser.bookmarks.create({
+    const result = await browser.bookmarks.create({
         url,
         title,
     });
-    return result;
+    return createOk(result);
 }
 
 export function removeBookmarkItem(id: string): Promise<void> {
@@ -31,7 +41,7 @@ export type LinkSchemeType = { isPrivileged: boolean; type: string; };
 
 export function getLinkSchemeType(url: string): LinkSchemeType {
     // see https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create
-    const r = /^(chrome|resource|about|data|javascript):/.exec(url);
+    const r = PRIVILEGED_SCHEME_PATTERN.exec(url);
     if (isNull(r)) {
         return {
             isPrivileged: false,
