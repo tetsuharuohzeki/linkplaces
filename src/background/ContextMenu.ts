@@ -2,6 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+import { unwrapOrFromUndefinable } from 'option-t/esm/Undefinable/unwrapOr';
+import { expectNotUndefined } from 'option-t/esm/Undefinable/expect';
 import { Maybe, isNullOrUndefined } from 'option-t/esm/Maybe';
 import { Result } from 'option-t/esm/PlainResult/Result';
 import { tapErr } from 'option-t/esm/PlainResult/tap';
@@ -95,29 +97,23 @@ function onClickSaveTab(tab: Tab): Promise<Result<BookmarkTreeNode, Error>> {
     if (typeof title !== 'string' || typeof url !== 'string') {
         throw new TypeError('Cannot found both of `title` & `url`');
     }
+
     const created = createBookmarkItem(url, title);
     return created;
 }
 
 function onClickSavePage(info: OnClickData, tab: Tab): Promise<Result<BookmarkTreeNode, Error>> {
-    const url = info.pageUrl;
-    if (typeof url !== 'string') {
-        throw new TypeError('Cannot found `info.linkUrl`');
-    }
+    const url = expectNotUndefined(info.pageUrl, 'Cannot found `info.pageUrl`');
 
-    const title: string = (typeof tab.title === 'string') ? tab.title : url;
+    const title = unwrapOrFromUndefinable<string>(tab.title, url);
     const created = createBookmarkItem(url, title);
     return created;
 }
 
 function onClickSaveLink(info: OnClickData): Promise<Result<BookmarkTreeNode, Error>> {
-    const url = info.linkUrl;
-    if (typeof url !== 'string') {
-        throw new TypeError('Cannot found `info.linkUrl`');
-    }
+    const url = expectNotUndefined(info.linkUrl, 'Cannot found `info.linkUrl`');
 
-    const linkText = info.linkText;
-    const title = (typeof linkText === 'string') ? linkText : url;
+    const title = unwrapOrFromUndefinable(info.linkText, url);
     const created = createBookmarkItem(url, title);
     return created;
 }
