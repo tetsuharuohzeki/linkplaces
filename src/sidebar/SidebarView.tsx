@@ -113,7 +113,7 @@ function ListItemInner(props: ListItemInnerProps): JSX.Element {
         );
     }
 
-    let onClick: (e: React.SyntheticEvent<HTMLAnchorElement>) => void;
+    let onClick: React.MouseEventHandler<HTMLAnchorElement>;
     if (isBookmarkTreeNodeItem(bookmark)) {
         onClick = (evt) => {
             evt.preventDefault();
@@ -140,13 +140,8 @@ function ListItemInner(props: ListItemInnerProps): JSX.Element {
     );
 }
 
-function whereToOpenItem(syntheticEvent: React.SyntheticEvent<HTMLAnchorElement>): WhereToOpenItem {
-    const event = syntheticEvent.nativeEvent;
-    if ( !(event instanceof MouseEvent || event instanceof KeyboardEvent) ) {
-        throw new TypeError(`mouseevent should be MouseEvent`);
-    }
-
-    if (event.shiftKey) {
+function whereToOpenItem(syntheticEvent: React.MouseEvent<HTMLAnchorElement>): WhereToOpenItem {
+    if (syntheticEvent.shiftKey) {
         return WHERE_TO_OPEN_ITEM_TO_WINDOW;
     }
 

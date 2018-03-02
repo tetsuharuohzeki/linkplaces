@@ -112,7 +112,7 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
     const url = item.url;
     const id = item.id;
 
-    const onClick = (event: React.SyntheticEvent<HTMLAnchorElement>) => {
+    const onClick: React.MouseEventHandler<HTMLAnchorElement> = (event) => {
         event.preventDefault();
 
         const a = openItem(id, url);
