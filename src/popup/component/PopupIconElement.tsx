@@ -1,3 +1,6 @@
+import { Nullable } from 'option-t/esm/Nullable/Nullable';
+import { unwrapOrFromNullable } from 'option-t/esm/Nullable/unwrapOr';
+
 const ATTR_NAME_SRC = 'data-src';
 
 const enum IconType {
@@ -8,11 +11,13 @@ const enum IconType {
 abstract class PopupIconElement extends HTMLElement {
     private _connectedOnce: boolean;
     private _type: IconType;
+    private _img: Nullable<HTMLImageElement>;
 
     constructor(type: IconType) {
         super();
         this._connectedOnce = false;
         this._type = type;
+        this._img = null;
     }
 
     connectedCallback(): void {
@@ -27,19 +32,19 @@ abstract class PopupIconElement extends HTMLElement {
         const img = document.createElement('img');
         const type: string = this._type;
         img.className = `popup__listitem_icon_${type}`;
-        const src = this.getAttribute(ATTR_NAME_SRC) || '';
+        const src = unwrapOrFromNullable(this.getAttribute(ATTR_NAME_SRC), '');
         img.src = src;
         img.alt = '';
 
         this.appendChild(img);
+        this._img = img;
     }
 
     disconnectedCallback(): void {
-        // don't support this operation.
+        this._img = null;
     }
 
     attributeChangedCallback(attributeName: string, oldValue: string, newValue: string, _namespace: string): void {
-        // don't support this operation.
         if (attributeName !== ATTR_NAME_SRC) {
             return;
         }
@@ -47,6 +52,13 @@ abstract class PopupIconElement extends HTMLElement {
         if (oldValue === newValue) {
             return;
         }
+
+        const img = this._img;
+        if (img === null) {
+            return;
+        }
+
+        img.setAttribute('src', newValue);
     }
 
     adoptedCallback(_oldDocument: Document, _newDocument: Document): void {
