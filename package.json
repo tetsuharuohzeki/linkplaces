@@ -46,7 +46,7 @@
     "rollup-plugin-node-resolve": "^3.2.0",
     "rollup-plugin-replace": "^2.0.0",
     "rxjs": "^5.5.7",
-    "stylelint": "^9.1.1",
+    "stylelint": "^9.1.2",
     "stylelint-config-standard": "^18.2.0",
     "tslint": "^5.9.1",
     "tslint-config-fluct": "https://github.com/voyagegroup/tslint-config-fluct/archive/8ec36d44aca0e3e2517d5b05cac20447ca4f813a.tar.gz",
