@@ -17,7 +17,7 @@ export const enum ActionType {
     ItemChanged = 'POPUP_ACTION_ITEM_CHANGED',
 }
 
-export type Action =
+export type PopupAction =
     InitAction |
     OpenSidebarAction |
     OpenLibraryWindowAction |

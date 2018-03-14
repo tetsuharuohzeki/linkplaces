@@ -17,7 +17,7 @@ import {
     createOpenLibraryWindow,
     OpenSidebarAction,
     OpenLibraryWindowAction,
-    Action as PopupAction,
+    PopupAction,
 } from './PopupAction';
 import { PopupMainState, PopupMainStateTree } from './PopupMainState';
 
@@ -49,7 +49,7 @@ export function openWebExtSidebar(): ThunkAction<Promise<void>, PopupMainStateTr
 }
 
 export function openLibraryWindow(bookmarkId: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
-    return function openItemActual(dispatch: ThunkDispatch<OpenLibraryWindowAction>, _, dependencies: ThunkArguments): Promise<void> {
+    return function openLibraryWindowActual(dispatch: ThunkDispatch<OpenLibraryWindowAction>, _, dependencies: ThunkArguments): Promise<void> {
         openPlacesOrganizeWindow(dependencies.channel, bookmarkId);
 
         dispatch(createOpenLibraryWindow(bookmarkId));

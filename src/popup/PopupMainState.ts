@@ -1,6 +1,6 @@
 import { combineReducers, Reducer, } from 'redux';
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
-import { Action, ActionType } from './PopupAction';
+import { PopupAction, ActionType } from './PopupAction';
 
 export interface PopupMainState {
     list: Array<BookmarkTreeNode>;
@@ -12,7 +12,7 @@ function createInitialPopupMainState(list: Array<BookmarkTreeNode> = []): PopupM
     };
 }
 
-export function reducePopupMain(prev: PopupMainState = createInitialPopupMainState(), action: Action): PopupMainState {
+export function reducePopupMain(prev: PopupMainState = createInitialPopupMainState(), action: PopupAction): PopupMainState {
     switch (action.type) {
         case ActionType.Init: {
             prev.list = action.list;
