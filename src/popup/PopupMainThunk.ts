@@ -32,9 +32,7 @@ export function openItem(id: string, url: string): ThunkAction<Promise<void>, Po
         const where: WhereToOpenItem = WHERE_TO_OPEN_ITEM_TO_TAB;
         openItemViaChannel(dependencies.channel, id, url, where);
 
-        return Promise.resolve().then(() => {
-            window.close();
-        });
+        return closeWindow();
     };
 }
 
@@ -59,5 +57,11 @@ export function openLibraryWindow(bookmarkId: string): ThunkAction<Promise<void>
 }
 
 async function closeWindow(): Promise<void> {
+    await sleepWithTimeout(0);
     window.close();
+}
+
+function sleepWithTimeout(millisec: number): Promise<void> {
+    const p = new Promise<void>((resolve) => window.setTimeout(resolve, millisec));
+    return p;
 }
