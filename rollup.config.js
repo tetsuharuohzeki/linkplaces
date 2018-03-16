@@ -7,6 +7,11 @@ const babel = require('rollup-plugin-babel');
 const nodeResolve = require('rollup-plugin-node-resolve');
 const replace = require('rollup-plugin-replace');
 
+const {
+    replaceImportWithGlobal,
+    createDefaultExport,
+} = require('./tools/rollup/replace_import_with_global');
+
 const GIT_REVISION = MaybeMod.mapOr(process.env.GIT_REVISION, 'unknown', String);
 const BUILD_DATE = MaybeMod.mapOr(process.env.BUILD_DATE, 'unknown', String);
 const LIB_NODE_ENV = MaybeMod.mapOr(process.env.RELEASE_CHANNEL, 'production', String);
@@ -31,10 +36,6 @@ module.exports = {
 
         sourcemap: true,
         globals: {
-            'react': 'React',
-            'react-dom': 'ReactDOM',
-            'prop-types': 'PropTypes',
-            'redux-thunk': 'window.ReduxThunk.default',
             'rxjs': 'Rx',
 
             // I know these are pretty messy approach.
@@ -50,12 +51,8 @@ module.exports = {
     },
 
     external: [
-        'react',
-        'react-dom',
-        'prop-types',
-        'redux-thunk',
-
         'rxjs',
+
         'rxjs/BehaviorSubject',
         'rxjs/operators',
         'rxjs/Observable',
@@ -71,6 +68,13 @@ module.exports = {
     experimentalDynamicImport: true,
 
     plugins: [
+        replaceImportWithGlobal({
+            'react': createDefaultExport('window.React'),
+            'react-dom': createDefaultExport('window.ReactDOM'),
+            'prop-types': createDefaultExport('window.PropTypes'),
+            'redux-thunk': createDefaultExport('window.ReduxThunk.default'),
+        }),
+
         // https://github.com/rollup/rollup-plugin-node-resolve
         nodeResolve({
             module: true,
