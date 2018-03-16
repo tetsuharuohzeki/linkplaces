@@ -3,15 +3,16 @@
 
 const MaybeMod = require('option-t/cjs/Maybe');
 
+const alias = require('rollup-plugin-alias');
 const babel = require('rollup-plugin-babel');
 const nodeResolve = require('rollup-plugin-node-resolve');
 const replace = require('rollup-plugin-replace');
 
+const pathMappingRx = require('rxjs/_esm2015/path-mapping');
+
 const {
     replaceImportWithGlobal,
     createDefaultExport,
-    createNamedExport,
-    createModule,
 } = require('./tools/rollup/replace_import_with_global');
 
 const GIT_REVISION = MaybeMod.mapOr(process.env.GIT_REVISION, 'unknown', String);
@@ -54,35 +55,10 @@ module.exports = {
             'react-dom': createDefaultExport('window.ReactDOM'),
             'prop-types': createDefaultExport('window.PropTypes'),
             'redux-thunk': createDefaultExport('window.ReduxThunk.default'),
-
-            // I know these are pretty messy approach.
-            // But rxjs does not support properly TypeScript+rollup
-            'rxjs/BehaviorSubject': createModule([
-                createNamedExport('BehaviorSubject', 'window.Rx'),
-            ]),
-            'rxjs/Observable': createModule([
-                createNamedExport('Observable', 'window.Rx'),
-            ]),
-            'rxjs/observable/merge': createModule([
-                createNamedExport('merge', 'window.Rx.Observable'),
-            ]),
-            'rxjs/operators': createModule([
-                createNamedExport('filter', 'window.Rx.operators'),
-                createNamedExport('map', 'window.Rx.operators'),
-                createNamedExport('share', 'window.Rx.operators'),
-                createNamedExport('startWith', 'window.Rx.operators'),
-                createNamedExport('observeOn', 'window.Rx.operators'),
-            ]),
-            'rxjs/Subject': createModule([
-                createNamedExport('Subject', 'window.Rx'),
-            ]),
-            'rxjs/Subscription': createModule([
-                createNamedExport('Subscription', 'window.Rx'),
-            ]),
-            'rxjs/scheduler/animationFrame': createModule([
-                createNamedExport('animationFrame', 'window.Rx.Scheduler'),
-            ]),
         }),
+
+        // https://github.com/rollup/rollup-plugin-alias/issues
+        alias(pathMappingRx()),
 
         // https://github.com/rollup/rollup-plugin-node-resolve
         nodeResolve({
