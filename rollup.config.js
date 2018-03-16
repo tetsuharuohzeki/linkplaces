@@ -9,6 +9,15 @@ const replace = require('rollup-plugin-replace');
 
 const GIT_REVISION = MaybeMod.mapOr(process.env.GIT_REVISION, 'unknown', String);
 const BUILD_DATE = MaybeMod.mapOr(process.env.BUILD_DATE, 'unknown', String);
+const LIB_NODE_ENV = MaybeMod.mapOr(process.env.RELEASE_CHANNEL, 'production', String);
+
+console.log(`
+=========== rollup configuration vars ============
+GIT_REVISION: ${GIT_REVISION}
+BUILD_DATE: ${BUILD_DATE}
+LIB_NODE_ENV: ${LIB_NODE_ENV}
+======================================
+`);
 
 // https://github.com/rollup/rollup/wiki/JavaScript-API
 // https://github.com/rollup/rollup/wiki/Command-Line-Interface
@@ -25,7 +34,6 @@ module.exports = {
             'react': 'React',
             'react-dom': 'ReactDOM',
             'prop-types': 'PropTypes',
-            'redux': 'Redux',
             'redux-thunk': 'window.ReduxThunk.default',
             'rxjs': 'Rx',
 
@@ -45,7 +53,6 @@ module.exports = {
         'react',
         'react-dom',
         'prop-types',
-        'redux',
         'redux-thunk',
 
         'rxjs',
@@ -77,13 +84,24 @@ module.exports = {
             extensions: ['.mjs', '.js', '.jsx'],
         }),
 
+        // https://github.com/rollup/rollup-plugin-replace
         replace({
-            //include: 'config.js',
-            exclude: 'node_modules/**',
+            exclude: [
+                'node_modules/**',
+            ],
             delimiters: ['', ''],
             values: {
                 'process.env.GIT_REVISION': JSON.stringify(GIT_REVISION),
                 'process.env.BUILD_DATE': JSON.stringify(BUILD_DATE),
+            },
+        }),
+        replace({
+            include: [
+                '**/redux/es/redux.js',
+            ],
+            delimiters: ['', ''],
+            values: {
+                'process.env.NODE_ENV': JSON.stringify(LIB_NODE_ENV),
             },
         }),
 

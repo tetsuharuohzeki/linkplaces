@@ -60,7 +60,6 @@ __external_dependency: \
 	__external_dependency_react \
 	__external_dependency_react_dom \
 	__external_dependency_prop_types \
-	__external_dependency_redux \
 	__external_dependency_redux_thunk \
 	__external_dependency_rxjs
 
@@ -70,8 +69,6 @@ __external_dependency_react_dom: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/react-dom/umd/react-dom.production.min.js' $(CURDIR)/__dist/third_party --preserve
 __external_dependency_prop_types: clean_dist
 		$(NPM_BIN)/cpx '$(CURDIR)/node_modules/prop-types/prop-types.min.js' $(CURDIR)/__dist/third_party --preserve
-__external_dependency_redux: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/redux/dist/redux.js' $(CURDIR)/__dist/third_party --preserve
 __external_dependency_redux_thunk: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/redux-thunk/dist/redux-thunk.js' $(CURDIR)/__dist/third_party --preserve
 __external_dependency_rxjs: clean_dist
