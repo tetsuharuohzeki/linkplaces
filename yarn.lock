@@ -409,6 +409,20 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@cliqz-oss/firefox-client@0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@cliqz-oss/firefox-client/-/firefox-client-0.3.1.tgz#86479239f060835608b06584afe5e0a1dd91613c"
+  dependencies:
+    colors "0.5.x"
+    js-select "~0.6.0"
+
+"@cliqz-oss/node-firefox-connect@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@cliqz-oss/node-firefox-connect/-/node-firefox-connect-1.2.1.tgz#1d42cf9a7ddcdde3ff232715d7712662966e2df4"
+  dependencies:
+    "@cliqz-oss/firefox-client" "0.3.1"
+    es6-promise "^2.0.1"
+
 "@concordance/react@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@concordance/react/-/react-1.0.0.tgz#fcf3cad020e5121bfd1c61d05bc3516aac25f734"
@@ -503,9 +517,9 @@ adbkit@2.11.0:
     node-forge "^0.7.1"
     split "~0.3.3"
 
-addons-linter@0.35.0:
-  version "0.35.0"
-  resolved "https://registry.yarnpkg.com/addons-linter/-/addons-linter-0.35.0.tgz#85872cce58983ff339ced297dbff486c02ecd336"
+addons-linter@0.36.1:
+  version "0.36.1"
+  resolved "https://registry.yarnpkg.com/addons-linter/-/addons-linter-0.36.1.tgz#c07e0bfdfc9079edba78c3a675afd6e056af68d3"
   dependencies:
     ajv "5.5.2"
     ajv-merge-patch "3.0.0"
@@ -515,7 +529,7 @@ addons-linter@0.35.0:
     columnify "1.5.4"
     common-tags "1.7.2"
     crx-parser "0.1.2"
-    dispensary "0.12.0"
+    dispensary "0.14.0"
     doctoc "1.3.0"
     es6-promisify "5.0.0"
     eslint "4.15.0"
@@ -526,7 +540,7 @@ addons-linter@0.35.0:
     fluent "0.4.1"
     glob "7.1.2"
     jed "1.1.1"
-    pino "4.10.3"
+    pino "4.10.4"
     po2json "0.4.5"
     postcss "6.0.14"
     probe-image-size "3.2.0"
@@ -1520,7 +1534,7 @@ cheerio@1.0.0-rc.2:
     lodash "^4.15.0"
     parse5 "^3.0.1"
 
-chokidar@^1.6.0, chokidar@^1.7.0:
+chokidar@^1.6.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-1.7.0.tgz#798e689778151c8076b4b360e5edd28cda2bb468"
   dependencies:
@@ -2145,19 +2159,19 @@ dir-glob@^2.0.0:
     arrify "^1.0.1"
     path-type "^3.0.0"
 
-dispensary@0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/dispensary/-/dispensary-0.12.0.tgz#cc491bbbfa66a57414c958c68582a4c8703ff159"
+dispensary@0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/dispensary/-/dispensary-0.14.0.tgz#4f5140eb35f96d6f0529641e89534602d482ce26"
   dependencies:
     array-from "2.1.1"
     async "^2.0.0"
     natural-compare-lite "^1.4.0"
     pino "^4.6.0"
     request "^2.81.0"
-    semver "5.4.1"
+    semver "5.5.0"
     sha.js "^2.4.4"
-    source-map-support "0.5.0"
-    yargs "^10.0.3"
+    source-map-support "0.5.3"
+    yargs "^11.0.0"
 
 doctoc@1.3.0:
   version "1.3.0"
@@ -2804,7 +2818,7 @@ fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
 
-fast-safe-stringify@^1.0.8, fast-safe-stringify@^1.2.1, fast-safe-stringify@^1.2.3:
+fast-safe-stringify@^1.0.8, fast-safe-stringify@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-1.2.3.tgz#9fe22c37fb2f7f86f06b8f004377dbf8f1ee7bc1"
 
@@ -2885,13 +2899,6 @@ find-up@^2.0.0, find-up@^2.1.0:
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-2.1.0.tgz#45d1b7e506c717ddd482775a2b77920a3c0c57a7"
   dependencies:
     locate-path "^2.0.0"
-
-firefox-client@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/firefox-client/-/firefox-client-0.3.0.tgz#3794460f6eb6afcf41376addcbc7462e24a4cd8b"
-  dependencies:
-    colors "0.5.x"
-    js-select "~0.6.0"
 
 firefox-profile@1.1.0:
   version "1.1.0"
@@ -4666,13 +4673,6 @@ node-fetch@^1.0.1:
     encoding "^0.1.11"
     is-stream "^1.0.1"
 
-node-firefox-connect@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/node-firefox-connect/-/node-firefox-connect-1.2.0.tgz#42403848313240c98514ef14b3302816fe3b84e1"
-  dependencies:
-    es6-promise "^2.0.1"
-    firefox-client "^0.3.0"
-
 node-forge@^0.7.1:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.7.4.tgz#8e6e9f563a1e32213aa7508cded22aa791dbf986"
@@ -5139,16 +5139,16 @@ pino-std-serializers@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/pino-std-serializers/-/pino-std-serializers-1.0.0.tgz#7607ab8c5b7c32bf7c4dada149da4ce3c14a3b75"
 
-pino@4.10.3:
-  version "4.10.3"
-  resolved "https://registry.yarnpkg.com/pino/-/pino-4.10.3.tgz#d46030524f2294fe43a2e2247ce1a7ef028c46bc"
+pino@4.10.4:
+  version "4.10.4"
+  resolved "https://registry.yarnpkg.com/pino/-/pino-4.10.4.tgz#71c2e5f61b3e547c6f31a185dde4a01272372c15"
   dependencies:
     chalk "^2.3.0"
     fast-json-parse "^1.0.3"
-    fast-safe-stringify "^1.2.1"
+    fast-safe-stringify "^1.2.3"
     flatstr "^1.0.5"
-    pump "^2.0.0"
-    quick-format-unescaped "^1.1.1"
+    pump "^2.0.1"
+    quick-format-unescaped "^1.1.2"
     split2 "^2.2.0"
 
 pino@^4.6.0:
@@ -5387,7 +5387,7 @@ public-encrypt@^4.0.0:
     parse-asn1 "^5.0.0"
     randombytes "^2.0.1"
 
-pump@^2.0.0, pump@^2.0.1:
+pump@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/pump/-/pump-2.0.1.tgz#12399add6e4cf7526d973cbc8b5ce2e2908b3909"
   dependencies:
@@ -5426,7 +5426,7 @@ querystring@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
-quick-format-unescaped@^1.1.1, quick-format-unescaped@^1.1.2:
+quick-format-unescaped@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/quick-format-unescaped/-/quick-format-unescaped-1.1.2.tgz#0ca581de3174becef25ac3c2e8956342381db698"
   dependencies:
@@ -6047,10 +6047,6 @@ semver-diff@^2.0.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
 
-semver@5.4.1:
-  version "5.4.1"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
-
 serialize-error@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/serialize-error/-/serialize-error-2.1.0.tgz#50b679d5635cdf84667bdc8e59af4e5b81d5f60a"
@@ -6139,9 +6135,9 @@ shellwords@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
 
-sign-addon@0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/sign-addon/-/sign-addon-0.2.2.tgz#8905708d099f7bc61a3e3c1470b30b59fa3207cd"
+sign-addon@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/sign-addon/-/sign-addon-0.3.0.tgz#b5585d8ffc978058c0a0d8c28047ecb6c8e5dab6"
   dependencies:
     babel-polyfill "6.16.0"
     deepcopy "0.6.3"
@@ -6240,12 +6236,6 @@ source-map-support@0.4.6:
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.6.tgz#32552aa64b458392a85eab3b0b5ee61527167aeb"
   dependencies:
     source-map "^0.5.3"
-
-source-map-support@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.0.tgz#2018a7ad2bdf8faf2691e5fddab26bed5a2bacab"
-  dependencies:
-    source-map "^0.6.0"
 
 source-map-support@0.5.1:
   version "0.5.1"
@@ -7185,15 +7175,7 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-watchpack@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.4.0.tgz#4a1472bcbb952bd0a9bb4036801f954dfb39faac"
-  dependencies:
-    async "^2.1.2"
-    chokidar "^1.7.0"
-    graceful-fs "^4.1.2"
-
-watchpack@^1.4.0:
+watchpack@1.5.0, watchpack@^1.4.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.5.0.tgz#231e783af830a22f8966f65c4c4bacc814072eed"
   dependencies:
@@ -7207,12 +7189,14 @@ wcwidth@^1.0.0:
   dependencies:
     defaults "^1.0.3"
 
-web-ext@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/web-ext/-/web-ext-2.4.0.tgz#4103e737196eb2a9fe83087752357d1dfe618294"
+web-ext@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/web-ext/-/web-ext-2.5.0.tgz#3a8b17ecddd6e4388e5fc0c1275a428cbc516521"
   dependencies:
+    "@cliqz-oss/firefox-client" "0.3.1"
+    "@cliqz-oss/node-firefox-connect" "1.2.1"
     adbkit "2.11.0"
-    addons-linter "0.35.0"
+    addons-linter "0.36.1"
     babel-polyfill "6.26.0"
     babel-runtime "6.26.0"
     bunyan "1.8.12"
@@ -7228,18 +7212,17 @@ web-ext@^2.4.0:
     minimatch "3.0.4"
     mkdirp "0.5.1"
     mz "2.7.0"
-    node-firefox-connect "1.2.0"
     node-notifier "5.2.1"
     open "0.0.5"
     parse-json "4.0.0"
     regenerator-runtime "0.11.1"
     require-uncached "1.0.3"
-    sign-addon "0.2.2"
+    sign-addon "0.3.0"
     source-map-support "0.5.3"
     stream-to-promise "2.2.0"
     tmp "0.0.33"
     update-notifier "2.3.0"
-    watchpack "1.4.0"
+    watchpack "1.5.0"
     yargs "6.6.0"
     zip-dir "1.0.2"
 
@@ -7456,9 +7439,15 @@ yargs-parser@^7.0.0:
   dependencies:
     camelcase "^4.1.0"
 
-yargs-parser@^8.0.0, yargs-parser@^8.1.0:
+yargs-parser@^8.0.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-8.1.0.tgz#f1376a33b6629a5d063782944da732631e966950"
+  dependencies:
+    camelcase "^4.1.0"
+
+yargs-parser@^9.0.2:
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-9.0.2.tgz#9ccf6a43460fe4ed40a9bb68f48d43b8a68cc077"
   dependencies:
     camelcase "^4.1.0"
 
@@ -7497,9 +7486,9 @@ yargs@6.6.0:
     y18n "^3.2.1"
     yargs-parser "^4.2.0"
 
-yargs@^10.0.3:
-  version "10.1.2"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-10.1.2.tgz#454d074c2b16a51a43e2fb7807e4f9de69ccb5c5"
+yargs@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-11.0.0.tgz#c052931006c5eee74610e5fc0354bedfd08a201b"
   dependencies:
     cliui "^4.0.0"
     decamelize "^1.1.1"
@@ -7512,7 +7501,7 @@ yargs@^10.0.3:
     string-width "^2.0.0"
     which-module "^2.0.0"
     y18n "^3.2.1"
-    yargs-parser "^8.1.0"
+    yargs-parser "^9.0.2"
 
 yargs@^8.0.2:
   version "8.0.2"
