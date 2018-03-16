@@ -33,6 +33,7 @@ module.exports = {
             // But rxjs does not support properly TypeScript+rollup
             'rxjs/BehaviorSubject': 'Rx',
             'rxjs/Observable': 'Rx',
+            'rxjs/observable/merge': 'Rx.Observable',
             'rxjs/operators': 'Rx.operators',
             'rxjs/Subject': 'Rx',
             'rxjs/Subscription': 'Rx',
@@ -51,6 +52,7 @@ module.exports = {
         'rxjs/BehaviorSubject',
         'rxjs/operators',
         'rxjs/Observable',
+        'rxjs/observable/merge',
         'rxjs/Observer',
         'rxjs/Subject',
         'rxjs/Subscription',
