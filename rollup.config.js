@@ -57,6 +57,8 @@ module.exports = {
         'rxjs/scheduler/animationFrame',
     ],
 
+    perf: false,
+
     experimentalDynamicImport: true,
 
     plugins: [
