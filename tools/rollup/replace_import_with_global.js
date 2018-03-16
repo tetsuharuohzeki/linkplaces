@@ -35,10 +35,20 @@ function replaceImportWithGlobal(map) {
 }
 
 function createDefaultExport(name) {
-    return `export default ${name}`;
+    return `export default ${name};`;
+}
+
+function createNamedExport(name, namespace) {
+    return `export var ${name} = ${namespace}.${name};`;
+}
+
+function createModule(list) {
+    return list.join('\n');
 }
 
 module.exports = Object.freeze({
     replaceImportWithGlobal,
     createDefaultExport,
+    createNamedExport,
+    createModule,
 });
