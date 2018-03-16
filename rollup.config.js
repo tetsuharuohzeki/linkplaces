@@ -44,12 +44,20 @@ module.exports = async function (_commandLineArgs) {
 
         treeshake: true,
 
+        input: [
+            './__obj/src/background/background.js',
+            './__obj/src/options/options.js',
+            './__obj/src/popup/popup.js',
+            './__obj/src/sidebar/sidebar.js',
+        ],
+
         output: {
             strict: true,
             format: 'esm',
             exports: 'none',
             freeze: true,
             preferConst: true,
+            dir: './__dist',
 
             sourcemap: true,
             globals: {
@@ -61,7 +69,7 @@ module.exports = async function (_commandLineArgs) {
 
         perf: false,
 
-        inlineDynamicImports: true,
+        inlineDynamicImports: false,
         shimMissingExports: false,
 
         plugins: [

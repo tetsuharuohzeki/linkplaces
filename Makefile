@@ -55,11 +55,11 @@ webextension: webextension_cp webextension_js webextension_css
 
 webextension_cp: clean_dist
 	$(NPM_BIN)/cpx '$(SRC_DIR)/**/**.{json,html,svg}' $(DIST_DIR) --preserve
-webextension_js: $(addprefix __bundle_js_, background popup sidebar options)
+webextension_js: __bundle_js
 webextension_css: $(addprefix __bundle_css_, popup sidebar options)
 
-__bundle_js_%: clean_dist __obj __external_dependency
-	RELEASE_CHANNEL=$(RELEASE_CHANNEL) $(NPM_BIN)/rollup $(OBJ_SRC_DIR)/$*/index.js --config $(CURDIR)/rollup.config.js --output.file $(DIST_DIR)/$*/$*_bundled.js
+__bundle_js: clean_dist __obj __external_dependency
+	RELEASE_CHANNEL=$(RELEASE_CHANNEL) $(NPM_BIN)/rollup --config $(CURDIR)/rollup.config.js
 
 __bundle_css_%: clean_dist
 	$(NPM_BIN)/postcss $(SRC_DIR)/$*/registry.css --config --output $(DIST_DIR)/$*/$*.css
