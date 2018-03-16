@@ -47,14 +47,14 @@ webextension_cp: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/src/**/**.{json,html,css,svg}' $(CURDIR)/__dist --preserve
 webextension_bundle: webextension_bundle_background webextension_bundle_popup webextension_bundle_sidebar webextension_bundle_options
 webextension_bundle_background: clean_dist __obj
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/background/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/background/bundled.js --output.format iife
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/background/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/background/bundled.js
 
 webextension_bundle_popup: clean_dist __obj __external_dependency
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/popup/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/popup/bundled.js --output.format iife
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/popup/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/popup/bundled.js
 webextension_bundle_sidebar: clean_dist __obj __external_dependency
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/sidebar/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/sidebar/bundled.js --output.format iife
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/sidebar/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/sidebar/bundled.js
 webextension_bundle_options: clean_dist __obj __external_dependency
-	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/options/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/options/bundled.js --output.format iife
+	$(NPM_BIN)/rollup $(CURDIR)/__obj/src/options/index.js --config $(CURDIR)/rollup.config.js --output.file $(CURDIR)/__dist/options/bundled.js
 
 __external_dependency: \
 	__external_dependency_react \
