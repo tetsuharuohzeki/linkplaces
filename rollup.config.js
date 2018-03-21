@@ -16,13 +16,18 @@ const {
 
 const GIT_REVISION = MaybeMod.mapOr(process.env.GIT_REVISION, 'unknown', String);
 const BUILD_DATE = MaybeMod.mapOr(process.env.BUILD_DATE, 'unknown', String);
-const LIB_NODE_ENV = MaybeMod.mapOr(process.env.RELEASE_CHANNEL, 'production', String);
+
+const RELEASE_CHANNEL = MaybeMod.mapOr(process.env.RELEASE_CHANNEL, 'production', String);
+const LIB_NODE_ENV = (RELEASE_CHANNEL === 'production') ? 'production' : 'development';
+const IS_PRODUCTION_MODE = (RELEASE_CHANNEL === 'production');
 
 console.log(`
 =========== rollup configuration vars ============
 GIT_REVISION: ${GIT_REVISION}
 BUILD_DATE: ${BUILD_DATE}
+RELEASE_CHANNEL: ${RELEASE_CHANNEL}
 LIB_NODE_ENV: ${LIB_NODE_ENV}
+IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
 ======================================
 `);
 
@@ -124,7 +129,10 @@ module.exports = {
             externalHelpers: false,
             babelrc: false,
             presets: [
-                '@babel/preset-react',
+                ['@babel/preset-react', {
+                    // https://github.com/babel/babel/tree/master/packages/babel-preset-react#options
+                    development: !IS_PRODUCTION_MODE,
+                }],
             ],
             plugins: [
                 '@babel/plugin-syntax-dynamic-import',
