@@ -26,7 +26,7 @@
     "@babel/preset-react": "^7.0.0-beta.42",
     "@reactivex/ix-esnext-esm": "^2.3.5",
     "@types/prop-types": "^15.5.1",
-    "@types/react": "^16.0.41",
+    "@types/react": "^16.1.0",
     "@types/react-dom": "^16.0.4",
     "ava": "^1.0.0-beta.3",
     "cpx": "^1.5.0",
@@ -52,7 +52,7 @@
     "tslint-config-fluct": "https://github.com/voyagegroup/tslint-config-fluct/archive/8ec36d44aca0e3e2517d5b05cac20447ca4f813a.tar.gz",
     "tslint-language-service": "^0.9.9",
     "typescript": "^2.8.1",
-    "web-ext": "^2.5.0"
+    "web-ext": "^2.6.0"
   },
   "ava": {
     "babel": false
