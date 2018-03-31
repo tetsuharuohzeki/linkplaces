@@ -1,6 +1,5 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable, Subject } from 'rxjs';
 import { filter as filterRx } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
 
 import { Dispatchable } from '../shared/Intent';
 import {
