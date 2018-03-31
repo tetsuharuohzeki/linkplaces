@@ -31,6 +31,9 @@ IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
 ======================================
 `);
 
+const RXJS_NAMESPCACE_OBJ_NAME = 'window.rxjs';
+const RXJS_OPERATOR_NAMESPCACE_OBJ_NAME = `${RXJS_NAMESPCACE_OBJ_NAME}.operators`;
+
 // https://github.com/rollup/rollup/wiki/JavaScript-API
 // https://github.com/rollup/rollup/wiki/Command-Line-Interface
 module.exports = async function (_commandLineArgs) {
@@ -64,30 +67,20 @@ module.exports = async function (_commandLineArgs) {
 
                 // I know these are pretty messy approach.
                 // But rxjs does not support properly TypeScript+rollup
-                'rxjs/BehaviorSubject': createModule([
-                    createNamedExport('BehaviorSubject', 'window.Rx'),
-                ]),
-                'rxjs/Observable': createModule([
-                    createNamedExport('Observable', 'window.Rx'),
-                ]),
-                'rxjs/observable/merge': createModule([
-                    createNamedExport('merge', 'window.Rx.Observable'),
+                'rxjs': createModule([
+                    createNamedExport('BehaviorSubject', RXJS_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('Observable', RXJS_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('merge', RXJS_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('Subject', RXJS_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('Subscription', RXJS_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('animationFrameScheduler', RXJS_NAMESPCACE_OBJ_NAME),
                 ]),
                 'rxjs/operators': createModule([
-                    createNamedExport('filter', 'window.Rx.operators'),
-                    createNamedExport('map', 'window.Rx.operators'),
-                    createNamedExport('share', 'window.Rx.operators'),
-                    createNamedExport('startWith', 'window.Rx.operators'),
-                    createNamedExport('observeOn', 'window.Rx.operators'),
-                ]),
-                'rxjs/Subject': createModule([
-                    createNamedExport('Subject', 'window.Rx'),
-                ]),
-                'rxjs/Subscription': createModule([
-                    createNamedExport('Subscription', 'window.Rx'),
-                ]),
-                'rxjs/scheduler/animationFrame': createModule([
-                    createNamedExport('animationFrame', 'window.Rx.Scheduler'),
+                    createNamedExport('filter', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('map', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('share', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('startWith', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('observeOn', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
                 ]),
             }),
 

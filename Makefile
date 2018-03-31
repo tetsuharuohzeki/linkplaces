@@ -72,7 +72,7 @@ __external_dependency_prop_types: clean_dist
 __external_dependency_redux_thunk: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/redux-thunk/dist/redux-thunk.js' $(CURDIR)/__dist/third_party --preserve
 __external_dependency_rxjs: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/rxjs/bundles/Rx.min.js' $(CURDIR)/__dist/third_party --preserve
+	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/rxjs/bundles/rxjs.umd.min.js' $(CURDIR)/__dist/third_party --preserve
 
 __obj: clean_obj
 	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --outDir $(CURDIR)/__obj/src/

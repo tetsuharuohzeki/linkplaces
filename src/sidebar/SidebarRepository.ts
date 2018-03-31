@@ -2,15 +2,17 @@ import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
 import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
 import { tap as tapIx } from '@reactivex/ix-esnext-esm/iterable/pipe/tap';
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import { merge as mergeRx } from 'rxjs/observable/merge';
-import { Observer } from 'rxjs/Observer';
+import {
+    BehaviorSubject,
+    Observable,
+    Observer,
+    Subject,
+    Subscription,
+    merge as mergeRx,
+} from 'rxjs';
 import {
     map as mapRx,
 } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
 
 import { Nullable } from 'option-t/esm/Nullable/Nullable';
 
@@ -123,11 +125,11 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
             const o = this._driver.asObservable();
             const input = mergeRx(o, this._emitter);
             this._obs = input.pipe(
-                    mapRx((input) => {
-                        const o = mapBookmarkTreeNodeToSidebarItemViewModelEntity(input, this._isOpeningMap);
-                        return o;
-                    }),
-                );
+                mapRx((input) => {
+                    const o = mapBookmarkTreeNodeToSidebarItemViewModelEntity(input, this._isOpeningMap);
+                    return o;
+                }),
+            );
         }
         return this._obs;
     }

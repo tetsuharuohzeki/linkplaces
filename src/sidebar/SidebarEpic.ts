@@ -1,6 +1,6 @@
 import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import { Channel } from '../shared/Channel';
 import { Epic } from '../shared/Epic';

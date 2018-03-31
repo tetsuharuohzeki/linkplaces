@@ -6,10 +6,10 @@ import ReactDOM from 'react-dom';
 import {
     observeOn,
 } from 'rxjs/operators';
-import { Subscription } from 'rxjs/Subscription';
 import {
-    animationFrame as animationFrameRxScheduler,
-} from 'rxjs/scheduler/animationFrame';
+    Subscription,
+    animationFrameScheduler as animationFrameRxScheduler,
+} from 'rxjs';
 
 import { Channel } from '../shared/Channel';
 import { ViewContext } from '../shared/ViewContext';
