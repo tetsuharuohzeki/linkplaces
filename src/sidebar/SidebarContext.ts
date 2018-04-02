@@ -63,7 +63,8 @@ export class SidebarContext implements ViewContext {
                 state,
                 intent: this._intent,
             };
-            const view = React.createElement<SidebarViewProps>(SidebarView, props, []);
+            const sidbarview = React.createElement<SidebarViewProps>(SidebarView, props);
+            const view = React.createElement(React.StrictMode, null, sidbarview);
             ReactDOM.render(view, mountpoint);
         }, (e) => {
             console.exception(e);

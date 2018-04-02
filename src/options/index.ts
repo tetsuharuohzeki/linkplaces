@@ -12,12 +12,14 @@ function getUrl(path: string): { url: string; title: string; } {
 }
 
 (async function main(){
-    const view = React.createElement(OptionsView, {
+    const optionview = React.createElement(OptionsView, {
         list: [
             getUrl('popup/index.html'),
             getUrl('sidebar/index.html'),
         ],
-    }, []);
+    });
     const mountpoint = document.getElementById('js-mountpoint');
+
+    const view = React.createElement(React.StrictMode, null, optionview);
     ReactDOM.render(view, mountpoint);
 })().catch(console.error);
