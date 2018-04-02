@@ -17,7 +17,7 @@ help:
 
 
 # clean
-clean: clean_dist clean_obj clean_webext_artifacts
+clean: clean_dist clean_obj clean_webext_artifacts ## Clean up all generated files.
 
 clean_dist:
 	$(NPM_BIN)/del $(CURDIR)/__dist --force
@@ -30,7 +30,7 @@ clean_webext_artifacts:
 
 
 # build
-build:
+build: ## Build the artifact.
 	$(MAKE) __webext_xpi -C $(CURDIR)
 
 __webext_xpi: clean_webext_artifacts \
@@ -103,7 +103,7 @@ ava: __obj
 run_ava:
 	$(NPM_BIN)/ava test/
 
-git_diff: # Test whether there is no committed changes.
+git_diff: ## Test whether there is no committed changes.
 	git diff --exit-code
 
 
@@ -112,7 +112,7 @@ ci: test git_diff
 
 
 # Tools
-fmt: fmt_css # Apply formetters for files.
+fmt: fmt_css ## Apply formetters for files.
 
 fmt_css:
 	$(NPM_BIN)/prettier --single-quote --write '$(CURDIR)/src/**/*.css'
