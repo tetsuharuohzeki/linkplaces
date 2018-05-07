@@ -1,5 +1,4 @@
 import React from 'react';
-import { Store } from 'redux';
 //import * as PropTypes from 'prop-types';
 
 import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../typings/webext/bookmarks';
@@ -11,12 +10,13 @@ import {
     ReactPopupItemIconElement,
 } from './component/PopupIconElement';
 
-import { PopupMainState, PopupMainStateTree } from './PopupMainState';
+import { PopupMainState } from './PopupMainState';
 import { openItem, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';
+import { PopupMainStore } from './PopupMainStore';
 
 export interface PopupMainViewProps {
     state: PopupMainState;
-    store: Store<PopupMainStateTree>;
+    store: PopupMainStore;
 }
 
 export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element {
@@ -55,7 +55,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
 
 interface ListItemProps {
     item: BookmarkTreeNode;
-    store: Store<PopupMainStateTree>;
+    store: PopupMainStore;
 }
 function ListItem(props: ListItemProps): JSX.Element {
     const { item, store, } = props;
@@ -76,7 +76,7 @@ function ListItem(props: ListItemProps): JSX.Element {
 
 interface FolderListItemProps {
     item: BookmarkTreeNodeFolder;
-    store: Store<PopupMainStateTree>;
+    store: PopupMainStore;
 }
 function FolderListItem(props: FolderListItemProps): JSX.Element {
     const { item, store } = props;
@@ -105,7 +105,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
 
 interface ItemListItemProps {
     item: BookmarkTreeNodeItem;
-    store: Store<PopupMainStateTree>;
+    store: PopupMainStore;
 }
 function ItemListItem(props: ItemListItemProps): JSX.Element {
     const { item, store } = props;

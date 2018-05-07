@@ -1,8 +1,8 @@
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { applyMiddleware, createStore, Store, Unsubscribe, Middleware } from 'redux';
-import thunk from 'redux-thunk';
+import { applyMiddleware, createStore, Unsubscribe, StoreEnhancer } from 'redux';
+import { createThunkMiddleware, ThunkExt } from '../third_party/redux-thunk';
 
 import { Channel } from '../shared/Channel';
 import { ViewContext } from '../shared/ViewContext';
@@ -13,7 +13,8 @@ import { PopupMainView } from './PopupMainView';
 
 import { createItemChangedAction, PopupAction } from './PopupAction';
 import { createReducer, PopupMainStateTree, createInitialPopupMainStateTree } from './PopupMainState';
-import { ThunkArguments, ThunkDispatch } from './PopupMainThunk';
+import { ThunkArguments } from './PopupMainThunk';
+import { PopupMainStore, PopupMainThunkExt } from './PopupMainStore';
 
 export class PopupMainContext implements ViewContext {
 
@@ -36,11 +37,10 @@ export class PopupMainContext implements ViewContext {
         const args: ThunkArguments = {
             channel: this._channel,
         };
-        const middleware: Middleware<{}, PopupMainStateTree, ThunkDispatch> = thunk.withExtraArgument(args);
-        const enhancer = applyMiddleware(middleware);
-
+        const middleware = createThunkMiddleware<PopupAction, PopupMainStateTree, ThunkArguments, Promise<void>>(args);
+        const enhancer: StoreEnhancer<ThunkExt<PopupAction, PopupMainStateTree>> = applyMiddleware(middleware);
         const initial = createInitialPopupMainStateTree(this._list);
-        const store: Store<PopupMainStateTree> = createStore<PopupMainStateTree, PopupAction, {}, ThunkDispatch>(reducer, initial, enhancer);
+        const store: PopupMainStore = createStore<PopupMainStateTree, PopupAction, PopupMainThunkExt, PopupMainStateTree>(reducer, initial, enhancer);
 
         const render = () => {
             const { reducePopupMain: state, } = store.getState();

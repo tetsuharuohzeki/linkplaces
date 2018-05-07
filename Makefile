@@ -70,7 +70,7 @@ __external_dependency_react_dom: clean_dist
 __external_dependency_prop_types: clean_dist
 		$(NPM_BIN)/cpx '$(CURDIR)/node_modules/prop-types/prop-types.min.js' $(CURDIR)/__dist/third_party --preserve
 __external_dependency_redux_thunk: clean_dist
-	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/redux-thunk/dist/redux-thunk.js' $(CURDIR)/__dist/third_party --preserve
+#	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/redux-thunk/dist/redux-thunk.js' $(CURDIR)/__dist/third_party --preserve
 __external_dependency_rxjs: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/rxjs/bundles/rxjs.umd.min.js' $(CURDIR)/__dist/third_party --preserve
 

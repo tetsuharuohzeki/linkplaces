@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { ThunkAction } from 'redux-thunk';
+import { ThunkAction as ThunkActionArcheType } from '../third_party/redux-thunk';
 
 import { Channel } from '../shared/Channel';
 import {
@@ -19,16 +19,16 @@ import {
     OpenLibraryWindowAction,
     PopupAction,
 } from './PopupAction';
-import { PopupMainState, PopupMainStateTree } from './PopupMainState';
+import { PopupMainStateTree } from './PopupMainState';
 
-export type ThunkDispatch<A extends PopupAction = PopupAction> = Dispatch<A, PopupMainState>;
+export type ThunkAction<A extends PopupAction = PopupAction> = ThunkActionArcheType<A, PopupMainStateTree, ThunkArguments, Promise<void>>;
 
 export type ThunkArguments = Readonly<{
     channel: Channel;
 }>;
 
-export function openItem(id: string, url: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
-    return function openItemActual(_dispatch: ThunkDispatch<never>, _, dependencies: ThunkArguments): Promise<void> {
+export function openItem(id: string, url: string): ThunkAction<never> {
+    return function openItemActual(_dispatch: Dispatch<never>, _, dependencies: ThunkArguments): Promise<void> {
         const where: WhereToOpenItem = WHERE_TO_OPEN_ITEM_TO_TAB;
         openItemViaChannel(dependencies.channel, id, url, where);
 
@@ -36,8 +36,8 @@ export function openItem(id: string, url: string): ThunkAction<Promise<void>, Po
     };
 }
 
-export function openWebExtSidebar(): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
-    return function openWebExtActual(dispatch: ThunkDispatch<OpenSidebarAction>, _, _dependencies: ThunkArguments): Promise<void> {
+export function openWebExtSidebar(): ThunkAction<OpenSidebarAction> {
+    return function openWebExtActual(dispatch: Dispatch<OpenSidebarAction>, _, _dependencies: ThunkArguments): Promise<void> {
         openWebExtSidebarDirect(browser.sidebarAction);
 
         dispatch(createOpenSidebarAction());
@@ -46,8 +46,8 @@ export function openWebExtSidebar(): ThunkAction<Promise<void>, PopupMainStateTr
     };
 }
 
-export function openLibraryWindow(bookmarkId: string): ThunkAction<Promise<void>, PopupMainStateTree, ThunkArguments> {
-    return function openLibraryWindowActual(dispatch: ThunkDispatch<OpenLibraryWindowAction>, _, dependencies: ThunkArguments): Promise<void> {
+export function openLibraryWindow(bookmarkId: string): ThunkAction<OpenLibraryWindowAction> {
+    return function openLibraryWindowActual(dispatch: Dispatch<OpenLibraryWindowAction>, _, dependencies: ThunkArguments): Promise<void> {
         openPlacesOrganizeWindow(dependencies.channel, bookmarkId);
 
         dispatch(createOpenLibraryWindow(bookmarkId));
