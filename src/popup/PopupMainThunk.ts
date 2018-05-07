@@ -21,7 +21,7 @@ import {
 } from './PopupAction';
 import { PopupMainStateTree } from './PopupMainState';
 
-export type ThunkAction<A extends PopupAction = PopupAction> = ThunkActionArcheType<A, PopupMainStateTree, ThunkArguments, Promise<void>>;
+type ThunkAction<A extends PopupAction = PopupAction> = ThunkActionArcheType<A, PopupMainStateTree, ThunkArguments, Promise<void>>;
 
 export type ThunkArguments = Readonly<{
     channel: Channel;
