@@ -43,7 +43,7 @@ module.exports = async function (_commandLineArgs) {
 
         output: {
             strict: true,
-            format: 'es',
+            format: 'esm',
             exports: 'none',
 
             sourcemap: true,
