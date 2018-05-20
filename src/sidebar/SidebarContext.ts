@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import {
-    observeOn,
+    debounceTime,
 } from 'rxjs/operators';
 import {
     Subscription,
@@ -57,7 +57,7 @@ export class SidebarContext implements ViewContext {
 
         this._subscription = state
             .pipe(
-                observeOn(animationFrameRxScheduler),
+                debounceTime(0, animationFrameRxScheduler),
             ).subscribe((state: Readonly<SidebarState>) => {
             const props: SidebarViewProps = {
                 state,

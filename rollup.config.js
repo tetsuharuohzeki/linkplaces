@@ -80,7 +80,7 @@ module.exports = async function (_commandLineArgs) {
                     createNamedExport('map', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
                     createNamedExport('share', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
                     createNamedExport('startWith', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
-                    createNamedExport('observeOn', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('debounceTime', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
                 ]),
             }),
 
