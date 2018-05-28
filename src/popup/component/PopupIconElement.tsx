@@ -27,7 +27,23 @@ abstract class PopupIconElement extends HTMLElement {
 
         this._connectedOnce = true;
 
+        // This class is used by photon design system.
         this.classList.add('icon');
+
+        const shadowRoot = this.attachShadow({
+            mode: 'open',
+        });
+
+        {
+            const style = document.createElement('style');
+            style.textContent = `
+            img[class^="popup__listitem_icon_"] {
+                margin-inline-end: 1em;
+            }
+            `;
+
+            shadowRoot.appendChild(style);
+        }
 
         const img = document.createElement('img');
         const type: string = this._type;
@@ -35,8 +51,7 @@ abstract class PopupIconElement extends HTMLElement {
         const src = unwrapOrFromNullable(this.getAttribute(ATTR_NAME_SRC), '');
         img.src = src;
         img.alt = '';
-
-        this.appendChild(img);
+        shadowRoot.appendChild(img);
         this._img = img;
     }
 
