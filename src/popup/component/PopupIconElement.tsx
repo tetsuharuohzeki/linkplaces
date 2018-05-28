@@ -81,7 +81,7 @@ export class PopupItemIconElement extends PopupIconElement {
 }
 
 
-interface PopupIconElementArgs extends React.Attributes {
+export interface PopupIconElementArgs {
     type: IconType;
     src: string;
 }
