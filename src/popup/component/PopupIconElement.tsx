@@ -1,5 +1,11 @@
-import { Nullable } from 'option-t/esm/Nullable/Nullable';
 import { unwrapOrFromNullable } from 'option-t/esm/Nullable/unwrapOr';
+
+import {
+    DomRef,
+    createDomRef,
+    createDomElement as dom,
+    createDocFragmentTree as fragment,
+} from '../../shared/domfactory';
 
 const ATTR_NAME_SRC = 'data-src';
 
@@ -11,13 +17,13 @@ const enum IconType {
 abstract class PopupIconElement extends HTMLElement {
     private _connectedOnce: boolean;
     private _type: IconType;
-    private _img: Nullable<HTMLImageElement>;
+    private _img: DomRef<HTMLImageElement>;
 
     constructor(type: IconType) {
         super();
         this._connectedOnce = false;
         this._type = type;
-        this._img = null;
+        this._img = createDomRef();
     }
 
     connectedCallback(): void {
@@ -34,29 +40,32 @@ abstract class PopupIconElement extends HTMLElement {
             mode: 'open',
         });
 
-        {
-            const style = document.createElement('style');
-            style.textContent = `
-            img[class^="popup__listitem_icon_"] {
-                margin-inline-end: 1em;
-            }
-            `;
-
-            shadowRoot.appendChild(style);
-        }
-
-        const img = document.createElement('img');
         const type: string = this._type;
-        img.className = `popup__listitem_icon_${type}`;
         const src = unwrapOrFromNullable(this.getAttribute(ATTR_NAME_SRC), '');
-        img.src = src;
-        img.alt = '';
-        shadowRoot.appendChild(img);
-        this._img = img;
+
+        const tree = fragment([
+            dom('style', null, [
+                document.createTextNode(`
+                img[class^="popup__listitem_icon_"] {
+                    margin-inline-end: 1em;
+                }
+                `),
+            ]),
+
+            dom('img', new Map([
+                ['class', `popup__listitem_icon_${type}`],
+                ['src', src],
+                ['alt', ''],
+            ]),
+            [],
+            this._img),
+        ]);
+
+        shadowRoot.appendChild(tree);
     }
 
     disconnectedCallback(): void {
-        this._img = null;
+        this._img.release();
     }
 
     attributeChangedCallback(attributeName: string, oldValue: string, newValue: string, _namespace: string): void {
@@ -68,7 +77,7 @@ abstract class PopupIconElement extends HTMLElement {
             return;
         }
 
-        const img = this._img;
+        const img = this._img.current;
         if (img === null) {
             return;
         }
