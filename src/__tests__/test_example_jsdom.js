@@ -1,12 +1,10 @@
-'use strict';
-
-const test = require('ava');
+import test from 'ava';
 
 const {
     createJsDomWindow,
     replaceGlobalWithJsDom,
     revertGlobalToOriginal,
-} = require('./_helper_jsdom');
+} = require('../../tools/_helper_jsdom');
 
 /* eslint-env browser */
 
