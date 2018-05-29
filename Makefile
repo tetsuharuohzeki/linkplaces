@@ -101,7 +101,7 @@ ava: __obj
 	$(MAKE) run_ava
 
 run_ava:
-	$(NPM_BIN)/ava src/**/__tests__/test_**.js
+	$(NPM_BIN)/ava test/
 
 git_diff: ## Test whether there is no committed changes.
 	git diff --exit-code

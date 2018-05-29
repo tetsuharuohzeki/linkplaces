@@ -56,10 +56,6 @@
     "web-ext": "^2.7.0"
   },
   "ava": {
-    "babel": {
-      "testOptions": {
-        "babelrc": false
-      }
-    }
+    "babel": false
   }
 }
