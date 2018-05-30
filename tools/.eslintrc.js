@@ -9,24 +9,8 @@
 // ESLint Configuration Files enables to include comments.
 // http://eslint.org/docs/configuring/#comments-in-configuration-files
 module.exports = {
-    'extends': [
-        './node_modules/eslint-config-fluct/config/eslintrc_core.js',
-        './node_modules/eslint-config-fluct/config/eslintrc_react.js',
-
-        './tools/eslint/import.js',
-    ],
-
-    'parserOptions': {
-        'ecmaVersion': 2018,
-    },
-
     'env': {
+        'node': true,
         'es6': true,
     },
-
-    'root': true,
-
-    'rules': {
-        'no-magic-numbers': 'off',
-    }
 };

@@ -1,4 +1,3 @@
-/* eslint-env commonjs, node */
 'use strict';
 
 const UndefinableMod = require('option-t/cjs/Undefinable');

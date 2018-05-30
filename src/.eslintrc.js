@@ -17,6 +17,14 @@ module.exports = {
         'ecmaVersion': 2018,
     },
 
+    'settings': {
+        'import/resolver': {
+            'node': {
+                'extensions': ['.js', '.jsx', '.ts', '.tsx'],
+            },
+        },
+    },
+
     'rules': {
     }
 };
