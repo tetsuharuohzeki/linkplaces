@@ -1,5 +1,4 @@
 // import from https://github.com/karen-irc/karen/blob/27721039af844337264ad83adadc2c4bd3a1c568/tools/stylelint/stylelintrc_core.js
-/*eslint-env commonjs */
 /**
  * MIT License
  *
