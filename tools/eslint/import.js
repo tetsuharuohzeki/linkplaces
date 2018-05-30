@@ -179,10 +179,11 @@ module.exports = {
 
     // eslint-plugin-import
     // https://github.com/benmosher/eslint-plugin-import
-    'rules': {
-        ...possibleErrors,
-        ...helpfulWarnings,
-        ...moduleSystems,
-        ...styleguide,
-    },
+    'rules': Object.assign(
+        {},
+        possibleErrors,
+        helpfulWarnings,
+        moduleSystems,
+        styleguide,
+    ),
 };
