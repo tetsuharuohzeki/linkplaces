@@ -12,6 +12,8 @@ module.exports = {
     'extends': [
         './node_modules/eslint-config-fluct/config/eslintrc_core.js',
         './node_modules/eslint-config-fluct/config/eslintrc_react.js',
+
+        './tools/eslint/import.js',
     ],
 
     'parserOptions': {
