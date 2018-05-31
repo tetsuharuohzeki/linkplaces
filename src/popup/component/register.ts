@@ -7,14 +7,15 @@ import {
     PopupFolderIconElement,
     LOCAL_NAME_POPUP_FOLDER_ICON,
 
-    PopupIconElementArgs,
+    PopupItemIconElementAttr,
+    PopupFolderIconElementAttr,
 } from './PopupIconElement';
 
 declare global {
     namespace JSX {
         interface IntrinsicElements {
-            [LOCAL_NAME_POPUP_ITEM_ICON]: React.DetailedHTMLProps<React.HTMLAttributes<PopupItemIconElement> & PopupIconElementArgs, PopupItemIconElement>;
-            [LOCAL_NAME_POPUP_FOLDER_ICON]: React.DetailedHTMLProps<React.AreaHTMLAttributes<PopupFolderIconElement> & PopupIconElementArgs, PopupFolderIconElement>;
+            [LOCAL_NAME_POPUP_ITEM_ICON]: React.DetailedHTMLProps<React.HTMLAttributes<PopupItemIconElement> & PopupFolderIconElementAttr, PopupItemIconElement>;
+            [LOCAL_NAME_POPUP_FOLDER_ICON]: React.DetailedHTMLProps<React.AreaHTMLAttributes<PopupFolderIconElement> & PopupItemIconElementAttr, PopupFolderIconElement>;
         }
     }
 }

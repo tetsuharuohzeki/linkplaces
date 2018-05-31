@@ -1,10 +1,18 @@
 import { isNull } from 'option-t/esm/Nullable/Nullable';
 
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
+import { USE_WEB_COMPONENT } from '../shared/constants';
+
+import { registerComponents } from './component/register';
+
 import { PopupMainContext } from './PopupMainContext';
 import { createChannel } from './PopupMessageChannel';
 
 (async function main(){
+    if (USE_WEB_COMPONENT) {
+        registerComponents();
+    }
+
     const [list, channel] = await Promise.all([
         getUnfiledBoolmarkFolder(),
         createChannel(),

@@ -16,6 +16,7 @@ const {
 
 const GIT_REVISION = MaybeMod.mapOr(process.env.GIT_REVISION, 'unknown', String);
 const BUILD_DATE = MaybeMod.mapOr(process.env.BUILD_DATE, 'unknown', String);
+const USE_WEB_COMPONENT = MaybeMod.mapOr(process.env.USE_WEB_COMPONENT, 'false', String);
 
 const RELEASE_CHANNEL = MaybeMod.mapOr(process.env.RELEASE_CHANNEL, 'production', String);
 const LIB_NODE_ENV = (RELEASE_CHANNEL === 'production') ? 'production' : 'development';
@@ -28,6 +29,7 @@ BUILD_DATE: ${BUILD_DATE}
 RELEASE_CHANNEL: ${RELEASE_CHANNEL}
 LIB_NODE_ENV: ${LIB_NODE_ENV}
 IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
+USE_WEB_COMPONENT: ${USE_WEB_COMPONENT}
 ======================================
 `);
 
@@ -107,6 +109,7 @@ module.exports = async function (_commandLineArgs) {
                     'process.env.GIT_REVISION': JSON.stringify(GIT_REVISION),
                     'process.env.BUILD_DATE': JSON.stringify(BUILD_DATE),
                     'process.env.RELEASE_CHANNEL': JSON.stringify(RELEASE_CHANNEL),
+                    'process.env.USE_WEB_COMPONENT': JSON.stringify(USE_WEB_COMPONENT),
                 },
             }),
             replace({
