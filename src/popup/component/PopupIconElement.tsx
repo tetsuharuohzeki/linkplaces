@@ -7,6 +7,8 @@ import {
     createDocFragmentTree as fragment,
 } from '../../shared/domfactory';
 
+import { USE_WEB_COMPONENT } from '../../shared/constants';
+
 const ATTR_NAME_SRC = 'data-src';
 
 const enum IconType {
@@ -96,6 +98,9 @@ export class PopupFolderIconElement extends PopupIconElement {
         super(IconType.Folder);
     }
 }
+export interface PopupFolderIconElementAttr {
+    [ATTR_NAME_SRC]: string;
+}
 
 export const LOCAL_NAME_POPUP_ITEM_ICON = 'popup-item-icon';
 export class PopupItemIconElement extends PopupIconElement {
@@ -103,9 +108,12 @@ export class PopupItemIconElement extends PopupIconElement {
         super(IconType.Item);
     }
 }
+export interface PopupItemIconElementAttr {
+    [ATTR_NAME_SRC]: string;
+}
 
 
-export interface PopupIconElementArgs {
+interface PopupIconElementArgs {
     type: IconType;
     src: string;
 }
@@ -127,6 +135,13 @@ interface PopupFolderIconElementArgs extends React.Attributes {
 }
 export function ReactPopupFolderIconElement(props: PopupFolderIconElementArgs): JSX.Element {
     const src = props[ATTR_NAME_SRC];
+
+    if (USE_WEB_COMPONENT) {
+        return (
+            <popup-folder-icon data-src={src}/>
+        );
+    }
+
     return (
         <ReactPopupIconElement type={IconType.Folder} src={src} />
     );
@@ -137,6 +152,13 @@ interface ReactPopupItemIconElementElementArgs extends React.Attributes {
 }
 export function ReactPopupItemIconElement(props: ReactPopupItemIconElementElementArgs): JSX.Element {
     const src = props[ATTR_NAME_SRC];
+
+    if (USE_WEB_COMPONENT) {
+        return (
+            <popup-item-icon data-src={src}/>
+        );
+    }
+
     return (
         <ReactPopupIconElement type={IconType.Item} src={src} />
     );
