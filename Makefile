@@ -1,5 +1,3 @@
-PACKAGE := $(CURDIR)/linkplaces.xpi
-
 NPM_MOD_DIR := $(CURDIR)/node_modules
 NPM_BIN := $(NPM_MOD_DIR)/.bin
 
