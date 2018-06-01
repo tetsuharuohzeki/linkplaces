@@ -58,6 +58,7 @@
   },
   "ava": {
     "babel": {
+      "extensions": ["js", "jsx"],
       "testOptions": {
         "babelrc": false
       }
