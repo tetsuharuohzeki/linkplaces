@@ -12,6 +12,8 @@ import {
 } from '../shared/RemoteAction';
 import { Packet } from '../shared/Channel';
 import { NoImplementationError } from '../shared/NoImplementationError';
+
+// @ts-ignore
 import { createTab } from './TabOpener';
 
 (function main() {

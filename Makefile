@@ -74,8 +74,14 @@ __external_dependency_redux_thunk: clean_dist
 __external_dependency_rxjs: clean_dist
 	$(NPM_BIN)/cpx '$(CURDIR)/node_modules/rxjs/bundles/rxjs.umd.min.js' $(CURDIR)/__dist/third_party --preserve
 
-__obj: clean_obj
+__obj: __obj_ts __obj_js
+
+__obj_js: clean_obj
+	$(NPM_BIN)/cpx '$(CURDIR)/src/**/*.{js,jsx}' $(CURDIR)/__obj/src/ --preserve
+
+__obj_ts: clean_obj
 	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --outDir $(CURDIR)/__obj/src/
+
 
 # Test
 test: lint ava
@@ -89,7 +95,7 @@ tslint:
 	$(NPM_BIN)/tslint --config $(CURDIR)/tslint.json '$(CURDIR)/src/**/*.ts{,x}'
 
 tscheck:
-	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --noEmit
+	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --noEmit --allowJs
 
 stylelint:
 	$(NPM_BIN)/stylelint '$(CURDIR)/src/**/*.css' \
