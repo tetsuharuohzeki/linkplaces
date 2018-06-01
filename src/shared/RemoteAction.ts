@@ -19,7 +19,7 @@ export type WhereToOpenItem =
 
 export interface RemoteActionBase {
     type: string;
-    value?: any; // tslint:disable-line: no-any
+    value?: unknown;
 }
 
 export interface OpenUrlAction extends RemoteActionBase {
