@@ -94,7 +94,7 @@ test: lint ava
 lint: eslint tslint stylelint tscheck
 
 eslint:
-	$(NPM_MOD_DIR)/eslint/bin/eslint.js --ext=js,jsm $(CURDIR)
+	$(NPM_BIN)/eslint --ext=js,jsm $(CURDIR)
 
 tslint:
 	$(NPM_BIN)/tslint --config $(CURDIR)/tslint.json '$(SRC_DIR)/**/*.ts{,x}'
