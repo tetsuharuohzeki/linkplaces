@@ -1282,12 +1282,6 @@ call-signature@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/call-signature/-/call-signature-0.0.2.tgz#a84abc825a55ef4cb2b028bd74e205a65b9a4996"
 
-caller-id@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/caller-id/-/caller-id-0.1.0.tgz#59bdac0893d12c3871408279231f97458364f07b"
-  dependencies:
-    stack-trace "~0.0.7"
-
 caller-path@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/caller-path/-/caller-path-0.1.0.tgz#94085ef63581ecd3daa92444a8fe94e82577751f"
@@ -4401,12 +4395,6 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mock-require@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/mock-require/-/mock-require-2.0.2.tgz#1eaa71aad23013773d127dc7e91a3fbb4837d60d"
-  dependencies:
-    caller-id "^0.1.0"
-
 moment@^2.10.6:
   version "2.22.2"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
@@ -6335,10 +6323,6 @@ sshpk@^1.7.0:
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
 
-stack-trace@~0.0.7:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/stack-trace/-/stack-trace-0.0.10.tgz#547c70b347e8d32b4e108ea1a2a159e5fdde19c0"
-
 stack-utils@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.1.tgz#d4f33ab54e8e38778b0ca5cfd3b3afb12db68620"
@@ -6825,12 +6809,6 @@ tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
 "tslint-config-fluct@https://github.com/voyagegroup/tslint-config-fluct/archive/628839b9285d57021979f59ba26bcc0171f0a2cc.tar.gz":
   version "0.0.0"
   resolved "https://github.com/voyagegroup/tslint-config-fluct/archive/628839b9285d57021979f59ba26bcc0171f0a2cc.tar.gz#5616d9612bb83d4fc188cd97dc49d64e7eac385b"
-
-tslint-language-service@^0.9.9:
-  version "0.9.9"
-  resolved "https://registry.yarnpkg.com/tslint-language-service/-/tslint-language-service-0.9.9.tgz#f546dc38483979e6fb3cfa59584ad8525b3ad4da"
-  dependencies:
-    mock-require "^2.0.2"
 
 tslint@^5.10.0:
   version "5.10.0"
