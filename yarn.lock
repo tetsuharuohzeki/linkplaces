@@ -408,9 +408,9 @@
   version "15.5.3"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.3.tgz#bef071852dca2a2dbb65fecdb7bfb30cedae2de2"
 
-"@types/react-dom@^16.0.5":
-  version "16.0.5"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.5.tgz#a757457662e3819409229e8f86795ff37b371f96"
+"@types/react-dom@^16.0.6":
+  version "16.0.6"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.6.tgz#f1a65a4e7be8ed5d123f8b3b9eacc913e35a1a3c"
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
@@ -6868,9 +6868,9 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@^3.0.0-dev.20180601:
-  version "3.0.0-dev.20180601"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.0.0-dev.20180601.tgz#e0d3b9a3c0378335dc69710b8b6218f8ccd43663"
+typescript@^3.0.0-dev.20180606:
+  version "3.0.0-dev.20180606"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.0.0-dev.20180606.tgz#8fa79b16903f8383ad2cf5559c47dc468971fa0e"
 
 ua-parser-js@^0.7.9:
   version "0.7.18"
