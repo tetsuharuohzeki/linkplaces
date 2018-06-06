@@ -34,7 +34,7 @@
     "eslint": "^4.19.1",
     "eslint-config-fluct": "https://github.com/voyagegroup/eslint-config-fluct/archive/8240d1d678f9888016c5be9fb0c7f03b1d0f06fc.tar.gz",
     "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-react": "^7.9.1",
     "jsdom": "^11.11.0",
     "option-t": "^17.1.0",
     "prettier": "^1.13.4",
