@@ -58,7 +58,7 @@ module.exports = async function (_commandLineArgs) {
 
         perf: false,
 
-        experimentalDynamicImport: true,
+        inlineDynamicImports: true,
 
         plugins: [
             replaceImportWithGlobal({
