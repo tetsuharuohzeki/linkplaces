@@ -23,9 +23,9 @@ export function createDomRef<T extends Element>(): DomRef<T> {
 }
 
 export function createDomElement(localname: string,
-                                 attrs: Nullable<Iterable<[string, string]>>,
-                                 children: Nullable<Iterable<Node>>,
-                                 ref?: DomRef<Element>): Element {
+    attrs: Nullable<Iterable<[string, string]>>,
+    children: Nullable<Iterable<Node>>,
+    ref?: DomRef<Element>): Element {
     const subroot = window.document.createElement(localname);
 
     if (attrs !== null) {
@@ -54,4 +54,8 @@ export function createDocFragmentTree(children: Iterable<Node>): DocumentFragmen
     }
 
     return f;
+}
+
+export function createTextNode(text: string): Text {
+    return document.createTextNode(text);
 }
