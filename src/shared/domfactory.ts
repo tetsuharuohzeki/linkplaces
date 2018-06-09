@@ -22,11 +22,11 @@ export function createDomRef<T extends Element>(): DomRef<T> {
     return r;
 }
 
-export function createDomElement(localname: string, attrs: Nullable<Map<string, string>>, children: Iterable<Node>, ref?: DomRef<Element>): Element {
+export function createDomElement(localname: string, attrs: Nullable<Iterable<[string, string]>>, children: Iterable<Node>, ref?: DomRef<Element>): Element {
     const subroot = window.document.createElement(localname);
 
     if (attrs !== null) {
-        for (const [k, v] of attrs.entries()) {
+        for (const [k, v] of attrs) {
             subroot.setAttribute(k, v);
         }
     }
