@@ -7,6 +7,8 @@ import {
     createDocFragmentTree as fragment,
 } from '../../shared/domfactory';
 
+import { PanelListItemIcon } from '../../shared/component/PanelListItemIcon';
+
 import { USE_WEB_COMPONENT } from '../../shared/constants';
 
 const ATTR_NAME_SRC = 'data-src';
@@ -122,11 +124,11 @@ function ReactPopupIconElement(props: PopupIconElementArgs): JSX.Element {
     const { type, src, } = props;
 
     return (
-        <div className={'icon'}>
+        <PanelListItemIcon>
             <img className={`popup__listitem_icon_${type}`}
                  src={src}
                  alt={''}/>
-        </div>
+        </PanelListItemIcon>
     );
 }
 

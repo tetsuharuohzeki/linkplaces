@@ -4,6 +4,10 @@ import React from 'react';
 import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../typings/webext/bookmarks';
 
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../shared/Bookmark';
+import { Panel } from '../shared/component/Panel';
+import { PanelSectionList } from '../shared/component/PanelSectionList';
+import { PanelListItem } from '../shared/component/PanelListItem';
+import { PanelListItemText } from '../shared/component/PanelListItemText';
 
 import {
     ReactPopupFolderIconElement,
@@ -33,21 +37,22 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
     });
 
     return (
-        <div className={'panel'}>
-            <div className={'panel-section panel-section-list'}>
-                <div className={'panel-list-item'} onClick={onClickOpenWebExtSidebar}>
+        <Panel>
+            <PanelSectionList>
+                <PanelListItem onClick={onClickOpenWebExtSidebar}>
                     <ReactPopupItemIconElement data-src={'../shared/image/icon/sidebar-16.svg'} />
-                    <div className={'text'}>
+                    <PanelListItemText>
                         <span className={'popup__listitem_text_inner'}>
                             {'View LinkPlaces Sidebar'}
                         </span>
-                    </div>
-                </div>
-            </div>
-            <div className={'panel-section panel-section-list'}>
+                    </PanelListItemText>
+                </PanelListItem>
+            </PanelSectionList>
+
+            <PanelSectionList>
                 {items}
-            </div>
-        </div>
+            </PanelSectionList>
+        </Panel>
     );
 }
 (PopupMainView as React.StatelessComponent<PopupMainViewProps>).propTypes = {
@@ -83,7 +88,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
 
     const id = item.id;
 
-    const onClick = (event: React.SyntheticEvent<HTMLDivElement>) => {
+    const onClick: React.MouseEventHandler<HTMLDivElement> = (event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
 
         const a = openLibraryWindow(id);
@@ -92,14 +97,14 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
 
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
-        <div className={'panel-list-item'} onClick={onClick}>
+        <PanelListItem onClick={onClick}>
             <ReactPopupFolderIconElement data-src={'../shared/image/icon/folder-16.svg'} />
-            <div className={'text'}>
+            <PanelListItemText>
                 <span className={'popup__listitem_text_inner'}>
                     {item.title}
                 </span>
-            </div>
-        </div>
+            </PanelListItemText>
+        </PanelListItem>
     );
 }
 
@@ -124,13 +129,13 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
 
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
-        <div className={'panel-list-item'}>
+        <PanelListItem>
             <ReactPopupItemIconElement data-src={'../shared/image/icon/defaultFavicon.svg'} />
-            <div className={'text'}>
+            <PanelListItemText>
                 <a className={'popup__listitem_text_inner'} href={url} title={tooltiptext} onClick={onClick}>
                     {item.title}
                 </a>
-            </div>
-        </div>
+            </PanelListItemText>
+        </PanelListItem>
     );
 }
