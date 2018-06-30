@@ -21,6 +21,9 @@ import { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarIntent, notifyOpenItem } from './SidebarIntent';
 import { SidebarState } from './SidebarState';
 
+import { ListItemView } from './view/ListItemView';
+import { ListItem as ListItemComponent } from './view/ListItem';
+
 export interface SidebarViewProps {
     state:  Readonly<SidebarState>;
     intent: SidebarIntent;
@@ -41,11 +44,9 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
 
     const r: Array<JSX.Element> = toArrayFromIx(mapped);
     return (
-        <div>
-            <ul className={'sidebar__list_container'}>
-                {r}
-            </ul>
-        </div>
+        <ListItemView>
+            {r}
+        </ListItemView>
     );
 }
 (SidebarView as React.StatelessComponent<SidebarViewProps>).propTypes = {
@@ -74,9 +75,9 @@ function ListItem(props: ListItemProps): JSX.Element {
     }
 
     return (
-        <li className={outerClass.join(' ')}>
+        <ListItemComponent className={outerClass.join(' ')}>
             <ListItemInner item={item} intent={intent}/>
-        </li>
+        </ListItemComponent>
     );
 }
 
