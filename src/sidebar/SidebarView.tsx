@@ -21,7 +21,7 @@ import { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarIntent, notifyOpenItem } from './SidebarIntent';
 import { SidebarState } from './SidebarState';
 
-import { ListItemView } from './view/ListItemView';
+import { ListItemView } from './view/ListView';
 import { ListItem as ListItemComponent } from './view/ListItem';
 
 export interface SidebarViewProps {
