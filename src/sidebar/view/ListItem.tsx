@@ -13,7 +13,9 @@ export function ListItem(props: ListItemProps): JSX.Element {
 
     return (
         <li className={className}>
-            {props.children}
+            <div className={'sidebar__ListItem_inner'}>
+                {props.children}
+            </div>
         </li>
     );
 }

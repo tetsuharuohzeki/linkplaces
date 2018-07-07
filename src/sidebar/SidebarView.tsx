@@ -81,12 +81,10 @@ interface ListItemInnerProps {
 }
 function ListItemInner(props: ListItemInnerProps): JSX.Element {
     const { item, intent, } = props;
-    const innerClass = 'sidebar__listitem_text_inner';
-
     const bookmark = item.bookmark;
     if (!isBookmarkTreeNodeItem(bookmark)) {
         return (
-            <span className={innerClass}>
+            <span>
                 {bookmark.title}
             </span>
         );
@@ -98,7 +96,7 @@ function ListItemInner(props: ListItemInnerProps): JSX.Element {
 
     if (item.isOpening) {
         return (
-            <span className={innerClass} title={title}>
+            <span title={title}>
                 {bookmark.title}
             </span>
         );
@@ -121,7 +119,7 @@ function ListItemInner(props: ListItemInnerProps): JSX.Element {
     }
 
     return (
-        <a className={innerClass} href={url} onClick={onClick} title={title}>
+        <a href={url} onClick={onClick} title={title}>
             {bookmark.title}
         </a>
     );

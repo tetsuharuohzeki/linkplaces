@@ -2,12 +2,3 @@
 
 @import './view/ListView.css';
 @import './view/ListItem.css';
-
-.sidebar__listitem_text_inner {
-    display: inline-block;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    vertical-align: text-top;
-}

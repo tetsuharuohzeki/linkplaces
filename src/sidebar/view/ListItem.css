@@ -29,3 +29,12 @@
 .sidebar__ListItem_container_is_opening {
     display: none;
 }
+
+.sidebar__ListItem_inner {
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: text-top;
+}
