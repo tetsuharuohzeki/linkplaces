@@ -3,10 +3,6 @@
 @import './view/ListView.css';
 @import './view/ListItem.css';
 
-.sidebar__listitem_container {
-    margin: 5px 0;
-}
-
 .sidebar__listitem_text_inner {
     display: inline-block;
     width: 100%;
@@ -14,12 +10,4 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     vertical-align: text-top;
-}
-
-.sidebar__listitem_text_inner--is_selected {
-    color: white;
-}
-
-.sidebar__listitem_text_inner--is_separator {
-    list-style-type: none;
 }

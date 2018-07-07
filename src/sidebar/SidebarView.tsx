@@ -81,7 +81,7 @@ interface ListItemInnerProps {
 }
 function ListItemInner(props: ListItemInnerProps): JSX.Element {
     const { item, intent, } = props;
-    let innerClass = 'sidebar__listitem_text_inner';
+    const innerClass = 'sidebar__listitem_text_inner';
 
     const bookmark = item.bookmark;
     if (!isBookmarkTreeNodeItem(bookmark)) {
@@ -118,10 +118,6 @@ function ListItemInner(props: ListItemInnerProps): JSX.Element {
         onClick = (evt) => {
             evt.preventDefault();
         };
-    }
-
-    if (item.isSelected) {
-        innerClass += ' sidebar__listitem_text_inner--is_selected';
     }
 
     return (
