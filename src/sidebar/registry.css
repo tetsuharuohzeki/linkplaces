@@ -7,15 +7,6 @@
     margin: 5px 0;
 }
 
-.sidebar__listitem_container--is_selected {
-    background-color: blue;
-}
-
-.sidebar__listitem_container--is_opening {
-    display: none;
-    cursor: default;
-}
-
 .sidebar__listitem_text_inner {
     display: inline-block;
     width: 100%;

@@ -2,7 +2,8 @@ import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
 import { map } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
 import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
 
-import { Nullable, isNull, isNotNull } from 'option-t/esm/Nullable/Nullable';
+import { Nullable, isNull } from 'option-t/esm/Nullable/Nullable';
+import { mapOrForNullable } from 'option-t/esm/Nullable/mapOr';
 
 import React from 'react';
 //import * as PropTypes from 'prop-types';
@@ -58,39 +59,28 @@ interface ListItemProps {
 }
 function ListItem(props: ListItemProps): JSX.Element {
     const { item, intent, } = props;
-    const outerClass = [
-        'sidebar__listitem_container',
-    ];
 
-    if (isNotNull(item)) {
-        if (item.isSelected) {
-            outerClass.push('sidebar__listitem_container--is_selected');
-        }
-        else if (item.isOpening) {
-            outerClass.push('sidebar__listitem_container--is_opening');
-        }
+    if (isNull(item)) {
+        return (
+            <hr/>
+        );
     }
-    else {
-        outerClass.push('sidebar__listitem_text_inner--is_separator');
-    }
+
+    const isOpening = mapOrForNullable(item, false, (item) => item.isOpening);
 
     return (
-        <ListItemComponent className={outerClass.join(' ')}>
+        <ListItemComponent isOpening={isOpening}>
             <ListItemInner item={item} intent={intent}/>
         </ListItemComponent>
     );
 }
 
 interface ListItemInnerProps {
-    item: Nullable<SidebarItemViewModelEntity>;
+    item: SidebarItemViewModelEntity;
     intent: SidebarIntent;
 }
 function ListItemInner(props: ListItemInnerProps): JSX.Element {
     const { item, intent, } = props;
-    if (isNull(item)) {
-        return <hr />;
-    }
-
     let innerClass = 'sidebar__listitem_text_inner';
 
     const bookmark = item.bookmark;
