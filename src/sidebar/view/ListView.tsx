@@ -8,7 +8,7 @@ export interface ListItemViewProps {
 export function ListItemView(props: ListItemViewProps): JSX.Element {
     return (
         <div>
-            <ul className={'sidebar__list_container'}>
+            <ul className={'sidebar__ListView_container'}>
                 {props.children}
             </ul>
         </div>

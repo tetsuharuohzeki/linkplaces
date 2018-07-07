@@ -1,9 +1,6 @@
 @charset 'utf-8';
 
-.sidebar__list_container {
-    margin: 0;
-    padding: 0 0 0 2em;
-}
+@import './view/ListView.css';
 
 .sidebar__listitem_container {
     margin: 5px 0;
