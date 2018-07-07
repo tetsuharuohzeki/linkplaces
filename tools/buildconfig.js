@@ -10,10 +10,13 @@ const RELEASE_CHANNEL = MaybeMod.mapOr(process.env.RELEASE_CHANNEL, 'production'
 const LIB_NODE_ENV = (RELEASE_CHANNEL === 'production') ? 'production' : 'development';
 const IS_PRODUCTION_MODE = (RELEASE_CHANNEL === 'production');
 
+const ENABLE_SOURCE_MAP = !IS_PRODUCTION_MODE;
+
 module.exports = Object.freeze({
     GIT_REVISION,
     BUILD_DATE,
     USE_WEB_COMPONENT,
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
+    ENABLE_SOURCE_MAP,
 });

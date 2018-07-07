@@ -49,17 +49,20 @@ icon.png: clean_dist
 webextension: webextension_cp webextension_bundle
 
 webextension_cp: clean_dist
-	$(NPM_BIN)/cpx '$(SRC_DIR)/**/**.{json,html,css,svg}' $(DIST_DIR) --preserve
+	$(NPM_BIN)/cpx '$(SRC_DIR)/**/**.{json,html,svg}' $(DIST_DIR) --preserve
 webextension_bundle: webextension_bundle_background webextension_bundle_popup webextension_bundle_sidebar webextension_bundle_options
 webextension_bundle_background: clean_dist __obj
 	$(NPM_BIN)/rollup $(OBJ_SRC_DIR)/background/index.js --config $(CURDIR)/rollup.config.js --output.file $(DIST_DIR)/background/bundled.js
 
-webextension_bundle_popup: clean_dist __obj __external_dependency
+webextension_bundle_popup: clean_dist __obj __external_dependency __bundle_css_popup
 	$(NPM_BIN)/rollup $(OBJ_SRC_DIR)/popup/index.js --config $(CURDIR)/rollup.config.js --output.file $(DIST_DIR)/popup/bundled.js
-webextension_bundle_sidebar: clean_dist __obj __external_dependency
+webextension_bundle_sidebar: clean_dist __obj __external_dependency __bundle_css_sidebar
 	$(NPM_BIN)/rollup $(OBJ_SRC_DIR)/sidebar/index.js --config $(CURDIR)/rollup.config.js --output.file $(DIST_DIR)/sidebar/bundled.js
 webextension_bundle_options: clean_dist __obj __external_dependency
 	$(NPM_BIN)/rollup $(OBJ_SRC_DIR)/options/index.js --config $(CURDIR)/rollup.config.js --output.file $(DIST_DIR)/options/bundled.js
+
+__bundle_css_%: clean_dist
+	$(NPM_BIN)/postcss $(SRC_DIR)/$*/registry.css --config --output $(DIST_DIR)/$*/$*.css
 
 __external_dependency: \
 	__external_dependency_react \
