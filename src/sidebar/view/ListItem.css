@@ -1,0 +1,27 @@
+/* https://searchfox.org/mozilla-central/rev/fd5c37f1dd9a0d1e327a6c6b4d81ea92f52c4330/browser/components/extensions/extension.css#395 */
+.sidebar__ListItem_container {
+    margin: 0; /* reset */
+    list-style-type: none; /* reset */
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 24px;
+    padding: 0 0 0 16px;
+}
+
+/* https://searchfox.org/mozilla-central/rev/fd5c37f1dd9a0d1e327a6c6b4d81ea92f52c4330/browser/components/extensions/extension.css#403 */
+.sidebar__ListItem_container:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* https://searchfox.org/mozilla-central/rev/fd5c37f1dd9a0d1e327a6c6b4d81ea92f52c4330/browser/components/extensions/extension.css#409 */
+.sidebar__ListItem_container:hover:active {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* https://searchfox.org/mozilla-central/rev/fd5c37f1dd9a0d1e327a6c6b4d81ea92f52c4330/browser/components/extensions/extension.css#413 */
+.sidebar__ListItem_container_disabled {
+    color: #999;
+}

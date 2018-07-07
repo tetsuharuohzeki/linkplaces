@@ -9,7 +9,8 @@ export interface ListItemProps {
 }
 
 export function ListItem(props: ListItemProps): JSX.Element {
-    const className = unwrapOrFromUndefinable(props.className, '');
+    //const className = unwrapOrFromUndefinable(props.className, '');
+    const className = unwrapOrFromUndefinable('sidebar__ListItem_container', 'sidebar__ListItem_container');
 
     return (
         <li className={className}>
