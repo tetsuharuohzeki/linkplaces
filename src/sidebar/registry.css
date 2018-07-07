@@ -1,33 +1,4 @@
 @charset 'utf-8';
 
 @import './view/ListView.css';
-
-.sidebar__listitem_container {
-    margin: 5px 0;
-}
-
-.sidebar__listitem_container--is_selected {
-    background-color: blue;
-}
-
-.sidebar__listitem_container--is_opening {
-    display: none;
-    cursor: default;
-}
-
-.sidebar__listitem_text_inner {
-    display: inline-block;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    vertical-align: text-top;
-}
-
-.sidebar__listitem_text_inner--is_selected {
-    color: white;
-}
-
-.sidebar__listitem_text_inner--is_separator {
-    list-style-type: none;
-}
+@import './view/ListItem.css';
