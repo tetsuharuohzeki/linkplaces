@@ -16,6 +16,7 @@ module.exports = Object.freeze({
     GIT_REVISION,
     BUILD_DATE,
     USE_WEB_COMPONENT,
+    RELEASE_CHANNEL,
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
     ENABLE_SOURCE_MAP,
