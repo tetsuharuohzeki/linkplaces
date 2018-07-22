@@ -180,6 +180,8 @@ module.exports = {
 
     // eslint-plugin-import
     // https://github.com/benmosher/eslint-plugin-import
+    // vscode does not support object spread syntax.
+    // eslint-disable-next-line prefer-object-spread
     'rules': Object.assign(
         {},
         possibleErrors,
