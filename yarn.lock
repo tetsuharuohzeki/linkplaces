@@ -5018,9 +5018,9 @@ opn@5.3.0, opn@^5.2.0:
   dependencies:
     is-wsl "^1.1.0"
 
-option-t@^17.1.2:
-  version "17.1.2"
-  resolved "https://registry.yarnpkg.com/option-t/-/option-t-17.1.2.tgz#1c93e5f2ce965ac117db32c8d828715a6ad74abf"
+option-t@^18.0.0:
+  version "18.0.0"
+  resolved "https://registry.yarnpkg.com/option-t/-/option-t-18.0.0.tgz#593c196e2d0e5d6b3b3845818315fb4f5f161f70"
 
 optionator@^0.8.1, optionator@^0.8.2:
   version "0.8.2"
