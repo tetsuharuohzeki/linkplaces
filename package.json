@@ -39,7 +39,7 @@
     "option-t": "^18.0.0",
     "postcss": "^7.0.2",
     "postcss-cli": "^6.0.0",
-    "postcss-import": "^11.1.0",
+    "postcss-import": "^12.0.0",
     "prettier": "^1.14.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
