@@ -55,8 +55,8 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
         </Panel>
     );
 }
-(PopupMainView as React.StatelessComponent<PopupMainViewProps>).propTypes = {
-};
+// FIXME: PropTypes is too strict.
+//(PopupMainView as React.StatelessComponent<PopupMainViewProps>).propTypes = {};
 
 interface ListItemProps {
     item: BookmarkTreeNode;
