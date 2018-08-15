@@ -50,8 +50,8 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
         </ListItemView>
     );
 }
-(SidebarView as React.StatelessComponent<SidebarViewProps>).propTypes = {
-};
+// FIXME: PropTypes is too strict.
+// (SidebarView as React.StatelessComponent<SidebarViewProps>).propTypes = {};
 
 interface ListItemProps {
     item: Nullable<SidebarItemViewModelEntity>;

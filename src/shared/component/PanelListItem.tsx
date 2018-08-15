@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 export interface PanelListItemProps {
     children: React.ReactNode;
@@ -13,9 +13,12 @@ export function PanelListItem(props: PanelListItemProps): JSX.Element {
         </div>
     );
 }
+/*
+// FIXME: PropTypes is too strict.
 if (process.env.RELEASE_CHANNEL !== 'production') {
     (PanelListItem as React.StatelessComponent<PanelListItemProps>).propTypes = {
         children: PropTypes.node.isRequired,
         onClick: PropTypes.func,
     };
 }
+*/
