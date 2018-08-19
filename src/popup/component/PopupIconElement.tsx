@@ -102,7 +102,7 @@ export class PopupFolderIconElement extends PopupIconElement {
         super(IconType.Folder);
     }
 }
-export interface PopupFolderIconElementAttr {
+interface PopupFolderIconElementAttr {
     [ATTR_NAME_SRC]: string;
 }
 
@@ -112,6 +112,15 @@ export class PopupItemIconElement extends PopupIconElement {
         super(IconType.Item);
     }
 }
-export interface PopupItemIconElementAttr {
+interface PopupItemIconElementAttr {
     [ATTR_NAME_SRC]: string;
+}
+
+declare global {
+    namespace JSX {
+        interface IntrinsicElements {
+            [LOCAL_NAME_POPUP_ITEM_ICON]: React.DetailedHTMLProps<React.HTMLAttributes<PopupItemIconElement> & PopupFolderIconElementAttr, PopupItemIconElement>;
+            [LOCAL_NAME_POPUP_FOLDER_ICON]: React.DetailedHTMLProps<React.AreaHTMLAttributes<PopupFolderIconElement> & PopupItemIconElementAttr, PopupFolderIconElement>;
+        }
+    }
 }
