@@ -8,7 +8,6 @@ const replace = require('rollup-plugin-replace');
 const {
     GIT_REVISION,
     BUILD_DATE,
-    USE_WEB_COMPONENT,
     RELEASE_CHANNEL,
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
@@ -28,7 +27,6 @@ BUILD_DATE: ${BUILD_DATE}
 RELEASE_CHANNEL: ${RELEASE_CHANNEL}
 LIB_NODE_ENV: ${LIB_NODE_ENV}
 IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
-USE_WEB_COMPONENT: ${USE_WEB_COMPONENT}
 ======================================
 `);
 
@@ -109,7 +107,6 @@ module.exports = async function (_commandLineArgs) {
                     'process.env.GIT_REVISION': JSON.stringify(GIT_REVISION),
                     'process.env.BUILD_DATE': JSON.stringify(BUILD_DATE),
                     'process.env.RELEASE_CHANNEL': JSON.stringify(RELEASE_CHANNEL),
-                    'process.env.USE_WEB_COMPONENT': JSON.stringify(USE_WEB_COMPONENT),
                 },
             }),
             replace({

@@ -8,10 +8,6 @@ import {
     createTextNode as text,
 } from '../../shared/domfactory';
 
-import { PanelListItemIcon } from '../../shared/component/PanelListItemIcon';
-
-import { USE_WEB_COMPONENT } from '../../shared/constants';
-
 const ATTR_NAME_SRC = 'data-src';
 
 const enum IconType {
@@ -120,38 +116,13 @@ export interface PopupItemIconElementAttr {
     [ATTR_NAME_SRC]: string;
 }
 
-
-interface PopupIconElementArgs {
-    type: IconType;
-    src: string;
-}
-
-function ReactPopupIconElement(props: PopupIconElementArgs): JSX.Element {
-    const { type, src, } = props;
-
-    return (
-        <PanelListItemIcon>
-            <img className={`popup__listitem_icon_${type}`}
-                 src={src}
-                 alt={''}/>
-        </PanelListItemIcon>
-    );
-}
-
 interface PopupFolderIconElementArgs extends React.Attributes {
     [ATTR_NAME_SRC]: string;
 }
 export function ReactPopupFolderIconElement(props: PopupFolderIconElementArgs): JSX.Element {
     const src = props[ATTR_NAME_SRC];
-
-    if (USE_WEB_COMPONENT) {
-        return (
-            <popup-folder-icon data-src={src}/>
-        );
-    }
-
     return (
-        <ReactPopupIconElement type={IconType.Folder} src={src} />
+        <popup-folder-icon data-src={src}/>
     );
 }
 
@@ -161,13 +132,7 @@ interface ReactPopupItemIconElementElementArgs extends React.Attributes {
 export function ReactPopupItemIconElement(props: ReactPopupItemIconElementElementArgs): JSX.Element {
     const src = props[ATTR_NAME_SRC];
 
-    if (USE_WEB_COMPONENT) {
-        return (
-            <popup-item-icon data-src={src}/>
-        );
-    }
-
     return (
-        <ReactPopupIconElement type={IconType.Item} src={src} />
+        <popup-item-icon data-src={src}/>
     );
 }
