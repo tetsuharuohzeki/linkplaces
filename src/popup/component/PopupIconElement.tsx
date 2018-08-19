@@ -5,6 +5,7 @@ import {
     createDomRef,
     createDomElement as dom,
     createDocFragmentTree as fragment,
+    createTextNode as text,
 } from '../../shared/domfactory';
 
 import { PanelListItemIcon } from '../../shared/component/PanelListItemIcon';
@@ -19,6 +20,11 @@ const enum IconType {
 }
 
 abstract class PopupIconElement extends HTMLElement {
+
+    static get observedAttributes(): Iterable<string> {
+        return [ATTR_NAME_SRC];
+    }
+
     private _connectedOnce: boolean;
     private _type: IconType;
     private _img: DomRef<HTMLImageElement>;
@@ -49,7 +55,7 @@ abstract class PopupIconElement extends HTMLElement {
 
         const tree = fragment([
             dom('style', null, [
-                document.createTextNode(`
+                text(`
                 img[class^="popup__listitem_icon_"] {
                     margin-inline-end: 1em;
                 }
@@ -74,7 +80,7 @@ abstract class PopupIconElement extends HTMLElement {
 
     attributeChangedCallback(attributeName: string, oldValue: string, newValue: string, _namespace: string): void {
         if (attributeName !== ATTR_NAME_SRC) {
-            return;
+            throw new RangeError(`${attributeName} has not been defined in this.observedAttributes()`);
         }
 
         if (oldValue === newValue) {
