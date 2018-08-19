@@ -5,13 +5,10 @@ import {
     createDomRef,
     createDomElement as dom,
     createDocFragmentTree as fragment,
+    createTextNode as text,
 } from '../../shared/domfactory';
 
-import { PanelListItemIcon } from '../../shared/component/PanelListItemIcon';
-
-import { USE_WEB_COMPONENT } from '../../shared/constants';
-
-const ATTR_NAME_SRC = 'data-src';
+export const ATTR_NAME_SRC = 'data-src';
 
 const enum IconType {
     Item = 'item',
@@ -19,6 +16,11 @@ const enum IconType {
 }
 
 abstract class PopupIconElement extends HTMLElement {
+
+    static get observedAttributes(): Iterable<string> {
+        return [ATTR_NAME_SRC];
+    }
+
     private _connectedOnce: boolean;
     private _type: IconType;
     private _img: DomRef<HTMLImageElement>;
@@ -49,7 +51,7 @@ abstract class PopupIconElement extends HTMLElement {
 
         const tree = fragment([
             dom('style', null, [
-                document.createTextNode(`
+                text(`
                 img[class^="popup__listitem_icon_"] {
                     margin-inline-end: 1em;
                 }
@@ -74,7 +76,7 @@ abstract class PopupIconElement extends HTMLElement {
 
     attributeChangedCallback(attributeName: string, oldValue: string, newValue: string, _namespace: string): void {
         if (attributeName !== ATTR_NAME_SRC) {
-            return;
+            throw new RangeError(`${attributeName} has not been defined in this.observedAttributes()`);
         }
 
         if (oldValue === newValue) {
@@ -100,7 +102,7 @@ export class PopupFolderIconElement extends PopupIconElement {
         super(IconType.Folder);
     }
 }
-export interface PopupFolderIconElementAttr {
+interface PopupFolderIconElementAttr {
     [ATTR_NAME_SRC]: string;
 }
 
@@ -110,58 +112,15 @@ export class PopupItemIconElement extends PopupIconElement {
         super(IconType.Item);
     }
 }
-export interface PopupItemIconElementAttr {
+interface PopupItemIconElementAttr {
     [ATTR_NAME_SRC]: string;
 }
 
-
-interface PopupIconElementArgs {
-    type: IconType;
-    src: string;
-}
-
-function ReactPopupIconElement(props: PopupIconElementArgs): JSX.Element {
-    const { type, src, } = props;
-
-    return (
-        <PanelListItemIcon>
-            <img className={`popup__listitem_icon_${type}`}
-                 src={src}
-                 alt={''}/>
-        </PanelListItemIcon>
-    );
-}
-
-interface PopupFolderIconElementArgs extends React.Attributes {
-    [ATTR_NAME_SRC]: string;
-}
-export function ReactPopupFolderIconElement(props: PopupFolderIconElementArgs): JSX.Element {
-    const src = props[ATTR_NAME_SRC];
-
-    if (USE_WEB_COMPONENT) {
-        return (
-            <popup-folder-icon data-src={src}/>
-        );
+declare global {
+    namespace JSX {
+        interface IntrinsicElements {
+            [LOCAL_NAME_POPUP_ITEM_ICON]: React.DetailedHTMLProps<React.HTMLAttributes<PopupItemIconElement> & PopupFolderIconElementAttr, PopupItemIconElement>;
+            [LOCAL_NAME_POPUP_FOLDER_ICON]: React.DetailedHTMLProps<React.AreaHTMLAttributes<PopupFolderIconElement> & PopupItemIconElementAttr, PopupFolderIconElement>;
+        }
     }
-
-    return (
-        <ReactPopupIconElement type={IconType.Folder} src={src} />
-    );
-}
-
-interface ReactPopupItemIconElementElementArgs extends React.Attributes {
-    [ATTR_NAME_SRC]: string;
-}
-export function ReactPopupItemIconElement(props: ReactPopupItemIconElementElementArgs): JSX.Element {
-    const src = props[ATTR_NAME_SRC];
-
-    if (USE_WEB_COMPONENT) {
-        return (
-            <popup-item-icon data-src={src}/>
-        );
-    }
-
-    return (
-        <ReactPopupIconElement type={IconType.Item} src={src} />
-    );
 }
