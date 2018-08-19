@@ -12,7 +12,7 @@ import { PanelListItemText } from '../shared/component/PanelListItemText';
 import {
     ReactPopupFolderIconElement,
     ReactPopupItemIconElement,
-} from './component/PopupIconElement';
+} from './component/ReactPopupIconElement';
 
 import { PopupMainState } from './PopupMainState';
 import { openItem, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';

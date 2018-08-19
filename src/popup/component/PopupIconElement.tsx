@@ -8,7 +8,7 @@ import {
     createTextNode as text,
 } from '../../shared/domfactory';
 
-const ATTR_NAME_SRC = 'data-src';
+export const ATTR_NAME_SRC = 'data-src';
 
 const enum IconType {
     Item = 'item',
@@ -114,25 +114,4 @@ export class PopupItemIconElement extends PopupIconElement {
 }
 export interface PopupItemIconElementAttr {
     [ATTR_NAME_SRC]: string;
-}
-
-interface PopupFolderIconElementArgs extends React.Attributes {
-    [ATTR_NAME_SRC]: string;
-}
-export function ReactPopupFolderIconElement(props: PopupFolderIconElementArgs): JSX.Element {
-    const src = props[ATTR_NAME_SRC];
-    return (
-        <popup-folder-icon data-src={src}/>
-    );
-}
-
-interface ReactPopupItemIconElementElementArgs extends React.Attributes {
-    [ATTR_NAME_SRC]: string;
-}
-export function ReactPopupItemIconElement(props: ReactPopupItemIconElementElementArgs): JSX.Element {
-    const src = props[ATTR_NAME_SRC];
-
-    return (
-        <popup-item-icon data-src={src}/>
-    );
 }
