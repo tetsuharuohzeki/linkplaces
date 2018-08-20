@@ -57,5 +57,9 @@ module.exports = {
         'function-url-scheme-whitelist': ['https'],
 
         'font-weight-notation': 'named-where-possible',
+
+        'selector-type-no-unknown': [true, {
+            'ignore': ['custom-elements']
+        }],
     },
 };

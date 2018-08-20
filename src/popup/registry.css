@@ -1,5 +1,7 @@
 @charset 'utf-8';
 
+@import './component/PopupIconElement.css';
+
 :root {
     /* sort with https://dxr.mozilla.org/mozilla-central/rev/91134c95d68cbcfe984211fa3cbd28d610361ef1/browser/themes/shared/customizableui/panelUI.inc.css#8 */
     --popup-subview-width: 30em;
@@ -13,9 +15,4 @@
     white-space: nowrap;
     color: inherit;
     text-decoration: none;
-}
-
-.popup__listitem_icon_item,
-.popup__listitem_icon_folder {
-    margin-inline-end: 1em;
 }

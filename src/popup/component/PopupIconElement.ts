@@ -8,27 +8,20 @@ import {
     createTextNode as text,
 } from '../../shared/domfactory';
 
-export const ATTR_NAME_SRC = 'data-src';
+export const ATTR_NAME_SRC = 'src';
 
-const enum IconType {
-    Item = 'item',
-    Folder = 'folder',
-}
-
-abstract class PopupIconElement extends HTMLElement {
+export class PopupItemIconElement extends HTMLElement {
 
     static get observedAttributes(): Iterable<string> {
         return [ATTR_NAME_SRC];
     }
 
     private _connectedOnce: boolean;
-    private _type: IconType;
     private _img: DomRef<HTMLImageElement>;
 
-    constructor(type: IconType) {
+    constructor() {
         super();
         this._connectedOnce = false;
-        this._type = type;
         this._img = createDomRef();
     }
 
@@ -46,20 +39,19 @@ abstract class PopupIconElement extends HTMLElement {
             mode: 'open',
         });
 
-        const type: string = this._type;
         const src = unwrapOrFromNullable(this.getAttribute(ATTR_NAME_SRC), '');
 
         const tree = fragment([
             dom('style', null, [
                 text(`
-                img[class^="popup__listitem_icon_"] {
-                    margin-inline-end: 1em;
+                .com-popup-PopupIconElement__icon {
+                    margin-inline-end: var(--margin-inline-end);
                 }
                 `),
             ]),
 
             dom('img', new Map([
-                ['class', `popup__listitem_icon_${type}`],
+                ['class', `com-popup-PopupIconElement__icon`],
                 ['src', src],
                 ['alt', ''],
             ]),
@@ -96,22 +88,7 @@ abstract class PopupIconElement extends HTMLElement {
     }
 }
 
-export const LOCAL_NAME_POPUP_FOLDER_ICON = 'popup-folder-icon';
-export class PopupFolderIconElement extends PopupIconElement {
-    constructor() {
-        super(IconType.Folder);
-    }
-}
-interface PopupFolderIconElementAttr {
-    [ATTR_NAME_SRC]: string;
-}
-
 export const LOCAL_NAME_POPUP_ITEM_ICON = 'popup-item-icon';
-export class PopupItemIconElement extends PopupIconElement {
-    constructor() {
-        super(IconType.Item);
-    }
-}
 interface PopupItemIconElementAttr {
     [ATTR_NAME_SRC]: string;
 }
@@ -119,8 +96,7 @@ interface PopupItemIconElementAttr {
 declare global {
     namespace JSX {
         interface IntrinsicElements {
-            [LOCAL_NAME_POPUP_ITEM_ICON]: React.DetailedHTMLProps<React.HTMLAttributes<PopupItemIconElement> & PopupFolderIconElementAttr, PopupItemIconElement>;
-            [LOCAL_NAME_POPUP_FOLDER_ICON]: React.DetailedHTMLProps<React.AreaHTMLAttributes<PopupFolderIconElement> & PopupItemIconElementAttr, PopupFolderIconElement>;
+            [LOCAL_NAME_POPUP_ITEM_ICON]: React.DetailedHTMLProps<React.HTMLAttributes<PopupItemIconElement> & PopupItemIconElementAttr, PopupItemIconElement>;
         }
     }
 }
