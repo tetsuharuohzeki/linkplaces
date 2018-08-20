@@ -24,7 +24,6 @@
     "default_popup": "popup/index.html"
   },
   "sidebar_action": {
-    "browser_style": true,
     "default_icon": "toolbaricon.svg",
     "default_title": "LinkPlaces",
     "default_panel": "sidebar/index.html"
