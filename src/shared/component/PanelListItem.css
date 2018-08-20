@@ -1,3 +1,5 @@
+@import '../vars.css';
+
 .shared-com-PanelListItem__container {
     align-items: center;
     display: flex;
@@ -7,17 +9,17 @@
 }
 
 .shared-com-PanelListItem__container:not(.disabled):hover {
-    background-color: rgba(0, 0, 0, 0.06);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--panel-item__hover--bg-color);
+    border-bottom: 1px solid var(--panel-item__hover--border-color);
+    border-top: 1px solid var(--panel-item__hover--border-color);
 }
 
 .shared-com-PanelListItem__container:not(.disabled):hover:active {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--panel-item__active--bg-color);
 }
 
 .shared-com-PanelListItem__container--disabled {
-    color: #999;
+    color: var(--panel-item__disabled--color);
 }
 
 .shared-com-PanelListItem__icon {
@@ -30,9 +32,8 @@
 }
 
 .shared-com-PanelListItem__text-shortcut {
-    color: #808080;
-    /* stylelint-disable-next-linefont-family-no-missing-generic-family-keyword, font-family-name-quotes */
-    font-family: 'Lucida Grande', caption;
+    color: var(--panel-item__text-shortcut--color);
+    font-family: var(--panel-item__text-shortcut--font-family);
     font-size: 0.847em;
     justify-content: flex-end;
 }

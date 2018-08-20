@@ -1,0 +1,8 @@
+:root {
+    --panel-item__hover--bg-color: rgba(0, 0, 0, 0.06);
+    --panel-item__hover--border-color: rgba(0, 0, 0, 0.1);
+    --panel-item__active--bg-color: rgba(0, 0, 0, 0.1);
+    --panel-item__disabled--color: #999;
+    --panel-item__text-shortcut--color: #808080;
+    --panel-item__text-shortcut--font-family: 'Lucida Grande', caption;
+}
