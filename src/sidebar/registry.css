@@ -1,4 +1,5 @@
 @charset 'utf-8';
 
+@import '../shared/reset.css';
 @import './view/ListView.css';
 @import './view/ListItem.css';
