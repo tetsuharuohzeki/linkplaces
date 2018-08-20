@@ -4,7 +4,6 @@ import React from 'react';
 import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../typings/webext/bookmarks';
 
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../shared/Bookmark';
-import { Panel } from '../shared/component/Panel';
 import { PanelSectionList, PanelSectionListSeparator } from '../shared/component/PanelSectionList';
 import {
     PanelListItem,
@@ -35,7 +34,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
     });
 
     return (
-        <Panel>
+        <div>
             <PanelSectionList>
                 <PanelListItem onClick={onClickOpenWebExtSidebar}>
                     <PanelListItemIcon>
@@ -52,7 +51,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
             <PanelSectionList>
                 {items}
             </PanelSectionList>
-        </Panel>
+        </div>
     );
 }
 // FIXME: PropTypes is too strict.
