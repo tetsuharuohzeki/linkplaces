@@ -22,13 +22,11 @@ abstract class PopupIconElement extends HTMLElement {
     }
 
     private _connectedOnce: boolean;
-    private _type: IconType;
     private _img: DomRef<HTMLImageElement>;
 
-    constructor(type: IconType) {
+    constructor(_type: IconType) {
         super();
         this._connectedOnce = false;
-        this._type = type;
         this._img = createDomRef();
     }
 
@@ -46,20 +44,19 @@ abstract class PopupIconElement extends HTMLElement {
             mode: 'open',
         });
 
-        const type: string = this._type;
         const src = unwrapOrFromNullable(this.getAttribute(ATTR_NAME_SRC), '');
 
         const tree = fragment([
             dom('style', null, [
                 text(`
-                img[class^="popup__listitem_icon_"] {
-                    margin-inline-end: 1em;
+                .com-popup-PopupIconElement__icon {
+                    margin-inline-end: var(--margin-inline-end);
                 }
                 `),
             ]),
 
             dom('img', new Map([
-                ['class', `popup__listitem_icon_${type}`],
+                ['class', `com-popup-PopupIconElement__icon`],
                 ['src', src],
                 ['alt', ''],
             ]),
