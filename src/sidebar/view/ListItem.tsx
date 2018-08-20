@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {
+    PanelListItem,
+    PanelListItemText,
+} from '../../shared/component/PanelListItem';
+
 export interface ListItemProps {
     isOpening: boolean;
     children: React.ReactNode;
@@ -8,15 +13,17 @@ export interface ListItemProps {
 
 export function ListItem(props: ListItemProps): JSX.Element {
     const className = !props.isOpening ?
-        'sidebar__ListItem_container' :
-        'sidebar__ListItem_container_is_opening';
+        'sidebar-com-ListItem__container' :
+        'sidebar-com-ListItem__container--is-opening';
 
     return (
-        <li className={className}>
-            <div className={'sidebar__ListItem_inner'}>
-                {props.children}
-            </div>
-        </li>
+        <div className={className}>
+            <PanelListItem>
+                <PanelListItemText>
+                    {props.children}
+                </PanelListItemText>
+            </PanelListItem>
+        </div>
     );
 }
 (ListItem as React.StatelessComponent<ListItemProps>).propTypes = {
