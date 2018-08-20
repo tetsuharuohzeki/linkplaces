@@ -93,7 +93,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
         <PanelListItem onClick={onClick}>
-            <popup-folder-icon data-src={'../shared/image/icon/folder-16.svg'}/>
+            <popup-item-icon data-src={'../shared/image/icon/folder-16.svg'}/>
             <PanelListItemText>
                 <span className={'popup__listitem_text_inner'}>
                     {item.title}

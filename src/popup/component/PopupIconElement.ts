@@ -93,16 +93,6 @@ abstract class PopupIconElement extends HTMLElement {
     }
 }
 
-export const LOCAL_NAME_POPUP_FOLDER_ICON = 'popup-folder-icon';
-export class PopupFolderIconElement extends PopupIconElement {
-    constructor() {
-        super(IconType.Folder);
-    }
-}
-interface PopupFolderIconElementAttr {
-    [ATTR_NAME_SRC]: string;
-}
-
 export const LOCAL_NAME_POPUP_ITEM_ICON = 'popup-item-icon';
 export class PopupItemIconElement extends PopupIconElement {
     constructor() {
@@ -116,8 +106,7 @@ interface PopupItemIconElementAttr {
 declare global {
     namespace JSX {
         interface IntrinsicElements {
-            [LOCAL_NAME_POPUP_ITEM_ICON]: React.DetailedHTMLProps<React.HTMLAttributes<PopupItemIconElement> & PopupFolderIconElementAttr, PopupItemIconElement>;
-            [LOCAL_NAME_POPUP_FOLDER_ICON]: React.DetailedHTMLProps<React.AreaHTMLAttributes<PopupFolderIconElement> & PopupItemIconElementAttr, PopupFolderIconElement>;
+            [LOCAL_NAME_POPUP_ITEM_ICON]: React.DetailedHTMLProps<React.HTMLAttributes<PopupItemIconElement> & PopupItemIconElementAttr, PopupItemIconElement>;
         }
     }
 }
