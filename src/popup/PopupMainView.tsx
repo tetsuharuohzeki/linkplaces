@@ -6,8 +6,11 @@ import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../shared/Bookmark';
 import { Panel } from '../shared/component/Panel';
 import { PanelSectionList } from '../shared/component/PanelSectionList';
-import { PanelListItem } from '../shared/component/PanelListItem';
-import { PanelListItemText } from '../shared/component/PanelListItemText';
+import {
+    PanelListItem,
+    PanelListItemIcon,
+    PanelListItemText,
+} from '../shared/component/PanelListItem';
 
 import { PopupMainState } from './PopupMainState';
 import { openItem, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';
@@ -35,7 +38,9 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
         <Panel>
             <PanelSectionList>
                 <PanelListItem onClick={onClickOpenWebExtSidebar}>
-                    <popup-item-icon src={'../shared/image/icon/sidebar-16.svg'}/>
+                    <PanelListItemIcon>
+                        <popup-item-icon src={'../shared/image/icon/sidebar-16.svg'}/>
+                    </PanelListItemIcon>
                     <PanelListItemText>
                         <span className={'popup__listitem_text_inner'}>
                             {'View LinkPlaces Sidebar'}
@@ -93,7 +98,9 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
         <PanelListItem onClick={onClick}>
-            <popup-item-icon src={'../shared/image/icon/folder-16.svg'}/>
+            <PanelListItemIcon>
+                <popup-item-icon src={'../shared/image/icon/folder-16.svg'}/>
+            </PanelListItemIcon>
             <PanelListItemText>
                 <span className={'popup__listitem_text_inner'}>
                     {item.title}
@@ -125,7 +132,9 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
         <PanelListItem>
-            <popup-item-icon src={'../shared/image/icon/defaultFavicon.svg'}/>
+            <PanelListItemIcon>
+                <popup-item-icon src={'../shared/image/icon/defaultFavicon.svg'}/>
+            </PanelListItemIcon>
             <PanelListItemText>
                 <a className={'popup__listitem_text_inner'} href={url} title={tooltiptext} onClick={onClick}>
                     {item.title}

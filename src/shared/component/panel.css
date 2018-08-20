@@ -36,45 +36,6 @@
     padding: 4px 0;
 }
 
-.panel-list-item {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    height: 24px;
-    padding: 0 16px;
-}
-
-.panel-list-item:not(.disabled):hover {
-    background-color: rgba(0, 0, 0, 0.06);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.panel-list-item:not(.disabled):hover:active {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.panel-list-item.disabled {
-    color: #999;
-}
-
-.panel-list-item > .icon {
-    flex-grow: 0;
-    flex-shrink: 0;
-}
-
-.panel-list-item > .text {
-    flex-grow: 10;
-}
-
-.panel-list-item > .text-shortcut {
-    color: #808080;
-    /* stylelint-disable-next-linefont-family-no-missing-generic-family-keyword, font-family-name-quotes */
-    font-family: 'Lucida Grande', caption;
-    font-size: 0.847em;
-    justify-content: flex-end;
-}
-
 .panel-section-list .panel-section-separator {
     margin: 4px 0;
 }
