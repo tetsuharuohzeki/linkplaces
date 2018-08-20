@@ -8,7 +8,7 @@ import {
     createTextNode as text,
 } from '../../shared/domfactory';
 
-export const ATTR_NAME_SRC = 'data-src';
+export const ATTR_NAME_SRC = 'src';
 
 const enum IconType {
     Item = 'item',
