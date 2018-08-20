@@ -10,11 +10,6 @@ import {
 
 export const ATTR_NAME_SRC = 'src';
 
-const enum IconType {
-    Item = 'item',
-    Folder = 'folder',
-}
-
 abstract class PopupIconElement extends HTMLElement {
 
     static get observedAttributes(): Iterable<string> {
@@ -24,7 +19,7 @@ abstract class PopupIconElement extends HTMLElement {
     private _connectedOnce: boolean;
     private _img: DomRef<HTMLImageElement>;
 
-    constructor(_type: IconType) {
+    constructor() {
         super();
         this._connectedOnce = false;
         this._img = createDomRef();
@@ -96,7 +91,7 @@ abstract class PopupIconElement extends HTMLElement {
 export const LOCAL_NAME_POPUP_ITEM_ICON = 'popup-item-icon';
 export class PopupItemIconElement extends PopupIconElement {
     constructor() {
-        super(IconType.Item);
+        super();
     }
 }
 interface PopupItemIconElementAttr {
