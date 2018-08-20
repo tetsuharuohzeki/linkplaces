@@ -1,0 +1,10 @@
+/* Based on https://hg.mozilla.org/mozilla-central/file/e57c44d5ec97/browser/components/extensions/extension.css#l338 */
+.shared-com-PanelSectionList__container {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 0;
+}
+
+.shared-com-PanelSectionList__separator {
+    margin: 4px 0;
+}

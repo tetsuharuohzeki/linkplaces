@@ -4,11 +4,6 @@
     flex-direction: row;
 }
 
-.panel-section-separator {
-    background-color: rgba(0, 0, 0, 0.15);
-    min-height: 1px;
-}
-
 /* Panel Section - Header */
 .panel-section-header {
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
@@ -28,16 +23,6 @@
     align-self: center;
     font-size: 1.385em;
     font-weight: lighter;
-}
-
-/* Panel Section - List */
-.panel-section-list {
-    flex-direction: column;
-    padding: 4px 0;
-}
-
-.panel-section-list .panel-section-separator {
-    margin: 4px 0;
 }
 
 /* Panel Section - Form Elements */

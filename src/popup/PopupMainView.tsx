@@ -5,7 +5,7 @@ import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '
 
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../shared/Bookmark';
 import { Panel } from '../shared/component/Panel';
-import { PanelSectionList } from '../shared/component/PanelSectionList';
+import { PanelSectionList, PanelSectionListSeparator } from '../shared/component/PanelSectionList';
 import {
     PanelListItem,
     PanelListItemIcon,
@@ -48,7 +48,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
                     </PanelListItemText>
                 </PanelListItem>
             </PanelSectionList>
-
+            <PanelSectionListSeparator/>
             <PanelSectionList>
                 {items}
             </PanelSectionList>
