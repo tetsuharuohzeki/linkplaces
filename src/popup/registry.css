@@ -2,8 +2,6 @@
 
 @import '../shared/reset.css';
 @import '../shared/component/panel.css';
-@import '../shared/component/PanelSectionList.css';
-@import '../shared/component/PanelListItem.css';
 @import './component/PopupIconElement.css';
 
 :root {

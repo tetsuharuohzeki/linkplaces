@@ -1,0 +1,28 @@
+/* Based on https://hg.mozilla.org/mozilla-central/file/e57c44d5ec97/browser/components/extensions/extension.css#l338 */
+.shared-com-PanelSectionForm__container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.shared-com-PanelSectionForm__item {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 12px;
+}
+
+.shared-com-PanelSectionForm__item:last-child {
+    margin-bottom: 0;
+}
+
+.shared-com-PanelSectionForm__item label {
+    flex-shrink: 0;
+    margin-right: 6px;
+    text-align: right;
+}
+
+.shared-com-PanelSectionForm__item input[type='text'],
+.shared-com-PanelSectionForm__item select.browser-style {
+    flex-grow: 1;
+}

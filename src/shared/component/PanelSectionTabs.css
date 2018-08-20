@@ -1,0 +1,40 @@
+/* Panel Section - Tabs */
+.shared-com-PanelSectionTabs__container {
+    display: flex;
+    flex-direction: row;
+    color: #1a1a1a;
+    height: 41px;
+    margin-bottom: -1px;
+    padding: 0;
+}
+
+.shared-com-PanelSectionTabs__button {
+    flex: 1 1 auto;
+    height: 100%;
+    margin: 0 -1px;
+    padding: 12px;
+    text-align: center;
+}
+
+.shared-com-PanelSectionTabs__button:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.shared-com-PanelSectionTabs__button:hover:active {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.shared-com-PanelSectionTabs__button.selected {
+    box-shadow: 0 -1px 0 #0670cc inset, 0 -4px 0 #0996f8 inset;
+    color: #0996f8;
+}
+
+.shared-com-PanelSectionTabs__button.selected:hover {
+    color: #0670cc;
+}
+
+.shared-com-PanelSectionTabs__separator {
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 1px;
+    z-index: 99;
+}

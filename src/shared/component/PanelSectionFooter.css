@@ -1,0 +1,56 @@
+/* Panel Section - Footer */
+.shared-com-PanelSectionFooter__container {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(0, 0, 0, 0.06);
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    color: #1a1a1a;
+    height: 41px;
+    margin-top: -1px;
+    padding: 0;
+}
+
+.shared-com-PanelSectionFooter__button {
+    flex: 1 1 auto;
+    height: 100%;
+    margin: 0 -1px;
+    padding: 12px;
+    text-align: center;
+}
+
+.shared-com-PanelSectionFooter__button > .text-shortcut {
+    color: #808080;
+    /* stylelint-disable-next-linefont-family-no-missing-generic-family-keyword, font-family-name-quotes */
+    font-family: 'Lucida Grande', caption;
+    font-size: 0.847em;
+}
+
+.shared-com-PanelSectionFooter__button:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.shared-com-PanelSectionFooter__button:hover:active {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.shared-com-PanelSectionFooter__button--default {
+    background-color: #0996f8;
+    box-shadow: 0 1px 0 #0670cc inset;
+    color: #fff;
+}
+
+.shared-com-PanelSectionFooter__button--default:hover {
+    background-color: #0670cc;
+    box-shadow: 0 1px 0 #005bab inset;
+}
+
+.shared-com-PanelSectionFooter__button--default:hover:active {
+    background-color: #005bab;
+    box-shadow: 0 1px 0 #004480 inset;
+}
+
+.shared-com-PanelSectionFooter__separator {
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 1px;
+    z-index: 99;
+}
