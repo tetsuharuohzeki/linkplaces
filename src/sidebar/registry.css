@@ -1,5 +1,5 @@
 @charset 'utf-8';
 
 @import '../shared/reset.css';
-@import './view/ListView.css';
+@import '../shared/component/panel.css';
 @import './view/ListItem.css';
