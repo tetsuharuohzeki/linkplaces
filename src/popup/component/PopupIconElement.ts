@@ -10,7 +10,7 @@ import {
 
 export const ATTR_NAME_SRC = 'src';
 
-abstract class PopupIconElement extends HTMLElement {
+export class PopupItemIconElement extends HTMLElement {
 
     static get observedAttributes(): Iterable<string> {
         return [ATTR_NAME_SRC];
@@ -89,11 +89,6 @@ abstract class PopupIconElement extends HTMLElement {
 }
 
 export const LOCAL_NAME_POPUP_ITEM_ICON = 'popup-item-icon';
-export class PopupItemIconElement extends PopupIconElement {
-    constructor() {
-        super();
-    }
-}
 interface PopupItemIconElementAttr {
     [ATTR_NAME_SRC]: string;
 }
