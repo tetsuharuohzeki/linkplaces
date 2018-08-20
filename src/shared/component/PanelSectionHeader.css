@@ -1,0 +1,22 @@
+/* Based on https://hg.mozilla.org/mozilla-central/file/e57c44d5ec97/browser/components/extensions/extension.css#l338 */
+.shared-com-PanelSectionHeader__container {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 16px;
+}
+
+.shared-com-PanelSectionHeader__icon {
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 32px;
+    margin-right: 16px;
+    position: relative;
+    width: 32px;
+}
+
+.shared-com-PanelSectionHeader__text {
+    align-self: center;
+    font-size: 1.385em;
+    font-weight: lighter;
+}

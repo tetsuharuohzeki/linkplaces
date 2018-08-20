@@ -4,27 +4,6 @@
     flex-direction: row;
 }
 
-/* Panel Section - Header */
-.panel-section-header {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-    padding: 16px;
-}
-
-.panel-section-header > .icon-section-header {
-    background-position: center center;
-    background-repeat: no-repeat;
-    height: 32px;
-    margin-right: 16px;
-    position: relative;
-    width: 32px;
-}
-
-.panel-section-header > .text-section-header {
-    align-self: center;
-    font-size: 1.385em;
-    font-weight: lighter;
-}
-
 /* Panel Section - Form Elements */
 .panel-section-formElements {
     display: flex;
