@@ -88,54 +88,50 @@ interface ListItemInnerProps {
 function ListItemInner(props: ListItemInnerProps): JSX.Element {
     const { item, intent, } = props;
     const bookmark = item.bookmark;
-    if (!isBookmarkTreeNodeItem(bookmark)) {
-        const title = bookmark.title;
-        return (
-            <React.Fragment>
-                <PanelListItemIcon>
-                    <img alt={''} src={'../shared/image/icon/folder-16.svg'} />
-                </PanelListItemIcon>
-                <PanelListItemText>
-                    <span title={title}>
-                        {title}
-                    </span>
-                </PanelListItemText>
-            </React.Fragment>
-        );
+
+    if (isBookmarkTreeNodeSeparator(bookmark)) {
+        throw new RangeError();
     }
 
-    const id = bookmark.id;
-    const url = bookmark.url;
-    const title = `${bookmark.title}\n${url}`;
+    const bookmarkTitle = bookmark.title;
+    let iconSrc;
+    let labelText: JSX.Element;
 
-    let icon: JSX.Element;
-    let onClick: React.MouseEventHandler<HTMLAnchorElement>;
     if (isBookmarkTreeNodeItem(bookmark)) {
-        icon = <img alt={''} src={'../shared/image/icon/defaultFavicon.svg'} />;
-        onClick = (evt) => {
+        const id = bookmark.id;
+        const url = bookmark.url;
+        const title = `${bookmarkTitle}\n${url}`;
+
+        const onClick: React.MouseEventHandler<HTMLAnchorElement> = (evt) => {
             evt.preventDefault();
 
             const where = whereToOpenItem(evt);
             const a = notifyOpenItem(id, url, where);
             intent.dispatch(a);
         };
-    }
-    else {
-        icon = <img alt={''} src={'../shared/image/icon/folder-16.svg'} />;
-        onClick = (evt) => {
-            evt.preventDefault();
-        };
+
+        iconSrc = '../shared/image/icon/defaultFavicon.svg';
+        labelText = (
+            <a href={url} onClick={onClick} title={title}>
+                {bookmark.title}
+            </a>
+        );
+    } else {
+        iconSrc = '../shared/image/icon/folder-16.svg';
+        labelText = (
+            <span title={bookmarkTitle}>
+                {bookmarkTitle}
+            </span>
+        );
     }
 
     return (
         <React.Fragment>
             <PanelListItemIcon>
-                {icon}
+                <img alt={''} src={iconSrc} />
             </PanelListItemIcon>
             <PanelListItemText>
-                <a href={url} onClick={onClick} title={title}>
-                    {bookmark.title}
-                </a>
+                {labelText}
             </PanelListItemText>
         </React.Fragment>
     );
