@@ -1,3 +1,7 @@
+.sidebar-c-SidebarView__container .shared-com-PanelListItem__container {
+    padding: 0 8px 0 16px;
+}
+
 .sidebar-c-SidebarView__container .shared-com-PanelListItem__container.disabled {
     display: none;
 }
