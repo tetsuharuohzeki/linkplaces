@@ -108,21 +108,6 @@ function ListItemInner(props: ListItemInnerProps): JSX.Element {
     const url = bookmark.url;
     const title = `${bookmark.title}\n${url}`;
 
-    if (item.isOpening) {
-        return (
-            <React.Fragment>
-                <PanelListItemIcon>
-                    <img alt={''} src={'../shared/image/icon/folder-16.svg'} />
-                </PanelListItemIcon>
-                <PanelListItemText>
-                    <span title={title}>
-                        {bookmark.title}
-                    </span>
-                </PanelListItemText>
-            </React.Fragment>
-        );
-    }
-
     let icon: JSX.Element;
     let onClick: React.MouseEventHandler<HTMLAnchorElement>;
     if (isBookmarkTreeNodeItem(bookmark)) {
