@@ -1,0 +1,19 @@
+.sidebar-c-SidebarView__container .shared-com-PanelListItem__container.disabled {
+    display: none;
+}
+
+.sidebar-c-SidebarView__container .shared-com-PanelListItem__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: text-top;
+}
+
+.sidebar-c-SidebarView__container .shared-com-PanelListItem__text a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.sidebar-c-SidebarView__container .shared-com-PanelListItem__icon {
+    margin-inline-end: 1em;
+}

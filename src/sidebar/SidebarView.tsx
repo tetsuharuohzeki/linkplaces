@@ -22,11 +22,15 @@ import { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarIntent, notifyOpenItem } from './SidebarIntent';
 import { SidebarState } from './SidebarState';
 
-import { ListItemView } from './view/ListView';
-import { ListItem as ListItemComponent } from './view/ListItem';
+import { PanelSectionList, PanelSectionListSeparator } from '../shared/component/PanelSectionList';
+import {
+    PanelListItem,
+    PanelListItemIcon,
+    PanelListItemText,
+} from '../shared/component/PanelListItem';
 
 export interface SidebarViewProps {
-    state:  Readonly<SidebarState>;
+    state: Readonly<SidebarState>;
     intent: SidebarIntent;
 }
 
@@ -35,19 +39,21 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
         .pipe(
             map((item, i) => {
                 if (isBookmarkTreeNodeSeparator(item.bookmark)) {
-                    return (<ListItem key={i} item={null} intent={props.intent}/>);
+                    return (<ListItem key={i} item={null} intent={props.intent} />);
                 }
                 else {
-                    return (<ListItem key={i} item={item} intent={props.intent}/>);
+                    return (<ListItem key={i} item={item} intent={props.intent} />);
                 }
             }),
         );
 
     const r: Array<JSX.Element> = toArrayFromIx(mapped);
     return (
-        <ListItemView>
-            {r}
-        </ListItemView>
+        <div className={'sidebar-c-SidebarView__container'}>
+            <PanelSectionList>
+                {r}
+            </PanelSectionList>
+        </div>
     );
 }
 // FIXME: PropTypes is too strict.
@@ -62,16 +68,16 @@ function ListItem(props: ListItemProps): JSX.Element {
 
     if (isNull(item)) {
         return (
-            <hr/>
+            <PanelSectionListSeparator />
         );
     }
 
     const isOpening = mapOrForNullable(item, false, (item) => item.isOpening);
 
     return (
-        <ListItemComponent isOpening={isOpening}>
-            <ListItemInner item={item} intent={intent}/>
-        </ListItemComponent>
+        <PanelListItem disabled={isOpening}>
+            <ListItemInner item={item} intent={intent} />
+        </PanelListItem>
     );
 }
 
@@ -83,10 +89,18 @@ function ListItemInner(props: ListItemInnerProps): JSX.Element {
     const { item, intent, } = props;
     const bookmark = item.bookmark;
     if (!isBookmarkTreeNodeItem(bookmark)) {
+        const title = bookmark.title;
         return (
-            <span>
-                {bookmark.title}
-            </span>
+            <React.Fragment>
+                <PanelListItemIcon>
+                    <img alt={''} src={'../shared/image/icon/folder-16.svg'} />
+                </PanelListItemIcon>
+                <PanelListItemText>
+                    <span title={title}>
+                        {title}
+                    </span>
+                </PanelListItemText>
+            </React.Fragment>
         );
     }
 
@@ -96,14 +110,23 @@ function ListItemInner(props: ListItemInnerProps): JSX.Element {
 
     if (item.isOpening) {
         return (
-            <span title={title}>
-                {bookmark.title}
-            </span>
+            <React.Fragment>
+                <PanelListItemIcon>
+                    <img alt={''} src={'../shared/image/icon/folder-16.svg'} />
+                </PanelListItemIcon>
+                <PanelListItemText>
+                    <span title={title}>
+                        {bookmark.title}
+                    </span>
+                </PanelListItemText>
+            </React.Fragment>
         );
     }
 
+    let icon: JSX.Element;
     let onClick: React.MouseEventHandler<HTMLAnchorElement>;
     if (isBookmarkTreeNodeItem(bookmark)) {
+        icon = <img alt={''} src={'../shared/image/icon/defaultFavicon.svg'} />;
         onClick = (evt) => {
             evt.preventDefault();
 
@@ -113,15 +136,23 @@ function ListItemInner(props: ListItemInnerProps): JSX.Element {
         };
     }
     else {
+        icon = <img alt={''} src={'../shared/image/icon/folder-16.svg'} />;
         onClick = (evt) => {
             evt.preventDefault();
         };
     }
 
     return (
-        <a href={url} onClick={onClick} title={title}>
-            {bookmark.title}
-        </a>
+        <React.Fragment>
+            <PanelListItemIcon>
+                {icon}
+            </PanelListItemIcon>
+            <PanelListItemText>
+                <a href={url} onClick={onClick} title={title}>
+                    {bookmark.title}
+                </a>
+            </PanelListItemText>
+        </React.Fragment>
     );
 }
 
