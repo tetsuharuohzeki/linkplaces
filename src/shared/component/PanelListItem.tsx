@@ -3,12 +3,21 @@ import PropTypes from 'prop-types';
 
 export interface PanelListItemProps {
     children: React.ReactNode;
+    disabled?: boolean;
     onClick?: React.MouseEventHandler;
 }
 
 export function PanelListItem(props: PanelListItemProps): JSX.Element {
+    const {
+        disabled = false,
+    } = props;
+
+    const className = disabled ?
+        'shared-com-PanelListItem__container disabled' :
+        'shared-com-PanelListItem__container';
+
     return (
-        <div className={'shared-com-PanelListItem__container'} onClick={props.onClick}>
+        <div className={className} onClick={props.onClick}>
             {props.children}
         </div>
     );
