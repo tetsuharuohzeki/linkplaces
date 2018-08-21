@@ -32,9 +32,6 @@ export class PopupItemIconElement extends HTMLElement {
 
         this._connectedOnce = true;
 
-        // This class is used by photon design system.
-        this.classList.add('icon');
-
         const shadowRoot = this.attachShadow({
             mode: 'open',
         });
