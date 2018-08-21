@@ -18,7 +18,7 @@
     background-color: var(--panel-item__active--bg-color);
 }
 
-.shared-com-PanelListItem__container--disabled {
+.shared-com-PanelListItem__container.disabled {
     color: var(--panel-item__disabled--color);
 }
 
