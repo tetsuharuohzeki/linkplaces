@@ -2,9 +2,6 @@ import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
 import { map } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
 import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
 
-import { Nullable, isNull } from 'option-t/esm/Nullable/Nullable';
-import { mapOrForNullable } from 'option-t/esm/Nullable/mapOr';
-
 import React from 'react';
 //import * as PropTypes from 'prop-types';
 
@@ -38,12 +35,9 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
     const mapped = IterableX.from(props.state.list)
         .pipe(
             map((item, i) => {
-                if (isBookmarkTreeNodeSeparator(item.bookmark)) {
-                    return (<ListItem key={i} item={null} intent={props.intent} />);
-                }
-                else {
-                    return (<ListItem key={i} item={item} intent={props.intent} />);
-                }
+                return (
+                    <ListItem key={i} item={item} intent={props.intent} />
+                );
             }),
         );
 
@@ -60,40 +54,21 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
 // (SidebarView as React.StatelessComponent<SidebarViewProps>).propTypes = {};
 
 interface ListItemProps {
-    item: Nullable<SidebarItemViewModelEntity>;
+    item: SidebarItemViewModelEntity;
     intent: SidebarIntent;
 }
 function ListItem(props: ListItemProps): JSX.Element {
     const { item, intent, } = props;
+    const bookmark = item.bookmark;
 
-    if (isNull(item)) {
+    if (isBookmarkTreeNodeSeparator(bookmark)) {
         return (
             <PanelSectionListSeparator />
         );
     }
 
-    const isOpening = mapOrForNullable(item, false, (item) => item.isOpening);
-
-    return (
-        <PanelListItem disabled={isOpening}>
-            <ListItemInner item={item} intent={intent} />
-        </PanelListItem>
-    );
-}
-
-interface ListItemInnerProps {
-    item: SidebarItemViewModelEntity;
-    intent: SidebarIntent;
-}
-function ListItemInner(props: ListItemInnerProps): JSX.Element {
-    const { item, intent, } = props;
-    const bookmark = item.bookmark;
-
-    if (isBookmarkTreeNodeSeparator(bookmark)) {
-        throw new RangeError();
-    }
-
     const bookmarkTitle = bookmark.title;
+
     let iconSrc;
     let labelText: JSX.Element;
 
@@ -125,15 +100,16 @@ function ListItemInner(props: ListItemInnerProps): JSX.Element {
         );
     }
 
+    const isOpening = item.isOpening;
     return (
-        <React.Fragment>
+        <PanelListItem disabled={isOpening}>
             <PanelListItemIcon>
                 <img alt={''} src={iconSrc} />
             </PanelListItemIcon>
             <PanelListItemText>
                 {labelText}
             </PanelListItemText>
-        </React.Fragment>
+        </PanelListItem>
     );
 }
 
