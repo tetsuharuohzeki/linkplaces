@@ -16,6 +16,7 @@
 .sidebar-c-SidebarView__container .shared-com-PanelListItem__text a {
     color: inherit;
     text-decoration: inherit;
+    cursor: default;
 }
 
 .sidebar-c-SidebarView__container .shared-com-PanelListItem__icon {
