@@ -127,6 +127,9 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
 
     const title = item.title;
     const tooltiptext = `"${title}"\n${url}`;
+    const label = (title === '') ?
+        url :
+        title;
 
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
@@ -136,7 +139,7 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
             </PanelListItemIcon>
             <PanelListItemText>
                 <a className={'popup__listitem_text_inner'} href={url} title={tooltiptext} onClick={onClick}>
-                    {item.title}
+                    {label}
                 </a>
             </PanelListItemText>
         </PanelListItem>

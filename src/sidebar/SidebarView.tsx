@@ -85,10 +85,13 @@ function ListItem(props: ListItemProps): JSX.Element {
             intent.dispatch(a);
         };
 
+        const label = (bookmarkTitle === '') ?
+            url :
+            bookmarkTitle;
         iconSrc = '../shared/image/icon/defaultFavicon.svg';
         labelText = (
             <a href={url} onClick={onClick} title={title}>
-                {bookmark.title}
+                {label}
             </a>
         );
     } else {
