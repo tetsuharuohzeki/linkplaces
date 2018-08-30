@@ -28,7 +28,7 @@
     "@types/prop-types": "^15.5.5",
     "@types/react": "^16.4.11",
     "@types/react-dom": "^16.0.7",
-    "ava": "^1.0.0-beta.7",
+    "ava": "^1.0.0-beta.8",
     "cpx": "^1.5.0",
     "del-cli": "^1.1.0",
     "eslint": "^5.4.0",
