@@ -693,9 +693,9 @@ adbkit@2.11.0:
     node-forge "^0.7.1"
     split "~0.3.3"
 
-addons-linter@1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/addons-linter/-/addons-linter-1.2.6.tgz#6bc4bbe37a750978d7e79a15c3dfc61223e3873e"
+addons-linter@1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/addons-linter/-/addons-linter-1.3.1.tgz#7dab925d805fb8abb39480cdac929e7fc5587501"
   dependencies:
     ajv "6.5.2"
     ajv-merge-patch "4.1.0"
@@ -706,18 +706,20 @@ addons-linter@1.2.6:
     common-tags "1.8.0"
     crx-parser "0.1.2"
     deepmerge "2.1.1"
-    dispensary "0.21.0"
+    dispensary "0.22.0"
     es6-promisify "5.0.0"
     eslint "5.0.1"
     eslint-plugin-no-unsafe-innerhtml "1.0.16"
+    eslint-visitor-keys "1.0.0"
+    espree "4.0.0"
     esprima "3.1.3"
     first-chunk-stream "2.0.0"
     fluent-syntax "^0.7.0"
     glob "7.1.2"
     is-mergeable-object "1.1.0"
     jed "1.1.1"
-    os-locale "2.1.0"
-    pino "5.0.0-rc.4"
+    os-locale "3.0.0"
+    pino "5.0.4"
     po2json "0.4.5"
     postcss "6.0.23"
     probe-image-size "4.0.0"
@@ -1944,7 +1946,7 @@ cross-spawn@^5.0.1:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-cross-spawn@^6.0.5:
+cross-spawn@^6.0.0, cross-spawn@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
   dependencies:
@@ -2189,15 +2191,15 @@ dir-glob@^2.0.0:
     arrify "^1.0.1"
     path-type "^3.0.0"
 
-dispensary@0.21.0:
-  version "0.21.0"
-  resolved "https://registry.yarnpkg.com/dispensary/-/dispensary-0.21.0.tgz#da8d625d722a03ced11f3e6b6aec3508d2fc8511"
+dispensary@0.22.0:
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/dispensary/-/dispensary-0.22.0.tgz#d7c8fa9e3874415a8f33db582e6aab61c9724f05"
   dependencies:
     array-from "~2.1.1"
     async "~2.6.0"
     natural-compare-lite "~1.4.0"
-    pino "~4.17.3"
-    request "~2.87.0"
+    pino "~5.0.3"
+    request "~2.88.0"
     semver "~5.5.0"
     sha.js "~2.4.4"
     source-map-support "~0.5.4"
@@ -2534,7 +2536,7 @@ eslint-utils@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/eslint-utils/-/eslint-utils-1.3.1.tgz#9a851ba89ee7c460346f97cf8939c7298827e512"
 
-eslint-visitor-keys@^1.0.0:
+eslint-visitor-keys@1.0.0, eslint-visitor-keys@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#3f3180fb2e291017716acb4c9d6d5b5c34a6a81d"
 
@@ -2677,19 +2679,19 @@ espower-location-detector@^1.0.0:
     source-map "^0.5.0"
     xtend "^4.0.0"
 
+espree@4.0.0, espree@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/espree/-/espree-4.0.0.tgz#253998f20a0f82db5d866385799d912a83a36634"
+  dependencies:
+    acorn "^5.6.0"
+    acorn-jsx "^4.1.1"
+
 espree@^3.4.0:
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/espree/-/espree-3.5.4.tgz#b0f447187c8a8bed944b815a660bddf5deb5d1a7"
   dependencies:
     acorn "^5.5.0"
     acorn-jsx "^3.0.0"
-
-espree@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/espree/-/espree-4.0.0.tgz#253998f20a0f82db5d866385799d912a83a36634"
-  dependencies:
-    acorn "^5.6.0"
-    acorn-jsx "^4.1.1"
 
 esprima@3.1.3, esprima@3.x.x, esprima@^3.1.3:
   version "3.1.3"
@@ -2739,6 +2741,18 @@ event-emitter@~0.3.5:
 event-to-promise@0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/event-to-promise/-/event-to-promise-0.8.0.tgz#4b84f11772b6f25f7752fc74d971531ac6f5b626"
+
+execa@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/execa/-/execa-0.10.0.tgz#ff456a8f53f90f8eccc71a96d11bdfc7f082cb50"
+  dependencies:
+    cross-spawn "^6.0.0"
+    get-stream "^3.0.0"
+    is-stream "^1.1.0"
+    npm-run-path "^2.0.0"
+    p-finally "^1.0.0"
+    signal-exit "^3.0.0"
+    strip-eof "^1.0.0"
 
 execa@^0.7.0:
   version "0.7.0"
@@ -2879,13 +2893,9 @@ fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
 
-fast-redact@^1.1.13:
+fast-redact@^1.1.14:
   version "1.1.14"
   resolved "https://registry.yarnpkg.com/fast-redact/-/fast-redact-1.1.14.tgz#95e5a05c8046b9cd61a203266a4acb2ae635574f"
-
-fast-safe-stringify@^1.0.8, fast-safe-stringify@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-1.2.3.tgz#9fe22c37fb2f7f86f06b8f004377dbf8f1ee7bc1"
 
 fast-safe-stringify@^2.0.4:
   version "2.0.6"
@@ -2979,9 +2989,9 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
-firefox-profile@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/firefox-profile/-/firefox-profile-1.1.0.tgz#50090d1ff62dce3052cc7f46d1243c6a487db47a"
+firefox-profile@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/firefox-profile/-/firefox-profile-1.2.0.tgz#2068227924e714a2b10ec5fba8392e19b5788509"
   dependencies:
     adm-zip "~0.4.x"
     archiver "~2.1.0"
@@ -3676,6 +3686,10 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
+invert-kv@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-2.0.0.tgz#7393f5afa59ec9ff5f67a27620d11c226e3eec02"
+
 ip@^1.1.4, ip@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
@@ -4318,6 +4332,12 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
+lcid@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/lcid/-/lcid-2.0.0.tgz#6ef5d2df60e52f82eb228a4c373e8d1f397253cf"
+  dependencies:
+    invert-kv "^2.0.0"
+
 levn@^0.3.0, levn@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.3.0.tgz#3b09924edf9f083c0490fdd4c0bc4421e04764ee"
@@ -4568,6 +4588,13 @@ mem@^1.1.0:
   resolved "https://registry.yarnpkg.com/mem/-/mem-1.1.0.tgz#5edd52b485ca1d900fe64895505399a0dfa45f76"
   dependencies:
     mimic-fn "^1.0.0"
+
+mem@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/mem/-/mem-3.0.1.tgz#152410d0d7e835e4a4363e626238d9e5be3d6f5a"
+  dependencies:
+    mimic-fn "^1.0.0"
+    p-is-promise "^1.1.0"
 
 meow@^3.6.0:
   version "3.7.0"
@@ -5058,19 +5085,27 @@ os-homedir@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-homedir/-/os-homedir-1.0.2.tgz#ffbc4988336e0e833de0c168c7ef152121aa7fb3"
 
-os-locale@2.1.0, os-locale@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/os-locale/-/os-locale-2.1.0.tgz#42bc2900a6b5b8bd17376c8e882b65afccf24bf2"
+os-locale@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/os-locale/-/os-locale-3.0.0.tgz#b868acc459f0f81c8ddde3a11cb0b030f8dd7bf0"
   dependencies:
-    execa "^0.7.0"
-    lcid "^1.0.0"
-    mem "^1.1.0"
+    execa "^0.10.0"
+    lcid "^2.0.0"
+    mem "^3.0.1"
 
 os-locale@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/os-locale/-/os-locale-1.4.0.tgz#20f9f17ae29ed345e8bde583b13d2009803c14d9"
   dependencies:
     lcid "^1.0.0"
+
+os-locale@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/os-locale/-/os-locale-2.1.0.tgz#42bc2900a6b5b8bd17376c8e882b65afccf24bf2"
+  dependencies:
+    execa "^0.7.0"
+    lcid "^1.0.0"
+    mem "^1.1.0"
 
 os-name@^2.0.1:
   version "2.0.1"
@@ -5097,6 +5132,10 @@ osenv@^0.1.4:
 p-finally@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-finally/-/p-finally-1.0.0.tgz#3fbcfb15b899a44123b34b6dcc18b724336a2cae"
+
+p-is-promise@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/p-is-promise/-/p-is-promise-1.1.0.tgz#9c9456989e9f6588017b0434d56097675c3da05e"
 
 p-limit@^1.1.0:
   version "1.3.0"
@@ -5317,35 +5356,35 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
-pino-std-serializers@^2.0.0:
+pino-std-serializers@^2.2.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/pino-std-serializers/-/pino-std-serializers-2.2.1.tgz#ceb583374358c75949e9c4ddbdd690428c15958e"
 
-pino@5.0.0-rc.4:
-  version "5.0.0-rc.4"
-  resolved "https://registry.yarnpkg.com/pino/-/pino-5.0.0-rc.4.tgz#33f669a98972bdf6666508888d08a891841f6c3b"
+pino@5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/pino/-/pino-5.0.4.tgz#0c94d6a6fbdcaa73a19758366ebf89a00af2c8c8"
   dependencies:
     fast-json-parse "^1.0.3"
-    fast-redact "^1.1.13"
+    fast-redact "^1.1.14"
     fast-safe-stringify "^2.0.4"
     flatstr "^1.0.5"
-    pino-std-serializers "^2.0.0"
+    pino-std-serializers "^2.2.0"
     pump "^3.0.0"
     quick-format-unescaped "^3.0.0"
-    sonic-boom "^0.5.0"
+    sonic-boom "^0.6.0"
 
-pino@~4.17.3:
-  version "4.17.6"
-  resolved "https://registry.yarnpkg.com/pino/-/pino-4.17.6.tgz#8c237f3a29f4104f89321c25037deab6a7998fb4"
+pino@~5.0.3:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/pino/-/pino-5.0.5.tgz#7dd4043025ede87bfc4d6077b5e204ded351c18d"
   dependencies:
-    chalk "^2.4.1"
     fast-json-parse "^1.0.3"
-    fast-safe-stringify "^1.2.3"
+    fast-redact "^1.1.14"
+    fast-safe-stringify "^2.0.4"
     flatstr "^1.0.5"
-    pino-std-serializers "^2.0.0"
+    pino-std-serializers "^2.2.0"
     pump "^3.0.0"
-    quick-format-unescaped "^1.1.2"
-    split2 "^2.2.0"
+    quick-format-unescaped "^3.0.0"
+    sonic-boom "^0.6.0"
 
 pkg-conf@^2.1.0:
   version "2.1.0"
@@ -5662,12 +5701,6 @@ qs@~6.5.1, qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
 
-quick-format-unescaped@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/quick-format-unescaped/-/quick-format-unescaped-1.1.2.tgz#0ca581de3174becef25ac3c2e8956342381db698"
-  dependencies:
-    fast-safe-stringify "^1.0.8"
-
 quick-format-unescaped@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/quick-format-unescaped/-/quick-format-unescaped-3.0.0.tgz#21e7fdc5b08b079ef71ed0728ed0725e58671e41"
@@ -5780,7 +5813,7 @@ readable-stream@1.1.x:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@2, readable-stream@^2.0.0, readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.3.0, readable-stream@^2.3.5:
+readable-stream@2, readable-stream@^2.0.0, readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.2.2, readable-stream@^2.3.0, readable-stream@^2.3.5:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
   dependencies:
@@ -6036,7 +6069,7 @@ request-promise-native@^1.0.5:
     stealthy-require "^1.1.0"
     tough-cookie ">=2.3.3"
 
-request@2.87.0, request@~2.87.0:
+request@2.87.0:
   version "2.87.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.87.0.tgz#32f00235cd08d482b4d0d68db93a829c0ed5756e"
   dependencies:
@@ -6061,7 +6094,7 @@ request@2.87.0, request@~2.87.0:
     tunnel-agent "^0.6.0"
     uuid "^3.1.0"
 
-request@^2.83.0, request@^2.88.0:
+request@^2.83.0, request@^2.88.0, request@~2.88.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
   dependencies:
@@ -6643,9 +6676,9 @@ socks@^1.1.10:
     ip "^1.1.4"
     smart-buffer "^1.0.13"
 
-sonic-boom@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/sonic-boom/-/sonic-boom-0.5.0.tgz#06b28c5bde0703c2ae5009ab2ef3f4749052ff73"
+sonic-boom@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/sonic-boom/-/sonic-boom-0.6.0.tgz#c1a6ef9444b0b83bcafeb48731e4b26254cca3d5"
   dependencies:
     flatstr "^1.0.5"
 
@@ -6741,12 +6774,6 @@ split-string@^3.0.1, split-string@^3.0.2:
   resolved "https://registry.yarnpkg.com/split-string/-/split-string-3.1.0.tgz#7cb09dda3a86585705c64b39a6466038682e8fe2"
   dependencies:
     extend-shallow "^3.0.0"
-
-split2@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/split2/-/split2-2.2.0.tgz#186b2575bcf83e85b7d18465756238ee4ee42493"
-  dependencies:
-    through2 "^2.0.2"
 
 split@~0.3.3:
   version "0.3.3"
@@ -7123,13 +7150,6 @@ thenify-all@^1.0.0:
   resolved "https://registry.yarnpkg.com/thenify/-/thenify-3.3.0.tgz#e69e38a1babe969b0108207978b9f62b88604839"
   dependencies:
     any-promise "^1.0.0"
-
-through2@^2.0.2:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.3.tgz#0004569b37c7c74ba39c43f3ced78d1ad94140be"
-  dependencies:
-    readable-stream "^2.1.5"
-    xtend "~4.0.1"
 
 through@2, through@^2.3.6:
   version "2.3.8"
@@ -7565,14 +7585,14 @@ wcwidth@^1.0.0, wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-web-ext@^2.8.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/web-ext/-/web-ext-2.8.0.tgz#5ac19121805a321d6122f82fac65b6a082bb47c5"
+web-ext@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/web-ext/-/web-ext-2.9.0.tgz#360c9e8fe1009af2e8a68b043e938b03a9e21144"
   dependencies:
     "@cliqz-oss/firefox-client" "0.3.1"
     "@cliqz-oss/node-firefox-connect" "1.2.1"
     adbkit "2.11.0"
-    addons-linter "1.2.6"
+    addons-linter "1.3.1"
     babel-polyfill "6.26.0"
     babel-runtime "6.26.0"
     bunyan "1.8.12"
@@ -7582,7 +7602,7 @@ web-ext@^2.8.0:
     es6-error "4.1.1"
     es6-promisify "5.0.0"
     event-to-promise "0.8.0"
-    firefox-profile "1.1.0"
+    firefox-profile "1.2.0"
     fx-runner "1.0.9"
     git-rev-sync "1.9.1"
     mkdirp "0.5.1"
@@ -7762,7 +7782,7 @@ xregexp@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/xregexp/-/xregexp-4.0.0.tgz#e698189de49dd2a18cc5687b05e17c8e43943020"
 
-xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
+xtend@^4.0.0, xtend@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
 
