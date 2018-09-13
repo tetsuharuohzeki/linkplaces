@@ -103,7 +103,7 @@ tslint:
 	$(NPM_BIN)/tslint --config $(CURDIR)/tslint.json '$(SRC_DIR)/**/*.ts{,x}'
 
 tscheck:
-	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --noEmit --allowJs
+	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --noEmit
 
 stylelint:
 	$(NPM_BIN)/stylelint '$(SRC_DIR)/**/*.css' \
