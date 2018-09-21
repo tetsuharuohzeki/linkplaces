@@ -129,4 +129,4 @@ ci: test git_diff
 fmt: fmt_css ## Apply formetters for files.
 
 fmt_css:
-	$(NPM_BIN)/prettier --single-quote --write '$(SRC_DIR)/**/*.css'
+	$(NPM_BIN)/prettier --single-quote --print-width 256 --write '$(SRC_DIR)/**/*.css'
