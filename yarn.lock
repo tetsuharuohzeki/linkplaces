@@ -5642,10 +5642,10 @@ opn@^5.2.0:
   dependencies:
     is-wsl "^1.1.0"
 
-option-t@^18.0.0:
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/option-t/-/option-t-18.0.0.tgz#593c196e2d0e5d6b3b3845818315fb4f5f161f70"
-  integrity sha512-ntOVHxPrnxFJtHbBXkh1SpQkk+MfoJpDIL/OMNvE9GrCu8G4CTl0iWmiNbOivC+JAeKbIl3n7F128BaDp3IwBw==
+option-t@^18.0.1:
+  version "18.0.1"
+  resolved "https://registry.yarnpkg.com/option-t/-/option-t-18.0.1.tgz#ccace2ddb2fbd92a33e40d038ce9e09689ac625c"
+  integrity sha512-s84ptu6QrXr06iTIi6+G/EZxd9GArRMc+RQz3ywIgG0u571fzTeHhoLX/MCHcKaMrygt21zvyQYjLqThSHjfwQ==
 
 optionator@^0.8.1, optionator@^0.8.2:
   version "0.8.2"
