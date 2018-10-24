@@ -26,47 +26,42 @@
     "@babel/preset-react": "^7.0.0",
     "@reactivex/ix-esnext-esm": "^2.3.5",
     "@types/prop-types": "^15.5.6",
-    "@types/react": "^16.4.15",
-    "@types/react-dom": "^16.0.8",
-    "ava": "^1.0.0-beta.8",
+    "@types/react": "^16.4.18",
+    "@types/react-dom": "^16.0.9",
+    "ava": "^0.25.0",
     "cpx": "^1.5.0",
     "del-cli": "^1.1.0",
-    "eslint": "^5.6.1",
+    "eslint": "^5.7.0",
     "eslint-config-fluct": "https://github.com/voyagegroup/eslint-config-fluct/archive/c138355f11ea53c2177d6e4729e984f50ac09b83.tar.gz",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-react": "^7.11.1",
-    "jsdom": "^12.1.0",
+    "jsdom": "^12.2.0",
     "option-t": "^18.0.1",
     "postcss": "^7.0.5",
-    "postcss-cli": "^6.0.0",
-    "postcss-import": "^12.0.0",
+    "postcss-cli": "^6.0.1",
+    "postcss-import": "^12.0.1",
     "prettier": "^1.14.3",
     "prop-types": "^15.6.2",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "redux": "^4.0.0",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "redux": "^4.0.1",
     "redux-thunk": "^2.2.0",
-    "rollup": "^0.66.4",
+    "rollup": "^0.66.6",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-replace": "^2.1.0",
     "rxjs": "^6.3.3",
     "stylelint": "^9.6.0",
     "stylelint-config-standard": "^18.2.0",
     "tslint": "^5.11.0",
     "tslint-config-fluct": "https://github.com/voyagegroup/tslint-config-fluct/archive/628839b9285d57021979f59ba26bcc0171f0a2cc.tar.gz",
-    "typescript": "^3.1.1",
+    "typescript": "^3.1.3",
     "web-ext": "^2.9.1"
   },
   "ava": {
-    "babel": {
-      "extensions": [
-        "js",
-        "jsx"
-      ],
-      "testOptions": {
-        "babelrc": false
-      }
-    }
+    "extensions": [
+      "js",
+      "jsx"
+    ]
   }
 }
