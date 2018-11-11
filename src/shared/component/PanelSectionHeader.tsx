@@ -13,7 +13,7 @@ export function PanelSectionHeader(props: PanelSectionHeaderProps): JSX.Element 
     );
 }
 if (process.env.RELEASE_CHANNEL !== 'production') {
-    (PanelSectionHeader as React.StatelessComponent<PanelSectionHeaderProps>).propTypes = {
+    (PanelSectionHeader as React.FunctionComponent<PanelSectionHeaderProps>).propTypes = {
         children: PropTypes.node.isRequired,
     };
 }
@@ -30,7 +30,7 @@ export function PanelSectionHeaderIcon(props: PanelSectionHeaderIconProps): JSX.
     );
 }
 if (process.env.RELEASE_CHANNEL !== 'production') {
-    (PanelSectionHeaderIcon as React.StatelessComponent<PanelSectionHeaderIconProps>).propTypes = {
+    (PanelSectionHeaderIcon as React.FunctionComponent<PanelSectionHeaderIconProps>).propTypes = {
         children: PropTypes.node.isRequired,
     };
 }
@@ -47,7 +47,7 @@ export function PanelSectionHeaderText(props: PanelSectionHeaderTextProps): JSX.
     );
 }
 if (process.env.RELEASE_CHANNEL !== 'production') {
-    (PanelSectionHeaderText as React.StatelessComponent<PanelSectionHeaderTextProps>).propTypes = {
+    (PanelSectionHeaderText as React.FunctionComponent<PanelSectionHeaderTextProps>).propTypes = {
         children: PropTypes.node.isRequired,
     };
 }

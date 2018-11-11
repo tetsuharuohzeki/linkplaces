@@ -51,7 +51,7 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
     );
 }
 // FIXME: PropTypes is too strict.
-// (SidebarView as React.StatelessComponent<SidebarViewProps>).propTypes = {};
+// (SidebarView as React.FunctionComponent<SidebarViewProps>).propTypes = {};
 
 interface ListItemProps {
     item: SidebarItemViewModelEntity;

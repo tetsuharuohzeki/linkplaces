@@ -25,7 +25,7 @@ export function PanelListItem(props: PanelListItemProps): JSX.Element {
 /*
 // FIXME: PropTypes is too strict.
 if (process.env.RELEASE_CHANNEL !== 'production') {
-    (PanelListItem as React.StatelessComponent<PanelListItemProps>).propTypes = {
+    (PanelListItem as React.FunctionComponent<PanelListItemProps>).propTypes = {
         children: PropTypes.node.isRequired,
         onClick: PropTypes.func,
     };
@@ -44,7 +44,7 @@ export function PanelListItemIcon(props: PanelListItemIconProps): JSX.Element {
     );
 }
 if (process.env.RELEASE_CHANNEL !== 'production') {
-    (PanelListItemText as React.StatelessComponent<PanelListItemIconProps>).propTypes = {
+    (PanelListItemText as React.FunctionComponent<PanelListItemIconProps>).propTypes = {
         children: PropTypes.node.isRequired,
     };
 }
@@ -62,7 +62,7 @@ export function PanelListItemText(props: PanelListItemTextProps): JSX.Element {
     );
 }
 if (process.env.RELEASE_CHANNEL !== 'production') {
-    (PanelListItemText as React.StatelessComponent<PanelListItemTextProps>).propTypes = {
+    (PanelListItemText as React.FunctionComponent<PanelListItemTextProps>).propTypes = {
         children: PropTypes.node.isRequired,
     };
 }
