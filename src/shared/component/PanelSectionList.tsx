@@ -13,7 +13,7 @@ export function PanelSectionList(props: PanelSectionListProps): JSX.Element {
     );
 }
 if (process.env.RELEASE_CHANNEL !== 'production') {
-    (PanelSectionList as React.StatelessComponent<PanelSectionListProps>).propTypes = {
+    (PanelSectionList as React.FunctionComponent<PanelSectionListProps>).propTypes = {
         children: PropTypes.node.isRequired,
     };
 }
