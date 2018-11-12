@@ -2815,9 +2815,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-"eslint-config-fluct@https://github.com/voyagegroup/eslint-config-fluct/archive/c138355f11ea53c2177d6e4729e984f50ac09b83.tar.gz":
+"eslint-config-fluct@https://github.com/voyagegroup/eslint-config-fluct/archive/d62dacdcfcdb68b9d0416fb75abca516a4d938d7.tar.gz":
   version "0.0.0"
-  resolved "https://github.com/voyagegroup/eslint-config-fluct/archive/c138355f11ea53c2177d6e4729e984f50ac09b83.tar.gz#accecfb87a9e4b6eba2a7d616903c762db5d36e6"
+  resolved "https://github.com/voyagegroup/eslint-config-fluct/archive/d62dacdcfcdb68b9d0416fb75abca516a4d938d7.tar.gz#0a3a20ac1e348a04893bfff1e2e9f2cf487543b5"
   optionalDependencies:
     eslint-plugin-node "^6.0.1"
     eslint-plugin-react "^7.10.0"
