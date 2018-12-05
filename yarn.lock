@@ -5947,10 +5947,10 @@ option-chain@^1.0.0:
   resolved "https://registry.yarnpkg.com/option-chain/-/option-chain-1.0.0.tgz#938d73bd4e1783f948d34023644ada23669e30f2"
   integrity sha1-k41zvU4Xg/lI00AjZEraI2aeMPI=
 
-option-t@^18.0.1:
-  version "18.0.1"
-  resolved "https://registry.yarnpkg.com/option-t/-/option-t-18.0.1.tgz#ccace2ddb2fbd92a33e40d038ce9e09689ac625c"
-  integrity sha512-s84ptu6QrXr06iTIi6+G/EZxd9GArRMc+RQz3ywIgG0u571fzTeHhoLX/MCHcKaMrygt21zvyQYjLqThSHjfwQ==
+option-t@^18.0.3:
+  version "18.0.3"
+  resolved "https://registry.yarnpkg.com/option-t/-/option-t-18.0.3.tgz#cb1fcb82d00ad68bf6a71840885ba941f69ce6fe"
+  integrity sha512-sKdippbueDEhKNco0Nox9bxVE1UL8ajjZQuIJsTVgnkhnYMwie8HFwLrJIhgPhw7WxIBCbwTBGNRYUzZ1Nx7eA==
 
 optionator@^0.8.1, optionator@^0.8.2:
   version "0.8.2"
