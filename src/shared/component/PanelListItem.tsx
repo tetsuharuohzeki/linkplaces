@@ -23,10 +23,9 @@ export function PanelListItem(props: PanelListItemProps): JSX.Element {
     );
 }
 /*
-// FIXME: PropTypes is too strict.
 if (process.env.RELEASE_CHANNEL !== 'production') {
     (PanelListItem as React.FunctionComponent<PanelListItemProps>).propTypes = {
-        children: PropTypes.node.isRequired,
+        disabled: PropTypes.bool,
         onClick: PropTypes.func,
     };
 }
