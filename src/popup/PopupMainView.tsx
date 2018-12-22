@@ -1,5 +1,5 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../typings/webext/bookmarks';
 
@@ -54,14 +54,12 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
         </div>
     );
 }
-/*
 if (process.env.RELEASE_CHANNEL !== 'production') {
     (PopupMainView as React.FunctionComponent<PopupMainViewProps>).propTypes = {
         state: PropTypes.any.isRequired,
         store: PropTypes.any.isRequired,
     };
 }
-*/
 
 interface ListItemProps {
     item: BookmarkTreeNode;

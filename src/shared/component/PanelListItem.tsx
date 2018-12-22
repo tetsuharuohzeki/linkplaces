@@ -22,14 +22,12 @@ export function PanelListItem(props: PanelListItemProps): JSX.Element {
         </div>
     );
 }
-/*
 if (process.env.RELEASE_CHANNEL !== 'production') {
     (PanelListItem as React.FunctionComponent<PanelListItemProps>).propTypes = {
         disabled: PropTypes.bool,
         onClick: PropTypes.func,
     };
 }
-*/
 
 export interface PanelListItemIconProps {
     children: React.ReactNode;
