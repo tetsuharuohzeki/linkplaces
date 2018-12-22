@@ -3,7 +3,7 @@ import { map } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
 import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
 
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import {
     isBookmarkTreeNodeItem,
@@ -50,14 +50,12 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
         </div>
     );
 }
-/*
 if (process.env.RELEASE_CHANNEL !== 'production') {
     (SidebarView as React.FunctionComponent<SidebarViewProps>).propTypes = {
         state: PropTypes.any.isRequired,
         intent: PropTypes.instanceOf(SidebarIntent).isRequired,
     };
 }
-*/
 
 interface ListItemProps {
     item: SidebarItemViewModelEntity;
