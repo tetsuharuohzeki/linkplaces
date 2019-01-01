@@ -44,6 +44,7 @@ module.exports = async function (_commandLineArgs) {
             strict: true,
             format: 'esm',
             exports: 'none',
+            preferConst: true,
 
             sourcemap: true,
             globals: {
