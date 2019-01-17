@@ -56,6 +56,8 @@ module.exports = {
         // prevent mixed content.
         'function-url-scheme-whitelist': ['https'],
 
+        'function-calc-no-invalid': true,
+
         'font-weight-notation': 'named-where-possible',
 
         'selector-type-no-unknown': [true, {
