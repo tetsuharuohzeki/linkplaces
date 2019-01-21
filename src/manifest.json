@@ -10,7 +10,7 @@
     }
   },
   "icons": {
-    "48": "resources/48x48-dark.svg"
+    "48": "resources/48x48.svg"
   },
   "permissions": [
     "bookmarks",
