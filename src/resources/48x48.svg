@@ -1,6 +1,5 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
   width="48"
   height="48"
   viewBox="0 0 512 512"
@@ -20,6 +19,6 @@
     </symbol>
   </defs>
   <g id="default">
-    <use xlink:href="#icon"/>
+    <use href="#icon"/>
   </g>
 </svg>
