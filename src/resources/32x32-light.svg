@@ -8,7 +8,8 @@
   <defs>
     <style>
       .linkplaces-icon {
-        fill: #f9f9fa;
+        /* see https://design.firefox.com/photon/visuals/iconography.html */
+        fill: rgba(249, 249, 250, 0.8);
         fill-rule: evenodd;
       }
     </style>
