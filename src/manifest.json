@@ -10,7 +10,7 @@
     }
   },
   "icons": {
-    "48": "icon.svg"
+    "48": "resources/48x48-dark.svg"
   },
   "permissions": [
     "bookmarks",
@@ -21,12 +21,12 @@
     "page": "background/index.html"
   },
   "browser_action": {
-    "default_icon": "toolbaricon.svg",
+    "default_icon": "resources/16x16-dark.svg",
     "default_title": "LinkPlaces",
     "default_popup": "popup/index.html"
   },
   "sidebar_action": {
-    "default_icon": "toolbaricon.svg",
+    "default_icon": "resources/16x16-dark.svg",
     "default_title": "LinkPlaces",
     "default_panel": "sidebar/index.html"
   },
