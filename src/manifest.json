@@ -23,7 +23,7 @@
   "browser_action": {
     "default_icon": {
       "16": "resources/16x16-dark.svg",
-      "32": "resources/32x32-dark.svg"
+      "32": "resources/16x16-dark.svg"
     },
     "default_title": "LinkPlaces",
     "default_popup": "popup/index.html",
@@ -34,8 +34,8 @@
         "size": 16
       },
       {
-        "light": "resources/32x32-light.svg",
-        "dark": "resources/32x32-dark.svg",
+        "light": "resources/16x16-light.svg",
+        "dark": "resources/16x16-dark.svg",
         "size": 32
       }
     ]
@@ -43,7 +43,7 @@
   "sidebar_action": {
     "default_icon": {
       "16": "resources/16x16-dark.svg",
-      "32": "resources/32x32-dark.svg"
+      "32": "resources/16x16-dark.svg"
     },
     "default_title": "LinkPlaces",
     "default_panel": "sidebar/index.html",
@@ -54,8 +54,8 @@
         "size": 16
       },
       {
-        "light": "resources/32x32-light.svg",
-        "dark": "resources/32x32-dark.svg",
+        "light": "resources/16x16-light.svg",
+        "dark": "resources/16x16-dark.svg",
         "size": 32
       }
     ]
