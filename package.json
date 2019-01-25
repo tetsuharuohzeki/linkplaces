@@ -33,7 +33,7 @@
     "del-cli": "^1.1.0",
     "eslint": "^5.12.1",
     "eslint-config-fluct": "https://github.com/voyagegroup/eslint-config-fluct/archive/d62dacdcfcdb68b9d0416fb75abca516a4d938d7.tar.gz",
-    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-import": "^2.15.0",
     "eslint-plugin-react": "^7.12.4",
     "jsdom": "^13.1.0",
     "option-t": "^18.0.3",

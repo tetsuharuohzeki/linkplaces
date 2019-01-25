@@ -128,6 +128,7 @@ const styleguide = {
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-default-export.md
     // default export is hard to find a usage of symbols.
     'import/no-default-export': 'error',
+    'import/no-named-export': 'off', // This is inverse of `no-default-export`.
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-duplicates.md
     'import/no-duplicates': 'warn',
