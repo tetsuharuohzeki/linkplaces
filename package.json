@@ -31,7 +31,7 @@
     "ava": "^1.2.0",
     "cpx": "^1.5.0",
     "del-cli": "^1.1.0",
-    "eslint": "^5.12.1",
+    "eslint": "^5.13.0",
     "eslint-config-fluct": "https://github.com/voyagegroup/eslint-config-fluct/archive/d62dacdcfcdb68b9d0416fb75abca516a4d938d7.tar.gz",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-react": "^7.12.4",
