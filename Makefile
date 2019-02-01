@@ -101,6 +101,9 @@ lint: eslint_js tslint stylelint tscheck
 eslint_js:
 	$(NPM_BIN)/eslint --ext=js,jsx,mjs $(CURDIR)
 
+eslint_ts:
+	$(NPM_BIN)/eslint --ext=ts,tsx --ignore-pattern src/ $(CURDIR)
+
 tslint:
 	$(NPM_BIN)/tslint --config $(CURDIR)/tslint.json '$(SRC_DIR)/**/*.ts{,x}'
 
