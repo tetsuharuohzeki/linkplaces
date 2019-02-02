@@ -102,7 +102,7 @@ eslint_js:
 	$(NPM_BIN)/eslint --ext=js,jsx,mjs $(CURDIR)
 
 eslint_ts:
-	$(NPM_BIN)/eslint --ext=ts,tsx --ignore-pattern src/ $(CURDIR)
+	$(NPM_BIN)/eslint --ext=ts,tsx $(CURDIR)
 
 tslint:
 	$(NPM_BIN)/tslint --config $(CURDIR)/tslint.json '$(SRC_DIR)/**/*.ts{,x}'

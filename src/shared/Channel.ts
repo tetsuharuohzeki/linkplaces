@@ -32,9 +32,10 @@ export class Channel {
         this._callbackId = 0;
         this._subject = new Subject();
 
-        const listener = this._listener = (msg: Packet<any>) => { // tslint:disable-line: no-any
+        const listener = (msg: Packet<any>) => { // tslint:disable-line: no-any
             this._onPortMessage(msg);
         };
+        this._listener = listener;
 
         port.onMessage.addListener(listener);
 

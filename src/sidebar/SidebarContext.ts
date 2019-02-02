@@ -39,7 +39,8 @@ export class SidebarContext implements ViewContext {
         this._list = list;
         this._subscription = null;
 
-        const intent = this._intent = new SidebarIntent();
+        const intent = new SidebarIntent();
+        this._intent = intent;
         this._repo = SidebarRepository.create(browser.bookmarks, list);
         this._epic = new SidebarViewEpic(intent, this._repo, channel);
         this._store = new SidebarStore(intent, this._repo);
