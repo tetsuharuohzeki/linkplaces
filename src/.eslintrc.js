@@ -42,7 +42,6 @@ module.exports = {
 
     'rules': {
         'indent': 'off', // FIXME: Re-enable
-        'init-declarations': 'off', // FIXME: Re-enable
         'no-underscore-dangle': 'off', // FIXME: Re-enable
         'no-loop-func': 'off', // FIXME: Re-enable
         'no-param-reassign': 'off', // FIXME: Re-enable
@@ -52,6 +51,8 @@ module.exports = {
         'import/no-unresolved': 'off', // FIXME: Re-enable
         'react/jsx-filename-extension': 'off', // FIXME: Re-enable
         'react/jsx-curly-brace-presence': 'off', // FIXME: Re-enable
+
+        'init-declarations': 'off', // Sort the work with TypeScript's `let bar: B;` pattern.
 
         '@typescript-eslint/tslint/config': ['error', {
             'lintFile': path.resolve(__dirname, '../tslint.json'),
