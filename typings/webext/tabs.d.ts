@@ -26,6 +26,7 @@ type ExecuteScriptDetails = {
 
 export interface WebExtTabsService {
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/TAB_ID_NONE
+    // tslint:disable-next-line:no-any
     readonly TAB_ID_NONE: any;
 
     // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/connect
@@ -42,7 +43,9 @@ export interface WebExtTabsService {
     }): Promise<Readonly<Tab>>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/executeScript
+    // tslint:disable-next-line:no-any
     executeScript(details: ExecuteScriptDetails): Promise<any>;
+    // tslint:disable-next-line:no-any
     executeScript(tabId: number, details: ExecuteScriptDetails): Promise<any>;
 
     // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/getCurrent

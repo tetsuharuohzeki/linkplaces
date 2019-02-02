@@ -506,6 +506,13 @@
     "@types/unist" "*"
     "@types/vfile-message" "*"
 
+"@typescript-eslint/eslint-plugin-tslint@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin-tslint/-/eslint-plugin-tslint-1.2.0.tgz#9797c52559e46ee7a9b56b6e4cfb7f0214757fd2"
+  integrity sha512-bu1V5uNXKrUfvLqP5taMrjThvKn8zbi6vHjE3cIQh2rU2zNUzFKtn2GpS+qPcRGHJIRjMXhh1sEsdx/f1oQKCQ==
+  dependencies:
+    lodash.memoize "^4.1.2"
+
 "@typescript-eslint/eslint-plugin@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-1.2.0.tgz#a73021a0d5bd1116a88689186844ce4421d52ab0"
@@ -5059,6 +5066,11 @@ lodash.isstring@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/lodash.isstring/-/lodash.isstring-4.0.1.tgz#d527dfb5456eca7cc9bb95d5daeaf88ba54a5451"
   integrity sha1-1SfftUVuynzJu5XV2ur4i6VKVFE=
+
+lodash.memoize@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
+  integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
 
 lodash.merge@^4.6.1:
   version "4.6.1"
