@@ -1,6 +1,8 @@
 import { Store } from 'redux';
-import { PopupMainStateTree } from './PopupMainState';
+
 import { ThunkExt } from '../third_party/redux-thunk';
+
+import { PopupMainStateTree } from './PopupMainState';
 import { PopupAction } from './PopupAction';
 
 export type PopupMainThunkExt = ThunkExt<PopupAction, PopupMainStateTree>;

@@ -42,7 +42,6 @@ module.exports = {
 
     'rules': {
         'import/named': 'off', // FIXME: Re-enable
-        'import/order': 'off', // FIXME: Re-enable
         'import/no-unresolved': 'off', // FIXME: Re-enable
         'react/jsx-filename-extension': 'off', // FIXME: Re-enable
         'react/jsx-curly-brace-presence': 'off', // FIXME: Re-enable

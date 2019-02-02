@@ -14,17 +14,16 @@ import {
     WHERE_TO_OPEN_ITEM_TO_TAB,
     WHERE_TO_OPEN_ITEM_TO_WINDOW,
 } from '../shared/RemoteAction';
-
-import { SidebarItemViewModelEntity } from './SidebarDomain';
-import { SidebarIntent, notifyOpenItem } from './SidebarIntent';
-import { SidebarState } from './SidebarState';
-
 import { PanelSectionList, PanelSectionListSeparator } from '../shared/component/PanelSectionList';
 import {
     PanelListItem,
     PanelListItemIcon,
     PanelListItemText,
 } from '../shared/component/PanelListItem';
+
+import { SidebarItemViewModelEntity } from './SidebarDomain';
+import { SidebarIntent, notifyOpenItem } from './SidebarIntent';
+import { SidebarState } from './SidebarState';
 
 /* global process:readable */
 
