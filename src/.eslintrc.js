@@ -47,7 +47,6 @@ module.exports = {
         'no-underscore-dangle': 'off', // FIXME: Re-enable
         'no-loop-func': 'off', // FIXME: Re-enable
         'no-param-reassign': 'off', // FIXME: Re-enable
-        'no-use-before-define': 'off', // FIXME: Re-enable
 
         'import/named': 'off', // FIXME: Re-enable
         'import/order': 'off', // FIXME: Re-enable
