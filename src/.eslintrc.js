@@ -26,6 +26,11 @@ module.exports = {
         'project': path.resolve(__dirname, '../tsconfig.json'),
     },
 
+    'env': {
+        'browser': true,
+        'webextensions': true,
+    },
+
     'settings': {
         'import/resolver': {
             'node': {
@@ -37,7 +42,6 @@ module.exports = {
 
     'rules': {
         'no-unused-vars': 'off', // FIXME: Re-enable
-        'no-undef': 'off', // FIXME: Re-enable
         'indent': 'off', // FIXME: Re-enable
         'init-declarations': 'off', // FIXME: Re-enable
         'no-underscore-dangle': 'off', // FIXME: Re-enable

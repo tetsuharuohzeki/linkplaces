@@ -84,6 +84,8 @@ interface LPPopupListItemElementAttr {}
 declare global {
     namespace JSX {
         interface IntrinsicElements {
+            // FIXME: Remove this. @typescript-eslint/eslint-plugin cannot works with this pattern correctly
+            // eslint-disable-next-line no-undef
             [LOCAL_NAME]: React.DetailedHTMLProps<React.HTMLAttributes<LPPopupListItemElement> & LPPopupListItemElementAttr, LPPopupListItemElement>;
         }
     }

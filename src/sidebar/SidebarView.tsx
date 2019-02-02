@@ -26,6 +26,8 @@ import {
     PanelListItemText,
 } from '../shared/component/PanelListItem';
 
+/* global process:readable */
+
 export interface SidebarViewProps {
     state: Readonly<SidebarState>;
     intent: SidebarIntent;
