@@ -41,8 +41,6 @@ module.exports = {
 
 
     'rules': {
-        'no-param-reassign': 'off', // FIXME: Re-enable
-
         'import/named': 'off', // FIXME: Re-enable
         'import/order': 'off', // FIXME: Re-enable
         'import/no-unresolved': 'off', // FIXME: Re-enable
