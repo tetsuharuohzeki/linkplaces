@@ -22,9 +22,20 @@ module.exports = {
         'project': path.resolve(__dirname, '../tsconfig.json'),
     },
 
-    'rules': {
-        'import/no-unresolved': 'off', // FIXME: Re-enable
+    'settings': {
+        'import/resolver': {
+            'node': {
+                'extensions': ['.d.ts'],
+            },
+        },
 
+        // By default, this option does not include `.jsx` extension.
+        'import/extensions': [
+            '.d.ts',
+        ],
+    },
+
+    'rules': {
         '@typescript-eslint/tslint/config': ['error', {
             'lintFile': path.resolve(__dirname, '../tslint.json'),
         }],
