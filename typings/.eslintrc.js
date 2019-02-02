@@ -24,7 +24,6 @@ module.exports = {
 
     'rules': {
         'no-unused-vars': 'off', // FIXME: Re-enable
-        'init-declarations': 'off', // FIXME: Re-enable
         'import/no-unresolved': 'off', // FIXME: Re-enable
 
         '@typescript-eslint/tslint/config': ['error', {
