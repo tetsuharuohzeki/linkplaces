@@ -52,8 +52,9 @@ export class PopupItemIconElement extends HTMLElement {
                 ['src', src],
                 ['alt', ''],
             ]),
-            [],
-            this._img),
+                [],
+                this._img
+            ),
         ]);
 
         shadowRoot.appendChild(tree);

@@ -41,7 +41,6 @@ module.exports = {
 
 
     'rules': {
-        'indent': 'off', // FIXME: Re-enable
         'no-underscore-dangle': 'off', // FIXME: Re-enable
         'no-param-reassign': 'off', // FIXME: Re-enable
 
