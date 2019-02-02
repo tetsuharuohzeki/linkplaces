@@ -41,12 +41,11 @@ module.exports = {
 
 
     'rules': {
-        'react/jsx-curly-brace-presence': 'off', // FIXME: Re-enable
-
         'init-declarations': 'off', // Sort the work with TypeScript's `let bar: B;` pattern.
         'react/jsx-filename-extension': ['error', {
             'extensions': ['.jsx', '.tsx'],
         }],
+        'react/jsx-curly-brace-presence': 'off', // I seem this rule is too eager.
 
         '@typescript-eslint/tslint/config': ['error', {
             'lintFile': path.resolve(__dirname, '../tslint.json'),
