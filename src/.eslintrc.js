@@ -41,7 +41,6 @@ module.exports = {
 
 
     'rules': {
-        'no-unused-vars': 'off', // FIXME: Re-enable
         'indent': 'off', // FIXME: Re-enable
         'init-declarations': 'off', // FIXME: Re-enable
         'no-underscore-dangle': 'off', // FIXME: Re-enable
@@ -56,6 +55,15 @@ module.exports = {
 
         '@typescript-eslint/tslint/config': ['error', {
             'lintFile': path.resolve(__dirname, '../tslint.json'),
+        }],
+
+        // the default `no-unused-vars` is not support type annotations.
+        '@typescript-eslint/no-unused-vars': ['warn', {
+            'vars': 'all',
+            'args': 'after-used',
+            'argsIgnorePattern': '^_', // Sort with TypeScript compiler's builtin linter.
+            'caughtErrors': 'all',
+            'caughtErrorsIgnorePattern': '^_', // Allow `catch (_e) {...}`
         }],
     }
 };

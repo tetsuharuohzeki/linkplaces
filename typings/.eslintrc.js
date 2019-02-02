@@ -23,11 +23,20 @@ module.exports = {
     },
 
     'rules': {
-        'no-unused-vars': 'off', // FIXME: Re-enable
         'import/no-unresolved': 'off', // FIXME: Re-enable
 
         '@typescript-eslint/tslint/config': ['error', {
             'lintFile': path.resolve(__dirname, '../tslint.json'),
+        }],
+
+        // the default `no-unused-vars` is not support type annotations.
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': ['warn', {
+            'vars': 'all',
+            'args': 'after-used',
+            'argsIgnorePattern': '^_', // Sort with TypeScript compiler's builtin linter.
+            'caughtErrors': 'all',
+            'caughtErrorsIgnorePattern': '^_', // Allow `catch (_e) {...}`
         }],
     }
 };
