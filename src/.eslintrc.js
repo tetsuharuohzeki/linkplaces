@@ -41,7 +41,6 @@ module.exports = {
 
 
     'rules': {
-        'no-underscore-dangle': 'off', // FIXME: Re-enable
         'no-param-reassign': 'off', // FIXME: Re-enable
 
         'import/named': 'off', // FIXME: Re-enable
