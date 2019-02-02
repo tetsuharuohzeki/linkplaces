@@ -34,7 +34,7 @@ module.exports = {
     'settings': {
         'import/resolver': {
             'node': {
-                'extensions': ['.js', '.jsx', '.ts', '.tsx'],
+                'extensions': ['.js', '.jsx', '.ts', '.tsx', '.d.ts'],
             },
         },
     },
@@ -42,7 +42,6 @@ module.exports = {
 
     'rules': {
         'import/named': 'off', // FIXME: Re-enable
-        'import/no-unresolved': 'off', // FIXME: Re-enable
         'react/jsx-curly-brace-presence': 'off', // FIXME: Re-enable
 
         'init-declarations': 'off', // Sort the work with TypeScript's `let bar: B;` pattern.
