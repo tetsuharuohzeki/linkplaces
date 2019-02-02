@@ -8,7 +8,7 @@ import {
     BookmarkTreeNodeSeparator,
 } from '../../typings/webext/bookmarks';
 
-const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/;
+const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/u;
 
 export function getUnfiledBoolmarkFolder(): Promise<Array<BookmarkTreeNode>> {
     // This code only works with Firefox.
@@ -49,7 +49,7 @@ export function getLinkSchemeType(url: string): LinkSchemeType {
         };
     }
 
-    const [,type] = r;
+    const [, type] = r;
     return {
         isPrivileged: true,
         type,

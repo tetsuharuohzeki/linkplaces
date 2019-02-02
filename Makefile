@@ -96,10 +96,13 @@ __obj_ts: clean_obj
 # Test
 test: lint ava
 
-lint: eslint tslint stylelint tscheck
+lint: eslint_js eslint_ts stylelint tscheck
 
-eslint:
+eslint_js:
 	$(NPM_BIN)/eslint --ext=js,jsx,mjs $(CURDIR)
+
+eslint_ts:
+	$(NPM_BIN)/eslint --ext=ts,tsx $(CURDIR)
 
 tslint:
 	$(NPM_BIN)/tslint --config $(CURDIR)/tslint.json '$(SRC_DIR)/**/*.ts{,x}'

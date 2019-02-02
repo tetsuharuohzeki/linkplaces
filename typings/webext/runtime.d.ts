@@ -2,6 +2,8 @@
 
 import { Listener, FullListener } from './event';
 
+// tslint:disable:member-ordering
+
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/Port
 export interface Port {
     readonly name: string;
@@ -9,6 +11,7 @@ export interface Port {
     readonly error: Error;
 
     readonly onDisconnect: Listener<(port: this) => void>;
+    // tslint:disable-next-line:no-any
     readonly onMessage: Listener<(object: any) => void>;
     postMessage<T>(value: T): void;
 }
@@ -20,7 +23,9 @@ export interface PortHasSender extends Port {
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/MessageSender
 export interface MessageSender {
+    // tslint:disable-next-line:no-any
     readonly tab?: any;
+    // tslint:disable-next-line:no-any
     readonly frameId?: any;
     readonly id?: string;
     readonly url?: string;
@@ -51,6 +56,7 @@ export type OnRestartRequiredReason = 'app_update' | 'os_update' | 'periodic';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime
 export interface WebExtRuntimeService {
+    // tslint:disable-next-line:no-any
     readonly lastError: any;
     readonly id: string;
 
@@ -65,12 +71,16 @@ export interface WebExtRuntimeService {
     openOptionsPage(): Promise<void>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/sendMessage
+    // tslint:disable-next-line:no-any
     sendMessage<R>(message: any): Promise<R>;
+    // tslint:disable-next-line:no-any
     sendMessage<R>(extensionId: string, message: any): Promise<R>;
+    // tslint:disable-next-line:no-any
     sendMessage<R>(message: any, options: {
         includeTlsChannelId?: boolean;
         toProxyScript: boolean;
     }): Promise<R>;
+    // tslint:disable-next-line:no-any
     sendMessage<R>(extensionId: string, message: any, options: {
         includeTlsChannelId?: boolean;
         toProxyScript: boolean;

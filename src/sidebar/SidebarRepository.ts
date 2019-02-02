@@ -39,6 +39,7 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>>, 
         bookmarks.onMoved.addListener(callback);
         bookmarks.onCreated.addListener(callback);
         bookmarks.onRemoved.addListener((id: BookmarkId, _info) => {
+            // eslint-disable-next-line no-underscore-dangle
             s._onRemoved(id);
             callback();
         });

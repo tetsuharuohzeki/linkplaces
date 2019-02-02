@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/* global process:readable */
+
 export interface PanelListItemProps {
     children: React.ReactNode;
     disabled?: boolean;

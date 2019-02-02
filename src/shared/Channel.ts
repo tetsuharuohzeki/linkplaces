@@ -17,6 +17,38 @@ export type Packet<T> = Readonly<{
     isRequest: boolean;
 }>;
 
+
+class Subject<T> {
+    private _callbackset: Set<(v: T) => void>;
+
+    constructor() {
+        this._callbackset = new Set();
+    }
+
+    destroy(): void {
+        this._callbackset.clear();
+    }
+
+    next(v: T): void {
+        for (const c of this._callbackset) {
+            try {
+                c(v);
+            }
+            catch (e) {
+                console.error(e);
+            }
+        }
+    }
+
+    addListener(callback: (v: T) => void): void {
+        this._callbackset.add(callback);
+    }
+
+    removeListener(callback: (v: T) => void): void {
+        this._callbackset.delete(callback);
+    }
+}
+
 export class Channel {
 
     private _port: Nullable<Port>;
@@ -32,9 +64,10 @@ export class Channel {
         this._callbackId = 0;
         this._subject = new Subject();
 
-        const listener = this._listener = (msg: Packet<any>) => { // tslint:disable-line: no-any
+        const listener = (msg: Packet<any>) => { // tslint:disable-line: no-any
             this._onPortMessage(msg);
         };
+        this._listener = listener;
 
         port.onMessage.addListener(listener);
 
@@ -155,35 +188,4 @@ export async function createChannelToBackground(pingMessage: string): Promise<Ch
     const port = await connectToBgScript(pingMessage);
     const c = new Channel(port);
     return c;
-}
-
-class Subject<T> {
-    private _callbackset: Set<(v: T) => void>;
-
-    constructor() {
-        this._callbackset = new Set();
-    }
-
-    destroy(): void {
-        this._callbackset.clear();
-    }
-
-    next(v: T): void {
-        for (const c of this._callbackset) {
-            try {
-                c(v);
-            }
-            catch (e) {
-                console.error(e);
-            }
-        }
-    }
-
-    addListener(callback: (v: T) => void): void {
-        this._callbackset.add(callback);
-    }
-
-    removeListener(callback: (v: T) => void): void {
-        this._callbackset.delete(callback);
-    }
 }

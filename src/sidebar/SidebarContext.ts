@@ -39,7 +39,8 @@ export class SidebarContext implements ViewContext {
         this._list = list;
         this._subscription = null;
 
-        const intent = this._intent = new SidebarIntent();
+        const intent = new SidebarIntent();
+        this._intent = intent;
         this._repo = SidebarRepository.create(browser.bookmarks, list);
         this._epic = new SidebarViewEpic(intent, this._repo, channel);
         this._store = new SidebarStore(intent, this._repo);
@@ -59,16 +60,16 @@ export class SidebarContext implements ViewContext {
             .pipe(
                 debounceTime(0, animationFrameRxScheduler),
             ).subscribe((state: Readonly<SidebarState>) => {
-            const props: SidebarViewProps = {
-                state,
-                intent: this._intent,
-            };
-            const sidbarview = React.createElement<SidebarViewProps>(SidebarView, props);
-            const view = React.createElement(React.StrictMode, null, sidbarview);
-            ReactDOM.render(view, mountpoint);
-        }, (e) => {
-            console.exception(e);
-        });
+                const props: SidebarViewProps = {
+                    state,
+                    intent: this._intent,
+                };
+                const sidbarview = React.createElement<SidebarViewProps>(SidebarView, props);
+                const view = React.createElement(React.StrictMode, null, sidbarview);
+                ReactDOM.render(view, mountpoint);
+            }, (e) => {
+                console.exception(e);
+            });
     }
 
     onDestroy(mountpoint: Element): void {

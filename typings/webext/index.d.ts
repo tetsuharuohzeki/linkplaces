@@ -8,7 +8,9 @@ import { WebExtSidebarActionService } from './sidebarAction';
 import { WebExtTabsService } from './tabs';
 
 declare global {
+    // eslint-disable-next-line init-declarations
     const browser: WebExtGlobal;
+    // eslint-disable-next-line init-declarations
     const chrome: WebExtGlobal;
 }
 

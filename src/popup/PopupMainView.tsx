@@ -15,6 +15,8 @@ import { PopupMainState } from './PopupMainState';
 import { openItem, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';
 import { PopupMainStore } from './PopupMainStore';
 
+/* global process:readable */
+
 export interface PopupMainViewProps {
     state: PopupMainState;
     store: PopupMainStore;

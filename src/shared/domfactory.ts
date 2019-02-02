@@ -40,6 +40,7 @@ export function createDomElement(localname: string,
     }
 
     if (ref !== undefined) {
+        // eslint-disable-next-line no-param-reassign
         ref.current = subroot;
     }
 

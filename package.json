@@ -28,6 +28,8 @@
     "@types/prop-types": "^15.5.8",
     "@types/react": "^16.7.22",
     "@types/react-dom": "^16.0.11",
+    "@typescript-eslint/eslint-plugin": "^1.2.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^1.2.0",
     "ava": "^1.2.0",
     "cpx": "^1.5.0",
     "del-cli": "^1.1.0",
