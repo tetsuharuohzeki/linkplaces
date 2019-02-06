@@ -37,6 +37,7 @@
     "eslint-config-fluct": "https://github.com/voyagegroup/eslint-config-fluct/archive/d62dacdcfcdb68b9d0416fb75abca516a4d938d7.tar.gz",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^0.0.0",
     "jsdom": "^13.2.0",
     "option-t": "^18.0.3",
     "postcss": "^7.0.14",
