@@ -23,11 +23,8 @@ import { createTab } from './TabOpener';
 
     browser.runtime.onConnect.addListener((s) => {
         s.onMessage.addListener(onMessageFromPopup);
-        // @ts-ignore
         s.onDisconnect.addListener(function onDisconnect() {
-            // @ts-ignore
             s.onDisconnect.removeListener(onDisconnect);
-            // @ts-ignore
             s.onMessage.removeListener(onMessageFromPopup);
         });
     });

@@ -89,12 +89,10 @@ export async function openInCurrent(tabId, url) {
  *  @return {Promise<number>}
  */
 export async function openInNewWindow(url) {
-    // @ts-ignore
     const current = await browser.windows.getCurrent({
         windowTypes: ['normal'],
     });
 
-    // @ts-ignore
     const window = await browser.windows.create({
         url,
         // XXX: Firefox has not supported yet.
