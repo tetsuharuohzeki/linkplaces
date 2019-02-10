@@ -16,7 +16,8 @@ export class SidebarIntent implements Dispatchable<Action> {
 
     destroy(): void {
         this._subject.unsubscribe();
-        this._subject = null as any; // tslint:disable-line: no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this._subject = null as any;
     }
 
     dispatch(action: Action): void {

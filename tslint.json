@@ -6,5 +6,8 @@
   "defaultSeverity": "warn",
 
   "rules": {
+    // Replaced with @typescript-eslint
+    "no-any": false,
+    "no-non-null-assertion": false
   }
 }

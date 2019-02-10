@@ -31,18 +31,18 @@ export class SidebarViewEpic implements Epic {
         const s = new Subscription();
         this._subscription = s;
 
-        s.add( this._intent.openItem().subscribe(({ id, url, where, }) => {
+        s.add(this._intent.openItem().subscribe(({ id, url, where, }) => {
             this._repository.setIsOpening(id);
             openItem(this._channel, id, url, where);
-        }, console.error) );
+        }, console.error));
     }
 
     destroy(): void {
         const s = expectNotNull(this._subscription, 'This has been destroyed');
         s.unsubscribe();
         this._subscription = null;
-        this._intent = null as any; // tslint:disable-line:no-any
-        this._channel = null as any; // tslint:disable-line:no-any
-        this._repository = null as any; // tslint:disable-line:no-any
+        this._intent = null as any; // eslint-disable-line @typescript-eslint/no-explicit-any
+        this._channel = null as any; // eslint-disable-line @typescript-eslint/no-explicit-any
+        this._repository = null as any; // eslint-disable-line @typescript-eslint/no-explicit-any
     }
 }

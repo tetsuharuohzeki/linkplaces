@@ -61,7 +61,8 @@ export function isBookmarkTreeNodeItem(v: BookmarkTreeNode): v is BookmarkTreeNo
         return true;
     }
 
-    const is = typeof (v as any).url === 'string'; // tslint:disable-line: no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const is = typeof (v as any).url === 'string';
     return is;
 }
 
