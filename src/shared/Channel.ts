@@ -7,8 +7,10 @@ import { Port } from '../../typings/webext/runtime';
 import { RemoteActionBase } from './RemoteAction';
 
 type PromiseTuple = Readonly<{
-    resolve: (result?: any) => void; // tslint:disable-line: no-any
-    reject: (e?: any) => void; // tslint:disable-line: no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolve: (result?: any) => void;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    reject: (e?: any) => void;
 }>;
 
 export type Packet<T> = Readonly<{
@@ -54,9 +56,11 @@ export class Channel {
     private _port: Nullable<Port>;
     private _callback: Map<number, PromiseTuple>;
     private _callbackId: number;
-    private _subject: Subject<Packet<any>>; // tslint:disable-line: no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    private _subject: Subject<Packet<any>>;
 
-    private _listener: (msg: Packet<any>) => void; // tslint:disable-line: no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    private _listener: (msg: Packet<any>) => void;
 
     constructor(port: Port) {
         this._port = port;
@@ -64,7 +68,8 @@ export class Channel {
         this._callbackId = 0;
         this._subject = new Subject();
 
-        const listener = (msg: Packet<any>) => { // tslint:disable-line: no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const listener = (msg: Packet<any>) => {
             this._onPortMessage(msg);
         };
         this._listener = listener;
@@ -79,8 +84,10 @@ export class Channel {
 
         //this._listeners = null; // XXX: we think this need not because this is a builtin object.
         // this._callback = null; // XXX: we think this need not because this is a builtin object.
-        this._listener = null as any; // tslint:disable-line: no-any
-        this._callback = null as any; // tslint:disable-line: no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this._listener = null as any;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this._callback = null as any;
         this._port = null;
     }
 
@@ -168,11 +175,13 @@ export class Channel {
         }
     }
 
-    addListener(callback: (v: Packet<any>) => void): void { // tslint:disable-line: no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    addListener(callback: (v: Packet<any>) => void): void {
         this._subject.addListener(callback);
     }
 
-    removeListener(callback: (v: Packet<any>) => void): void { // tslint:disable-line: no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    removeListener(callback: (v: Packet<any>) => void): void {
         this._subject.removeListener(callback);
     }
 }

@@ -6,5 +6,7 @@
   "defaultSeverity": "warn",
 
   "rules": {
+    // Replaced with @typescript-eslint
+    "no-any": false
   }
 }

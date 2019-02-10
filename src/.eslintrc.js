@@ -59,5 +59,8 @@ module.exports = {
             'caughtErrors': 'all',
             'caughtErrorsIgnorePattern': '^_', // Allow `catch (_e) {...}`
         }],
+
+        // Please opt-out this rule if you'd like to use this rule.
+        '@typescript-eslint/no-explicit-any': ['warn'],
     }
 };
