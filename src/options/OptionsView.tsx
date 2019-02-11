@@ -3,7 +3,6 @@ import { map } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
 import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
 
 import React from 'react';
-//import * as PropTypes from 'prop-types';
 
 import { BUILD_DATE, GIT_REVISION } from '../shared/constants';
 

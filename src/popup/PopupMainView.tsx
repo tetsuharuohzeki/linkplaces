@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../typings/webext/bookmarks';
 
@@ -14,8 +13,6 @@ import {
 import { PopupMainState } from './PopupMainState';
 import { openItem, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';
 import { PopupMainStore } from './PopupMainStore';
-
-/* global process:readable */
 
 export interface PopupMainViewProps {
     state: PopupMainState;
@@ -55,12 +52,6 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
             </PanelSectionList>
         </div>
     );
-}
-if (process.env.RELEASE_CHANNEL !== 'production') {
-    (PopupMainView as React.FunctionComponent<PopupMainViewProps>).propTypes = {
-        state: PropTypes.any.isRequired,
-        store: PropTypes.any.isRequired,
-    };
 }
 
 interface ListItemProps {

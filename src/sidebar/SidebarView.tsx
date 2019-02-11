@@ -3,7 +3,6 @@ import { map } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
 import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
 
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import {
     isBookmarkTreeNodeItem,
@@ -24,8 +23,6 @@ import {
 import { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarIntent, notifyOpenItem } from './SidebarIntent';
 import { SidebarState } from './SidebarState';
-
-/* global process:readable */
 
 export interface SidebarViewProps {
     state: Readonly<SidebarState>;
@@ -50,12 +47,6 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
             </PanelSectionList>
         </div>
     );
-}
-if (process.env.RELEASE_CHANNEL !== 'production') {
-    (SidebarView as React.FunctionComponent<SidebarViewProps>).propTypes = {
-        state: PropTypes.any.isRequired,
-        intent: PropTypes.instanceOf(SidebarIntent).isRequired,
-    };
 }
 
 interface ListItemProps {

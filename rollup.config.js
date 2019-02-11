@@ -64,7 +64,6 @@ module.exports = async function (_commandLineArgs) {
             replaceImportWithGlobal({
                 'react': createDefaultExport('window.React'),
                 'react-dom': createDefaultExport('window.ReactDOM'),
-                'prop-types': createDefaultExport('window.PropTypes'),
                 // 'redux-thunk': createDefaultExport('window.ReduxThunk.default'),
 
                 // I know these are pretty messy approach.
