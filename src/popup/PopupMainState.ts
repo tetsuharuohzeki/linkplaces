@@ -15,9 +15,11 @@ function createInitialPopupMainState(list: Array<BookmarkTreeNode> = []): PopupM
 export function reducePopupMain(prev: PopupMainState = createInitialPopupMainState(), action: PopupAction): PopupMainState {
     switch (action.type) {
         case ActionType.Init: {
-            // eslint-disable-next-line no-param-reassign
-            prev.list = action.list;
-            return prev;
+            const next = {
+                ...prev,
+                list: action.list,
+            };
+            return next;
         }
         case ActionType.OpenSidebar:
             return prev;
