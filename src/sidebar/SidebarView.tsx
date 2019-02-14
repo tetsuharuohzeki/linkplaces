@@ -2,6 +2,8 @@ import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
 import { map } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
 import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
 
+import { Nullable } from 'option-t/esm/Nullable/Nullable';
+
 import React from 'react';
 
 import {
@@ -53,8 +55,13 @@ interface ListItemProps {
     item: SidebarItemViewModelEntity;
     intent: SidebarIntent;
 }
-function ListItem(props: ListItemProps): JSX.Element {
+function ListItem(props: ListItemProps): Nullable<JSX.Element> {
     const { item, intent, } = props;
+    const isOpening = item.isOpening;
+    if (isOpening) {
+        return null;
+    }
+
     const bookmark = item.bookmark;
 
     if (isBookmarkTreeNodeSeparator(bookmark)) {
@@ -99,7 +106,6 @@ function ListItem(props: ListItemProps): JSX.Element {
         );
     }
 
-    const isOpening = item.isOpening;
     return (
         <PanelListItem disabled={isOpening}>
             <PanelListItemIcon>
