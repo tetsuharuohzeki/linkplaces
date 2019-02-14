@@ -18,3 +18,8 @@
 .sidebar-c-SidebarView__container .shared-com-PanelListItem__icon {
     margin-inline-end: 1em;
 }
+
+.sidebar-c-ListItem__container {
+    color: unset;
+    text-decoration: unset;
+}

@@ -72,9 +72,6 @@ function ListItem(props: ListItemProps): Nullable<JSX.Element> {
 
     const bookmarkTitle = bookmark.title;
 
-    let iconSrc;
-    let labelText: JSX.Element;
-
     if (isBookmarkTreeNodeItem(bookmark)) {
         const id = bookmark.id;
         const url = bookmark.url;
@@ -91,30 +88,60 @@ function ListItem(props: ListItemProps): Nullable<JSX.Element> {
         const label = (bookmarkTitle === '') ?
             url :
             bookmarkTitle;
-        iconSrc = '../shared/image/icon/defaultFavicon.svg';
-        labelText = (
-            <a href={url} onClick={onClick} title={title}>
-                {label}
+        const iconSrc = '../shared/image/icon/defaultFavicon.svg';
+        return (
+            <a
+                className={'sidebar-c-ListItem__container'}
+                href={url}
+                onClick={onClick}
+                title={title}>
+                <ListBaseItem
+                    isOpening={isOpening}
+                    iconSrc={iconSrc}
+                    label={label}
+                />
             </a>
-        );
-    } else {
-        iconSrc = '../shared/image/icon/folder-16.svg';
-        labelText = (
-            <span title={bookmarkTitle}>
-                {bookmarkTitle}
-            </span>
         );
     }
 
+    const iconSrc = '../shared/image/icon/folder-16.svg';
     return (
-        <PanelListItem disabled={isOpening}>
-            <PanelListItemIcon>
-                <img alt={''} src={iconSrc} />
-            </PanelListItemIcon>
-            <PanelListItemText>
-                {labelText}
-            </PanelListItemText>
-        </PanelListItem>
+        <span
+            className={'sidebar-c-ListItem__container'}
+            title={bookmarkTitle}>
+            <ListBaseItem
+                isOpening={isOpening}
+                iconSrc={iconSrc}
+                label={bookmarkTitle}
+            />
+        </span>
+    );
+}
+
+interface ListBaseItemProps {
+    isOpening: boolean;
+    iconSrc: string;
+    label: string;
+}
+
+function ListBaseItem(props: ListBaseItemProps): JSX.Element {
+    const {
+        isOpening,
+        iconSrc,
+        label,
+    } = props;
+
+    return (
+        <React.StrictMode>
+            <PanelListItem disabled={isOpening}>
+                <PanelListItemIcon>
+                    <img alt={''} src={iconSrc} />
+                </PanelListItemIcon>
+                <PanelListItemText>
+                    {label}
+                </PanelListItemText>
+            </PanelListItem>
+        </React.StrictMode>
     );
 }
 
