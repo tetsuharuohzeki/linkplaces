@@ -34,9 +34,10 @@ export interface SidebarViewProps {
 export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
     const mapped = IterableX.from(props.state.list)
         .pipe(
-            map((item, i) => {
+            map((item) => {
+                const id = item.id();
                 return (
-                    <ListItem key={i} item={item} intent={props.intent} />
+                    <ListItem key={id} item={item} intent={props.intent} />
                 );
             }),
         );

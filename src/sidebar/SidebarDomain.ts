@@ -25,6 +25,10 @@ export class SidebarItemViewModelEntity {
         return this._isOpening;
     }
 
+    id(): string {
+        return this._bookmark.id;
+    }
+
     setIsOpening(): void {
         this._isOpening = true;
     }
