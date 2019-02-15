@@ -37,7 +37,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
             <PanelSectionList>
                 <PanelListItem onClick={onClickOpenWebExtSidebar}>
                     <PanelListItemIcon>
-                        <popup-item-icon src={'../shared/image/icon/sidebar-16.svg'}/>
+                        <popup-item-icon src={'../shared/image/icon/sidebar-16.svg'} />
                     </PanelListItemIcon>
                     <PanelListItemText>
                         <span className={'popup__listitem_text_inner'}>
@@ -46,7 +46,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
                     </PanelListItemText>
                 </PanelListItem>
             </PanelSectionList>
-            <PanelSectionListSeparator/>
+            <PanelSectionListSeparator />
             <PanelSectionList>
                 {items}
             </PanelSectionList>
@@ -63,7 +63,7 @@ function ListItem(props: ListItemProps): JSX.Element {
 
     let node: JSX.Element;
     if (isBookmarkTreeNodeSeparator(item)) {
-        node = <hr/>;
+        node = <hr />;
     }
     else if (isBookmarkTreeNodeItem(item)) {
         node = <ItemListItem item={item} store={store} />;
@@ -93,16 +93,20 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
 
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
-        <PanelListItem onClick={onClick}>
-            <PanelListItemIcon>
-                <popup-item-icon src={'../shared/image/icon/folder-16.svg'}/>
-            </PanelListItemIcon>
-            <PanelListItemText>
-                <span className={'popup__listitem_text_inner'}>
-                    {item.title}
-                </span>
-            </PanelListItemText>
-        </PanelListItem>
+        <span
+            className={'popup-c-PopupMainView-ItemListItem__container'}
+        >
+            <PanelListItem onClick={onClick}>
+                <PanelListItemIcon>
+                    <popup-item-icon src={'../shared/image/icon/folder-16.svg'} />
+                </PanelListItemIcon>
+                <PanelListItemText>
+                    <span className={'popup-c-PopupMainView-ItemListItem__label'}>
+                        {item.title}
+                    </span>
+                </PanelListItemText>
+            </PanelListItem>
+        </span>
     );
 }
 
@@ -130,15 +134,24 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
 
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
-        <PanelListItem>
-            <PanelListItemIcon>
-                <popup-item-icon src={'../shared/image/icon/defaultFavicon.svg'}/>
-            </PanelListItemIcon>
-            <PanelListItemText>
-                <a className={'popup__listitem_text_inner'} href={url} title={tooltiptext} onClick={onClick}>
-                    {label}
-                </a>
-            </PanelListItemText>
-        </PanelListItem>
+        <React.StrictMode>
+            <a
+                className={'popup-c-PopupMainView-ItemListItem__container'}
+                href={url}
+                title={tooltiptext}
+                onClick={onClick}
+            >
+                <PanelListItem>
+                    <PanelListItemIcon>
+                        <popup-item-icon src={'../shared/image/icon/defaultFavicon.svg'} />
+                    </PanelListItemIcon>
+                    <PanelListItemText>
+                        <span className={'popup-c-PopupMainView-ItemListItem__label'}>
+                            {label}
+                        </span>
+                    </PanelListItemText>
+                </PanelListItem>
+            </a>
+        </React.StrictMode>
     );
 }

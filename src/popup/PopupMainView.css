@@ -1,0 +1,13 @@
+.popup-c-PopupMainView-ItemListItem__container {
+    color: unset;
+    text-decoration: unset;
+    cursor: default;
+}
+
+.popup-c-PopupMainView-ItemListItem__label {
+    display: block;
+    width: var(--popup-subview-width);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
