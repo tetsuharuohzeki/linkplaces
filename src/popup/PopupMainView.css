@@ -4,8 +4,7 @@
     cursor: default;
 }
 
-.popup-c-PopupMainView-ItemListItem__label {
-    display: block;
+.popup-c-PopupMainView-ItemListItem__container .shared-com-PanelListItem__text {
     width: var(--popup-subview-width);
     overflow: hidden;
     text-overflow: ellipsis;

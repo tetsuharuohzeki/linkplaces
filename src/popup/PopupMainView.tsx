@@ -101,9 +101,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
                     <popup-item-icon src={'../shared/image/icon/folder-16.svg'} />
                 </PanelListItemIcon>
                 <PanelListItemText>
-                    <span className={'popup-c-PopupMainView-ItemListItem__label'}>
-                        {item.title}
-                    </span>
+                    {item.title}
                 </PanelListItemText>
             </PanelListItem>
         </span>
@@ -146,9 +144,7 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
                         <popup-item-icon src={'../shared/image/icon/defaultFavicon.svg'} />
                     </PanelListItemIcon>
                     <PanelListItemText>
-                        <span className={'popup-c-PopupMainView-ItemListItem__label'}>
-                            {label}
-                        </span>
+                        {label}
                     </PanelListItemText>
                 </PanelListItem>
             </a>
