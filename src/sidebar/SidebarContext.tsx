@@ -16,7 +16,7 @@ import { ViewContext } from '../shared/ViewContext';
 
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
-import { SidebarView, SidebarViewProps } from './SidebarView';
+import { SidebarView } from './SidebarView';
 
 import { mapToSidebarItemEntity } from './SidebarDomain';
 import { SidebarViewEpic } from './SidebarEpic';
@@ -60,12 +60,11 @@ export class SidebarContext implements ViewContext {
             .pipe(
                 debounceTime(0, animationFrameRxScheduler),
             ).subscribe((state: Readonly<SidebarState>) => {
-                const props: SidebarViewProps = {
-                    state,
-                    intent: this._intent,
-                };
-                const sidbarview = React.createElement<SidebarViewProps>(SidebarView, props);
-                const view = React.createElement(React.StrictMode, null, sidbarview);
+                const view = (
+                    <React.StrictMode>
+                        <SidebarView state={state} intent={this._intent} />
+                    </React.StrictMode>
+                );
                 ReactDOM.render(view, mountpoint);
             }, (e) => {
                 console.exception(e);

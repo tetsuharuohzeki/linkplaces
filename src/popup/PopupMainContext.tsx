@@ -45,13 +45,11 @@ export class PopupMainContext implements ViewContext {
         const render = () => {
             window.requestAnimationFrame(() => {
                 const { reducePopupMain: state, } = store.getState();
-
-                const popupview = React.createElement(PopupMainView, {
-                    state,
-                    store,
-                });
-                const view = React.createElement(React.StrictMode, null, popupview);
-
+                const view = (
+                    <React.StrictMode>
+                        <PopupMainView state={state} store={store} />
+                    </React.StrictMode>
+                );
                 ReactDOM.render(view, mountpoint);
             });
         };

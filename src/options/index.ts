@@ -1,25 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import { OptionsView } from './OptionsView';
-
-function getUrl(path: string): { url: string; title: string; } {
-    const url = browser.extension.getURL(path);
-    return {
-        url,
-        title: path,
-    };
-}
+import { isNull } from 'option-t/esm/Nullable/Nullable';
+import { OptionsContext } from './OptionsContext';
 
 (async function main(){
-    const optionview = React.createElement(OptionsView, {
-        list: [
-            getUrl('popup/index.html'),
-            getUrl('sidebar/index.html'),
-        ],
-    });
     const mountpoint = document.getElementById('js-mountpoint');
+    if (isNull(mountpoint)) {
+        throw new TypeError('not found mountpoint');
+    }
 
-    const view = React.createElement(React.StrictMode, null, optionview);
-    ReactDOM.render(view, mountpoint);
+    const ctx = new OptionsContext();
+    ctx.onActivate(mountpoint);
 })().catch(console.error);
