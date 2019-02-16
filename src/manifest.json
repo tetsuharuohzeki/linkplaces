@@ -61,7 +61,6 @@
     ]
   },
   "options_ui": {
-    "browser_style": true,
     "page": "options/index.html"
   }
 }

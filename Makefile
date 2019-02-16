@@ -48,7 +48,7 @@ icon.png: clean_dist
 
 webextension: webextension_cp webextension_bundle webextension_css
 
-webextension_css:  __bundle_css_popup  __bundle_css_sidebar
+webextension_css:  __bundle_css_popup  __bundle_css_sidebar __bundle_css_options
 
 webextension_cp: clean_dist
 	$(NPM_BIN)/cpx '$(SRC_DIR)/**/**.{json,html,svg}' $(DIST_DIR) --preserve
