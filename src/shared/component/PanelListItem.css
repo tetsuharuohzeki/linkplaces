@@ -29,6 +29,7 @@
 
 .shared-com-PanelListItem__text {
     flex-grow: 10;
+    width: var(--panel-item__text--witdth, unset);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

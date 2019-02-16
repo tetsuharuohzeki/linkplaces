@@ -1,9 +1,7 @@
 .popup-c-PopupMainView-ItemListItem__container {
+    --panel-item__text--witdth: var(--popup-subview-width);
+
     color: unset;
     text-decoration: unset;
     cursor: default;
-}
-
-.popup-c-PopupMainView-ItemListItem__container .shared-com-PanelListItem__text {
-    width: var(--popup-subview-width);
 }
