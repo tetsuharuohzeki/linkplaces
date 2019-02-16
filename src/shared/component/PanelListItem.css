@@ -29,6 +29,9 @@
 
 .shared-com-PanelListItem__text {
     flex-grow: 10;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .shared-com-PanelListItem__text-shortcut {

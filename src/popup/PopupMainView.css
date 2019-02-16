@@ -6,7 +6,4 @@
 
 .popup-c-PopupMainView-ItemListItem__container .shared-com-PanelListItem__text {
     width: var(--popup-subview-width);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }

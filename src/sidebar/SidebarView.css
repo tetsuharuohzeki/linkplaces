@@ -11,9 +11,3 @@
 .sidebar-c-ListItem__container .shared-com-PanelListItem__icon {
     margin-inline-end: 1em;
 }
-
-.sidebar-c-ListItem__container .shared-com-PanelListItem__text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
