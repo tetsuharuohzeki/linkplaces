@@ -6,7 +6,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    vertical-align: text-top;
 }
 
 .sidebar-c-SidebarView__container .shared-com-PanelListItem__icon {
