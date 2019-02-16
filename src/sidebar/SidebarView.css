@@ -1,19 +1,19 @@
-.sidebar-c-SidebarView__container .shared-com-PanelListItem__container {
-    padding: 0 8px 0 16px;
-}
-
-.sidebar-c-SidebarView__container .shared-com-PanelListItem__text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.sidebar-c-SidebarView__container .shared-com-PanelListItem__icon {
-    margin-inline-end: 1em;
-}
-
 .sidebar-c-ListItem__container {
     color: unset;
     text-decoration: unset;
     cursor: default;
+}
+
+.sidebar-c-ListItem__container .shared-com-PanelListItem__container {
+    padding: 0 8px 0 16px;
+}
+
+.sidebar-c-ListItem__container .shared-com-PanelListItem__icon {
+    margin-inline-end: 1em;
+}
+
+.sidebar-c-ListItem__container .shared-com-PanelListItem__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
