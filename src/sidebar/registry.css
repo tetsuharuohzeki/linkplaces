@@ -3,4 +3,4 @@
 @import '../shared/reset.css';
 @import '../shared/vars.css';
 @import '../shared/component/panel.css';
-@import './SidebarView.css';
+@import './view//SidebarListItemView.css';
