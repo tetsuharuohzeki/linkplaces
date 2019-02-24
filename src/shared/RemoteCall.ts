@@ -3,7 +3,6 @@ import { WebExtSidebarActionService } from '../../typings/webext/sidebarAction';
 import { Channel } from './Channel';
 import {
     createOpenUrlAction,
-    createOpenClassicPlacesOrganizerAction,
     WhereToOpenItem,
 } from './RemoteAction';
 
@@ -16,9 +15,3 @@ export function openWebExtSidebar(sidebarAction: WebExtSidebarActionService): vo
     // This method should be called by user interaction.
     sidebarAction.open().catch(console.error);
 }
-
-export function openPlacesOrganizeWindow(chan: Channel, bookmarkId: string): void {
-    const a = createOpenClassicPlacesOrganizerAction(bookmarkId);
-    chan.postOneShotMessage(a);
-}
-

@@ -8,15 +8,12 @@ import {
 } from '../shared/RemoteAction';
 import {
     openItem as openItemViaChannel,
-    openPlacesOrganizeWindow,
     openWebExtSidebar as openWebExtSidebarDirect,
 } from '../shared/RemoteCall';
 
 import {
     createOpenSidebarAction,
-    createOpenLibraryWindow,
     OpenSidebarAction,
-    OpenLibraryWindowAction,
     PopupAction,
 } from './PopupAction';
 import { PopupMainStateTree } from './PopupMainState';
@@ -46,12 +43,8 @@ export function openWebExtSidebar(): ThunkAction<OpenSidebarAction> {
     };
 }
 
-export function openLibraryWindow(bookmarkId: string): ThunkAction<OpenLibraryWindowAction> {
-    return function openLibraryWindowActual(dispatch: Dispatch<OpenLibraryWindowAction>, _, dependencies: ThunkArguments): Promise<void> {
-        openPlacesOrganizeWindow(dependencies.channel, bookmarkId);
-
-        dispatch(createOpenLibraryWindow(bookmarkId));
-
+export function openLibraryWindow(_bookmarkId: string): ThunkAction<never> {
+    return function openLibraryWindowActual(_dispatch: Dispatch<never>, _, _dependencies: ThunkArguments): Promise<void> {
         return closeWindow();
     };
 }

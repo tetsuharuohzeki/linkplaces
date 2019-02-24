@@ -6,7 +6,6 @@ import { removeBookmarkItem, getLinkSchemeType, } from '../shared/Bookmark';
 import {
     RemoteAction,
     MSG_TYPE_OPEN_URL,
-    MSG_TYPE_OPEN_ORGANIZE_WINDOW,
     WhereToOpenItem,
 } from '../shared/RemoteAction';
 import { Packet } from '../shared/Channel';
@@ -37,10 +36,6 @@ function onMessageFromPopup(packet: Packet<RemoteAction>) {
             const { id, url, where } = msg.value;
             openUrlFromPopup(url, id, where).catch(console.error);
             break;
-        }
-        case MSG_TYPE_OPEN_ORGANIZE_WINDOW: {
-            const e = new NoImplementationError('opening the places organizer window');
-            throw e;
         }
         default:
             throw new RangeError(`undefined type: ${JSON.stringify(msg)}`);

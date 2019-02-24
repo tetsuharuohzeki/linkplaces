@@ -20,7 +20,6 @@ export const enum ActionType {
 export type PopupAction =
     InitAction |
     OpenSidebarAction |
-    OpenLibraryWindowAction |
     ItemChangedAction;
 
 type ActionBase = ActionArcheType<ActionType>;
@@ -48,20 +47,6 @@ export function isOpenSidebarAction(v: ActionBase): v is OpenSidebarAction {
 export function createOpenSidebarAction(): OpenSidebarAction {
     return {
         type: ActionType.OpenSidebar,
-    };
-}
-
-export interface OpenLibraryWindowAction extends ActionBase {
-    type: ActionType.OpenOpenLibraryWindow;
-    id: string;
-}
-export function isOpenLibraryWindowAction(v: Readonly<ActionBase>): v is OpenLibraryWindowAction {
-    return v.type === ActionType.OpenOpenLibraryWindow;
-}
-export function createOpenLibraryWindow(id: string): OpenLibraryWindowAction {
-    return {
-        type: ActionType.OpenOpenLibraryWindow,
-        id,
     };
 }
 
