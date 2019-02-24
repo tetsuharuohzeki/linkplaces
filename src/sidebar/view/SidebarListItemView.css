@@ -11,3 +11,8 @@
 .sidebar-com-SidebarListItemView__container .shared-com-PanelListItem__icon {
     margin-inline-end: 1em;
 }
+
+.sidebar-com-SidebarListItemView__icon_img {
+    width: 16px;
+    height: 16px;
+}

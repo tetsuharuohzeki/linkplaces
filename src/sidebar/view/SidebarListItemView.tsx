@@ -32,7 +32,7 @@ function ListBaseItem(props: ListBaseItemProps): JSX.Element {
         <React.StrictMode>
             <PanelListItem disabled={isOpening}>
                 <PanelListItemIcon>
-                    <img alt={''} src={iconSrc} />
+                    <img alt={''} src={iconSrc} className={`${CLASS_NAME_PREFIX}__icon_img`}/>
                 </PanelListItemIcon>
                 <PanelListItemText>
                     {label}
