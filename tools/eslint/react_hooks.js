@@ -9,8 +9,12 @@
 // ESLint Configuration Files enables to include comments.
 // http://eslint.org/docs/configuring/#comments-in-configuration-files
 module.exports = {
-    'env': {
-        'node': true,
-        'es6': true,
+    'plugins': [
+        'react-hooks',
+    ],
+
+    'rules': {
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'warn',
     },
 };

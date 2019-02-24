@@ -14,6 +14,7 @@ module.exports = {
         './node_modules/eslint-config-fluct/config/eslintrc_react.js',
 
         './tools/eslint/import.js',
+        './tools/eslint/react_hooks.js',
     ],
 
     'parserOptions': {
