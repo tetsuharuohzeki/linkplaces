@@ -94,9 +94,6 @@ eslint_js:
 eslint_ts:
 	$(NPM_BIN)/eslint --ext=ts,tsx $(CURDIR)
 
-tslint:
-	$(NPM_BIN)/tslint --config $(CURDIR)/tslint.json '$(SRC_DIR)/**/*.ts{,x}'
-
 tscheck:
 	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --noEmit
 
