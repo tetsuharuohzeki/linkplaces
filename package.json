@@ -54,7 +54,7 @@
     "rxjs": "^6.4.0",
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0",
-    "tslint": "^5.13.0",
+    "tslint": "^5.13.1",
     "tslint-config-fluct": "https://github.com/voyagegroup/tslint-config-fluct/archive/628839b9285d57021979f59ba26bcc0171f0a2cc.tar.gz",
     "typescript": "^3.3.3333",
     "web-ext": "^3.0.0"
