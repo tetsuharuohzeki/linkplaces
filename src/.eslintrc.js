@@ -11,9 +11,13 @@ const path = require('path');
 // ESLint Configuration Files enables to include comments.
 // http://eslint.org/docs/configuring/#comments-in-configuration-files
 module.exports = {
-    'parser': '@typescript-eslint/parser',
+    'extends': [
+        'eslint-config-abema/config/eslintrc_react_hooks.js',
+        'eslint-config-abema/config/eslintrc_typescript.js',
+        'eslint-config-abema/config/eslintrc_typescript_react.js',
+    ],
+
     'plugins': [
-        '@typescript-eslint',
         '@typescript-eslint/tslint',
     ],
 
@@ -42,22 +46,10 @@ module.exports = {
 
     'rules': {
         'init-declarations': 'off', // Sort the work with TypeScript's `let bar: B;` pattern.
-        'react/jsx-filename-extension': ['error', {
-            'extensions': ['.jsx', '.tsx'],
-        }],
         'react/jsx-curly-brace-presence': 'off', // I seem this rule is too eager.
 
         '@typescript-eslint/tslint/config': ['error', {
             'lintFile': path.resolve(__dirname, '../tslint.json'),
-        }],
-
-        // the default `no-unused-vars` is not support type annotations.
-        '@typescript-eslint/no-unused-vars': ['warn', {
-            'vars': 'all',
-            'args': 'after-used',
-            'argsIgnorePattern': '^_', // Sort with TypeScript compiler's builtin linter.
-            'caughtErrors': 'all',
-            'caughtErrorsIgnorePattern': '^_', // Allow `catch (_e) {...}`
         }],
 
         // Please opt-out this rule if you'd like to use this rule.

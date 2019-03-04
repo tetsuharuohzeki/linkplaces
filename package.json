@@ -33,7 +33,7 @@
     "cpx": "^1.5.0",
     "del-cli": "^1.1.0",
     "eslint": "^5.15.0",
-    "eslint-config-fluct": "https://github.com/voyagegroup/eslint-config-fluct/archive/d62dacdcfcdb68b9d0416fb75abca516a4d938d7.tar.gz",
+    "eslint-config-abema": "https://github.com/cats-oss/eslint-config-abema/archive/7d488cedb323280b8048da0bfc50b2c810a9e6bf.tar.gz",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.4.0",
