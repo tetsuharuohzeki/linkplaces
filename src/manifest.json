@@ -17,6 +17,7 @@
     "contextMenus",
     "tabs"
   ],
+  "incognito": "spanning",
   "background": {
     "page": "background/index.html"
   },
