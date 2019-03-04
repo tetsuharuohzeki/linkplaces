@@ -17,6 +17,8 @@
     "contextMenus",
     "tabs"
   ],
+  "incognito": "spanning",
+  "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline';",
   "background": {
     "page": "background/index.html"
   },
