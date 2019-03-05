@@ -26,7 +26,7 @@ export interface OpenUrlAction extends RemoteActionBase {
     value: {
         id: string;
         url: string;
-        where: WhereToOpenItem,
+        where: WhereToOpenItem;
     };
 }
 export function isOpenUrlAction(v: RemoteActionBase): v is OpenUrlAction {
