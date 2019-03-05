@@ -45,16 +45,8 @@ module.exports = {
 
 
     'rules': {
-        'init-declarations': 'off', // Sort the work with TypeScript's `let bar: B;` pattern.
-        'react/jsx-curly-brace-presence': 'off', // I seem this rule is too eager.
-
         '@typescript-eslint/tslint/config': ['error', {
             'lintFile': path.resolve(__dirname, '../tslint.json'),
         }],
-
-        // Please opt-out this rule if you'd like to use this rule.
-        '@typescript-eslint/no-explicit-any': ['warn'],
-        // Please opt-out this rule if you'd like to use this rule.
-        '@typescript-eslint/no-non-null-assertion': ['warn'],
     }
 };
