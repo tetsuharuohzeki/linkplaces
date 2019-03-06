@@ -16,10 +16,6 @@ module.exports = {
         'eslint-config-abema/config/eslintrc_typescript.js',
     ],
 
-    'plugins': [
-        '@typescript-eslint/tslint',
-    ],
-
     'parserOptions': {
         'sourceType': 'module',
         'project': path.resolve(__dirname, '../tsconfig.json'),
@@ -39,8 +35,5 @@ module.exports = {
     },
 
     'rules': {
-        '@typescript-eslint/tslint/config': ['error', {
-            'lintFile': path.resolve(__dirname, '../tslint.json'),
-        }],
     }
 };

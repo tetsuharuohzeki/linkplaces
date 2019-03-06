@@ -22,10 +22,6 @@ module.exports = {
         'eslint-config-abema/config/eslintrc_typescript_react.js',
     ],
 
-    'plugins': [
-        '@typescript-eslint/tslint',
-    ],
-
     'parserOptions': {
         'sourceType': 'module',
         'ecmaFeatures': {
@@ -50,8 +46,5 @@ module.exports = {
 
 
     'rules': {
-        '@typescript-eslint/tslint/config': ['error', {
-            'lintFile': path.resolve(__dirname, '../tslint.json'),
-        }],
     }
 };

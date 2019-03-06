@@ -2,8 +2,6 @@
 
 import { Listener, FullListener } from './event';
 
-// tslint:disable:member-ordering
-
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/Port
 export interface Port {
     readonly name: string;

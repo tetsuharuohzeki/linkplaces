@@ -31,8 +31,6 @@ export interface WebExtBookmarkService {
         title?: string;
     }): Promise<Array<BookmarkTreeNode>>;
 
-    // tslint:disable:member-ordering
-
     // TODO: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/update
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onCreated
@@ -55,8 +53,6 @@ export interface WebExtBookmarkService {
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onImportEnded
     onImportEnded: FullListener<() => void>;
-
-    // tslint:enable
 }
 
 export type OnRemoveInfo = Readonly<{

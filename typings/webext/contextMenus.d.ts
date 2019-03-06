@@ -58,13 +58,9 @@ export interface WebExtContextMenuService {
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus/removeAll
     removeAll(): Promise<void>;
 
-    // tslint:disable:member-ordering
-
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus/onClicked
     onClicked: FullListener<(this: void, info: OnClickData, tab: Tab | null | undefined) => void>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus/ACTION_MENU_TOP_LEVEL_LIMIT
     readonly ACTION_MENU_TOP_LEVEL_LIMIT: number;
-
-    // tslint:enable
 }
