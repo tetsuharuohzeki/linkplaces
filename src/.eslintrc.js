@@ -3,6 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 /*eslint-env node*/
 /*eslint quote-props: [2, "always"] */
+/* eslint-disable @typescript-eslint/no-require-imports */
 
 'use strict'; // eslint-disable-line strict
 

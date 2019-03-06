@@ -94,6 +94,8 @@ interface PopupItemIconElementAttr {
 }
 
 declare global {
+    // FIXME: @typescript-eslint does not support `declare global {}`
+    // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
         interface IntrinsicElements {
             // FIXME: Remove this. @typescript-eslint/eslint-plugin cannot works with this pattern correctly

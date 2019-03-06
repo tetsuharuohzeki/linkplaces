@@ -11,6 +11,8 @@ export class SidebarItemViewModelEntity {
     private _isOpening: boolean;
     readonly isSelected: boolean;
 
+    // FIXME: Wait to support @typescript-eslint
+    // eslint-disable-next-line @typescript-eslint/member-naming
     private constructor(bookmark: BookmarkTreeNode) {
         this._bookmark = bookmark;
         this._isOpening = false;
