@@ -13,6 +13,7 @@ import { NoImplementationError } from '../shared/NoImplementationError';
 
 import { createContextMenu } from './ContextMenu';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import { createTab } from './TabOpener';
 
