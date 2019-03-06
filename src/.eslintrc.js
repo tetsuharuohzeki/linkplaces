@@ -3,6 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 /*eslint-env node*/
 /*eslint quote-props: [2, "always"] */
+/* eslint-disable @typescript-eslint/no-require-imports */
 
 'use strict'; // eslint-disable-line strict
 
@@ -19,10 +20,6 @@ module.exports = {
         'eslint-config-abema/config/eslintrc_react_hooks.js',
         'eslint-config-abema/config/eslintrc_typescript.js',
         'eslint-config-abema/config/eslintrc_typescript_react.js',
-    ],
-
-    'plugins': [
-        '@typescript-eslint/tslint',
     ],
 
     'parserOptions': {
@@ -49,8 +46,5 @@ module.exports = {
 
 
     'rules': {
-        '@typescript-eslint/tslint/config': ['error', {
-            'lintFile': path.resolve(__dirname, '../tslint.json'),
-        }],
     }
 };

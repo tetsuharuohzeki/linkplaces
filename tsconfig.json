@@ -62,7 +62,6 @@
 
     // "skipLibCheck": true,
     "plugins": [
-      //{ "name": "tslint-language-service"}
     ]
   },
 

@@ -49,6 +49,8 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>>, 
     private _subject: BehaviorSubject<Array<BookmarkTreeNode>>;
     private _onRemoveSubject: Subject<BookmarkId>;
 
+    // FIXME: Wait to support @typescript-eslint
+    // eslint-disable-next-line @typescript-eslint/member-naming
     private constructor(init: Array<BookmarkTreeNode>) {
         this._subject = new BehaviorSubject(init);
         this._onRemoveSubject = new Subject();
@@ -102,6 +104,8 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
     private _isOpeningMap: Set<BookmarkId>;
     private _disposer: Subscription;
 
+    // FIXME: Wait to support @typescript-eslint
+    // eslint-disable-next-line @typescript-eslint/member-naming
     private constructor(driver: BookmarkRepository) {
         this._driver = driver;
         this._emitter = new Subject();
