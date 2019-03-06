@@ -8,6 +8,10 @@
 
 const path = require('path');
 
+const JS_EXTENSION = ['.mjs', '.js', '.jsx'];
+const TS_EXTENSION = ['.ts', '.tsx', '.d.ts'];
+const ALL_EXTENSION = [...TS_EXTENSION, ...JS_EXTENSION];
+
 // ESLint Configuration Files enables to include comments.
 // http://eslint.org/docs/configuring/#comments-in-configuration-files
 module.exports = {
@@ -38,7 +42,7 @@ module.exports = {
     'settings': {
         'import/resolver': {
             'node': {
-                'extensions': ['.ts', '.tsx', '.d.ts', '.js', '.jsx'],
+                'extensions': ALL_EXTENSION,
             },
         },
     },
