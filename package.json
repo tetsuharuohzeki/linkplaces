@@ -24,7 +24,7 @@
     "@babel/plugin-syntax-async-generators": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
-    "@reactivex/ix-esnext-esm": "^2.5.1",
+    "@reactivex/ix-esnext-esm": "^2.5.2",
     "@types/react": "^16.8.6",
     "@types/react-dom": "^16.8.2",
     "@typescript-eslint/eslint-plugin": "^1.4.2",
