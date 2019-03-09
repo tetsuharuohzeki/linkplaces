@@ -2506,9 +2506,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/edbb67f6e064e24b132e5fe229cb242e0fc75e0a.tar.gz":
+"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/7ce6b02bb1c787de171c217c7b96a0c63f7c54ef.tar.gz":
   version "0.0.0"
-  resolved "https://github.com/cats-oss/eslint-config-abema/archive/edbb67f6e064e24b132e5fe229cb242e0fc75e0a.tar.gz#6c5dbd07cfddc7df7ec284a9dc470478506a10dc"
+  resolved "https://github.com/cats-oss/eslint-config-abema/archive/7ce6b02bb1c787de171c217c7b96a0c63f7c54ef.tar.gz#edfc737ba892da5848eb7a640a47c8793badbd7d"
   optionalDependencies:
     "@typescript-eslint/eslint-plugin" "^1.4.2"
     eslint-plugin-import "^2.16.0"
@@ -6653,10 +6653,10 @@ rollup-pluginutils@^2.0.1, rollup-pluginutils@^2.3.0:
     estree-walker "^0.6.0"
     micromatch "^3.1.10"
 
-rollup@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.4.1.tgz#cc03ef6fb49dd72a878e3da0131c0a3696de14a7"
-  integrity sha512-YWf5zeR6SWtqZmCnuYs4a+ZJetj8NT4yfBMPXekWHW4L3144jM+J2AWagQVejB0FwCqjEUP9l8o4hg1rPDfQlg==
+rollup@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.6.0.tgz#4329f4634718197c678d18491724d50d8b7ee76c"
+  integrity sha512-qu9iWyuiOxAuBM8cAwLuqPclYdarIpayrkfQB7aTGTiyYPbvx+qVF33sIznfq4bxZCiytQux/FvZieUBAXivCw==
   dependencies:
     "@types/estree" "0.0.39"
     "@types/node" "^11.9.5"
