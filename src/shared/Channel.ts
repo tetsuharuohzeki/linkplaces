@@ -92,9 +92,6 @@ export class Channel<TMessage extends RemoteActionBase> {
 
     destroy() {
         this._finalize();
-
-        //this._listeners = null; // XXX: we think this need not because this is a builtin object.
-        // this._callback = null; // XXX: we think this need not because this is a builtin object.
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         this._listener = null as any;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
