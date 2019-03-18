@@ -19,6 +19,19 @@ export type Packet<T> = Readonly<{
     isRequest: boolean;
 }>;
 
+export class Subscription {
+    private _callback: () => void;
+
+    constructor(callback: () => void) {
+        this._callback = callback;
+    }
+
+    unsubscribe(): void {
+        this._callback();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this._callback = null as any;
+    }
+}
 
 class Subject<T> {
     private _callbackset: Set<(v: T) => void>;
@@ -42,12 +55,12 @@ class Subject<T> {
         }
     }
 
-    addListener(callback: (v: T) => void): void {
+    subscribe(callback: (v: T) => void): Subscription {
         this._callbackset.add(callback);
-    }
-
-    removeListener(callback: (v: T) => void): void {
-        this._callbackset.delete(callback);
+        const s = new Subscription(() => {
+            this._callbackset.delete(callback);
+        });
+        return s;
     }
 }
 
@@ -176,13 +189,9 @@ export class Channel {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    addListener(callback: (v: Packet<any>) => void): void {
-        this._subject.addListener(callback);
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    removeListener(callback: (v: Packet<any>) => void): void {
-        this._subject.removeListener(callback);
+    subscribe(callback: (v: Packet<any>) => void): Subscription {
+        const s = this._subject.subscribe(callback);
+        return s;
     }
 }
 
