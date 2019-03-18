@@ -64,16 +64,14 @@ class Subject<T> {
     }
 }
 
-export class Channel {
+export class Channel<TMessage extends RemoteActionBase> {
 
     private _port: Nullable<Port>;
     private _callback: Map<number, PromiseTuple>;
     private _callbackId: number;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private _subject: Subject<Packet<any>>;
+    private _subject: Subject<Packet<TMessage>>;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private _listener: (msg: Packet<any>) => void;
+    private _listener: (msg: Packet<TMessage>) => void;
 
     constructor(port: Port) {
         this._port = port;
@@ -82,7 +80,7 @@ export class Channel {
         this._subject = new Subject();
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const listener = (msg: Packet<any>) => {
+        const listener = (msg: Packet<TMessage>) => {
             this._onPortMessage(msg);
         };
         this._listener = listener;
@@ -114,7 +112,7 @@ export class Channel {
         this._subject.destroy();
     }
 
-    postMessage<TMessage extends RemoteActionBase, R>(msg: TMessage): Promise<R> {
+    postMessage<R>(msg: TMessage): Promise<R> {
         const task = new Promise<R>((resolve, reject) => {
             const port = expectNotNull(this._port, 'this._port` is null');
 
@@ -137,7 +135,7 @@ export class Channel {
         return task;
     }
 
-    postOneShotMessage<TMessage extends RemoteActionBase>(msg: TMessage): void {
+    postOneShotMessage(msg: TMessage): void {
         const message: Packet<TMessage> = {
             payload: msg,
             isRequest: true,
@@ -161,7 +159,7 @@ export class Channel {
         port.postMessage(message);
     }
 
-    private _onPortMessage<T extends RemoteActionBase>(msg: Packet<T>): void {
+    private _onPortMessage(msg: Packet<TMessage>): void {
         const { id, payload, isRequest, } = msg;
         if (isUndefined(id)) {
             throw new TypeError('in this path, Packet.id must not be undefined.');
@@ -188,8 +186,7 @@ export class Channel {
         }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    subscribe(callback: (v: Packet<any>) => void): Subscription {
+    subscribe(callback: (v: Packet<TMessage>) => void): Subscription {
         const s = this._subject.subscribe(callback);
         return s;
     }
@@ -202,8 +199,8 @@ function connectToBgScript(pingMessage: string): Promise<Port> {
     return p;
 }
 
-export async function createChannelToBackground(pingMessage: string): Promise<Channel> {
+export async function createChannelToBackground<T extends RemoteActionBase>(pingMessage: string): Promise<Channel<T>> {
     const port = await connectToBgScript(pingMessage);
-    const c = new Channel(port);
+    const c = new Channel<T>(port);
     return c;
 }

@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Unsubscribe, StoreEnhancer } from 'redux';
 import { createThunkMiddleware, ThunkExt } from '../third_party/redux-thunk';
 
-import { Channel } from '../shared/Channel';
 import { ViewContext } from '../shared/ViewContext';
 
 import { BookmarkTreeNode, OnChangeInfo } from '../../typings/webext/bookmarks';
@@ -15,14 +14,15 @@ import { createItemChangedAction, PopupAction } from './PopupAction';
 import { createReducer, PopupMainStateTree, createInitialPopupMainStateTree } from './PopupMainState';
 import { ThunkArguments } from './PopupMainThunk';
 import { PopupMainStore, PopupMainThunkExt } from './PopupMainStore';
+import { RemoteActionChannel } from './PopupMessageChannel';
 
 export class PopupMainContext implements ViewContext {
 
-    private _channel: Channel;
+    private _channel: RemoteActionChannel;
     private _list: Array<BookmarkTreeNode>;
     private _disposerSet: Nullable<Set<Unsubscribe>>;
 
-    constructor(channel: Channel, list: Array<BookmarkTreeNode>) {
+    constructor(channel: RemoteActionChannel, list: Array<BookmarkTreeNode>) {
         this._channel = channel;
         this._list = list;
         this._disposerSet = null;

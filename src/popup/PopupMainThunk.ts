@@ -1,7 +1,6 @@
 import { Dispatch } from 'redux';
 import { ThunkAction as ThunkActionArcheType } from '../third_party/redux-thunk';
 
-import { Channel } from '../shared/Channel';
 import {
     WhereToOpenItem,
     WHERE_TO_OPEN_ITEM_TO_TAB,
@@ -17,11 +16,12 @@ import {
     PopupAction,
 } from './PopupAction';
 import { PopupMainStateTree } from './PopupMainState';
+import { RemoteActionChannel } from './PopupMessageChannel';
 
 type ThunkAction<A extends PopupAction = PopupAction> = ThunkActionArcheType<A, PopupMainStateTree, ThunkArguments, Promise<void>>;
 
 export type ThunkArguments = Readonly<{
-    channel: Channel;
+    channel: RemoteActionChannel;
 }>;
 
 export function openItem(id: string, url: string): ThunkAction<never> {

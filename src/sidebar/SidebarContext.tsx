@@ -10,8 +10,6 @@ import {
     Subscription,
     animationFrameScheduler as animationFrameRxScheduler,
 } from 'rxjs';
-
-import { Channel } from '../shared/Channel';
 import { ViewContext } from '../shared/ViewContext';
 
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
@@ -24,6 +22,7 @@ import { SidebarIntent } from './SidebarIntent';
 import { SidebarState } from './SidebarState';
 import { SidebarStore } from './SidebarStore';
 import { SidebarRepository } from './SidebarRepository';
+import { RemoteActionChannel } from './SidebarMessageChannel';
 
 export class SidebarContext implements ViewContext {
 
@@ -35,7 +34,7 @@ export class SidebarContext implements ViewContext {
     private _epic: SidebarViewEpic;
     private _store: SidebarStore;
 
-    constructor(list: Array<BookmarkTreeNode>, channel: Channel) {
+    constructor(list: Array<BookmarkTreeNode>, channel: RemoteActionChannel) {
         this._list = list;
         this._subscription = null;
 

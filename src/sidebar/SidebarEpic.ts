@@ -2,21 +2,21 @@ import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import { Subscription } from 'rxjs';
 
-import { Channel } from '../shared/Channel';
 import { Epic } from '../shared/Epic';
 import { openItem } from '../shared/RemoteCall';
 
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarRepository } from './SidebarRepository';
+import { RemoteActionChannel } from './SidebarMessageChannel';
 
 export class SidebarViewEpic implements Epic {
 
     private _subscription: Nullable<Subscription>;
     private _intent: SidebarIntent;
-    private _channel: Channel;
+    private _channel: RemoteActionChannel;
     private _repository: SidebarRepository;
 
-    constructor(intent: SidebarIntent, repository: SidebarRepository, channel: Channel) {
+    constructor(intent: SidebarIntent, repository: SidebarRepository, channel: RemoteActionChannel) {
         this._subscription = null;
         this._intent = intent;
         this._channel = channel;

@@ -4,9 +4,10 @@ import { Channel } from './Channel';
 import {
     createOpenUrlAction,
     WhereToOpenItem,
+    OpenUrlAction,
 } from './RemoteAction';
 
-export function openItem(chan: Channel, bookmarkId: string, url: string, where: WhereToOpenItem): void {
+export function openItem(chan: Channel<OpenUrlAction>, bookmarkId: string, url: string, where: WhereToOpenItem): void {
     const a = createOpenUrlAction(bookmarkId, url, where);
     chan.postOneShotMessage(a);
 }
