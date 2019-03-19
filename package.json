@@ -32,7 +32,7 @@
     "cpx": "^1.5.0",
     "del-cli": "^1.1.0",
     "eslint": "^5.15.2",
-    "eslint-config-abema": "https://github.com/cats-oss/eslint-config-abema/archive/7ce6b02bb1c787de171c217c7b96a0c63f7c54ef.tar.gz",
+    "eslint-config-abema": "https://github.com/cats-oss/eslint-config-abema/archive/881acc1d6233b362ceed65467da58a947f1945c3.tar.gz",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.5.1",
