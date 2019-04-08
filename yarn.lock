@@ -520,7 +520,7 @@
     "@types/unist" "*"
     "@types/vfile-message" "*"
 
-"@typescript-eslint/eslint-plugin@^1.4.2", "@typescript-eslint/eslint-plugin@^1.6.0":
+"@typescript-eslint/eslint-plugin@^1.6.0":
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-1.6.0.tgz#a5ff3128c692393fb16efa403ec7c8a5593dab0f"
   integrity sha512-U224c29E2lo861TQZs6GSmyC0OYeRNg6bE9UVIiFBxN2MlA0nq2dCrgIVyyRbC05UOcrgf2Wk/CF2gGOPQKUSQ==
@@ -2512,15 +2512,15 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/881acc1d6233b362ceed65467da58a947f1945c3.tar.gz":
+"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/5f66dc35819b16b4db78c1a624e6ef3ff519bac9.tar.gz":
   version "0.0.0"
-  resolved "https://github.com/cats-oss/eslint-config-abema/archive/881acc1d6233b362ceed65467da58a947f1945c3.tar.gz#d29d8518c16f1579ef1961f9c485afead0cb1ea2"
+  resolved "https://github.com/cats-oss/eslint-config-abema/archive/5f66dc35819b16b4db78c1a624e6ef3ff519bac9.tar.gz#57b6184bc07fbd6b5b8ca6409b27b3eb9d718aa5"
   optionalDependencies:
-    "@typescript-eslint/eslint-plugin" "^1.4.2"
+    "@typescript-eslint/eslint-plugin" "^1.6.0"
     eslint-plugin-import "^2.16.0"
     eslint-plugin-node "^8.0.1"
     eslint-plugin-react "^7.12.4"
-    eslint-plugin-react-hooks "^1.5.1"
+    eslint-plugin-react-hooks "^1.6.0"
 
 eslint-import-resolver-node@^0.3.2:
   version "0.3.2"
@@ -2581,7 +2581,7 @@ eslint-plugin-node@^8.0.1:
     resolve "^1.8.1"
     semver "^5.5.0"
 
-eslint-plugin-react-hooks@^1.5.1, eslint-plugin-react-hooks@^1.6.0:
+eslint-plugin-react-hooks@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-1.6.0.tgz#348efcda8fb426399ac7b8609607c7b4025a6f5f"
   integrity sha512-lHBVRIaz5ibnIgNG07JNiAuBUeKhEf8l4etNx5vfAEwqQ5tcuK3jV9yjmopPgQDagQb7HwIuQVsE3IVcGrRnag==
