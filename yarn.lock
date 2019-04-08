@@ -2512,9 +2512,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/c032c9c6561edb6df2e10e64a058fde4d1d9ceae.tar.gz":
+"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/e49d98bffd0df8f8d86d710f6ce7026acebb2790.tar.gz":
   version "0.0.0"
-  resolved "https://github.com/cats-oss/eslint-config-abema/archive/c032c9c6561edb6df2e10e64a058fde4d1d9ceae.tar.gz#fc4ef144e43c136982c0b68e6d198f3a4a1c9e79"
+  resolved "https://github.com/cats-oss/eslint-config-abema/archive/e49d98bffd0df8f8d86d710f6ce7026acebb2790.tar.gz#aa340fb5a8fdbbf0d60732320def1d799cc94f4a"
   optionalDependencies:
     "@typescript-eslint/eslint-plugin" "^1.6.0"
     eslint-plugin-import "^2.16.0"
