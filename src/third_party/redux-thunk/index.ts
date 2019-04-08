@@ -2,16 +2,16 @@
 
 import { Middleware, Dispatch, Action, MiddlewareAPI, AnyAction } from 'redux';
 
-export type ThunkAction<A extends Action, S, E, R> = (dispatch: Dispatch<A>, getState: () => S, extraArgument: E) => R;
+export type ThunkAction<TAction extends Action, TState, TArgument, TResult> = (dispatch: Dispatch<TAction>, getState: () => TState, extraArgument: TArgument) => TResult;
 
-export interface ThunkExt<A extends Action, S> {
-    dispatch: <E, R>(asyncAction: ThunkAction<A, S, E, R>) => R;
+export interface ThunkExt<TAction extends Action, TState> {
+    dispatch: <TArgument, TResult>(asyncAction: ThunkAction<TAction, TState, TArgument, TResult>) => TResult;
 }
 
-export function createThunkMiddleware<TAction extends Action, TState, TArgument, R>(extraArgument: TArgument): Middleware<ThunkAction<TAction, TState, TArgument, R>, TState> {
+export function createThunkMiddleware<TAction extends Action, TState, TArgument, TResult>(extraArgument: TArgument): Middleware<ThunkAction<TAction, TState, TArgument, TResult>, TState> {
     return function createCreateDispatchAction({ dispatch, getState }: MiddlewareAPI<Dispatch<AnyAction>, TState>) {
         return function createDispatchAction(next: Dispatch<TAction>) {
-            return function dispatchAction(action: TAction | ThunkAction<TAction, TState, TArgument, R>): (TAction | R) {
+            return function dispatchAction(action: TAction | ThunkAction<TAction, TState, TArgument, TResult>): (TAction | TResult) {
                 if (typeof action === 'function') {
                     return action(dispatch, getState, extraArgument);
                 }

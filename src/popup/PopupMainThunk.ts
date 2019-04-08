@@ -18,7 +18,7 @@ import {
 import { PopupMainStateTree } from './PopupMainState';
 import { RemoteActionChannel } from './PopupMessageChannel';
 
-type ThunkAction<A extends PopupAction = PopupAction> = ThunkActionArcheType<A, PopupMainStateTree, ThunkArguments, Promise<void>>;
+type ThunkAction<TAction extends PopupAction = PopupAction> = ThunkActionArcheType<TAction, PopupMainStateTree, ThunkArguments, Promise<void>>;
 
 export type ThunkArguments = Readonly<{
     channel: RemoteActionChannel;

@@ -109,8 +109,8 @@ export class Channel<TMessage extends RemoteActionBase> {
         this._subject.destroy();
     }
 
-    postMessage<R>(msg: TMessage): Promise<R> {
-        const task = new Promise<R>((resolve, reject) => {
+    postMessage<TResult>(msg: TMessage): Promise<TResult> {
+        const task = new Promise<TResult>((resolve, reject) => {
             const port = expectNotNull(this._port, 'this._port` is null');
 
             const id = this._callbackId;
