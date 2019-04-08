@@ -87,9 +87,8 @@ module.exports = async function (_commandLineArgs) {
 
             // https://github.com/rollup/rollup-plugin-node-resolve
             nodeResolve({
-                module: true,
-                main: true,
-                jsnext: true,
+                mainFields: ['module', 'main'],
+
                 browser: true, // for browser
                 preferBuiltins: false, // linking for browser
 
