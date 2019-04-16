@@ -58,7 +58,7 @@ export async function createTab(url, where) {
 async function getCurrentTabId() {
     const tabList = await browser.tabs.query({
         active: true,
-        currentWindow: true,
+        lastFocusedWindow: true,
         windowType: 'normal',
     });
     if (tabList.length === 0) {
