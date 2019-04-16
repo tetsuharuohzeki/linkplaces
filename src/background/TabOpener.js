@@ -88,7 +88,7 @@ async function openInCurrent(tabId, url) {
  *  @param {string} url
  *  @return {Promise<number>}
  */
-export async function openInNewWindow(url) {
+async function openInNewWindow(url) {
     const lastFocused = await getLastFocusedWindow();
 
     const window = await browser.windows.create({
