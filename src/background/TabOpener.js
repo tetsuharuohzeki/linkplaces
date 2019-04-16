@@ -15,8 +15,6 @@ import {
     WHERE_TO_OPEN_ITEM_TO_SAVE,
 } from '../shared/RemoteAction';
 
-
-
 /**
  *  @param  {string}  url
  *  @param  {string}  where
@@ -78,7 +76,7 @@ async function getCurrentTabId() {
  *  @param {string} url
  *  @return {Promise<number>}
  */
-export async function openInCurrent(tabId, url) {
+async function openInCurrent(tabId, url) {
     await browser.tabs.update(tabId, {
         url,
     });
