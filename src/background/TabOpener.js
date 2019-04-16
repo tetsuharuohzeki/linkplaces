@@ -24,10 +24,12 @@ import {
  *    `tabs.Tab.id`. integer.
  */
 export async function createTab(url, where) {
+    const lastFocused = await getLastFocusedWindow();
+
     const option = {
         active: false,
         url,
-        windowId: undefined,
+        windowId: lastFocused.id,
     };
 
     switch (where) {
