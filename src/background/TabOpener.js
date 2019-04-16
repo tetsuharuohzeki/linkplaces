@@ -95,8 +95,7 @@ export async function openInNewWindow(url) {
 
     const window = await browser.windows.create({
         url,
-        // XXX: Firefox has not supported yet.
-        // focused: true,
+        focused: true,
         type: 'normal',
         state: 'normal',
         incognito: current.incognito,
