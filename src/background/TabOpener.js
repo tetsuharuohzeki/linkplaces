@@ -24,8 +24,6 @@ import {
  *    `tabs.Tab.id`. integer.
  */
 export async function createTab(url, where) {
-    const currentId = await getCurrentTabId();
-
     const option = {
         active: false,
         url,
@@ -33,8 +31,10 @@ export async function createTab(url, where) {
     };
 
     switch (where) {
-        case WHERE_TO_OPEN_ITEM_TO_CURRENT:
+        case WHERE_TO_OPEN_ITEM_TO_CURRENT: {
+            const currentId = await getCurrentTabId();
             return openInCurrent(currentId, url);
+        }
         case WHERE_TO_OPEN_ITEM_TO_SAVE:
             // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/downloads/download
             throw new NoImplementationError('unimplemented!: where is `save`');
