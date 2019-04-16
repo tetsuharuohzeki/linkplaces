@@ -15,8 +15,6 @@ import {
     WHERE_TO_OPEN_ITEM_TO_SAVE,
 } from '../shared/RemoteAction';
 
-
-
 /**
  *  @param  {string}  url
  *  @param  {string}  where
@@ -24,41 +22,27 @@ import {
  *    `tabs.Tab.id`. integer.
  */
 export async function createTab(url, where) {
-    const currentId = await getCurrentTabId();
-
-    const option = {
-        active: false,
-        url,
-        windowId: undefined,
-    };
-
     switch (where) {
         case WHERE_TO_OPEN_ITEM_TO_CURRENT:
-            return openInCurrent(currentId, url);
+            return openItemInCurrentTab(url);
         case WHERE_TO_OPEN_ITEM_TO_SAVE:
             // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/downloads/download
             throw new NoImplementationError('unimplemented!: where is `save`');
         case WHERE_TO_OPEN_ITEM_TO_WINDOW:
-            return openInNewWindow(url);
+            return openItemInNewWindow(url);
         case WHERE_TO_OPEN_ITEM_TO_TAB:
-            option.active = true;
-            break;
+            return openItemInNewTab(url, true);
         case WHERE_TO_OPEN_ITEM_TO_TABSHIFTED:
-            break;
+            return openItemInNewTab(url, false);
         default:
             throw new RangeError('unexpeced where type');
     }
-
-    const newTab = await browser.tabs.create(option);
-    const id = expectNotNullAndUndefined(newTab.id, 'id should not null');
-
-    return id;
 }
 
 async function getCurrentTabId() {
     const tabList = await browser.tabs.query({
         active: true,
-        currentWindow: true,
+        lastFocusedWindow: true,
         windowType: 'normal',
     });
     if (tabList.length === 0) {
@@ -76,33 +60,56 @@ async function getCurrentTabId() {
  *  @param {string} url
  *  @return {Promise<number>}
  */
-export async function openInCurrent(tabId, url) {
-    await browser.tabs.update(tabId, {
+async function openItemInCurrentTab(url) {
+    const currentTabId = await getCurrentTabId();
+    await browser.tabs.update(currentTabId, {
         url,
     });
 
-    return tabId;
+    return currentTabId;
 }
 
 /**
  *  @param {string} url
  *  @return {Promise<number>}
  */
-export async function openInNewWindow(url) {
-    const current = await browser.windows.getCurrent({
-        windowTypes: ['normal'],
-    });
+async function openItemInNewWindow(url) {
+    const lastFocused = await getLastFocusedWindow();
 
     const window = await browser.windows.create({
         url,
-        // XXX: Firefox has not supported yet.
-        // focused: true,
+        focused: true,
         type: 'normal',
         state: 'normal',
-        incognito: current.incognito,
+        incognito: lastFocused.incognito,
     });
     const tabs = expectNotNullAndUndefined(window.tabs, 'window.tabs should not be null');
     const tab = expectNotUndefined(tabs[0], 'window.tabs[0] would be the current tab');
     const id = expectNotNullAndUndefined(tab.id, 'id should not null');
     return id;
+}
+
+async function openItemInNewTab(url, shouldActive) {
+    const lastFocused = await getLastFocusedWindow();
+
+    const option = {
+        active: shouldActive,
+        url,
+        windowId: lastFocused.id,
+    };
+
+    const newTab = await browser.tabs.create(option);
+    const id = expectNotNullAndUndefined(newTab.id, 'id should not null');
+
+    return id;
+}
+
+/**
+ *  @return {Promise}
+ */
+function getLastFocusedWindow() {
+    const w = browser.windows.getLastFocused({
+        windowTypes: ['normal'],
+    });
+    return w;
 }
