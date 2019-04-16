@@ -22,37 +22,21 @@ import {
  *    `tabs.Tab.id`. integer.
  */
 export async function createTab(url, where) {
-    const lastFocused = await getLastFocusedWindow();
-
-    const option = {
-        active: false,
-        url,
-        windowId: lastFocused.id,
-    };
-
     switch (where) {
-        case WHERE_TO_OPEN_ITEM_TO_CURRENT: {
-            const currentId = await getCurrentTabId();
-            return openInCurrent(currentId, url);
-        }
+        case WHERE_TO_OPEN_ITEM_TO_CURRENT:
+            return openItemInCurrentTab(url);
         case WHERE_TO_OPEN_ITEM_TO_SAVE:
             // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/downloads/download
             throw new NoImplementationError('unimplemented!: where is `save`');
         case WHERE_TO_OPEN_ITEM_TO_WINDOW:
-            return openInNewWindow(url);
+            return openItemInNewWindow(url);
         case WHERE_TO_OPEN_ITEM_TO_TAB:
-            option.active = true;
-            break;
+            return openItemInNewTab(url, true);
         case WHERE_TO_OPEN_ITEM_TO_TABSHIFTED:
-            break;
+            return openItemInNewTab(url, false);
         default:
             throw new RangeError('unexpeced where type');
     }
-
-    const newTab = await browser.tabs.create(option);
-    const id = expectNotNullAndUndefined(newTab.id, 'id should not null');
-
-    return id;
 }
 
 async function getCurrentTabId() {
@@ -76,19 +60,20 @@ async function getCurrentTabId() {
  *  @param {string} url
  *  @return {Promise<number>}
  */
-async function openInCurrent(tabId, url) {
-    await browser.tabs.update(tabId, {
+async function openItemInCurrentTab(url) {
+    const currentTabId = await getCurrentTabId();
+    await browser.tabs.update(currentTabId, {
         url,
     });
 
-    return tabId;
+    return currentTabId;
 }
 
 /**
  *  @param {string} url
  *  @return {Promise<number>}
  */
-async function openInNewWindow(url) {
+async function openItemInNewWindow(url) {
     const lastFocused = await getLastFocusedWindow();
 
     const window = await browser.windows.create({
@@ -101,6 +86,21 @@ async function openInNewWindow(url) {
     const tabs = expectNotNullAndUndefined(window.tabs, 'window.tabs should not be null');
     const tab = expectNotUndefined(tabs[0], 'window.tabs[0] would be the current tab');
     const id = expectNotNullAndUndefined(tab.id, 'id should not null');
+    return id;
+}
+
+async function openItemInNewTab(url, shouldActive) {
+    const lastFocused = await getLastFocusedWindow();
+
+    const option = {
+        active: shouldActive,
+        url,
+        windowId: lastFocused.id,
+    };
+
+    const newTab = await browser.tabs.create(option);
+    const id = expectNotNullAndUndefined(newTab.id, 'id should not null');
+
     return id;
 }
 
