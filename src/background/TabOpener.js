@@ -89,19 +89,27 @@ export async function openInCurrent(tabId, url) {
  *  @return {Promise<number>}
  */
 export async function openInNewWindow(url) {
-    const current = await browser.windows.getCurrent({
-        windowTypes: ['normal'],
-    });
+    const lastFocused = await getLastFocusedWindow();
 
     const window = await browser.windows.create({
         url,
         focused: true,
         type: 'normal',
         state: 'normal',
-        incognito: current.incognito,
+        incognito: lastFocused.incognito,
     });
     const tabs = expectNotNullAndUndefined(window.tabs, 'window.tabs should not be null');
     const tab = expectNotUndefined(tabs[0], 'window.tabs[0] would be the current tab');
     const id = expectNotNullAndUndefined(tab.id, 'id should not null');
     return id;
+}
+
+/**
+ *  @return {Promise}
+ */
+function getLastFocusedWindow() {
+    const w = browser.windows.getLastFocused({
+        windowTypes: ['normal'],
+    });
+    return w;
 }
