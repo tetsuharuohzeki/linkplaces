@@ -141,7 +141,7 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
             >
                 <PanelListItem>
                     <PanelListItemIcon>
-                        <popup-item-icon src={'../shared/image/icon/defaultFavicon.svg'} />
+                        <popup-item-icon src={'../shared/image/icon/globe-16.svg'} />
                     </PanelListItemIcon>
                     <PanelListItemText>
                         {label}

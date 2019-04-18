@@ -1,2 +1,2 @@
 * Copied from http://design.firefox.com/icons/viewer/
-* `defaultFavicon.svg` is copied from https://bugzilla.mozilla.org/show_bug.cgi?id=1395732
+* Original is https://github.com/FirefoxUX/photon-icons/tree/253ba86e825eb314e601fe40fce5245825f1ea34

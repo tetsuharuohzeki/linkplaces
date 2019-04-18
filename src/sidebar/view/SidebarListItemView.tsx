@@ -79,7 +79,7 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
         const label = (bookmarkTitle === '') ?
             url :
             bookmarkTitle;
-        const iconSrc = '../shared/image/icon/defaultFavicon.svg';
+        const iconSrc = '../shared/image/icon/globe-16.svg';
         return (
             <a
                 className={`${CLASS_NAME_PREFIX}__container`}
