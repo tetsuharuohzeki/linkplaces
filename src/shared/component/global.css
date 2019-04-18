@@ -1,7 +1,0 @@
-@import '../vars.css';
-
-html,
-body {
-    color: var(--global-body__text-color, inherit);
-    background-color: var(--global-body__background-color, inherit);
-}

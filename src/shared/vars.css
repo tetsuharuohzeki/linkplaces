@@ -1,9 +1,6 @@
 /* stylelint-disable custom-property-empty-line-before */
 
 :root {
-    --global-body__text-color: #222426;
-    --global-body__background-color: transparent;
-
     --panel-item__hover--bg-color: rgba(0, 0, 0, 0.06);
     --panel-item__hover--border-color: rgba(0, 0, 0, 0.1);
     --panel-item__active--bg-color: rgba(0, 0, 0, 0.1);
