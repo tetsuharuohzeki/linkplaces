@@ -1,8 +1,7 @@
 @charset 'utf-8';
 
-@import '../shared/reset.css';
 @import '../shared/vars.css';
-@import '../shared/component/global.css';
+@import '../shared/reset.css';
 @import '../shared/component/panel.css';
 @import './component/PopupIconElement.css';
 @import './vars.css';
