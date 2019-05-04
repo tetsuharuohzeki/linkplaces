@@ -8,27 +8,31 @@ function replaceImportWithGlobal(map) {
     const table = new Map(Object.entries(map));
     const innerTable = new Map();
 
+    // This implements PluginHooks
     return {
         name: 'replace_import_with_global',
 
-        resolveId(importee) {
-            const src = table.get(importee);
+        async resolveId(source, _importer) {
+            const src = table.get(source);
             if (UndefinableMod.isUndefined(src)) {
                 return null;
             }
 
-            const key = PLACEHOLDER_PREFIX + importee;
+            const key = PLACEHOLDER_PREFIX + source;
             innerTable.set(key, src);
             return key;
         },
 
-        load(id) {
+        async load(id) {
             const src = innerTable.get(id);
             if (UndefinableMod.isUndefined(src)) {
                 return null;
             }
 
-            return src;
+            return {
+                code: src,
+                map: undefined,
+            };
         },
     };
 }
