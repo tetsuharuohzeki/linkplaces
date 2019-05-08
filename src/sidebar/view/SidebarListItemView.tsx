@@ -81,7 +81,7 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
         const label = (bookmarkTitle === '') ?
             url :
             bookmarkTitle;
-        const iconSrc = '../shared/image/icon/light/globe-16.svg';
+        const iconSrc = '../shared/image/icon/context-fill/globe-16.svg';
         return (
             <a
                 className={`${CLASS_NAME_PREFIX}__container`}
@@ -97,7 +97,7 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
         );
     }
 
-    const iconSrc = '../shared/image/icon/light/folder-16.svg';
+    const iconSrc = '../shared/image/icon/context-fill/folder-16.svg';
     return (
         <span
             className={`${CLASS_NAME_PREFIX}__container`}
