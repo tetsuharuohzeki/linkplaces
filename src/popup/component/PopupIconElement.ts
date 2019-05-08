@@ -8,21 +8,40 @@ import {
     createTextNode as text,
 } from '../../shared/domfactory';
 
-export const ATTR_NAME_SRC = 'src';
+export const ATTR_NAME_ICON_DIR = 'icondir';
+export const ATTR_NAME_ICON_FILE = 'iconfile';
+
+function pathGeneratorGen(colorScheme: string): (baseDir: string, filename: string) => string {
+    return (baseDir, filename) => {
+        return `${baseDir}${colorScheme}/${filename}`;
+    };
+}
+
+const createURIForLight = pathGeneratorGen('light');
+const createURIForDark = pathGeneratorGen('dark');
+const createURIForCtxFill = pathGeneratorGen('context-fill');
 
 export class PopupItemIconElement extends HTMLElement {
 
     static get observedAttributes(): Iterable<string> {
-        return [ATTR_NAME_SRC];
+        return [ATTR_NAME_ICON_DIR, ATTR_NAME_ICON_FILE];
     }
 
     private _connectedOnce: boolean;
+    private _sourceForDark: DomRef<HTMLSourceElement>;
+    private _sourceForLight: DomRef<HTMLSourceElement>;
     private _img: DomRef<HTMLImageElement>;
+    private _iconDir: string;
+    private _iconFile: string;
 
     constructor() {
         super();
         this._connectedOnce = false;
+        this._sourceForDark = createDomRef();
+        this._sourceForLight = createDomRef();
         this._img = createDomRef();
+        this._iconDir = '';
+        this._iconFile = '';
     }
 
     connectedCallback(): void {
@@ -36,7 +55,10 @@ export class PopupItemIconElement extends HTMLElement {
             mode: 'open',
         });
 
-        const src = unwrapOrFromNullable(this.getAttribute(ATTR_NAME_SRC), '');
+        const iconDir = unwrapOrFromNullable(this.getAttribute(ATTR_NAME_ICON_DIR), '');
+        const iconFile = unwrapOrFromNullable(this.getAttribute(ATTR_NAME_ICON_FILE), '');
+        this._iconDir = iconDir;
+        this._iconFile = iconFile;
 
         const tree = fragment([
             dom('style', null, [
@@ -53,8 +75,16 @@ export class PopupItemIconElement extends HTMLElement {
                 ['class', `com-popup-PopupIconElement__icon`],
             ]),
                 [
+                    dom('source', new Map([
+                        ['srcset', createURIForDark(iconDir, iconFile)],
+                        ['media', '(prefers-color-scheme: dark)'],
+                    ]), [], this._sourceForDark),
+                    dom('source', new Map([
+                        ['srcset', createURIForLight(iconDir, iconFile)],
+                        ['media', '(prefers-color-scheme: light)'],
+                    ]), [], this._sourceForLight),
                     dom('img', new Map([
-                        ['src', src],
+                        ['src', createURIForCtxFill(iconDir, iconFile)],
                         ['alt', ''],
                     ]),
                         [],
@@ -68,20 +98,53 @@ export class PopupItemIconElement extends HTMLElement {
 
     disconnectedCallback(): void {
         this._img.release();
+        this._sourceForLight.release();
+        this._sourceForDark.release();
     }
 
     attributeChangedCallback(attributeName: string, oldValue: string, newValue: string, _namespace: string): void {
-        if (attributeName !== ATTR_NAME_SRC) {
-            throw new RangeError(`${attributeName} has not been defined in this.observedAttributes()`);
-        }
-
         if (oldValue === newValue) {
             return;
+        }
+
+        switch (attributeName) {
+            case ATTR_NAME_ICON_DIR: {
+                this._iconDir = newValue;
+                this._updateSrc();
+                break;
+            }
+            case ATTR_NAME_ICON_FILE: {
+                this._iconFile = newValue;
+                this._updateSrc();
+                break;
+            }
+            default:
+                throw new RangeError(`${attributeName} has not been defined in this.observedAttributes()`);
         }
 
         const img = this._img.current;
         if (img !== null) {
             img.setAttribute('src', newValue);
+        }
+    }
+
+    private _updateSrc(): void {
+        const iconDir = this._iconDir;
+        const iconFile = this._iconFile;
+
+        const sourceForDark = this._sourceForDark.current;
+        if (sourceForDark !== null) {
+            sourceForDark.setAttribute('srcset', createURIForDark(iconDir, iconFile));
+        }
+
+        const sourceForLight = this._sourceForLight.current;
+        if (sourceForLight !== null) {
+            sourceForLight.setAttribute('srcset', createURIForLight(iconDir, iconFile));
+        }
+
+        const img = this._img.current;
+        if (img !== null) {
+            img.setAttribute('src', createURIForCtxFill(iconDir, iconFile));
         }
     }
 
@@ -92,7 +155,8 @@ export class PopupItemIconElement extends HTMLElement {
 
 export const LOCAL_NAME_POPUP_ITEM_ICON = 'popup-item-icon';
 interface PopupItemIconElementAttr {
-    [ATTR_NAME_SRC]: string;
+    [ATTR_NAME_ICON_DIR]: string;
+    [ATTR_NAME_ICON_FILE]: string;
 }
 
 declare global {
