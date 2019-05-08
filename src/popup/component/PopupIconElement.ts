@@ -49,14 +49,18 @@ export class PopupItemIconElement extends HTMLElement {
                 `),
             ]),
 
-            dom('img', new Map([
+            dom('picture', new Map([
                 ['class', `com-popup-PopupIconElement__icon`],
-                ['src', src],
-                ['alt', ''],
             ]),
-                [],
-                this._img
-            ),
+                [
+                    dom('img', new Map([
+                        ['src', src],
+                        ['alt', ''],
+                    ]),
+                        [],
+                        this._img
+                    ),
+                ]),
         ]);
 
         shadowRoot.appendChild(tree);
@@ -76,11 +80,9 @@ export class PopupItemIconElement extends HTMLElement {
         }
 
         const img = this._img.current;
-        if (img === null) {
-            return;
+        if (img !== null) {
+            img.setAttribute('src', newValue);
         }
-
-        img.setAttribute('src', newValue);
     }
 
     adoptedCallback(_oldDocument: Document, _newDocument: Document): void {
