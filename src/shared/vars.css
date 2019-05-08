@@ -1,3 +1,5 @@
+/* stylelint-disable custom-property-empty-line-before */
+
 :root {
     --panel-item__hover--bg-color: rgba(0, 0, 0, 0.06);
     --panel-item__hover--border-color: rgba(0, 0, 0, 0.1);
@@ -5,4 +7,16 @@
     --panel-item__disabled--color: #999;
     --panel-item__text-shortcut--color: #808080;
     --panel-item__text-shortcut--font-family: 'Lucida Grande', caption;
+}
+
+/* stylelint-disable-next-line media-feature-name-no-unknown */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --global-body__background-color: #38383d;
+        --global-body__text-color: #f9f9fa;
+
+        --panel-item__hover--bg-color: rgba(249, 249, 250, 0.15);
+        --panel-item__hover--border-color: rgba(249, 249, 250, 0.15);
+        --panel-item__active--bg-color: rgba(249, 249, 250, 0.2);
+    }
 }

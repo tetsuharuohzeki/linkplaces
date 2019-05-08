@@ -1,9 +1,9 @@
 /* Based on https://hg.mozilla.org/mozilla-central/file/e57c44d5ec97/browser/components/extensions/extension.css */
 html,
 body {
-    background: transparent;
+    background: var(--global-body__background-color, transparent);
     box-sizing: border-box;
-    color: #222426;
+    color: var(--global-body__text-color, #222426);
     cursor: default;
     display: flex;
     flex-direction: column;
