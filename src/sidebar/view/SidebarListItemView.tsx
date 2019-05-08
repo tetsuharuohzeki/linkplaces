@@ -17,23 +17,35 @@ const CLASS_NAME_PREFIX = 'sidebar-com-SidebarListItemView';
 
 interface ListBaseItemProps {
     isOpening: boolean;
-    iconSrc: string;
+    iconDir: string;
+    iconFile: string;
     label: string;
 }
 
 function ListBaseItem(props: ListBaseItemProps): JSX.Element {
     const {
         isOpening,
-        iconSrc,
+        iconDir,
+        iconFile,
         label,
     } = props;
+
+    if (!iconDir.endsWith('/')) {
+        throw new URIError(`iconDir: \`${iconDir}\` should be ended with /`);
+    }
+
+    if (iconFile.startsWith('/')) {
+        throw new URIError(`iconFile: \`${iconFile}\` should not be started with /`);
+    }
 
     return (
         <React.StrictMode>
             <PanelListItem disabled={isOpening}>
                 <PanelListItemIcon>
                     <picture className={`${CLASS_NAME_PREFIX}__icon_img`}>
-                        <img alt={''} src={iconSrc} />
+                        <source srcSet={`${iconDir}dark/${iconFile}`} media={'(prefers-color-scheme: dark)'}/>
+                        <source srcSet={`${iconDir}light/${iconFile}`} media={'(prefers-color-scheme: light)'}/>
+                        <img alt={''} src={`${iconDir}context-fill/${iconFile}`} />
                     </picture>
                 </PanelListItemIcon>
                 <PanelListItemText>
@@ -43,6 +55,8 @@ function ListBaseItem(props: ListBaseItemProps): JSX.Element {
         </React.StrictMode>
     );
 }
+
+const ICON_DIR = '../shared/image/icon/';
 
 interface ListItemProps {
     item: SidebarItemViewModelEntity;
@@ -81,7 +95,6 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
         const label = (bookmarkTitle === '') ?
             url :
             bookmarkTitle;
-        const iconSrc = '../shared/image/icon/context-fill/globe-16.svg';
         return (
             <a
                 className={`${CLASS_NAME_PREFIX}__container`}
@@ -90,21 +103,22 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
                 title={title}>
                 <ListBaseItem
                     isOpening={isOpening}
-                    iconSrc={iconSrc}
+                    iconDir={ICON_DIR}
+                    iconFile={'globe-16.svg'}
                     label={label}
                 />
             </a>
         );
     }
 
-    const iconSrc = '../shared/image/icon/context-fill/folder-16.svg';
     return (
         <span
             className={`${CLASS_NAME_PREFIX}__container`}
             title={bookmarkTitle}>
             <ListBaseItem
                 isOpening={isOpening}
-                iconSrc={iconSrc}
+                iconDir={ICON_DIR}
+                iconFile={'folder-16.svg'}
                 label={bookmarkTitle}
             />
         </span>
