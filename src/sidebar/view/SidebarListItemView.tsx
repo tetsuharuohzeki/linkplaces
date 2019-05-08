@@ -56,7 +56,7 @@ function ListBaseItem(props: ListBaseItemProps): JSX.Element {
     );
 }
 
-const ICON_DIR = '../shared/image/icon/';
+const ICON_DIR = '../resources/icon/';
 
 interface ListItemProps {
     item: SidebarItemViewModelEntity;

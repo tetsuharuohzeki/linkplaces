@@ -14,7 +14,7 @@ import { PopupMainState } from './PopupMainState';
 import { openItem, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';
 import { PopupMainStore } from './PopupMainStore';
 
-const ICON_DIR = '../shared/image/icon/';
+const ICON_DIR = '../resources/icon/';
 
 export interface PopupMainViewProps {
     state: PopupMainState;
