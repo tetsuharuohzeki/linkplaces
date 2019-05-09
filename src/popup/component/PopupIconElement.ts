@@ -121,11 +121,6 @@ export class PopupItemIconElement extends HTMLElement {
             default:
                 throw new RangeError(`${attributeName} has not been defined in this.observedAttributes()`);
         }
-
-        const img = this._img.current;
-        if (img !== null) {
-            img.setAttribute('src', newValue);
-        }
     }
 
     private _updateSrc(): void {
