@@ -6,6 +6,17 @@ const UndefinableMod = require('option-t/cjs/Undefinable');
 
 const PLACEHOLDER_PREFIX = '\0placeholder_module:';
 
+class ModuleSource {
+    constructor(srcText, hasModuleSideEffects) {
+        assert.ok(typeof srcText, 'string');
+        assert.ok(typeof hasModuleSideEffects, 'boolean');
+
+        this.srcText = srcText;
+        this.hasModuleSideEffects = hasModuleSideEffects;
+        Object.freeze(this);
+    }
+}
+
 function replaceImportWithGlobal(map) {
     const table = new Map(Object.entries(map));
     const innerTable = new Map();
@@ -15,19 +26,20 @@ function replaceImportWithGlobal(map) {
         name: 'replace_import_with_global',
 
         async resolveId(source, _importer) {
-            const src = table.get(source);
-            if (UndefinableMod.isUndefined(src)) {
+            const mod = table.get(source);
+            if (UndefinableMod.isUndefined(mod)) {
                 return null;
             }
 
-            assert.strictEqual(typeof src, 'string');
+            assert.ok(mod instanceof ModuleSource);
+            const { srcText, hasModuleSideEffects } = mod;
 
             const key = PLACEHOLDER_PREFIX + source;
-            innerTable.set(key, src);
+            innerTable.set(key, srcText);
             return {
                 id: key,
                 external: false,
-                moduleSideEffects: true,
+                moduleSideEffects: hasModuleSideEffects,
             };
         },
 
@@ -66,7 +78,8 @@ function createModule(list) {
     assert.ok(Array.isArray(list));
 
     const text = list.join('\n');
-    return text;
+    const mod = new ModuleSource(text, true);
+    return mod;
 }
 
 module.exports = Object.freeze({
