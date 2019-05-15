@@ -62,8 +62,12 @@ module.exports = async function (_commandLineArgs) {
 
         plugins: [
             replaceImportWithGlobal({
-                'react': createDefaultExport('window.React'),
-                'react-dom': createDefaultExport('window.ReactDOM'),
+                'react': createModule([
+                    createDefaultExport('window.React'),
+                ]),
+                'react-dom': createModule([
+                    createDefaultExport('window.ReactDOM'),
+                ]),
                 // 'redux-thunk': createDefaultExport('window.ReduxThunk.default'),
 
                 // I know these are pretty messy approach.
