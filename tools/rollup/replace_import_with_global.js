@@ -20,7 +20,11 @@ function replaceImportWithGlobal(map) {
 
             const key = PLACEHOLDER_PREFIX + source;
             innerTable.set(key, src);
-            return key;
+            return {
+                id: key,
+                external: false,
+                moduleSideEffects: true,
+            };
         },
 
         async load(id) {
