@@ -1,5 +1,7 @@
 'use strict';
 
+const assert = require('assert');
+
 const UndefinableMod = require('option-t/cjs/Undefinable');
 
 const PLACEHOLDER_PREFIX = '\0placeholder_module:';
@@ -18,6 +20,8 @@ function replaceImportWithGlobal(map) {
                 return null;
             }
 
+            assert.strictEqual(typeof src, 'string');
+
             const key = PLACEHOLDER_PREFIX + source;
             innerTable.set(key, src);
             return {
@@ -33,6 +37,8 @@ function replaceImportWithGlobal(map) {
                 return null;
             }
 
+            assert.strictEqual(typeof src, 'string');
+
             return {
                 code: src,
                 map: undefined,
@@ -42,15 +48,25 @@ function replaceImportWithGlobal(map) {
 }
 
 function createDefaultExport(name) {
-    return `export default ${name};`;
+    assert.strictEqual(typeof name, 'string');
+
+    const text = `export default ${name};`;
+    return text;
 }
 
 function createNamedExport(name, namespace) {
-    return `export var ${name} = ${namespace}.${name};`;
+    assert.strictEqual(typeof name, 'string');
+    assert.strictEqual(typeof namespace, 'string');
+
+    const text = `export var ${name} = ${namespace}.${name};`;
+    return text;
 }
 
 function createModule(list) {
-    return list.join('\n');
+    assert.ok(Array.isArray(list));
+
+    const text = list.join('\n');
+    return text;
 }
 
 module.exports = Object.freeze({
