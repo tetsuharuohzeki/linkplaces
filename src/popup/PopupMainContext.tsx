@@ -1,8 +1,8 @@
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { applyMiddleware, createStore, Unsubscribe, StoreEnhancer } from 'redux';
-import { createThunkMiddleware, ThunkExt } from '../third_party/redux-thunk';
+import { applyMiddleware, createStore, Unsubscribe } from 'redux';
+import { createThunkMiddleware } from '../third_party/redux-thunk';
 
 import { ViewContext } from '../shared/ViewContext';
 
@@ -12,8 +12,8 @@ import { PopupMainView } from './PopupMainView';
 
 import { createItemChangedAction, PopupAction } from './PopupAction';
 import { createReducer, PopupMainStateTree, createInitialPopupMainStateTree } from './PopupMainState';
-import { ThunkArguments } from './PopupMainThunk';
-import { PopupMainStore, PopupMainThunkExt } from './PopupMainStore';
+import { PopupThunkArguments, PopupThunkDispatch } from './PopupMainThunk';
+import { PopupMainStore } from './PopupMainStore';
 import { RemoteActionChannel } from './PopupMessageChannel';
 
 export class PopupMainContext implements ViewContext {
@@ -34,13 +34,15 @@ export class PopupMainContext implements ViewContext {
         }
 
         const reducer = createReducer();
-        const args: ThunkArguments = {
+        const args: PopupThunkArguments = {
             channel: this._channel,
         };
-        const middleware = createThunkMiddleware<PopupAction, PopupMainStateTree, ThunkArguments, Promise<void>>(args);
-        const enhancer: StoreEnhancer<ThunkExt<PopupAction, PopupMainStateTree>> = applyMiddleware(middleware);
+        const middleware = createThunkMiddleware<PopupAction, PopupMainStateTree, PopupThunkArguments, Promise<void>>(args);
+        const enhancer = applyMiddleware<PopupThunkDispatch, PopupMainStateTree>(middleware);
         const initial = createInitialPopupMainStateTree(this._list);
-        const store: PopupMainStore = createStore<PopupMainStateTree, PopupAction, PopupMainThunkExt, PopupMainStateTree>(reducer, initial, enhancer);
+        const store: PopupMainStore = createStore<PopupMainStateTree, PopupAction, {
+            dispatch: PopupThunkDispatch;
+        }, PopupMainStateTree>(reducer, initial, enhancer);
 
         const render = () => {
             window.requestAnimationFrame(() => {
