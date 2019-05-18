@@ -6,6 +6,8 @@
 import { expectNotNullAndUndefined } from 'option-t/esm/Maybe/expect';
 import { expectNotUndefined } from 'option-t/esm/Undefinable/expect';
 
+import { TabId } from '../../typings/webext/tabs';
+
 import { NoImplementationError } from '../shared/NoImplementationError';
 import {
     WHERE_TO_OPEN_ITEM_TO_TAB,
@@ -13,15 +15,10 @@ import {
     WHERE_TO_OPEN_ITEM_TO_WINDOW,
     WHERE_TO_OPEN_ITEM_TO_CURRENT,
     WHERE_TO_OPEN_ITEM_TO_SAVE,
+    WhereToOpenItem,
 } from '../shared/RemoteAction';
 
-/**
- *  @param  {string}  url
- *  @param  {string}  where
- *  @returns  {Promise<number>}
- *    `tabs.Tab.id`. integer.
- */
-export async function createTab(url, where) {
+export async function createTab(url: string, where: WhereToOpenItem): Promise<TabId> {
     switch (where) {
         case WHERE_TO_OPEN_ITEM_TO_CURRENT:
             return openItemInCurrentTab(url);
@@ -39,7 +36,7 @@ export async function createTab(url, where) {
     }
 }
 
-async function getCurrentTabId() {
+async function getCurrentTabId(): Promise<TabId> {
     const tabList = await browser.tabs.query({
         active: true,
         lastFocusedWindow: true,
@@ -55,12 +52,7 @@ async function getCurrentTabId() {
     return currentId;
 }
 
-/**
- *  @param {number} tabId
- *  @param {string} url
- *  @return {Promise<number>}
- */
-async function openItemInCurrentTab(url) {
+async function openItemInCurrentTab(url: string): Promise<TabId> {
     const currentTabId = await getCurrentTabId();
     await browser.tabs.update(currentTabId, {
         url,
@@ -69,11 +61,7 @@ async function openItemInCurrentTab(url) {
     return currentTabId;
 }
 
-/**
- *  @param {string} url
- *  @return {Promise<number>}
- */
-async function openItemInNewWindow(url) {
+async function openItemInNewWindow(url: string): Promise<TabId> {
     const lastFocused = await getLastFocusedWindow();
 
     const window = await browser.windows.create({
@@ -89,7 +77,7 @@ async function openItemInNewWindow(url) {
     return id;
 }
 
-async function openItemInNewTab(url, shouldActive) {
+async function openItemInNewTab(url: string, shouldActive: boolean): Promise<TabId> {
     const lastFocused = await getLastFocusedWindow();
 
     const option = {

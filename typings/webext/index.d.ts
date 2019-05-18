@@ -6,6 +6,7 @@ import { WebExtPageActionService } from './pageAction';
 import { WebExtRuntimeService } from './runtime';
 import { WebExtSidebarActionService } from './sidebarAction';
 import { WebExtTabsService } from './tabs';
+import { WebExtWindowsService } from './windows';
 
 declare global {
     // eslint-disable-next-line init-declarations
@@ -23,4 +24,5 @@ export interface WebExtGlobal {
     runtime: WebExtRuntimeService;
     sidebarAction: WebExtSidebarActionService;
     tabs: WebExtTabsService;
+    windows: WebExtWindowsService;
 }
