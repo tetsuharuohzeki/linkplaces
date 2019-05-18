@@ -2,11 +2,13 @@
 
 import { RunAt } from './extensionTypes';
 
+export type TabId = number;
+
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/Tab
 export interface Tab {
     title?: string;
     url?: string;
-    id?: number;
+    id?: TabId;
 }
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/WindowType
