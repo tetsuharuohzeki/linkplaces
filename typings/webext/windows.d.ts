@@ -30,6 +30,7 @@ export interface WebExtWindowsService {
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/getLastFocused
     getLastFocused(getinfo: {
         populate?: boolean;
+        /** @deprecated */
         windowTypes?: Array<WindowType>;
     }): Promise<Window>;
 

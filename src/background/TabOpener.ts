@@ -97,7 +97,6 @@ async function openItemInNewTab(url: string, shouldActive: boolean): Promise<Tab
  */
 function getLastFocusedWindow() {
     const w = browser.windows.getLastFocused({
-        windowTypes: ['normal'],
     });
     return w;
 }
