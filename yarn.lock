@@ -5530,10 +5530,10 @@ opn@5.3.0:
   dependencies:
     is-wsl "^1.1.0"
 
-option-t@^20.0.1:
-  version "20.0.1"
-  resolved "https://registry.yarnpkg.com/option-t/-/option-t-20.0.1.tgz#2ec5df2e300718206bfcbbed8503169845a4f19f"
-  integrity sha512-slO7I6uWCYFxbPeIIWOUQFhrZAQ3Bw14fimAhiN+dd9TMxf4EOtyffHNcH+ctmv2TuCi20YAozFZ1VXXKVX8KQ==
+option-t@^20.0.2:
+  version "20.0.2"
+  resolved "https://registry.yarnpkg.com/option-t/-/option-t-20.0.2.tgz#74b31c70258f911f0b1cac7565c51de6654bf7f7"
+  integrity sha512-PHpL7VBstJzP3PC/njdv0vtyVSwaj7ZEMlqV67XkWRsz28lrvL7ttDwJbxkIBjQjIM05LsIp+B8MZAh+jRz3DQ==
 
 optionator@^0.8.1, optionator@^0.8.2:
   version "0.8.2"
