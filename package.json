@@ -33,7 +33,7 @@
     "del-cli": "^1.1.0",
     "eslint": "^5.16.0",
     "eslint-config-abema": "https://github.com/cats-oss/eslint-config-abema/archive/b7d54b8100028dcb39b809ea9fbdc34a2ce5a2cd.tar.gz",
-    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-hooks": "^1.6.0",
     "jsdom": "^15.1.0",
