@@ -54,7 +54,7 @@
     "rxjs": "^6.5.2",
     "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.3.0",
-    "typescript": "^3.5.1",
+    "typescript": "^3.5.2",
     "web-ext": "^3.0.0"
   },
   "ava": {
