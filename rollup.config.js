@@ -38,6 +38,8 @@ const RXJS_OPERATOR_NAMESPCACE_OBJ_NAME = `${RXJS_NAMESPCACE_OBJ_NAME}.operators
 module.exports = async function (_commandLineArgs) {
 
     return {
+        strictDeprecations: true,
+
         treeshake: true,
 
         output: {
