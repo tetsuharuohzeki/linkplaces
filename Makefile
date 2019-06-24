@@ -86,7 +86,9 @@ __obj_ts: clean_obj
 # Test
 test: lint ava
 
-lint: eslint_js eslint_ts stylelint tscheck
+lint: eslint stylelint tscheck
+
+eslint: eslint_js eslint_ts
 
 eslint_js:
 	$(NPM_BIN)/eslint --ext=js,jsx,mjs $(CURDIR)
