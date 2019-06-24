@@ -26,7 +26,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
 
     const onClickOpenWebExtSidebar = (_event: React.MouseEvent<HTMLDivElement>) => {
         const a = openWebExtSidebar();
-        store.dispatch(a);
+        store.dispatch(a).catch(console.error);
     };
 
     const items = state.list.map((item, i) => {
@@ -90,7 +90,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
         event.preventDefault();
 
         const a = openLibraryWindow(id);
-        store.dispatch(a);
+        store.dispatch(a).catch(console.error);
     };
 
     // http://design.firefox.com/StyleGuide/#/navigation
@@ -123,7 +123,7 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
         event.preventDefault();
 
         const a = openItem(id, url);
-        store.dispatch(a);
+        store.dispatch(a).catch(console.error);
     };
 
     const title = item.title;
