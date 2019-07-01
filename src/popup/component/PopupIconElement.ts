@@ -71,22 +71,22 @@ export class PopupItemIconElement extends HTMLElement {
                 `),
             ]),
 
-            dom('picture', new Map([
+            dom('picture', [
                 ['class', `com-popup-PopupIconElement__icon`],
-            ]),
+            ],
                 [
-                    dom('source', new Map([
+                    dom('source', [
                         ['srcset', createURIForDark(iconDir, iconFile)],
                         ['media', '(prefers-color-scheme: dark)'],
-                    ]), [], this._sourceForDark),
-                    dom('source', new Map([
+                    ], [], this._sourceForDark),
+                    dom('source', [
                         ['srcset', createURIForLight(iconDir, iconFile)],
                         ['media', '(prefers-color-scheme: light)'],
-                    ]), [], this._sourceForLight),
-                    dom('img', new Map([
+                    ], [], this._sourceForLight),
+                    dom('img', [
                         ['src', createURIForCtxFill(iconDir, iconFile)],
                         ['alt', ''],
-                    ]),
+                    ],
                         [],
                         this._img
                     ),
