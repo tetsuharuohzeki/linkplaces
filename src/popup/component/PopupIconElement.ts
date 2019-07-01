@@ -27,7 +27,6 @@ export class PopupItemIconElement extends HTMLElement {
         return [ATTR_NAME_ICON_DIR, ATTR_NAME_ICON_FILE];
     }
 
-    private _connectedOnce: boolean;
     private _sourceForDark: DomRef<HTMLSourceElement>;
     private _sourceForLight: DomRef<HTMLSourceElement>;
     private _img: DomRef<HTMLImageElement>;
@@ -36,21 +35,17 @@ export class PopupItemIconElement extends HTMLElement {
 
     constructor() {
         super();
-        this._connectedOnce = false;
+
         this._sourceForDark = createDomRef();
         this._sourceForLight = createDomRef();
         this._img = createDomRef();
         this._iconDir = '';
         this._iconFile = '';
+
+        this._init();
     }
 
-    connectedCallback(): void {
-        if (this._connectedOnce) {
-            return;
-        }
-
-        this._connectedOnce = true;
-
+    private _init(): void {
         const shadowRoot = this.attachShadow({
             mode: 'open',
         });
@@ -96,10 +91,13 @@ export class PopupItemIconElement extends HTMLElement {
         shadowRoot.appendChild(tree);
     }
 
+    connectedCallback(): void {
+    }
+
     disconnectedCallback(): void {
-        this._img.release();
-        this._sourceForLight.release();
-        this._sourceForDark.release();
+        // We don't have to destroy operations at here.
+        // Because modern web engines which is like implementing Web Components
+        // can collects a garbage reference over the binding correctly.
     }
 
     attributeChangedCallback(attributeName: string, oldValue: string, newValue: string, _namespace: string): void {
@@ -119,7 +117,7 @@ export class PopupItemIconElement extends HTMLElement {
                 break;
             }
             default:
-                throw new RangeError(`${attributeName} has not been defined in this.observedAttributes()`);
+                throw new RangeError(`Handling ${attributeName} has not been defined.`);
         }
     }
 
