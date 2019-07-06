@@ -138,7 +138,6 @@ module.exports = async function (_commandLineArgs) {
                 ],
                 plugins: [
                     '@babel/plugin-syntax-dynamic-import',
-                    '@babel/plugin-syntax-async-generators',
                 ],
             }),
         ],
