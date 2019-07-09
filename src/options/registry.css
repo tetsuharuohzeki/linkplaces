@@ -5,8 +5,4 @@
 
 :root {
     --global-body__background-color: #202023;
-    --global-content__link-color: #45a1ff;
-    --global-content__link-color--hover: #0a84ff;
-    --global-content__link-color--active: #0060df;
-    --global-content__link-color--visited: #0a8dff;
 }
