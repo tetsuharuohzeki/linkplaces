@@ -13,7 +13,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --global-body__background-color: #38383d;
-        --global-body__text-color: #f9f9fa;
+        --global-body__text-color: rgb(249, 249, 250);
 
         --panel-item__hover--bg-color: rgba(249, 249, 250, 0.15);
         --panel-item__hover--border-color: rgba(249, 249, 250, 0.15);
