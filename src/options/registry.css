@@ -3,6 +3,8 @@
 @import '../shared/vars.css';
 @import '../shared/reset.css';
 
-:root {
-    --global-body__background-color: #202023;
+@media (prefers-color-scheme: dark) {
+    :root {
+        --global-body__background-color: #202023;
+    }
 }
