@@ -5,3 +5,15 @@
     text-decoration: unset;
     cursor: default;
 }
+
+.popup-c-PopupMainView-ItemListItem__container:hover {
+    color: unset;
+}
+
+.popup-c-PopupMainView-ItemListItem__container:active {
+    color: unset;
+}
+
+.popup-c-PopupMainView-ItemListItem__container:visited {
+    color: unset;
+}
