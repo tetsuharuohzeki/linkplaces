@@ -8771,10 +8771,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.6.0-beta:
-  version "3.6.0-dev.20190719"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.0-dev.20190719.tgz#ac7e0a76fd8231c026149dc90f9f4099d726db9a"
-  integrity sha512-U4srdT3/+kCcArle7b52RFk8oAHIZQjKhffdFx4FilGqqz2ty9X9eUxhe/4kqW1zY5uUhDo81I1LAHSHmDQG8A==
+typescript@^3.6.0-dev.20190723:
+  version "3.6.0-dev.20190723"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.0-dev.20190723.tgz#eef6f788a5a136b896c8da2b46647313d43cd257"
+  integrity sha512-/WKAxICH9EQkkcG5cf3x0sdFGjgwJao6sTrvHE4dzwOhTSjM63Pwy/Vn+he2Lhd+0upYvVK4Ksjib3NUy+Xu8g==
 
 uid2@0.0.3:
   version "0.0.3"
