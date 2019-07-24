@@ -8772,9 +8772,9 @@ typedarray@^0.0.6:
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
 typescript@^3.6.0-beta:
-  version "3.6.0-dev.20190719"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.0-dev.20190719.tgz#ac7e0a76fd8231c026149dc90f9f4099d726db9a"
-  integrity sha512-U4srdT3/+kCcArle7b52RFk8oAHIZQjKhffdFx4FilGqqz2ty9X9eUxhe/4kqW1zY5uUhDo81I1LAHSHmDQG8A==
+  version "3.6.0-beta"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.0-beta.tgz#c4e07e7c072cbd3c15d048364fe9c8badb72db3b"
+  integrity sha512-EQFSWWHyth+PS6xj4x5wdl8bEHl/Lm1kJ98KnmZXiyXZGmESa6/4s0ohCNhu7eEkAOHNFlZziu/lT6wzkKnTFw==
 
 uid2@0.0.3:
   version "0.0.3"
