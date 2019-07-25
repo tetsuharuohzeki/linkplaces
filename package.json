@@ -26,7 +26,7 @@
     "@reactivex/ix-esnext-esm": "^2.5.3",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.5",
-    "@typescript-eslint/eslint-plugin": "^1.12.0",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
     "ava": "^2.2.0",
     "cpx": "^1.5.0",
