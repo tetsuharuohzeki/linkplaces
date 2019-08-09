@@ -8785,10 +8785,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.6.0-beta:
-  version "3.6.0-beta"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.0-beta.tgz#c4e07e7c072cbd3c15d048364fe9c8badb72db3b"
-  integrity sha512-EQFSWWHyth+PS6xj4x5wdl8bEHl/Lm1kJ98KnmZXiyXZGmESa6/4s0ohCNhu7eEkAOHNFlZziu/lT6wzkKnTFw==
+typescript@^3.6.0-dev.20190808:
+  version "3.6.0-dev.20190808"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.0-dev.20190808.tgz#ff398d801525261ae183f37775dfa8c1d9753897"
+  integrity sha512-br4CI7h5ye2AIq/Wiml/U68Zku4JPLq7Xha++fT7b49e0XmEFUi+1SSuAZeYlLv6gSQgjYXdb38aE9ixTCnuhg==
 
 uid2@0.0.3:
   version "0.0.3"
