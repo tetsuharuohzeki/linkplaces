@@ -87,7 +87,7 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
         const onClick: React.MouseEventHandler<HTMLAnchorElement> = (evt) => {
             evt.preventDefault();
 
-            const where = whereToOpenItem(evt);
+            const where = clacWhereToOpenItem(evt);
             const a = notifyOpenItem(id, url, where);
             intent.dispatch(a);
         };
@@ -125,7 +125,7 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
     );
 }
 
-function whereToOpenItem(syntheticEvent: React.MouseEvent<HTMLAnchorElement>): WhereToOpenItem {
+function clacWhereToOpenItem(syntheticEvent: React.MouseEvent<HTMLAnchorElement>): WhereToOpenItem {
     if (syntheticEvent.shiftKey) {
         return WHERE_TO_OPEN_ITEM_TO_WINDOW;
     }
