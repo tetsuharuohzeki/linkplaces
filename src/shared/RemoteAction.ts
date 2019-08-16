@@ -7,14 +7,14 @@ export const WHERE_TO_OPEN_ITEM_TO_CURRENT = 'current';
 export const WHERE_TO_OPEN_ITEM_TO_WINDOW = 'window';
 export const WHERE_TO_OPEN_ITEM_TO_SAVE = 'save';
 export const WHERE_TO_OPEN_ITEM_TO_TAB = 'tab';
-export const WHERE_TO_OPEN_ITEM_TO_TABSHIFTED = 'tabshifted';
+export const WHERE_TO_OPEN_ITEM_TO_BACKGROUND_TAB = 'background_tab';
 
 export type WhereToOpenItem =
     typeof WHERE_TO_OPEN_ITEM_TO_CURRENT |
     typeof WHERE_TO_OPEN_ITEM_TO_WINDOW |
     typeof WHERE_TO_OPEN_ITEM_TO_SAVE |
     typeof WHERE_TO_OPEN_ITEM_TO_TAB |
-    typeof WHERE_TO_OPEN_ITEM_TO_TABSHIFTED;
+    typeof WHERE_TO_OPEN_ITEM_TO_BACKGROUND_TAB;
 
 export interface RemoteActionBase {
     type: string;

@@ -11,7 +11,7 @@ import { TabId } from '../../typings/webext/tabs';
 import { NoImplementationError } from '../shared/NoImplementationError';
 import {
     WHERE_TO_OPEN_ITEM_TO_TAB,
-    WHERE_TO_OPEN_ITEM_TO_TABSHIFTED,
+    WHERE_TO_OPEN_ITEM_TO_BACKGROUND_TAB,
     WHERE_TO_OPEN_ITEM_TO_WINDOW,
     WHERE_TO_OPEN_ITEM_TO_CURRENT,
     WHERE_TO_OPEN_ITEM_TO_SAVE,
@@ -29,7 +29,7 @@ export async function createTab(url: string, where: WhereToOpenItem): Promise<Ta
             return openItemInNewWindow(url);
         case WHERE_TO_OPEN_ITEM_TO_TAB:
             return openItemInNewTab(url, true);
-        case WHERE_TO_OPEN_ITEM_TO_TABSHIFTED:
+        case WHERE_TO_OPEN_ITEM_TO_BACKGROUND_TAB:
             return openItemInNewTab(url, false);
         default:
             throw new RangeError('unexpeced where type');
