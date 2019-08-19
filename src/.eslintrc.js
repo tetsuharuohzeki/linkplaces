@@ -28,7 +28,7 @@ module.exports = {
             'jsx': true
         },
         'ecmaVersion': 2018,
-        'project': path.resolve(__dirname, '../tsconfig.json'),
+        'project': path.resolve(__dirname, '../tsconfig.eslint.json'),
     },
 
     'env': {

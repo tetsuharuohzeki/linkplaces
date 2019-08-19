@@ -88,13 +88,8 @@ test: lint ava
 
 lint: eslint stylelint tscheck
 
-eslint: eslint_js eslint_ts
-
-eslint_js:
-	$(NPM_BIN)/eslint --ext=js,jsx,mjs $(CURDIR)
-
-eslint_ts:
-	$(NPM_BIN)/eslint --ext=ts,tsx $(CURDIR)
+eslint:
+	$(NPM_BIN)/eslint --ext=js,jsx,mjs,ts,tsx $(CURDIR)
 
 tscheck:
 	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --noEmit

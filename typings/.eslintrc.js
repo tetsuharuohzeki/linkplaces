@@ -18,7 +18,7 @@ module.exports = {
 
     'parserOptions': {
         'sourceType': 'module',
-        'project': path.resolve(__dirname, '../tsconfig.json'),
+        'project': path.resolve(__dirname, '../tsconfig.eslint.json'),
     },
 
     'settings': {
