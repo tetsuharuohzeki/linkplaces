@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { ViewContext } from '../shared/ViewContext';
+import { SyncViewContext } from '../shared/ViewContext';
 import { OptionsView } from './OptionsView';
 
 function getUrl(path: string): { url: string; title: string; } {
@@ -12,7 +12,7 @@ function getUrl(path: string): { url: string; title: string; } {
     };
 }
 
-export class OptionsContext implements ViewContext {
+export class OptionsContext implements SyncViewContext {
     onActivate(mountpoint: Element): void {
         const list = [
             getUrl('popup/index.html'),

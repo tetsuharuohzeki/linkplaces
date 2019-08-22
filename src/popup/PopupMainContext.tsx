@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Unsubscribe } from 'redux';
 import { createThunkMiddleware } from '../third_party/redux-thunk';
 
-import { ViewContext } from '../shared/ViewContext';
+import { SyncViewContext } from '../shared/ViewContext';
 
 import { BookmarkTreeNode, OnChangeInfo } from '../../typings/webext/bookmarks';
 
@@ -16,7 +16,7 @@ import { PopupThunkArguments, PopupThunkDispatch } from './PopupMainThunk';
 import { PopupMainStore } from './PopupMainStore';
 import { RemoteActionChannel } from './PopupMessageChannel';
 
-export class PopupMainContext implements ViewContext {
+export class PopupMainContext implements SyncViewContext {
 
     private _channel: RemoteActionChannel;
     private _list: Array<BookmarkTreeNode>;

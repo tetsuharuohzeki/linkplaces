@@ -10,7 +10,7 @@ import {
     Subscription,
     animationFrameScheduler as animationFrameRxScheduler,
 } from 'rxjs';
-import { ViewContext } from '../shared/ViewContext';
+import { SyncViewContext } from '../shared/ViewContext';
 
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
@@ -24,7 +24,7 @@ import { SidebarStore } from './SidebarStore';
 import { SidebarRepository } from './SidebarRepository';
 import { RemoteActionChannel } from './SidebarMessageChannel';
 
-export class SidebarContext implements ViewContext {
+export class SidebarContext implements SyncViewContext {
 
     private _list: Array<BookmarkTreeNode>;
     private _subscription: Nullable<Subscription>;

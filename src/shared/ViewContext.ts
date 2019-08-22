@@ -1,4 +1,4 @@
-export interface ViewContext {
+export interface SyncViewContext {
     onActivate(mountpoint: Element): void;
     onDestroy(mountpoint: Element): void;
 
