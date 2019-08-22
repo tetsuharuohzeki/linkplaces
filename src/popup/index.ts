@@ -1,13 +1,12 @@
-import { isNull } from 'option-t/esm/Nullable/Nullable';
-
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
+import { landViewContext } from '../shared/LandingPad';
 
 import { registerComponents } from './component/register';
 
 import { PopupMainContext } from './PopupMainContext';
 import { createChannel } from './PopupMessageChannel';
 
-(async function main(){
+(async function main() {
     registerComponents();
 
     const [list, channel] = await Promise.all([
@@ -24,13 +23,8 @@ import { createChannel } from './PopupMessageChannel';
         once: true,
     });
 
-    const mountpoint = document.getElementById('js-mountpoint');
-    if (isNull(mountpoint)) {
-        throw new TypeError('not found mountpoint');
-    }
-
     const ctx = new PopupMainContext(channel, list);
-    await ctx.onActivate(mountpoint);
+    await landViewContext(ctx);
 })().catch(console.error);
 
 function disableCtxMenu(event: Event) {

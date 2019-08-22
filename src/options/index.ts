@@ -1,12 +1,7 @@
-import { isNull } from 'option-t/esm/Nullable/Nullable';
+import { landViewContext } from '../shared/LandingPad';
 import { OptionsContext } from './OptionsContext';
 
-(async function main(){
-    const mountpoint = document.getElementById('js-mountpoint');
-    if (isNull(mountpoint)) {
-        throw new TypeError('not found mountpoint');
-    }
-
+(async function main() {
     const ctx = new OptionsContext();
-    await ctx.onActivate(mountpoint);
+    await landViewContext(ctx);
 })().catch(console.error);
