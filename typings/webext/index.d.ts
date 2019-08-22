@@ -18,7 +18,7 @@ declare global {
 export interface WebExtGlobal {
     bookmarks: WebExtBookmarkService;
     browserAction: WebExtBrowserActionService;
-    contextMenus: WebExtContextMenuService;
+    menus: WebExtContextMenuService;
     extension: WebExtExtensionService;
     pageAction: WebExtPageActionService;
     runtime: WebExtRuntimeService;

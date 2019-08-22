@@ -14,7 +14,7 @@
   },
   "permissions": [
     "bookmarks",
-    "contextMenus",
+    "menus",
     "tabs"
   ],
   "incognito": "spanning",

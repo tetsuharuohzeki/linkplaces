@@ -37,7 +37,7 @@ export function createContextMenu(): void {
     const onCreateList: Array<Promise<void>> = [];
     for (const item of list) {
         const menu: Promise<void> = new Promise((resolve, reject) => {
-            browser.contextMenus.create(item, () => {
+            browser.menus.create(item, () => {
                 const e = browser.runtime.lastError;
                 if (!!e) {
                     reject(e);
@@ -52,14 +52,14 @@ export function createContextMenu(): void {
     }
 
     Promise.all(onCreateList).then(() => {
-        browser.contextMenus.onClicked.addListener(onClicked);
+        browser.menus.onClicked.addListener(onClicked);
     }, console.error);
 }
 
 export function removeContextMenu(): Promise<void> {
-    browser.contextMenus.onClicked.removeListener(onClicked);
+    browser.menus.onClicked.removeListener(onClicked);
 
-    return browser.contextMenus.removeAll();
+    return browser.menus.removeAll();
 }
 
 function onClicked(info: OnClickData, tab: Maybe<Tab>): void {
