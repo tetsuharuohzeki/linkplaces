@@ -28,7 +28,7 @@ export class PopupMainContext implements ViewContext {
         this._disposerSet = null;
     }
 
-    onActivate(mountpoint: Element): void {
+    async onActivate(mountpoint: Element): Promise<void> {
         if (isNotNull(this._disposerSet)) {
             throw new TypeError();
         }
@@ -71,7 +71,7 @@ export class PopupMainContext implements ViewContext {
         render();
     }
 
-    onDestroy(mountpoint: Element): void {
+    async onDestroy(mountpoint: Element): Promise<void> {
         if (isNull(this._disposerSet)) {
             throw new TypeError();
         }
@@ -83,10 +83,11 @@ export class PopupMainContext implements ViewContext {
         ReactDOM.unmountComponentAtNode(mountpoint);
     }
 
-    onResume(_mountpoint: Element): void {
+    async onResume(_mountpoint: Element): Promise<void> {
         throw new Error('Method not implemented.');
     }
-    onSuspend(_mountpoint: Element): void {
+
+    onSuspend(_mountpoint: Element): Promise<void> {
         throw new Error('Method not implemented.');
     }
 }

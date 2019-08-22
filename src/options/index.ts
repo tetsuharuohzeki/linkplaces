@@ -8,5 +8,5 @@ import { OptionsContext } from './OptionsContext';
     }
 
     const ctx = new OptionsContext();
-    ctx.onActivate(mountpoint);
+    await ctx.onActivate(mountpoint);
 })().catch(console.error);

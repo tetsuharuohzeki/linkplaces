@@ -24,7 +24,7 @@ import { createChannel } from './SidebarMessageChannel';
     }
 
     const ctx = new SidebarContext(list, channel);
-    ctx.onActivate(mountpoint);
+    await ctx.onActivate(mountpoint);
 })().catch(console.error);
 
 function disableCtxMenu(event: Event) {

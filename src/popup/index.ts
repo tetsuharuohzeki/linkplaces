@@ -30,7 +30,7 @@ import { createChannel } from './PopupMessageChannel';
     }
 
     const ctx = new PopupMainContext(channel, list);
-    ctx.onActivate(mountpoint);
+    await ctx.onActivate(mountpoint);
 })().catch(console.error);
 
 function disableCtxMenu(event: Event) {

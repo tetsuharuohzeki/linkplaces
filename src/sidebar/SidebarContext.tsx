@@ -45,7 +45,7 @@ export class SidebarContext implements ViewContext {
         this._store = new SidebarStore(intent, this._repo);
     }
 
-    onActivate(mountpoint: Element): void {
+    async onActivate(mountpoint: Element): Promise<void> {
         if (isNotNull(this._subscription)) {
             throw new TypeError();
         }
@@ -70,7 +70,7 @@ export class SidebarContext implements ViewContext {
             });
     }
 
-    onDestroy(mountpoint: Element): void {
+    async onDestroy(mountpoint: Element): Promise<void> {
         const subscription = expectNotNull(this._subscription, '');
         subscription.unsubscribe();
 
@@ -82,10 +82,10 @@ export class SidebarContext implements ViewContext {
         this._repo.destroy();
     }
 
-    onResume(_mountpoint: Element): void {
+    async onResume(_mountpoint: Element): Promise<void> {
         throw new Error('Method not implemented.');
     }
-    onSuspend(_mountpoint: Element): void {
+    async onSuspend(_mountpoint: Element): Promise<void> {
         throw new Error('Method not implemented.');
     }
 }

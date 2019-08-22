@@ -13,7 +13,7 @@ function getUrl(path: string): { url: string; title: string; } {
 }
 
 export class OptionsContext implements ViewContext {
-    onActivate(mountpoint: Element): void {
+    async onActivate(mountpoint: Element): Promise<void> {
         const list = [
             getUrl('popup/index.html'),
             getUrl('sidebar/index.html'),
@@ -27,14 +27,14 @@ export class OptionsContext implements ViewContext {
         ReactDOM.render(view, mountpoint);
     }
 
-    onDestroy(mountpoint: Element): void {
+    async onDestroy(mountpoint: Element): Promise<void> {
         ReactDOM.unmountComponentAtNode(mountpoint);
     }
 
-    onResume(_mountpoint: Element): void {
+    async onResume(_mountpoint: Element): Promise<void> {
         throw new Error('Method not implemented.');
     }
-    onSuspend(_mountpoint: Element): void {
+    async onSuspend(_mountpoint: Element): Promise<void> {
         throw new Error('Method not implemented.');
     }
 }
