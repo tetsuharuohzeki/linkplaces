@@ -1,11 +1,3 @@
-export interface SyncViewContext {
-    onActivate(mountpoint: Element): void;
-    onDestroy(mountpoint: Element): void;
-
-    onResume(mountpoint: Element): void;
-    onSuspend(mountpoint: Element): void;
-}
-
 /**
  *  Some operations requires to call it in the async context
  *  and we need to handle it correctly as async operation.
@@ -13,7 +5,7 @@ export interface SyncViewContext {
  *  main thread, I seem it's compromise approach to return
  *  return `Promise` from lyfecycle methods.
  */
-export interface ViewContext extends SyncViewContext {
+export interface ViewContext {
     onActivate(mountpoint: Element): Promise<void>;
     onDestroy(mountpoint: Element): Promise<void>;
 

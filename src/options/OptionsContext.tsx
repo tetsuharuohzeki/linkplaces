@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { SyncViewContext } from '../shared/ViewContext';
+import { ViewContext } from '../shared/ViewContext';
 import { OptionsView } from './OptionsView';
 
 function getUrl(path: string): { url: string; title: string; } {
@@ -12,8 +12,8 @@ function getUrl(path: string): { url: string; title: string; } {
     };
 }
 
-export class OptionsContext implements SyncViewContext {
-    onActivate(mountpoint: Element): void {
+export class OptionsContext implements ViewContext {
+    async onActivate(mountpoint: Element): Promise<void> {
         const list = [
             getUrl('popup/index.html'),
             getUrl('sidebar/index.html'),
@@ -27,14 +27,14 @@ export class OptionsContext implements SyncViewContext {
         ReactDOM.render(view, mountpoint);
     }
 
-    onDestroy(mountpoint: Element): void {
+    async onDestroy(mountpoint: Element): Promise<void> {
         ReactDOM.unmountComponentAtNode(mountpoint);
     }
 
-    onResume(_mountpoint: Element): void {
+    async onResume(_mountpoint: Element): Promise<void> {
         throw new Error('Method not implemented.');
     }
-    onSuspend(_mountpoint: Element): void {
+    async onSuspend(_mountpoint: Element): Promise<void> {
         throw new Error('Method not implemented.');
     }
 }

@@ -10,7 +10,7 @@ import {
     Subscription,
     animationFrameScheduler as animationFrameRxScheduler,
 } from 'rxjs';
-import { SyncViewContext } from '../shared/ViewContext';
+import { ViewContext } from '../shared/ViewContext';
 
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
@@ -24,7 +24,7 @@ import { SidebarStore } from './SidebarStore';
 import { SidebarRepository } from './SidebarRepository';
 import { RemoteActionChannel } from './SidebarMessageChannel';
 
-export class SidebarContext implements SyncViewContext {
+export class SidebarContext implements ViewContext {
 
     private _list: Array<BookmarkTreeNode>;
     private _subscription: Nullable<Subscription>;
@@ -45,7 +45,7 @@ export class SidebarContext implements SyncViewContext {
         this._store = new SidebarStore(intent, this._repo);
     }
 
-    onActivate(mountpoint: Element): void {
+    async onActivate(mountpoint: Element): Promise<void> {
         if (isNotNull(this._subscription)) {
             throw new TypeError();
         }
@@ -70,7 +70,7 @@ export class SidebarContext implements SyncViewContext {
             });
     }
 
-    onDestroy(mountpoint: Element): void {
+    async onDestroy(mountpoint: Element): Promise<void> {
         const subscription = expectNotNull(this._subscription, '');
         subscription.unsubscribe();
 
@@ -82,10 +82,10 @@ export class SidebarContext implements SyncViewContext {
         this._repo.destroy();
     }
 
-    onResume(_mountpoint: Element): void {
+    async onResume(_mountpoint: Element): Promise<void> {
         throw new Error('Method not implemented.');
     }
-    onSuspend(_mountpoint: Element): void {
+    async onSuspend(_mountpoint: Element): Promise<void> {
         throw new Error('Method not implemented.');
     }
 }

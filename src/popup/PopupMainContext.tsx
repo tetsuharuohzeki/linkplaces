@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Unsubscribe } from 'redux';
 import { createThunkMiddleware } from '../third_party/redux-thunk';
 
-import { SyncViewContext } from '../shared/ViewContext';
+import { ViewContext } from '../shared/ViewContext';
 
 import { BookmarkTreeNode, OnChangeInfo } from '../../typings/webext/bookmarks';
 
@@ -16,7 +16,7 @@ import { PopupThunkArguments, PopupThunkDispatch } from './PopupMainThunk';
 import { PopupMainStore } from './PopupMainStore';
 import { RemoteActionChannel } from './PopupMessageChannel';
 
-export class PopupMainContext implements SyncViewContext {
+export class PopupMainContext implements ViewContext {
 
     private _channel: RemoteActionChannel;
     private _list: Array<BookmarkTreeNode>;
@@ -28,7 +28,7 @@ export class PopupMainContext implements SyncViewContext {
         this._disposerSet = null;
     }
 
-    onActivate(mountpoint: Element): void {
+    async onActivate(mountpoint: Element): Promise<void> {
         if (isNotNull(this._disposerSet)) {
             throw new TypeError();
         }
@@ -71,7 +71,7 @@ export class PopupMainContext implements SyncViewContext {
         render();
     }
 
-    onDestroy(mountpoint: Element): void {
+    async onDestroy(mountpoint: Element): Promise<void> {
         if (isNull(this._disposerSet)) {
             throw new TypeError();
         }
@@ -83,10 +83,11 @@ export class PopupMainContext implements SyncViewContext {
         ReactDOM.unmountComponentAtNode(mountpoint);
     }
 
-    onResume(_mountpoint: Element): void {
+    async onResume(_mountpoint: Element): Promise<void> {
         throw new Error('Method not implemented.');
     }
-    onSuspend(_mountpoint: Element): void {
+
+    onSuspend(_mountpoint: Element): Promise<void> {
         throw new Error('Method not implemented.');
     }
 }
