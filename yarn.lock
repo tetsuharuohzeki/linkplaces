@@ -2875,15 +2875,15 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/adf657fb553afa9be5a7be7d45bd4df229593d87.tar.gz":
+"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/d2b221842eb19f3a8ff679ca7b8b30f0d0882924.tar.gz":
   version "0.0.0"
-  resolved "https://github.com/cats-oss/eslint-config-abema/archive/adf657fb553afa9be5a7be7d45bd4df229593d87.tar.gz#2dccd85feb1b504c3230189b7035b9bb88b5a5a8"
+  resolved "https://github.com/cats-oss/eslint-config-abema/archive/d2b221842eb19f3a8ff679ca7b8b30f0d0882924.tar.gz#0700d63f4f6b7d74447d17fbfaa682e189c34fc2"
   optionalDependencies:
     "@typescript-eslint/eslint-plugin" "^2.0.0"
     eslint-plugin-import "^2.18.2"
     eslint-plugin-node "^9.1.0"
     eslint-plugin-react "^7.14.3"
-    eslint-plugin-react-hooks "^1.7.0"
+    eslint-plugin-react-hooks "^2.0.1"
 
 eslint-import-resolver-node@^0.3.2:
   version "0.3.2"
@@ -2944,11 +2944,6 @@ eslint-plugin-node@^9.1.0:
     minimatch "^3.0.4"
     resolve "^1.10.1"
     semver "^6.1.0"
-
-eslint-plugin-react-hooks@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-1.7.0.tgz#6210b6d5a37205f0b92858f895a4e827020a7d04"
-  integrity sha512-iXTCFcOmlWvw4+TOE8CLWj6yX1GwzT0Y6cUfHHZqWnSk144VmVIRcVGtUAzrLES7C798lmvnt02C7rxaOX1HNA==
 
 eslint-plugin-react-hooks@^2.0.1:
   version "2.0.1"
