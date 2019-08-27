@@ -21,7 +21,7 @@ export interface ThunkDispatch<
     <TReturnType>(
         thunkAction: ThunkAction<TReturnType, TState, TExtraThunkArg, TBasicAction>
     ): TReturnType;
-    <A extends TBasicAction>(action: A): A;
+    <TDerivedAction extends TBasicAction>(action: TDerivedAction): TDerivedAction;
 }
 
 /**
