@@ -9,9 +9,7 @@ import { WebExtTabsService } from './tabs';
 import { WebExtWindowsService } from './windows';
 
 declare global {
-    // eslint-disable-next-line init-declarations
     const browser: WebExtGlobal;
-    // eslint-disable-next-line init-declarations
     const chrome: WebExtGlobal;
 }
 

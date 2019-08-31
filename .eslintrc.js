@@ -22,6 +22,8 @@ module.exports = {
         'es6': true,
     },
 
+    'reportUnusedDisableDirectives': true,
+
     'root': true,
 
     'rules': {

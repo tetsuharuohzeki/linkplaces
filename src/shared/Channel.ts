@@ -79,7 +79,6 @@ export class Channel<TMessage extends RemoteActionBase> {
         this._callbackId = 0;
         this._subject = new Subject();
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const listener = (msg: Packet<TMessage>) => {
             this._onPortMessage(msg);
         };
