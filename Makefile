@@ -110,6 +110,10 @@ git_diff: ## Test whether there is no committed changes.
 	git diff --exit-code
 
 
+# CI
+ci: test git_diff
+
+
 # Tools
 fmt: fmt_css ## Apply formetters for files.
 
