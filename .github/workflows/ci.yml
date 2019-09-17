@@ -31,7 +31,6 @@ jobs:
       run: make git_diff -j
 
     - name: test
-      run: |
-        # make test -j
+      run: make test -j
       env:
         CI: true
