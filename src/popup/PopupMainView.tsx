@@ -153,3 +153,5 @@ function ItemListItem(props: ItemListItemProps): JSX.Element {
         </React.StrictMode>
     );
 }
+
+export type A = 2;
