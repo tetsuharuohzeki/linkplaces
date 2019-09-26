@@ -70,19 +70,19 @@ export interface WebExtRuntimeService {
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/sendMessage
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    sendMessage<R>(message: any): Promise<R>;
+    sendMessage<TResult>(message: any): Promise<TResult>;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    sendMessage<R>(extensionId: string, message: any): Promise<R>;
+    sendMessage<TResult>(extensionId: string, message: any): Promise<TResult>;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    sendMessage<R>(message: any, options: {
+    sendMessage<TResult>(message: any, options: {
         includeTlsChannelId?: boolean;
         toProxyScript: boolean;
-    }): Promise<R>;
+    }): Promise<TResult>;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    sendMessage<R>(extensionId: string, message: any, options: {
+    sendMessage<TResult>(extensionId: string, message: any, options: {
         includeTlsChannelId?: boolean;
         toProxyScript: boolean;
-    }): Promise<R>;
+    }): Promise<TResult>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/onConnect
     readonly onConnect: FullListener<(port: PortHasSender) => void>;

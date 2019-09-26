@@ -12,6 +12,8 @@ function createInitialPopupMainState(list: Array<BookmarkTreeNode> = []): PopupM
     };
 }
 
+// XXX: redux requires this for its initialization phase.
+// eslint-disable-next-line default-param-last
 export function reducePopupMain(prev: PopupMainState = createInitialPopupMainState(), action: PopupAction): PopupMainState {
     switch (action.type) {
         case ActionType.Init: {
