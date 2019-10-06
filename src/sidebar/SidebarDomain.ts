@@ -9,12 +9,10 @@ export class SidebarItemViewModelEntity {
 
     private _bookmark: BookmarkTreeNode;
     private _isOpening: boolean;
-    readonly isSelected: boolean;
 
     private constructor(bookmark: BookmarkTreeNode) {
         this._bookmark = bookmark;
         this._isOpening = false;
-        this.isSelected = false;
     }
 
     get bookmark(): BookmarkTreeNode {
