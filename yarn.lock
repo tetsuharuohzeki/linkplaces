@@ -525,7 +525,7 @@
     "@types/unist" "*"
     "@types/vfile-message" "*"
 
-"@typescript-eslint/eslint-plugin@^2.3.1", "@typescript-eslint/eslint-plugin@^2.3.2":
+"@typescript-eslint/eslint-plugin@^2.3.2":
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-2.3.2.tgz#7e112ca0bb29044d915baf10163a8199a20f7c69"
   integrity sha512-tcnpksq1bXzcIRbYLeXkgp6l+ggEMXXUcl1wsSvL807fRtmvVQKygElwEUf4hBA76dNag3VAK1q2m3vd7qJaZA==
@@ -2667,15 +2667,15 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/a636ef1d226a6ea9004350894318b9cc9ce8f814.tar.gz":
+"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/b5ea4981aeac687536bfadf80f51d89cfca4848a.tar.gz":
   version "0.0.0"
-  resolved "https://github.com/cats-oss/eslint-config-abema/archive/a636ef1d226a6ea9004350894318b9cc9ce8f814.tar.gz#3ddf6d64a87ac4568cc5a6af3aa2fae64dc00fb3"
+  resolved "https://github.com/cats-oss/eslint-config-abema/archive/b5ea4981aeac687536bfadf80f51d89cfca4848a.tar.gz#962a72c1853f30ffc046f1c1a9421fae4dd3a4fe"
   optionalDependencies:
-    "@typescript-eslint/eslint-plugin" "^2.3.1"
+    "@typescript-eslint/eslint-plugin" "^2.3.2"
     eslint-plugin-import "^2.18.2"
     eslint-plugin-node "^10.0.0"
-    eslint-plugin-react "^7.14.3"
-    eslint-plugin-react-hooks "^2.0.1"
+    eslint-plugin-react "^7.15.1"
+    eslint-plugin-react-hooks "^2.1.2"
 
 eslint-import-resolver-node@^0.3.2:
   version "0.3.2"
@@ -2737,12 +2737,12 @@ eslint-plugin-node@^10.0.0:
     resolve "^1.10.1"
     semver "^6.1.0"
 
-eslint-plugin-react-hooks@^2.0.1, eslint-plugin-react-hooks@^2.1.2:
+eslint-plugin-react-hooks@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.1.2.tgz#1358d2acb2c5e02b7e90c37e611ac258a488e3a7"
   integrity sha512-ZR+AyesAUGxJAyTFlF3MbzeVHAcQTFQt1fFVe5o0dzY/HFoj1dgQDMoIkiM+ltN/HhlHBYX4JpJwYonjxsyQMA==
 
-eslint-plugin-react@^7.14.3, eslint-plugin-react@^7.16.0:
+eslint-plugin-react@^7.15.1, eslint-plugin-react@^7.16.0:
   version "7.16.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.16.0.tgz#9928e4f3e2122ed3ba6a5b56d0303ba3e41d8c09"
   integrity sha512-GacBAATewhhptbK3/vTP09CbFrgUJmBSaaRcWdbQLFvUZy9yVcQxigBNHGPU/KE2AyHpzj3AWXpxoMTsIDiHug==
