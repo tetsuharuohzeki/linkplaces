@@ -11,7 +11,7 @@ import { createChannel } from './SidebarMessageChannel';
 
     window.addEventListener('contextmenu', disableCtxMenu);
 
-    window.addEventListener('unload', function onClose(_event) {
+    window.addEventListener('pagehide', function onClose(_event) {
         window.removeEventListener('contextmenu', disableCtxMenu);
         channel.destroy();
     }, {
