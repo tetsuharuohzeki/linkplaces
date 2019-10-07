@@ -1,3 +1,4 @@
+import { Nullable } from 'option-t/esm/Nullable/Nullable';
 import React from 'react';
 
 import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../typings/webext/bookmarks';
@@ -114,16 +115,23 @@ interface ItemListItemProps {
     item: BookmarkTreeNodeItem;
     store: PopupMainStore;
 }
-function ItemListItem(props: ItemListItemProps): JSX.Element {
+function ItemListItem(props: ItemListItemProps): Nullable<JSX.Element> {
     const { item, store } = props;
     const url = item.url;
     const id = item.id;
+
+    const [isOpening, setIsOpening] = React.useState<boolean>(false);
+    if (isOpening) {
+        return null;
+    }
 
     const onClick: React.MouseEventHandler<HTMLAnchorElement> = (event) => {
         event.preventDefault();
 
         const a = openItem(id, url);
         store.dispatch(a).catch(console.error);
+
+        setIsOpening(true);
     };
 
     const title = item.title;
