@@ -3,7 +3,7 @@ import { landViewContext } from '../shared/LandingPad';
 import { SidebarContext } from './SidebarContext';
 import { createChannel } from './SidebarMessageChannel';
 
-(async function main(){
+(async function main() {
     const [list, channel] = await Promise.all([
         getUnfiledBoolmarkFolder(),
         createChannel(),
@@ -22,6 +22,11 @@ import { createChannel } from './SidebarMessageChannel';
     await landViewContext(ctx);
 })().catch(console.error);
 
-function disableCtxMenu(event: Event) {
+function disableCtxMenu(event: MouseEvent) {
+    if (event.shiftKey) {
+        // allow to open debugger if the shiftkey is down.
+        return;
+    }
+
     event.preventDefault();
 }

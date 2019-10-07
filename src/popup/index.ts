@@ -27,6 +27,11 @@ import { createChannel } from './PopupMessageChannel';
     await landViewContext(ctx);
 })().catch(console.error);
 
-function disableCtxMenu(event: Event) {
+function disableCtxMenu(event: MouseEvent) {
+    if (event.shiftKey) {
+        // allow to open debugger if the shiftkey is down.
+        return;
+    }
+
     event.preventDefault();
 }
