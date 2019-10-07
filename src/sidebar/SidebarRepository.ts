@@ -98,23 +98,18 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
     private _driver: BookmarkRepository;
     private _emitter: Subject<Array<BookmarkTreeNode>>;
     private _obs: Nullable<Observable<IterableX<SidebarItemViewModelEntity>>>;
-    private _isOpeningMap: Set<BookmarkId>;
     private _disposer: Subscription;
 
     private constructor(driver: BookmarkRepository) {
         this._driver = driver;
         this._emitter = new Subject();
         this._obs = null;
-        this._isOpeningMap = new Set();
 
-        this._disposer = driver.onRemovedObservable().subscribe((id: BookmarkId) => {
-            this._unsetIsOpening(id);
-        }, console.error);
+        this._disposer = new Subscription();
     }
 
     destroy(): void {
         this._disposer.unsubscribe();
-        this._isOpeningMap.clear();
         this._obs = null;
         this._emitter.unsubscribe();
         this._driver.destroy();
@@ -132,18 +127,6 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
             );
         }
         return this._obs;
-    }
-
-    setIsOpening(id: BookmarkId): void {
-        this._isOpeningMap.add(id);
-
-        const lastvalue = this._driver.latestValue();
-        this._emitter.next(lastvalue);
-    }
-
-    private _unsetIsOpening(id: BookmarkId): void {
-        this._isOpeningMap.delete(id);
-        // after calling this method, driver emit the next values. So we don't invoke this._emitter.
     }
 }
 
