@@ -64,7 +64,7 @@ interface ListItemProps {
 }
 export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
     const { item, intent, } = props;
-    const isOpening = item.isOpening;
+    const [isOpening, setIsOpening] = React.useState<boolean>(false);
     if (isOpening) {
         return null;
     }
@@ -89,7 +89,10 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
 
             const where = clacWhereToOpenItem(evt);
             const a = notifyOpenItem(id, url, where);
+
             intent.dispatch(a);
+
+            setIsOpening(true);
         };
 
         const label = (bookmarkTitle === '') ?
