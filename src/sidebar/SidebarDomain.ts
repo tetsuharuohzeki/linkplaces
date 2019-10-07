@@ -8,27 +8,17 @@ export class SidebarItemViewModelEntity {
     }
 
     private _bookmark: BookmarkTreeNode;
-    private _isOpening: boolean;
 
     private constructor(bookmark: BookmarkTreeNode) {
         this._bookmark = bookmark;
-        this._isOpening = false;
     }
 
     get bookmark(): BookmarkTreeNode {
         return this._bookmark;
     }
 
-    get isOpening(): boolean {
-        return this._isOpening;
-    }
-
     id(): string {
         return this._bookmark.id;
-    }
-
-    setIsOpening(): void {
-        this._isOpening = true;
     }
 }
 

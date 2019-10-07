@@ -14,13 +14,11 @@ export class SidebarViewEpic implements Epic {
     private _subscription: Nullable<Subscription>;
     private _intent: SidebarIntent;
     private _channel: RemoteActionChannel;
-    private _repository: SidebarRepository;
 
-    constructor(intent: SidebarIntent, repository: SidebarRepository, channel: RemoteActionChannel) {
+    constructor(intent: SidebarIntent, _repository: SidebarRepository, channel: RemoteActionChannel) {
         this._subscription = null;
         this._intent = intent;
         this._channel = channel;
-        this._repository = repository;
     }
 
     activate(): void {
@@ -32,7 +30,6 @@ export class SidebarViewEpic implements Epic {
         this._subscription = s;
 
         s.add(this._intent.openItem().subscribe(({ id, url, where, }) => {
-            this._repository.setIsOpening(id);
             openItem(this._channel, id, url, where);
         }, console.error));
     }
@@ -43,6 +40,5 @@ export class SidebarViewEpic implements Epic {
         this._subscription = null;
         this._intent = null as any; // eslint-disable-line @typescript-eslint/no-explicit-any
         this._channel = null as any; // eslint-disable-line @typescript-eslint/no-explicit-any
-        this._repository = null as any; // eslint-disable-line @typescript-eslint/no-explicit-any
     }
 }

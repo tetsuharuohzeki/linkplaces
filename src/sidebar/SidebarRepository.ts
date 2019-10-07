@@ -1,6 +1,5 @@
 import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
 import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
-import { tap as tapIx } from '@reactivex/ix-esnext-esm/iterable/pipe/tap';
 
 import {
     BehaviorSubject,
@@ -99,23 +98,18 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
     private _driver: BookmarkRepository;
     private _emitter: Subject<Array<BookmarkTreeNode>>;
     private _obs: Nullable<Observable<IterableX<SidebarItemViewModelEntity>>>;
-    private _isOpeningMap: Set<BookmarkId>;
     private _disposer: Subscription;
 
     private constructor(driver: BookmarkRepository) {
         this._driver = driver;
         this._emitter = new Subject();
         this._obs = null;
-        this._isOpeningMap = new Set();
 
-        this._disposer = driver.onRemovedObservable().subscribe((id: BookmarkId) => {
-            this._unsetIsOpening(id);
-        }, console.error);
+        this._disposer = new Subscription();
     }
 
     destroy(): void {
         this._disposer.unsubscribe();
-        this._isOpeningMap.clear();
         this._obs = null;
         this._emitter.unsubscribe();
         this._driver.destroy();
@@ -127,38 +121,17 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
             const input = mergeRx(o, this._emitter);
             this._obs = input.pipe(
                 mapRx((input) => {
-                    const o = mapBookmarkTreeNodeToSidebarItemViewModelEntity(input, this._isOpeningMap);
+                    const o = mapBookmarkTreeNodeToSidebarItemViewModelEntity(input);
                     return o;
                 }),
             );
         }
         return this._obs;
     }
-
-    setIsOpening(id: BookmarkId): void {
-        this._isOpeningMap.add(id);
-
-        const lastvalue = this._driver.latestValue();
-        this._emitter.next(lastvalue);
-    }
-
-    private _unsetIsOpening(id: BookmarkId): void {
-        this._isOpeningMap.delete(id);
-        // after calling this method, driver emit the next values. So we don't invoke this._emitter.
-    }
 }
 
-function mapBookmarkTreeNodeToSidebarItemViewModelEntity(input: Iterable<BookmarkTreeNode>, isOpeningSet: Set<BookmarkId>): IterableX<SidebarItemViewModelEntity> {
+function mapBookmarkTreeNodeToSidebarItemViewModelEntity(input: Iterable<BookmarkTreeNode>): IterableX<SidebarItemViewModelEntity> {
     const mapper = mapIx(mapToSidebarItemEntity);
-    const setIsOpening = tapIx({
-        next(input: SidebarItemViewModelEntity): void {
-            const id = input.bookmark.id;
-            const has = isOpeningSet.has(id);
-            if (has) {
-                input.setIsOpening();
-            }
-        }
-    });
-    const iter = IterableX.from(input).pipe(mapper, setIsOpening);
+    const iter = IterableX.from(input).pipe(mapper);
     return iter;
 }
