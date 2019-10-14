@@ -98,6 +98,7 @@ stylelint:
 	$(NPM_BIN)/stylelint '$(SRC_DIR)/**/*.css' \
 		--config=$(CURDIR)/stylelint.config.js \
 		-f verbose \
+		--syntax css \
 		--color
 
 ava: __obj
