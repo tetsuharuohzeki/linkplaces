@@ -8051,10 +8051,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.7.0-dev.20191014:
-  version "3.7.0-dev.20191014"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.0-dev.20191014.tgz#5c35d63591627c668cedb8cddc61a85fbeb1c1c2"
-  integrity sha512-kaG+8Os48sMYj57/UvwkoADjvLgvDLWEwOj3HVJ3AhQykMJ7CKpBzaXwuNwfmO4Q3KSdcinGXLt9RIXLdhfyXw==
+typescript@^3.7.0-dev.20191021:
+  version "3.7.0-dev.20191021"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.0-dev.20191021.tgz#e0238e0b3eed9fc265767a1b7f5346fea8ab5edb"
+  integrity sha512-SSx/+QkyW7PMcaGQXzVmVkrRmmaLFsdOYXhP9sY9eYMiHrfmtZE9EL2hjtbihfnpyWfCmPup69VgbB4dTTEQgg==
 
 uid2@0.0.3:
   version "0.0.3"
