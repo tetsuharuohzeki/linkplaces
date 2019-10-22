@@ -35,7 +35,7 @@
     "eslint-config-abema": "https://github.com/cats-oss/eslint-config-abema/archive/b5ea4981aeac687536bfadf80f51d89cfca4848a.tar.gz",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-react": "^7.16.0",
-    "eslint-plugin-react-hooks": "^2.1.2",
+    "eslint-plugin-react-hooks": "^2.2.0",
     "jsdom": "^15.2.0",
     "option-t": "^20.3.0",
     "postcss": "^7.0.18",
