@@ -33,22 +33,24 @@ export function OptionsView(props: Readonly<OptionsViewProps>): JSX.Element {
     const children = toArrayFromIx(elements);
 
     return (
-        <div>
-            <h2>{'Build Information'}</h2>
-            <table>
-                <tr>
-                    <th>{'GIT_REVISION'}</th>
-                    <td>{GIT_REVISION}</td>
-                </tr>
-                <tr>
-                    <th>{'BUILD_DATE'}</th>
-                    <td>{BUILD_DATE}</td>
-                </tr>
-            </table>
-            <h2>{'for debugging'}</h2>
-            <ul>
-                {children}
-            </ul>
-        </div>
+        <React.StrictMode>
+            <div>
+                <h2>{'Build Information'}</h2>
+                <table>
+                    <tr>
+                        <th>{'GIT_REVISION'}</th>
+                        <td>{GIT_REVISION}</td>
+                    </tr>
+                    <tr>
+                        <th>{'BUILD_DATE'}</th>
+                        <td>{BUILD_DATE}</td>
+                    </tr>
+                </table>
+                <h2>{'for debugging'}</h2>
+                <ul>
+                    {children}
+                </ul>
+            </div>
+        </React.StrictMode>
     );
 }

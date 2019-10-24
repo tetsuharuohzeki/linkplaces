@@ -26,10 +26,12 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
 
     const r: Array<JSX.Element> = toArrayFromIx(mapped);
     return (
-        <div>
-            <PanelSectionList>
-                {r}
-            </PanelSectionList>
-        </div>
+        <React.StrictMode>
+            <div>
+                <PanelSectionList>
+                    {r}
+                </PanelSectionList>
+            </div>
+        </React.StrictMode>
     );
 }

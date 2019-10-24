@@ -36,24 +36,26 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
     });
 
     return (
-        <div>
-            <PanelSectionList>
-                <PanelListItem onClick={onClickOpenWebExtSidebar}>
-                    <PanelListItemIcon>
-                        <popup-item-icon icondir={ICON_DIR} iconfile={'sidebar-left-16.svg'} />
-                    </PanelListItemIcon>
-                    <PanelListItemText>
-                        <span className={'popup__listitem_text_inner'}>
-                            {'View LinkPlaces Sidebar'}
-                        </span>
-                    </PanelListItemText>
-                </PanelListItem>
-            </PanelSectionList>
-            <PanelSectionListSeparator />
-            <PanelSectionList>
-                {items}
-            </PanelSectionList>
-        </div>
+        <React.StrictMode>
+            <div>
+                <PanelSectionList>
+                    <PanelListItem onClick={onClickOpenWebExtSidebar}>
+                        <PanelListItemIcon>
+                            <popup-item-icon icondir={ICON_DIR} iconfile={'sidebar-left-16.svg'} />
+                        </PanelListItemIcon>
+                        <PanelListItemText>
+                            <span className={'popup__listitem_text_inner'}>
+                                {'View LinkPlaces Sidebar'}
+                            </span>
+                        </PanelListItemText>
+                    </PanelListItem>
+                </PanelSectionList>
+                <PanelSectionListSeparator />
+                <PanelSectionList>
+                    {items}
+                </PanelSectionList>
+            </div>
+        </React.StrictMode>
     );
 }
 
@@ -96,18 +98,20 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
 
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
-        <span
-            className={'popup-c-PopupMainView-ItemListItem__container'}
-        >
-            <PanelListItem onClick={onClick}>
-                <PanelListItemIcon>
-                    <popup-item-icon icondir={ICON_DIR} iconfile={'folder-16.svg'} />
-                </PanelListItemIcon>
-                <PanelListItemText>
-                    {item.title}
-                </PanelListItemText>
-            </PanelListItem>
-        </span>
+        <React.StrictMode>
+            <span
+                className={'popup-c-PopupMainView-ItemListItem__container'}
+            >
+                <PanelListItem onClick={onClick}>
+                    <PanelListItemIcon>
+                        <popup-item-icon icondir={ICON_DIR} iconfile={'folder-16.svg'} />
+                    </PanelListItemIcon>
+                    <PanelListItemText>
+                        {item.title}
+                    </PanelListItemText>
+                </PanelListItem>
+            </span>
+        </React.StrictMode>
     );
 }
 

@@ -43,8 +43,8 @@ function ListBaseItem(props: ListBaseItemProps): JSX.Element {
             <PanelListItem disabled={isOpening}>
                 <PanelListItemIcon>
                     <picture className={`${CLASS_NAME_PREFIX}__icon_img`}>
-                        <source srcSet={`${iconDir}dark/${iconFile}`} media={'(prefers-color-scheme: dark)'}/>
-                        <source srcSet={`${iconDir}light/${iconFile}`} media={'(prefers-color-scheme: light)'}/>
+                        <source srcSet={`${iconDir}dark/${iconFile}`} media={'(prefers-color-scheme: dark)'} />
+                        <source srcSet={`${iconDir}light/${iconFile}`} media={'(prefers-color-scheme: light)'} />
                         <img alt={''} src={`${iconDir}context-fill/${iconFile}`} />
                     </picture>
                 </PanelListItemIcon>
@@ -99,32 +99,36 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
             url :
             bookmarkTitle;
         return (
-            <a
-                className={`${CLASS_NAME_PREFIX}__container`}
-                href={url}
-                onClick={onClick}
-                title={title}>
-                <ListBaseItem
-                    isOpening={isOpening}
-                    iconDir={ICON_DIR}
-                    iconFile={'globe-16.svg'}
-                    label={label}
-                />
-            </a>
+            <React.StrictMode>
+                <a
+                    className={`${CLASS_NAME_PREFIX}__container`}
+                    href={url}
+                    onClick={onClick}
+                    title={title}>
+                    <ListBaseItem
+                        isOpening={isOpening}
+                        iconDir={ICON_DIR}
+                        iconFile={'globe-16.svg'}
+                        label={label}
+                    />
+                </a>
+            </React.StrictMode>
         );
     }
 
     return (
-        <span
-            className={`${CLASS_NAME_PREFIX}__container`}
-            title={bookmarkTitle}>
-            <ListBaseItem
-                isOpening={isOpening}
-                iconDir={ICON_DIR}
-                iconFile={'folder-16.svg'}
-                label={bookmarkTitle}
-            />
-        </span>
+        <React.StrictMode>
+            <span
+                className={`${CLASS_NAME_PREFIX}__container`}
+                title={bookmarkTitle}>
+                <ListBaseItem
+                    isOpening={isOpening}
+                    iconDir={ICON_DIR}
+                    iconFile={'folder-16.svg'}
+                    label={bookmarkTitle}
+                />
+            </span>
+        </React.StrictMode>
     );
 }
 

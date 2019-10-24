@@ -16,9 +16,11 @@ export function PanelListItem(props: PanelListItemProps): JSX.Element {
         'shared-com-PanelListItem__container';
 
     return (
-        <div className={className} onClick={props.onClick}>
-            {props.children}
-        </div>
+        <React.StrictMode>
+            <div className={className} onClick={props.onClick}>
+                {props.children}
+            </div>
+        </React.StrictMode>
     );
 }
 
@@ -28,9 +30,11 @@ export interface PanelListItemIconProps {
 
 export function PanelListItemIcon(props: PanelListItemIconProps): JSX.Element {
     return (
-        <div className={'shared-com-PanelListItem__icon'}>
-            {props.children}
-        </div>
+        <React.StrictMode>
+            <div className={'shared-com-PanelListItem__icon'}>
+                {props.children}
+            </div>
+        </React.StrictMode>
     );
 }
 
@@ -40,8 +44,10 @@ export interface PanelListItemTextProps {
 
 export function PanelListItemText(props: PanelListItemTextProps): JSX.Element {
     return (
-        <div className={'shared-com-PanelListItem__text'}>
-            {props.children}
-        </div>
+        <React.StrictMode>
+            <div className={'shared-com-PanelListItem__text'}>
+                {props.children}
+            </div>
+        </React.StrictMode>
     );
 }
