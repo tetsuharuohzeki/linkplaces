@@ -7,6 +7,11 @@ OBJ_SRC_DIR := $(OBJ_DIR)/src
 DIST_DIR := $(CURDIR)/__dist
 ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
 
+export RELEASE_CHANNEL := production
+
+# ifeq ($(RELEASE_CHANNEL),production)
+# endif
+
 # Sorry. These are depends on *nix way...
 export GIT_REVISION := $(shell git rev-parse --verify HEAD)
 export BUILD_DATE := $(shell date '+%Y/%m/%d %H:%M:%S %z')
@@ -54,7 +59,7 @@ webextension_js: $(addprefix __bundle_js_, background popup sidebar options)
 webextension_css: $(addprefix __bundle_css_, popup sidebar options)
 
 __bundle_js_%: clean_dist __obj __external_dependency
-	$(NPM_BIN)/rollup $(OBJ_SRC_DIR)/$*/index.js --config $(CURDIR)/rollup.config.js --output.file $(DIST_DIR)/$*/bundled.js
+	RELEASE_CHANNEL=$(RELEASE_CHANNEL) $(NPM_BIN)/rollup $(OBJ_SRC_DIR)/$*/index.js --config $(CURDIR)/rollup.config.js --output.file $(DIST_DIR)/$*/bundled.js
 
 __bundle_css_%: clean_dist
 	$(NPM_BIN)/postcss $(SRC_DIR)/$*/registry.css --config --output $(DIST_DIR)/$*/$*.css
