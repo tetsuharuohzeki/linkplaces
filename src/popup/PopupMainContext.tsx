@@ -50,9 +50,11 @@ export class PopupMainContext implements ViewContext {
             dispatch: PopupThunkDispatch;
         }, PopupMainStateTree>(reducer, initial, enhancer);
 
-        this._renderRoot = ReactDOM.createBlockingRoot(mountpoint);
+        this._renderRoot = ReactDOM.createRoot(mountpoint);
 
         const render = () => {
+            // XXX: Should we remove this wrapping `requestAnimationFrame()` for React concurrent mode?
+            // Will React schedule requestAnimationFrame properly?
             window.requestAnimationFrame(() => {
                 const { reducePopupMain: state, } = store.getState();
                 const view = (

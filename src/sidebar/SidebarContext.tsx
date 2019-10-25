@@ -60,10 +60,12 @@ export class SidebarContext implements ViewContext {
             list: this._list.map(mapToSidebarItemEntity),
         });
 
-        this._renderRoot = ReactDOM.createBlockingRoot(mountpoint);
+        this._renderRoot = ReactDOM.createRoot(mountpoint);
 
         this._subscription = state
             .pipe(
+                // XXX: Should we remove this wrapping `requestAnimationFrame()` for React concurrent mode?
+                // Will React schedule requestAnimationFrame properly?
                 debounceTime(0, animationFrameRxScheduler),
             ).subscribe((state: Readonly<SidebarState>) => {
                 const view = (

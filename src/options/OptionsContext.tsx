@@ -35,7 +35,7 @@ export class OptionsContext implements ViewContext {
                 <OptionsView list={list} />
             </React.StrictMode>
         );
-        const renderRoot = ReactDOM.createBlockingRoot(mountpoint);
+        const renderRoot = ReactDOM.createRoot(mountpoint);
         this._renderRoot = renderRoot;
         renderRoot.render(view);
     }
