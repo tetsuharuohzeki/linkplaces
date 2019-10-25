@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference types="react-dom/experimental" />
+
 import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import React from 'react';
@@ -27,6 +30,7 @@ import { RemoteActionChannel } from './SidebarMessageChannel';
 export class SidebarContext implements ViewContext {
 
     private _list: Array<BookmarkTreeNode>;
+    private _renderRoot: Nullable<ReactDOM.Root>;
     private _subscription: Nullable<Subscription>;
 
     private _intent: SidebarIntent;
@@ -36,6 +40,7 @@ export class SidebarContext implements ViewContext {
 
     constructor(list: Array<BookmarkTreeNode>, channel: RemoteActionChannel) {
         this._list = list;
+        this._renderRoot = null;
         this._subscription = null;
 
         const intent = new SidebarIntent();
@@ -55,6 +60,8 @@ export class SidebarContext implements ViewContext {
             list: this._list.map(mapToSidebarItemEntity),
         });
 
+        this._renderRoot = ReactDOM.createBlockingRoot(mountpoint);
+
         this._subscription = state
             .pipe(
                 debounceTime(0, animationFrameRxScheduler),
@@ -64,19 +71,21 @@ export class SidebarContext implements ViewContext {
                         <SidebarView state={state} intent={this._intent} />
                     </React.StrictMode>
                 );
-                ReactDOM.render(view, mountpoint);
+                const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
+                renderRoot.render(view);
             }, (e) => {
                 console.exception(e);
             });
     }
 
-    async onDestroy(mountpoint: Element): Promise<void> {
+    async onDestroy(_mountpoint: Element): Promise<void> {
         const subscription = expectNotNull(this._subscription, '');
         subscription.unsubscribe();
-
         this._subscription = null;
 
-        ReactDOM.unmountComponentAtNode(mountpoint);
+        const renderRoot = expectNotNull(this._renderRoot, '');
+        renderRoot.unmount();
+        this._renderRoot = null;
 
         this._epic.destroy();
         this._repo.destroy();

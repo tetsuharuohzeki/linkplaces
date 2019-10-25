@@ -1,4 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference types="react-dom/experimental" />
+
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
+import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Unsubscribe } from 'redux';
@@ -20,11 +24,13 @@ export class PopupMainContext implements ViewContext {
 
     private _channel: RemoteActionChannel;
     private _list: Array<BookmarkTreeNode>;
+    private _renderRoot: Nullable<ReactDOM.Root>;
     private _disposerSet: Nullable<Set<Unsubscribe>>;
 
     constructor(channel: RemoteActionChannel, list: Array<BookmarkTreeNode>) {
         this._channel = channel;
         this._list = list;
+        this._renderRoot = null;
         this._disposerSet = null;
     }
 
@@ -44,6 +50,8 @@ export class PopupMainContext implements ViewContext {
             dispatch: PopupThunkDispatch;
         }, PopupMainStateTree>(reducer, initial, enhancer);
 
+        this._renderRoot = ReactDOM.createBlockingRoot(mountpoint);
+
         const render = () => {
             window.requestAnimationFrame(() => {
                 const { reducePopupMain: state, } = store.getState();
@@ -52,7 +60,9 @@ export class PopupMainContext implements ViewContext {
                         <PopupMainView state={state} store={store} />
                     </React.StrictMode>
                 );
-                ReactDOM.render(view, mountpoint);
+
+                const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
+                renderRoot.render(view);
             });
         };
 
@@ -71,7 +81,7 @@ export class PopupMainContext implements ViewContext {
         render();
     }
 
-    async onDestroy(mountpoint: Element): Promise<void> {
+    async onDestroy(_mountpoint: Element): Promise<void> {
         if (isNull(this._disposerSet)) {
             throw new TypeError();
         }
@@ -80,7 +90,9 @@ export class PopupMainContext implements ViewContext {
         this._disposerSet.clear();
         this._disposerSet = null;
 
-        ReactDOM.unmountComponentAtNode(mountpoint);
+        const renderRoot = expectNotNull(this._renderRoot, '');
+        renderRoot.unmount();
+        this._renderRoot = null;
     }
 
     async onResume(_mountpoint: Element): Promise<void> {

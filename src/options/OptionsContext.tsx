@@ -1,3 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference types="react-dom/experimental" />
+
+import { Nullable } from 'option-t/esm/Nullable/Nullable';
+import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -13,6 +18,12 @@ function getUrl(path: string): { url: string; title: string; } {
 }
 
 export class OptionsContext implements ViewContext {
+    private _renderRoot: Nullable<ReactDOM.Root>;
+
+    constructor() {
+        this._renderRoot = null;
+    }
+
     async onActivate(mountpoint: Element): Promise<void> {
         const list = [
             getUrl('popup/index.html'),
@@ -24,11 +35,15 @@ export class OptionsContext implements ViewContext {
                 <OptionsView list={list} />
             </React.StrictMode>
         );
-        ReactDOM.render(view, mountpoint);
+        const renderRoot = ReactDOM.createBlockingRoot(mountpoint);
+        this._renderRoot = renderRoot;
+        renderRoot.render(view);
     }
 
-    async onDestroy(mountpoint: Element): Promise<void> {
-        ReactDOM.unmountComponentAtNode(mountpoint);
+    async onDestroy(_mountpoint: Element): Promise<void> {
+        const renderRoot = expectNotNull(this._renderRoot, '');
+        renderRoot.unmount();
+        this._renderRoot = null;
     }
 
     async onResume(_mountpoint: Element): Promise<void> {
