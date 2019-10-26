@@ -13,9 +13,11 @@ import {
     Subscription,
     animationFrameScheduler as animationFrameRxScheduler,
 } from 'rxjs';
-import { ViewContext } from '../shared/ViewContext';
 
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
+
+import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
+import { ViewContext } from '../shared/ViewContext';
 
 import { SidebarView } from './SidebarView';
 
@@ -60,7 +62,9 @@ export class SidebarContext implements ViewContext {
             list: this._list.map(mapToSidebarItemEntity),
         });
 
-        this._renderRoot = ReactDOM.createRoot(mountpoint);
+        if (USE_REACT_CONCURRENT_MODE) {
+            this._renderRoot = ReactDOM.createRoot(mountpoint);
+        }
 
         this._subscription = state
             .pipe(
@@ -73,8 +77,13 @@ export class SidebarContext implements ViewContext {
                         <SidebarView state={state} intent={this._intent} />
                     </React.StrictMode>
                 );
-                const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
-                renderRoot.render(view);
+
+                if (USE_REACT_CONCURRENT_MODE) {
+                    const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
+                    renderRoot.render(view);
+                } else {
+                    ReactDOM.render(view, mountpoint);
+                }
             }, (e) => {
                 console.exception(e);
             });
@@ -85,8 +94,12 @@ export class SidebarContext implements ViewContext {
         subscription.unsubscribe();
         this._subscription = null;
 
-        const renderRoot = expectNotNull(this._renderRoot, '');
-        renderRoot.unmount();
+        if (USE_REACT_CONCURRENT_MODE) {
+            const renderRoot = expectNotNull(this._renderRoot, '');
+            renderRoot.unmount();
+        } else {
+            ReactDOM.unmountComponentAtNode(_mountpoint);
+        }
         this._renderRoot = null;
 
         this._epic.destroy();

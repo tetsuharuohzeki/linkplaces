@@ -6,6 +6,7 @@ import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 import { ViewContext } from '../shared/ViewContext';
 import { OptionsView } from './OptionsView';
 
@@ -35,14 +36,23 @@ export class OptionsContext implements ViewContext {
                 <OptionsView list={list} />
             </React.StrictMode>
         );
-        const renderRoot = ReactDOM.createRoot(mountpoint);
-        this._renderRoot = renderRoot;
-        renderRoot.render(view);
+
+        if (USE_REACT_CONCURRENT_MODE) {
+            const renderRoot = ReactDOM.createRoot(mountpoint);
+            this._renderRoot = renderRoot;
+            renderRoot.render(view);
+        } else {
+            ReactDOM.render(view, mountpoint);
+        }
     }
 
     async onDestroy(_mountpoint: Element): Promise<void> {
-        const renderRoot = expectNotNull(this._renderRoot, '');
-        renderRoot.unmount();
+        if (USE_REACT_CONCURRENT_MODE) {
+            const renderRoot = expectNotNull(this._renderRoot, '');
+            renderRoot.unmount();
+        } else {
+            ReactDOM.unmountComponentAtNode(_mountpoint);
+        }
         this._renderRoot = null;
     }
 

@@ -11,6 +11,8 @@ const IS_PRODUCTION_MODE = (RELEASE_CHANNEL === 'production');
 
 const ENABLE_SOURCE_MAP = !IS_PRODUCTION_MODE;
 
+const USE_REACT_CONCURRENT_MODE = false;
+
 module.exports = Object.freeze({
     GIT_REVISION,
     BUILD_DATE,
@@ -18,4 +20,5 @@ module.exports = Object.freeze({
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
     ENABLE_SOURCE_MAP,
+    USE_REACT_CONCURRENT_MODE,
 });
