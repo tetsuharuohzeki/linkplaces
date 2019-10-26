@@ -11,6 +11,7 @@ const {
     RELEASE_CHANNEL,
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
+    USE_REACT_CONCURRENT_MODE,
 } = require('./tools/buildconfig');
 
 const {
@@ -27,6 +28,7 @@ BUILD_DATE: ${BUILD_DATE}
 RELEASE_CHANNEL: ${RELEASE_CHANNEL}
 LIB_NODE_ENV: ${LIB_NODE_ENV}
 IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
+USE_REACT_CONCURRENT_MODE: ${USE_REACT_CONCURRENT_MODE}
 ======================================
 `);
 
@@ -113,6 +115,7 @@ module.exports = async function (_commandLineArgs) {
                     'process.env.GIT_REVISION': JSON.stringify(GIT_REVISION),
                     'process.env.BUILD_DATE': JSON.stringify(BUILD_DATE),
                     'process.env.RELEASE_CHANNEL': JSON.stringify(RELEASE_CHANNEL),
+                    'process.env.USE_REACT_CONCURRENT_MODE': JSON.stringify(USE_REACT_CONCURRENT_MODE),
                 },
             }),
             replace({

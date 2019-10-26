@@ -8,9 +8,10 @@ import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Unsubscribe } from 'redux';
 import { createThunkMiddleware } from '../third_party/redux-thunk';
 
-import { ViewContext } from '../shared/ViewContext';
-
 import { BookmarkTreeNode, OnChangeInfo } from '../../typings/webext/bookmarks';
+
+import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
+import { ViewContext } from '../shared/ViewContext';
 
 import { PopupMainView } from './PopupMainView';
 
@@ -50,7 +51,9 @@ export class PopupMainContext implements ViewContext {
             dispatch: PopupThunkDispatch;
         }, PopupMainStateTree>(reducer, initial, enhancer);
 
-        this._renderRoot = ReactDOM.createRoot(mountpoint);
+        if (USE_REACT_CONCURRENT_MODE) {
+            this._renderRoot = ReactDOM.createRoot(mountpoint);
+        }
 
         const render = () => {
             // XXX: Should we remove this wrapping `requestAnimationFrame()` for React concurrent mode?
@@ -63,8 +66,12 @@ export class PopupMainContext implements ViewContext {
                     </React.StrictMode>
                 );
 
-                const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
-                renderRoot.render(view);
+                if (USE_REACT_CONCURRENT_MODE) {
+                    const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
+                    renderRoot.render(view);
+                } else {
+                    ReactDOM.render(view, mountpoint);
+                }
             });
         };
 
@@ -92,8 +99,12 @@ export class PopupMainContext implements ViewContext {
         this._disposerSet.clear();
         this._disposerSet = null;
 
-        const renderRoot = expectNotNull(this._renderRoot, '');
-        renderRoot.unmount();
+        if (USE_REACT_CONCURRENT_MODE) {
+            const renderRoot = expectNotNull(this._renderRoot, '');
+            renderRoot.unmount();
+        } else {
+            ReactDOM.unmountComponentAtNode(_mountpoint);
+        }
         this._renderRoot = null;
     }
 
