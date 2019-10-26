@@ -9,7 +9,7 @@ const IS_PRODUCTION_MODE = (RELEASE_CHANNEL === 'production');
 
 const ENABLE_SOURCE_MAP = !IS_PRODUCTION_MODE;
 
-const USE_REACT_CONCURRENT_MODE = false;
+const USE_REACT_CONCURRENT_MODE = true;
 
 export {
     GIT_REVISION,
