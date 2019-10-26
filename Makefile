@@ -59,7 +59,7 @@ webextension_js: $(addprefix __bundle_js_, background popup sidebar options)
 webextension_css: $(addprefix __bundle_css_, popup sidebar options)
 
 __bundle_js_%: clean_dist __obj __external_dependency
-	RELEASE_CHANNEL=$(RELEASE_CHANNEL) $(NPM_BIN)/rollup $(OBJ_SRC_DIR)/$*/index.js --config $(CURDIR)/rollup.config.js --output.file $(DIST_DIR)/$*/bundled.js
+	RELEASE_CHANNEL=$(RELEASE_CHANNEL) $(NPM_BIN)/rollup $(OBJ_SRC_DIR)/$*/index.js --config $(CURDIR)/rollup.config.js --output.file $(DIST_DIR)/$*/$*_bundled.js
 
 __bundle_css_%: clean_dist
 	$(NPM_BIN)/postcss $(SRC_DIR)/$*/registry.css --config --output $(DIST_DIR)/$*/$*.css
