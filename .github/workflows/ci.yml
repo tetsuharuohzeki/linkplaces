@@ -8,7 +8,8 @@ yarnpkg_cache_dir: &yarnpkg_cache_dir
   ./.cache/yarn
 
 env:
-  YARN_CACHE_FOLDER: *yarnpkg_cache_dir
+  # FIXME: This should be anchor syntax: *yarnpkg_cache_dir
+  YARN_CACHE_FOLDER: ./.cache/yarn
 
 jobs:
   build:
@@ -29,7 +30,7 @@ jobs:
     - name: cache dependencies
       uses: actions/cache@v1
       with:
-        path: *yarnpkg_cache_dir
+        path: ./.cache/yarn
         key: ${{ runner.os }}-yarnpkgcache-${{ hashFiles('**/yarn.lock') }}
 
     - name: install dependencies,
