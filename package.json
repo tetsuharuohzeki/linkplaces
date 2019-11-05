@@ -54,7 +54,7 @@
     "stylelint": "^11.1.1",
     "stylelint-config-standard": "^19.0.0",
     "typescript": "^3.7.2",
-    "web-ext": "^3.2.0"
+    "web-ext": "^3.2.1"
   },
   "ava": {
     "babel": {
