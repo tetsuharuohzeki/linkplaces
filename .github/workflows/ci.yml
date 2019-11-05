@@ -22,7 +22,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+        key: build-v0-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
 
     - name: install dependencies,
       run: |
