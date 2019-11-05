@@ -7,11 +7,10 @@ yarnpkg_cache_dir: &yarnpkg_cache_dir
   # `GITHUB_WORKSPACE` is not nice for it.
   ./.cache/yarn
 
+env:
+  YARN_CACHE_FOLDER: *yarnpkg_cache_dir
 
 jobs:
-  env:
-    YARN_CACHE_FOLDER: *yarnpkg_cache_dir
-
   build:
     runs-on: ubuntu-latest
 
