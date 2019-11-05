@@ -4,6 +4,7 @@ on: push
 
 env:
   # FIXME: This should be anchor syntax: *yarnpkg_cache_dir
+  #
   # We'd like to use the absolute path, but GitHub Action does not provide it.
   # `GITHUB_WORKSPACE` is not nice for it.
   YARN_CACHE_FOLDER: ./.cache/yarn
@@ -27,7 +28,7 @@ jobs:
     - name: cache dependencies
       uses: actions/cache@v1
       with:
-        path: ./.cache/yarn
+        path: ${{ env.YARN_CACHE_FOLDER }}
         key: ${{ runner.os }}-yarnpkgcache-${{ hashFiles('**/yarn.lock') }}
 
     - name: install dependencies,
