@@ -2,13 +2,10 @@ name: CI
 
 on: push
 
-yarnpkg_cache_dir: &yarnpkg_cache_dir
-  # We'd like to use the absolute path, but GitHub Action does not provide it.
-  # `GITHUB_WORKSPACE` is not nice for it.
-  ./.cache/yarn
-
 env:
   # FIXME: This should be anchor syntax: *yarnpkg_cache_dir
+  # We'd like to use the absolute path, but GitHub Action does not provide it.
+  # `GITHUB_WORKSPACE` is not nice for it.
   YARN_CACHE_FOLDER: ./.cache/yarn
 
 jobs:
