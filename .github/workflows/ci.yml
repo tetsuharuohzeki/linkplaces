@@ -2,7 +2,16 @@ name: CI
 
 on: push
 
+yarnpkg_cache_dir: &yarnpkg_cache_dir
+  # We'd like to use the absolute path, but GitHub Action does not provide it.
+  # `GITHUB_WORKSPACE` is not nice for it.
+  ./.cache/yarn
+
+
 jobs:
+  env:
+    YARN_CACHE_FOLDER: *yarnpkg_cache_dir
+
   build:
     runs-on: ubuntu-latest
 
@@ -21,8 +30,8 @@ jobs:
     - name: cache dependencies
       uses: actions/cache@v1
       with:
-        path: node_modules
-        key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+        path: *yarnpkg_cache_dir
+        key: ${{ runner.os }}-yarnpkgcache-${{ hashFiles('**/yarn.lock') }}
 
     - name: install dependencies,
       run: |
