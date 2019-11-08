@@ -2,17 +2,13 @@
 html,
 body {
     background: var(--global-body__background-color, transparent);
-    box-sizing: border-box;
     color: var(--global-body__text-color, #222426);
     cursor: default;
-    display: flex;
-    flex-direction: column;
     /* stylelint-disable-next-linefont-family-no-missing-generic-family-keyword, font-family-name-quotes */
     font: caption;
     margin: 0;
     padding: 0;
-    /* stylelint-disable-next-line property-no-vendor-prefix */
-    -moz-user-select: none;
+    user-select: none;
 }
 
 body * {
