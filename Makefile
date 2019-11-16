@@ -117,7 +117,10 @@ git_diff: ## Test whether there is no committed changes.
 
 
 # Tools
-fmt: fmt_css ## Apply formetters for files.
+fmt: fmt_css fmt_js ## Apply formetters for files.
 
 fmt_css:
 	$(NPM_BIN)/prettier --single-quote --print-width 256 --write '$(SRC_DIR)/**/*.css'
+
+fmt_js:
+	$(NPM_BIN)/eslint --ext=js,jsx,mjs,ts,tsx $(CURDIR) --fix
