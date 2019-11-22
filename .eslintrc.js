@@ -28,5 +28,14 @@ module.exports = {
 
     'rules': {
         'no-magic-numbers': 'off',
-    }
+    },
+
+    'overrides': [
+        {
+            'files': ['*.mjs'],
+            'parserOptions': {
+                'sourceType': 'module',
+            },
+        },
+    ],
 };
