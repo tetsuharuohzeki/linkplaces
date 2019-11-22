@@ -36,6 +36,12 @@ module.exports = {
             'parserOptions': {
                 'sourceType': 'module',
             },
+
+            'rules': {
+                'import/extensions': ['error', 'always', {
+                    'ignorePackages': true,
+                }],
+            },
         },
     ],
 };
