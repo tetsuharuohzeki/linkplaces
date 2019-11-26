@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/saneyuki/linkplaces",
   "dependencies": {
-    "@babel/core": "^7.7.2",
+    "@babel/core": "^7.7.4",
     "@babel/plugin-syntax-dynamic-import": "^7.7.4",
     "@babel/preset-react": "^7.7.0",
     "@reactivex/ix-esnext-esm": "^2.5.3",
