@@ -25,7 +25,7 @@ export function OptionsView(props: Readonly<OptionsViewProps>): JSX.Element {
                         <a href={page.url}
                             target={'_blank'}
                             // eslint-disable-next-line react/jsx-curly-brace-presence
-                            rel='noopener noreferrer'>
+                            rel='noopener'>
                             {page.title}
                         </a>
                     </li>
