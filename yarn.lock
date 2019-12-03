@@ -571,7 +571,7 @@
     "@types/unist" "*"
     "@types/vfile-message" "*"
 
-"@typescript-eslint/eslint-plugin@^2.10.0", "@typescript-eslint/eslint-plugin@^2.8.0":
+"@typescript-eslint/eslint-plugin@^2.10.0":
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-2.10.0.tgz#c4cb103275e555e8a7e9b3d14c5951eb6d431e70"
   integrity sha512-rT51fNLW0u3fnDGnAHVC5nu+Das+y2CpW10yqvf6/j5xbuUV3FxA3mBaIbM24CXODXjbgUznNb4Kg9XZOUxKAw==
@@ -2751,14 +2751,14 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/35e0373c46d26d60fb90afa85d0e9ab2bbd13be6.tar.gz":
+"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/eb8127fa5d8f445ab2059e3ab8efc875864e927b.tar.gz":
   version "0.0.0"
-  resolved "https://github.com/cats-oss/eslint-config-abema/archive/35e0373c46d26d60fb90afa85d0e9ab2bbd13be6.tar.gz#c098d119a784fd4714bb1fe2bbbec41b3efd2a32"
+  resolved "https://github.com/cats-oss/eslint-config-abema/archive/eb8127fa5d8f445ab2059e3ab8efc875864e927b.tar.gz#af7cc01fd3313340779e05c53e78ff6a4efed541"
   optionalDependencies:
-    "@typescript-eslint/eslint-plugin" "^2.8.0"
+    "@typescript-eslint/eslint-plugin" "^2.10.0"
     eslint-plugin-import "^2.18.2"
     eslint-plugin-node "^10.0.0"
-    eslint-plugin-react "^7.16.0"
+    eslint-plugin-react "^7.17.0"
     eslint-plugin-react-hooks "^2.3.0"
 
 eslint-import-resolver-node@^0.3.2:
@@ -2831,7 +2831,7 @@ eslint-plugin-react-hooks@^2.3.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.3.0.tgz#53e073961f1f5ccf8dd19558036c1fac8c29d99a"
   integrity sha512-gLKCa52G4ee7uXzdLiorca7JIQZPPXRAQDXV83J4bUEeUuc5pIEyZYAZ45Xnxe5IuupxEqHS+hUhSLIimK1EMw==
 
-eslint-plugin-react@^7.16.0, eslint-plugin-react@^7.17.0:
+eslint-plugin-react@^7.17.0:
   version "7.17.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.17.0.tgz#a31b3e134b76046abe3cd278e7482bd35a1d12d7"
   integrity sha512-ODB7yg6lxhBVMeiH1c7E95FLD4E/TwmFjltiU+ethv7KPdCwgiFuOZg9zNRHyufStTDLl/dEFqI2Q1VPmCd78A==

@@ -22,7 +22,10 @@ export function OptionsView(props: Readonly<OptionsViewProps>): JSX.Element {
             map((page: Page): JSX.Element => {
                 return (
                     <li>
-                        <a href={page.url} target={'_blank'}>
+                        <a href={page.url}
+                            target={'_blank'}
+                            // eslint-disable-next-line react/jsx-curly-brace-presence
+                            rel='noopener noreferrer'>
                             {page.title}
                         </a>
                     </li>
