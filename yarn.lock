@@ -5957,10 +5957,10 @@ open@6.4.0:
   dependencies:
     is-wsl "^1.1.0"
 
-option-t@^22.0.0:
-  version "22.0.0"
-  resolved "https://registry.yarnpkg.com/option-t/-/option-t-22.0.0.tgz#d9bdc6bcab1b6cf028b9d525ec6b6d6953152f21"
-  integrity sha512-eZ5qBbVFx/x11KZ7rT8blCRwP4EMQX9DK0cFctcPudsKIw79j4bN8bie1n3SO7jBzobSZPYtOuM3XPMJk0GxgA==
+option-t@^22.1.0:
+  version "22.1.0"
+  resolved "https://registry.yarnpkg.com/option-t/-/option-t-22.1.0.tgz#c87cf9e13282334dfa231c97a42570528132d222"
+  integrity sha512-XYD0yK50im3Sah+pgnc7GfPIpby9IfGpzonNfwzORlaw1RS20ezpPIJEKKz6oE7I1L3Btid8EpYsyHMWtgkcGA==
 
 optionator@^0.8.1, optionator@^0.8.2, optionator@^0.8.3:
   version "0.8.3"
