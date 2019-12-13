@@ -1,5 +1,4 @@
 import { Dispatch } from 'redux';
-import { ThunkAction as ThunkActionArcheType, ThunkDispatch } from '../third_party/redux-thunk';
 
 import {
     WhereToOpenItem,
@@ -9,6 +8,7 @@ import {
     openItem as openItemViaChannel,
     openWebExtSidebar as openWebExtSidebarDirect,
 } from '../shared/RemoteCall';
+import { ThunkAction as ThunkActionArcheType, ThunkDispatch } from '../third_party/redux-thunk';
 
 import {
     createOpenSidebarAction,

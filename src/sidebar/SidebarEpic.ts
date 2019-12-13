@@ -6,8 +6,8 @@ import { Epic } from '../shared/Epic';
 import { openItem } from '../shared/RemoteCall';
 
 import { SidebarIntent } from './SidebarIntent';
-import { SidebarRepository } from './SidebarRepository';
 import { RemoteActionChannel } from './SidebarMessageChannel';
+import { SidebarRepository } from './SidebarRepository';
 
 export class SidebarViewEpic implements Epic {
 

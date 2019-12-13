@@ -6,8 +6,8 @@ import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 import { ViewContext } from '../shared/ViewContext';
+import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 import { OptionsView } from './OptionsView';
 
 function getUrl(path: string): { url: string; title: string; } {

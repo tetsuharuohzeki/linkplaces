@@ -6,19 +6,19 @@ import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Unsubscribe } from 'redux';
-import { createThunkMiddleware } from '../third_party/redux-thunk';
 
 import { BookmarkTreeNode, OnChangeInfo } from '../../typings/webext/bookmarks';
 
-import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 import { ViewContext } from '../shared/ViewContext';
+import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
+import { createThunkMiddleware } from '../third_party/redux-thunk';
 
-import { PopupMainView } from './PopupMainView';
 
 import { createItemChangedAction, PopupAction } from './PopupAction';
 import { createReducer, PopupMainStateTree, createInitialPopupMainStateTree } from './PopupMainState';
-import { PopupThunkArguments, PopupThunkDispatch } from './PopupMainThunk';
 import { PopupMainStore } from './PopupMainStore';
+import { PopupThunkArguments, PopupThunkDispatch } from './PopupMainThunk';
+import { PopupMainView } from './PopupMainView';
 import { RemoteActionChannel } from './PopupMessageChannel';
 
 export class PopupMainContext implements ViewContext {

@@ -1,6 +1,7 @@
 import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
 import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
 
+import { Nullable } from 'option-t/esm/Nullable/Nullable';
 import {
     BehaviorSubject,
     Observable,
@@ -13,7 +14,6 @@ import {
     map as mapRx,
 } from 'rxjs/operators';
 
-import { Nullable } from 'option-t/esm/Nullable/Nullable';
 
 import { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bookmarks';
 

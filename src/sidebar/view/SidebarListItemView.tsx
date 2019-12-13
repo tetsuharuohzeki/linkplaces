@@ -1,14 +1,14 @@
 import { Nullable } from 'option-t/esm/Nullable/Nullable';
 import React from 'react';
 
+import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../../shared/Bookmark';
+import { WhereToOpenItem, WHERE_TO_OPEN_ITEM_TO_WINDOW, WHERE_TO_OPEN_ITEM_TO_TAB } from '../../shared/RemoteAction';
 import {
     PanelListItem,
     PanelListItemIcon,
     PanelListItemText,
 } from '../../shared/component/PanelListItem';
-import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../../shared/Bookmark';
 import { PanelSectionListSeparator } from '../../shared/component/PanelSectionList';
-import { WhereToOpenItem, WHERE_TO_OPEN_ITEM_TO_WINDOW, WHERE_TO_OPEN_ITEM_TO_TAB } from '../../shared/RemoteAction';
 
 import { SidebarItemViewModelEntity } from '../SidebarDomain';
 import { SidebarIntent, notifyOpenItem } from '../SidebarIntent';

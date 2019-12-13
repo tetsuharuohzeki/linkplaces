@@ -1,10 +1,10 @@
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
 import { landViewContext } from '../shared/LandingPad';
 
-import { registerComponents } from './component/register';
 
 import { PopupMainContext } from './PopupMainContext';
 import { createChannel } from './PopupMessageChannel';
+import { registerComponents } from './component/register';
 
 (async function main() {
     registerComponents();

@@ -4,16 +4,16 @@ import React from 'react';
 import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../typings/webext/bookmarks';
 
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../shared/Bookmark';
-import { PanelSectionList, PanelSectionListSeparator } from '../shared/component/PanelSectionList';
 import {
     PanelListItem,
     PanelListItemIcon,
     PanelListItemText,
 } from '../shared/component/PanelListItem';
+import { PanelSectionList, PanelSectionListSeparator } from '../shared/component/PanelSectionList';
 
 import { PopupMainState } from './PopupMainState';
-import { openItem, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';
 import { PopupMainStore } from './PopupMainStore';
+import { openItem, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';
 
 const ICON_DIR = '../resources/icon/';
 

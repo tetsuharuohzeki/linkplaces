@@ -7,27 +7,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import {
-    debounceTime,
-} from 'rxjs/operators';
-import {
     Subscription,
     animationFrameScheduler as animationFrameRxScheduler,
 } from 'rxjs';
+import {
+    debounceTime,
+} from 'rxjs/operators';
 
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
-import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 import { ViewContext } from '../shared/ViewContext';
+import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 
-import { SidebarView } from './SidebarView';
 
 import { mapToSidebarItemEntity } from './SidebarDomain';
 import { SidebarViewEpic } from './SidebarEpic';
 import { SidebarIntent } from './SidebarIntent';
+import { RemoteActionChannel } from './SidebarMessageChannel';
+import { SidebarRepository } from './SidebarRepository';
 import { SidebarState } from './SidebarState';
 import { SidebarStore } from './SidebarStore';
-import { SidebarRepository } from './SidebarRepository';
-import { RemoteActionChannel } from './SidebarMessageChannel';
+import { SidebarView } from './SidebarView';
 
 export class SidebarContext implements ViewContext {
 
