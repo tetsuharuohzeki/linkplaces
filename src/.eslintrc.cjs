@@ -5,7 +5,7 @@
 /*eslint quote-props: [2, "always"] */
 /* eslint-disable @typescript-eslint/no-require-imports */
 
-'use strict'; // eslint-disable-line strict
+'use strict';
 
 const path = require('path');
 
