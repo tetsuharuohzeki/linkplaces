@@ -110,7 +110,7 @@ ava: __obj
 	$(MAKE) run_ava
 
 run_ava:
-	$(NPM_BIN)/ava
+	$(NPM_BIN)/ava --config $(CURDIR)/ava.config.cjs
 
 git_diff: ## Test whether there is no committed changes.
 	git diff --exit-code
