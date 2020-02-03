@@ -36,7 +36,7 @@
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-react": "^7.18.0",
     "eslint-plugin-react-hooks": "^2.3.0",
-    "jsdom": "^16.0.1",
+    "jsdom": "^16.1.0",
     "option-t": "^22.1.1",
     "postcss": "^7.0.26",
     "postcss-cli": "^7.1.0",
