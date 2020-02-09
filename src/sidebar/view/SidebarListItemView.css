@@ -17,7 +17,10 @@
 }
 
 .sidebar-com-SidebarListItemView__container .shared-com-PanelListItem__container {
-    padding: 0 8px 0 16px;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    padding-inline-start: 16px;
+    padding-inline-end: 8px;
 }
 
 .sidebar-com-SidebarListItemView__container .shared-com-PanelListItem__icon {
@@ -25,6 +28,6 @@
 }
 
 .sidebar-com-SidebarListItemView__icon_img {
-    width: 16px;
-    height: 16px;
+    inline-size: 16px;
+    block-size: 16px;
 }

@@ -2,9 +2,11 @@
 .shared-com-PanelSectionList__container {
     display: flex;
     flex-direction: column;
-    padding: 4px 0;
+    padding-block: 4px;
+    padding-inline: 0;
 }
 
 .shared-com-PanelSectionList__separator {
-    margin: 4px 0;
+    margin-block: 4px;
+    margin-inline: 0;
 }

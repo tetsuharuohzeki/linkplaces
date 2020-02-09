@@ -59,8 +59,8 @@ export class PopupItemIconElement extends HTMLElement {
             dom('style', null, [
                 text(`
                 .com-popup-PopupIconElement__icon {
-                    width: var(--side-size, 16px);
-                    height: var(--side-size, 16px);
+                    inline-size: var(--side-size, 16px);
+                    block-size: var(--side-size, 16px);
                     margin-inline-end: var(--margin-inline-end);
                 }
                 `),

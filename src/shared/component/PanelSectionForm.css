@@ -9,16 +9,16 @@
     align-items: center;
     display: flex;
     flex-direction: row;
-    margin-bottom: 12px;
+    margin-block-end: 12px;
 }
 
 .shared-com-PanelSectionForm__item:last-child {
-    margin-bottom: 0;
+    margin-block-end: 0;
 }
 
 .shared-com-PanelSectionForm__item label {
     flex-shrink: 0;
-    margin-right: 6px;
+    margin-inline-end: 6px;
     text-align: right;
 }
 
