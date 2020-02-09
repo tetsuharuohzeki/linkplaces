@@ -1,9 +1,9 @@
 /* eslint-env commonjs, node */
 'use strict';
 
+const nodeResolve = require('@rollup/plugin-node-resolve');
+const replace = require('@rollup/plugin-replace');
 const babel = require('rollup-plugin-babel');
-const nodeResolve = require('rollup-plugin-node-resolve');
-const replace = require('rollup-plugin-replace');
 
 const {
     GIT_REVISION,
@@ -93,7 +93,7 @@ module.exports = async function (_commandLineArgs) {
                 ]),
             }),
 
-            // https://github.com/rollup/rollup-plugin-node-resolve
+            // https://github.com/rollup/plugins/tree/master/packages/node-resolve
             nodeResolve({
                 mainFields: ['module', 'main'],
 
@@ -105,7 +105,7 @@ module.exports = async function (_commandLineArgs) {
                 extensions: ['.mjs', '.js', '.jsx'],
             }),
 
-            // https://github.com/rollup/rollup-plugin-replace
+            // https://github.com/rollup/plugins/tree/master/packages/replace
             replace({
                 exclude: [
                     'node_modules/**',
