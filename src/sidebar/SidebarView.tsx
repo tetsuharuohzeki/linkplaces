@@ -1,5 +1,5 @@
-import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
-import { map } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
+import { from as fromIterableToIterableX } from '@reactivex/ix-esnext-esm/iterable/from';
+import { map } from '@reactivex/ix-esnext-esm/iterable/operators/map';
 import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
 
 import React from 'react';
@@ -14,7 +14,7 @@ export interface SidebarViewProps {
 }
 
 export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
-    const mapped = IterableX.from(props.state.list)
+    const mapped = fromIterableToIterableX(props.state.list)
         .pipe(
             map((item) => {
                 const id = item.id();

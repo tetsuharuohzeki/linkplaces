@@ -1,5 +1,6 @@
+import { from as fromIterableToIterableX } from '@reactivex/ix-esnext-esm/iterable/from';
 import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
-import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
+import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/operators/map';
 
 import { Nullable } from 'option-t/esm/Nullable/Nullable';
 import {
@@ -132,6 +133,6 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
 
 function mapBookmarkTreeNodeToSidebarItemViewModelEntity(input: Iterable<BookmarkTreeNode>): IterableX<SidebarItemViewModelEntity> {
     const mapper = mapIx(mapToSidebarItemEntity);
-    const iter = IterableX.from(input).pipe(mapper);
+    const iter = fromIterableToIterableX(input).pipe(mapper);
     return iter;
 }

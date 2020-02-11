@@ -1,5 +1,5 @@
-import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
-import { map } from '@reactivex/ix-esnext-esm/iterable/pipe/map';
+import { from as fromIterableToIterableX } from '@reactivex/ix-esnext-esm/iterable/from';
+import { map } from '@reactivex/ix-esnext-esm/iterable/operators/map';
 import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
 
 import React from 'react';
@@ -17,7 +17,7 @@ export interface OptionsViewProps {
 export function OptionsView(props: Readonly<OptionsViewProps>): JSX.Element {
     const { list } = props;
 
-    const elements = IterableX.from(list)
+    const elements = fromIterableToIterableX(list)
         .pipe(
             map((page: Page): JSX.Element => {
                 return (
