@@ -1,8 +1,8 @@
 import { Observable, Subject } from 'rxjs';
 import { filter as filterRx } from 'rxjs/operators';
 
-import { Dispatchable } from '../shared/Intent';
-import {
+import type { Dispatchable } from '../shared/Intent';
+import type {
     WhereToOpenItem,
 } from '../shared/RemoteAction';
 

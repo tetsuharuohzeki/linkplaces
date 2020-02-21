@@ -1,4 +1,4 @@
-import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
+import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
 export class SidebarItemViewModelEntity {
 

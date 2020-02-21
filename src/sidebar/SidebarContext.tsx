@@ -14,18 +14,18 @@ import {
     debounceTime,
 } from 'rxjs/operators';
 
-import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
+import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
-import { ViewContext } from '../shared/ViewContext';
+import type { ViewContext } from '../shared/ViewContext';
 import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 
 
 import { mapToSidebarItemEntity } from './SidebarDomain';
 import { SidebarViewEpic } from './SidebarEpic';
 import { SidebarIntent } from './SidebarIntent';
-import { RemoteActionChannel } from './SidebarMessageChannel';
+import type { RemoteActionChannel } from './SidebarMessageChannel';
 import { SidebarRepository } from './SidebarRepository';
-import { SidebarState } from './SidebarState';
+import type { SidebarState } from './SidebarState';
 import { SidebarStore } from './SidebarStore';
 import { SidebarView } from './SidebarView';
 

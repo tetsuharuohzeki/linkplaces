@@ -1,15 +1,15 @@
-import { Observable } from 'rxjs';
+import type { Observable } from 'rxjs';
 import {
     map as mapRx,
     share as shareRx,
     startWith as startWithRx,
 } from 'rxjs/operators';
 
-import { Store } from '../shared/Store';
+import type { Store } from '../shared/Store';
 
-import { SidebarIntent } from './SidebarIntent';
-import { SidebarRepository } from './SidebarRepository';
-import { SidebarState } from './SidebarState';
+import type { SidebarIntent } from './SidebarIntent';
+import type { SidebarRepository } from './SidebarRepository';
+import type { SidebarState } from './SidebarState';
 
 export class SidebarStore implements Store<SidebarState> {
 

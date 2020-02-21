@@ -1,8 +1,8 @@
 import { from as fromIterableToIterableX } from '@reactivex/ix-esnext-esm/iterable/from';
-import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
+import type { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
 import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/operators/map';
 
-import { Nullable } from 'option-t/esm/Nullable/Nullable';
+import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import {
     BehaviorSubject,
     Observable,
@@ -16,10 +16,10 @@ import {
 } from 'rxjs/operators';
 
 
-import { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bookmarks';
+import type { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bookmarks';
 
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
-import { Repository } from '../shared/Repository';
+import type { Repository } from '../shared/Repository';
 import { SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain';
 
 type BookmarkId = string;

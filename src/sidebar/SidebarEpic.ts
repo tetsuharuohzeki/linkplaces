@@ -2,12 +2,12 @@ import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import { Subscription } from 'rxjs';
 
-import { Epic } from '../shared/Epic';
+import type { Epic } from '../shared/Epic';
 import { openItem } from '../shared/RemoteCall';
 
-import { SidebarIntent } from './SidebarIntent';
-import { RemoteActionChannel } from './SidebarMessageChannel';
-import { SidebarRepository } from './SidebarRepository';
+import type { SidebarIntent } from './SidebarIntent';
+import type { RemoteActionChannel } from './SidebarMessageChannel';
+import type { SidebarRepository } from './SidebarRepository';
 
 export class SidebarViewEpic implements Epic {
 
