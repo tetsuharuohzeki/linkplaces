@@ -1,4 +1,4 @@
-import { Nullable } from 'option-t/esm/Nullable/Nullable';
+import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import React from 'react';
 
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../../shared/Bookmark';
@@ -10,7 +10,7 @@ import {
 } from '../../shared/component/PanelListItem';
 import { PanelSectionListSeparator } from '../../shared/component/PanelSectionList';
 
-import { SidebarItemViewModelEntity } from '../SidebarDomain';
+import type { SidebarItemViewModelEntity } from '../SidebarDomain';
 import { SidebarIntent, notifyOpenItem } from '../SidebarIntent';
 
 const CLASS_NAME_PREFIX = 'sidebar-com-SidebarListItemView';

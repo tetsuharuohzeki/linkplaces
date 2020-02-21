@@ -4,8 +4,8 @@ import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toar
 
 import React from 'react';
 import { PanelSectionList } from '../shared/component/PanelSectionList';
-import { SidebarIntent } from './SidebarIntent';
-import { SidebarState } from './SidebarState';
+import type { SidebarIntent } from './SidebarIntent';
+import type { SidebarState } from './SidebarState';
 import { ListItem } from './view/SidebarListItemView';
 
 export interface SidebarViewProps {
