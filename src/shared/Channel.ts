@@ -1,10 +1,10 @@
-import { Nullable } from 'option-t/esm/Nullable/Nullable';
+import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import { isNotUndefined, isUndefined } from 'option-t/esm/Undefinable/Undefinable';
 
-import { Port } from '../../typings/webext/runtime';
+import type { Port } from '../../typings/webext/runtime';
 
-import { RemoteActionBase } from './RemoteAction';
+import type { RemoteActionBase } from './RemoteAction';
 
 type PromiseTuple = Readonly<{
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

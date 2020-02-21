@@ -1,6 +1,6 @@
-import { WebExtSidebarActionService } from '../../typings/webext/sidebarAction';
+import type { WebExtSidebarActionService } from '../../typings/webext/sidebarAction';
 
-import { Channel } from './Channel';
+import type { Channel } from './Channel';
 import {
     createOpenUrlAction,
     WhereToOpenItem,

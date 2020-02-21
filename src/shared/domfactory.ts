@@ -1,4 +1,4 @@
-import { Nullable } from 'option-t/esm/Nullable/Nullable';
+import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 
 export type DomRef<T> = {
     current: Nullable<T>;
