@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import type { Dispatch } from 'redux';
 
 import {
     WhereToOpenItem,
@@ -8,15 +8,15 @@ import {
     openItem as openItemViaChannel,
     openWebExtSidebar as openWebExtSidebarDirect,
 } from '../shared/RemoteCall';
-import { ThunkAction as ThunkActionArcheType, ThunkDispatch } from '../third_party/redux-thunk';
+import type { ThunkAction as ThunkActionArcheType, ThunkDispatch } from '../third_party/redux-thunk';
 
 import {
     createOpenSidebarAction,
     OpenSidebarAction,
     PopupAction,
 } from './PopupAction';
-import { PopupMainStateTree } from './PopupMainState';
-import { RemoteActionChannel } from './PopupMessageChannel';
+import type { PopupMainStateTree } from './PopupMainState';
+import type { RemoteActionChannel } from './PopupMessageChannel';
 
 export type PopupThunkAction<TAction extends PopupAction = PopupAction> = ThunkActionArcheType<Promise<void>, PopupMainStateTree, PopupThunkArguments, TAction>;
 

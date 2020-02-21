@@ -1,7 +1,7 @@
-import { Nullable } from 'option-t/esm/Nullable/Nullable';
+import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import React from 'react';
 
-import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../typings/webext/bookmarks';
+import type { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../typings/webext/bookmarks';
 
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../shared/Bookmark';
 import {
@@ -11,8 +11,8 @@ import {
 } from '../shared/component/PanelListItem';
 import { PanelSectionList, PanelSectionListSeparator } from '../shared/component/PanelSectionList';
 
-import { PopupMainState } from './PopupMainState';
-import { PopupMainStore } from './PopupMainStore';
+import type { PopupMainState } from './PopupMainState';
+import type { PopupMainStore } from './PopupMainStore';
 import { openItem, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';
 
 const ICON_DIR = '../resources/icon/';
