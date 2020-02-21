@@ -1,7 +1,7 @@
-import { Undefinable } from 'option-t/esm/Undefinable/Undefinable';
+import type { Undefinable } from 'option-t/esm/Undefinable/Undefinable';
 import { combineReducers, Reducer, } from 'redux';
 
-import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
+import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 import { PopupAction, ActionType } from './PopupAction';
 
 export interface PopupMainState {

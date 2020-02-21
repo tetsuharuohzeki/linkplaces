@@ -1,8 +1,8 @@
-import { Store } from 'redux';
+import type { Store } from 'redux';
 
-import { PopupAction } from './PopupAction';
-import { PopupMainStateTree } from './PopupMainState';
-import { PopupThunkDispatch } from './PopupMainThunk';
+import type { PopupAction } from './PopupAction';
+import type { PopupMainStateTree } from './PopupMainState';
+import type { PopupThunkDispatch } from './PopupMainThunk';
 
 export type PopupMainStore = Store<PopupMainStateTree, PopupAction> & {
     dispatch: PopupThunkDispatch;

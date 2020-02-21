@@ -7,19 +7,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Unsubscribe } from 'redux';
 
-import { BookmarkTreeNode, OnChangeInfo } from '../../typings/webext/bookmarks';
+import type { BookmarkTreeNode, OnChangeInfo } from '../../typings/webext/bookmarks';
 
-import { ViewContext } from '../shared/ViewContext';
+import type { ViewContext } from '../shared/ViewContext';
 import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 import { createThunkMiddleware } from '../third_party/redux-thunk';
 
 
 import { createItemChangedAction, PopupAction } from './PopupAction';
 import { createReducer, PopupMainStateTree, createInitialPopupMainStateTree } from './PopupMainState';
-import { PopupMainStore } from './PopupMainStore';
-import { PopupThunkArguments, PopupThunkDispatch } from './PopupMainThunk';
+import type { PopupMainStore } from './PopupMainStore';
+import type { PopupThunkArguments, PopupThunkDispatch } from './PopupMainThunk';
 import { PopupMainView } from './PopupMainView';
-import { RemoteActionChannel } from './PopupMessageChannel';
+import type { RemoteActionChannel } from './PopupMessageChannel';
 
 export class PopupMainContext implements ViewContext {
 

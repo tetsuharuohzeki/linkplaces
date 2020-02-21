@@ -1,8 +1,8 @@
-import {
+import type {
     Action as ActionArcheType
 } from 'redux';
 
-import {
+import type {
     OnChangeInfo,
     BookmarkTreeNode,
 } from '../../typings/webext/bookmarks';
