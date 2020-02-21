@@ -2,7 +2,7 @@ import { isNull } from 'option-t/esm/Nullable/Nullable';
 import { Result, createErr, createOk } from 'option-t/esm/PlainResult/Result';
 import { unwrapFromResult } from 'option-t/esm/PlainResult/unwrap';
 
-import {
+import type {
     BookmarkTreeNode,
     BookmarkTreeNodeItem,
     BookmarkTreeNodeFolder,
