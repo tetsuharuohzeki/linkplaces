@@ -3,7 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { removeBookmarkItem, getLinkSchemeType, } from '../shared/Bookmark';
-import { Packet } from '../shared/Channel';
+import type { Packet } from '../shared/Channel';
 import { NoImplementationError } from '../shared/NoImplementationError';
 import {
     RemoteAction,
