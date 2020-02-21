@@ -270,10 +270,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@reactivex/ix-esnext-esm@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@reactivex/ix-esnext-esm/-/ix-esnext-esm-3.0.0.tgz#8e148964c7f56d6dbb63c14cecc5673066bbed31"
-  integrity sha512-7I6V1x0uY7fJEX6CLmhjDxot2DxcxpCeg5pn0UHL/0EvErMoTOjFK0GiJi08UBc1BLoXB+to7mrIvbUfIKUs4Q==
+"@reactivex/ix-esnext-esm@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@reactivex/ix-esnext-esm/-/ix-esnext-esm-3.0.1.tgz#e005604a299c31a43052271cc8a8365fde4b0ea8"
+  integrity sha512-7pzlXzywIq2LSTv1jHABaYTmoZLFT7e8RWP76GcblBwlrAaDuCHqz05vvqV7w3i4r4dHgA9VnzbghPYAK2AmuQ==
   dependencies:
     "@types/node" "^12.0.4"
     tslib "^1.9.3"
