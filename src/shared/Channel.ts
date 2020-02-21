@@ -161,7 +161,7 @@ export class Channel<TMessage extends RemoteActionBase> {
             throw new TypeError('in this path, Packet.id must not be undefined.');
         }
 
-        if (isNotUndefined(isRequest) && isRequest === true) {
+        if (isNotUndefined(isRequest) && isRequest) {
             this._subject.next(msg);
             return;
         }
