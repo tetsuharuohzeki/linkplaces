@@ -1,6 +1,6 @@
 // https://raw.githubusercontent.com/reduxjs/redux-thunk/master/index.d.ts
 
-import { Middleware, Dispatch, Action, MiddlewareAPI, AnyAction } from 'redux';
+import type { Middleware, Dispatch, Action, MiddlewareAPI, AnyAction } from 'redux';
 
 /**
  * The dispatch method as modified by React-Thunk; overloaded so that you can
