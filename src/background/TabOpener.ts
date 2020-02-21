@@ -6,7 +6,7 @@
 import { expectNotNullAndUndefined } from 'option-t/esm/Maybe/expect';
 import { expectNotUndefined } from 'option-t/esm/Undefinable/expect';
 
-import { TabId } from '../../typings/webext/tabs';
+import type { TabId } from '../../typings/webext/tabs';
 
 import {
     WHERE_TO_OPEN_ITEM_TO_TAB,
