@@ -31,11 +31,8 @@ jobs:
     - name: build
       run: make build -j
 
-    - name: check fmt
-      run: make fmt -j
-
-    - name: check diff
-      run: make git_diff -j
+    - name: check formatting
+      run: make check_fmt -j
 
     - name: test
       run: make test -j

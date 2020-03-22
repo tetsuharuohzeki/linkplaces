@@ -124,3 +124,8 @@ fmt_css:
 
 fmt_js:
 	$(NPM_BIN)/eslint --ext=js,jsx,mjs,ts,tsx $(CURDIR) --fix
+
+check_fmt: check_fmt_css
+
+check_fmt_css:
+	$(NPM_BIN)/prettier --single-quote --print-width 256 --check '$(SRC_DIR)/**/*.css'
