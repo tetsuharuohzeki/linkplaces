@@ -138,6 +138,7 @@ module.exports = async function (_commandLineArgs) {
                         // https://github.com/babel/babel/tree/master/packages/babel-preset-react#options
                         development: !IS_PRODUCTION_MODE,
                         useSpread: true,
+                        runtime: 'classic',
                     }],
                 ],
                 plugins: [
