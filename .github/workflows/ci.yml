@@ -24,7 +24,7 @@ jobs:
         path: node_modules
         key: build-v0-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
 
-    - name: install dependencies,
+    - name: install dependencies
       run: |
         yarn install --frozen-lockfile
 
