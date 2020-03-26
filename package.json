@@ -26,7 +26,7 @@
     "@reactivex/ix-esnext-esm": "^3.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@rollup/plugin-replace": "^2.3.1",
-    "@types/react": "^16.9.25",
+    "@types/react": "^16.9.26",
     "@types/react-dom": "^16.9.5",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
