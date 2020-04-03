@@ -50,7 +50,7 @@
     "redux-thunk": "^2.2.0",
     "rollup": "^2.3.2",
     "rollup-plugin-babel": "^4.4.0",
-    "rxjs": "^6.5.4",
+    "rxjs": "^6.5.5",
     "stylelint": "^13.2.1",
     "stylelint-config-standard": "^20.0.0",
     "typescript": "^3.9.0-beta",
