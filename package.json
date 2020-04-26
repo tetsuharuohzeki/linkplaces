@@ -54,6 +54,6 @@
     "stylelint": "^13.3.3",
     "stylelint-config-standard": "^20.0.0",
     "typescript": "^3.9.0-beta",
-    "web-ext": "^4.1.0"
+    "web-ext": "^4.2.0"
   }
 }
