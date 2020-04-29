@@ -2,12 +2,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { removeBookmarkItem, getLinkSchemeType, } from '../shared/Bookmark';
+import { removeBookmarkItem, getLinkSchemeType, createBookmarkItem } from '../shared/Bookmark';
 import { Packet } from '../shared/Channel';
 import { NoImplementationError } from '../shared/NoImplementationError';
 import {
     RemoteAction,
     MSG_TYPE_OPEN_URL,
+    MSG_TYPE_REGISTER_URL,
     WhereToOpenItem,
 } from '../shared/RemoteAction';
 
@@ -36,6 +37,11 @@ function onMessageFromPopup(packet: Packet<RemoteAction>) {
         case MSG_TYPE_OPEN_URL: {
             const { id, url, where } = msg.value;
             openUrlFromPopup(url, id, where).catch(console.error);
+            break;
+        }
+        case MSG_TYPE_REGISTER_URL: {
+            const { url, title } = msg.value;
+            createBookmarkItem(url, title).catch(console.error);
             break;
         }
         default:

@@ -9,6 +9,7 @@ import ReactDOM from 'react-dom';
 import {
     Subscription,
     animationFrameScheduler as animationFrameRxScheduler,
+    fromEvent as fromEventToObservable,
 } from 'rxjs';
 import {
     debounceTime,
@@ -22,7 +23,7 @@ import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 
 import { mapToSidebarItemEntity } from './SidebarDomain';
 import { SidebarViewEpic } from './SidebarEpic';
-import { SidebarIntent } from './SidebarIntent';
+import { SidebarIntent, notifyPasteItemFromClipboardAction } from './SidebarIntent';
 import { RemoteActionChannel } from './SidebarMessageChannel';
 import { SidebarRepository } from './SidebarRepository';
 import { SidebarState } from './SidebarState';
@@ -66,7 +67,7 @@ export class SidebarContext implements ViewContext {
             this._renderRoot = ReactDOM.createRoot(mountpoint);
         }
 
-        this._subscription = state
+        const subscription = state
             .pipe(
                 // XXX: Should we remove this wrapping `requestAnimationFrame()` for React concurrent mode?
                 // Will React schedule requestAnimationFrame properly?
@@ -87,6 +88,22 @@ export class SidebarContext implements ViewContext {
             }, (e) => {
                 console.exception(e);
             });
+
+        const pastEventObservable = fromEventToObservable(window, 'paste');
+
+        subscription.add(pastEventObservable.subscribe((event) => {
+            if ( !(event instanceof ClipboardEvent)) {
+                throw new TypeError(`this event should be paste but coming is ${event.type}`);
+            }
+
+            const action = notifyPasteItemFromClipboardAction(event);
+            if (!action) {
+                return;
+            }
+            this._intent.dispatch(action);
+        }, console.error));
+
+        this._subscription = subscription;
     }
 
     async onDestroy(_mountpoint: Element): Promise<void> {

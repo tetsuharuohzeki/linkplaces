@@ -83,6 +83,7 @@ module.exports = async function (_commandLineArgs) {
                     createNamedExport('Subject', RXJS_NAMESPCACE_OBJ_NAME),
                     createNamedExport('Subscription', RXJS_NAMESPCACE_OBJ_NAME),
                     createNamedExport('animationFrameScheduler', RXJS_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('fromEvent', RXJS_NAMESPCACE_OBJ_NAME),
                 ]),
                 'rxjs/operators': createModule([
                     createNamedExport('filter', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),

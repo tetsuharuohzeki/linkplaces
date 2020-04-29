@@ -1,3 +1,5 @@
+import { Nullable } from 'option-t/esm/Nullable/Nullable';
+
 import { Observable, Subject } from 'rxjs';
 import { filter as filterRx } from 'rxjs/operators';
 
@@ -37,15 +39,23 @@ export class SidebarIntent implements Dispatchable<Action> {
                 filterRx(isSelectItemAction)
             );
     }
+
+    pasteUrlFromClipboard(): Observable<PasteItemFromClipboardAction> {
+        return this._subject.asObservable()
+            .pipe(
+                filterRx(isPasteItemFromClipboardAction)
+            );
+    }
 }
 
 export const enum ActionType {
     OpenItem = 'SIDEBAR_ACTION_ITEM_OPEND',
-    SelectItem = 'SIDEBAR_ACTION_SELECT_ITEM'
+    SelectItem = 'SIDEBAR_ACTION_SELECT_ITEM',
+    PasteItemFromClipboardAction = 'SIDEBAR_ACTION_PASTE_ITEM_FROM_CLIPBOARD',
 }
 
 export type Action =
-    OpenItemAction | SelectItemAction;
+    OpenItemAction | SelectItemAction | PasteItemFromClipboardAction;
 
 interface ActionBase {
     type: ActionType;
@@ -80,6 +90,25 @@ export function notifySelectItemAction(id: string): SelectItemAction {
     return {
         type: ActionType.SelectItem,
         id,
+    };
+}
+
+export interface PasteItemFromClipboardAction extends ActionBase {
+    type: ActionType.PasteItemFromClipboardAction;
+    data: DataTransfer;
+}
+export function isPasteItemFromClipboardAction(v: Readonly<ActionBase>): v is PasteItemFromClipboardAction {
+    return v.type === ActionType.PasteItemFromClipboardAction;
+}
+export function notifyPasteItemFromClipboardAction(event: ClipboardEvent): Nullable<PasteItemFromClipboardAction> {
+    const data = event.clipboardData;
+    if (!data) {
+        return null;
+    }
+
+    return {
+        type: ActionType.PasteItemFromClipboardAction,
+        data,
     };
 }
 

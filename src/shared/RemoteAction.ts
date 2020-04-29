@@ -2,6 +2,7 @@ export const CONNECTION_PING_FROM_POPUP = 'CONNECTION_PING_FROM_POPUP';
 export const CONNECTION_PING_FROM_SIDEBAR = 'CONNECTION_PING_FROM_SIDEBAR';
 
 export const MSG_TYPE_OPEN_URL = 'linkplaces-open-url';
+export const MSG_TYPE_REGISTER_URL = 'linkplaces-register-url';
 
 export const WHERE_TO_OPEN_ITEM_TO_CURRENT = 'current';
 export const WHERE_TO_OPEN_ITEM_TO_WINDOW = 'window';
@@ -41,5 +42,25 @@ export function createOpenUrlAction(bookmarkId: string, url: string, where: Wher
     };
 }
 
+export interface RegisterUrlAction extends RemoteActionBase {
+    type: typeof MSG_TYPE_REGISTER_URL;
+    value: {
+        url: string;
+        title: string;
+    };
+}
+export function isRegisterUrlAction(v: RemoteActionBase): v is RegisterUrlAction {
+    return v.type === MSG_TYPE_REGISTER_URL;
+}
+export function createRegisterUrlAction(url: string, title: string): RegisterUrlAction {
+    return {
+        type: MSG_TYPE_REGISTER_URL,
+        value: {
+            url,
+            title,
+        },
+    };
+}
+
 export type RemoteAction =
-    OpenUrlAction;
+    OpenUrlAction | RegisterUrlAction;
