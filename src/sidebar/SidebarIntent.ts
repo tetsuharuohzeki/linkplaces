@@ -46,16 +46,24 @@ export class SidebarIntent implements Dispatchable<Action> {
                 filterRx(isPasteItemFromClipboardAction)
             );
     }
+
+    copyUrlToClipboard(): Observable<CopyItemToClipboardActionAction> {
+        return this._subject.asObservable()
+            .pipe(
+                filterRx(isCopyItemToClipboardAction)
+            );
+    }
 }
 
 export const enum ActionType {
     OpenItem = 'SIDEBAR_ACTION_ITEM_OPEND',
     SelectItem = 'SIDEBAR_ACTION_SELECT_ITEM',
     PasteItemFromClipboardAction = 'SIDEBAR_ACTION_PASTE_ITEM_FROM_CLIPBOARD',
+    CopyItemToClipboardAction = 'SIDEBAR_ACTION_COPY_ITEM_TO_CLIPBOARD',
 }
 
 export type Action =
-    OpenItemAction | SelectItemAction | PasteItemFromClipboardAction;
+    OpenItemAction | SelectItemAction | PasteItemFromClipboardAction | CopyItemToClipboardActionAction;
 
 interface ActionBase {
     type: ActionType;
@@ -109,6 +117,20 @@ export function notifyPasteItemFromClipboardAction(event: ClipboardEvent): Nulla
     return {
         type: ActionType.PasteItemFromClipboardAction,
         data,
+    };
+}
+
+export interface CopyItemToClipboardActionAction extends ActionBase {
+    type: ActionType.CopyItemToClipboardAction;
+    url: string;
+}
+export function isCopyItemToClipboardAction(v: Readonly<ActionBase>): v is CopyItemToClipboardActionAction {
+    return v.type === ActionType.CopyItemToClipboardAction;
+}
+export function notifyCopyItemToClipboardActionAction(url: string): CopyItemToClipboardActionAction {
+    return {
+        type: ActionType.CopyItemToClipboardAction,
+        url,
     };
 }
 

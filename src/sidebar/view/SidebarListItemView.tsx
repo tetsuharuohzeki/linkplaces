@@ -11,7 +11,7 @@ import {
 import { PanelSectionListSeparator } from '../../shared/component/PanelSectionList';
 
 import { SidebarItemViewModelEntity } from '../SidebarDomain';
-import { SidebarIntent, notifyOpenItem } from '../SidebarIntent';
+import { SidebarIntent, notifyOpenItem, notifyCopyItemToClipboardActionAction } from '../SidebarIntent';
 
 const CLASS_NAME_PREFIX = 'sidebar-com-SidebarListItemView';
 
@@ -95,6 +95,16 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
             setIsOpening(true);
         };
 
+        const onContextMenu: React.MouseEventHandler<HTMLAnchorElement> = (evt) => {
+            const MOUSE_BUTTON_SECOND = 2;
+            if (evt.button !== MOUSE_BUTTON_SECOND) {
+                return;
+            }
+
+            const a = notifyCopyItemToClipboardActionAction(url);
+            intent.dispatch(a);
+        };
+
         const label = (bookmarkTitle === '') ?
             url :
             bookmarkTitle;
@@ -104,6 +114,7 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
                     className={`${CLASS_NAME_PREFIX}__container`}
                     href={url}
                     onClick={onClick}
+                    onContextMenu={onContextMenu}
                     title={title}>
                     <ListBaseItem
                         isOpening={isOpening}

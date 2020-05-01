@@ -37,6 +37,10 @@ export class SidebarViewEpic implements Epic {
             const d = data.getData('text/plain');
             registerItem(this._channel, d);
         }, console.error));
+
+        s.add(this._intent.copyUrlToClipboard().subscribe(({ url }) => {
+            navigator.clipboard.writeText(url).catch(console.error);
+        }, console.error));
     }
 
     destroy(): void {
