@@ -64,7 +64,7 @@ export class SidebarContext implements ViewContext {
         });
 
         if (USE_REACT_CONCURRENT_MODE) {
-            this._renderRoot = ReactDOM.createRoot(mountpoint);
+            this._renderRoot = ReactDOM.unstable_createRoot(mountpoint);
         }
 
         const subscription = state

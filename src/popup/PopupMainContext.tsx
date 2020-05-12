@@ -52,7 +52,7 @@ export class PopupMainContext implements ViewContext {
         }, PopupMainStateTree>(reducer, initial, enhancer);
 
         if (USE_REACT_CONCURRENT_MODE) {
-            this._renderRoot = ReactDOM.createRoot(mountpoint);
+            this._renderRoot = ReactDOM.unstable_createRoot(mountpoint);
         }
 
         const render = () => {

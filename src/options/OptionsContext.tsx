@@ -38,7 +38,7 @@ export class OptionsContext implements ViewContext {
         );
 
         if (USE_REACT_CONCURRENT_MODE) {
-            const renderRoot = ReactDOM.createRoot(mountpoint);
+            const renderRoot = ReactDOM.unstable_createRoot(mountpoint);
             this._renderRoot = renderRoot;
             renderRoot.render(view);
         } else {
