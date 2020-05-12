@@ -5,6 +5,7 @@
 /*eslint quote-props: [2, "always"] */
 /* eslint-disable @typescript-eslint/no-require-imports */
 
+// eslint-disable-next-line strict
 'use strict';
 
 const path = require('path');
@@ -29,6 +30,7 @@ module.exports = {
         },
         'ecmaVersion': 2018,
         'project': path.resolve(__dirname, '../tsconfig.eslint.json'),
+        'extraFileExtensions': ['.cjs'],
     },
 
     'env': {

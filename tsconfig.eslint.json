@@ -6,7 +6,7 @@
 
   "include": [
     "src/**/*",
-    "src/**/.eslintrc.js",
+    "src/**/.eslintrc.cjs",
     "typings/**/*",
     "typings/**/.eslintrc.js",
   ],
