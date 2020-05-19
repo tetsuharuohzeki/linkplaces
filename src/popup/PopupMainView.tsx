@@ -39,7 +39,6 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
         <React.StrictMode>
             <div>
                 <PanelSectionList>
-                    {/* eslint-disable-next-line react/jsx-no-bind */}
                     <PanelListItem onClick={onClickOpenWebExtSidebar}>
                         <PanelListItemIcon>
                             <popup-item-icon icondir={ICON_DIR} iconfile={'sidebar-left-16.svg'} />
@@ -103,7 +102,6 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
             <span
                 className={'popup-c-PopupMainView-ItemListItem__container'}
             >
-                {/* eslint-disable-next-line react/jsx-no-bind */}
                 <PanelListItem onClick={onClick}>
                     <PanelListItemIcon>
                         <popup-item-icon icondir={ICON_DIR} iconfile={'folder-16.svg'} />
