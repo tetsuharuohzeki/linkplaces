@@ -1,7 +1,7 @@
 /* eslint-env commonjs, node */
 'use strict';
 
-const nodeResolve = require('@rollup/plugin-node-resolve');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const replace = require('@rollup/plugin-replace');
 const babel = require('rollup-plugin-babel');
 
