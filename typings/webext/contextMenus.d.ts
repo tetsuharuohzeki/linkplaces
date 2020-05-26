@@ -62,5 +62,6 @@ export interface WebExtContextMenuService {
     onClicked: FullListener<(this: void, info: OnClickData, tab: Tab | null | undefined) => void>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus/ACTION_MENU_TOP_LEVEL_LIMIT
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     readonly ACTION_MENU_TOP_LEVEL_LIMIT: number;
 }

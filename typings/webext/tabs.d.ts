@@ -28,7 +28,7 @@ type ExecuteScriptDetails = {
 
 export interface WebExtTabsService {
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/TAB_ID_NONE
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/naming-convention
     readonly TAB_ID_NONE: any;
 
     // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/connect
