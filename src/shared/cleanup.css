@@ -1,0 +1,95 @@
+/**
+ *  (controversial)
+ *  1. Prevent padding and border from affecting element width.
+ *      - https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ *      - For all browsers
+ *
+ *  (controversial)
+ *  2. Change the default font family.
+ *      - For all browsers
+ *
+ *  3. Prevent adjustments of font size after orientation changes.
+ *      - For iOS, this is still live in iOS 13.4.
+ */
+html {
+    box-sizing: border-box; /* 1 */
+    font-family: sans-serif; /* 2 */
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-text-size-adjust: 100%; /* 3 */
+}
+
+/**
+ *  (controversial)
+ *  Remove margin and padding.
+ *      - For all browsers
+ */
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ *  (controversial)
+ *  1. Prevent padding and border from affecting element width.
+ *      - https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ *      - For all browsers
+ *
+ *  (controversial)
+ *  2. Reset `padding` and `margin` of all elements.
+ *      - For all browsers
+ */
+*,
+*::before,
+*::after {
+    box-sizing: inherit; /* 1 */
+
+    /* Disabled because this code would only works in Firefox
+    margin: 0; // 2
+    padding: 0; // 2
+    */
+}
+
+/**
+ *  (controversial)
+ *  1. Change font properties to `inherit`.
+ *      - For all browsers
+ *
+ *  2. Remove the margin.
+ *      - For Firefox and Safari
+ */
+button,
+input,
+select,
+textarea {
+    font: inherit; /* 1 */
+    margin: 0; /* 2 */
+}
+
+/**
+ *  Remove the inheritance of text transform.
+ *      - For Firefox 40+, IE 11-, and Edge
+ */
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ *  (controversial)
+ *  Change the cursor to button elements.
+ *      - For all browsers
+ */
+button,
+[type='button'],
+[type='submit'] {
+    cursor: pointer;
+}
+
+/**
+ *  Restore the default cursor to disabled elements unset by the previous rule.
+ *      - For all browsers
+ */
+[disabled] {
+    cursor: default;
+}
