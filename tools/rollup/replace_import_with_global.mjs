@@ -1,8 +1,5 @@
-'use strict';
-
-const assert = require('assert');
-
-const UndefinableMod = require('option-t/cjs/Undefinable');
+import * as assert from 'assert';
+import { isUndefined } from 'option-t/esm/Undefinable/index.mjs';
 
 const PLACEHOLDER_PREFIX = '\0placeholder_module:';
 
@@ -20,7 +17,7 @@ class ModuleSource {
     }
 }
 
-function replaceImportWithGlobal(map) {
+export function replaceImportWithGlobal(map) {
     const table = new Map(Object.entries(map));
     const innerTable = new Map();
 
@@ -30,7 +27,7 @@ function replaceImportWithGlobal(map) {
 
         async resolveId(source, _importer) {
             const mod = table.get(source);
-            if (UndefinableMod.isUndefined(mod)) {
+            if (isUndefined(mod)) {
                 return null;
             }
 
@@ -48,7 +45,7 @@ function replaceImportWithGlobal(map) {
 
         async load(id) {
             const src = innerTable.get(id);
-            if (UndefinableMod.isUndefined(src)) {
+            if (isUndefined(src)) {
                 return null;
             }
 
@@ -62,14 +59,14 @@ function replaceImportWithGlobal(map) {
     };
 }
 
-function createDefaultExport(name) {
+export function createDefaultExport(name) {
     assert.strictEqual(typeof name, 'string');
 
     const text = `export default ${name};`;
     return text;
 }
 
-function createNamedExport(name, namespace) {
+export function createNamedExport(name, namespace) {
     assert.strictEqual(typeof name, 'string');
     assert.strictEqual(typeof namespace, 'string');
 
@@ -77,17 +74,10 @@ function createNamedExport(name, namespace) {
     return text;
 }
 
-function createModule(list) {
+export function createModule(list) {
     assert.ok(Array.isArray(list));
 
     const text = list.join('\n');
     const mod = new ModuleSource(text);
     return mod;
 }
-
-module.exports = Object.freeze({
-    replaceImportWithGlobal,
-    createDefaultExport,
-    createNamedExport,
-    createModule,
-});

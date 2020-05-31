@@ -1,9 +1,18 @@
-/* eslint-env commonjs, node */
-'use strict';
+/* eslint-env node */
 
-const { nodeResolve } = require('@rollup/plugin-node-resolve');
-const replace = require('@rollup/plugin-replace');
-const babel = require('rollup-plugin-babel');
+import nodeResolveMod from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
+import babel from 'rollup-plugin-babel';
+
+import buildconfigMod from './tools/buildconfig.js';
+import {
+    replaceImportWithGlobal,
+    createDefaultExport,
+    createNamedExport,
+    createModule,
+} from './tools/rollup/replace_import_with_global.mjs';
+
+const { nodeResolve } = nodeResolveMod;
 
 const {
     GIT_REVISION,
@@ -12,14 +21,7 @@ const {
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
     USE_REACT_CONCURRENT_MODE,
-} = require('./tools/buildconfig');
-
-const {
-    replaceImportWithGlobal,
-    createDefaultExport,
-    createNamedExport,
-    createModule,
-} = require('./tools/rollup/replace_import_with_global');
+} = buildconfigMod;
 
 console.log(`
 =========== rollup configuration vars ============
@@ -37,7 +39,8 @@ const RXJS_OPERATOR_NAMESPCACE_OBJ_NAME = `${RXJS_NAMESPCACE_OBJ_NAME}.operators
 
 // https://github.com/rollup/rollup/wiki/JavaScript-API
 // https://github.com/rollup/rollup/wiki/Command-Line-Interface
-module.exports = async function (_commandLineArgs) {
+// eslint-disable-next-line import/no-default-export
+export default async function createConfiguration(_commandLineArgs) {
 
     return {
         strictDeprecations: true,
@@ -148,4 +151,4 @@ module.exports = async function (_commandLineArgs) {
             }),
         ],
     };
-};
+}
