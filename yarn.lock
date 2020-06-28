@@ -2337,10 +2337,10 @@ es6-promisify@6.1.1:
   resolved "https://registry.yarnpkg.com/es6-promisify/-/es6-promisify-6.1.1.tgz#46837651b7b06bf6fff893d03f29393668d01621"
   integrity sha512-HBL8I3mIki5C1Cc9QjKUenHtnG0A5/xA8Q/AllRcfiwl2CZFXGK7ddBiCoRwAix4i2KxcQfjtIVcrVbB3vbmwg==
 
-esbuild@^0.5.12:
-  version "0.5.12"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.5.12.tgz#14a6a6f19cfcebe98ddb8dc984a9c6da616608cd"
-  integrity sha512-iENorCZkM0UlkiV4bdbfEs2zML9W9xrbhJc3pdyIHv5wwz5t7tgf1tNNJC/lHmWDfARG1Vl4LkubYeo49ft9qA==
+esbuild@^0.5.14:
+  version "0.5.14"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.5.14.tgz#c7c900f728304136556db036840e638318e81cf1"
+  integrity sha512-0vVlkpR7XOsqzhUA6xgKzZ/vIXCi+sZZI7t/HG4vJ+nUqo77iEyg1KfIKuqk2kBJQ9/Ts7NXuK5/mfL2J0ZVzA==
 
 escape-goat@^2.0.0:
   version "2.1.1"
