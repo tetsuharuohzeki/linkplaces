@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-import nodeResolveMod from '@rollup/plugin-node-resolve';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import babel from 'rollup-plugin-babel';
 
@@ -11,8 +11,6 @@ import {
     createNamedExport,
     createModule,
 } from './tools/rollup/replace_import_with_global.mjs';
-
-const { nodeResolve } = nodeResolveMod;
 
 const {
     GIT_REVISION,
