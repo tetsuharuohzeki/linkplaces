@@ -57,6 +57,8 @@ export default async function createConfiguration(_commandLineArgs) {
             sourcemap: true,
             globals: {
             },
+
+            inlineDynamicImports: false,
         },
 
         external: [
@@ -64,7 +66,6 @@ export default async function createConfiguration(_commandLineArgs) {
 
         perf: false,
 
-        inlineDynamicImports: true,
         shimMissingExports: false,
 
         plugins: [
