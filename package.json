@@ -7,18 +7,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/saneyuki/linkplaces.git"
+    "url": "git+https://github.com/tetsuharuohzeki/linkplaces.git"
   },
   "author": {
     "name": "Tetsuharu OHZEKI",
     "email": "saneyuki.snyk@gmail.com",
-    "url": "https://github.com/saneyuki/"
+    "url": "https://github.com/tetsuharuohzeki/"
   },
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/saneyuki/linkplaces/issues"
+    "url": "https://github.com/tetsuharuohzeki/linkplaces/issues"
   },
-  "homepage": "https://github.com/saneyuki/linkplaces",
+  "homepage": "https://github.com/tetsuharuohzeki/linkplaces",
   "dependencies": {
     "@babel/core": "^7.10.3",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
