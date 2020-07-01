@@ -2,4 +2,5 @@
 
 @import '../shared/base_style/mod.css';
 @import '../shared/component/mod.css';
+
 @import './view/mod.css';

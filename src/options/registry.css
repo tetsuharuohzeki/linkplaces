@@ -2,8 +2,4 @@
 
 @import '../shared/base_style/mod.css';
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --global-body__background-color: #202023;
-    }
-}
+@import './vars.css';

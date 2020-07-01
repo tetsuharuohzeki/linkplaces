@@ -1,0 +1,5 @@
+@media (prefers-color-scheme: dark) {
+    :root {
+        --global-body__background-color: #202023;
+    }
+}
