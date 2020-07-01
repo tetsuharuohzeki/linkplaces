@@ -1,6 +1,6 @@
 @charset 'utf-8';
 
-@import '../shared/base_style/mod.css';
+@import '../shared/reset_css/mod.css';
 @import '../shared/component/mod.css';
 
 @import './view/mod.css';
