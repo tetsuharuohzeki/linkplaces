@@ -31,3 +31,10 @@ a:active {
 a:visited {
     color: var(--global-content__link-color--visited, unset);
 }
+
+/* Based on Webkit's `-webkit-direct-focus` */
+*:focus {
+    outline-color: var(--global-focus-outline-color);
+    outline-style: auto;
+    outline-width: 5px;
+}
