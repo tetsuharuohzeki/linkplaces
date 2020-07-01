@@ -12,6 +12,8 @@
     --global-content__link-color--hover: initial;
     --global-content__link-color--active: initial;
     --global-content__link-color--visited: initial;
+
+    --global-focus-outline-color: #0060df;
 }
 
 /* stylelint-disable-next-line media-feature-name-no-unknown */
