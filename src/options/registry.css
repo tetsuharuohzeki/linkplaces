@@ -1,7 +1,6 @@
 @charset 'utf-8';
 
-@import '../shared/base_style/vars.css';
-@import '../shared/base_style/reset.css';
+@import '../shared/base_style/mod.css';
 
 @media (prefers-color-scheme: dark) {
     :root {
