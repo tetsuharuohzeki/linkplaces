@@ -2,6 +2,6 @@
 
 @import '../shared/base_style/mod.css';
 @import '../shared/component/mod.css';
-@import './component/PopupIconElement.css';
+@import './component/mod.css';
 @import './vars.css';
 @import './PopupMainView.css';
