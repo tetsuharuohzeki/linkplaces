@@ -1,4 +1,4 @@
-@import '../vars.css';
+@import '../base_style/vars.css';
 
 .shared-com-PanelListItem__container {
     align-items: center;
