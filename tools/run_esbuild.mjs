@@ -41,6 +41,7 @@ build({
 
     target: 'es2020',
     platform: 'browser',
+    format: 'esm',
 
     minify: false,
     bundle: true,
