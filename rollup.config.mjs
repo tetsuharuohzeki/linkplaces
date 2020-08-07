@@ -145,7 +145,6 @@ export default async function createConfiguration(_commandLineArgs) {
                     }],
                 ],
                 plugins: [
-                    '@babel/plugin-syntax-dynamic-import',
                 ],
             }),
         ],
