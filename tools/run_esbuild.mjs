@@ -14,7 +14,7 @@ const {
 
 
 console.log(`
-=========== rollup configuration vars ============
+=========== esbuild configuration vars ============
 GIT_REVISION: ${GIT_REVISION}
 BUILD_DATE: ${BUILD_DATE}
 RELEASE_CHANNEL: ${RELEASE_CHANNEL}
