@@ -28,7 +28,7 @@ module.exports = {
         'ecmaFeatures': {
             'jsx': true
         },
-        'ecmaVersion': 2018,
+        'ecmaVersion': 2020,
         'project': path.resolve(__dirname, '../tsconfig.eslint.json'),
         'extraFileExtensions': ['.cjs'],
     },
