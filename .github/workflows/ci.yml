@@ -122,7 +122,7 @@ jobs:
       ##### END: sharable parts across jobs #####
 
       - name: check formatting
-        run: make check_fmt -j
+        run: make check_format -j
         env:
           CI: true
 
