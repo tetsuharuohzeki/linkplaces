@@ -22,7 +22,7 @@
   "dependencies": {
     "@babel/core": "^7.11.4",
     "@babel/preset-react": "^7.10.4",
-    "@reactivex/ix-esnext-esm": "^3.0.2",
+    "@reactivex/ix-esnext-esm": "^4.0.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-replace": "^2.3.3",
     "@types/react": "^16.9.48",
