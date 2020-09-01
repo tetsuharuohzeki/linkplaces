@@ -41,7 +41,7 @@
     "jsdom": "^16.4.0",
     "option-t": "^23.0.0",
     "postcss": "^7.0.32",
-    "postcss-cli": "^7.1.1",
+    "postcss-cli": "^7.1.2",
     "postcss-import": "^12.0.1",
     "prettier": "^2.1.1",
     "react": "^17.0.0-rc.1",
