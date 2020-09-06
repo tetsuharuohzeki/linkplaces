@@ -1,3 +1,4 @@
+import { Store as ReduxStore } from 'redux';
 import { Observable } from 'rxjs';
 import {
     map as mapRx,
@@ -7,9 +8,11 @@ import {
 
 import { Store } from '../shared/Store';
 
+import { SidebarReduxAction } from './SidebarAction';
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarRepository } from './SidebarRepository';
 import { SidebarState } from './SidebarState';
+import { SidebarReduxThunkDispatch } from './SidebarThunk';
 
 export class SidebarStore implements Store<SidebarState> {
 
@@ -31,3 +34,9 @@ export class SidebarStore implements Store<SidebarState> {
         return changed;
     }
 }
+
+export type SidebarReduxStoreEnhancer = {
+    dispatch: SidebarReduxThunkDispatch;
+};
+
+export type SidebarReduxStore = ReduxStore<void, SidebarReduxAction> & SidebarReduxStoreEnhancer;
