@@ -8,6 +8,9 @@ OBJ_SRC_DIR := $(OBJ_DIR)/src
 DIST_DIR := $(CURDIR)/__dist
 ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
 
+ESLINT_TARGET_EXTENSION := js,jsx,cjs,mjs,ts,tsx
+PRETTIER_TARGET := '$(SRC_DIR)/**/*.css'
+
 USE_ESBUILD ?= 0
 
 export RELEASE_CHANNEL ?= production
@@ -109,7 +112,7 @@ test: lint ava
 lint: eslint stylelint tscheck
 
 eslint:
-	$(NPM_BIN)/eslint --ext=js,jsx,cjs,mjs,ts,tsx $(CURDIR)
+	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
 
 tscheck:
 	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --noEmit
@@ -135,12 +138,12 @@ git_diff: ## Test whether there is no committed changes.
 format: format_css format_js ## Apply formetters for files.
 
 format_css:
-	$(NPM_BIN)/prettier --write '$(SRC_DIR)/**/*.css'
+	$(NPM_BIN)/prettier --write $(PRETTIER_TARGET)
 
 format_js:
-	$(NPM_BIN)/eslint --ext=js,jsx,mjs,ts,tsx $(CURDIR) --fix
+	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
 
 check_format: check_format_css
 
 check_format_css:
-	$(NPM_BIN)/prettier --check '$(SRC_DIR)/**/*.css'
+	$(NPM_BIN)/prettier --check $(PRETTIER_TARGET)
