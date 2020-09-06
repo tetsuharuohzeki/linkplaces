@@ -19,6 +19,7 @@ const {
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
     USE_REACT_CONCURRENT_MODE,
+    USE_REDUX_SIDEBAR_BACKEND,
 } = buildconfigMod;
 
 console.log(`
@@ -29,6 +30,7 @@ RELEASE_CHANNEL: ${RELEASE_CHANNEL}
 LIB_NODE_ENV: ${LIB_NODE_ENV}
 IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
 USE_REACT_CONCURRENT_MODE: ${USE_REACT_CONCURRENT_MODE}
+USE_REDUX_SIDEBAR_BACKEND: ${USE_REDUX_SIDEBAR_BACKEND}
 ======================================
 `);
 
@@ -85,6 +87,7 @@ export default async function createConfiguration(_commandLineArgs) {
                     createNamedExport('Subject', RXJS_NAMESPCACE_OBJ_NAME),
                     createNamedExport('Subscription', RXJS_NAMESPCACE_OBJ_NAME),
                     createNamedExport('animationFrameScheduler', RXJS_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('asyncScheduler', RXJS_NAMESPCACE_OBJ_NAME),
                     createNamedExport('fromEvent', RXJS_NAMESPCACE_OBJ_NAME),
                 ]),
                 'rxjs/operators': createModule([
@@ -93,6 +96,7 @@ export default async function createConfiguration(_commandLineArgs) {
                     createNamedExport('share', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
                     createNamedExport('startWith', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
                     createNamedExport('debounceTime', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('subscribeOn', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
                 ]),
             }),
 
@@ -119,6 +123,7 @@ export default async function createConfiguration(_commandLineArgs) {
                     'process.env.BUILD_DATE': JSON.stringify(BUILD_DATE),
                     'process.env.RELEASE_CHANNEL': JSON.stringify(RELEASE_CHANNEL),
                     'process.env.USE_REACT_CONCURRENT_MODE': JSON.stringify(USE_REACT_CONCURRENT_MODE),
+                    'process.env.USE_REDUX_SIDEBAR_BACKEND': JSON.stringify(USE_REDUX_SIDEBAR_BACKEND),
                 },
             }),
             replace({

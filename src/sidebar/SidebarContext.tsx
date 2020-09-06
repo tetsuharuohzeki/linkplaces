@@ -6,35 +6,45 @@ import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { applyMiddleware, createStore } from 'redux';
+
 import {
     Subscription,
     animationFrameScheduler as animationFrameRxScheduler,
-    fromEvent as fromEventToObservable,
+    asyncScheduler as asyncRxScheduler,
+    fromEvent as fromEventToObservable, Observable
 } from 'rxjs';
 import {
     debounceTime,
+    map as mapRx,
+    subscribeOn as subscribeOnRx,
 } from 'rxjs/operators';
 
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
 import { ViewContext } from '../shared/ViewContext';
-import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
+import { USE_REACT_CONCURRENT_MODE, USE_REDUX_SIDEBAR_BACKEND } from '../shared/constants';
+import { createThunkMiddleware } from '../third_party/redux-thunk';
 
-
-import { mapToSidebarItemEntity } from './SidebarDomain';
+import { createUpdateFromSourceAction, SidebarReduxAction } from './SidebarAction';
+import { mapToSidebarItemEntity, SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarViewEpic } from './SidebarEpic';
 import { SidebarIntent, notifyPasteItemFromClipboardAction } from './SidebarIntent';
 import { RemoteActionChannel } from './SidebarMessageChannel';
 import { SidebarRepository } from './SidebarRepository';
-import { SidebarState } from './SidebarState';
-import { SidebarStore } from './SidebarStore';
+import { createSidebarReduxReducer, createSidebarReduxStateTree, SidebarReduxStateTree, SidebarState } from './SidebarState';
+import { SidebarReduxStoreEnhancer, SidebarStore } from './SidebarStore';
+import { SidebarReduxThunkArguments, SidebarReduxThunkDispatch } from './SidebarThunk';
 import { SidebarView } from './SidebarView';
+
+
 
 export class SidebarContext implements ViewContext {
 
     private _list: Array<BookmarkTreeNode>;
     private _renderRoot: Nullable<ReactDOM.Root>;
     private _subscription: Nullable<Subscription>;
+    private _channel: RemoteActionChannel;
 
     private _intent: SidebarIntent;
     private _repo: SidebarRepository;
@@ -45,6 +55,7 @@ export class SidebarContext implements ViewContext {
         this._list = list;
         this._renderRoot = null;
         this._subscription = null;
+        this._channel = channel;
 
         const intent = new SidebarIntent();
         this._intent = intent;
@@ -59,15 +70,63 @@ export class SidebarContext implements ViewContext {
         }
 
         this._epic.activate();
-        const state = this._store.compose({
+
+        const initialState: Readonly<SidebarState> = {
             list: this._list.map(mapToSidebarItemEntity),
-        });
+        };
+
+        const subscription = new Subscription();
+        let state: Observable<SidebarState>;
+        if (USE_REDUX_SIDEBAR_BACKEND) {
+            const reducer = createSidebarReduxReducer();
+            const args: SidebarReduxThunkArguments = {
+                channel: this._channel,
+                intent: this._intent,
+                repo: this._repo,
+                epic: this._epic,
+            };
+            const middleware = createThunkMiddleware<SidebarReduxAction, SidebarReduxStateTree, SidebarReduxThunkArguments, Promise<void>>(args);
+            const enhancer = applyMiddleware<SidebarReduxThunkDispatch, SidebarReduxStateTree>(middleware);
+            const initial = createSidebarReduxStateTree(initialState);
+            const store = createStore<SidebarReduxStateTree, SidebarReduxAction, SidebarReduxStoreEnhancer, void>(reducer, initial, enhancer);
+
+            const reduxSource = new Observable<SidebarReduxStateTree>((subscripber) => {
+                const teerdown = store.subscribe(() => {
+                    const s = store.getState();
+                    subscripber.next(s);
+                });
+
+                return () => {
+                    teerdown();
+                };
+            });
+            const reduxState = reduxSource.pipe(mapRx((s: SidebarReduxStateTree) => {
+                return s.classicState;
+            }));
+            state = reduxState;
+
+            const reduxSubscription = this._repo.asObservable()
+                .pipe(subscribeOnRx(asyncRxScheduler))
+                .subscribe((source: Iterable<SidebarItemViewModelEntity>) => {
+                    const state: Readonly<SidebarState> = {
+                        list: source,
+                    };
+                    const a = createUpdateFromSourceAction(state);
+                    store.dispatch(a);
+                }, (e) => {
+                    console.exception(e);
+                });
+
+            subscription.add(reduxSubscription);
+        } else {
+            state = this._store.compose(initialState);
+        }
 
         if (USE_REACT_CONCURRENT_MODE) {
             this._renderRoot = ReactDOM.unstable_createRoot(mountpoint);
         }
 
-        const subscription = state
+        const renderSubscription = state
             .pipe(
                 // XXX: Should we remove this wrapping `requestAnimationFrame()` for React concurrent mode?
                 // Will React schedule requestAnimationFrame properly?
@@ -88,11 +147,12 @@ export class SidebarContext implements ViewContext {
             }, (e) => {
                 console.exception(e);
             });
+        subscription.add(renderSubscription);
 
         const pastEventObservable = fromEventToObservable(window, 'paste');
 
         subscription.add(pastEventObservable.subscribe((event) => {
-            if ( !(event instanceof ClipboardEvent)) {
+            if (!(event instanceof ClipboardEvent)) {
                 throw new TypeError(`this event should be paste but coming is ${event.type}`);
             }
 
