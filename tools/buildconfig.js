@@ -13,6 +13,8 @@ const ENABLE_SOURCE_MAP = !IS_PRODUCTION_MODE;
 
 const USE_REACT_CONCURRENT_MODE = false;
 
+const USE_REDUX_SIDEBAR_BACKEND = false;
+
 module.exports = Object.freeze({
     GIT_REVISION,
     BUILD_DATE,
@@ -21,4 +23,5 @@ module.exports = Object.freeze({
     IS_PRODUCTION_MODE,
     ENABLE_SOURCE_MAP,
     USE_REACT_CONCURRENT_MODE,
+    USE_REDUX_SIDEBAR_BACKEND,
 });
