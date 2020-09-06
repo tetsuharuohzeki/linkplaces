@@ -11,12 +11,13 @@ import { applyMiddleware, createStore } from 'redux';
 import {
     Subscription,
     animationFrameScheduler as animationFrameRxScheduler,
+    asyncScheduler as asyncRxScheduler,
     fromEvent as fromEventToObservable, Observable
 } from 'rxjs';
 import {
     debounceTime,
     map as mapRx,
-    merge as mergeRx,
+    subscribeOn as subscribeOnRx,
 } from 'rxjs/operators';
 
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
@@ -25,17 +26,16 @@ import { ViewContext } from '../shared/ViewContext';
 import { USE_REACT_CONCURRENT_MODE, USE_REDUX_SIDEBAR_BACKEND } from '../shared/constants';
 import { createThunkMiddleware } from '../third_party/redux-thunk';
 
-import { SidebarReduxAction } from './SidebarAction';
-import { mapToSidebarItemEntity } from './SidebarDomain';
+import { createUpdateFromSourceAction, SidebarReduxAction } from './SidebarAction';
+import { mapToSidebarItemEntity, SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarViewEpic } from './SidebarEpic';
 import { SidebarIntent, notifyPasteItemFromClipboardAction } from './SidebarIntent';
 import { RemoteActionChannel } from './SidebarMessageChannel';
 import { SidebarRepository } from './SidebarRepository';
 import { createSidebarReduxReducer, createSidebarReduxStateTree, SidebarReduxStateTree, SidebarState } from './SidebarState';
-import { SidebarReduxStore, SidebarReduxStoreEnhancer, SidebarStore } from './SidebarStore';
+import { SidebarReduxStoreEnhancer, SidebarStore } from './SidebarStore';
 import { SidebarReduxThunkArguments, SidebarReduxThunkDispatch } from './SidebarThunk';
 import { SidebarView } from './SidebarView';
-import { merge } from '@reactivex/ix-esnext-esm/asynciterable';
 
 
 
@@ -74,9 +74,9 @@ export class SidebarContext implements ViewContext {
         const initialState: Readonly<SidebarState> = {
             list: this._list.map(mapToSidebarItemEntity),
         };
-        let state = this._store.compose(initialState);
 
-
+        const subscription = new Subscription();
+        let state: Observable<SidebarState>;
         if (USE_REDUX_SIDEBAR_BACKEND) {
             const reducer = createSidebarReduxReducer();
             const args: SidebarReduxThunkArguments = {
@@ -103,14 +103,30 @@ export class SidebarContext implements ViewContext {
             const reduxState = reduxSource.pipe(mapRx((s: SidebarReduxStateTree) => {
                 return s.classicState;
             }));
-            state = state.pipe(mergeRx(reduxState));
+            state = reduxState;
+
+            const reduxSubscription = this._repo.asObservable()
+                .pipe(subscribeOnRx(asyncRxScheduler))
+                .subscribe((source: Iterable<SidebarItemViewModelEntity>) => {
+                    const state: Readonly<SidebarState> = {
+                        list: source,
+                    };
+                    const a = createUpdateFromSourceAction(state);
+                    store.dispatch(a);
+                }, (e) => {
+                    console.exception(e);
+                });
+
+            subscription.add(reduxSubscription);
+        } else {
+            state = this._store.compose(initialState);
         }
 
         if (USE_REACT_CONCURRENT_MODE) {
             this._renderRoot = ReactDOM.unstable_createRoot(mountpoint);
         }
 
-        const subscription = state
+        const renderSubscription = state
             .pipe(
                 // XXX: Should we remove this wrapping `requestAnimationFrame()` for React concurrent mode?
                 // Will React schedule requestAnimationFrame properly?
@@ -131,11 +147,12 @@ export class SidebarContext implements ViewContext {
             }, (e) => {
                 console.exception(e);
             });
+        subscription.add(renderSubscription);
 
         const pastEventObservable = fromEventToObservable(window, 'paste');
 
         subscription.add(pastEventObservable.subscribe((event) => {
-            if ( !(event instanceof ClipboardEvent)) {
+            if (!(event instanceof ClipboardEvent)) {
                 throw new TypeError(`this event should be paste but coming is ${event.type}`);
             }
 

@@ -1,6 +1,6 @@
 import { Undefinable } from 'option-t/esm/Undefinable/Undefinable';
 import { combineReducers, Reducer } from 'redux';
-import { SidebarReduxAction } from './SidebarAction';
+import { SidebarActionType, SidebarReduxAction } from './SidebarAction';
 import { SidebarItemViewModelEntity } from './SidebarDomain';
 
 export interface SidebarState {
@@ -13,7 +13,7 @@ function createInitialSidebarState(list: Iterable<SidebarItemViewModelEntity> = 
     };
 }
 
-export function reduceSidebarReduxState(prev: Undefinable<SidebarState>, _action: SidebarReduxAction): SidebarState {
+export function reduceSidebarReduxState(prev: Undefinable<SidebarState>, action: SidebarReduxAction): SidebarState {
     // redux call a reducer with `undefined` to initialize the reducer.
     // We assume this is special case.
     if (prev === undefined) {
@@ -21,7 +21,14 @@ export function reduceSidebarReduxState(prev: Undefinable<SidebarState>, _action
         return initial;
     }
 
-    return prev;
+    switch (action.type) {
+        case SidebarActionType.UpdateFromSource: {
+            const state = action.state;
+            return state;
+        }
+        default:
+            return prev;
+    }
 }
 
 export interface SidebarReduxStateTree {

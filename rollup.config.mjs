@@ -87,6 +87,7 @@ export default async function createConfiguration(_commandLineArgs) {
                     createNamedExport('Subject', RXJS_NAMESPCACE_OBJ_NAME),
                     createNamedExport('Subscription', RXJS_NAMESPCACE_OBJ_NAME),
                     createNamedExport('animationFrameScheduler', RXJS_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('asyncScheduler', RXJS_NAMESPCACE_OBJ_NAME),
                     createNamedExport('fromEvent', RXJS_NAMESPCACE_OBJ_NAME),
                 ]),
                 'rxjs/operators': createModule([
@@ -95,6 +96,7 @@ export default async function createConfiguration(_commandLineArgs) {
                     createNamedExport('share', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
                     createNamedExport('startWith', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
                     createNamedExport('debounceTime', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
+                    createNamedExport('subscribeOn', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
                 ]),
             }),
 
