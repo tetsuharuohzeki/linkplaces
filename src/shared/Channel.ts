@@ -189,7 +189,7 @@ export class Channel<TMessage extends RemoteActionBase> {
 }
 
 function connectToBgScript(pingMessage: string): Promise<Port> {
-    const p = browser.runtime.connect<void>({
+    const p = browser.runtime.connect({
         name: pingMessage,
     });
     return p;
