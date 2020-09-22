@@ -1,5 +1,6 @@
 /* eslint-env node */
 
+import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import babel from 'rollup-plugin-babel';
@@ -7,7 +8,6 @@ import babel from 'rollup-plugin-babel';
 import buildconfigMod from './tools/buildconfig.js';
 import {
     replaceImportWithGlobal,
-    createDefaultExport,
     createNamedExport,
     createModule,
 } from './tools/rollup/replace_import_with_global.mjs';
@@ -36,6 +36,13 @@ USE_REDUX_SIDEBAR_BACKEND: ${USE_REDUX_SIDEBAR_BACKEND}
 
 const RXJS_NAMESPCACE_OBJ_NAME = 'window.rxjs';
 const RXJS_OPERATOR_NAMESPCACE_OBJ_NAME = `${RXJS_NAMESPCACE_OBJ_NAME}.operators`;
+
+const REACT_RELATED_PKG_LIST = [
+    'node_modules/react/**',
+    'node_modules/object-assign/**',
+    'node_modules/react-dom/**',
+    'node_modules/scheduler/**',
+];
 
 // https://github.com/rollup/rollup/wiki/JavaScript-API
 // https://github.com/rollup/rollup/wiki/Command-Line-Interface
@@ -70,12 +77,6 @@ export default async function createConfiguration(_commandLineArgs) {
 
         plugins: [
             replaceImportWithGlobal({
-                'react': createModule([
-                    createDefaultExport('window.React'),
-                ]),
-                'react-dom': createModule([
-                    createDefaultExport('window.ReactDOM'),
-                ]),
                 // 'redux-thunk': createDefaultExport('window.ReduxThunk.default'),
 
                 // I know these are pretty messy approach.
@@ -112,6 +113,11 @@ export default async function createConfiguration(_commandLineArgs) {
                 extensions: ['.mjs', '.js', '.jsx'],
             }),
 
+            // https://github.com/rollup/plugins/tree/master/packages/commonjs
+            commonjs({
+                include: REACT_RELATED_PKG_LIST,
+            }),
+
             // https://github.com/rollup/plugins/tree/master/packages/replace
             replace({
                 exclude: [
@@ -135,6 +141,13 @@ export default async function createConfiguration(_commandLineArgs) {
                     'process.env.NODE_ENV': JSON.stringify(LIB_NODE_ENV),
                 },
             }),
+            replace({
+                include: REACT_RELATED_PKG_LIST,
+                delimiters: ['', ''],
+                values: {
+                    'process.env.NODE_ENV': JSON.stringify(LIB_NODE_ENV),
+                },
+            }),
 
             // https://github.com/rollup/rollup-plugin-babel
             babel({
@@ -146,7 +159,7 @@ export default async function createConfiguration(_commandLineArgs) {
                         // https://github.com/babel/babel/tree/master/packages/babel-preset-react#options
                         development: !IS_PRODUCTION_MODE,
                         useSpread: true,
-                        runtime: 'classic',
+                        runtime: 'automatic',
                     }],
                 ],
                 plugins: [
