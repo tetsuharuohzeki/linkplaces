@@ -159,7 +159,7 @@ export default async function createConfiguration(_commandLineArgs) {
                         // https://github.com/babel/babel/tree/master/packages/babel-preset-react#options
                         development: !IS_PRODUCTION_MODE,
                         useSpread: true,
-                        runtime: 'classic',
+                        runtime: 'automatic',
                     }],
                 ],
                 plugins: [
