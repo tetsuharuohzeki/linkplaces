@@ -1,5 +1,5 @@
 import { Nullable } from 'option-t/esm/Nullable/Nullable';
-import React from 'react';
+import * as React from 'react';
 
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../../shared/Bookmark';
 import { WhereToOpenItem, WHERE_TO_OPEN_ITEM_TO_WINDOW, WHERE_TO_OPEN_ITEM_TO_TAB } from '../../shared/RemoteAction';

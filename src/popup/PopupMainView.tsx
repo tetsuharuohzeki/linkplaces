@@ -1,5 +1,5 @@
 import { Nullable } from 'option-t/esm/Nullable/Nullable';
-import React from 'react';
+import * as React from 'react';
 
 import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../typings/webext/bookmarks';
 

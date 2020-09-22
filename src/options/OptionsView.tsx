@@ -2,7 +2,7 @@ import { from as fromIterableToIterableX } from '@reactivex/ix-esnext-esm/iterab
 import { map } from '@reactivex/ix-esnext-esm/iterable/operators/map';
 import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
 
-import React from 'react';
+import * as React from 'react';
 
 import { BUILD_DATE, GIT_REVISION } from '../shared/constants';
 

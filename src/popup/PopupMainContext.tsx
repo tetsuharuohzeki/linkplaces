@@ -3,8 +3,8 @@
 
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Unsubscribe } from 'redux';
 
 import { BookmarkTreeNode, OnChangeInfo } from '../../typings/webext/bookmarks';
