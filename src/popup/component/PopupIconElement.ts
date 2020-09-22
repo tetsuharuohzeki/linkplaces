@@ -152,10 +152,8 @@ interface PopupItemIconElementAttr {
     [ATTR_NAME_ICON_FILE]: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare global {
     namespace JSX {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         interface IntrinsicElements {
             // FIXME: Remove this. @typescript-eslint/eslint-plugin cannot works with this pattern correctly
             // eslint-disable-next-line no-undef
