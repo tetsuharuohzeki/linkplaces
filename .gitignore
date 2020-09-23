@@ -1,6 +1,7 @@
 ## generated files
 __dist/
 __obj/
+__plain/
 web-ext-artifacts/
 
 # npm

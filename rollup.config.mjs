@@ -3,7 +3,6 @@
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
-import babel from 'rollup-plugin-babel';
 
 import buildconfigMod from './tools/buildconfig.js';
 import {
@@ -147,23 +146,6 @@ export default async function createConfiguration(_commandLineArgs) {
                 values: {
                     'process.env.NODE_ENV': JSON.stringify(LIB_NODE_ENV),
                 },
-            }),
-
-            // https://github.com/rollup/rollup-plugin-babel
-            babel({
-                exclude: 'node_modules/**',
-                externalHelpers: false,
-                babelrc: false,
-                presets: [
-                    ['@babel/preset-react', {
-                        // https://github.com/babel/babel/tree/master/packages/babel-preset-react#options
-                        development: !IS_PRODUCTION_MODE,
-                        useSpread: true,
-                        runtime: 'automatic',
-                    }],
-                ],
-                plugins: [
-                ],
             }),
         ],
     };
