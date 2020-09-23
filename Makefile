@@ -3,6 +3,8 @@ NPM_MOD_DIR := $(CURDIR)/node_modules
 NPM_BIN := $(NPM_MOD_DIR)/.bin
 
 SRC_DIR := $(CURDIR)/src
+PLAIN_DIR := $(CURDIR)/__plain
+PLAIN_SRC_DIR := $(PLAIN_DIR)/src
 OBJ_DIR := $(CURDIR)/__obj
 OBJ_SRC_DIR := $(OBJ_DIR)/src
 DIST_DIR := $(CURDIR)/__dist
@@ -40,6 +42,9 @@ clean_dist:
 
 clean_obj:
 	$(NPM_BIN)/del $(OBJ_DIR) --force
+
+clean_plain:
+	$(NPM_BIN)/del $(PLAIN_DIR) --force
 
 clean_webext_artifacts:
 	$(NPM_BIN)/del $(ARTIFACT_DIR)
@@ -91,13 +96,16 @@ __external_dependency_redux_thunk: clean_dist
 __external_dependency_rxjs: clean_dist
 	$(NPM_BIN)/cpx '$(NPM_MOD_DIR)/rxjs/bundles/rxjs.umd.min.js' $(DIST_DIR)/third_party --preserve
 
-__obj: $(addprefix __obj_, ts js)
+__obj: __plain clean_obj
+	$(NPM_BIN)/babel $(PLAIN_DIR) --out-dir $(OBJ_DIR) --extensions=.js,.jsx --config-file $(CURDIR)/babel.config.cjs
 
-__obj_js: clean_obj
-	$(NPM_BIN)/cpx '$(SRC_DIR)/**/*.{js,jsx}' $(OBJ_SRC_DIR) --preserve
+__plain: $(addprefix __plain_, ts js)
 
-__obj_ts: clean_obj
-	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --outDir $(OBJ_SRC_DIR)
+__plain_js: clean_plain
+	$(NPM_BIN)/cpx '$(SRC_DIR)/**/*.{js,jsx}' $(PLAIN_SRC_DIR) --preserve
+
+__plain_ts: clean_plain
+	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --outDir $(PLAIN_SRC_DIR)
 
 
 # Test

@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/tetsuharuohzeki/linkplaces",
   "dependencies": {
+    "@babel/cli": "^7.11.6",
     "@babel/core": "^7.11.6",
     "@babel/preset-react": "^7.10.4",
     "@reactivex/ix-esnext-esm": "^4.0.0",
@@ -50,7 +51,6 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.2.0",
     "rollup": "^2.28.1",
-    "rollup-plugin-babel": "^4.4.0",
     "rxjs": "^6.6.3",
     "stylelint": "^13.7.1",
     "stylelint-config-standard": "^20.0.0",
