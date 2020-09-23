@@ -1,5 +1,5 @@
 import { Nullable } from 'option-t/esm/Nullable/Nullable';
-import * as React from 'react';
+import { StrictMode, useState, MouseEventHandler, MouseEvent } from 'react';
 
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../../shared/Bookmark';
 import { WhereToOpenItem, WHERE_TO_OPEN_ITEM_TO_WINDOW, WHERE_TO_OPEN_ITEM_TO_TAB } from '../../shared/RemoteAction';
@@ -39,7 +39,7 @@ function ListBaseItem(props: ListBaseItemProps): JSX.Element {
     }
 
     return (
-        <React.StrictMode>
+        <StrictMode>
             <PanelListItem disabled={isOpening}>
                 <PanelListItemIcon>
                     <picture className={`${CLASS_NAME_PREFIX}__icon_img`}>
@@ -52,7 +52,7 @@ function ListBaseItem(props: ListBaseItemProps): JSX.Element {
                     {label}
                 </PanelListItemText>
             </PanelListItem>
-        </React.StrictMode>
+        </StrictMode>
     );
 }
 
@@ -64,7 +64,7 @@ interface ListItemProps {
 }
 export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
     const { item, intent, } = props;
-    const [isOpening, setIsOpening] = React.useState<boolean>(false);
+    const [isOpening, setIsOpening] = useState<boolean>(false);
     if (isOpening) {
         return null;
     }
@@ -84,7 +84,7 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
         const url = bookmark.url;
         const title = `${bookmarkTitle}\n${url}`;
 
-        const onClick: React.MouseEventHandler<HTMLAnchorElement> = (evt) => {
+        const onClick: MouseEventHandler<HTMLAnchorElement> = (evt) => {
             evt.preventDefault();
 
             const where = calculateWhereToOpenItem(evt);
@@ -99,7 +99,7 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
             url :
             bookmarkTitle;
         return (
-            <React.StrictMode>
+            <StrictMode>
                 <a
                     className={`${CLASS_NAME_PREFIX}__container`}
                     href={url}
@@ -112,12 +112,12 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
                         label={label}
                     />
                 </a>
-            </React.StrictMode>
+            </StrictMode>
         );
     }
 
     return (
-        <React.StrictMode>
+        <StrictMode>
             <span
                 className={`${CLASS_NAME_PREFIX}__container`}
                 title={bookmarkTitle}>
@@ -128,11 +128,11 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
                     label={bookmarkTitle}
                 />
             </span>
-        </React.StrictMode>
+        </StrictMode>
     );
 }
 
-function calculateWhereToOpenItem(syntheticEvent: React.MouseEvent<HTMLAnchorElement>): WhereToOpenItem {
+function calculateWhereToOpenItem(syntheticEvent: MouseEvent<HTMLAnchorElement>): WhereToOpenItem {
     if (syntheticEvent.shiftKey) {
         return WHERE_TO_OPEN_ITEM_TO_WINDOW;
     }

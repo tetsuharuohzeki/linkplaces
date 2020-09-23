@@ -1,5 +1,5 @@
 import { Nullable } from 'option-t/esm/Nullable/Nullable';
-import * as React from 'react';
+import { StrictMode, MouseEvent, MouseEventHandler, useState } from 'react';
 
 import { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../typings/webext/bookmarks';
 
@@ -25,7 +25,7 @@ export interface PopupMainViewProps {
 export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element {
     const { state, store, } = props;
 
-    const onClickOpenWebExtSidebar = (_event: React.MouseEvent<HTMLDivElement>) => {
+    const onClickOpenWebExtSidebar = (_event: MouseEvent<HTMLDivElement>) => {
         const a = openWebExtSidebar();
         store.dispatch(a).catch(console.error);
     };
@@ -36,7 +36,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
     });
 
     return (
-        <React.StrictMode>
+        <StrictMode>
             <div>
                 <PanelSectionList>
                     <PanelListItem onClick={onClickOpenWebExtSidebar}>
@@ -55,7 +55,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
                     {items}
                 </PanelSectionList>
             </div>
-        </React.StrictMode>
+        </StrictMode>
     );
 }
 
@@ -89,7 +89,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
 
     const id = item.id;
 
-    const onClick: React.MouseEventHandler<HTMLDivElement> = (event: React.MouseEvent<HTMLDivElement>) => {
+    const onClick: MouseEventHandler<HTMLDivElement> = (event: MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
 
         const a = openLibraryWindow(id);
@@ -98,7 +98,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
 
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
-        <React.StrictMode>
+        <StrictMode>
             <span
                 className={'popup-c-PopupMainView-ItemListItem__container'}
             >
@@ -111,7 +111,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
                     </PanelListItemText>
                 </PanelListItem>
             </span>
-        </React.StrictMode>
+        </StrictMode>
     );
 }
 
@@ -124,12 +124,12 @@ function ItemListItem(props: ItemListItemProps): Nullable<JSX.Element> {
     const url = item.url;
     const id = item.id;
 
-    const [isOpening, setIsOpening] = React.useState<boolean>(false);
+    const [isOpening, setIsOpening] = useState<boolean>(false);
     if (isOpening) {
         return null;
     }
 
-    const onClick: React.MouseEventHandler<HTMLAnchorElement> = (event) => {
+    const onClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
         event.preventDefault();
 
         const a = openItem(id, url);
@@ -146,7 +146,7 @@ function ItemListItem(props: ItemListItemProps): Nullable<JSX.Element> {
 
     // http://design.firefox.com/StyleGuide/#/navigation
     return (
-        <React.StrictMode>
+        <StrictMode>
             <a
                 className={'popup-c-PopupMainView-ItemListItem__container'}
                 href={url}
@@ -162,7 +162,7 @@ function ItemListItem(props: ItemListItemProps): Nullable<JSX.Element> {
                     </PanelListItemText>
                 </PanelListItem>
             </a>
-        </React.StrictMode>
+        </StrictMode>
     );
 }
 

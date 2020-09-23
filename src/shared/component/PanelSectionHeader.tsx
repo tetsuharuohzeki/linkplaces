@@ -1,43 +1,43 @@
-import * as React from 'react';
+import { ReactNode, StrictMode } from 'react';
 
 export interface PanelSectionHeaderProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export function PanelSectionHeader(props: PanelSectionHeaderProps): JSX.Element {
     return (
-        <React.StrictMode>
+        <StrictMode>
             <header className={'shared-com-PanelSectionHeader__container'}>
                 {props.children}
             </header>
-        </React.StrictMode>
+        </StrictMode>
     );
 }
 
 export interface PanelSectionHeaderIconProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export function PanelSectionHeaderIcon(props: PanelSectionHeaderIconProps): JSX.Element {
     return (
-        <React.StrictMode>
+        <StrictMode>
             <div className={'shared-com-PanelSectionHeader__icon'}>
                 {props.children}
             </div>
-        </React.StrictMode>
+        </StrictMode>
     );
 }
 
 export interface PanelSectionHeaderTextProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export function PanelSectionHeaderText(props: PanelSectionHeaderTextProps): JSX.Element {
     return (
-        <React.StrictMode>
+        <StrictMode>
             <div className={'shared-com-PanelSectionHeader__text'}>
                 {props.children}
             </div>
-        </React.StrictMode>
+        </StrictMode>
     );
 }

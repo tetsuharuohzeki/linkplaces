@@ -1,9 +1,9 @@
-import * as React from 'react';
+import {StrictMode, MouseEventHandler, ReactNode} from 'react';
 
 export interface PanelListItemProps {
-    children: React.ReactNode;
+    children: ReactNode;
     disabled?: boolean;
-    onClick?: React.MouseEventHandler;
+    onClick?: MouseEventHandler;
 }
 
 export function PanelListItem(props: PanelListItemProps): JSX.Element {
@@ -16,38 +16,38 @@ export function PanelListItem(props: PanelListItemProps): JSX.Element {
         'shared-com-PanelListItem__container';
 
     return (
-        <React.StrictMode>
+        <StrictMode>
             <div className={className} onClick={props.onClick}>
                 {props.children}
             </div>
-        </React.StrictMode>
+        </StrictMode>
     );
 }
 
 export interface PanelListItemIconProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export function PanelListItemIcon(props: PanelListItemIconProps): JSX.Element {
     return (
-        <React.StrictMode>
+        <StrictMode>
             <div className={'shared-com-PanelListItem__icon'}>
                 {props.children}
             </div>
-        </React.StrictMode>
+        </StrictMode>
     );
 }
 
 export interface PanelListItemTextProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export function PanelListItemText(props: PanelListItemTextProps): JSX.Element {
     return (
-        <React.StrictMode>
+        <StrictMode>
             <div className={'shared-com-PanelListItem__text'}>
                 {props.children}
             </div>
-        </React.StrictMode>
+        </StrictMode>
     );
 }

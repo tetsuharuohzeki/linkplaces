@@ -2,7 +2,7 @@ import { from as fromIterableToIterableX } from '@reactivex/ix-esnext-esm/iterab
 import { map } from '@reactivex/ix-esnext-esm/iterable/operators/map';
 import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
 
-import * as React from 'react';
+import { StrictMode } from 'react';
 
 import { BUILD_DATE, GIT_REVISION } from '../shared/constants';
 
@@ -36,7 +36,7 @@ export function OptionsView(props: Readonly<OptionsViewProps>): JSX.Element {
     const children = toArrayFromIx(elements);
 
     return (
-        <React.StrictMode>
+        <StrictMode>
             <div>
                 <h2>{'Build Information'}</h2>
                 <table>
@@ -54,6 +54,6 @@ export function OptionsView(props: Readonly<OptionsViewProps>): JSX.Element {
                     {children}
                 </ul>
             </div>
-        </React.StrictMode>
+        </StrictMode>
     );
 }

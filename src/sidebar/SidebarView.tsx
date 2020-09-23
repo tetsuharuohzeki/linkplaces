@@ -2,7 +2,7 @@ import { from as fromIterableToIterableX } from '@reactivex/ix-esnext-esm/iterab
 import { map } from '@reactivex/ix-esnext-esm/iterable/operators/map';
 import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
 
-import * as React from 'react';
+import { StrictMode } from 'react';
 import { PanelSectionList } from '../shared/component/PanelSectionList';
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarState } from './SidebarState';
@@ -26,12 +26,12 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
 
     const r: Array<JSX.Element> = toArrayFromIx(mapped);
     return (
-        <React.StrictMode>
+        <StrictMode>
             <div>
                 <PanelSectionList>
                     {r}
                 </PanelSectionList>
             </div>
-        </React.StrictMode>
+        </StrictMode>
     );
 }

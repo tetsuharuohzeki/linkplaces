@@ -3,7 +3,7 @@
 
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
-import * as React from 'react';
+import { StrictMode} from 'react';
 import * as ReactDOM from 'react-dom';
 import { applyMiddleware, createStore, Unsubscribe } from 'redux';
 
@@ -61,9 +61,9 @@ export class PopupMainContext implements ViewContext {
             window.requestAnimationFrame(() => {
                 const { reducePopupMain: state, } = store.getState();
                 const view = (
-                    <React.StrictMode>
+                    <StrictMode>
                         <PopupMainView state={state} store={store} />
-                    </React.StrictMode>
+                    </StrictMode>
                 );
 
                 if (USE_REACT_CONCURRENT_MODE) {

@@ -3,7 +3,7 @@
 
 import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
-import * as React from 'react';
+import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { applyMiddleware, createStore } from 'redux';
@@ -133,9 +133,9 @@ export class SidebarContext implements ViewContext {
                 debounceTime(0, animationFrameRxScheduler),
             ).subscribe((state: Readonly<SidebarState>) => {
                 const view = (
-                    <React.StrictMode>
+                    <StrictMode>
                         <SidebarView state={state} intent={this._intent} />
-                    </React.StrictMode>
+                    </StrictMode>
                 );
 
                 if (USE_REACT_CONCURRENT_MODE) {
