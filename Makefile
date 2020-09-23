@@ -116,6 +116,9 @@ lint: eslint stylelint tscheck
 eslint:
 	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
 
+eslint_fix:
+	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
+
 tscheck:
 	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --noEmit
 
