@@ -81,6 +81,10 @@ export function getLinkSchemeType(url: string): LinkSchemeType {
     }
 
     const [, type] = r;
+    if (type === undefined) {
+        throw new RangeError('`type` should not be undefined');
+    }
+
     return {
         isPrivileged: true,
         type,

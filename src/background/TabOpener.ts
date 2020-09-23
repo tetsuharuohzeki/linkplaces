@@ -41,7 +41,7 @@ async function getCurrentTabId(): Promise<TabId> {
         throw new Error("assert!: don't get the current tab");
     }
 
-    const currentTab = tabList[0];
+    const currentTab = expectNotUndefined(tabList[0], 'currentTab should not be undefined');
     const currentId = expectNotNullAndUndefined(currentTab.id, 'currentId should not null');
 
     return currentId;
