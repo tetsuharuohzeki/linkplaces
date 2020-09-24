@@ -1,7 +1,3 @@
-import { from as fromIterableToIterableX } from '@reactivex/ix-esnext-esm/iterable/from';
-import { map } from '@reactivex/ix-esnext-esm/iterable/operators/map';
-import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
-
 import { StrictMode } from 'react';
 
 import { BUILD_DATE, GIT_REVISION } from '../shared/constants';
@@ -16,24 +12,20 @@ export interface OptionsViewProps {
 }
 export function OptionsView(props: Readonly<OptionsViewProps>): JSX.Element {
     const { list } = props;
-
-    const elements = fromIterableToIterableX(list)
-        .pipe(
-            map((page: Page): JSX.Element => {
-                return (
-                    <li>
-                        <a href={page.url}
-                            target={'_blank'}
-                            // eslint-disable-next-line react/jsx-curly-brace-presence
-                            rel='noopener'>
-                            {page.title}
-                        </a>
-                    </li>
-                );
-            }),
+    const children: Array<JSX.Element> = [];
+    for (const page of list) {
+        const element = (
+            <li>
+                <a href={page.url}
+                    target={'_blank'}
+                    // eslint-disable-next-line react/jsx-curly-brace-presence
+                    rel='noopener'>
+                    {page.title}
+                </a>
+            </li>
         );
-
-    const children = toArrayFromIx(elements);
+        children.push(element);
+    }
 
     return (
         <StrictMode>
