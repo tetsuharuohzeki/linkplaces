@@ -57,7 +57,7 @@ module.exports = {
         // avoid unexpeced override.
         'declaration-no-important': true,
         // prevent mixed content.
-        'function-url-scheme-whitelist': ['https'],
+        'function-url-scheme-allowed-list': ['data', /^https:\/\//u],
 
         'function-calc-no-invalid': true,
 
