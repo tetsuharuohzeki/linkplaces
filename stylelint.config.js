@@ -8,10 +8,10 @@ module.exports = {
 
     'extends': [
         './tools/stylelint/stylelintrc_core.js',
+        'stylelint-config-prettier',
     ],
 
     // http://stylelint.io/user-guide/rules/
     'rules': {
-        'indentation': 4,
     },
 };

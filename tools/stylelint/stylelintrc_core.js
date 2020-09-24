@@ -41,11 +41,6 @@ module.exports = {
         'function-url-quotes': ['always', {
             // except: ['empty'],
         }],
-        'string-quotes': 'single',
-        'selector-attribute-quotes': 'always',
-
-        // Allow to code chunk.
-        'at-rule-empty-line-before': null,
 
         // vendor prefix
         'at-rule-no-vendor-prefix': true,
