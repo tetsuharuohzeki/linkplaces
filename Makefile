@@ -35,7 +35,7 @@ help:
 
 
 # clean
-clean: clean_dist clean_obj clean_webext_artifacts ## Clean up all generated files.
+clean: clean_dist clean_obj clean_plain clean_webext_artifacts ## Clean up all generated files.
 
 clean_dist:
 	$(NPM_BIN)/del $(DIST_DIR) --force
