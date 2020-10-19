@@ -6,14 +6,14 @@ import {
     openItem as openItemViaChannel,
     openWebExtSidebar as openWebExtSidebarDirect,
 } from '../shared/RemoteCall';
-import type { PlainPopupStore } from './PopupMainStore';
+import type { PopupPlainReduxStore } from './PopupMainStore';
 import type { RemoteActionChannel } from './PopupMessageChannel';
 
 
 export class PopupMainEpic {
     private _channel: RemoteActionChannel;
 
-    constructor(channel: RemoteActionChannel, _store: PlainPopupStore) {
+    constructor(channel: RemoteActionChannel, _store: PopupPlainReduxStore) {
         this._channel = channel;
     }
 

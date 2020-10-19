@@ -3,11 +3,11 @@
 
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
-import { StrictMode} from 'react';
+import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom';
 import { createStore, Unsubscribe } from 'redux';
 
-import { BookmarkTreeNode, OnChangeInfo } from '../../typings/webext/bookmarks';
+import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
 import { ViewContext } from '../shared/ViewContext';
 import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
@@ -16,10 +16,11 @@ import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 import { PopupMainEpic } from './PopupMainEpic';
 import { PopupMainIntent } from './PopupMainIntent';
 import { createReducer, PopupMainStateTree, createInitialPopupMainStateTree } from './PopupMainState';
-import { PlainPopupStore as PopupMainStore } from './PopupMainStore';
+import { PopupPlainReduxStore as PopupMainStore } from './PopupMainStore';
 import { PopupMainView } from './PopupMainView';
 import { RemoteActionChannel } from './PopupMessageChannel';
-import { createItemChangedAction, PopupReduxAction } from './PopupReduxAction';
+import { PopupReduxAction } from './PopupReduxAction';
+import { PopupRepostiroy } from './PopupRepository';
 
 export class PopupMainContext implements ViewContext {
 
@@ -71,15 +72,11 @@ export class PopupMainContext implements ViewContext {
             });
         };
 
-        const onChanged = (id: string, info: OnChangeInfo) => {
-            const a = createItemChangedAction(id, info);
-            store.dispatch(a);
-        };
-        browser.bookmarks.onChanged.addListener(onChanged);
+        const repository = new PopupRepostiroy(browser.bookmarks, store);
 
         this._disposerSet = new Set([
             store.subscribe(render),
-            () => { browser.bookmarks.onChanged.removeListener(onChanged); }
+            () => { repository.destroy(); }
         ]);
 
         // ignite the first rendering

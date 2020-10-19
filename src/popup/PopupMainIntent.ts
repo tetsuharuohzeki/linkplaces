@@ -1,11 +1,11 @@
 import { PopupMainEpic } from './PopupMainEpic';
-import { PlainPopupStore } from './PopupMainStore';
+import { PopupPlainReduxStore } from './PopupMainStore';
 
 export class PopupMainIntent {
     private _epic: PopupMainEpic;
     // private _store: PlainPopupStore;
 
-    constructor(epic: PopupMainEpic, _store: PlainPopupStore) {
+    constructor(epic: PopupMainEpic, _store: PopupPlainReduxStore) {
         this._epic = epic;
     }
 
