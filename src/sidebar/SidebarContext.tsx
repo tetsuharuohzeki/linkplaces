@@ -28,7 +28,6 @@ import { createThunkMiddleware } from '../third_party/redux-thunk';
 
 import { createUpdateFromSourceAction, SidebarReduxAction } from './SidebarAction';
 import { mapToSidebarItemEntity, SidebarItemViewModelEntity } from './SidebarDomain';
-import { SidebarIntent } from './SidebarIntent';
 import { RemoteActionChannel } from './SidebarMessageChannel';
 import { SidebarRepository } from './SidebarRepository';
 import { createSidebarReduxReducer, createSidebarReduxStateTree, SidebarReduxStateTree, SidebarState } from './SidebarState';
@@ -45,7 +44,6 @@ export class SidebarContext implements ViewContext {
     private _subscription: Nullable<Subscription>;
     private _channel: RemoteActionChannel;
 
-    private _intent: SidebarIntent;
     private _repo: SidebarRepository;
 
     constructor(list: Array<BookmarkTreeNode>, channel: RemoteActionChannel) {
@@ -54,8 +52,6 @@ export class SidebarContext implements ViewContext {
         this._subscription = null;
         this._channel = channel;
 
-        const intent = new SidebarIntent();
-        this._intent = intent;
         this._repo = SidebarRepository.create(browser.bookmarks, list);
     }
 
@@ -72,7 +68,6 @@ export class SidebarContext implements ViewContext {
         const reducer = createSidebarReduxReducer();
         const args: SidebarReduxThunkArguments = {
             channel: this._channel,
-            intent: this._intent,
             repo: this._repo,
         };
         const middleware = createThunkMiddleware<SidebarReduxAction, SidebarReduxStateTree, SidebarReduxThunkArguments, Promise<void>>(args);
