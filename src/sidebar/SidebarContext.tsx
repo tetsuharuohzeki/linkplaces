@@ -127,7 +127,7 @@ export class SidebarContext implements ViewContext {
             ).subscribe((state: Readonly<SidebarState>) => {
                 const view = (
                     <StrictMode>
-                        <SidebarView state={state} intent={this._intent} />
+                        <SidebarView state={state} store={store} />
                     </StrictMode>
                 );
 

@@ -26,13 +26,6 @@ export class SidebarIntent implements Dispatchable<Action> {
         this._subject.next(action);
     }
 
-    openItem(): Observable<OpenItemAction> {
-        return this._subject.asObservable()
-            .pipe(
-                filterRx(isOpenItemAction),
-            );
-    }
-
     selectItem(): Observable<SelectItemAction> {
         return this._subject.asObservable()
             .pipe(

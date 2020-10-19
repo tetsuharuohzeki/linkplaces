@@ -1,4 +1,10 @@
+import type { Dispatch } from 'redux';
+import type { WhereToOpenItem } from '../shared/RemoteAction';
+import {
+    openItem as openItemViaChannel,
+} from '../shared/RemoteCall';
 import { ThunkAction as ThunkActionArcheType, ThunkDispatch } from '../third_party/redux-thunk';
+
 
 import {
     SidebarReduxAction,
@@ -19,3 +25,9 @@ export type SidebarReduxThunkArguments = Readonly<{
 }>;
 
 export type SidebarReduxThunkDispatch = ThunkDispatch<SidebarReduxStateTree, SidebarReduxThunkArguments, SidebarReduxAction>;
+
+export function openItem(id: string, url: string, where: WhereToOpenItem): SidebarReduxThunkAction<never> {
+    return async function openItemActual(_dispatch: Dispatch<never>, _, dependencies: SidebarReduxThunkArguments): Promise<void> {
+        openItemViaChannel(dependencies.channel, id, url, where);
+    };
+}

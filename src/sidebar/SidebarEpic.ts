@@ -3,7 +3,7 @@ import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import { Subscription } from 'rxjs';
 
 import { Epic } from '../shared/Epic';
-import { openItem, registerItem } from '../shared/RemoteCall';
+import { registerItem } from '../shared/RemoteCall';
 
 import { SidebarIntent } from './SidebarIntent';
 import { RemoteActionChannel } from './SidebarMessageChannel';
@@ -28,10 +28,6 @@ export class SidebarViewEpic implements Epic {
 
         const s = new Subscription();
         this._subscription = s;
-
-        s.add(this._intent.openItem().subscribe(({ id, url, where, }) => {
-            openItem(this._channel, id, url, where);
-        }, console.error));
 
         s.add(this._intent.pasteUrlFromClipboard().subscribe(({ data }) => {
             const d = data.getData('text/plain');
