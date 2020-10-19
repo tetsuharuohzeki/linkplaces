@@ -10,28 +10,26 @@ import {
     PanelListItemText,
 } from '../shared/component/PanelListItem';
 import { PanelSectionList, PanelSectionListSeparator } from '../shared/component/PanelSectionList';
+import { PopupMainIntent } from './PopupMainIntent';
 
 import { PopupMainState } from './PopupMainState';
-import { PopupMainStore } from './PopupMainStore';
-import { openItem, openLibraryWindow, openWebExtSidebar } from './PopupMainThunk';
 
 const ICON_DIR = '../resources/icon/';
 
 export interface PopupMainViewProps {
     state: PopupMainState;
-    store: PopupMainStore;
+    intent: PopupMainIntent;
 }
 
 export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element {
-    const { state, store, } = props;
+    const { state, intent } = props;
 
     const onClickOpenWebExtSidebar = (_event: MouseEvent<HTMLDivElement>) => {
-        const a = openWebExtSidebar();
-        store.dispatch(a).catch(console.error);
+        intent.openWebExtSidebar().catch(console.error);
     };
 
     const items = state.list.map((item, i) => {
-        const v = <ListItem key={i} item={item} store={store} />;
+        const v = <ListItem key={i} item={item} intent={intent} />;
         return v;
     });
 
@@ -61,20 +59,20 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
 
 interface ListItemProps {
     item: BookmarkTreeNode;
-    store: PopupMainStore;
+    intent: PopupMainIntent;
 }
 function ListItem(props: ListItemProps): JSX.Element {
-    const { item, store, } = props;
+    const { item, intent } = props;
 
     let node: JSX.Element;
     if (isBookmarkTreeNodeSeparator(item)) {
         node = <hr />;
     }
     else if (isBookmarkTreeNodeItem(item)) {
-        node = <ItemListItem item={item} store={store} />;
+        node = <ItemListItem item={item} intent={intent} />;
     }
     else {
-        node = <FolderListItem item={item} store={store} />;
+        node = <FolderListItem item={item} intent={intent} />;
     }
 
     return node;
@@ -82,18 +80,16 @@ function ListItem(props: ListItemProps): JSX.Element {
 
 interface FolderListItemProps {
     item: BookmarkTreeNodeFolder;
-    store: PopupMainStore;
+    intent: PopupMainIntent;
 }
 function FolderListItem(props: FolderListItemProps): JSX.Element {
-    const { item, store } = props;
+    const { item, intent } = props;
 
     const id = item.id;
 
     const onClick: MouseEventHandler<HTMLDivElement> = (event: MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
-
-        const a = openLibraryWindow(id);
-        store.dispatch(a).catch(console.error);
+        intent.openLibraryWindow(id).catch(console.error);
     };
 
     // http://design.firefox.com/StyleGuide/#/navigation
@@ -117,10 +113,10 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
 
 interface ItemListItemProps {
     item: BookmarkTreeNodeItem;
-    store: PopupMainStore;
+    intent: PopupMainIntent;
 }
 function ItemListItem(props: ItemListItemProps): Nullable<JSX.Element> {
-    const { item, store } = props;
+    const { item, intent, } = props;
     const url = item.url;
     const id = item.id;
 
@@ -132,8 +128,7 @@ function ItemListItem(props: ItemListItemProps): Nullable<JSX.Element> {
     const onClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
         event.preventDefault();
 
-        const a = openItem(id, url);
-        store.dispatch(a).catch(console.error);
+        intent.openItem(id, url).catch(console.error);
 
         setIsOpening(true);
     };

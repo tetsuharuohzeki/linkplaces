@@ -5,19 +5,19 @@ import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import { StrictMode} from 'react';
 import * as ReactDOM from 'react-dom';
-import { applyMiddleware, createStore, Unsubscribe } from 'redux';
+import { createStore, Unsubscribe } from 'redux';
 
 import { BookmarkTreeNode, OnChangeInfo } from '../../typings/webext/bookmarks';
 
 import { ViewContext } from '../shared/ViewContext';
 import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
-import { createThunkMiddleware } from '../third_party/redux-thunk';
 
 
 import { createItemChangedAction, PopupAction } from './PopupAction';
+import { PopupMainEpic } from './PopupMainEpic';
+import { PopupMainIntent } from './PopupMainIntent';
 import { createReducer, PopupMainStateTree, createInitialPopupMainStateTree } from './PopupMainState';
-import { PopupMainStore } from './PopupMainStore';
-import { PopupThunkArguments, PopupThunkDispatch } from './PopupMainThunk';
+import { PlainPopupStore as PopupMainStore } from './PopupMainStore';
 import { PopupMainView } from './PopupMainView';
 import { RemoteActionChannel } from './PopupMessageChannel';
 
@@ -41,19 +41,15 @@ export class PopupMainContext implements ViewContext {
         }
 
         const reducer = createReducer();
-        const args: PopupThunkArguments = {
-            channel: this._channel,
-        };
-        const middleware = createThunkMiddleware<PopupAction, PopupMainStateTree, PopupThunkArguments, Promise<void>>(args);
-        const enhancer = applyMiddleware<PopupThunkDispatch, PopupMainStateTree>(middleware);
         const initial = createInitialPopupMainStateTree(this._list);
-        const store: PopupMainStore = createStore<PopupMainStateTree, PopupAction, {
-            dispatch: PopupThunkDispatch;
-        }, PopupMainStateTree>(reducer, initial, enhancer);
+        const store: PopupMainStore = createStore<PopupMainStateTree, PopupAction, void, void>(reducer, initial);
 
         if (USE_REACT_CONCURRENT_MODE) {
             this._renderRoot = ReactDOM.unstable_createRoot(mountpoint);
         }
+
+        const epic = new PopupMainEpic(this._channel, store);
+        const intent = new PopupMainIntent(epic, store);
 
         const render = () => {
             // XXX: Should we remove this wrapping `requestAnimationFrame()` for React concurrent mode?
@@ -62,7 +58,7 @@ export class PopupMainContext implements ViewContext {
                 const { reducePopupMain: state, } = store.getState();
                 const view = (
                     <StrictMode>
-                        <PopupMainView state={state} store={store} />
+                        <PopupMainView state={state} intent={intent} />
                     </StrictMode>
                 );
 
