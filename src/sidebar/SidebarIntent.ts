@@ -32,13 +32,6 @@ export class SidebarIntent implements Dispatchable<Action> {
                 filterRx(isSelectItemAction)
             );
     }
-
-    pasteUrlFromClipboard(): Observable<PasteItemFromClipboardAction> {
-        return this._subject.asObservable()
-            .pipe(
-                filterRx(isPasteItemFromClipboardAction)
-            );
-    }
 }
 
 export const enum ActionType {

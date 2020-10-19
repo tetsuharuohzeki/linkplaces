@@ -29,12 +29,12 @@ import { createThunkMiddleware } from '../third_party/redux-thunk';
 import { createUpdateFromSourceAction, SidebarReduxAction } from './SidebarAction';
 import { mapToSidebarItemEntity, SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarViewEpic } from './SidebarEpic';
-import { SidebarIntent, notifyPasteItemFromClipboardAction } from './SidebarIntent';
+import { SidebarIntent } from './SidebarIntent';
 import { RemoteActionChannel } from './SidebarMessageChannel';
 import { SidebarRepository } from './SidebarRepository';
 import { createSidebarReduxReducer, createSidebarReduxStateTree, SidebarReduxStateTree, SidebarState } from './SidebarState';
 import { SidebarReduxStoreEnhancer } from './SidebarStore';
-import { SidebarReduxThunkArguments, SidebarReduxThunkDispatch } from './SidebarThunk';
+import { pasteItemFromClipboardAction, SidebarReduxThunkArguments, SidebarReduxThunkDispatch } from './SidebarThunk';
 import { SidebarView } from './SidebarView';
 
 
@@ -149,11 +149,11 @@ export class SidebarContext implements ViewContext {
                 throw new TypeError(`this event should be paste but coming is ${event.type}`);
             }
 
-            const action = notifyPasteItemFromClipboardAction(event);
+            const action = pasteItemFromClipboardAction(event);
             if (!action) {
                 return;
             }
-            this._intent.dispatch(action);
+            store.dispatch(action).catch(console.error);
         }, console.error));
 
         this._subscription = subscription;
