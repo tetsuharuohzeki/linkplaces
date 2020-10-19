@@ -23,7 +23,7 @@ import {
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
 import { ViewContext } from '../shared/ViewContext';
-import { USE_REACT_CONCURRENT_MODE, USE_REDUX_SIDEBAR_BACKEND } from '../shared/constants';
+import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 import { createThunkMiddleware } from '../third_party/redux-thunk';
 
 import { createUpdateFromSourceAction, SidebarReduxAction } from './SidebarAction';
@@ -49,6 +49,7 @@ export class SidebarContext implements ViewContext {
     private _intent: SidebarIntent;
     private _repo: SidebarRepository;
     private _epic: SidebarViewEpic;
+    // @ts-expect-error
     private _store: SidebarStore;
 
     constructor(list: Array<BookmarkTreeNode>, channel: RemoteActionChannel) {
@@ -76,51 +77,46 @@ export class SidebarContext implements ViewContext {
         };
 
         const subscription = new Subscription();
-        let state: Observable<SidebarState>;
-        if (USE_REDUX_SIDEBAR_BACKEND) {
-            const reducer = createSidebarReduxReducer();
-            const args: SidebarReduxThunkArguments = {
-                channel: this._channel,
-                intent: this._intent,
-                repo: this._repo,
-                epic: this._epic,
-            };
-            const middleware = createThunkMiddleware<SidebarReduxAction, SidebarReduxStateTree, SidebarReduxThunkArguments, Promise<void>>(args);
-            const enhancer = applyMiddleware<SidebarReduxThunkDispatch, SidebarReduxStateTree>(middleware);
-            const initial = createSidebarReduxStateTree(initialState);
-            const store = createStore<SidebarReduxStateTree, SidebarReduxAction, SidebarReduxStoreEnhancer, void>(reducer, initial, enhancer);
+        const reducer = createSidebarReduxReducer();
+        const args: SidebarReduxThunkArguments = {
+            channel: this._channel,
+            intent: this._intent,
+            repo: this._repo,
+            epic: this._epic,
+        };
+        const middleware = createThunkMiddleware<SidebarReduxAction, SidebarReduxStateTree, SidebarReduxThunkArguments, Promise<void>>(args);
+        const enhancer = applyMiddleware<SidebarReduxThunkDispatch, SidebarReduxStateTree>(middleware);
+        const initial = createSidebarReduxStateTree(initialState);
+        const store = createStore<SidebarReduxStateTree, SidebarReduxAction, SidebarReduxStoreEnhancer, void>(reducer, initial, enhancer);
 
-            const reduxSource = new Observable<SidebarReduxStateTree>((subscripber) => {
-                const teerdown = store.subscribe(() => {
-                    const s = store.getState();
-                    subscripber.next(s);
-                });
-
-                return () => {
-                    teerdown();
-                };
+        const reduxSource = new Observable<SidebarReduxStateTree>((subscripber) => {
+            const teerdown = store.subscribe(() => {
+                const s = store.getState();
+                subscripber.next(s);
             });
-            const reduxState = reduxSource.pipe(mapRx((s: SidebarReduxStateTree) => {
-                return s.classicState;
-            }));
-            state = reduxState;
 
-            const reduxSubscription = this._repo.asObservable()
-                .pipe(subscribeOnRx(asyncRxScheduler))
-                .subscribe((source: Iterable<SidebarItemViewModelEntity>) => {
-                    const state: Readonly<SidebarState> = {
-                        list: source,
-                    };
-                    const a = createUpdateFromSourceAction(state);
-                    store.dispatch(a);
-                }, (e) => {
-                    console.exception(e);
-                });
+            return () => {
+                teerdown();
+            };
+        });
+        const reduxState = reduxSource.pipe(mapRx((s: SidebarReduxStateTree) => {
+            return s.classicState;
+        }));
+        const state: Observable<SidebarState> = reduxState;
 
-            subscription.add(reduxSubscription);
-        } else {
-            state = this._store.compose(initialState);
-        }
+        const reduxSubscription = this._repo.asObservable()
+            .pipe(subscribeOnRx(asyncRxScheduler))
+            .subscribe((source: Iterable<SidebarItemViewModelEntity>) => {
+                const state: Readonly<SidebarState> = {
+                    list: source,
+                };
+                const a = createUpdateFromSourceAction(state);
+                store.dispatch(a);
+            }, (e) => {
+                console.exception(e);
+            });
+
+        subscription.add(reduxSubscription);
 
         if (USE_REACT_CONCURRENT_MODE) {
             this._renderRoot = ReactDOM.unstable_createRoot(mountpoint);

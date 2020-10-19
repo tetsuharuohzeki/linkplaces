@@ -10,7 +10,6 @@ const {
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
     USE_REACT_CONCURRENT_MODE,
-    USE_REDUX_SIDEBAR_BACKEND,
 } = buildconfigMod;
 
 
@@ -22,7 +21,6 @@ RELEASE_CHANNEL: ${RELEASE_CHANNEL}
 LIB_NODE_ENV: ${LIB_NODE_ENV}
 IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
 USE_REACT_CONCURRENT_MODE: ${USE_REACT_CONCURRENT_MODE}
-USE_REDUX_SIDEBAR_BACKEND: ${USE_REDUX_SIDEBAR_BACKEND}
 ======================================
 `);
 
@@ -55,7 +53,6 @@ build({
         'process.env.BUILD_DATE': JSON.stringify(BUILD_DATE),
         'process.env.RELEASE_CHANNEL': JSON.stringify(RELEASE_CHANNEL),
         'process.env.USE_REACT_CONCURRENT_MODE': JSON.stringify(USE_REACT_CONCURRENT_MODE),
-        'process.env.USE_REDUX_SIDEBAR_BACKEND': JSON.stringify(USE_REDUX_SIDEBAR_BACKEND),
         'process.env.NODE_ENV': JSON.stringify(LIB_NODE_ENV),
     },
 }).catch(() => {
