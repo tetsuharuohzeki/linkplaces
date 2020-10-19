@@ -8,12 +8,10 @@ import * as ReactDOM from 'react-dom';
 
 import {
     Subscription,
-    animationFrameScheduler as animationFrameRxScheduler,
     asyncScheduler as asyncRxScheduler,
     fromEvent as fromEventToObservable, Observable
 } from 'rxjs';
 import {
-    debounceTime,
     subscribeOn as subscribeOnRx,
 } from 'rxjs/operators';
 
@@ -97,11 +95,7 @@ export class SidebarContext implements ViewContext {
         const intent = new SidebarIntent(epic, store);
 
         const renderSubscription = state
-            .pipe(
-                // XXX: Should we remove this wrapping `requestAnimationFrame()` for React concurrent mode?
-                // Will React schedule requestAnimationFrame properly?
-                debounceTime(0, animationFrameRxScheduler),
-            ).subscribe((state: Readonly<SidebarState>) => {
+            .subscribe((state: Readonly<SidebarState>) => {
                 const view = (
                     <StrictMode>
                         <SidebarView state={state} intent={intent} />

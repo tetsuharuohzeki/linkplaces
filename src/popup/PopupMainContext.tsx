@@ -53,23 +53,19 @@ export class PopupMainContext implements ViewContext {
         const intent = new PopupMainIntent(epic, store);
 
         const render = () => {
-            // XXX: Should we remove this wrapping `requestAnimationFrame()` for React concurrent mode?
-            // Will React schedule requestAnimationFrame properly?
-            window.requestAnimationFrame(() => {
-                const state = store.state();
-                const view = (
-                    <StrictMode>
-                        <PopupMainView state={state} intent={intent} />
-                    </StrictMode>
-                );
+            const state = store.state();
+            const view = (
+                <StrictMode>
+                    <PopupMainView state={state} intent={intent} />
+                </StrictMode>
+            );
 
-                if (USE_REACT_CONCURRENT_MODE) {
-                    const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
-                    renderRoot.render(view);
-                } else {
-                    ReactDOM.render(view, mountpoint);
-                }
-            });
+            if (USE_REACT_CONCURRENT_MODE) {
+                const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
+                renderRoot.render(view);
+            } else {
+                ReactDOM.render(view, mountpoint);
+            }
         };
 
         const repository = new PopupRepostiroy(browser.bookmarks, store);
