@@ -111,7 +111,7 @@ __plain_ts: clean_plain
 # Test
 test: lint ava
 
-lint: eslint stylelint tscheck
+lint: eslint stylelint typecheck
 
 eslint:
 	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
@@ -119,7 +119,7 @@ eslint:
 eslint_fix:
 	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
 
-tscheck:
+typecheck:
 	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --noEmit
 
 stylelint:
