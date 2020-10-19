@@ -6,8 +6,6 @@ import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { createStore } from 'redux';
-
 import {
     Subscription,
     animationFrameScheduler as animationFrameRxScheduler,
@@ -16,12 +14,12 @@ import {
 } from 'rxjs';
 import {
     debounceTime,
-    map as mapRx,
     subscribeOn as subscribeOnRx,
 } from 'rxjs/operators';
 
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
+import { ReduxLikeStore } from '../shared/ReduxLikeStore';
 import { ViewContext } from '../shared/ViewContext';
 import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 
@@ -31,10 +29,8 @@ import { SidebarIntent } from './SidebarIntent';
 import { RemoteActionChannel } from './SidebarMessageChannel';
 import { createUpdateFromSourceAction, SidebarReduxAction } from './SidebarReduxAction';
 import { SidebarRepository } from './SidebarRepository';
-import { createSidebarReduxReducer, createSidebarReduxStateTree, SidebarReduxStateTree, SidebarState } from './SidebarState';
+import { reduceSidebarReduxState, SidebarState } from './SidebarState';
 import { SidebarView } from './SidebarView';
-
-
 
 export class SidebarContext implements ViewContext {
 
@@ -64,14 +60,12 @@ export class SidebarContext implements ViewContext {
         };
 
         const subscription = new Subscription();
-        const reducer = createSidebarReduxReducer();
-        const initial = createSidebarReduxStateTree(initialState);
-        const store = createStore<SidebarReduxStateTree, SidebarReduxAction, void, void>(reducer, initial, undefined);
+        const reducer = reduceSidebarReduxState;
+        const store = ReduxLikeStore.create<SidebarState, SidebarReduxAction>(reducer, initialState);
 
-
-        const reduxSource = new Observable<SidebarReduxStateTree>((subscripber) => {
+        const reduxSource = new Observable<SidebarState>((subscripber) => {
             const teerdown = store.subscribe(() => {
-                const s = store.getState();
+                const s = store.state();
                 subscripber.next(s);
             });
 
@@ -79,10 +73,7 @@ export class SidebarContext implements ViewContext {
                 teerdown();
             };
         });
-        const reduxState = reduxSource.pipe(mapRx((s: SidebarReduxStateTree) => {
-            return s.classicState;
-        }));
-        const state: Observable<SidebarState> = reduxState;
+        const state: Observable<SidebarState> = reduxSource;
 
         const reduxSubscription = this._repo.asObservable()
             .pipe(subscribeOnRx(asyncRxScheduler))

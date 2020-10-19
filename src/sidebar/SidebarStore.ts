@@ -1,5 +1,6 @@
-import { Store as ReduxStore } from 'redux';
+import { ReduxLikeStore } from '../shared/ReduxLikeStore';
 
 import { SidebarReduxAction } from './SidebarReduxAction';
+import { SidebarState } from './SidebarState';
 
-export type SidebarPlainReduxStore = ReduxStore<void, SidebarReduxAction>;
+export type SidebarPlainReduxStore = ReduxLikeStore<SidebarState, SidebarReduxAction>;

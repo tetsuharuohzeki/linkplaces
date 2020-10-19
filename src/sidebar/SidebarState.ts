@@ -1,5 +1,4 @@
 import { Undefinable } from 'option-t/esm/Undefinable/Undefinable';
-import { combineReducers, Reducer } from 'redux';
 import { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarReduxActionType, SidebarReduxAction } from './SidebarReduxAction';
 
@@ -7,7 +6,7 @@ export interface SidebarState {
     list: Iterable<SidebarItemViewModelEntity>;
 }
 
-function createInitialSidebarState(list: Iterable<SidebarItemViewModelEntity> = []): SidebarState {
+export function createInitialSidebarState(list: Iterable<SidebarItemViewModelEntity> = []): SidebarState {
     return {
         list: list,
     };
@@ -29,21 +28,4 @@ export function reduceSidebarReduxState(prev: Undefinable<SidebarState>, action:
         default:
             return prev;
     }
-}
-
-export interface SidebarReduxStateTree {
-    classicState: SidebarState;
-}
-
-export function createSidebarReduxStateTree(state: SidebarState): SidebarReduxStateTree {
-    return {
-        classicState: state,
-    };
-}
-
-export function createSidebarReduxReducer(): Reducer<SidebarReduxStateTree> {
-    const reducer = combineReducers<SidebarReduxStateTree>({
-        classicState: reduceSidebarReduxState,
-    });
-    return reducer;
 }
