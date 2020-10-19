@@ -1,49 +1,33 @@
-import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
-import { expectNotNull } from 'option-t/esm/Nullable/expect';
-import { Subscription } from 'rxjs';
 
-import { Epic } from '../shared/Epic';
-import { openItem, registerItem } from '../shared/RemoteCall';
+import type { WhereToOpenItem } from '../shared/RemoteAction';
+import {
+    openItem as openItemViaChannel,
+    registerItem as registerItemViaChannel,
+} from '../shared/RemoteCall';
 
-import { SidebarIntent } from './SidebarIntent';
+
 import { RemoteActionChannel } from './SidebarMessageChannel';
-import { SidebarRepository } from './SidebarRepository';
+import { SidebarPlainReduxStore } from './SidebarStore';
 
-export class SidebarViewEpic implements Epic {
-
-    private _subscription: Nullable<Subscription>;
-    private _intent: SidebarIntent;
+export class SidebarEpic {
     private _channel: RemoteActionChannel;
 
-    constructor(intent: SidebarIntent, _repository: SidebarRepository, channel: RemoteActionChannel) {
-        this._subscription = null;
-        this._intent = intent;
+    constructor(channel: RemoteActionChannel, _store: SidebarPlainReduxStore) {
         this._channel = channel;
     }
 
-    activate(): void {
-        if (isNotNull(this._subscription)) {
-            throw new TypeError('This has been activated. You cannot activate twice in the same lifecycle.');
-        }
-
-        const s = new Subscription();
-        this._subscription = s;
-
-        s.add(this._intent.openItem().subscribe(({ id, url, where, }) => {
-            openItem(this._channel, id, url, where);
-        }, console.error));
-
-        s.add(this._intent.pasteUrlFromClipboard().subscribe(({ data }) => {
-            const d = data.getData('text/plain');
-            registerItem(this._channel, d);
-        }, console.error));
+    openItem(id: string, url: string, where: WhereToOpenItem): void {
+        openItemViaChannel(this._channel, id, url, where);
     }
 
-    destroy(): void {
-        const s = expectNotNull(this._subscription, 'This has been destroyed');
-        s.unsubscribe();
-        this._subscription = null;
-        this._intent = null as any; // eslint-disable-line @typescript-eslint/no-explicit-any
-        this._channel = null as any; // eslint-disable-line @typescript-eslint/no-explicit-any
+    pasteItemFromClipboardActionActual(event: ClipboardEvent): void {
+        const data = event.clipboardData;
+        if (!data) {
+            return;
+        }
+
+        const url = data.getData('text/plain');
+
+        registerItemViaChannel(this._channel, url);
     }
 }

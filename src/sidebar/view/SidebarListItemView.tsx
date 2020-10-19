@@ -11,7 +11,7 @@ import {
 import { PanelSectionListSeparator } from '../../shared/component/PanelSectionList';
 
 import { SidebarItemViewModelEntity } from '../SidebarDomain';
-import { SidebarIntent, notifyOpenItem } from '../SidebarIntent';
+import { SidebarIntent } from '../SidebarIntent';
 
 const CLASS_NAME_PREFIX = 'sidebar-com-SidebarListItemView';
 
@@ -63,7 +63,7 @@ interface ListItemProps {
     intent: SidebarIntent;
 }
 export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
-    const { item, intent, } = props;
+    const { item, intent } = props;
     const [isOpening, setIsOpening] = useState<boolean>(false);
     if (isOpening) {
         return null;
@@ -88,9 +88,7 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
             evt.preventDefault();
 
             const where = calculateWhereToOpenItem(evt);
-            const a = notifyOpenItem(id, url, where);
-
-            intent.dispatch(a);
+            intent.openItem(id, url, where);
 
             setIsOpening(true);
         };

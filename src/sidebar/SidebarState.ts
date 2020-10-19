@@ -1,7 +1,7 @@
 import { Undefinable } from 'option-t/esm/Undefinable/Undefinable';
 import { combineReducers, Reducer } from 'redux';
-import { SidebarActionType, SidebarReduxAction } from './SidebarAction';
 import { SidebarItemViewModelEntity } from './SidebarDomain';
+import { SidebarReduxActionType, SidebarReduxAction } from './SidebarReduxAction';
 
 export interface SidebarState {
     list: Iterable<SidebarItemViewModelEntity>;
@@ -22,7 +22,7 @@ export function reduceSidebarReduxState(prev: Undefinable<SidebarState>, action:
     }
 
     switch (action.type) {
-        case SidebarActionType.UpdateFromSource: {
+        case SidebarReduxActionType.UpdateFromSource: {
             const state = action.state;
             return state;
         }
