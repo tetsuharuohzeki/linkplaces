@@ -11,7 +11,6 @@ import { ThunkAction as ThunkActionArcheType, ThunkDispatch } from '../third_par
 import {
     SidebarReduxAction,
 } from './SidebarAction';
-import { SidebarViewEpic } from './SidebarEpic';
 import { SidebarIntent } from './SidebarIntent';
 import { RemoteActionChannel } from './SidebarMessageChannel';
 import { SidebarRepository } from './SidebarRepository';
@@ -23,7 +22,6 @@ export type SidebarReduxThunkArguments = Readonly<{
     channel: RemoteActionChannel;
     intent: SidebarIntent;
     repo: SidebarRepository;
-    epic: SidebarViewEpic;
 }>;
 
 export type SidebarReduxThunkDispatch = ThunkDispatch<SidebarReduxStateTree, SidebarReduxThunkArguments, SidebarReduxAction>;

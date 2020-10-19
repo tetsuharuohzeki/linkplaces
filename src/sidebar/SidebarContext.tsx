@@ -28,7 +28,6 @@ import { createThunkMiddleware } from '../third_party/redux-thunk';
 
 import { createUpdateFromSourceAction, SidebarReduxAction } from './SidebarAction';
 import { mapToSidebarItemEntity, SidebarItemViewModelEntity } from './SidebarDomain';
-import { SidebarViewEpic } from './SidebarEpic';
 import { SidebarIntent } from './SidebarIntent';
 import { RemoteActionChannel } from './SidebarMessageChannel';
 import { SidebarRepository } from './SidebarRepository';
@@ -48,7 +47,6 @@ export class SidebarContext implements ViewContext {
 
     private _intent: SidebarIntent;
     private _repo: SidebarRepository;
-    private _epic: SidebarViewEpic;
 
     constructor(list: Array<BookmarkTreeNode>, channel: RemoteActionChannel) {
         this._list = list;
@@ -59,15 +57,12 @@ export class SidebarContext implements ViewContext {
         const intent = new SidebarIntent();
         this._intent = intent;
         this._repo = SidebarRepository.create(browser.bookmarks, list);
-        this._epic = new SidebarViewEpic(intent, this._repo, channel);
     }
 
     async onActivate(mountpoint: Element): Promise<void> {
         if (isNotNull(this._subscription)) {
             throw new TypeError();
         }
-
-        this._epic.activate();
 
         const initialState: Readonly<SidebarState> = {
             list: this._list.map(mapToSidebarItemEntity),
@@ -79,7 +74,6 @@ export class SidebarContext implements ViewContext {
             channel: this._channel,
             intent: this._intent,
             repo: this._repo,
-            epic: this._epic,
         };
         const middleware = createThunkMiddleware<SidebarReduxAction, SidebarReduxStateTree, SidebarReduxThunkArguments, Promise<void>>(args);
         const enhancer = applyMiddleware<SidebarReduxThunkDispatch, SidebarReduxStateTree>(middleware);
@@ -172,7 +166,6 @@ export class SidebarContext implements ViewContext {
         }
         this._renderRoot = null;
 
-        this._epic.destroy();
         this._repo.destroy();
     }
 
