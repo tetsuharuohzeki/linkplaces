@@ -88,11 +88,8 @@ __bundle_css_%: clean_dist
 	$(NPM_BIN)/postcss $(SRC_DIR)/$*/registry.css --config --output $(DIST_DIR)/$*/$*.css
 
 __external_dependency: \
-	__external_dependency_redux_thunk \
 	__external_dependency_rxjs
 
-__external_dependency_redux_thunk: clean_dist
-#	$(NPM_BIN)/cpx '$(NPM_MOD_DIR)/redux-thunk/dist/redux-thunk.js' $(DIST_DIR)/third_party --preserve
 __external_dependency_rxjs: clean_dist
 	$(NPM_BIN)/cpx '$(NPM_MOD_DIR)/rxjs/bundles/rxjs.umd.min.js' $(DIST_DIR)/third_party --preserve
 

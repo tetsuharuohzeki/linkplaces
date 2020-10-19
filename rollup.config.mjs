@@ -74,8 +74,6 @@ export default async function createConfiguration(_commandLineArgs) {
 
         plugins: [
             replaceImportWithGlobal({
-                // 'redux-thunk': createDefaultExport('window.ReduxThunk.default'),
-
                 // I know these are pretty messy approach.
                 // But rxjs does not support properly TypeScript+rollup
                 'rxjs': createModule([
