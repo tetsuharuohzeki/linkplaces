@@ -5,17 +5,17 @@ import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom';
-import { createStore, Unsubscribe } from 'redux';
 
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
+import { ReduxLikeStore } from '../shared/ReduxLikeStore';
 import { ViewContext } from '../shared/ViewContext';
 import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 
 
 import { PopupMainEpic } from './PopupMainEpic';
 import { PopupMainIntent } from './PopupMainIntent';
-import { createReducer, PopupMainStateTree, createInitialPopupMainStateTree } from './PopupMainState';
+import { createInitialPopupMainState, PopupMainState, reducePopupMain } from './PopupMainState';
 import { PopupPlainReduxStore as PopupMainStore } from './PopupMainStore';
 import { PopupMainView } from './PopupMainView';
 import { RemoteActionChannel } from './PopupMessageChannel';
@@ -27,7 +27,7 @@ export class PopupMainContext implements ViewContext {
     private _channel: RemoteActionChannel;
     private _list: Array<BookmarkTreeNode>;
     private _renderRoot: Nullable<ReactDOM.Root>;
-    private _disposerSet: Nullable<Set<Unsubscribe>>;
+    private _disposerSet: Nullable<Set<() => void>>;
 
     constructor(channel: RemoteActionChannel, list: Array<BookmarkTreeNode>) {
         this._channel = channel;
@@ -41,9 +41,9 @@ export class PopupMainContext implements ViewContext {
             throw new TypeError();
         }
 
-        const reducer = createReducer();
-        const initial = createInitialPopupMainStateTree(this._list);
-        const store: PopupMainStore = createStore<PopupMainStateTree, PopupReduxAction, void, void>(reducer, initial);
+        const reducer = reducePopupMain;
+        const initial = createInitialPopupMainState(this._list);
+        const store: PopupMainStore = ReduxLikeStore.create<PopupMainState, PopupReduxAction>(reducer, initial);
 
         if (USE_REACT_CONCURRENT_MODE) {
             this._renderRoot = ReactDOM.unstable_createRoot(mountpoint);
@@ -56,7 +56,7 @@ export class PopupMainContext implements ViewContext {
             // XXX: Should we remove this wrapping `requestAnimationFrame()` for React concurrent mode?
             // Will React schedule requestAnimationFrame properly?
             window.requestAnimationFrame(() => {
-                const { reducePopupMain: state, } = store.getState();
+                const state = store.state();
                 const view = (
                     <StrictMode>
                         <PopupMainView state={state} intent={intent} />

@@ -1,6 +1,4 @@
-import {
-    Action as ActionArcheType
-} from 'redux';
+import { ActionArcheType } from '../shared/ReduxLikeStore';
 import { SidebarState } from './SidebarState';
 
 export const enum SidebarReduxActionType {

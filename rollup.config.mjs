@@ -127,15 +127,6 @@ export default async function createConfiguration(_commandLineArgs) {
                 },
             }),
             replace({
-                include: [
-                    '**/redux/es/redux.js',
-                ],
-                delimiters: ['', ''],
-                values: {
-                    'process.env.NODE_ENV': JSON.stringify(LIB_NODE_ENV),
-                },
-            }),
-            replace({
                 include: REACT_RELATED_PKG_LIST,
                 delimiters: ['', ''],
                 values: {

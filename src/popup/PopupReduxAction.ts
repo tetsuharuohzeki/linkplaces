@@ -1,11 +1,8 @@
 import {
-    Action as ActionArcheType
-} from 'redux';
-
-import {
     OnChangeInfo,
     BookmarkTreeNode,
 } from '../../typings/webext/bookmarks';
+import { ActionArcheType } from '../shared/ReduxLikeStore';
 
 export const enum PopupReduxActionType {
     Init = 'POPUP_ACTION_INIT',
