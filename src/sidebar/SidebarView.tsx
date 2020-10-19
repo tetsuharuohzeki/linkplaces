@@ -4,13 +4,13 @@ import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toar
 
 import { StrictMode } from 'react';
 import { PanelSectionList } from '../shared/component/PanelSectionList';
+import { SidebarIntent } from './SidebarIntent';
 import { SidebarState } from './SidebarState';
-import { SidebarReduxStore } from './SidebarStore';
 import { ListItem } from './view/SidebarListItemView';
 
 export interface SidebarViewProps {
     state: Readonly<SidebarState>;
-    store: SidebarReduxStore;
+    intent: SidebarIntent;
 }
 
 export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
@@ -19,7 +19,7 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
             map((item) => {
                 const id = item.id();
                 return (
-                    <ListItem key={id} item={item} store={props.store} />
+                    <ListItem key={id} item={item} intent={props.intent} />
                 );
             }),
         );

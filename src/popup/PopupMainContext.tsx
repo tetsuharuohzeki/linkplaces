@@ -13,13 +13,13 @@ import { ViewContext } from '../shared/ViewContext';
 import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 
 
-import { createItemChangedAction, PopupReduxAction } from './PopupReduxAction';
 import { PopupMainEpic } from './PopupMainEpic';
 import { PopupMainIntent } from './PopupMainIntent';
 import { createReducer, PopupMainStateTree, createInitialPopupMainStateTree } from './PopupMainState';
 import { PlainPopupStore as PopupMainStore } from './PopupMainStore';
 import { PopupMainView } from './PopupMainView';
 import { RemoteActionChannel } from './PopupMessageChannel';
+import { createItemChangedAction, PopupReduxAction } from './PopupReduxAction';
 
 export class PopupMainContext implements ViewContext {
 

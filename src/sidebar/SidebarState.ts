@@ -1,7 +1,7 @@
 import { Undefinable } from 'option-t/esm/Undefinable/Undefinable';
 import { combineReducers, Reducer } from 'redux';
-import { SidebarReduxActionType, SidebarReduxAction } from './SidebarReduxAction';
 import { SidebarItemViewModelEntity } from './SidebarDomain';
+import { SidebarReduxActionType, SidebarReduxAction } from './SidebarReduxAction';
 
 export interface SidebarState {
     list: Iterable<SidebarItemViewModelEntity>;
