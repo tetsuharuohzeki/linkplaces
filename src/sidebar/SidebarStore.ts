@@ -1,6 +1,6 @@
 import { Store as ReduxStore } from 'redux';
 
-import { SidebarReduxAction } from './SidebarAction';
+import { SidebarReduxAction } from './SidebarReduxAction';
 import { SidebarReduxThunkDispatch } from './SidebarThunk';
 
 export type SidebarReduxStoreEnhancer = {

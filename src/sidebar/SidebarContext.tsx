@@ -26,9 +26,9 @@ import { ViewContext } from '../shared/ViewContext';
 import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 import { createThunkMiddleware } from '../third_party/redux-thunk';
 
-import { createUpdateFromSourceAction, SidebarReduxAction } from './SidebarAction';
 import { mapToSidebarItemEntity, SidebarItemViewModelEntity } from './SidebarDomain';
 import { RemoteActionChannel } from './SidebarMessageChannel';
+import { createUpdateFromSourceAction, SidebarReduxAction } from './SidebarReduxAction';
 import { SidebarRepository } from './SidebarRepository';
 import { createSidebarReduxReducer, createSidebarReduxStateTree, SidebarReduxStateTree, SidebarState } from './SidebarState';
 import { SidebarReduxStoreEnhancer } from './SidebarStore';

@@ -10,7 +10,7 @@ import { ThunkAction as ThunkActionArcheType, ThunkDispatch } from '../third_par
 
 import {
     SidebarReduxAction,
-} from './SidebarAction';
+} from './SidebarReduxAction';
 import { RemoteActionChannel } from './SidebarMessageChannel';
 import { SidebarRepository } from './SidebarRepository';
 import { SidebarReduxStateTree } from './SidebarState';
