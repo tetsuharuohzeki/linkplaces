@@ -1,6 +1,6 @@
 import { Store } from 'redux';
 
-import { PopupAction } from './PopupAction';
 import { PopupMainStateTree } from './PopupMainState';
+import { PopupReduxAction } from './PopupReduxAction';
 
-export type PlainPopupStore = Store<PopupMainStateTree, PopupAction>;
+export type PlainPopupStore = Store<PopupMainStateTree, PopupReduxAction>;

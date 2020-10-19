@@ -13,7 +13,7 @@ import { ViewContext } from '../shared/ViewContext';
 import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 
 
-import { createItemChangedAction, PopupAction } from './PopupAction';
+import { createItemChangedAction, PopupReduxAction } from './PopupReduxAction';
 import { PopupMainEpic } from './PopupMainEpic';
 import { PopupMainIntent } from './PopupMainIntent';
 import { createReducer, PopupMainStateTree, createInitialPopupMainStateTree } from './PopupMainState';
@@ -42,7 +42,7 @@ export class PopupMainContext implements ViewContext {
 
         const reducer = createReducer();
         const initial = createInitialPopupMainStateTree(this._list);
-        const store: PopupMainStore = createStore<PopupMainStateTree, PopupAction, void, void>(reducer, initial);
+        const store: PopupMainStore = createStore<PopupMainStateTree, PopupReduxAction, void, void>(reducer, initial);
 
         if (USE_REACT_CONCURRENT_MODE) {
             this._renderRoot = ReactDOM.unstable_createRoot(mountpoint);

@@ -2,7 +2,7 @@ import { Undefinable } from 'option-t/esm/Undefinable/Undefinable';
 import { combineReducers, Reducer, } from 'redux';
 
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
-import { PopupAction, ActionType } from './PopupAction';
+import { PopupReduxAction, PopupReduxActionType } from './PopupReduxAction';
 
 export interface PopupMainState {
     list: Array<BookmarkTreeNode>;
@@ -14,7 +14,7 @@ function createInitialPopupMainState(list: Array<BookmarkTreeNode> = []): PopupM
     };
 }
 
-export function reducePopupMain(prev: Undefinable<PopupMainState>, action: PopupAction): PopupMainState {
+export function reducePopupMain(prev: Undefinable<PopupMainState>, action: PopupReduxAction): PopupMainState {
     // redux call a reducer with `undefined` to initialize the reducer.
     // We assume this is special case.
     if (prev === undefined) {
@@ -23,16 +23,14 @@ export function reducePopupMain(prev: Undefinable<PopupMainState>, action: Popup
     }
 
     switch (action.type) {
-        case ActionType.Init: {
+        case PopupReduxActionType.Init: {
             const next = {
                 ...prev,
                 list: action.list,
             };
             return next;
         }
-        case ActionType.OpenSidebar:
-            return prev;
-        case ActionType.ItemChanged: {
+        case PopupReduxActionType.ItemChanged: {
             return prev;
         }
         default: {
