@@ -33,7 +33,7 @@ import { SidebarIntent, notifyPasteItemFromClipboardAction } from './SidebarInte
 import { RemoteActionChannel } from './SidebarMessageChannel';
 import { SidebarRepository } from './SidebarRepository';
 import { createSidebarReduxReducer, createSidebarReduxStateTree, SidebarReduxStateTree, SidebarState } from './SidebarState';
-import { SidebarReduxStoreEnhancer, SidebarStore } from './SidebarStore';
+import { SidebarReduxStoreEnhancer } from './SidebarStore';
 import { SidebarReduxThunkArguments, SidebarReduxThunkDispatch } from './SidebarThunk';
 import { SidebarView } from './SidebarView';
 
@@ -49,8 +49,6 @@ export class SidebarContext implements ViewContext {
     private _intent: SidebarIntent;
     private _repo: SidebarRepository;
     private _epic: SidebarViewEpic;
-    // @ts-expect-error
-    private _store: SidebarStore;
 
     constructor(list: Array<BookmarkTreeNode>, channel: RemoteActionChannel) {
         this._list = list;
@@ -62,7 +60,6 @@ export class SidebarContext implements ViewContext {
         this._intent = intent;
         this._repo = SidebarRepository.create(browser.bookmarks, list);
         this._epic = new SidebarViewEpic(intent, this._repo, channel);
-        this._store = new SidebarStore(intent, this._repo);
     }
 
     async onActivate(mountpoint: Element): Promise<void> {
