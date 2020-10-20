@@ -1,4 +1,4 @@
-import assert from 'assert';
+import * as assert from 'assert/strict';
 import ESBuildMod from 'esbuild';
 
 import buildconfigMod from './buildconfig.js';
