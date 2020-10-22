@@ -53,7 +53,7 @@
     "stylelint": "^13.7.2",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^20.0.0",
-    "typescript": "^4.1.0-dev.20201019",
+    "typescript": "^4.1.0-dev.20201022",
     "web-ext": "^5.3.0"
   }
 }
