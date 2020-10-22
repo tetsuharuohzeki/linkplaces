@@ -8,18 +8,15 @@ import * as ReactDOM from 'react-dom';
 
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
-import { ReduxLikeStore } from '../shared/ReduxLikeStore';
 import { ViewContext } from '../shared/ViewContext';
 import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 
 
 import { PopupMainEpic } from './PopupMainEpic';
 import { PopupMainIntent } from './PopupMainIntent';
-import { createInitialPopupMainState, PopupMainState, reducePopupMain } from './PopupMainState';
-import { PopupPlainReduxStore as PopupMainStore } from './PopupMainStore';
+import { createPopupMainStore } from './PopupMainStore';
 import { PopupMainView } from './PopupMainView';
 import { RemoteActionChannel } from './PopupMessageChannel';
-import { PopupReduxAction } from './PopupReduxAction';
 import { PopupRepostiroy } from './PopupRepository';
 
 export class PopupMainContext implements ViewContext {
@@ -41,14 +38,11 @@ export class PopupMainContext implements ViewContext {
             throw new TypeError();
         }
 
-        const reducer = reducePopupMain;
-        const initial = createInitialPopupMainState(this._list);
-        const store: PopupMainStore = ReduxLikeStore.create<PopupMainState, PopupReduxAction>(reducer, initial);
-
         if (USE_REACT_CONCURRENT_MODE) {
             this._renderRoot = ReactDOM.unstable_createRoot(mountpoint);
         }
 
+        const store = createPopupMainStore(this._list);
         const epic = new PopupMainEpic(this._channel, store);
         const intent = new PopupMainIntent(epic, store);
 

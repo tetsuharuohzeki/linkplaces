@@ -9,25 +9,24 @@ import * as ReactDOM from 'react-dom';
 import {
     Subscription,
     asyncScheduler as asyncRxScheduler,
-    fromEvent as fromEventToObservable, Observable
-} from 'rxjs';
+    fromEvent as fromEventToObservable} from 'rxjs';
 import {
     subscribeOn as subscribeOnRx,
 } from 'rxjs/operators';
 
 import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
-import { ReduxLikeStore } from '../shared/ReduxLikeStore';
 import { ViewContext } from '../shared/ViewContext';
 import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 
-import { mapToSidebarItemEntity, SidebarItemViewModelEntity } from './SidebarDomain';
+import { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarEpic } from './SidebarEpic';
 import { SidebarIntent } from './SidebarIntent';
 import { RemoteActionChannel } from './SidebarMessageChannel';
-import { createUpdateFromSourceAction, SidebarReduxAction } from './SidebarReduxAction';
+import { createUpdateFromSourceAction } from './SidebarReduxAction';
 import { SidebarRepository } from './SidebarRepository';
-import { reduceSidebarReduxState, SidebarState } from './SidebarState';
+import { SidebarState } from './SidebarState';
+import { createSidebarStateObservable, createSidebarStore } from './SidebarStore';
 import { SidebarView } from './SidebarView';
 
 export class SidebarContext implements ViewContext {
@@ -53,25 +52,9 @@ export class SidebarContext implements ViewContext {
             throw new TypeError();
         }
 
-        const initialState: Readonly<SidebarState> = {
-            list: this._list.map(mapToSidebarItemEntity),
-        };
-
         const subscription = new Subscription();
-        const reducer = reduceSidebarReduxState;
-        const store = ReduxLikeStore.create<SidebarState, SidebarReduxAction>(reducer, initialState);
-
-        const reduxSource = new Observable<SidebarState>((subscripber) => {
-            const teerdown = store.subscribe(() => {
-                const s = store.state();
-                subscripber.next(s);
-            });
-
-            return () => {
-                teerdown();
-            };
-        });
-        const state: Observable<SidebarState> = reduxSource;
+        const store = createSidebarStore(this._list);
+        const state = createSidebarStateObservable(store);
 
         const reduxSubscription = this._repo.asObservable()
             .pipe(subscribeOnRx(asyncRxScheduler))

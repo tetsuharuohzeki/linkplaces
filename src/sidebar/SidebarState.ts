@@ -1,16 +1,19 @@
 import { Undefinable } from 'option-t/esm/Undefinable/Undefinable';
-import { SidebarItemViewModelEntity } from './SidebarDomain';
+import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
+import { mapToSidebarItemEntity, SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarReduxActionType, SidebarReduxAction } from './SidebarReduxAction';
 
 export interface SidebarState {
     list: Iterable<SidebarItemViewModelEntity>;
 }
 
-export function createInitialSidebarState(list: Iterable<SidebarItemViewModelEntity> = []): SidebarState {
-    return {
-        list: list,
+export function createInitialSidebarState(list: Array<BookmarkTreeNode> = []): SidebarState {
+    const initialState: Readonly<SidebarState> = {
+        list: list.map(mapToSidebarItemEntity),
     };
+    return initialState;
 }
+
 
 export function reduceSidebarReduxState(prev: Undefinable<SidebarState>, action: SidebarReduxAction): SidebarState {
     // redux call a reducer with `undefined` to initialize the reducer.
