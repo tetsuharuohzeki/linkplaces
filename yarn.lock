@@ -2421,10 +2421,10 @@ es6-promisify@6.1.1:
   resolved "https://registry.yarnpkg.com/es6-promisify/-/es6-promisify-6.1.1.tgz#46837651b7b06bf6fff893d03f29393668d01621"
   integrity sha512-HBL8I3mIki5C1Cc9QjKUenHtnG0A5/xA8Q/AllRcfiwl2CZFXGK7ddBiCoRwAix4i2KxcQfjtIVcrVbB3vbmwg==
 
-esbuild@^0.8.3:
-  version "0.8.3"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.3.tgz#feab201ea319feed12b9a23b810702b22b631760"
-  integrity sha512-PxoukdXYOyT3pxwZmcD6jDLaPH4e2oRmWx51aflBUYk5+JcGLqwjfH9eXsnkK/1kgOA3WOVP7IhQ2gLyEH+Xbg==
+esbuild@^0.8.5:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.5.tgz#d5fc10d34e68c6b414158b59a386df767dc8385a"
+  integrity sha512-195Lq3Hp3V8rvccV4ede8PxmGvKuh4BrGQHxVfcYmpyg1ni078QN4iO1VNYCl55v0qYsWz6n96y3ZtMpuEtDRQ==
 
 escalade@^3.1.1:
   version "3.1.1"
