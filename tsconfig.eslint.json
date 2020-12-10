@@ -7,7 +7,7 @@
         "src/**/*",
         "src/**/.eslintrc.cjs",
         "typings/**/*",
-        "typings/**/.eslintrc.js",
+        "typings/**/.eslintrc.cjs",
     ],
     // We need to turn on to lint `.eslintrc.js` X(
     "compilerOptions": {
