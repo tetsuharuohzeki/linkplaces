@@ -16,6 +16,9 @@ module.exports = {
 
     'parserOptions': {
         'ecmaVersion': 2020,
+        'parserOptions': {
+            'sourceType': 'module',
+        },
     },
 
     'env': {
