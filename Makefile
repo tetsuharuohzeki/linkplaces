@@ -121,7 +121,7 @@ typecheck:
 
 stylelint:
 	$(NPM_BIN)/stylelint '$(SRC_DIR)/**/*.css' \
-		--config=$(CURDIR)/stylelint.config.js \
+		--config=$(CURDIR)/stylelint.config.cjs \
 		-f verbose \
 		--syntax css \
 		--color
