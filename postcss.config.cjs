@@ -7,7 +7,7 @@ const importPlugin = require('postcss-import');
 const {
     RELEASE_CHANNEL,
     ENABLE_SOURCE_MAP,
-} = require('./tools/buildconfig');
+} = require('./tools/buildconfig.cjs');
 
 
 // XXX: for debugging information

@@ -1,6 +1,4 @@
-'use strict';
-
-const jsdom = require('jsdom');
+import jsdom from 'jsdom';
 
 const { JSDOM } = jsdom;
 
@@ -12,7 +10,7 @@ const HTML =
 
 const ORIGIN_URL = 'https://example.com/';
 
-function createJsDomWindow() {
+export function createJsDomWindow() {
     const { window } = new JSDOM(HTML, {
         url: ORIGIN_URL,
         referrer: ORIGIN_URL,
@@ -23,7 +21,7 @@ function createJsDomWindow() {
 
 const originalGlobal = global;
 
-function replaceGlobalWithJsDom(win) {
+export function replaceGlobalWithJsDom(win) {
     const winproxy = createWinProxy(win);
     originalGlobal.window = win;
     originalGlobal.document = win.document;
@@ -33,7 +31,7 @@ function replaceGlobalWithJsDom(win) {
     global = winproxy;
 }
 
-function revertGlobalToOriginal() {
+export function revertGlobalToOriginal() {
     // This is dirty hack to mocking DOM env with using jsdom.
     // eslint-disable-next-line no-global-assign
     global = originalGlobal;
@@ -51,9 +49,3 @@ function createWinProxy(win) {
     });
     return winproxy;
 }
-
-module.exports = Object.freeze({
-    createJsDomWindow,
-    replaceGlobalWithJsDom,
-    revertGlobalToOriginal,
-});

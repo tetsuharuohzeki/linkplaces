@@ -5,7 +5,7 @@
 module.exports = function resolveAvaConfig() {
     return {
         'files': [
-            '**/__tests__/**/*.test.js'
+            '**/__tests__/**/*.test.{js,cjs,mjs}'
         ]
     };
 };

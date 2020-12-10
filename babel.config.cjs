@@ -1,7 +1,7 @@
 /*eslint-env commonjs*/
 'use strict';
 
-const buildconfigMod = require('./tools/buildconfig.js');
+const buildconfigMod = require('./tools/buildconfig.cjs');
 
 const {
     IS_PRODUCTION_MODE,
