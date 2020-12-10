@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/tetsuharuohzeki/linkplaces",
   "dependencies": {
-    "@babel/cli": "^7.12.8",
+    "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
     "@babel/preset-react": "^7.12.10",
     "@reactivex/ix-esnext-esm": "^4.0.0",
