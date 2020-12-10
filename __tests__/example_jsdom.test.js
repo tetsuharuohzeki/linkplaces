@@ -6,7 +6,7 @@ const {
     createJsDomWindow,
     replaceGlobalWithJsDom,
     revertGlobalToOriginal,
-} = require('./_helper_jsdom');
+} = require('./_helper_jsdom.cjs');
 
 /* eslint-env browser */
 

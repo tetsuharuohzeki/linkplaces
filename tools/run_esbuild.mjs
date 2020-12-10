@@ -1,7 +1,7 @@
 import * as assert from 'assert/strict';
 import ESBuildMod from 'esbuild';
 
-import buildconfigMod from './buildconfig.js';
+import buildconfigMod from './buildconfig.cjs';
 
 const {
     GIT_REVISION,

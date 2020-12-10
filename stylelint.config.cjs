@@ -7,7 +7,7 @@ module.exports = {
     'plugins': [],
 
     'extends': [
-        './tools/stylelint/stylelintrc_core.js',
+        './tools/stylelint/stylelintrc_core.cjs',
         'stylelint-config-prettier',
     ],
 
