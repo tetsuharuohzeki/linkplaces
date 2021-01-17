@@ -1,9 +1,6 @@
-import { from as fromIterableToIterableX } from '@reactivex/ix-esnext-esm/iterable/from';
-import { map } from '@reactivex/ix-esnext-esm/iterable/operators/map';
-import { toArray as toArrayFromIx } from '@reactivex/ix-esnext-esm/iterable/toarray';
-
 import { StrictMode } from 'react';
 import { PanelSectionList } from '../shared/component/PanelSectionList';
+import * as Ix from '../shared/ix/mod';
 import { SidebarIntent } from './SidebarIntent';
 import { SidebarState } from './SidebarState';
 import { ListItem } from './view/SidebarListItemView';
@@ -14,17 +11,14 @@ export interface SidebarViewProps {
 }
 
 export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
-    const mapped = fromIterableToIterableX(props.state.list)
-        .pipe(
-            map((item) => {
-                const id = item.id();
-                return (
-                    <ListItem key={id} item={item} intent={props.intent} />
-                );
-            }),
+    const mapped = Ix.map(props.state.list, (item) => {
+        const id = item.id();
+        return (
+            <ListItem key={id} item={item} intent={props.intent} />
         );
+    });
 
-    const r: Array<JSX.Element> = toArrayFromIx(mapped);
+    const r: Array<JSX.Element> = Ix.toArray(mapped);
     return (
         <StrictMode>
             <div>

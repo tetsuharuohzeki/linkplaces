@@ -1,7 +1,3 @@
-import { from as fromIterableToIterableX } from '@reactivex/ix-esnext-esm/iterable/from';
-import { IterableX } from '@reactivex/ix-esnext-esm/iterable/iterablex';
-import { map as mapIx } from '@reactivex/ix-esnext-esm/iterable/operators/map';
-
 import { Nullable } from 'option-t/esm/Nullable/Nullable';
 import {
     BehaviorSubject,
@@ -20,6 +16,7 @@ import { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bo
 
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
 import { Repository } from '../shared/Repository';
+import * as Ix from '../shared/ix/mod';
 import { SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain';
 
 type BookmarkId = string;
@@ -98,7 +95,7 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
 
     private _driver: BookmarkRepository;
     private _emitter: Subject<Array<BookmarkTreeNode>>;
-    private _obs: Nullable<Observable<IterableX<SidebarItemViewModelEntity>>>;
+    private _obs: Nullable<Observable<Iterable<SidebarItemViewModelEntity>>>;
     private _disposer: Subscription;
 
     private constructor(driver: BookmarkRepository) {
@@ -116,7 +113,7 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
         this._driver.destroy();
     }
 
-    asObservable(): Observable<IterableX<SidebarItemViewModelEntity>> {
+    asObservable(): Observable<Iterable<SidebarItemViewModelEntity>> {
         if (this._obs === null) {
             const o = this._driver.asObservable();
             const input = mergeRx(o, this._emitter);
@@ -131,8 +128,7 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
     }
 }
 
-function mapBookmarkTreeNodeToSidebarItemViewModelEntity(input: Iterable<BookmarkTreeNode>): IterableX<SidebarItemViewModelEntity> {
-    const mapper = mapIx(mapToSidebarItemEntity);
-    const iter = fromIterableToIterableX(input).pipe(mapper);
+function mapBookmarkTreeNodeToSidebarItemViewModelEntity(input: Iterable<BookmarkTreeNode>): Iterable<SidebarItemViewModelEntity> {
+    const iter = Ix.map(input, mapToSidebarItemEntity);
     return iter;
 }
