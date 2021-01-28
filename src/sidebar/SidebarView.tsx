@@ -21,11 +21,11 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
     const r: Array<JSX.Element> = Ix.toArray(mapped);
     return (
         <StrictMode>
-            <div>
+            <main>
                 <PanelSectionList>
                     {r}
                 </PanelSectionList>
-            </div>
+            </main>
         </StrictMode>
     );
 }

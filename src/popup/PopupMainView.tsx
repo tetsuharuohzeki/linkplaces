@@ -35,7 +35,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
 
     return (
         <StrictMode>
-            <div>
+            <main>
                 <PanelSectionList>
                     <PanelListItem onClick={onClickOpenWebExtSidebar}>
                         <PanelListItemIcon>
@@ -52,7 +52,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
                 <PanelSectionList>
                     {items}
                 </PanelSectionList>
-            </div>
+            </main>
         </StrictMode>
     );
 }
