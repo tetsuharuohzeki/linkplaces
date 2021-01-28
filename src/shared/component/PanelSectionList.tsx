@@ -21,7 +21,7 @@ export interface PanelSectionListSeparatorProps {
 export function PanelSectionListSeparator(_props: PanelSectionListSeparatorProps): JSX.Element {
     return (
         <StrictMode>
-            <div className={'shared-com-PanelSectionList__separator'}></div>
+            <div className={'shared-com-PanelSectionList__separator'} role={'separator'}></div>
         </StrictMode>
     );
 }
