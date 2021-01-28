@@ -17,7 +17,7 @@ export function PanelListItem(props: PanelListItemProps): JSX.Element {
 
     return (
         <StrictMode>
-            <div className={className} onClick={props.onClick}>
+            <div className={className} onClick={props.onClick} aria-disabled={disabled}>
                 {props.children}
             </div>
         </StrictMode>
