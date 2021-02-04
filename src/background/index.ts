@@ -15,9 +15,6 @@ import {
 } from '../shared/RemoteAction';
 
 import { createContextMenu } from './ContextMenu';
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { createTab } from './TabOpener';
 
 (function main() {

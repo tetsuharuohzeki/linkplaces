@@ -96,9 +96,7 @@ export function isBookmarkTreeNodeItem(v: BookmarkTreeNode): v is BookmarkTreeNo
         return true;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const is = typeof (v as any).url === 'string';
-    return is;
+    return false;
 }
 
 export function isBookmarkTreeNodeFolder(v: BookmarkTreeNode): v is BookmarkTreeNodeFolder {
@@ -106,7 +104,7 @@ export function isBookmarkTreeNodeFolder(v: BookmarkTreeNode): v is BookmarkTree
         return true;
     }
 
-    return (!isBookmarkTreeNodeItem(v) && !isBookmarkTreeNodeSeparator(v));
+    return false;
 }
 
 export function isBookmarkTreeNodeSeparator(v: BookmarkTreeNode): v is BookmarkTreeNodeSeparator {

@@ -91,10 +91,8 @@ export class Channel<TMessage extends RemoteActionBase> {
 
     destroy() {
         this._finalize();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        this._listener = null as any;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        this._callback = null as any;
+        this._listener = null as never;
+        this._callback = null as never;
         this._port = null;
     }
 
