@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import * as assert from 'assert/strict';
 import ESBuildMod from 'esbuild';
 
