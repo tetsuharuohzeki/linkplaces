@@ -160,5 +160,3 @@ function ItemListItem(props: ItemListItemProps): Nullable<JSX.Element> {
         </StrictMode>
     );
 }
-
-export type A = 2;
