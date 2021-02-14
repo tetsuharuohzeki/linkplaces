@@ -10,8 +10,4 @@ module.exports = {
         './tools/stylelint/stylelintrc_core.cjs',
         'stylelint-config-prettier',
     ],
-
-    // http://stylelint.io/user-guide/rules/
-    'rules': {
-    },
 };

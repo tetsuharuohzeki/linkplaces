@@ -32,25 +32,4 @@ module.exports = {
     'rules': {
         'no-magic-numbers': 'off',
     },
-
-    'overrides': [
-        {
-            'files': ['*.cjs'],
-            'parserOptions': {
-                'sourceType': 'script',
-            },
-        },
-        {
-            'files': ['*.mjs'],
-            'parserOptions': {
-                'sourceType': 'module',
-            },
-
-            'rules': {
-                'import/extensions': ['error', 'always', {
-                    'ignorePackages': true,
-                }],
-            },
-        },
-    ],
 };
