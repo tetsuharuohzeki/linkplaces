@@ -1,9 +1,9 @@
-import { Nullable } from 'option-t/esm/Nullable/Nullable';
+import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 
-export type DomRef<T> = {
+export interface DomRef<T> {
     current: Nullable<T>;
     release(): void;
-};
+}
 
 class DomRefImpl<T> implements DomRef<T> {
     current: Nullable<T>;
