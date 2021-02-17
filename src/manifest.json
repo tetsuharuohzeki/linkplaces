@@ -23,7 +23,7 @@
     "page": "background/index.html"
   },
   "page_action": {
-    "default_icon": "resources/icon/context-fill/new.svg",
+    "default_icon": "resources/icon/media_query/new.svg",
     "default_title": "Bookmark to LinkPlaces's default folder",
     "show_matches": ["http://*/*", "https://*/*"],
     "pinned": false
