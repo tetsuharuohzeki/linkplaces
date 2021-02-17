@@ -5,21 +5,27 @@
   viewBox="0 0 16 16"
 >
   <defs>
-    <style>
-      .linkplaces-icon {
-        fill: #0c0c0d;
-      }
-    </style>
-    <symbol id="icon">
-      <path
-        class="linkplaces-icon"
-        fill="context-fill"
-        fill-rule="evenodd"
-        d="m3.494 0h9.011c0.526 0 0.952 0.625 0.952 1.395v13.21c0 0.77-0.426 1.395-0.952 1.395h-9.011c-0.526 0-0.952-0.625-0.952-1.395v-13.21c0-0.77 0.426-1.395 0.952-1.395zm0.792 9.92h4.29v1.12h-4.29v-1.12zm0-1.92h6.934v0.96h-6.934v-0.96zm0-4h5.92v0.96h-5.92v-0.96zm-1e-3 1.92h5.441v1.12h-5.441v-1.12zm0-3.954h6.935v1.074h-6.935v-1.074zm1e-3 10.034h7.04v0.96h-7.04v-0.96z"
-      />
-    </symbol>
-  </defs>
-  <g id="default">
-    <use href="#icon"/>
-  </g>
+        <style>
+            @media (prefers-color-scheme: dark) {
+                .linkplaces-icon {
+                    --fill-color: #f9f9fa;
+                }
+            }
+
+            .linkplaces-icon {
+                /* see https://design.firefox.com/photon/visuals/iconography.html */
+                fill: var(--fill-color, #0c0c0d);
+            }
+        </style>
+        <symbol id="icon">
+        <path
+            class="linkplaces-icon"
+            fill-rule="evenodd"
+            d="m3.494 0h9.011c0.526 0 0.952 0.625 0.952 1.395v13.21c0 0.77-0.426 1.395-0.952 1.395h-9.011c-0.526 0-0.952-0.625-0.952-1.395v-13.21c0-0.77 0.426-1.395 0.952-1.395zm0.792 9.92h4.29v1.12h-4.29v-1.12zm0-1.92h6.934v0.96h-6.934v-0.96zm0-4h5.92v0.96h-5.92v-0.96zm-1e-3 1.92h5.441v1.12h-5.441v-1.12zm0-3.954h6.935v1.074h-6.935v-1.074zm1e-3 10.034h7.04v0.96h-7.04v-0.96z"
+        />
+        </symbol>
+    </defs>
+    <g id="default">
+        <use href="#icon"/>
+    </g>
 </svg>
