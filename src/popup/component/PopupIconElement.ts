@@ -156,8 +156,6 @@ interface PopupItemIconElementAttr {
 declare global {
     namespace JSX {
         interface IntrinsicElements {
-            // FIXME: Remove this. @typescript-eslint/eslint-plugin cannot works with this pattern correctly
-            // eslint-disable-next-line no-undef
             [LOCAL_NAME_POPUP_ITEM_ICON]: globalThis.React.DetailedHTMLProps<React.HTMLAttributes<PopupItemIconElement> & PopupItemIconElementAttr, PopupItemIconElement>;
         }
     }
