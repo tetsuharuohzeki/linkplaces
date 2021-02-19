@@ -50,10 +50,10 @@ build({
     logLevel: 'warning',
 
     define: {
-        'process.env.GIT_REVISION': JSON.stringify(GIT_REVISION),
-        'process.env.BUILD_DATE': JSON.stringify(BUILD_DATE),
-        'process.env.RELEASE_CHANNEL': JSON.stringify(RELEASE_CHANNEL),
-        'process.env.USE_REACT_CONCURRENT_MODE': JSON.stringify(USE_REACT_CONCURRENT_MODE),
+        '__COMPILE_TIME_EMBEDDED_CONSTANTS__.GIT_REVISION': JSON.stringify(GIT_REVISION),
+        '__COMPILE_TIME_EMBEDDED_CONSTANTS__.BUILD_DATE': JSON.stringify(BUILD_DATE),
+        '__COMPILE_TIME_EMBEDDED_CONSTANTS__.RELEASE_CHANNEL': JSON.stringify(RELEASE_CHANNEL),
+        '__COMPILE_TIME_EMBEDDED_CONSTANTS__.USE_REACT_CONCURRENT_MODE': JSON.stringify(USE_REACT_CONCURRENT_MODE),
         'process.env.NODE_ENV': JSON.stringify(LIB_NODE_ENV),
     },
 }).catch(() => {

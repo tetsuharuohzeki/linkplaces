@@ -1,15 +1,23 @@
-/* global process:readable */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* global __COMPILE_TIME_EMBEDDED_CONSTANTS__:readonly */
 
-// this will be embedded by the linker.
-// @ts-expect-error
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-export const GIT_REVISION: string = process.env.GIT_REVISION!;
+declare global {
+    interface CompileTimeEmbeddedConstants {
+        readonly GIT_REVISION: string;
+        readonly BUILD_DATE: string;
+        readonly USE_REACT_CONCURRENT_MODE: boolean;
+        readonly RELEASE_CHANNEL: string;
+    }
 
-// this will be embedded by the linker.
-// @ts-expect-error
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-export const BUILD_DATE: string = process.env.BUILD_DATE!;
+    // this will be embedded by the linker.
+    // eslint-disable-next-line no-underscore-dangle
+    const __COMPILE_TIME_EMBEDDED_CONSTANTS__: CompileTimeEmbeddedConstants;
+}
 
-// this will be embedded by the linker.
-// @ts-expect-error
-export const USE_REACT_CONCURRENT_MODE: boolean = !!process.env.USE_REACT_CONCURRENT_MODE;
+export const GIT_REVISION: string = __COMPILE_TIME_EMBEDDED_CONSTANTS__.GIT_REVISION;
+
+export const BUILD_DATE: string = __COMPILE_TIME_EMBEDDED_CONSTANTS__.BUILD_DATE;
+
+export const USE_REACT_CONCURRENT_MODE: boolean = __COMPILE_TIME_EMBEDDED_CONSTANTS__.USE_REACT_CONCURRENT_MODE;
+
+export const RELEASE_CHANNEL = __COMPILE_TIME_EMBEDDED_CONSTANTS__.RELEASE_CHANNEL;
