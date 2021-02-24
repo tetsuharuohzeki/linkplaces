@@ -74,7 +74,7 @@ export type OnReorderInfo = Readonly<{
     childIds: Array<string>;
 }>;
 
-export const enum BookmarkTreeNodeType {
+export enum BookmarkTreeNodeType {
     Bookmark = 'bookmark',
     Folder = 'folder',
     Separator = 'separator',

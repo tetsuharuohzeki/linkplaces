@@ -4,7 +4,7 @@ import {
 } from '../../typings/webext/bookmarks';
 import { ActionArcheType } from '../shared/ReduxLikeStore';
 
-export const enum PopupReduxActionType {
+export enum PopupReduxActionType {
     Init = 'POPUP_ACTION_INIT',
     ItemChanged = 'POPUP_ACTION_ITEM_CHANGED',
 }

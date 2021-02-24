@@ -1,7 +1,7 @@
 import { ActionArcheType } from '../shared/ReduxLikeStore';
 import { SidebarState } from './SidebarState';
 
-export const enum SidebarReduxActionType {
+export enum SidebarReduxActionType {
     Init = 'SIDEBAR_ACTION_INIT',
     UpdateFromSource = 'SIDEBAR_ACTION_UPDATE_FROM_SOURCE',
 }
