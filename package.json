@@ -22,7 +22,7 @@
   "homepage": "https://github.com/tetsuharuohzeki/linkplaces",
   "dependencies": {
     "@babel/cli": "^7.13.10",
-    "@babel/core": "^7.13.8",
+    "@babel/core": "^7.13.10",
     "@babel/preset-react": "^7.12.13",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
