@@ -119,6 +119,7 @@ export default async function createConfiguration(_commandLineArgs) {
                     'node_modules/**',
                 ],
                 delimiters: ['', ''],
+                preventAssignment: true,
                 values: {
                     '__COMPILE_TIME_EMBEDDED_CONSTANTS__.GIT_REVISION': JSON.stringify(GIT_REVISION),
                     '__COMPILE_TIME_EMBEDDED_CONSTANTS__.BUILD_DATE': JSON.stringify(BUILD_DATE),
@@ -129,6 +130,7 @@ export default async function createConfiguration(_commandLineArgs) {
             replace({
                 include: REACT_RELATED_PKG_LIST,
                 delimiters: ['', ''],
+                preventAssignment: true,
                 values: {
                     'process.env.NODE_ENV': JSON.stringify(LIB_NODE_ENV),
                 },
