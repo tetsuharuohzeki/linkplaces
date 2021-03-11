@@ -16,7 +16,6 @@
     --global-focus-outline-color: #0060df;
 }
 
-/* stylelint-disable-next-line media-feature-name-no-unknown */
 @media (prefers-color-scheme: dark) {
     :root {
         --global-body__background-color: #38383d;

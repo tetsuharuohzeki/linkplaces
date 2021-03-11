@@ -62,4 +62,14 @@ module.exports = {
             'ignore': ['custom-elements']
         }],
     },
+
+    'reportNeedlessDisables': [true, {
+        'severity': 'warning',
+    }],
+    'reportInvalidScopeDisables': [true, {
+        'severity': 'warning',
+    }],
+    'reportDescriptionlessDisables': [false, {
+        'severity': 'warning',
+    }]
 };
