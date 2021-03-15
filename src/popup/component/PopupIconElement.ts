@@ -1,5 +1,5 @@
 import { unwrapOrFromNullable } from 'option-t/esm/Nullable/unwrapOr';
-import React from 'react';
+import type * as React from 'react';
 
 import {
     DomRef,
