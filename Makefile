@@ -47,6 +47,7 @@ install_yarnpkg_minimum: __clean_yarnpkg_tools ## Install yarnpkg into this repo
 	yarn set version berry
 	yarn config set enableTelemetry 0
 	yarn config set nodeLinker node-modules
+	yarn plugin import interactive-tools
 
 install_yarnpkg: install_yarnpkg_minimum ## Install yarnpkg into this repository
 
