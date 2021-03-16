@@ -45,6 +45,7 @@ __clean_yarnpkg_tools:
 
 install_yarnpkg_minimum: __clean_yarnpkg_tools ## Install yarnpkg into this repository for CI
 	yarn set version berry
+	yarn config set enableTelemetry 0
 
 install_yarnpkg: install_yarnpkg_minimum ## Install yarnpkg into this repository
 
