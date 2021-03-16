@@ -26,6 +26,7 @@ jobs:
         # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
+          make install_yarnpkg_minimum
           yarn install --immutable
       ##### END: sharable parts across jobs #####
 
@@ -53,6 +54,7 @@ jobs:
         # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
+          make install_yarnpkg_minimum
           yarn install --immutable
       ##### END: sharable parts across jobs #####
 
@@ -86,6 +88,7 @@ jobs:
         # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
+          make install_yarnpkg_minimum
           yarn install --immutable
       ##### END: sharable parts across jobs #####
 
@@ -118,6 +121,7 @@ jobs:
         # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
+          make install_yarnpkg_minimum
           yarn install --immutable
       ##### END: sharable parts across jobs #####
 
@@ -150,6 +154,7 @@ jobs:
         # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
+          make install_yarnpkg_minimum
           yarn install --immutable
       ##### END: sharable parts across jobs #####
 
