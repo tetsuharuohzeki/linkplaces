@@ -106,30 +106,30 @@ __plain_ts: clean_plain
 
 
 # Test
-test: lint ava
+test: lint unittest
 
 lint: eslint stylelint typecheck
 
-eslint:
+eslint: ## Run ESLint
 	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
 
-eslint_fix:
+eslint_fix: ## Run ESLint with --fix option
 	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
 
-typecheck:
+typecheck: ## Check static typing integrity
 	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --noEmit
 
-stylelint:
+stylelint: ## Run stylelint
 	$(NPM_BIN)/stylelint '$(SRC_DIR)/**/*.css' \
 		--config=$(CURDIR)/stylelint.config.cjs \
 		-f verbose \
 		--syntax css \
 		--color
 
-ava: __obj
+unittest: __obj ## Run unit tests
 	$(MAKE) run_ava
 
-run_ava:
+run_ava: ## Only run unit tests
 	$(NPM_BIN)/ava --config $(CURDIR)/ava.config.cjs
 
 git_diff: ## Test whether there is no committed changes.
