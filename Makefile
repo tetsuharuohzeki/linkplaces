@@ -34,7 +34,14 @@ help:
 	@exit 1
 
 
-# clean
+####################################
+# Bootstrap
+####################################
+
+
+####################################
+# Clean
+####################################
 clean: clean_dist clean_obj clean_plain clean_webext_artifacts ## Clean up all generated files.
 
 clean_dist:
@@ -50,7 +57,9 @@ clean_webext_artifacts:
 	$(NPM_BIN)/del $(ARTIFACT_DIR)
 
 
-# build
+####################################
+# Build
+####################################
 build: ## Build the artifact.
 	$(MAKE) __webext_xpi -C $(CURDIR)
 
@@ -105,7 +114,9 @@ __plain_ts: clean_plain
 	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --outDir $(PLAIN_SRC_DIR)
 
 
+####################################
 # Test
+####################################
 test: lint unittest
 
 lint: eslint stylelint typecheck
@@ -136,7 +147,9 @@ git_diff: ## Test whether there is no committed changes.
 	git diff --exit-code
 
 
+####################################
 # Tools
+####################################
 format: format_css format_js ## Apply formetters for files.
 
 format_css:
