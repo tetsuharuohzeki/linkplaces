@@ -27,11 +27,6 @@ export class PopupMainEpic {
         openWebExtSidebarDirect(browser.sidebarAction);
         return closeWindow();
     }
-
-    async openLibraryWindow(_bookmarkId: string): Promise<void> {
-        // FIXME: implement this but we don't have an API.
-        return closeWindow();
-    }
 }
 
 async function closeWindow(): Promise<void> {

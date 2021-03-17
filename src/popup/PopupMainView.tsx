@@ -83,13 +83,11 @@ interface FolderListItemProps {
     intent: PopupMainIntent;
 }
 function FolderListItem(props: FolderListItemProps): JSX.Element {
-    const { item, intent } = props;
-
-    const id = item.id;
+    const { item } = props;
 
     const onClick: MouseEventHandler<HTMLDivElement> = (event: MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
-        intent.openLibraryWindow(id).catch(console.error);
+        // FIXME: This should implement to transition to the given id folder.
     };
 
     // http://design.firefox.com/StyleGuide/#/navigation

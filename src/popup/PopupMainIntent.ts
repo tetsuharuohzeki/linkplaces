@@ -16,8 +16,4 @@ export class PopupMainIntent {
     async openWebExtSidebar(): Promise<void> {
         await this._epic.openWebExtSidebar();
     }
-
-    async openLibraryWindow(bookmarkId: string): Promise<void> {
-        await this._epic.openLibraryWindow(bookmarkId);
-    }
 }
