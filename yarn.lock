@@ -2387,9 +2387,9 @@ escodegen@^2.0.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/c8a6eff7797530928266715fbb5487551422fb3b.tar.gz":
+"eslint-config-abema@https://github.com/cats-oss/eslint-config-abema/archive/72a943d6271704c5e87cf22d803f409a735398b7.tar.gz":
   version "0.0.0"
-  resolved "https://github.com/cats-oss/eslint-config-abema/archive/c8a6eff7797530928266715fbb5487551422fb3b.tar.gz#4e760c756f9bbabc82aa8819d1ddc5c7eb10da53"
+  resolved "https://github.com/cats-oss/eslint-config-abema/archive/72a943d6271704c5e87cf22d803f409a735398b7.tar.gz#8988a2b3ef3cd3faddcb5137f4c97a9bc4ee2574"
   optionalDependencies:
     "@typescript-eslint/eslint-plugin" "^4.15.0"
     "@typescript-eslint/parser" "^4.15.0"
