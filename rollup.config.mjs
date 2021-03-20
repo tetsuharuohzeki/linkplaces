@@ -98,7 +98,7 @@ export default async function createConfiguration(_commandLineArgs) {
 
             // https://github.com/rollup/plugins/tree/master/packages/node-resolve
             nodeResolve({
-                mainFields: ['module', 'main'],
+                mainFields: [],
 
                 browser: true, // for browser
                 preferBuiltins: false, // linking for browser
