@@ -3162,12 +3162,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.9.3":
-  version: 0.9.3
-  resolution: "esbuild@npm:0.9.3"
+"esbuild@npm:^0.9.6":
+  version: 0.9.6
+  resolution: "esbuild@npm:0.9.6"
   bin:
     esbuild: bin/esbuild
-  checksum: df44126d955231e8866a84daacba477a71c7c96d9bbc016a3c8fdfa6d1bebc21ee381512df571a6c71f3e666e82339e2c8acf2d797c0445fc9e3f9e784786b75
+  checksum: 418512a45d2b4f7227a3bda0af0049bbb517f6ee3bacc6aa29ffbd2699d40b26e2c5b4ae0020f14a20848cb641bd55329e1f62e52164ff98cbc900558ad77e7c
   languageName: node
   linkType: hard
 
@@ -5814,7 +5814,7 @@ fsevents@^1.0.0:
     ava: ^3.15.0
     cpx: ^1.5.0
     del-cli: ^3.0.1
-    esbuild: ^0.9.3
+    esbuild: ^0.9.6
     eslint: ^7.22.0
     eslint-config-abema: "https://github.com/cats-oss/eslint-config-abema/archive/72a943d6271704c5e87cf22d803f409a735398b7.tar.gz"
     eslint-plugin-import: ^2.22.1
