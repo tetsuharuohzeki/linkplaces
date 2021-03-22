@@ -795,7 +795,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^4.15.0, @typescript-eslint/parser@npm:^4.17.0":
+"@typescript-eslint/parser@npm:^4.15.0":
   version: 4.17.0
   resolution: "@typescript-eslint/parser@npm:4.17.0"
   dependencies:
@@ -809,6 +809,23 @@ __metadata:
     typescript:
       optional: true
   checksum: 69e56c3916e43896e13a823cb79d4ebe45adffc45e7d6f7bbc96ed842916735abada3dd6651436c024aaf4fe6eb747465e42a869c4863bf7d1104b0f943eceda
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/parser@npm:^4.18.0":
+  version: 4.18.0
+  resolution: "@typescript-eslint/parser@npm:4.18.0"
+  dependencies:
+    "@typescript-eslint/scope-manager": 4.18.0
+    "@typescript-eslint/types": 4.18.0
+    "@typescript-eslint/typescript-estree": 4.18.0
+    debug: ^4.1.1
+  peerDependencies:
+    eslint: ^5.0.0 || ^6.0.0 || ^7.0.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: d2f907dc2888078fa6aaca329e39209cc0ceff0dfe43657835b9fbd73678d848077572fdf451dd0cae4ea199b8bfa0f3791037bd9174049668914c7a8ac55157
   languageName: node
   linkType: hard
 
@@ -5810,7 +5827,7 @@ fsevents@^1.0.0:
     "@types/react": ^17.0.3
     "@types/react-dom": ^17.0.2
     "@typescript-eslint/eslint-plugin": ^4.18.0
-    "@typescript-eslint/parser": ^4.17.0
+    "@typescript-eslint/parser": ^4.18.0
     ava: ^3.15.0
     cpx: ^1.5.0
     del-cli: ^3.0.1
