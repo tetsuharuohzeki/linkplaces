@@ -498,9 +498,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:^17.1.0":
-  version: 17.1.0
-  resolution: "@rollup/plugin-commonjs@npm:17.1.0"
+"@rollup/plugin-commonjs@npm:^18.0.0":
+  version: 18.0.0
+  resolution: "@rollup/plugin-commonjs@npm:18.0.0"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     commondir: ^1.0.1
@@ -511,13 +511,13 @@ __metadata:
     resolve: ^1.17.0
   peerDependencies:
     rollup: ^2.30.0
-  checksum: 9b162f93090e5bf544c85bb835a29f65371726d2e6161aa1a048bbb708b77433184e5836e7118e2c6277f9a9a7b5835f56e420d2040b1b623b03ca76db4b5d10
+  checksum: 4778002ae37e9bde747294132c19c7fc450e81fa5328793c7c3ce843bf24654d817663f3351c02b674966f3edf5682f33d2d3d928cf2ec1b0ef651268f313701
   languageName: node
   linkType: hard
 
-"@rollup/plugin-node-resolve@npm:^11.2.0":
-  version: 11.2.0
-  resolution: "@rollup/plugin-node-resolve@npm:11.2.0"
+"@rollup/plugin-node-resolve@npm:^11.2.1":
+  version: 11.2.1
+  resolution: "@rollup/plugin-node-resolve@npm:11.2.1"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     "@types/resolve": 1.17.1
@@ -527,19 +527,19 @@ __metadata:
     resolve: ^1.19.0
   peerDependencies:
     rollup: ^1.20.0||^2.0.0
-  checksum: 173bb5822b8a6fd3a2c09303efd437711062885099dd1a4a6e91b449b99fcf5a4dc43e7d3836edeaca85ef7235547a193a3011314298ecbc529e8b123c371718
+  checksum: ae1bed46a949a1d8c077e021751c0140a523f731bea464ed0bfc3d335096493d1638be2a756f72d96f1f3a00fbdad8ba8fad8e86381d3eafce5ea2dffd62f175
   languageName: node
   linkType: hard
 
-"@rollup/plugin-replace@npm:^2.4.1":
-  version: 2.4.1
-  resolution: "@rollup/plugin-replace@npm:2.4.1"
+"@rollup/plugin-replace@npm:^2.4.2":
+  version: 2.4.2
+  resolution: "@rollup/plugin-replace@npm:2.4.2"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     magic-string: ^0.25.7
   peerDependencies:
     rollup: ^1.20.0 || ^2.0.0
-  checksum: cbb79ee0176bd333c4c3a9def89c05394363ec7bd496e1298f40f012b48f2093413bfd618eb1b7b39f0f00f2976b56cfcd4f40a2eed1c2a99386c537c816ff7b
+  checksum: b8532ce34011d6384b697e351c6ca6863aeb08b02dfc968efde84dc397d77c7efdff7623c4d05562d21ef62c8a598e765deb9608d6a6bf65835a956325ef20e7
   languageName: node
   linkType: hard
 
@@ -5764,9 +5764,9 @@ fsevents@^1.0.0:
     "@babel/cli": ^7.13.10
     "@babel/core": ^7.13.10
     "@babel/preset-react": ^7.12.13
-    "@rollup/plugin-commonjs": ^17.1.0
-    "@rollup/plugin-node-resolve": ^11.2.0
-    "@rollup/plugin-replace": ^2.4.1
+    "@rollup/plugin-commonjs": ^18.0.0
+    "@rollup/plugin-node-resolve": ^11.2.1
+    "@rollup/plugin-replace": ^2.4.2
     "@types/node": ^14.14.35
     "@types/react": ^17.0.3
     "@types/react-dom": ^17.0.2
@@ -5789,7 +5789,7 @@ fsevents@^1.0.0:
     prettier: ^2.2.1
     react: ^17.0.1
     react-dom: ^17.0.1
-    rollup: ^2.42.3
+    rollup: ^2.43.0
     rxjs: ^6.6.6
     stylelint: ^13.12.0
     stylelint-config-prettier: ^8.0.2
@@ -8183,9 +8183,9 @@ fsevents@^1.0.0:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.42.3":
-  version: 2.42.3
-  resolution: "rollup@npm:2.42.3"
+"rollup@npm:^2.43.0":
+  version: 2.43.0
+  resolution: "rollup@npm:2.43.0"
   dependencies:
     fsevents: ~2.3.1
   dependenciesMeta:
@@ -8193,7 +8193,7 @@ fsevents@^1.0.0:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: eb5d3eda11a72ae50a62632f8f1177e6d99e2351c5da4241c7417bd8bdb6365065c7c8fa36ef6bc34df8e2d856451f830cec131b2af50c483932d28d0415cdb6
+  checksum: 92917207cbc4c5f2dfa426156bfe19cfadb39fe7599c0d77d50f50438b7dbf8361dfa0f71315a9b31167ce35c425c27d6edcdd9f727c60a16d689fe7d3df3598
   languageName: node
   linkType: hard
 
