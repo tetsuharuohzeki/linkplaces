@@ -4,7 +4,6 @@ import {
     Observable,
     Observer,
     Subject,
-    Subscription,
     merge as mergeRx,
 } from 'rxjs';
 import {
@@ -96,18 +95,14 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
     private _driver: BookmarkRepository;
     private _emitter: Subject<Array<BookmarkTreeNode>>;
     private _obs: Nullable<Observable<Iterable<SidebarItemViewModelEntity>>>;
-    private _disposer: Subscription;
 
     private constructor(driver: BookmarkRepository) {
         this._driver = driver;
         this._emitter = new Subject();
         this._obs = null;
-
-        this._disposer = new Subscription();
     }
 
     destroy(): void {
-        this._disposer.unsubscribe();
         this._obs = null;
         this._emitter.unsubscribe();
         this._driver.destroy();
