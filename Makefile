@@ -9,7 +9,6 @@ OBJ_DIR := $(CURDIR)/__obj
 OBJ_SRC_DIR := $(OBJ_DIR)/src
 DIST_DIR := $(CURDIR)/__dist
 ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
-YARN_PKG_DIR := $(CURDIR)/.yarn
 
 ESLINT_TARGET_EXTENSION := js,jsx,cjs,mjs,ts,tsx
 PRETTIER_TARGET := '$(SRC_DIR)/**/*.css'
@@ -38,18 +37,6 @@ help:
 ####################################
 # Bootstrap
 ####################################
-__clean_yarnpkg_tools:
-	rm -rf $(CURDIR)/.yarnrc.yml
-	rm -rf $(YARN_PKG_DIR)/plugins
-	rm -rf $(YARN_PKG_DIR)/releases
-
-install_yarnpkg_minimum: __clean_yarnpkg_tools ## Install yarnpkg into this repository for CI
-	yarn set version berry
-	yarn config set nodeLinker node-modules
-
-install_yarnpkg: install_yarnpkg_minimum ## Install yarnpkg into this repository
-	yarn config set enableTelemetry 0
-	yarn plugin import interactive-tools
 
 
 ####################################
