@@ -18,7 +18,7 @@ ENABLE_SOURCE_MAP: ${ENABLE_SOURCE_MAP}
 ############################
 `);
 
-// https://github.com/michael-ciniawsky/postcss-load-config
+// https://github.com/postcss/postcss-load-config
 module.exports = function (_ctx) {
     return {
         'map': ENABLE_SOURCE_MAP ? { 'inline': false } : false,
