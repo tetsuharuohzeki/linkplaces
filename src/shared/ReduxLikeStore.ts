@@ -1,4 +1,4 @@
-import { Nullable } from 'option-t/esm/Nullable/Nullable';
+import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import { unwrapNullable } from 'option-t/esm/Nullable/unwrap';
 
 export interface ActionArcheType<T = unknown> {

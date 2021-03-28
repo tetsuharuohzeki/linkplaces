@@ -1,5 +1,5 @@
-import { Undefinable } from 'option-t/esm/Undefinable/Undefinable';
-import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
+import type { Undefinable } from 'option-t/esm/Undefinable/Undefinable';
+import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 import { mapToSidebarItemEntity, SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarReduxActionType, SidebarReduxAction } from './SidebarReduxAction';
 

@@ -1,5 +1,5 @@
-import { PopupMainEpic } from './PopupMainEpic';
-import { PopupPlainReduxStore } from './PopupMainStore';
+import type { PopupMainEpic } from './PopupMainEpic';
+import type { PopupPlainReduxStore } from './PopupMainStore';
 
 export class PopupMainIntent {
     private _epic: PopupMainEpic;

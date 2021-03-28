@@ -1,7 +1,7 @@
-import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
+import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 import { ReduxLikeStore } from '../shared/ReduxLikeStore';
 import { createInitialPopupMainState, PopupMainState, reducePopupMain } from './PopupMainState';
-import { PopupReduxAction } from './PopupReduxAction';
+import type { PopupReduxAction } from './PopupReduxAction';
 
 export type PopupPlainReduxStore = ReduxLikeStore<PopupMainState, PopupReduxAction>;
 

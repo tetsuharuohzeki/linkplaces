@@ -4,7 +4,7 @@
 
 import type { Tab } from '../../typings/webext/tabs';
 import { removeBookmarkItem, getLinkSchemeType, createBookmarkItem } from '../shared/Bookmark';
-import { Packet } from '../shared/Channel';
+import type { Packet } from '../shared/Channel';
 import { NoImplementationError } from '../shared/NoImplementationError';
 import {
     RemoteAction,

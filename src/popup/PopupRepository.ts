@@ -1,5 +1,5 @@
-import { OnChangeInfo, WebExtBookmarkService } from '../../typings/webext/bookmarks';
-import { PopupPlainReduxStore } from './PopupMainStore';
+import type { OnChangeInfo, WebExtBookmarkService } from '../../typings/webext/bookmarks';
+import type { PopupPlainReduxStore } from './PopupMainStore';
 import { createItemChangedAction } from './PopupReduxAction';
 
 export class PopupRepostiroy {

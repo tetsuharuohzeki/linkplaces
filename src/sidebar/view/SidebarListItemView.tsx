@@ -1,4 +1,4 @@
-import { Nullable } from 'option-t/esm/Nullable/Nullable';
+import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import { StrictMode, useState, MouseEventHandler, MouseEvent } from 'react';
 
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../../shared/Bookmark';
@@ -10,8 +10,8 @@ import {
 } from '../../shared/component/PanelListItem';
 import { PanelSectionListSeparator } from '../../shared/component/PanelSectionList';
 
-import { SidebarItemViewModelEntity } from '../SidebarDomain';
-import { SidebarIntent } from '../SidebarIntent';
+import type { SidebarItemViewModelEntity } from '../SidebarDomain';
+import type { SidebarIntent } from '../SidebarIntent';
 
 const CLASS_NAME_PREFIX = 'sidebar-com-SidebarListItemView';
 

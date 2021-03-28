@@ -6,9 +6,9 @@ import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { BookmarkTreeNode } from '../../typings/webext/bookmarks';
+import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
-import { ViewContext } from '../shared/ViewContext';
+import type { ViewContext } from '../shared/ViewContext';
 import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 
 
@@ -16,7 +16,7 @@ import { PopupMainEpic } from './PopupMainEpic';
 import { PopupMainIntent } from './PopupMainIntent';
 import { createPopupMainStore } from './PopupMainStore';
 import { PopupMainView } from './PopupMainView';
-import { RemoteActionChannel } from './PopupMessageChannel';
+import type { RemoteActionChannel } from './PopupMessageChannel';
 import { PopupRepostiroy } from './PopupRepository';
 
 export class PopupMainContext implements ViewContext {

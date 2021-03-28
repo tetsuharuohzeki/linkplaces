@@ -1,5 +1,5 @@
-import { ActionArcheType } from '../shared/ReduxLikeStore';
-import { SidebarState } from './SidebarState';
+import type { ActionArcheType } from '../shared/ReduxLikeStore';
+import type { SidebarState } from './SidebarState';
 
 export enum SidebarReduxActionType {
     Init = 'SIDEBAR_ACTION_INIT',

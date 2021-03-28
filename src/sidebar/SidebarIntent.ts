@@ -1,6 +1,6 @@
-import { WhereToOpenItem } from '../shared/RemoteAction';
-import { SidebarEpic } from './SidebarEpic';
-import { SidebarPlainReduxStore } from './SidebarStore';
+import type { WhereToOpenItem } from '../shared/RemoteAction';
+import type { SidebarEpic } from './SidebarEpic';
+import type { SidebarPlainReduxStore } from './SidebarStore';
 
 export class SidebarIntent {
     private _epic: SidebarEpic;

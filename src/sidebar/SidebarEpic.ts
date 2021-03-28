@@ -6,8 +6,8 @@ import {
 } from '../shared/RemoteCall';
 
 
-import { RemoteActionChannel } from './SidebarMessageChannel';
-import { SidebarPlainReduxStore } from './SidebarStore';
+import type { RemoteActionChannel } from './SidebarMessageChannel';
+import type { SidebarPlainReduxStore } from './SidebarStore';
 
 export class SidebarEpic {
     private _channel: RemoteActionChannel;

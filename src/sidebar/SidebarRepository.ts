@@ -1,4 +1,4 @@
-import { Nullable } from 'option-t/esm/Nullable/Nullable';
+import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import {
     BehaviorSubject,
     Observable,
@@ -11,10 +11,10 @@ import {
 } from 'rxjs/operators';
 
 
-import { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bookmarks';
+import type { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bookmarks';
 
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
-import { Repository } from '../shared/Repository';
+import type { Repository } from '../shared/Repository';
 import * as Ix from '../shared/ix/mod';
 import { SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain';
 
