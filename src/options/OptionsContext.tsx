@@ -29,6 +29,7 @@ export class OptionsContext implements ViewContext {
         const list = [
             getUrl('popup/index.html'),
             getUrl('sidebar/index.html'),
+            getUrl('options/index.html'),
         ];
 
         const view = (
