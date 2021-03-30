@@ -83,7 +83,7 @@ export function getLinkSchemeType(url: string): LinkSchemeType {
         };
     }
 
-    const [, type] = r;
+    const type = r[1];
     if (type === undefined) {
         throw new RangeError('`type` should not be undefined');
     }
