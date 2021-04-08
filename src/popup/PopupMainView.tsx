@@ -90,7 +90,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
         // FIXME: This should implement to transition to the given id folder.
     };
 
-    // http://design.firefox.com/StyleGuide/#/navigation
+    // https://design.firefox.com/StyleGuide/#/navigation
     return (
         <StrictMode>
             <span
@@ -137,7 +137,7 @@ function ItemListItem(props: ItemListItemProps): Nullable<JSX.Element> {
         url :
         title;
 
-    // http://design.firefox.com/StyleGuide/#/navigation
+    // https://design.firefox.com/StyleGuide/#/navigation
     return (
         <StrictMode>
             <a

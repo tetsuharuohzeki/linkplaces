@@ -17,9 +17,9 @@ Features
 License
 -------
 
-This project source code is licensed under [MPL 2.0](http://mozilla.org/MPL/2.0/ "Mozilla Public License, version 2.0").
+This project source code is licensed under [MPL 2.0](https://mozilla.org/MPL/2.0/ "Mozilla Public License, version 2.0").
 
 Requirement
 -----------
 
- * [Mozilla Firefox](http://www.mozilla.com/firefox/)
+ * [Mozilla Firefox](https://www.mozilla.com/firefox/)

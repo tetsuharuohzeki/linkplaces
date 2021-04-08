@@ -34,7 +34,7 @@ module.exports = {
         'stylelint-config-standard'
     ],
 
-    // http://stylelint.io/user-guide/rules/
+    // https://stylelint.io/user-guide/rules/
     'rules': {
         // quote
         'font-family-name-quotes': 'always-unless-keyword',
