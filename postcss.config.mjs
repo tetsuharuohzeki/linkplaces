@@ -2,9 +2,7 @@
 
 import importPlugin from 'postcss-import';
 
-import buildconfig from './tools/buildconfig.cjs';
-
-const { RELEASE_CHANNEL, ENABLE_SOURCE_MAP } = buildconfig;
+import { RELEASE_CHANNEL, ENABLE_SOURCE_MAP } from './tools/buildconfig.mjs';
 
 // XXX: for debugging information
 console.log(`

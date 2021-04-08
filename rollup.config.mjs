@@ -4,21 +4,20 @@ import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 
-import buildconfigMod from './tools/buildconfig.cjs';
 import {
-    replaceImportWithGlobal,
-    createNamedExport,
-    createModule,
-} from './tools/rollup/replace_import_with_global.mjs';
-
-const {
     GIT_REVISION,
     BUILD_DATE,
     RELEASE_CHANNEL,
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
     USE_REACT_CONCURRENT_MODE,
-} = buildconfigMod;
+} from './tools/buildconfig.mjs';
+
+import {
+    replaceImportWithGlobal,
+    createNamedExport,
+    createModule,
+} from './tools/rollup/replace_import_with_global.mjs';
 
 console.log(`
 =========== rollup configuration vars ============
