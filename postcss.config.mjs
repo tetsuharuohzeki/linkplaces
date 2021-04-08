@@ -1,14 +1,10 @@
 /* eslint-env node */
 
-'use strict';
+import importPlugin from 'postcss-import';
 
-const importPlugin = require('postcss-import');
+import buildconfig from './tools/buildconfig.cjs';
 
-const {
-    RELEASE_CHANNEL,
-    ENABLE_SOURCE_MAP,
-} = require('./tools/buildconfig.cjs');
-
+const { RELEASE_CHANNEL, ENABLE_SOURCE_MAP } = buildconfig;
 
 // XXX: for debugging information
 console.log(`
@@ -18,12 +14,13 @@ ENABLE_SOURCE_MAP: ${ENABLE_SOURCE_MAP}
 ############################
 `);
 
-// https://github.com/postcss/postcss-load-config
-module.exports = function (_ctx) {
+// We'd like to sort with https://github.com/postcss/postcss-load-config
+// eslint-disable-next-line import/no-default-export
+export default async function getConfig() {
     return {
-        'map': ENABLE_SOURCE_MAP ? { 'inline': false } : false,
+        map: ENABLE_SOURCE_MAP ? { inline: false } : false,
 
-        'plugins': [
+        plugins: [
             importPlugin({
                 root: process.cwd(),
                 path: [], // we'd like to enforce to use a relative path.
@@ -31,4 +28,4 @@ module.exports = function (_ctx) {
             }),
         ],
     };
-};
+}

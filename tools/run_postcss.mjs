@@ -4,7 +4,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import postcss from 'postcss';
 
-import getConfig from '../postcss.config.cjs';
+import getConfig from '../postcss.config.mjs';
 
 (async () => {
     const ENTRY_POINT = process.env.ENTRY_POINT;
@@ -22,7 +22,7 @@ OUTPUT_FILE: ${OUTPUT_FILE}
 
     const css = await fs.readFile(ENTRY_POINT);
 
-    const config = getConfig();
+    const config = await getConfig();
 
     const processor = postcss(config.plugins);
     const result = await processor.process(css, {
