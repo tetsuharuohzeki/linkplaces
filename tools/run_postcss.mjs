@@ -22,7 +22,7 @@ OUTPUT_FILE: ${OUTPUT_FILE}
 
     const css = await fs.readFile(ENTRY_POINT);
 
-    const config = await getConfig();
+    const config = getConfig();
 
     const processor = postcss(config.plugins);
     const result = await processor.process(css, {

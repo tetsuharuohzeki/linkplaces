@@ -14,7 +14,7 @@ ENABLE_SOURCE_MAP: ${ENABLE_SOURCE_MAP}
 
 // We'd like to sort with https://github.com/postcss/postcss-load-config
 // eslint-disable-next-line import/no-default-export
-export default async function getConfig() {
+export default function getPostCssConfig() {
     return {
         map: ENABLE_SOURCE_MAP ? { inline: false } : false,
 
