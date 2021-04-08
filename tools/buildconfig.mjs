@@ -1,6 +1,4 @@
-'use strict';
-
-const MaybeMod = require('option-t/cjs/Maybe');
+import * as MaybeMod from 'option-t/esm/Maybe';
 
 const GIT_REVISION = MaybeMod.mapOr(process.env.GIT_REVISION, 'unknown', String);
 const BUILD_DATE = MaybeMod.mapOr(process.env.BUILD_DATE, 'unknown', String);
@@ -13,7 +11,7 @@ const ENABLE_SOURCE_MAP = !IS_PRODUCTION_MODE;
 
 const USE_REACT_CONCURRENT_MODE = false;
 
-module.exports = Object.freeze({
+export {
     GIT_REVISION,
     BUILD_DATE,
     RELEASE_CHANNEL,
@@ -21,4 +19,4 @@ module.exports = Object.freeze({
     IS_PRODUCTION_MODE,
     ENABLE_SOURCE_MAP,
     USE_REACT_CONCURRENT_MODE,
-});
+};

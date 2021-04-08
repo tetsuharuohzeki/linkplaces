@@ -2,16 +2,14 @@
 import * as assert from 'assert/strict';
 import ESBuildMod from 'esbuild';
 
-import buildconfigMod from './buildconfig.cjs';
-
-const {
+import {
     GIT_REVISION,
     BUILD_DATE,
     RELEASE_CHANNEL,
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
     USE_REACT_CONCURRENT_MODE,
-} = buildconfigMod;
+} from './buildconfig.mjs';
 
 
 console.log(`
