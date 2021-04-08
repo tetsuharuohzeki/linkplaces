@@ -1,7 +1,3 @@
-/* This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this file,
- * You can obtain one at https://mozilla.org/MPL/2.0/. */
-
 import type { Tab } from '../../typings/webext/tabs';
 import { removeBookmarkItem, getLinkSchemeType, createBookmarkItem } from '../shared/Bookmark';
 import type { Packet } from '../shared/Channel';

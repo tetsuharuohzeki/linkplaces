@@ -14,11 +14,6 @@ Features
   * to Tab context menu.
   * to Content-area context menu.
 
-License
--------
-
-This project source code is licensed under [MPL 2.0](https://mozilla.org/MPL/2.0/ "Mozilla Public License, version 2.0").
-
 Requirement
 -----------
 
