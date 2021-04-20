@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/tetsuharuohzeki/linkplaces",
   "dependencies": {
-    "@babel/cli": "^7.13.14",
-    "@babel/core": "^7.13.15",
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.13.16",
     "@babel/preset-react": "^7.13.13",
     "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
@@ -54,6 +54,6 @@
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^21.0.0",
     "typescript": "^4.3.0-dev.20210418",
-    "web-ext": "^6.0.0"
+    "web-ext": "^6.1.0"
   }
 }
