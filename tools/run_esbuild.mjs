@@ -1,5 +1,6 @@
-import * as assert from 'assert/strict';
 import ESBuildMod from 'esbuild';
+import * as assert from 'node:assert/strict';
+
 
 import {
     GIT_REVISION,

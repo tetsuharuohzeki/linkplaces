@@ -5,7 +5,7 @@
 // eslint-disable-next-line strict
 'use strict';
 
-const path = require('path');
+const path = require('node:path');
 
 const JS_EXTENSION = ['.mjs', '.js', '.jsx'];
 const TS_EXTENSION = ['.ts', '.tsx', '.d.ts'];
