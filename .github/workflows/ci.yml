@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [16.x]
 
     steps:
       ##### BEGIN: sharable parts across jobs #####
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [16.x]
 
     steps:
       ##### BEGIN: sharable parts across jobs #####
@@ -67,7 +67,7 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [16.x]
 
     steps:
       ##### BEGIN: sharable parts across jobs #####
@@ -99,7 +99,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [16.x]
 
     steps:
       ##### BEGIN: sharable parts across jobs #####
@@ -131,7 +131,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [16.x]
 
     steps:
       ##### BEGIN: sharable parts across jobs #####
