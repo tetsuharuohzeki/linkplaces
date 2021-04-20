@@ -28,5 +28,8 @@ module.exports = {
 
     'rules': {
         'no-magic-numbers': 'off',
+
+        // Disable until vscode's Electron's node.js will become Node.js v16
+        'import/no-unresolved': 'off',
     },
 };

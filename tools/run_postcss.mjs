@@ -1,5 +1,4 @@
 import * as assert from 'assert';
-// eslint-disable-next-line import/no-unresolved
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import postcss from 'postcss';
