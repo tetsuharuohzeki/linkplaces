@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-unresolved
-import * as assert from 'assert/strict';
+import * as assert from 'node:assert/strict';
 import { isUndefined } from 'option-t/esm/Undefinable/index.mjs';
 
 const PLACEHOLDER_PREFIX = '\0placeholder_module:';

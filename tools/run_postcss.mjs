@@ -1,7 +1,7 @@
-import * as assert from 'assert';
-// eslint-disable-next-line import/no-unresolved
-import * as fs from 'fs/promises';
-import * as path from 'path';
+import * as assert from 'node:assert';
+import * as fs from 'node:fs/promises';
+import * as path from 'node:path';
+
 import postcss from 'postcss';
 
 import getConfig from '../postcss.config.mjs';
