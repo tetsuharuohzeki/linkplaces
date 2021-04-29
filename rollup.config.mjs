@@ -13,12 +13,6 @@ import {
     USE_REACT_CONCURRENT_MODE,
 } from './tools/buildconfig.mjs';
 
-import {
-    replaceImportWithGlobal,
-    createNamedExport,
-    createModule,
-} from './tools/rollup/replace_import_with_global.mjs';
-
 console.log(`
 =========== rollup configuration vars ============
 GIT_REVISION: ${GIT_REVISION}
@@ -29,9 +23,6 @@ IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
 USE_REACT_CONCURRENT_MODE: ${USE_REACT_CONCURRENT_MODE}
 ======================================
 `);
-
-const RXJS_NAMESPCACE_OBJ_NAME = 'window.rxjs';
-const RXJS_OPERATOR_NAMESPCACE_OBJ_NAME = `${RXJS_NAMESPCACE_OBJ_NAME}.operators`;
 
 const REACT_RELATED_PKG_LIST = [
     'node_modules/react/**',
@@ -72,29 +63,6 @@ export default async function createConfiguration(_commandLineArgs) {
         shimMissingExports: false,
 
         plugins: [
-            replaceImportWithGlobal({
-                // I know these are pretty messy approach.
-                // But rxjs does not support properly TypeScript+rollup
-                'rxjs': createModule([
-                    createNamedExport('BehaviorSubject', RXJS_NAMESPCACE_OBJ_NAME),
-                    createNamedExport('Observable', RXJS_NAMESPCACE_OBJ_NAME),
-                    createNamedExport('merge', RXJS_NAMESPCACE_OBJ_NAME),
-                    createNamedExport('Subject', RXJS_NAMESPCACE_OBJ_NAME),
-                    createNamedExport('Subscription', RXJS_NAMESPCACE_OBJ_NAME),
-                    createNamedExport('animationFrameScheduler', RXJS_NAMESPCACE_OBJ_NAME),
-                    createNamedExport('asyncScheduler', RXJS_NAMESPCACE_OBJ_NAME),
-                    createNamedExport('fromEvent', RXJS_NAMESPCACE_OBJ_NAME),
-                ]),
-                'rxjs/operators': createModule([
-                    createNamedExport('filter', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
-                    createNamedExport('map', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
-                    createNamedExport('share', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
-                    createNamedExport('startWith', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
-                    createNamedExport('debounceTime', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
-                    createNamedExport('subscribeOn', RXJS_OPERATOR_NAMESPCACE_OBJ_NAME),
-                ]),
-            }),
-
             // https://github.com/rollup/plugins/tree/master/packages/node-resolve
             nodeResolve({
                 mainFields: [],
