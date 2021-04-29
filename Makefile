@@ -99,11 +99,7 @@ __bundle_css_%: clean_dist
         OUTPUT_FILE=$(DIST_DIR)/$*/$*.css \
         $(NODE_BIN) $(CURDIR)/tools/run_postcss.mjs
 
-__external_dependency: \
-	__external_dependency_rxjs
-
-__external_dependency_rxjs: clean_dist
-	$(NPM_BIN)/cpx '$(NPM_MOD_DIR)/rxjs/dist/bundles/rxjs.umd.min.js' $(DIST_DIR)/third_party --preserve
+__external_dependency:
 
 __obj: __plain clean_obj
 	$(NPM_BIN)/babel $(PLAIN_DIR) --out-dir $(OBJ_DIR) --extensions=.js,.jsx --config-file $(CURDIR)/babel.config.mjs
