@@ -1,4 +1,3 @@
-import type { Tab } from '../../typings/webext/tabs';
 import { removeBookmarkItem, getLinkSchemeType, createBookmarkItem } from '../shared/Bookmark';
 import type { Packet } from '../shared/Channel';
 import { NoImplementationError } from '../shared/NoImplementationError';
@@ -7,7 +6,6 @@ import {
     MSG_TYPE_OPEN_URL,
     MSG_TYPE_REGISTER_URL,
     WhereToOpenItem,
-    createRegisterUrlAction,
 } from '../shared/RemoteAction';
 
 import { createContextMenu } from './ContextMenu';
@@ -24,27 +22,14 @@ import { createTab } from './TabOpener';
             s.onMessage.removeListener(onMessageFromPopup);
         });
     });
-
-    browser.pageAction.onClicked.addListener(onPageActionClicked);
 })();
 
-function onPageActionClicked(tab: Tab): void {
-    const url = tab.url;
-    if (!url) {
-        throw new URIError('could not get the url');
-    }
-
-    const title = tab.title ?? url;
-    const action = createRegisterUrlAction(url, title);
-    handleRemoteAction(action);
-}
-
-function onMessageFromPopup(packet: Packet<RemoteAction>) {
+function onMessageFromPopup(packet: Packet<RemoteAction>): void {
     const { payload: msg } = packet;
     handleRemoteAction(msg);
 }
 
-function handleRemoteAction(msg: RemoteAction) {
+function handleRemoteAction(msg: RemoteAction): void {
     switch (msg.type) {
         case MSG_TYPE_OPEN_URL: {
             const { id, url, where } = msg.value;
