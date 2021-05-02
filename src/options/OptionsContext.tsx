@@ -1,14 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference types="react-dom/experimental" />
-
-import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
-import { StrictMode } from 'react';
-import * as ReactDOM from 'react-dom';
 
 import type { ViewContext } from '../shared/ViewContext';
-import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
-import { OptionsView } from './OptionsView';
+import { createOptionsView } from './OptionsView';
 
 function getUrl(path: string): { url: string; title: string; } {
     const url = browser.extension.getURL(path);
@@ -19,10 +12,7 @@ function getUrl(path: string): { url: string; title: string; } {
 }
 
 export class OptionsContext implements ViewContext {
-    private _renderRoot: Nullable<ReactDOM.Root>;
-
     constructor() {
-        this._renderRoot = null;
     }
 
     async onActivate(mountpoint: Element): Promise<void> {
@@ -32,29 +22,18 @@ export class OptionsContext implements ViewContext {
             getUrl('options/index.html'),
         ];
 
-        const view = (
-            <StrictMode>
-                <OptionsView list={list} />
-            </StrictMode>
-        );
+        const view = createOptionsView({
+            list,
+        });
 
-        if (USE_REACT_CONCURRENT_MODE) {
-            const renderRoot = ReactDOM.unstable_createRoot(mountpoint);
-            this._renderRoot = renderRoot;
-            renderRoot.render(view);
-        } else {
-            ReactDOM.render(view, mountpoint);
-        }
+        mountpoint.appendChild(view);
     }
 
-    async onDestroy(_mountpoint: Element): Promise<void> {
-        if (USE_REACT_CONCURRENT_MODE) {
-            const renderRoot = expectNotNull(this._renderRoot, '');
-            renderRoot.unmount();
-        } else {
-            ReactDOM.unmountComponentAtNode(_mountpoint);
+    async onDestroy(mountpoint: Element): Promise<void> {
+        while (mountpoint.firstChild) {
+            const lastChild = expectNotNull(mountpoint.lastChild, '.lastChild should be exist');
+            mountpoint.removeChild(lastChild);
         }
-        this._renderRoot = null;
     }
 
     async onResume(_mountpoint: Element): Promise<void> {

@@ -1,6 +1,6 @@
-import { StrictMode } from 'react';
-
 import { BUILD_DATE, GIT_REVISION } from '../shared/constants';
+import { createDocFragmentTree, createDomElement as element, createTextNode as text } from '../shared/domfactory';
+import * as Ix from '../shared/ix/mod';
 
 export type Page = Readonly<{
     url: string;
@@ -10,41 +10,52 @@ export type Page = Readonly<{
 export interface OptionsViewProps {
     list: Iterable<Page>;
 }
-export function OptionsView(props: Readonly<OptionsViewProps>): JSX.Element {
+export function createOptionsView(props: Readonly<OptionsViewProps>): DocumentFragment {
     const { list } = props;
-    const children: Array<JSX.Element> = [];
-    for (const page of list) {
-        const element = (
-            <li>
-                <a href={page.url}
-                    target={'_blank'}
-                    rel={'noopener'}>
-                    {page.title}
-                </a>
-            </li>
-        );
-        children.push(element);
-    }
+    const links: Iterable<Element> = Ix.map(list, (page) => {
+        const item = element('li', null, [
+            element('a', [
+                ['href', page.url],
+                ['target', '_blank'],
+                ['rel', 'noopener'],
+            ], [
+                text(page.title),
+            ])
+        ]);
+        return item;
+    });
 
-    return (
-        <StrictMode>
-            <div>
-                <h2>{'Build Information'}</h2>
-                <table>
-                    <tr>
-                        <th>{'GIT_REVISION'}</th>
-                        <td>{GIT_REVISION}</td>
-                    </tr>
-                    <tr>
-                        <th>{'BUILD_DATE'}</th>
-                        <td>{BUILD_DATE}</td>
-                    </tr>
-                </table>
-                <h2>{'for debugging'}</h2>
-                <ul>
-                    {children}
-                </ul>
-            </div>
-        </StrictMode>
-    );
+    const fragment = createDocFragmentTree([
+        element('div', null, [
+            element('h2', null, [
+                text('Build Information'),
+            ]),
+            element('table', null, [
+                element('tr', null, [
+                    element('th', null, [
+                        text('GIT_REVISION'),
+                    ]),
+                    element('td', null, [
+                        text(GIT_REVISION),
+                    ]),
+                ]),
+                element('tr', null, [
+                    element('th', null, [
+                        text('BUILD_DATE'),
+                    ]),
+                    element('td', null, [
+                        text(BUILD_DATE),
+                    ]),
+                ]),
+            ]),
+        ]),
+        element('div', null, [
+            element('h2', null, [
+                text('for debuggingn'),
+            ]),
+            element('ul', null, links),
+        ]),
+    ]);
+
+    return fragment;
 }
