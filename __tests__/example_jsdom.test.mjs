@@ -18,9 +18,9 @@ test.after(() => {
 });
 
 test('`window` should be defined', (t) => {
-    t.is(window, global.window);
+    t.is(window, globalThis.window);
 });
 
 test('`document` should be defined', (t) => {
-    t.is(document, global.window.document);
+    t.is(document, globalThis.window.document);
 });
