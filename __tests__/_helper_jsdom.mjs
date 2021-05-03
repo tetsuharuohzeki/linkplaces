@@ -19,7 +19,7 @@ export function createJsDomWindow() {
     return window;
 }
 
-const originalGlobal = global;
+const originalGlobal = globalThis;
 
 export function replaceGlobalWithJsDom(win) {
     const winproxy = createWinProxy(win);
@@ -28,13 +28,13 @@ export function replaceGlobalWithJsDom(win) {
 
     // This is dirty hack to mocking DOM env with using jsdom.
     // eslint-disable-next-line no-global-assign
-    global = winproxy;
+    globalThis = winproxy;
 }
 
 export function revertGlobalToOriginal() {
     // This is dirty hack to mocking DOM env with using jsdom.
     // eslint-disable-next-line no-global-assign
-    global = originalGlobal;
+    globalThis = originalGlobal;
 
     delete originalGlobal.window;
     delete originalGlobal.document;
