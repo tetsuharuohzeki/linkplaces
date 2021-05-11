@@ -36,7 +36,7 @@
     "cpx": "^1.5.0",
     "del-cli": "^3.0.1",
     "esbuild": "^0.11.20",
-    "eslint": "^7.25.0",
+    "eslint": "^7.26.0",
     "eslint-config-abema": "https://github.com/cats-oss/eslint-config-abema/archive/72a943d6271704c5e87cf22d803f409a735398b7.tar.gz",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-react": "^7.23.2",
