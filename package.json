@@ -42,7 +42,7 @@
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "jsdom": "^16.5.3",
-    "option-t": "^25.4.0",
+    "option-t": "^25.6.0",
     "postcss": "^8.2.15",
     "postcss-import": "^14.0.2",
     "prettier": "^2.3.0",
