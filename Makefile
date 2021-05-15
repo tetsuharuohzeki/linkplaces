@@ -60,11 +60,13 @@ clean_webext_artifacts:
 ####################################
 # Build
 ####################################
-build: ## Build the artifact.
+.PHONY: build
+build: lint typecheck build_package ## Build the artifact and run all lint.
+
+build_package: ## Build the artifact.
 	$(MAKE) __webext_xpi -C $(CURDIR)
 
 __webext_xpi: clean_webext_artifacts \
-     lint \
      webextension
 	$(NPM_BIN)/web-ext build -s $(DIST_DIR)
 
@@ -116,9 +118,9 @@ __plain_ts: clean_plain
 ####################################
 # Test
 ####################################
-test: lint unittest
+test: typecheck lint unittest
 
-lint: eslint stylelint typecheck
+lint: eslint stylelint
 
 eslint: ## Run ESLint
 	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
