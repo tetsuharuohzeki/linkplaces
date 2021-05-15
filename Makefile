@@ -61,7 +61,7 @@ clean_webext_artifacts:
 # Build
 ####################################
 .PHONY: build
-build: lint typecheck build_package ## Build the artifact and run all lint.
+build: lint typecheck build_package ## Build the artifact and run all lint (This is not for CI).
 
 build_package: ## Build the artifact.
 	$(MAKE) __webext_xpi -C $(CURDIR)
@@ -118,7 +118,7 @@ __plain_ts: clean_plain
 ####################################
 # Test
 ####################################
-test: typecheck lint unittest
+test: typecheck lint unittest ## Run all tests command (This is not for CI).
 
 lint: eslint stylelint
 
