@@ -63,8 +63,8 @@ clean_webext_artifacts:
 .PHONY: build
 build: lint typecheck build_package ## Build the artifact and run all lint (This is not for CI).
 
-build_package: ## Build the artifact.
-	$(MAKE) __webext_xpi -C $(CURDIR)
+.PHONY: build_package
+build_package: __webext_xpi ## Build the artifact.
 
 __webext_xpi: clean_webext_artifacts \
      webextension
