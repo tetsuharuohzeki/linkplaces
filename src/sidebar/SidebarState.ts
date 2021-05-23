@@ -1,4 +1,3 @@
-import type { Undefinable } from 'option-t/esm/Undefinable/Undefinable';
 import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 import { mapToSidebarItemEntity, SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarReduxActionType, SidebarReduxAction } from './SidebarReduxAction';
@@ -15,14 +14,7 @@ export function createInitialSidebarState(list: Array<BookmarkTreeNode> = []): S
 }
 
 
-export function reduceSidebarReduxState(prev: Undefinable<SidebarState>, action: SidebarReduxAction): SidebarState {
-    // redux call a reducer with `undefined` to initialize the reducer.
-    // We assume this is special case.
-    if (prev === undefined) {
-        const initial = createInitialSidebarState();
-        return initial;
-    }
-
+export function reduceSidebarReduxState(prev: SidebarState, action: SidebarReduxAction): SidebarState {
     switch (action.type) {
         case SidebarReduxActionType.UpdateFromSource: {
             const state = action.state;

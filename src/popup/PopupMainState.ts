@@ -1,5 +1,3 @@
-import type { Undefinable } from 'option-t/esm/Undefinable/Undefinable';
-
 import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 import { PopupReduxAction, PopupReduxActionType } from './PopupReduxAction';
 
@@ -13,14 +11,7 @@ export function createInitialPopupMainState(list: Array<BookmarkTreeNode> = []):
     };
 }
 
-export function reducePopupMain(prev: Undefinable<PopupMainState>, action: PopupReduxAction): PopupMainState {
-    // redux call a reducer with `undefined` to initialize the reducer.
-    // We assume this is special case.
-    if (prev === undefined) {
-        const initial = createInitialPopupMainState();
-        return initial;
-    }
-
+export function reducePopupMain(prev: PopupMainState, action: PopupReduxAction): PopupMainState {
     switch (action.type) {
         case PopupReduxActionType.Init: {
             const next = {
