@@ -1,5 +1,5 @@
-import ESBuildMod from 'esbuild';
 import * as assert from 'node:assert/strict';
+import ESBuildMod from 'esbuild';
 
 
 import {
