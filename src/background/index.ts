@@ -1,19 +1,17 @@
-import { removeBookmarkItem, getLinkSchemeType, createBookmarkItem } from '../shared/Bookmark';
+import type { Nullable } from 'option-t/esm/Nullable/Nullable';
+import { unwrapNullable } from 'option-t/esm/Nullable/unwrap';
 import type { Packet } from '../shared/Channel';
-import { NoImplementationError } from '../shared/NoImplementationError';
-import {
-    RemoteAction,
-    MSG_TYPE_OPEN_URL,
-    MSG_TYPE_REGISTER_URL,
-    WhereToOpenItem,
-} from '../shared/RemoteAction';
+import type { RemoteAction } from '../shared/RemoteAction';
 
+import { BackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever';
 import { createContextMenu } from './ContextMenu';
-import { createTab } from './TabOpener';
+
+let service: Nullable<BackgroundRemoteActionReciever> = null;
 
 (function main() {
-
     createContextMenu();
+
+    service = new BackgroundRemoteActionReciever();
 
     browser.runtime.onConnect.addListener((s) => {
         s.onMessage.addListener(onMessageFromPopup);
@@ -26,41 +24,10 @@ import { createTab } from './TabOpener';
 
 function onMessageFromPopup(packet: Packet<RemoteAction>): void {
     const { payload: msg } = packet;
-    handleRemoteAction(msg);
+    handleRemoteAction(msg).catch(console.error);
 }
 
-function handleRemoteAction(msg: RemoteAction): void {
-    switch (msg.type) {
-        case MSG_TYPE_OPEN_URL: {
-            const { id, url, where } = msg.value;
-            openUrlFromPopup(url, id, where).catch(console.error);
-            break;
-        }
-        case MSG_TYPE_REGISTER_URL: {
-            const { url, title } = msg.value;
-            createBookmarkItem(url, title).catch(console.error);
-            break;
-        }
-        default:
-            throw new RangeError(`undefined type: ${JSON.stringify(msg)}`);
-    }
-}
-
-async function openUrlFromPopup(url: string, bookmarkId: string, where: WhereToOpenItem): Promise<void> {
-    await openUrl(url, where);
-    await removeBookmarkItem(bookmarkId);
-}
-
-function openUrl(url: string, where: WhereToOpenItem): Promise<number> {
-    const { isPrivileged } = getLinkSchemeType(url);
-    let opened = null;
-    if (isPrivileged) {
-        const e = new NoImplementationError('opening a privileged url');
-        opened = Promise.reject(e);
-    }
-    else {
-        opened = createTab(url, where);
-    }
-
-    return opened;
+async function handleRemoteAction(msg: RemoteAction): Promise<void> {
+    const svc = unwrapNullable(service);
+    await svc.call(msg);
 }
