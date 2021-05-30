@@ -111,6 +111,10 @@ export class Channel<TMessage extends RemoteActionBase> {
             const port = expectNotNull(this._port, 'this._port` is null');
 
             const id = this._callbackId;
+            if (id > Number.MAX_SAFE_INTEGER) {
+                throw new RangeError(`the rpc id has been over MAX_SAFE_INTEGER. Please restart this extension`);
+            }
+
             this._callbackId = id + 1;
 
             const message: Packet<TMessage> = {
