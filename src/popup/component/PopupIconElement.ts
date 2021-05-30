@@ -74,16 +74,16 @@ export class PopupItemIconElement extends HTMLElement {
                     dom('source', [
                         ['srcset', createURIForDark(iconDir, iconFile)],
                         ['media', '(prefers-color-scheme: dark)'],
-                    ], [], this._sourceForDark),
+                    ], null, this._sourceForDark),
                     dom('source', [
                         ['srcset', createURIForLight(iconDir, iconFile)],
                         ['media', '(prefers-color-scheme: light)'],
-                    ], [], this._sourceForLight),
+                    ], null, this._sourceForLight),
                     dom('img', [
                         ['src', createURIForCtxFill(iconDir, iconFile)],
                         ['alt', ''],
                     ],
-                        [],
+                        null,
                         this._img
                     ),
                 ]),
