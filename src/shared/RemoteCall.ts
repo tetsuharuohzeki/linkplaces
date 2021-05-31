@@ -2,7 +2,7 @@ import { unwrapOrFromUndefinable } from 'option-t/esm/Undefinable/unwrapOr';
 
 import type { WebExtSidebarActionService } from '../../typings/webext/sidebarAction';
 
-import type { Channel } from './Channel';
+import type { ClientConnection as Channel } from './Channel';
 import {
     createOpenUrlAction,
     createRegisterUrlAction,

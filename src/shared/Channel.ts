@@ -6,6 +6,7 @@ import type { Port } from '../../typings/webext/runtime';
 
 import type { RemoteActionBase } from './RemoteAction';
 import type { Packet } from './tower_like_ipc/Packet';
+import { ClientConnection } from './tower_like_ipc/ClientConnection';
 
 type PromiseTuple = Readonly<{
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -197,3 +198,11 @@ export async function createChannelToBackground<T extends RemoteActionBase>(ping
     const c = new Channel<T>(port);
     return c;
 }
+
+export async function createClientConnectionToBackground<T extends RemoteActionBase>(pingMessage: string): Promise<ClientConnection<T>> {
+    const port = await connectToBgScript(pingMessage);
+    const c = new ClientConnection<T>(port);
+    return c;
+}
+
+export type { ClientConnection } from './tower_like_ipc/ClientConnection';

@@ -1,4 +1,4 @@
-import { createChannelToBackground as create, Channel } from '../shared/Channel';
+import { createClientConnectionToBackground as create, ClientConnection as Channel } from '../shared/Channel';
 import { CONNECTION_PING_FROM_POPUP, RemoteAction } from '../shared/RemoteAction';
 
 export type RemoteActionChannel = Channel<RemoteAction>;
