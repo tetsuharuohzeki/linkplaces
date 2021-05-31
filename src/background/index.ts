@@ -1,10 +1,11 @@
+import type { RemoteAction } from '../shared/RemoteAction';
 import { OneShotResponder, ServerConnection } from '../shared/ServerConnection';
 
 import { BackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever';
 import { createContextMenu } from './ContextMenu';
 declare global {
     // We keep this for debugging.
-    var livingConnectionSet: WeakSet<ServerConnection<unknown>>;
+    var livingConnectionSet: WeakSet<ServerConnection<RemoteAction, unknown>>;
 }
 
 (function main() {

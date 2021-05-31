@@ -3,15 +3,14 @@ import type { Result } from 'option-t/esm/PlainResult';
 import type { Port } from '../../typings/webext/runtime';
 
 import type { Packet } from './Channel';
-import type { RemoteAction } from './RemoteAction';
 import type { TowerService } from './tower_like_ipc/traits';
 
-interface PacketCreationService<TResponse> extends TowerService<Packet<RemoteAction>, Nullable<Packet<TResponse>>> {}
+interface PacketCreationService<TRequestBody, TResponse> extends TowerService<Packet<TRequestBody>, Nullable<Packet<TResponse>>> {}
 
-export class OneShotResponder<TResponse> implements PacketCreationService<null> {
-    private _source: TowerService<RemoteAction, TResponse>;
+export class OneShotResponder<TRequestBody, TResponse> implements PacketCreationService<TRequestBody, null> {
+    private _source: TowerService<TRequestBody, TResponse>;
 
-    constructor(source: TowerService<RemoteAction, TResponse>) {
+    constructor(source: TowerService<TRequestBody, TResponse>) {
         this._source = source;
     }
 
@@ -23,20 +22,20 @@ export class OneShotResponder<TResponse> implements PacketCreationService<null> 
         return this._source.ready();
     }
 
-    async call(req: Packet<RemoteAction>): Promise<null> {
+    async call(req: Packet<TRequestBody>): Promise<null> {
         await this._source.call(req.payload);
         return null;
     }
 }
 
-export class ServerConnection<TResponse> {
+export class ServerConnection<TRequestBody, TResponse> {
     private _port: Port;
-    private _onMessage: (this: this, packet: Packet<RemoteAction>) => void;
+    private _onMessage: (this: this, packet: Packet<TRequestBody>) => void;
     private _onDissconnect: (this: this, port: Port) => void;
 
-    private _service: PacketCreationService<TResponse>;
+    private _service: PacketCreationService<TRequestBody, TResponse>;
 
-    constructor(port: Port, service: PacketCreationService<TResponse>) {
+    constructor(port: Port, service: PacketCreationService<TRequestBody, TResponse>) {
         this._port = port;
         this._onMessage = this.onMessage.bind(this);
         this._onDissconnect = this.onDisconnect.bind(this);
@@ -64,11 +63,11 @@ export class ServerConnection<TResponse> {
         this._initialize();
     }
 
-    onMessage(packet: Packet<RemoteAction>): void {
+    onMessage(packet: Packet<TRequestBody>): void {
         this._callService(packet).catch(console.error);
     }
 
-    private async _callService(packet: Packet<RemoteAction>): Promise<void> {
+    private async _callService(packet: Packet<TRequestBody>): Promise<void> {
         const res = await this._service.call(packet);
         if (!res) {
             return;
