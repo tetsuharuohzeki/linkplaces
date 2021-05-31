@@ -5,18 +5,13 @@ import { isNotUndefined, isUndefined } from 'option-t/esm/Undefinable/Undefinabl
 import type { Port } from '../../typings/webext/runtime';
 
 import type { RemoteActionBase } from './RemoteAction';
+import type { Packet } from './tower_like_ipc/Packet';
 
 type PromiseTuple = Readonly<{
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolve: (result?: any) => void;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     reject: (e?: any) => void;
-}>;
-
-export type Packet<T> = Readonly<{
-    id?: number;
-    payload: T;
-    isRequest: boolean;
 }>;
 
 export class Subscription {
