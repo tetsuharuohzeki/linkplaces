@@ -1,9 +1,10 @@
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import type { Result } from 'option-t/esm/PlainResult';
-import type { Port } from '../../typings/webext/runtime';
 
-import type { Packet } from './Channel';
-import type { TowerService } from './tower_like_ipc/traits';
+import type { Port } from '../../../typings/webext/runtime';
+
+import type { Packet } from './Packet';
+import type { TowerService } from './traits';
 
 interface PacketCreationService<TRequestBody, TResponse> extends TowerService<Packet<TRequestBody>, Nullable<Packet<TResponse>>> {}
 

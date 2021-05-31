@@ -1,10 +1,11 @@
 import type { RemoteAction } from '../shared/RemoteAction';
-import { OneShotResponder, ServerConnection } from '../shared/ServerConnection';
+import { OneShotResponder, ServerConnection } from '../shared/tower_like_ipc/ServerConnection';
 
 import { BackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever';
 import { createContextMenu } from './ContextMenu';
 declare global {
     // We keep this for debugging.
+    // eslint-disable-next-line no-var
     var livingConnectionSet: WeakSet<ServerConnection<RemoteAction, unknown>>;
 }
 
