@@ -5,6 +5,7 @@ import { BackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever
 import { createContextMenu } from './ContextMenu';
 declare global {
     // We keep this for debugging.
+    // eslint-disable-next-line no-var
     var livingConnectionSet: WeakSet<ServerConnection<RemoteAction, unknown>>;
 }
 
