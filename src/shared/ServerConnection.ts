@@ -7,6 +7,7 @@ import type { RemoteAction } from './RemoteAction';
 import type { TowerService } from './tower_like_ipc/traits';
 
 interface PacketCreationService<TResponse> extends TowerService<Packet<RemoteAction>, Nullable<Packet<TResponse>>> {}
+
 export class OneShotResponder<TResponse> implements PacketCreationService<null> {
     private _source: TowerService<RemoteAction, TResponse>;
 
@@ -19,7 +20,7 @@ export class OneShotResponder<TResponse> implements PacketCreationService<null> 
     }
 
     ready(): Promise<Result<void, Error>> {
-        throw new Error('Method not implemented.');
+        return this._source.ready();
     }
 
     async call(req: Packet<RemoteAction>): Promise<null> {
