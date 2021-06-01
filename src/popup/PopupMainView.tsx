@@ -39,7 +39,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
                 <PanelSectionList>
                     <PanelListItem onClick={onClickOpenWebExtSidebar}>
                         <PanelListItemIcon>
-                            <popup-item-icon icondir={ICON_DIR} iconfile={'sidebar-left-16.svg'} />
+                            <popup-item-icon icondir={ICON_DIR} iconfile={'sidebars.svg'} />
                         </PanelListItemIcon>
                         <PanelListItemText>
                             <span className={'popup__listitem_text_inner'}>
