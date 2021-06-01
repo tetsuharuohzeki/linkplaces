@@ -106,7 +106,7 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
                     <ListBaseItem
                         isOpening={isOpening}
                         iconDir={ICON_DIR}
-                        iconFile={'globe-16.svg'}
+                        iconFile={'defaultFavicon.svg'}
                         label={label}
                     />
                 </a>

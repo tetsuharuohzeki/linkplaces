@@ -148,7 +148,7 @@ function ItemListItem(props: ItemListItemProps): Nullable<JSX.Element> {
             >
                 <PanelListItem>
                     <PanelListItemIcon>
-                        <popup-item-icon icondir={ICON_DIR} iconfile={'globe-16.svg'} />
+                        <popup-item-icon icondir={ICON_DIR} iconfile={'defaultFavicon.svg'} />
                     </PanelListItemIcon>
                     <PanelListItemText>
                         {label}
