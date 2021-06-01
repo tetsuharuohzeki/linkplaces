@@ -98,7 +98,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
             >
                 <PanelListItem onClick={onClick}>
                     <PanelListItemIcon>
-                        <popup-item-icon icondir={ICON_DIR} iconfile={'folder-16.svg'} />
+                        <popup-item-icon icondir={ICON_DIR} iconfile={'folder.svg'} />
                     </PanelListItemIcon>
                     <PanelListItemText>
                         {item.title}

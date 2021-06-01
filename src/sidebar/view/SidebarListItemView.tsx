@@ -122,7 +122,7 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
                 <ListBaseItem
                     isOpening={isOpening}
                     iconDir={ICON_DIR}
-                    iconFile={'folder-16.svg'}
+                    iconFile={'folder.svg'}
                     label={bookmarkTitle}
                 />
             </span>
