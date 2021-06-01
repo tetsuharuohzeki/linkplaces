@@ -39,7 +39,7 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
                 <PanelSectionList>
                     <PanelListItem onClick={onClickOpenWebExtSidebar}>
                         <PanelListItemIcon>
-                            <popup-item-icon icondir={ICON_DIR} iconfile={'sidebar-left-16.svg'} />
+                            <popup-item-icon icondir={ICON_DIR} iconfile={'sidebars.svg'} />
                         </PanelListItemIcon>
                         <PanelListItemText>
                             <span className={'popup__listitem_text_inner'}>
@@ -98,7 +98,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
             >
                 <PanelListItem onClick={onClick}>
                     <PanelListItemIcon>
-                        <popup-item-icon icondir={ICON_DIR} iconfile={'folder-16.svg'} />
+                        <popup-item-icon icondir={ICON_DIR} iconfile={'folder.svg'} />
                     </PanelListItemIcon>
                     <PanelListItemText>
                         {item.title}
@@ -148,7 +148,7 @@ function ItemListItem(props: ItemListItemProps): Nullable<JSX.Element> {
             >
                 <PanelListItem>
                     <PanelListItemIcon>
-                        <popup-item-icon icondir={ICON_DIR} iconfile={'globe-16.svg'} />
+                        <popup-item-icon icondir={ICON_DIR} iconfile={'defaultFavicon.svg'} />
                     </PanelListItemIcon>
                     <PanelListItemText>
                         {label}
