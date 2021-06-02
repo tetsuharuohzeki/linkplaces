@@ -39,7 +39,7 @@ export class PopupMainContext implements ViewContext {
         }
 
         if (USE_REACT_CONCURRENT_MODE) {
-            this._renderRoot = ReactDOM.unstable_createRoot(mountpoint);
+            this._renderRoot = ReactDOM.createRoot(mountpoint);
         }
 
         const store = createPopupMainStore(this._list);
