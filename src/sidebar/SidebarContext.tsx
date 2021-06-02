@@ -71,7 +71,7 @@ export class SidebarContext implements ViewContext {
         subscription.add(reduxSubscription);
 
         if (USE_REACT_CONCURRENT_MODE) {
-            this._renderRoot = ReactDOM.unstable_createRoot(mountpoint);
+            this._renderRoot = ReactDOM.createRoot(mountpoint);
         }
 
         const epic = new SidebarEpic(this._channel, store);
