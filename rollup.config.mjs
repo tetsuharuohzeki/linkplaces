@@ -11,7 +11,7 @@ import {
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
     USE_REACT_CONCURRENT_MODE,
-} from './tools/buildconfig.mjs';
+} from './tools/buildconfig.js';
 
 console.log(`
 =========== rollup configuration vars ============

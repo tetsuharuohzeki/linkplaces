@@ -1,4 +1,4 @@
-import { IS_PRODUCTION_MODE } from './tools/buildconfig.mjs';
+import { IS_PRODUCTION_MODE } from './tools/buildconfig.js';
 
 // eslint-disable-next-line import/no-anonymous-default-export,import/no-default-export
 export default {

@@ -9,7 +9,7 @@ import {
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
     USE_REACT_CONCURRENT_MODE,
-} from './buildconfig.mjs';
+} from './buildconfig.js';
 
 
 console.log(`

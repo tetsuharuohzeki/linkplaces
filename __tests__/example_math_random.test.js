@@ -3,7 +3,7 @@ import test from 'ava';
 import {
     replaceMathRandomWithFake,
     revetMathRandomToOriginal,
-} from './_helper_math_random.mjs';
+} from './_helper_math_random.js';
 
 test.before(() => {
     replaceMathRandomWithFake();

@@ -13,9 +13,7 @@ module.exports = {
 
     'parserOptions': {
         'ecmaVersion': 2020,
-        'parserOptions': {
-            'sourceType': 'module',
-        },
+        'sourceType': 'module',
     },
 
     'env': {
@@ -32,4 +30,25 @@ module.exports = {
         // Disable until vscode's Electron's node.js will become Node.js v16
         'import/no-unresolved': 'off',
     },
+
+    'overrides': [
+        {
+            'files': ['*.cjs'],
+            'parserOptions': {
+                'sourceType': 'script',
+            },
+        },
+        {
+            'files': ['*.js', '*.mjs'],
+            'parserOptions': {
+                'sourceType': 'module',
+            },
+
+            'rules': {
+                'import/extensions': ['error', 'always', {
+                    'ignorePackages': true,
+                }],
+            },
+        },
+    ],
 };

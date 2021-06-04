@@ -4,7 +4,7 @@ import {
     createJsDomWindow,
     replaceGlobalWithJsDom,
     revertGlobalToOriginal,
-} from './_helper_jsdom.mjs';
+} from './_helper_jsdom.js';
 
 /* eslint-env browser */
 

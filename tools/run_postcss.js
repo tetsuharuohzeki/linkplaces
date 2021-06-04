@@ -4,7 +4,7 @@ import * as path from 'node:path';
 
 import postcss from 'postcss';
 
-import getConfig from '../postcss.config.mjs';
+import getConfig from '../postcss.config.js';
 
 (async () => {
     const ENTRY_POINT = process.env.ENTRY_POINT;

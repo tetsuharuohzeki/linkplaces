@@ -2,7 +2,7 @@
 
 import importPlugin from 'postcss-import';
 
-import { RELEASE_CHANNEL, ENABLE_SOURCE_MAP } from './tools/buildconfig.mjs';
+import { RELEASE_CHANNEL, ENABLE_SOURCE_MAP } from './tools/buildconfig.js';
 
 // XXX: for debugging information
 console.log(`
