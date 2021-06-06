@@ -31,8 +31,13 @@ const REACT_RELATED_PKG_LIST = [
     'node_modules/scheduler/**',
 ];
 
-// https://github.com/rollup/rollup/wiki/JavaScript-API
-// https://github.com/rollup/rollup/wiki/Command-Line-Interface
+/**
+ *  See:
+ *      - https://github.com/rollup/rollup/wiki/JavaScript-API
+ *      - https://github.com/rollup/rollup/wiki/Command-Line-Interface
+ *
+ *  @return {import('rollup').RollupOptions}
+ */
 // eslint-disable-next-line import/no-default-export
 export default async function createConfiguration(_commandLineArgs) {
 
