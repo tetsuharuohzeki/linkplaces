@@ -1,5 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference types="react-dom/experimental" />
+/// <reference types="react/next" />
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference types="react-dom/next" />
 
 import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
