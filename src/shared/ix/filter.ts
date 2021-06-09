@@ -1,7 +1,7 @@
 export type FilterFn<T> = (input: T) => boolean;
 export type AsyncFilterFn<T> = (input: T) => (boolean | Promise<boolean>);
 
-export function* filterForIterable<T>(iter: Iterable<T>, filter: FilterFn<T>): Iterable<T> {
+export function* filterForIterable<T>(iter: Iterable<T>, filter: FilterFn<T>): Iterator<T> {
     for (const item of iter) {
         const ok = filter(item);
         if (!ok) {
@@ -11,7 +11,7 @@ export function* filterForIterable<T>(iter: Iterable<T>, filter: FilterFn<T>): I
     }
 }
 
-export async function* filterAsyncForAsyncIterable<T>(iter: AsyncIterable<T>, filter: AsyncFilterFn<T>): AsyncIterable<T> {
+export async function* filterAsyncForAsyncIterable<T>(iter: AsyncIterable<T>, filter: AsyncFilterFn<T>): AsyncIterator<T> {
     for await (const item of iter) {
         const ok: boolean = await filter(item);
         if (!ok) {
