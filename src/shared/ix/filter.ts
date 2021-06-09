@@ -1,9 +1,27 @@
-export type FilterFn<T> = (input: T) => boolean;
-export type AsyncFilterFn<T> = (input: T) => (boolean | Promise<boolean>);
+import { IterableX } from './iterable_x';
 
-export function* filterForIterable<T>(iter: Iterable<T>, filter: FilterFn<T>): Iterable<T> {
+export type FilterFn<T> = (input: T) => boolean;
+
+class FilterIterable<T> extends IterableX<T> {
+    private _filter: FilterFn<T>;
+
+    constructor(source: Iterable<T>, filter: FilterFn<T>) {
+        super(source);
+        this._filter = filter;
+    }
+
+    [Symbol.iterator](): Iterator<T> {
+        const iter = generateForIterator(this._source, this._filter);
+        return iter;
+    }
+}
+
+function* generateForIterator<T>(
+    iter: Iterable<T>,
+    filter: FilterFn<T>
+): Iterator<T> {
     for (const item of iter) {
-        const ok = filter(item);
+        const ok: boolean = filter(item);
         if (!ok) {
             continue;
         }
@@ -11,12 +29,10 @@ export function* filterForIterable<T>(iter: Iterable<T>, filter: FilterFn<T>): I
     }
 }
 
-export async function* filterAsyncForAsyncIterable<T>(iter: AsyncIterable<T>, filter: AsyncFilterFn<T>): AsyncIterable<T> {
-    for await (const item of iter) {
-        const ok: boolean = await filter(item);
-        if (!ok) {
-            continue;
-        }
-        yield item;
-    }
+export function filterForIterable<T>(
+    source: Iterable<T>,
+    filter: FilterFn<T>
+): Iterable<T> {
+    const wrapper = new FilterIterable(source, filter);
+    return wrapper;
 }
