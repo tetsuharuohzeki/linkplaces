@@ -21,11 +21,11 @@ module.exports = {
     ],
 
     'parserOptions': {
+        'ecmaVersion': 2021,
         'sourceType': 'module',
         'ecmaFeatures': {
             'jsx': true
         },
-        'ecmaVersion': 2020,
         'project': path.resolve(__dirname, '../tsconfig.eslint.json'),
         'extraFileExtensions': ['.cjs'],
     },
