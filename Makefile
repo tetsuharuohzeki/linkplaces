@@ -60,6 +60,14 @@ clean_webext_artifacts:
 ####################################
 # Build
 ####################################
+.PHONY: build_development
+build_development: ## Run `make build` with `RELEASE_CHANNEL=development`
+	$(MAKE) build RELEASE_CHANNEL=development
+
+.PHONY: build_production
+build_production: ## Run `make build` with `RELEASE_CHANNEL=production`
+	$(MAKE) build RELEASE_CHANNEL=production
+
 .PHONY: build
 build: lint typecheck build_package ## Build the artifact and run all lint (This is not for CI).
 
