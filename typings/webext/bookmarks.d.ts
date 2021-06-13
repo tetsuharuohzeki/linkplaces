@@ -1,4 +1,4 @@
-import { FullListener } from './event';
+import type { ExtensionEventManager } from './ExtensionEventManager';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks
 export interface WebExtBookmarkService {
@@ -34,25 +34,25 @@ export interface WebExtBookmarkService {
     // TODO: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/update
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onCreated
-    onCreated: FullListener<(id: string, bookmark: BookmarkTreeNode) => void>;
+    onCreated: ExtensionEventManager<(id: string, bookmark: BookmarkTreeNode) => void>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onRemoved
-    onRemoved: FullListener<(id: string, removeInfo: OnRemoveInfo) => void>;
+    onRemoved: ExtensionEventManager<(id: string, removeInfo: OnRemoveInfo) => void>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onChanged
-    onChanged: FullListener<(id: string, changeInfo: OnChangeInfo) => void>;
+    onChanged: ExtensionEventManager<(id: string, changeInfo: OnChangeInfo) => void>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onMoved
-    onMoved: FullListener<(id: string, moveInfo: OnMoveInfo) => void>;
+    onMoved: ExtensionEventManager<(id: string, moveInfo: OnMoveInfo) => void>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onChildrenReordered
-    onChildrenReordered: FullListener<(id: string, reorderInfo: OnReorderInfo) => void>;
+    onChildrenReordered: ExtensionEventManager<(id: string, reorderInfo: OnReorderInfo) => void>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onImportBegan
-    onImportBegan: FullListener<() => void>;
+    onImportBegan: ExtensionEventManager<() => void>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onImportEnded
-    onImportEnded: FullListener<() => void>;
+    onImportEnded: ExtensionEventManager<() => void>;
 }
 
 export type OnRemoveInfo = Readonly<{

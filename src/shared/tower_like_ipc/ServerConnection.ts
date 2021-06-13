@@ -1,7 +1,7 @@
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import type { Result } from 'option-t/esm/PlainResult';
 
-import type { Port } from '../../../typings/webext/runtime';
+import type { ExtensionPort } from '../../../typings/webext/ExtensionPort';
 
 import type { Packet } from './Packet';
 import type { TowerService } from './traits';
@@ -30,13 +30,13 @@ export class OneShotResponder<TRequestBody, TResponse> implements PacketCreation
 }
 
 export class ServerConnection<TRequestBody, TResponse> {
-    private _port: Port;
+    private _port: ExtensionPort;
     private _onMessage: (this: this, packet: Packet<TRequestBody>) => void;
-    private _onDissconnect: (this: this, port: Port) => void;
+    private _onDissconnect: (this: this, port: ExtensionPort) => void;
 
     private _service: PacketCreationService<TRequestBody, TResponse>;
 
-    constructor(port: Port, service: PacketCreationService<TRequestBody, TResponse>) {
+    constructor(port: ExtensionPort, service: PacketCreationService<TRequestBody, TResponse>) {
         this._port = port;
         this._onMessage = this.onMessage.bind(this);
         this._onDissconnect = this.onDisconnect.bind(this);

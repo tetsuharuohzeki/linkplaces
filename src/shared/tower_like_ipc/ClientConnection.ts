@@ -1,6 +1,6 @@
 import { isUndefined } from 'option-t/esm/Undefinable/Undefinable';
 
-import type { Port } from '../../../typings/webext/runtime';
+import type { ExtensionPort } from '../../../typings/webext/ExtensionPort';
 
 import { Packet, createPacket, createOneShotPacket } from './Packet';
 
@@ -11,13 +11,13 @@ interface PromiseResolverTuple {
 }
 
 export class ClientConnection<TPayload> {
-    private _port: Port;
+    private _port: ExtensionPort;
     private _callback: Map<number, PromiseResolverTuple>;
     private _callbackIdCandidate: number;
 
     private _onMessage: (this: this, msg: Packet<TPayload>) => void;
 
-    constructor(port: Port) {
+    constructor(port: ExtensionPort) {
         this._port = port;
         this._callback = new Map();
         this._callbackIdCandidate = 0;

@@ -1,21 +1,10 @@
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime
 
-import { Listener, FullListener } from './event';
-
-// https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/Port
-export interface Port {
-    readonly name: string;
-    disconnect(): void;
-    readonly error: Error;
-
-    readonly onDisconnect: Listener<(port: this) => void>;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    readonly onMessage: Listener<(object: any) => void>;
-    postMessage<T>(value: T): void;
-}
+import type { ExtensionEventManager } from './ExtensionEventManager';
+import type { ExtensionPort } from './ExtensionPort';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/MessageSender
-export interface PortHasSender extends Port {
+export interface PortHasSender extends ExtensionPort {
     readonly sender: MessageSender;
 }
 
@@ -31,7 +20,13 @@ export interface MessageSender {
 }
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/PlatformOs
-export type PlatformOs = 'mac' | 'win' | 'android' | 'cros' | 'linux' | 'openbsd';
+export type PlatformOs =
+    | 'mac'
+    | 'win'
+    | 'android'
+    | 'cros'
+    | 'linux'
+    | 'openbsd';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/PlatformArch
 export type PlatformArch = 'arm' | 'x86-32' | 'x86-64';
@@ -47,7 +42,11 @@ export interface PlatformInfo {
 // export type RequestUpdateCheckStatus = 'throttled' | 'no_update' | 'update_available';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/OnInstalledReason
-export type OnInstalledReason = 'install' | 'update' | 'chrome_update' | 'shared_module_update';
+export type OnInstalledReason =
+    | 'install'
+    | 'update'
+    | 'chrome_update'
+    | 'shared_module_update';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/OnRestartRequiredReason
 export type OnRestartRequiredReason = 'app_update' | 'os_update' | 'periodic';
@@ -59,9 +58,15 @@ export interface WebExtRuntimeService {
     readonly id: string;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/connect
-    connect(): Promise<Port>;
-    connect(connectInfo: { name?: string; includeTlsChannelId?: boolean; }): Promise<Port>;
-    connect(extensionId: string, connectInfo?: { name?: string; includeTlsChannelId?: boolean; }): Promise<Port>;
+    connect(): Promise<ExtensionPort>;
+    connect(connectInfo: {
+        name?: string;
+        includeTlsChannelId?: boolean;
+    }): Promise<ExtensionPort>;
+    connect(
+        extensionId: string,
+        connectInfo?: { name?: string; includeTlsChannelId?: boolean; }
+    ): Promise<ExtensionPort>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/getBackgroundPage
     getBackgroundPage(): Promise<Window>;
@@ -73,17 +78,24 @@ export interface WebExtRuntimeService {
     sendMessage<TResult>(message: any): Promise<TResult>;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     sendMessage<TResult>(extensionId: string, message: any): Promise<TResult>;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    sendMessage<TResult>(message: any, options: {
-        includeTlsChannelId?: boolean;
-        toProxyScript: boolean;
-    }): Promise<TResult>;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    sendMessage<TResult>(extensionId: string, message: any, options: {
-        includeTlsChannelId?: boolean;
-        toProxyScript: boolean;
-    }): Promise<TResult>;
+    sendMessage<TResult>(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        message: any,
+        options: {
+            includeTlsChannelId?: boolean;
+            toProxyScript: boolean;
+        }
+    ): Promise<TResult>;
+    sendMessage<TResult>(
+        extensionId: string,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        message: any,
+        options: {
+            includeTlsChannelId?: boolean;
+            toProxyScript: boolean;
+        }
+    ): Promise<TResult>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/onConnect
-    readonly onConnect: FullListener<(port: PortHasSender) => void>;
+    readonly onConnect: ExtensionEventManager<(port: PortHasSender) => void>;
 }
