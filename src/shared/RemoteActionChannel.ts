@@ -4,7 +4,7 @@ import { CONNECTION_PING_FROM_POPUP, RemoteAction } from './RemoteAction';
 import { ClientConnection } from './tower_like_ipc/ClientConnection';
 export type { ClientConnection } from './tower_like_ipc/ClientConnection';
 
-function connectToBgScript(pingMessage: string): Promise<ExtensionPort> {
+function connectToBgScript(pingMessage: string): ExtensionPort {
     const p = browser.runtime.connect({
         name: pingMessage,
     });
@@ -14,7 +14,7 @@ function connectToBgScript(pingMessage: string): Promise<ExtensionPort> {
 export type RemoteActionChannel = ClientConnection<RemoteAction>;
 
 export async function createChannel(): Promise<RemoteActionChannel> {
-    const port = await connectToBgScript(CONNECTION_PING_FROM_POPUP);
+    const port = connectToBgScript(CONNECTION_PING_FROM_POPUP);
     const c = new ClientConnection<RemoteAction>(port);
     return c;
 }
