@@ -1,5 +1,7 @@
+import type { Nullable } from 'option-t/esm/Nullable/Nullable';
+
 export interface Packet<T> {
-    readonly id?: number;
+    readonly id: Nullable<number>;
     readonly payload: T;
 }
 
@@ -12,7 +14,7 @@ export function createPacket<T>(id: number, payload: T): Packet<T> {
 
 export function createOneShotPacket<T>(payload: T): Packet<T> {
     return {
-        id: undefined,
+        id: null,
         payload,
     };
 }

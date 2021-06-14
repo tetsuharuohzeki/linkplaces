@@ -1,3 +1,4 @@
+import { isNull } from 'option-t/esm/Nullable/Nullable';
 import { isUndefined } from 'option-t/esm/Undefinable/Undefinable';
 
 import type { ExtensionPort } from '../../../typings/webext/ExtensionPort';
@@ -73,7 +74,7 @@ export class ClientConnection<TPayload> {
 
     onMessage(packet: Packet<TPayload>): void {
         const { id, payload } = packet;
-        if (isUndefined(id)) {
+        if (isNull(id)) {
             throw new TypeError(
                 'For response, Packet.id must be not undefined.'
             );
