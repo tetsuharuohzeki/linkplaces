@@ -1,12 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference types="react/next" />
-// eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference types="react-dom/next" />
 
 import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import { StrictMode } from 'react';
-import * as ReactDOM from 'react-dom';
 
 import {
     Subscription,
@@ -18,7 +15,7 @@ import {
 
 import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
-import type { ViewContext } from '../shared/ViewContext';
+import { ReactRuledViewContext } from '../shared/ReactRuledViewContext';
 
 import type { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarEpic } from './SidebarEpic';
@@ -30,18 +27,17 @@ import type { SidebarState } from './SidebarState';
 import { createSidebarStateObservable, createSidebarStore } from './SidebarStore';
 import { SidebarView } from './SidebarView';
 
-export class SidebarContext implements ViewContext {
+export class SidebarContext extends ReactRuledViewContext {
 
     private _list: Array<BookmarkTreeNode>;
-    private _renderRoot: Nullable<ReactDOM.Root>;
     private _subscription: Nullable<Subscription>;
     private _channel: RemoteActionChannel;
 
     private _repo: SidebarRepository;
 
     constructor(list: Array<BookmarkTreeNode>, channel: RemoteActionChannel) {
+        super();
         this._list = list;
-        this._renderRoot = null;
         this._subscription = null;
         this._channel = channel;
 
@@ -52,7 +48,7 @@ export class SidebarContext implements ViewContext {
         if (isNotNull(this._subscription)) {
             throw new TypeError();
         }
-        this._renderRoot = ReactDOM.createRoot(mountpoint);
+        this._initRenderRoot(mountpoint);
 
         const subscription = new Subscription();
         const store = createSidebarStore(this._list);
@@ -83,7 +79,7 @@ export class SidebarContext implements ViewContext {
                     </StrictMode>
                 );
 
-                const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
+                const renderRoot = this._getRenderRoot();
                 renderRoot.render(view);
             }, (e) => {
                 console.exception(e);
@@ -108,17 +104,7 @@ export class SidebarContext implements ViewContext {
         subscription.unsubscribe();
         this._subscription = null;
 
-        const renderRoot = expectNotNull(this._renderRoot, '');
-        renderRoot.unmount();
-        this._renderRoot = null;
-
+        this._destroyRenderRoot();
         this._repo.destroy();
-    }
-
-    async onResume(_mountpoint: Element): Promise<void> {
-        throw new Error('Method not implemented.');
-    }
-    async onSuspend(_mountpoint: Element): Promise<void> {
-        throw new Error('Method not implemented.');
     }
 }

@@ -4,14 +4,11 @@
 /// <reference types="react-dom/next" />
 
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
-import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import { StrictMode } from 'react';
-import * as ReactDOM from 'react-dom';
 
 import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
-import type { ViewContext } from '../shared/ViewContext';
-
+import { ReactRuledViewContext } from '../shared/ReactRuledViewContext';
 
 import { PopupMainEpic } from './PopupMainEpic';
 import { PopupMainIntent } from './PopupMainIntent';
@@ -20,17 +17,16 @@ import { PopupMainView } from './PopupMainView';
 import type { RemoteActionChannel } from './PopupMessageChannel';
 import { PopupRepostiroy } from './PopupRepository';
 
-export class PopupMainContext implements ViewContext {
+export class PopupMainContext extends ReactRuledViewContext {
 
     private _channel: RemoteActionChannel;
     private _list: Array<BookmarkTreeNode>;
-    private _renderRoot: Nullable<ReactDOM.Root>;
     private _disposerSet: Nullable<Set<() => void>>;
 
     constructor(channel: RemoteActionChannel, list: Array<BookmarkTreeNode>) {
+        super();
         this._channel = channel;
         this._list = list;
-        this._renderRoot = null;
         this._disposerSet = null;
     }
 
@@ -39,7 +35,7 @@ export class PopupMainContext implements ViewContext {
             throw new TypeError();
         }
 
-        this._renderRoot = ReactDOM.createRoot(mountpoint);
+        this._initRenderRoot(mountpoint);
 
         const store = createPopupMainStore(this._list);
         const epic = new PopupMainEpic(this._channel, store);
@@ -53,7 +49,7 @@ export class PopupMainContext implements ViewContext {
                 </StrictMode>
             );
 
-            const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
+            const renderRoot = this._getRenderRoot();
             renderRoot.render(view);
         };
 
@@ -76,17 +72,6 @@ export class PopupMainContext implements ViewContext {
         this._disposerSet.forEach((fn) => fn());
         this._disposerSet.clear();
         this._disposerSet = null;
-
-        const renderRoot = expectNotNull(this._renderRoot, '');
-        renderRoot.unmount();
-        this._renderRoot = null;
-    }
-
-    async onResume(_mountpoint: Element): Promise<void> {
-        throw new Error('Method not implemented.');
-    }
-
-    onSuspend(_mountpoint: Element): Promise<void> {
-        throw new Error('Method not implemented.');
+        this._destroyRenderRoot();
     }
 }
