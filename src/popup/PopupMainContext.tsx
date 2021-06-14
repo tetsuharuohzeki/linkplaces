@@ -11,7 +11,6 @@ import * as ReactDOM from 'react-dom';
 import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
 import type { ViewContext } from '../shared/ViewContext';
-import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 
 
 import { PopupMainEpic } from './PopupMainEpic';
@@ -40,9 +39,7 @@ export class PopupMainContext implements ViewContext {
             throw new TypeError();
         }
 
-        if (USE_REACT_CONCURRENT_MODE) {
-            this._renderRoot = ReactDOM.createRoot(mountpoint);
-        }
+        this._renderRoot = ReactDOM.createRoot(mountpoint);
 
         const store = createPopupMainStore(this._list);
         const epic = new PopupMainEpic(this._channel, store);
@@ -56,12 +53,8 @@ export class PopupMainContext implements ViewContext {
                 </StrictMode>
             );
 
-            if (USE_REACT_CONCURRENT_MODE) {
-                const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
-                renderRoot.render(view);
-            } else {
-                ReactDOM.render(view, mountpoint);
-            }
+            const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
+            renderRoot.render(view);
         };
 
         const repository = new PopupRepostiroy(browser.bookmarks, store);
@@ -84,12 +77,8 @@ export class PopupMainContext implements ViewContext {
         this._disposerSet.clear();
         this._disposerSet = null;
 
-        if (USE_REACT_CONCURRENT_MODE) {
-            const renderRoot = expectNotNull(this._renderRoot, '');
-            renderRoot.unmount();
-        } else {
-            ReactDOM.unmountComponentAtNode(_mountpoint);
-        }
+        const renderRoot = expectNotNull(this._renderRoot, '');
+        renderRoot.unmount();
         this._renderRoot = null;
     }
 

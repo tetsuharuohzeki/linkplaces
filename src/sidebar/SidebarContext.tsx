@@ -19,7 +19,6 @@ import {
 import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
 import type { ViewContext } from '../shared/ViewContext';
-import { USE_REACT_CONCURRENT_MODE } from '../shared/constants';
 
 import type { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarEpic } from './SidebarEpic';
@@ -53,6 +52,7 @@ export class SidebarContext implements ViewContext {
         if (isNotNull(this._subscription)) {
             throw new TypeError();
         }
+        this._renderRoot = ReactDOM.createRoot(mountpoint);
 
         const subscription = new Subscription();
         const store = createSidebarStore(this._list);
@@ -72,10 +72,6 @@ export class SidebarContext implements ViewContext {
 
         subscription.add(reduxSubscription);
 
-        if (USE_REACT_CONCURRENT_MODE) {
-            this._renderRoot = ReactDOM.createRoot(mountpoint);
-        }
-
         const epic = new SidebarEpic(this._channel, store);
         const intent = new SidebarIntent(epic, store);
 
@@ -87,12 +83,8 @@ export class SidebarContext implements ViewContext {
                     </StrictMode>
                 );
 
-                if (USE_REACT_CONCURRENT_MODE) {
-                    const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
-                    renderRoot.render(view);
-                } else {
-                    ReactDOM.render(view, mountpoint);
-                }
+                const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
+                renderRoot.render(view);
             }, (e) => {
                 console.exception(e);
             });
@@ -116,12 +108,8 @@ export class SidebarContext implements ViewContext {
         subscription.unsubscribe();
         this._subscription = null;
 
-        if (USE_REACT_CONCURRENT_MODE) {
-            const renderRoot = expectNotNull(this._renderRoot, '');
-            renderRoot.unmount();
-        } else {
-            ReactDOM.unmountComponentAtNode(_mountpoint);
-        }
+        const renderRoot = expectNotNull(this._renderRoot, '');
+        renderRoot.unmount();
         this._renderRoot = null;
 
         this._repo.destroy();
