@@ -30,6 +30,11 @@ export class PopupMainContext extends ReactRuledViewContext {
         this._disposerSet = null;
     }
 
+    destroy(): void {
+        this._list = null as never;
+        this._channel = null as never;
+    }
+
     async onActivate(mountpoint: Element): Promise<void> {
         if (isNotNull(this._disposerSet)) {
             throw new TypeError();

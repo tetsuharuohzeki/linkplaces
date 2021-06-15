@@ -6,6 +6,8 @@
  *  return `Promise` from lyfecycle methods.
  */
 export interface ViewContext {
+    destroy(): void;
+
     onActivate(mountpoint: Element): Promise<void>;
     onDestroy(mountpoint: Element): Promise<void>;
 

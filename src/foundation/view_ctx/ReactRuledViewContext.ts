@@ -14,6 +14,8 @@ export abstract class ReactRuledViewContext implements ViewContext {
         this._renderRoot = null;
     }
 
+    abstract destroy(): void;
+
     protected _initRenderRoot(mountpoint: Element): void {
         if (!!this._renderRoot) {
             throw new TypeError('the react render root has been initialized');

@@ -44,6 +44,13 @@ export class SidebarContext extends ReactRuledViewContext {
         this._repo = SidebarRepository.create(browser.bookmarks, list);
     }
 
+    destroy(): void {
+        this._repo.destroy();
+        this._repo = null as never;
+        this._channel = null as never;
+        this._list = null as never;
+    }
+
     async onActivate(mountpoint: Element): Promise<void> {
         if (isNotNull(this._subscription)) {
             throw new TypeError();
@@ -105,6 +112,5 @@ export class SidebarContext extends ReactRuledViewContext {
         this._subscription = null;
 
         this._destroyRenderRoot();
-        this._repo.destroy();
     }
 }

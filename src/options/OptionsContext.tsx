@@ -15,6 +15,9 @@ export class OptionsContext implements ViewContext {
     constructor() {
     }
 
+    destroy(): void {
+    }
+
     async onActivate(mountpoint: Element): Promise<void> {
         const list = [
             getUrl('popup/index.html'),
