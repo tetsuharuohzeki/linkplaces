@@ -15,7 +15,7 @@ import {
 
 import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
-import { ReactRuledViewContext } from '../shared/ReactRuledViewContext';
+import { ReactRuledViewContext } from '../shared/view_ctx/ReactRuledViewContext';
 
 import type { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarEpic } from './SidebarEpic';

@@ -1,4 +1,4 @@
-import { landViewContext } from '../shared/LandingPad';
+import { landViewContext } from '../shared/view_ctx/LandingPad';
 import { OptionsContext } from './OptionsContext';
 
 (async function main() {
