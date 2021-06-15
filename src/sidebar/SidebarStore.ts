@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
-import { ReduxLikeStore } from '../shared/ReduxLikeStore';
+import { ReduxLikeStore } from '../foundation/ReduxLikeStore';
 
 import type { SidebarReduxAction } from './SidebarReduxAction';
 import { createInitialSidebarState, reduceSidebarReduxState, SidebarState } from './SidebarState';

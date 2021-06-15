@@ -1,8 +1,9 @@
 import type { ExtensionPort } from '../../typings/webext/ExtensionPort';
 
+import { ClientConnection } from '../foundation/tower_like_ipc/ClientConnection';
 import { CONNECTION_PING_FROM_POPUP, RemoteAction } from './RemoteAction';
-import { ClientConnection } from './tower_like_ipc/ClientConnection';
-export type { ClientConnection } from './tower_like_ipc/ClientConnection';
+
+export type { ClientConnection } from '../foundation/tower_like_ipc/ClientConnection';
 
 function connectToBgScript(pingMessage: string): ExtensionPort {
     const p = browser.runtime.connect({

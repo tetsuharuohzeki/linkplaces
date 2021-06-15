@@ -13,9 +13,9 @@ import {
 
 import type { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bookmarks';
 
+import type { Repository } from '../foundation/Repository';
+import * as Ix from '../foundation/ix/mod';
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
-import type { Repository } from '../shared/Repository';
-import * as Ix from '../shared/ix/mod';
 import { SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain';
 
 type BookmarkId = string;

@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
+import * as Ix from '../foundation/ix/mod';
 import { PanelSectionList } from '../shared/component/PanelSectionList';
-import * as Ix from '../shared/ix/mod';
 import type { SidebarIntent } from './SidebarIntent';
 import type { SidebarState } from './SidebarState';
 import { ListItem } from './view/SidebarListItemView';

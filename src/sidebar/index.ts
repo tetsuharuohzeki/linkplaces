@@ -1,5 +1,5 @@
+import { landViewContext } from '../foundation/view_ctx/LandingPad';
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
-import { landViewContext } from '../shared/view_ctx/LandingPad';
 import { SidebarContext } from './SidebarContext';
 import { createChannel } from './SidebarMessageChannel';
 

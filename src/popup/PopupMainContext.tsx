@@ -8,7 +8,7 @@ import { StrictMode } from 'react';
 
 import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
-import { ReactRuledViewContext } from '../shared/view_ctx/ReactRuledViewContext';
+import { ReactRuledViewContext } from '../foundation/view_ctx/ReactRuledViewContext';
 
 import { PopupMainEpic } from './PopupMainEpic';
 import { PopupMainIntent } from './PopupMainIntent';

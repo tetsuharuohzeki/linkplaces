@@ -1,6 +1,6 @@
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
 
-import type { ViewContext } from '../shared/view_ctx/ViewContext';
+import type { ViewContext } from '../foundation/view_ctx/ViewContext';
 import { createOptionsView } from './OptionsView';
 
 function getUrl(path: string): { url: string; title: string; } {

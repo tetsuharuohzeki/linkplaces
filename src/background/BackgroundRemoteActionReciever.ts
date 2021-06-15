@@ -1,8 +1,8 @@
 import { createOk, Result } from 'option-t/esm/PlainResult';
+import { NoImplementationError } from '../foundation/NoImplementationError';
+import type { TowerService } from '../foundation/tower_like_ipc/traits';
 import { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } from '../shared/Bookmark';
-import { NoImplementationError } from '../shared/NoImplementationError';
 import { MSG_TYPE_OPEN_URL, MSG_TYPE_REGISTER_URL, RemoteAction, WhereToOpenItem } from '../shared/RemoteAction';
-import type { TowerService } from '../shared/tower_like_ipc/traits';
 
 import { createTab } from './TabOpener';
 

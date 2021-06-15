@@ -7,7 +7,7 @@ import {
     createDomElement as dom,
     createDocFragmentTree as fragment,
     createTextNode as text,
-} from '../../shared/domfactory';
+} from '../../foundation/domfactory';
 
 export const ATTR_NAME_ICON_DIR = 'icondir';
 export const ATTR_NAME_ICON_FILE = 'iconfile';

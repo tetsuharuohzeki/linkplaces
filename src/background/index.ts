@@ -1,5 +1,5 @@
+import { OneShotResponder, ServerConnection } from '../foundation/tower_like_ipc/ServerConnection';
 import type { RemoteAction } from '../shared/RemoteAction';
-import { OneShotResponder, ServerConnection } from '../shared/tower_like_ipc/ServerConnection';
 
 import { BackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever';
 import { createContextMenu } from './ContextMenu';

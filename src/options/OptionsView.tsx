@@ -1,6 +1,6 @@
+import { createDocFragmentTree, createDomElement as element, createTextNode as text } from '../foundation/domfactory';
+import * as Ix from '../foundation/ix/mod';
 import { BUILD_DATE, GIT_REVISION } from '../shared/constants';
-import { createDocFragmentTree, createDomElement as element, createTextNode as text } from '../shared/domfactory';
-import * as Ix from '../shared/ix/mod';
 
 export type Page = Readonly<{
     url: string;
