@@ -36,10 +36,11 @@ export class OptionsContext implements ViewContext {
         }
     }
 
-    async onResume(_mountpoint: Element): Promise<void> {
-        throw new Error('Method not implemented.');
+    async onResume(mountpoint: Element): Promise<void> {
+        return this.onActivate(mountpoint);
     }
-    async onSuspend(_mountpoint: Element): Promise<void> {
-        throw new Error('Method not implemented.');
+
+    async onSuspend(mountpoint: Element): Promise<void> {
+        return this.onDestroy(mountpoint);
     }
 }

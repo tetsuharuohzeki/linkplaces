@@ -36,11 +36,11 @@ export abstract class ReactRuledViewContext implements ViewContext {
 
     abstract onDestroy(mountpoint: Element): Promise<void>;
 
-    onResume(_mountpoint: Element): Promise<void> {
-        throw new Error('Method not implemented.');
+    onResume(mountpoint: Element): Promise<void> {
+        return this.onActivate(mountpoint);
     }
 
-    onSuspend(_mountpoint: Element): Promise<void> {
-        throw new Error('Method not implemented.');
+    onSuspend(mountpoint: Element): Promise<void> {
+        return this.onDestroy(mountpoint);
     }
 }
