@@ -6,6 +6,14 @@ export interface TowerService<TRequest, TResponse> {
     call(req: TRequest): Promise<TResponse>;
 }
 
+export interface MultipleArgsTowerService<
+    TArgs extends ReadonlyArray<unknown>,
+    TOutput
+> {
+    ready(): Promise<Result<void, Error>>;
+    call(...args: TArgs): Promise<TOutput>;
+}
+
 export interface Layer<TInputService, TOutputService> {
     layer(input: TInputService): TOutputService;
 }
