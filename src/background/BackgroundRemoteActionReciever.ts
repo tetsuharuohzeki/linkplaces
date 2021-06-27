@@ -34,16 +34,13 @@ async function openUrlFromPopup(url: string, bookmarkId: string, where: WhereToO
     await removeBookmarkItem(bookmarkId);
 }
 
-function openUrl(url: string, where: WhereToOpenItem): Promise<number> {
+async function openUrl(url: string, where: WhereToOpenItem): Promise<number> {
     const { isPrivileged } = getLinkSchemeType(url);
-    let opened = null;
     if (isPrivileged) {
         const e = new NoImplementationError('opening a privileged url');
-        opened = Promise.reject(e);
-    }
-    else {
-        opened = createTab(url, where);
+        throw e;
     }
 
+    const opened = createTab(url, where);
     return opened;
 }
