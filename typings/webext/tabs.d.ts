@@ -1,7 +1,7 @@
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs
 
-import { RunAt } from './extensionTypes';
 import type { LooselyPartial } from './LooselyPartial';
+import { RunAt } from './extensionTypes';
 
 export type TabId = number;
 
