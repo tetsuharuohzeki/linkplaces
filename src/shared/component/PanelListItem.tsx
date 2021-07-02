@@ -9,6 +9,7 @@ export interface PanelListItemProps {
 export function PanelListItem(props: PanelListItemProps): JSX.Element {
     const {
         disabled = false,
+        onClick = () => {},
     } = props;
 
     const className = disabled ?
@@ -17,7 +18,7 @@ export function PanelListItem(props: PanelListItemProps): JSX.Element {
 
     return (
         <StrictMode>
-            <div className={className} onClick={props.onClick} aria-disabled={disabled}>
+            <div className={className} onClick={onClick} aria-disabled={disabled}>
                 {props.children}
             </div>
         </StrictMode>

@@ -1,6 +1,7 @@
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs
 
 import { RunAt } from './extensionTypes';
+import type { LooselyPartial } from './LooselyPartial';
 
 export type TabId = number;
 
@@ -34,7 +35,7 @@ export interface WebExtTabsService {
     // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/connect
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/create
-    create(createProperties: {
+    create(createProperties: LooselyPartial<{
         active?: boolean;
         cookieStoreId?: string;
         index?: number;
@@ -42,7 +43,7 @@ export interface WebExtTabsService {
         pinned?: boolean;
         url?: string;
         windowId?: number;
-    }): Promise<Readonly<Tab>>;
+    }>): Promise<Readonly<Tab>>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/executeScript
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
