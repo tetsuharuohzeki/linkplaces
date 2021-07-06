@@ -8,10 +8,9 @@ import { StrictMode } from 'react';
 import {
     Subscription,
     asyncScheduler as asyncRxScheduler,
-    fromEvent as fromEventToObservable} from 'rxjs';
-import {
+    fromEvent as fromEventToObservable,
     subscribeOn as subscribeOnRx,
-} from 'rxjs/operators';
+} from 'rxjs';
 
 import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 

@@ -5,11 +5,8 @@ import {
     Observer,
     Subject,
     merge as mergeRx,
-} from 'rxjs';
-import {
     map as mapRx,
-} from 'rxjs/operators';
-
+} from 'rxjs';
 
 import type { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bookmarks';
 
