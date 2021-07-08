@@ -9,7 +9,7 @@ export interface PanelListItemProps {
 export function PanelListItem(props: PanelListItemProps): JSX.Element {
     const {
         disabled = false,
-        onClick = () => {},
+        onClick,
     } = props;
 
     const className = disabled ?
