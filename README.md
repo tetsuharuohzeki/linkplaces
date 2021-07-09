@@ -8,7 +8,7 @@ This is an add-on for Mozilla Firefox. This provides Sidebar to display "Unsorte
 Features
 --------
 
-* Add the sidebar which displays items in Unsorted Bookmarks Folder in Places as "Temporary links". So this is the function like [Link Pad](https://addons.mozilla.org/firefox/addon/link-pad/ "Link Pad :: Add-ons for Firefox").
+* Add the sidebar which displays items in Unsorted Bookmarks Folder in Places as "Temporary links". So this is the function like [Link Pad](https://forest.watch.impress.co.jp/article/2008/02/29/linkpad.html).
 * This uses Unsorted Bookmarks Folder in Places DB. So it is not recommend that you store folders and smart bookmark folders at "Unsorted Bookmarks" Folder.
 * This adds some menu items to context menus.
   * to Tab context menu.
