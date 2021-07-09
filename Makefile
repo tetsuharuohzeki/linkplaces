@@ -78,9 +78,6 @@ __webext_xpi: clean_webext_artifacts \
      webextension
 	$(NPM_BIN)/web-ext build -s $(DIST_DIR)
 
-icon.png: clean_dist
-	$(NODE_BIN) $(CURDIR)/tools/cpx.js $(CURDIR) $(CURDIR)/$@ $(DIST_DIR) --preserve --verbose
-
 webextension: webextension_cp webextension_js webextension_css
 
 webextension_cp: clean_dist
