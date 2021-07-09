@@ -79,12 +79,12 @@ __webext_xpi: clean_webext_artifacts \
 	$(NPM_BIN)/web-ext build -s $(DIST_DIR)
 
 icon.png: clean_dist
-	$(NPM_BIN)/cpx $(CURDIR)/$@ $(DIST_DIR) --preserve --verbose
+	$(NODE_BIN) $(CURDIR)/tools/cpx.js $(CURDIR) $(CURDIR)/$@ $(DIST_DIR) --preserve --verbose
 
 webextension: webextension_cp webextension_js webextension_css
 
 webextension_cp: clean_dist
-	$(NPM_BIN)/cpx '$(SRC_DIR)/**/**.{json,html,svg}' $(DIST_DIR) --preserve --verbose
+	$(NODE_BIN) $(CURDIR)/tools/cpx.js $(SRC_DIR) '$(SRC_DIR)/**/**.{json,html,svg}' $(DIST_DIR) --verbose
 
 ifeq ($(USE_ESBUILD),1)
 webextension_js: $(addprefix __bundle_js_esbuild_, background popup sidebar options)
@@ -117,7 +117,7 @@ __obj: __plain clean_obj
 __plain: $(addprefix __plain_, ts js)
 
 __plain_js: clean_plain
-	$(NPM_BIN)/cpx '$(SRC_DIR)/**/*.{js,jsx}' $(PLAIN_SRC_DIR) --preserve --verbose
+	$(NODE_BIN) $(CURDIR)/tools/cpx.js $(SRC_DIR) '$(SRC_DIR)/**/*.{js,jsx}' $(PLAIN_SRC_DIR) --verbose
 
 __plain_ts: clean_plain
 	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --outDir $(PLAIN_SRC_DIR)
