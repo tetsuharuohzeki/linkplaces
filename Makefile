@@ -45,16 +45,16 @@ help:
 clean: clean_dist clean_obj clean_plain clean_webext_artifacts ## Clean up all generated files.
 
 clean_dist:
-	$(NPM_BIN)/del $(DIST_DIR) --force
+	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(DIST_DIR) --force
 
 clean_obj:
-	$(NPM_BIN)/del $(OBJ_DIR) --force
+	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(OBJ_DIR) --force
 
 clean_plain:
-	$(NPM_BIN)/del $(PLAIN_DIR) --force
+	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(PLAIN_DIR) --force
 
 clean_webext_artifacts:
-	$(NPM_BIN)/del $(ARTIFACT_DIR)
+	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(ARTIFACT_DIR)
 
 
 ####################################
