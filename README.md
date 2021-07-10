@@ -1,7 +1,7 @@
 LinkPlaces
 ==========
 
-[![CI Status](https://github.com/tetsuharuohzeki/linkplaces/workflows/CI/badge.svg?branch=master)](https://github.com/tetsuharuohzeki/linkplaces/actions)
+[![CI Status](https://github.com/tetsuharuohzeki/linkplaces/workflows/CI/badge.svg?branch=main)](https://github.com/tetsuharuohzeki/linkplaces/actions)
 
 This is an add-on for Mozilla Firefox. This provides Sidebar to display "Unsorted Bookmarks" folder in Places, as "Temporary Links".
 
