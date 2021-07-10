@@ -28,7 +28,7 @@ async function copyFile(
 
 (async function main() {
     const argSet = new Set(process.argv);
-    const argv = process.argv;
+    const argv = process.argv.slice(2);
 
     const isVerbose = argSet.has('--verbose');
     const isDebug = argSet.has('--debug');
@@ -36,17 +36,17 @@ async function copyFile(
         console.log(`process.argv: ${JSON.stringify(argv)}`);
     }
 
-    const baseDir = argv[2];
+    const baseDir = argv[0];
     if (!baseDir) {
         throw new Error('no baseDir');
     }
 
-    const source = argv[3];
+    const source = argv[1];
     if (!source) {
         throw new Error('no source');
     }
 
-    const targetDir = argv[4];
+    const targetDir = argv[2];
     if (!targetDir) {
         throw new Error('no target');
     }

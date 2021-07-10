@@ -3,14 +3,14 @@ import fs from 'node:fs/promises';
 
 (async function main() {
     const argSet = new Set(process.argv);
-    const argv = process.argv;
+    const argv = process.argv.slice(2);
 
     const isVerbose = argSet.has('--verbose');
     if (isVerbose) {
         console.log(`process.argv: ${JSON.stringify(argv)}`);
     }
 
-    const target = argv[2];
+    const target = argv[0];
     if (!target) {
         throw new Error('no target');
     }
