@@ -81,7 +81,7 @@ __webext_xpi: clean_webext_artifacts \
 webextension: webextension_cp webextension_js webextension_css
 
 webextension_cp: clean_dist
-	$(NODE_BIN) $(CURDIR)/tools/cpx.js --basedir $(SRC_DIR) --source '$(SRC_DIR)/**/**.{json,html,svg}' --destination $(DIST_DIR) --verbose
+	$(NODE_BIN) $(CURDIR)/tools/cp_files.js --basedir $(SRC_DIR) --source '$(SRC_DIR)/**/**.{json,html,svg}' --destination $(DIST_DIR) --verbose
 
 ifeq ($(USE_ESBUILD),1)
 webextension_js: $(addprefix __bundle_js_esbuild_, background popup sidebar options)
@@ -114,7 +114,7 @@ __obj: __plain clean_obj
 __plain: $(addprefix __plain_, ts js)
 
 __plain_js: clean_plain
-	$(NODE_BIN) $(CURDIR)/tools/cpx.js --basedir $(SRC_DIR) --source '$(SRC_DIR)/**/*.{js,jsx}' --destination $(PLAIN_SRC_DIR) --verbose
+	$(NODE_BIN) $(CURDIR)/tools/cp_files.js --basedir $(SRC_DIR) --source '$(SRC_DIR)/**/*.{js,jsx}' --destination $(PLAIN_SRC_DIR) --verbose
 
 __plain_ts: clean_plain
 	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --outDir $(PLAIN_SRC_DIR)
