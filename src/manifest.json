@@ -44,8 +44,8 @@
   },
   "sidebar_action": {
     "default_icon": {
-      "16": "resources/16x16-dark.svg",
-      "32": "resources/16x16-dark.svg"
+      "16": "resources/16x16.svg",
+      "32": "resources/16x16.svg"
     },
     "default_title": "LinkPlaces",
     "default_panel": "sidebar/index.html"
