@@ -5,6 +5,8 @@ import util from 'node:util';
 
 import globOriginal from 'glob';
 
+import { parseArgs } from './parse_argv.js';
+
 const glob = util.promisify(globOriginal);
 
 async function copyFile(
@@ -28,7 +30,7 @@ async function copyFile(
 
 (async function main() {
     const argSet = new Set(process.argv);
-    const argv = process.argv.slice(2);
+    const argv = parseArgs(process.argv.slice(2));
 
     const isVerbose = argSet.has('--verbose');
     const isDebug = argSet.has('--debug');
@@ -36,17 +38,17 @@ async function copyFile(
         console.log(`process.argv: ${JSON.stringify(argv)}`);
     }
 
-    const baseDir = argv[0];
+    const baseDir = argv.get('--basedir');
     if (!baseDir) {
         throw new Error('no baseDir');
     }
 
-    const source = argv[1];
+    const source = argv.get('--source');
     if (!source) {
         throw new Error('no source');
     }
 
-    const targetDir = argv[2];
+    const targetDir = argv.get('--destination');
     if (!targetDir) {
         throw new Error('no target');
     }
