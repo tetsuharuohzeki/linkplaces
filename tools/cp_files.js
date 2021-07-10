@@ -9,6 +9,33 @@ import { parseArgs } from './parse_argv.js';
 
 const glob = util.promisify(globOriginal);
 
+async function createSourceToDestinationMapList(baseDir, sourceList, destinationDir) {
+    const normalizedDest = path.normalize(destinationDir);
+    const candidate = sourceList.map(async (source) => {
+        const normalizedSource = path.normalize(source);
+        const actualSourcePath = path.resolve(baseDir, normalizedSource);
+
+        const sourceStat = await fs.stat(actualSourcePath);
+        if (sourceStat.isDirectory()) {
+            return null;
+        }
+
+        const relativePath = normalizedSource.replace(baseDir, '');
+        const dest = path.join(normalizedDest, relativePath);
+
+        const entry = {
+            source: actualSourcePath,
+            dest,
+        };
+
+        return entry;
+    });
+
+    const candidateItems = await Promise.all(candidate);
+    const fileList = candidateItems.filter((entry) => entry !== null);
+    return fileList;
+}
+
 async function copyFile(
     source,
     dest,
@@ -48,9 +75,9 @@ async function copyFile(
         throw new Error('no source');
     }
 
-    const targetDir = argv.get('--destination');
-    if (!targetDir) {
-        throw new Error('no target');
+    const destinationDir = argv.get('--destination');
+    if (!destinationDir) {
+        throw new Error('no destinationDir');
     }
 
     const sourceList = await glob(source, {
@@ -60,20 +87,7 @@ async function copyFile(
         console.dir(sourceList);
     }
 
-    const normalizedDest = path.normalize(targetDir);
-
-    const pairList = sourceList.map((source) => {
-        const normalizedSource = path.normalize(source);
-        const relativePath = normalizedSource.replace(baseDir, '');
-        const dest = path.join(normalizedDest, relativePath);
-        const finalSource = path.resolve(baseDir, normalizedSource);
-
-        return {
-            source: finalSource,
-            dest,
-        };
-    });
-
+    const pairList = await createSourceToDestinationMapList(baseDir, sourceList, destinationDir);
     if (isVerbose) {
         const debug = pairList.map(({ source, dest }) => {
             return `${source} -> ${dest}`;
