@@ -48,19 +48,7 @@
       "32": "resources/16x16-dark.svg"
     },
     "default_title": "LinkPlaces",
-    "default_panel": "sidebar/index.html",
-    "theme_icons": [
-      {
-        "light": "resources/16x16-light.svg",
-        "dark": "resources/16x16-dark.svg",
-        "size": 16
-      },
-      {
-        "light": "resources/16x16-light.svg",
-        "dark": "resources/16x16-dark.svg",
-        "size": 32
-      }
-    ]
+    "default_panel": "sidebar/index.html"
   },
   "options_ui": {
     "page": "options/index.html"
