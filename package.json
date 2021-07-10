@@ -1,58 +1,58 @@
 {
-  "name": "linkplaces",
-  "version": "0.10.0",
-  "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
-  "type": "module",
-  "scripts": {
-    "test": "make test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tetsuharuohzeki/linkplaces.git"
-  },
-  "author": {
-    "name": "Tetsuharu OHZEKI",
-    "email": "saneyuki.snyk@gmail.com",
-    "url": "https://github.com/tetsuharuohzeki/"
-  },
-  "license": "MPL-2.0",
-  "bugs": {
-    "url": "https://github.com/tetsuharuohzeki/linkplaces/issues"
-  },
-  "homepage": "https://github.com/tetsuharuohzeki/linkplaces",
-  "dependencies": {
-    "@babel/cli": "^7.14.5",
-    "@babel/core": "^7.14.6",
-    "@babel/preset-react": "^7.14.5",
-    "@rollup/plugin-commonjs": "^19.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.0",
-    "@rollup/plugin-replace": "^2.4.2",
-    "@types/node": "^16.0.3",
-    "@types/react": "^17.0.14",
-    "@types/react-dom": "^17.0.9",
-    "@typescript-eslint/eslint-plugin": "^4.28.2",
-    "@typescript-eslint/parser": "^4.28.2",
-    "ava": "^3.15.0",
-    "esbuild": "^0.12.15",
-    "eslint": "^7.30.0",
-    "eslint-config-abema": "https://github.com/cats-oss/eslint-config-abema/archive/72a943d6271704c5e87cf22d803f409a735398b7.tar.gz",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "glob": "^7.1.7",
-    "jsdom": "^16.6.0",
-    "option-t": "^28.1.0",
-    "postcss": "^8.3.5",
-    "postcss-import": "^14.0.2",
-    "prettier": "^2.3.2",
-    "react": "^18.0.0-alpha-241485a2c-20210708",
-    "react-dom": "^18.0.0-alpha-241485a2c-20210708",
-    "rollup": "^2.52.8",
-    "rxjs": "^7.2.0",
-    "stylelint": "^13.13.1",
-    "stylelint-config-prettier": "^8.0.2",
-    "stylelint-config-standard": "^22.0.0",
-    "typescript": "^4.4.0-dev.20210708",
-    "web-ext": "^6.2.0"
-  }
+    "name": "linkplaces",
+    "version": "0.10.0",
+    "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
+    "type": "module",
+    "scripts": {
+        "test": "make test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tetsuharuohzeki/linkplaces.git"
+    },
+    "author": {
+        "name": "Tetsuharu OHZEKI",
+        "email": "saneyuki.snyk@gmail.com",
+        "url": "https://github.com/tetsuharuohzeki/"
+    },
+    "license": "MPL-2.0",
+    "bugs": {
+        "url": "https://github.com/tetsuharuohzeki/linkplaces/issues"
+    },
+    "homepage": "https://github.com/tetsuharuohzeki/linkplaces",
+    "dependencies": {
+        "@babel/cli": "^7.14.5",
+        "@babel/core": "^7.14.6",
+        "@babel/preset-react": "^7.14.5",
+        "@rollup/plugin-commonjs": "^19.0.0",
+        "@rollup/plugin-node-resolve": "^13.0.0",
+        "@rollup/plugin-replace": "^2.4.2",
+        "@types/node": "^16.0.3",
+        "@types/react": "^17.0.14",
+        "@types/react-dom": "^17.0.9",
+        "@typescript-eslint/eslint-plugin": "^4.28.2",
+        "@typescript-eslint/parser": "^4.28.2",
+        "ava": "^3.15.0",
+        "esbuild": "^0.12.15",
+        "eslint": "^7.30.0",
+        "eslint-config-abema": "https://github.com/cats-oss/eslint-config-abema/archive/72a943d6271704c5e87cf22d803f409a735398b7.tar.gz",
+        "eslint-plugin-import": "^2.23.4",
+        "eslint-plugin-react": "^7.24.0",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "glob": "^7.1.7",
+        "jsdom": "^16.6.0",
+        "option-t": "^28.1.0",
+        "postcss": "^8.3.5",
+        "postcss-import": "^14.0.2",
+        "prettier": "^2.3.2",
+        "react": "^18.0.0-alpha-241485a2c-20210708",
+        "react-dom": "^18.0.0-alpha-241485a2c-20210708",
+        "rollup": "^2.52.8",
+        "rxjs": "^7.2.0",
+        "stylelint": "^13.13.1",
+        "stylelint-config-prettier": "^8.0.2",
+        "stylelint-config-standard": "^22.0.0",
+        "typescript": "^4.4.0-dev.20210708",
+        "web-ext": "^6.2.0"
+    }
 }

@@ -1,56 +1,56 @@
 {
-  "manifest_version": 2,
-  "name": "LinkPlaces",
-  "version": "0.0.1",
-  "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
-  "applications": {
-    "gecko": {
-      "id": "{5744b0bf-569c-4666-b1fc-3915c3fa5767}",
-      "strict_min_version": "65.0"
+    "manifest_version": 2,
+    "name": "LinkPlaces",
+    "version": "0.0.1",
+    "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
+    "applications": {
+        "gecko": {
+            "id": "{5744b0bf-569c-4666-b1fc-3915c3fa5767}",
+            "strict_min_version": "65.0"
+        }
+    },
+    "icons": {
+        "48": "resources/48x48.svg"
+    },
+    "permissions": [
+        "bookmarks",
+        "menus",
+        "tabs"
+    ],
+    "incognito": "spanning",
+    "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline';",
+    "background": {
+        "page": "background/index.html"
+    },
+    "browser_action": {
+        "default_icon": {
+            "16": "resources/16x16-dark.svg",
+            "32": "resources/16x16-dark.svg"
+        },
+        "default_title": "LinkPlaces",
+        "default_popup": "popup/index.html",
+        "theme_icons": [
+            {
+                "light": "resources/16x16-light.svg",
+                "dark": "resources/16x16-dark.svg",
+                "size": 16
+            },
+            {
+                "light": "resources/16x16-light.svg",
+                "dark": "resources/16x16-dark.svg",
+                "size": 32
+            }
+        ]
+    },
+    "sidebar_action": {
+        "default_icon": {
+            "16": "resources/16x16.svg",
+            "32": "resources/16x16.svg"
+        },
+        "default_title": "LinkPlaces",
+        "default_panel": "sidebar/index.html"
+    },
+    "options_ui": {
+        "page": "options/index.html"
     }
-  },
-  "icons": {
-    "48": "resources/48x48.svg"
-  },
-  "permissions": [
-    "bookmarks",
-    "menus",
-    "tabs"
-  ],
-  "incognito": "spanning",
-  "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline';",
-  "background": {
-    "page": "background/index.html"
-  },
-  "browser_action": {
-    "default_icon": {
-      "16": "resources/16x16-dark.svg",
-      "32": "resources/16x16-dark.svg"
-    },
-    "default_title": "LinkPlaces",
-    "default_popup": "popup/index.html",
-    "theme_icons": [
-      {
-        "light": "resources/16x16-light.svg",
-        "dark": "resources/16x16-dark.svg",
-        "size": 16
-      },
-      {
-        "light": "resources/16x16-light.svg",
-        "dark": "resources/16x16-dark.svg",
-        "size": 32
-      }
-    ]
-  },
-  "sidebar_action": {
-    "default_icon": {
-      "16": "resources/16x16.svg",
-      "32": "resources/16x16.svg"
-    },
-    "default_title": "LinkPlaces",
-    "default_panel": "sidebar/index.html"
-  },
-  "options_ui": {
-    "page": "options/index.html"
-  }
 }
