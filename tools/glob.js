@@ -1,7 +1,7 @@
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 
-import micromatch from 'micromatch';
+import picomatch from 'picomatch';
 
 async function* getAllEntriesInDirectory(rootDir) {
     const files = await fs.readdir(rootDir, {
@@ -26,7 +26,7 @@ async function* getAllEntriesInDirectory(rootDir) {
 }
 
 export async function getAllGlobMatchedFiles(rootDir, globPattern) {
-    const isMatch = micromatch.matcher(globPattern);
+    const isMatch = picomatch(globPattern);
     const result = [];
     for await (const file of getAllEntriesInDirectory(rootDir)) {
         if (!isMatch(file)) {
