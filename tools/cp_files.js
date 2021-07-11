@@ -1,13 +1,9 @@
 /** env node */
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import util from 'node:util';
 
-import globOriginal from 'glob';
-
+import { getAllGlobMatchedFiles } from './glob.js';
 import { parseArgs } from './parse_argv.js';
-
-const glob = util.promisify(globOriginal);
 
 async function createSourceToDestinationMapList(baseDir, sourceList, destinationDir) {
     const normalizedDest = path.normalize(destinationDir);
@@ -80,9 +76,8 @@ async function copyFile(
         throw new Error('no destinationDir');
     }
 
-    const sourceList = await glob(source, {
-        cwd: baseDir,
-    });
+    const baseDirFullPath = path.resolve(process.cwd(), baseDir);
+    const sourceList = await getAllGlobMatchedFiles(baseDirFullPath, source);
     if (isDebug) {
         console.dir(sourceList);
     }
