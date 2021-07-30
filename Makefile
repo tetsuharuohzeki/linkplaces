@@ -109,7 +109,7 @@ __bundle_css_%: clean_dist
 __external_dependency:
 
 __obj: __plain clean_obj
-	$(NPM_BIN)/babel $(PLAIN_DIR) --out-dir $(OBJ_DIR) --extensions=.js,.jsx --config-file $(CURDIR)/babel.config.js
+	$(NPM_BIN)/babel $(PLAIN_DIR) --out-dir $(OBJ_DIR) --extensions=.js,.jsx --config-file $(CURDIR)/babel.config.mjs
 
 __plain: $(addprefix __plain_, ts js)
 
