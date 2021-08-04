@@ -59,7 +59,7 @@ export function createOptionsView(props: Readonly<OptionsViewProps>): DocumentFr
         ]),
         element('div', null, [
             element('h2', null, [
-                text('for debuggingn'),
+                text('for debug'),
             ]),
             element('ul', null, links),
         ]),
