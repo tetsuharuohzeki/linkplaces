@@ -11,16 +11,17 @@ interface PacketCreationService<TRequestBody, TResponse> extends TowerService<Pa
 type AssertTypeGuardFn<T> = (value: unknown) => asserts value is T;
 
 export class OneShotResponder<TRequestBody, TResponse> implements PacketCreationService<unknown, null> {
-    private _source: TowerService<TRequestBody, TResponse>;
     private _validator: AssertTypeGuardFn<TRequestBody>;
+    private _source: TowerService<TRequestBody, TResponse>;
 
-    constructor(source: TowerService<TRequestBody, TResponse>, validator: AssertTypeGuardFn<TRequestBody>) {
-        this._source = source;
+    constructor(validator: AssertTypeGuardFn<TRequestBody>, source: TowerService<TRequestBody, TResponse>) {
         this._validator = validator;
+        this._source = source;
     }
 
     destroy(): void {
         this._source = null as never;
+        this._validator = null as never;
     }
 
     ready(): Promise<Result<void, Error>> {

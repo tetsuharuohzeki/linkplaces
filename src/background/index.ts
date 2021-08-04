@@ -16,7 +16,7 @@ declare global {
 
     browser.runtime.onConnect.addListener((portToSender) => {
         const service = new BackgroundRemoteActionReciever();
-        const wrapper = new OneShotResponder(service, assertIsRemoteAction);
+        const wrapper = new OneShotResponder(assertIsRemoteAction, service);
         const server = new ServerConnection(portToSender, wrapper);
 
         globalThis.livingConnectionSet.add(server);
