@@ -3,11 +3,10 @@ import { isUndefined } from 'option-t/esm/Undefinable/Undefinable';
 
 import type { ExtensionPort } from '../../../typings/webext/ExtensionPort';
 
-import { Packet, createPacket, createOneShotPacket } from './Packet';
+import { Packet, createPacket, createOneShotPacket, isPacket } from './Packet';
 
 interface PromiseResolverTuple {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    readonly resolve: (result?: any) => void;
+    readonly resolve: (result?: unknown) => void;
     readonly reject: (e?: unknown) => void;
 }
 
@@ -49,8 +48,8 @@ export class ClientConnection<TPayload> {
         this._port = null as never;
     }
 
-    postMessage<TResult>(msg: TPayload): Promise<TResult> {
-        const task = new Promise<TResult>((resolve, reject) => {
+    postMessage(payload: TPayload): Promise<unknown> {
+        const task = new Promise<unknown>((resolve, reject) => {
             const id = this._incrementRequestId();
 
             this._callback.set(id, {
@@ -60,19 +59,23 @@ export class ClientConnection<TPayload> {
 
             const port = this._port;
 
-            const message = createPacket(id, msg);
-            port.postMessage(message);
+            const packet = createPacket(id, payload);
+            port.postMessage(packet);
         });
         return task;
     }
 
     postOneShotMessage(payload: TPayload): void {
-        const packet = createOneShotPacket(payload);
+        const packet = createOneShotPacket<TPayload>(payload);
         const port = this._port;
-        port.postMessage<Packet<TPayload>>(packet);
+        port.postMessage(packet);
     }
 
-    onMessage(packet: Packet<TPayload>): void {
+    onMessage(packet: object): void {
+        if (!isPacket(packet)) {
+            throw new TypeError(`${JSON.stringify(packet)} is not packaet`);
+        }
+
         const { id, payload } = packet;
         if (isNull(id)) {
             throw new TypeError(
@@ -83,7 +86,7 @@ export class ClientConnection<TPayload> {
         this._processResponse(id, payload);
     }
 
-    private _processResponse(id: number, payload: TPayload): void {
+    private _processResponse(id: number, payload: unknown): void {
         const callbackMap = this._callback;
         const tuple = callbackMap.get(id);
         if (isUndefined(tuple)) {

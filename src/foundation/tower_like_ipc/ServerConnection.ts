@@ -8,11 +8,15 @@ import type { TowerService } from './traits';
 
 interface PacketCreationService<TRequestBody, TResponse> extends TowerService<Packet<TRequestBody>, Nullable<Packet<TResponse>>> {}
 
+type TypeGuardFn<T> = (value: unknown) => value is T;
+
 export class OneShotResponder<TRequestBody, TResponse> implements PacketCreationService<TRequestBody, null> {
     private _source: TowerService<TRequestBody, TResponse>;
+    private _validator:TypeGuardFn<TRequestBody>;
 
-    constructor(source: TowerService<TRequestBody, TResponse>) {
+    constructor(source: TowerService<TRequestBody, TResponse>, validator:TypeGuardFn<TRequestBody>) {
         this._source = source;
+        this._validator = validator;
     }
 
     destroy(): void {
@@ -23,8 +27,13 @@ export class OneShotResponder<TRequestBody, TResponse> implements PacketCreation
         return this._source.ready();
     }
 
-    async call(req: Packet<TRequestBody>): Promise<null> {
-        await this._source.call(req.payload);
+    async call(req: Packet<unknown>): Promise<null> {
+        const payload = req.payload;
+        if (!this._validator(payload)) {
+            throw new TypeError(`${String(payload)} is not TRequestBody`);
+        }
+
+        await this._source.call(payload);
         return null;
     }
 }

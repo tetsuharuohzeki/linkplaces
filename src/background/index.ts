@@ -1,5 +1,5 @@
 import { OneShotResponder, ServerConnection } from '../foundation/tower_like_ipc/ServerConnection';
-import type { RemoteAction } from '../shared/RemoteAction';
+import { isRemoteAction, RemoteAction } from '../shared/RemoteAction';
 
 import { BackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever';
 import { createContextMenu } from './ContextMenu';
@@ -16,8 +16,8 @@ declare global {
 
     browser.runtime.onConnect.addListener((portToSender) => {
         const service = new BackgroundRemoteActionReciever();
-        const wrapper = new OneShotResponder(service);
-        const server = new ServerConnection(portToSender, wrapper);
+        const wrapper = new OneShotResponder(service, isRemoteAction);
+        const server = new ServerConnection<RemoteAction, unknown>(portToSender, wrapper);
 
         globalThis.livingConnectionSet.add(server);
 

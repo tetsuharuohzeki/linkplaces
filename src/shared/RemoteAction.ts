@@ -1,3 +1,5 @@
+import { isNull } from 'option-t/esm/Nullable/Nullable';
+
 export const CONNECTION_PING_FROM_POPUP = 'CONNECTION_PING_FROM_POPUP';
 export const CONNECTION_PING_FROM_SIDEBAR = 'CONNECTION_PING_FROM_SIDEBAR';
 
@@ -64,3 +66,25 @@ export function createRegisterUrlAction(url: string, title: string): RegisterUrl
 
 export type RemoteAction =
     OpenUrlAction | RegisterUrlAction;
+
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+
+export function isRemoteAction(value: unknown): value is RemoteAction {
+    if (typeof value !== 'object') {
+        return false;
+    }
+
+    if (isNull(value)) {
+        return false;
+    }
+
+    if (!hasOwnProperty.call(value, 'type')) {
+        return false;
+    }
+
+    if (!hasOwnProperty.call(value, 'value')) {
+        return false;
+    }
+
+    return true;
+}
