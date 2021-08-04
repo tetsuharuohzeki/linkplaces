@@ -3,7 +3,7 @@ import { isUndefined } from 'option-t/esm/Undefinable/Undefinable';
 
 import type { ExtensionPort } from '../../../typings/webext/ExtensionPort';
 
-import { Packet, createPacket, createOneShotPacket, isPacket } from './Packet';
+import { createPacket, createOneShotPacket, assertPacket } from './Packet';
 
 interface PromiseResolverTuple {
     readonly resolve: (result?: unknown) => void;
@@ -15,7 +15,7 @@ export class ClientConnection<TPayload> {
     private _callback: Map<number, PromiseResolverTuple>;
     private _callbackIdCandidate: number;
 
-    private _onMessage: (this: this, msg: Packet<TPayload>) => void;
+    private _onMessage: (this: this, msg: object) => void;
 
     constructor(port: ExtensionPort) {
         this._port = port;
@@ -71,10 +71,8 @@ export class ClientConnection<TPayload> {
         port.postMessage(packet);
     }
 
-    onMessage(packet: object): void {
-        if (!isPacket(packet)) {
-            throw new TypeError(`${JSON.stringify(packet)} is not packaet`);
-        }
+    private onMessage(packet: object): void {
+        assertPacket(packet);
 
         const { id, payload } = packet;
         if (isNull(id)) {

@@ -3,18 +3,18 @@ import type { Result } from 'option-t/esm/PlainResult';
 
 import type { ExtensionPort } from '../../../typings/webext/ExtensionPort';
 
-import type { Packet } from './Packet';
+import { assertPacket, Packet } from './Packet';
 import type { TowerService } from './traits';
 
 interface PacketCreationService<TRequestBody, TResponse> extends TowerService<Packet<TRequestBody>, Nullable<Packet<TResponse>>> {}
 
-type TypeGuardFn<T> = (value: unknown) => value is T;
+type AssertTypeGuardFn<T> = (value: unknown) => asserts value is T;
 
-export class OneShotResponder<TRequestBody, TResponse> implements PacketCreationService<TRequestBody, null> {
+export class OneShotResponder<TRequestBody, TResponse> implements PacketCreationService<unknown, null> {
     private _source: TowerService<TRequestBody, TResponse>;
-    private _validator:TypeGuardFn<TRequestBody>;
+    private _validator: AssertTypeGuardFn<TRequestBody>;
 
-    constructor(source: TowerService<TRequestBody, TResponse>, validator:TypeGuardFn<TRequestBody>) {
+    constructor(source: TowerService<TRequestBody, TResponse>, validator: AssertTypeGuardFn<TRequestBody>) {
         this._source = source;
         this._validator = validator;
     }
@@ -29,10 +29,7 @@ export class OneShotResponder<TRequestBody, TResponse> implements PacketCreation
 
     async call(req: Packet<unknown>): Promise<null> {
         const payload = req.payload;
-        if (!this._validator(payload)) {
-            throw new TypeError(`${String(payload)} is not TRequestBody`);
-        }
-
+        this._validator(payload);
         await this._source.call(payload);
         return null;
     }
@@ -40,10 +37,10 @@ export class OneShotResponder<TRequestBody, TResponse> implements PacketCreation
 
 export class ServerConnection<TRequestBody, TResponse> {
     private _port: ExtensionPort;
-    private _onMessage: (this: this, packet: Packet<TRequestBody>) => void;
+    private _onMessage: (this: this, packet: object) => void;
     private _onDissconnect: (this: this, port: ExtensionPort) => void;
 
-    private _service: PacketCreationService<TRequestBody, TResponse>;
+    private _service: PacketCreationService<unknown, TResponse>;
 
     constructor(port: ExtensionPort, service: PacketCreationService<TRequestBody, TResponse>) {
         this._port = port;
@@ -73,11 +70,12 @@ export class ServerConnection<TRequestBody, TResponse> {
         this._initialize();
     }
 
-    onMessage(packet: Packet<TRequestBody>): void {
+    onMessage(packet: object): void {
+        assertPacket(packet);
         this._callService(packet).catch(console.error);
     }
 
-    private async _callService(packet: Packet<TRequestBody>): Promise<void> {
+    private async _callService(packet: Packet<unknown>): Promise<void> {
         const res = await this._service.call(packet);
         if (!res) {
             return;

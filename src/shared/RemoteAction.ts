@@ -69,7 +69,15 @@ export type RemoteAction =
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
-export function isRemoteAction(value: unknown): value is RemoteAction {
+export function assertIsRemoteAction(value: unknown): asserts value is RemoteAction {
+    if (isRemoteAction(value)) {
+        return;
+    }
+
+    throw new TypeError(`${JSON.stringify(value)} is not RemoteAction`);
+}
+
+function isRemoteAction(value: unknown): value is RemoteAction {
     if (typeof value !== 'object') {
         return false;
     }
