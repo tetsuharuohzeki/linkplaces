@@ -1,6 +1,6 @@
 import { createDocFragmentTree, createDomElement as element, createTextNode as text } from '../foundation/domfactory';
 import * as Ix from '../foundation/ix/mod';
-import { BUILD_DATE, GIT_REVISION } from '../shared/constants';
+import { BUILD_DATE, GIT_REVISION, RELEASE_CHANNEL } from '../shared/constants';
 
 export type Page = Readonly<{
     url: string;
@@ -45,6 +45,14 @@ export function createOptionsView(props: Readonly<OptionsViewProps>): DocumentFr
                     ]),
                     element('td', null, [
                         text(BUILD_DATE),
+                    ]),
+                ]),
+                element('tr', null, [
+                    element('th', null, [
+                        text('RELEASE_CHANNEL'),
+                    ]),
+                    element('td', null, [
+                        text(RELEASE_CHANNEL),
                     ]),
                 ]),
             ]),
