@@ -4,7 +4,7 @@ import type { ViewContext } from '../foundation/view_ctx/ViewContext';
 import { createOptionsView } from './OptionsView';
 
 function getUrl(path: string): { url: string; title: string; } {
-    const url = browser.extension.getURL(path);
+    const url = browser.runtime.getURL(path);
     return {
         url,
         title: path,
