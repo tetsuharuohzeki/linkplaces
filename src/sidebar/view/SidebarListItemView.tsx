@@ -1,6 +1,7 @@
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
-import { StrictMode, useState, MouseEventHandler, MouseEvent } from 'react';
+import { StrictMode, useState, MouseEventHandler, MouseEvent, SetStateAction, Dispatch, useCallback } from 'react';
 
+import type { BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../../typings/webext/bookmarks';
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../../shared/Bookmark';
 import { WhereToOpenItem, WHERE_TO_OPEN_ITEM_TO_WINDOW, WHERE_TO_OPEN_ITEM_TO_TAB } from '../../shared/RemoteAction';
 import {
@@ -75,53 +76,69 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
         );
     }
 
-    const bookmarkTitle = bookmark.title;
-
     if (isBookmarkTreeNodeItem(bookmark)) {
-        const id = bookmark.id;
-        const url = bookmark.url;
-        const title = `${bookmarkTitle}\n${url}`;
-
-        const onClick: MouseEventHandler<HTMLAnchorElement> = (evt) => {
-            evt.preventDefault();
-
-            const where = calculateWhereToOpenItem(evt);
-            intent.openItem(id, url, where);
-
-            setIsOpening(true);
-        };
-
-        const label = (bookmarkTitle === '') ?
-            url :
-            bookmarkTitle;
         return (
             <StrictMode>
-                <a
-                    className={`${CLASS_NAME_PREFIX}__container`}
-                    href={url}
-                    onClick={onClick}
-                    title={title}>
-                    <ListBaseItem
-                        iconDir={ICON_DIR}
-                        iconFile={'defaultFavicon.svg'}
-                        label={label}
-                    />
-                </a>
+                <ListItemForBookmarkItem
+                    bookmark={bookmark}
+                    intent={intent}
+                    setIsOpening={setIsOpening}
+                />
             </StrictMode>
         );
     }
 
     return (
         <StrictMode>
-            <span
+            <ListItemForBookmarkFolder
+                bookmark={bookmark}
+            />
+        </StrictMode>
+    );
+}
+
+interface ListItemForBookmarkItemProps {
+    bookmark: BookmarkTreeNodeItem;
+    intent: SidebarIntent;
+    setIsOpening: Dispatch<SetStateAction<boolean>>;
+}
+
+function ListItemForBookmarkItem(props: ListItemForBookmarkItemProps) {
+    const { bookmark, intent, setIsOpening } = props;
+
+    const id = bookmark.id;
+    const url = bookmark.url;
+    const bookmarkTitle = bookmark.title;
+    const title = `${bookmarkTitle}\n${url}`;
+
+    const onClick: MouseEventHandler<HTMLAnchorElement> = useCallback(
+        (evt) => {
+            evt.preventDefault();
+
+            const where = calculateWhereToOpenItem(evt);
+            intent.openItem(id, url, where);
+
+            setIsOpening(true);
+        },
+        [id, intent, setIsOpening, url]
+    );
+
+    const label = bookmarkTitle === '' ? url : bookmarkTitle;
+
+    return (
+        <StrictMode>
+            <a
                 className={`${CLASS_NAME_PREFIX}__container`}
-                title={bookmarkTitle}>
+                href={url}
+                onClick={onClick}
+                title={title}
+            >
                 <ListBaseItem
                     iconDir={ICON_DIR}
-                    iconFile={'folder.svg'}
-                    label={bookmarkTitle}
+                    iconFile={'defaultFavicon.svg'}
+                    label={label}
                 />
-            </span>
+            </a>
         </StrictMode>
     );
 }
@@ -132,4 +149,27 @@ function calculateWhereToOpenItem(syntheticEvent: MouseEvent<HTMLAnchorElement>)
     }
 
     return WHERE_TO_OPEN_ITEM_TO_TAB;
+}
+
+interface ListItemForBookmarkFolderProps {
+    bookmark: BookmarkTreeNodeFolder;
+}
+
+function ListItemForBookmarkFolder(props: ListItemForBookmarkFolderProps) {
+    const { bookmark } = props;
+    const bookmarkTitle = bookmark.title;
+    return (
+        <StrictMode>
+            <span
+                className={`${CLASS_NAME_PREFIX}__container`}
+                title={bookmarkTitle}
+            >
+                <ListBaseItem
+                    iconDir={ICON_DIR}
+                    iconFile={'folder.svg'}
+                    label={bookmarkTitle}
+                />
+            </span>
+        </StrictMode>
+    );
 }
