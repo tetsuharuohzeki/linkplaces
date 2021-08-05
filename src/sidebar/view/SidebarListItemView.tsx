@@ -16,7 +16,6 @@ import type { SidebarIntent } from '../SidebarIntent';
 const CLASS_NAME_PREFIX = 'sidebar-com-SidebarListItemView';
 
 interface ListBaseItemProps {
-    isOpening: boolean;
     iconDir: string;
     iconFile: string;
     label: string;
@@ -24,7 +23,6 @@ interface ListBaseItemProps {
 
 function ListBaseItem(props: ListBaseItemProps): JSX.Element {
     const {
-        isOpening,
         iconDir,
         iconFile,
         label,
@@ -40,7 +38,7 @@ function ListBaseItem(props: ListBaseItemProps): JSX.Element {
 
     return (
         <StrictMode>
-            <PanelListItem disabled={isOpening}>
+            <PanelListItem>
                 <PanelListItemIcon>
                     <picture className={`${CLASS_NAME_PREFIX}__icon_img`}>
                         <source srcSet={`${iconDir}dark/${iconFile}`} media={'(prefers-color-scheme: dark)'} />
@@ -104,7 +102,6 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
                     onClick={onClick}
                     title={title}>
                     <ListBaseItem
-                        isOpening={isOpening}
                         iconDir={ICON_DIR}
                         iconFile={'defaultFavicon.svg'}
                         label={label}
@@ -120,7 +117,6 @@ export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
                 className={`${CLASS_NAME_PREFIX}__container`}
                 title={bookmarkTitle}>
                 <ListBaseItem
-                    isOpening={isOpening}
                     iconDir={ICON_DIR}
                     iconFile={'folder.svg'}
                     label={bookmarkTitle}
