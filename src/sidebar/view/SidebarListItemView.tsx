@@ -1,5 +1,5 @@
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
-import { StrictMode, useState, MouseEventHandler, MouseEvent, SetStateAction, Dispatch, useCallback } from 'react';
+import { StrictMode, useState, MouseEventHandler, MouseEvent, SetStateAction, Dispatch } from 'react';
 
 import type { BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../../typings/webext/bookmarks';
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../../shared/Bookmark';
@@ -111,17 +111,14 @@ function ListItemForBookmarkItem(props: ListItemForBookmarkItemProps) {
     const bookmarkTitle = bookmark.title;
     const title = `${bookmarkTitle}\n${url}`;
 
-    const onClick: MouseEventHandler<HTMLAnchorElement> = useCallback(
-        (evt) => {
-            evt.preventDefault();
+    const onClick: MouseEventHandler<HTMLAnchorElement> = (evt) => {
+        evt.preventDefault();
 
-            const where = calculateWhereToOpenItem(evt);
-            intent.openItem(id, url, where);
+        const where = calculateWhereToOpenItem(evt);
+        intent.openItem(id, url, where);
 
-            setIsOpening(true);
-        },
-        [id, intent, setIsOpening, url]
-    );
+        setIsOpening(true);
+    };
 
     const label = bookmarkTitle === '' ? url : bookmarkTitle;
 
