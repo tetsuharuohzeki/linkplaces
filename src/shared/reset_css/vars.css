@@ -6,7 +6,7 @@
     --panel-item__active--bg-color: rgba(0, 0, 0, 0.1);
     --panel-item__disabled--color: #999;
     --panel-item__text-shortcut--color: #808080;
-    --panel-item__text-shortcut--font-family: 'Lucida Grande', caption;
+    --panel-item__text-shortcut--font-family: 'Lucida Grande', ui-monospace, monospace;
 
     --global-content__link-color: initial;
     --global-content__link-color--hover: initial;
