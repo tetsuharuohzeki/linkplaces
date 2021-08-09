@@ -17,3 +17,9 @@
 .popup-c-PopupMainView-ItemListItem__container:visited {
     color: unset;
 }
+
+.shared-com-PanelListItem__container .shared-com-PanelListItem__icon {
+    inline-size: 16px;
+    block-size: 16px;
+    margin-inline-end: 1em;
+}

@@ -24,10 +24,7 @@
 }
 
 .sidebar-com-SidebarListItemView__container .shared-com-PanelListItem__icon {
-    margin-inline-end: 1em;
-}
-
-.sidebar-com-SidebarListItemView__icon_img {
     inline-size: 16px;
     block-size: 16px;
+    margin-inline-end: 1em;
 }

@@ -6,7 +6,6 @@ import {
     createDomRef,
     createDomElement as dom,
     createDocFragmentTree as fragment,
-    createTextNode as text,
 } from '../../foundation/domfactory';
 
 export const ATTR_NAME_ICON_DIR = 'icondir';
@@ -57,16 +56,6 @@ export class PopupItemIconElement extends HTMLElement {
         this._iconFile = iconFile;
 
         const tree = fragment([
-            dom('style', null, [
-                text(`
-                .com-popup-PopupIconElement__icon {
-                    inline-size: var(--side-size, 16px);
-                    block-size: var(--side-size, 16px);
-                    margin-inline-end: var(--margin-inline-end);
-                }
-                `),
-            ]),
-
             dom('picture', [
                 ['class', `com-popup-PopupIconElement__icon`],
             ],
