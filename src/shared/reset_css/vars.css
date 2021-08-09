@@ -1,12 +1,12 @@
 /* stylelint-disable custom-property-empty-line-before */
 
 :root {
-    --panel-item__hover--bg-color: rgba(0, 0, 0, 0.06);
-    --panel-item__hover--border-color: rgba(0, 0, 0, 0.1);
-    --panel-item__active--bg-color: rgba(0, 0, 0, 0.1);
-    --panel-item__disabled--color: #999;
-    --panel-item__text-shortcut--color: #808080;
-    --panel-item__text-shortcut--font-family: 'Lucida Grande', ui-monospace, monospace;
+    --shared-com-PanelListItem__container__hover--bg-color: rgba(0, 0, 0, 0.06);
+    --shared-com-PanelListItem__container__hover--border-color: rgba(0, 0, 0, 0.1);
+    --shared-com-PanelListItem__container__active--bg-color: rgba(0, 0, 0, 0.1);
+    --shared-com-PanelListItem__container__disabled--color: #999;
+    --shared-com-PanelListItem__text-shortcut--color: #808080;
+    --shared-com-PanelListItem__text-shortcut--font-family: 'Lucida Grande', ui-monospace, monospace;
 
     --global-content__link-color: initial;
     --global-content__link-color--hover: initial;
@@ -21,9 +21,9 @@
         --global-body__background-color: #38383d;
         --global-body__text-color: rgb(249, 249, 250);
 
-        --panel-item__hover--bg-color: rgba(249, 249, 250, 0.15);
-        --panel-item__hover--border-color: rgba(249, 249, 250, 0.15);
-        --panel-item__active--bg-color: rgba(249, 249, 250, 0.2);
+        --shared-com-PanelListItem__container__hover--bg-color: rgba(249, 249, 250, 0.15);
+        --shared-com-PanelListItem__container__hover--border-color: rgba(249, 249, 250, 0.15);
+        --shared-com-PanelListItem__container__active--bg-color: rgba(249, 249, 250, 0.2);
 
         --global-content__link-color: #45a1ff;
         --global-content__link-color--hover: #0a84ff;

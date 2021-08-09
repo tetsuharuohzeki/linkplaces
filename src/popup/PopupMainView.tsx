@@ -36,23 +36,36 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element 
     return (
         <StrictMode>
             <main>
+                <Header onClick={onClickOpenWebExtSidebar} />
+                <PanelSectionListSeparator />
+                <PanelSectionList>{items}</PanelSectionList>
+            </main>
+        </StrictMode>
+    );
+}
+
+interface HeaderProps {
+    onClick: MouseEventHandler<HTMLElement>;
+}
+
+function Header(props: HeaderProps): JSX.Element {
+    return (
+        <StrictMode>
+            <div className={'popup-c-PopupMainView-Header__container'}>
                 <PanelSectionList>
-                    <PanelListItem onClick={onClickOpenWebExtSidebar}>
+                    <PanelListItem onClick={props.onClick}>
                         <PanelListItemIcon>
-                            <popup-item-icon icondir={ICON_DIR} iconfile={'sidebars.svg'} />
+                            <popup-item-icon
+                                icondir={ICON_DIR}
+                                iconfile={'sidebars.svg'}
+                            />
                         </PanelListItemIcon>
                         <PanelListItemText>
-                            <span className={'popup__listitem_text_inner'}>
-                                {'View LinkPlaces Sidebar'}
-                            </span>
+                            {'View LinkPlaces Sidebar'}
                         </PanelListItemText>
                     </PanelListItem>
                 </PanelSectionList>
-                <PanelSectionListSeparator />
-                <PanelSectionList>
-                    {items}
-                </PanelSectionList>
-            </main>
+            </div>
         </StrictMode>
     );
 }
