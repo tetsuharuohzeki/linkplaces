@@ -1,13 +1,6 @@
 /* stylelint-disable custom-property-empty-line-before */
 
 :root {
-    --shared-com-PanelListItem__container__hover--bg-color: rgba(0, 0, 0, 0.06);
-    --shared-com-PanelListItem__container__hover--border-color: rgba(0, 0, 0, 0.1);
-    --shared-com-PanelListItem__container__active--bg-color: rgba(0, 0, 0, 0.1);
-    --shared-com-PanelListItem__container__disabled--color: #999;
-    --shared-com-PanelListItem__text-shortcut--color: #808080;
-    --shared-com-PanelListItem__text-shortcut--font-family: 'Lucida Grande', ui-monospace, monospace;
-
     --global-content__link-color: initial;
     --global-content__link-color--hover: initial;
     --global-content__link-color--active: initial;
