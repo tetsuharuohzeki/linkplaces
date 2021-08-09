@@ -61,9 +61,7 @@ function Header(props: HeaderProps): JSX.Element {
                             />
                         </PanelListItemIcon>
                         <PanelListItemText>
-                            <span className={'popup__listitem_text_inner'}>
-                                {'View LinkPlaces Sidebar'}
-                            </span>
+                            {'View LinkPlaces Sidebar'}
                         </PanelListItemText>
                     </PanelListItem>
                 </PanelSectionList>
