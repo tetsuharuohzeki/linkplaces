@@ -17,14 +17,12 @@
 }
 
 .sidebar-com-SidebarListItemView__container .shared-com-PanelListItem__container {
+    --shared-com-PanelListItem__icon--inline-size: 16px;
+    --shared-com-PanelListItem__icon--block-size: 16px;
+    --shared-com-PanelListItem__icon--margin-inline-end: 0.5em;
+
     padding-block-start: 0;
     padding-block-end: 0;
     padding-inline-start: 16px;
     padding-inline-end: 8px;
-}
-
-.sidebar-com-SidebarListItemView__container .shared-com-PanelListItem__icon {
-    inline-size: 16px;
-    block-size: 16px;
-    margin-inline-end: .5em;
 }

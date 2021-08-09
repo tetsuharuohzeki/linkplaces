@@ -18,8 +18,8 @@
     color: unset;
 }
 
-.shared-com-PanelListItem__container .shared-com-PanelListItem__icon {
-    inline-size: 16px;
-    block-size: 16px;
-    margin-inline-end: 1em;
+:is(.popup-c-PopupMainView-Header__container, .popup-c-PopupMainView-ItemListItem__container) .shared-com-PanelListItem__container {
+    --shared-com-PanelListItem__icon--inline-size: 16px;
+    --shared-com-PanelListItem__icon--block-size: 16px;
+    --shared-com-PanelListItem__icon--margin-inline-end: 1em;
 }

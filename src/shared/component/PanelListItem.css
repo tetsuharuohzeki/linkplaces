@@ -25,6 +25,9 @@
 .shared-com-PanelListItem__icon {
     flex-grow: 0;
     flex-shrink: 0;
+    inline-size: var(--shared-com-PanelListItem__icon--inline-size);
+    block-size: var(--shared-com-PanelListItem__icon--block-size);
+    margin-inline-end: var(--shared-com-PanelListItem__icon--margin-inline-end);
 }
 
 .shared-com-PanelListItem__text {
