@@ -2,7 +2,6 @@ import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import {
     BehaviorSubject,
     Observable,
-    Observer,
     Subject,
     merge as mergeRx,
     map as mapRx,
@@ -17,7 +16,7 @@ import { SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDom
 
 type BookmarkId = string;
 
-export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>>, Observer<Array<BookmarkTreeNode>> {
+export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
 
     static create(bookmarks: WebExtBookmarkService, init: Array<BookmarkTreeNode>): BookmarkRepository {
         const s = new BookmarkRepository(init);
