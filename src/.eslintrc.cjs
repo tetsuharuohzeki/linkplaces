@@ -47,5 +47,8 @@ module.exports = {
                 'extensions': ALL_EXTENSION,
             },
         },
+        'import/ignore': [
+            'node_modules m'
+        ],
     },
 };
