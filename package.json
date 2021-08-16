@@ -39,7 +39,7 @@
         "eslint-plugin-import": "^2.23.4",
         "eslint-plugin-react": "^7.24.0",
         "eslint-plugin-react-hooks": "^4.2.0",
-        "jsdom": "^16.7.0",
+        "jsdom": "^17.0.0",
         "option-t": "^28.1.1",
         "picomatch": "^2.3.0",
         "postcss": "^8.3.6",
