@@ -1,3 +1,4 @@
+import { Ix } from '@linkplaces/foundation';
 import type { BookmarkTreeNode, WebExtBookmarkService } from '@linkplaces/webext_types';
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import {
@@ -10,7 +11,6 @@ import {
 
 
 import type { Repository } from '../foundation/Repository';
-import * as Ix from '../foundation/ix/mod';
 import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
 import { SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain';
 

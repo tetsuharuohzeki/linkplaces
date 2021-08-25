@@ -1,5 +1,6 @@
+import { Ix } from '@linkplaces/foundation';
+
 import { createDocFragmentTree, createDomElement as element, createTextNode as text } from '../foundation/domfactory';
-import * as Ix from '../foundation/ix/mod';
 import { BUILD_DATE, GIT_REVISION, RELEASE_CHANNEL } from '../shared/constants';
 
 export type Page = Readonly<{

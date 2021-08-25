@@ -1,6 +1,7 @@
+import { Ix } from '@linkplaces/foundation';
+
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
-import * as Ix from '../foundation/ix/mod';
 import { mapToSidebarItemEntity, SidebarItemViewModelEntity } from './SidebarDomain';
 
 export interface SidebarState {
