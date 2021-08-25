@@ -1,0 +1,12 @@
+{
+    "name": "@linkplaces/foundation",
+    "version": "0.10.0",
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./__dist/mod.d.ts",
+            "default": "./__dist/mod.js"
+        }
+    },
+    "typings": "./__dist/mod.d.ts"
+}
