@@ -58,6 +58,7 @@ jobs:
 
       - name: build
         run: make build_package -j
+        working-directory: ./packages/linkplaces
         env:
           CI: true
 
@@ -91,6 +92,7 @@ jobs:
 
       - name: build
         run: make build_package -j USE_ESBUILD=1
+        working-directory: ./packages/linkplaces
         env:
           CI: true
 
@@ -123,6 +125,7 @@ jobs:
 
       - name: Lint
         run: make lint -j
+        working-directory: ./packages/linkplaces
         env:
           CI: true
 
@@ -155,6 +158,7 @@ jobs:
 
       - name: typecheck
         run: make typecheck -j
+        working-directory: ./packages/linkplaces
         env:
           CI: true
 
@@ -187,6 +191,7 @@ jobs:
 
       - name: check formatting
         run: make check_format -j
+        working-directory: ./packages/linkplaces
         env:
           CI: true
 
@@ -219,5 +224,6 @@ jobs:
 
       - name: Run unittests
         run: make unittest -j
+        working-directory: ./packages/linkplaces
         env:
           CI: true
