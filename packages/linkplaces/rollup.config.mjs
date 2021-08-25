@@ -23,10 +23,10 @@ IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
 `);
 
 const REACT_RELATED_PKG_LIST = [
-    'node_modules/react/**',
-    'node_modules/object-assign/**',
-    'node_modules/react-dom/**',
-    'node_modules/scheduler/**',
+    /node_modules\/react\/.*/u,
+    /node_modules\/object-assign\/.*/u,
+    /node_modules\/react-dom\/.*/u,
+    /node_modules\/scheduler\/.*/u,
 ];
 
 /**
