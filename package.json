@@ -1,0 +1,11 @@
+{
+    "name": "linkplaces-monorepo",
+    "private": true,
+    "type": "module",
+    "license": "MPL-2.0",
+    "workspaces": {
+        "packages": [
+            "packages/*"
+        ]
+    }
+}
