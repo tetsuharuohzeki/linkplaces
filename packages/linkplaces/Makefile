@@ -8,7 +8,7 @@ PLAIN_SRC_DIR := $(PLAIN_DIR)/src
 OBJ_DIR := $(CURDIR)/__obj
 OBJ_SRC_DIR := $(OBJ_DIR)/src
 DIST_DIR := $(CURDIR)/__dist
-ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
+ARTIFACT_DIR ?= $(CURDIR)/web-ext-artifacts
 
 ESLINT_TARGET_EXTENSION := js,jsx,cjs,mjs,ts,tsx
 PRETTIER_TARGET := '$(SRC_DIR)/**/*.css'
@@ -76,7 +76,7 @@ build_package: __webext_xpi ## Build the artifact.
 
 __webext_xpi: clean_webext_artifacts \
      webextension
-	$(NPM_BIN)/web-ext build -s $(DIST_DIR)
+	$(NPM_BIN)/web-ext build -s $(DIST_DIR) --artifacts-dir $(ARTIFACT_DIR)
 
 webextension: webextension_cp webextension_js webextension_css
 
