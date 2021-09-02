@@ -1,5 +1,10 @@
 {
-    "extends": "./tsconfig.base.json",
+    "extends": "../../tsconfig.base.project_reference.json",
+    "compilerOptions": {
+        // This is duplicated with Makefile
+        "outDir": "./__plain/src",
+        "rootDir": "./src"
+    },
     "include": [
         "./src/**/*",
         "./typings/**/*"

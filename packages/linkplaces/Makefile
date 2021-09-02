@@ -42,7 +42,10 @@ help:
 ####################################
 # Clean
 ####################################
-clean: clean_dist clean_obj clean_plain clean_webext_artifacts ## Clean up all generated files.
+clean: clean_compiler_info clean_dist clean_obj clean_plain clean_webext_artifacts ## Clean up all generated files.
+
+clean_compiler_info:
+	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(CURDIR)/tsconfig.tsbuildinfo --force
 
 clean_dist:
 	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(DIST_DIR) --force
