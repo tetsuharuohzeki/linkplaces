@@ -23,7 +23,7 @@ import type { RemoteActionChannel } from './SidebarMessageChannel';
 import { createUpdateFromSourceAction } from './SidebarReduxAction';
 import { SidebarRepository } from './SidebarRepository';
 import type { SidebarState } from './SidebarState';
-import { createSidebarStateObservable, createSidebarStore } from './SidebarStore';
+import { createSidebarStateObservable, createSidebarStore, SidebarPlainReduxStore } from './SidebarStore';
 import { SidebarView } from './SidebarView';
 
 export class SidebarContext extends ReactRuledViewContext {
@@ -60,16 +60,7 @@ export class SidebarContext extends ReactRuledViewContext {
         const store = createSidebarStore(this._list);
         const state = createSidebarStateObservable(store);
 
-        const reduxSubscription = this._repo.asObservable()
-            .pipe(subscribeOnRx(asyncRxScheduler))
-            .subscribe((source: Iterable<SidebarItemViewModelEntity>) => {
-                const state: Readonly<SidebarState> = {
-                    list: source,
-                };
-                const a = createUpdateFromSourceAction(state);
-                store.dispatch(a);
-            });
-
+        const reduxSubscription = subscribeSidebarRepositoryBySidebarStore(store, this._repo);
         subscription.add(reduxSubscription);
 
         const epic = new SidebarEpic(this._channel, store);
@@ -108,4 +99,18 @@ export class SidebarContext extends ReactRuledViewContext {
 
         this._destroyRenderRoot();
     }
+}
+
+function subscribeSidebarRepositoryBySidebarStore(store: SidebarPlainReduxStore, repo: SidebarRepository): Subscription {
+    const subscription = repo
+        .asObservable()
+        .pipe(subscribeOnRx(asyncRxScheduler))
+        .subscribe((source: Iterable<SidebarItemViewModelEntity>) => {
+            const state: Readonly<SidebarState> = {
+                list: source,
+            };
+            const a = createUpdateFromSourceAction(state);
+            store.dispatch(a);
+        });
+    return subscription;
 }
