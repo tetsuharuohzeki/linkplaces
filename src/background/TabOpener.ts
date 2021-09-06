@@ -2,6 +2,7 @@ import { expectNotNullAndUndefined } from 'option-t/esm/Maybe/expect';
 import { expectNotUndefined } from 'option-t/esm/Undefinable/expect';
 
 import type { TabId } from '../../typings/webext/tabs';
+import type { Window as BrowserWindow } from '../../typings/webext/windows';
 
 import {
     WHERE_TO_OPEN_ITEM_TO_TAB,
@@ -82,10 +83,7 @@ async function openItemInNewTab(url: string, shouldActive: boolean): Promise<Tab
     return id;
 }
 
-/**
- *  @return {Promise}
- */
-function getLastFocusedWindow() {
+function getLastFocusedWindow(): Promise<BrowserWindow> {
     const w = browser.windows.getLastFocused({
     });
     return w;
