@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 import { ReduxLikeStore } from '../foundation/ReduxLikeStore';
 
@@ -22,19 +21,4 @@ export function createSidebarStore(initial: Array<BookmarkTreeNode>): SidebarPla
     const initialState = createInitialSidebarState(initial);
     const store = ReduxLikeStore.create<SidebarState, SidebarReduxAction>(reduceSidebarReduxState, initialState);
     return store;
-}
-
-export function createSidebarStateObservable(store: SidebarPlainReduxStore): Observable<SidebarState>{
-    const reduxSource = new Observable<SidebarState>((subscripber) => {
-        const teardown = store.subscribe(() => {
-            const s = store.state();
-            subscripber.next(s);
-        });
-
-        return () => {
-            teardown();
-        };
-    });
-
-    return reduxSource;
 }

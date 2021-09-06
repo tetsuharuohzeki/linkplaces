@@ -23,7 +23,7 @@ import type { RemoteActionChannel } from './SidebarMessageChannel';
 import { createUpdateFromSourceAction } from './SidebarReduxAction';
 import { SidebarRepository } from './SidebarRepository';
 import type { SidebarState } from './SidebarState';
-import { createSidebarStateObservable, createSidebarStore, SidebarPlainReduxStore } from './SidebarStore';
+import { createSidebarStore, SidebarPlainReduxStore } from './SidebarStore';
 import { SidebarView } from './SidebarView';
 
 export class SidebarContext extends ReactRuledViewContext {
@@ -56,32 +56,33 @@ export class SidebarContext extends ReactRuledViewContext {
         }
         this._initRenderRoot(mountpoint);
 
-        const subscription = new Subscription();
+        const rootSubscription = new Subscription();
         const store = createSidebarStore(this._list);
-        const state = createSidebarStateObservable(store);
 
         const reduxSubscription = subscribeSidebarRepositoryBySidebarStore(store, this._repo);
-        subscription.add(reduxSubscription);
+        rootSubscription.add(reduxSubscription);
 
         const epic = new SidebarEpic(this._channel, store);
         const intent = new SidebarIntent(epic, store);
 
-        const renderSubscription = state
-            .subscribe((state: Readonly<SidebarState>) => {
-                const view = (
-                    <StrictMode>
-                        <SidebarView state={state} intent={intent} />
-                    </StrictMode>
-                );
+        const renderSubscription = store.subscribe((state: Readonly<SidebarState>) => {
+            const view = (
+                <StrictMode>
+                    <SidebarView state={state} intent={intent} />
+                </StrictMode>
+            );
 
-                const renderRoot = this._getRenderRoot();
-                renderRoot.render(view);
-            });
-        subscription.add(renderSubscription);
+            const renderRoot = this._getRenderRoot();
+            renderRoot.render(view);
+        });
+        {
+            const s = new Subscription(renderSubscription);
+            rootSubscription.add(s);
+        }
 
         const pastEventObservable = fromEventToObservable(window, 'paste');
 
-        subscription.add(pastEventObservable.subscribe((event) => {
+        rootSubscription.add(pastEventObservable.subscribe((event) => {
             if (!(event instanceof ClipboardEvent)) {
                 throw new TypeError(`this event should be paste but coming is ${event.type}`);
             }
@@ -89,7 +90,7 @@ export class SidebarContext extends ReactRuledViewContext {
             intent.pasteItemFromClipboardActionActual(event);
         }));
 
-        this._subscription = subscription;
+        this._subscription = rootSubscription;
     }
 
     async onDestroy(_mountpoint: Element): Promise<void> {
