@@ -68,7 +68,7 @@ export class SidebarContext extends ReactRuledViewContext {
                 };
                 const a = createUpdateFromSourceAction(state);
                 store.dispatch(a);
-            }, console.error);
+            });
 
         subscription.add(reduxSubscription);
 
@@ -85,7 +85,7 @@ export class SidebarContext extends ReactRuledViewContext {
 
                 const renderRoot = this._getRenderRoot();
                 renderRoot.render(view);
-            }, console.error);
+            });
         subscription.add(renderSubscription);
 
         const pastEventObservable = fromEventToObservable(window, 'paste');
@@ -96,7 +96,7 @@ export class SidebarContext extends ReactRuledViewContext {
             }
 
             intent.pasteItemFromClipboardActionActual(event);
-        }, console.error));
+        }));
 
         this._subscription = subscription;
     }
