@@ -44,7 +44,7 @@
         "picomatch": "^2.3.0",
         "postcss": "^8.3.6",
         "postcss-import": "^14.0.2",
-        "prettier": "^2.4.0",
+        "prettier": "^2.4.1",
         "react": "^18.0.0-alpha-46a0f050a-20210828",
         "react-dom": "^18.0.0-alpha-46a0f050a-20210828",
         "rollup": "^2.56.3",
