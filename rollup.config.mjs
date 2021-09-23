@@ -50,7 +50,7 @@ export default async function createConfiguration(_commandLineArgs) {
             exports: 'none',
             freeze: true,
             generatedCode: {
-                constBindings: true,
+                preset: 'es2015',
             },
 
             sourcemap: true,
