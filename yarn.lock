@@ -4174,10 +4174,10 @@ open@7.4.2:
     is-docker "^2.0.0"
     is-wsl "^2.1.1"
 
-option-t@^28.1.1:
-  version "28.1.1"
-  resolved "https://registry.yarnpkg.com/option-t/-/option-t-28.1.1.tgz#8f248f21e4f37525052d5121a09def1166b3e246"
-  integrity sha512-Tr0mesYhgZPz6f7gEN9KAxWf5bRefsWcgXvJ8NHwl/Od0JnUGW3avadEXRtmaQdFb0Fq9KDX6br3NRqW69CCXg==
+option-t@^28.1.3:
+  version "28.1.3"
+  resolved "https://registry.yarnpkg.com/option-t/-/option-t-28.1.3.tgz#7cbc398e7338111b9f41df965785784564894e2c"
+  integrity sha512-KztdaQQ2V17z9C8SkbMs7spLYOkLao1uNlditlmQFY7chSjwJSPcjzhSI5JcpjTKplkW8aR+RGTFqOkJLERnWw==
 
 optionator@^0.8.1:
   version "0.8.3"
