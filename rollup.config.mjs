@@ -49,7 +49,9 @@ export default async function createConfiguration(_commandLineArgs) {
             format: 'esm',
             exports: 'none',
             freeze: true,
-            preferConst: true,
+            generatedCode: {
+                constBindings: true,
+            },
 
             sourcemap: true,
             globals: {
