@@ -30,7 +30,7 @@
         "@types/node": "^16.10.1",
         "@types/react": "^17.0.24",
         "@types/react-dom": "^17.0.9",
-        "@typescript-eslint/eslint-plugin": "^4.31.2",
+        "@typescript-eslint/eslint-plugin": "^4.32.0",
         "@typescript-eslint/parser": "^4.32.0",
         "ava": "^3.15.0",
         "esbuild": "^0.13.3",
