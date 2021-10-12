@@ -4923,10 +4923,10 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react@^18.0.0-alpha-5fa4d79b0-20211008:
-  version "18.0.0-alpha-5fa4d79b0-20211008"
-  resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-5fa4d79b0-20211008.tgz#8654224eb850e7922ef297a173cb59df3f79b566"
-  integrity sha512-uYcdLFLqFqpu5bE2R37XDkJirPrVpEhVp7QV0GNNI1Nn8QwO5SoLkbTuMV3jsvYTLk+h8hpnfJu3pKB7HoFpgg==
+react@^18.0.0-alpha-310187264-20210716:
+  version "18.0.0-alpha-310187264-20210716"
+  resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-310187264-20210716.tgz#0653b12dce21779b19603fed068ea8ebf151cd80"
+  integrity sha512-nbShuiEWyBFVvk2kIPOFBKwyQx8xCDUe/iTEw2YexqwrF1SHgY+wCCreEo8hJIEURrxGPwk3aFwV7d1c9+u5YA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
