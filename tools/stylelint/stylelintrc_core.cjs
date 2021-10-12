@@ -36,6 +36,9 @@ module.exports = {
 
     // https://stylelint.io/user-guide/rules/
     'rules': {
+        // Allow to group the code chunk.
+        'at-rule-empty-line-before': null,
+
         // quote
         'font-family-name-quotes': 'always-unless-keyword',
         'function-url-quotes': ['always', {
