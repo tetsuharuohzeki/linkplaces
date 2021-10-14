@@ -158,7 +158,6 @@ jobs:
 
       - name: typecheck
         run: make typecheck -j
-        working-directory: ./packages/linkplaces
         env:
           CI: true
 
