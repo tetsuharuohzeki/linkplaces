@@ -1,4 +1,4 @@
-import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
+import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 import { ReduxLikeStore } from '../foundation/ReduxLikeStore';
 
 import { SidebarReduxAction, SidebarReduxActionType } from './SidebarReduxAction';

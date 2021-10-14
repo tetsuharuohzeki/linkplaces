@@ -1,6 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference types="react/next" />
 
+import type { BookmarkTreeNode } from '@linkplaces/webext_types';
+
 import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import { StrictMode } from 'react';
@@ -12,7 +14,6 @@ import {
     subscribeOn as subscribeOnRx,
 } from 'rxjs';
 
-import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
 
 import { ReactRuledViewContext } from '../foundation/view_ctx/ReactRuledViewContext';
 

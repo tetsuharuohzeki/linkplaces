@@ -1,12 +1,10 @@
+import type { BookmarkTreeNode, OnClickData, CreateArgument, ContextType, Tab } from '@linkplaces/webext_types';
 import { Maybe, isNullOrUndefined } from 'option-t/esm/Maybe';
 import type { Result } from 'option-t/esm/PlainResult/Result';
 import { tapErr } from 'option-t/esm/PlainResult/tap';
 import { expectNotUndefined } from 'option-t/esm/Undefinable/expect';
 import { unwrapOrFromUndefinable } from 'option-t/esm/Undefinable/unwrapOr';
 
-import type { BookmarkTreeNode } from '../../typings/webext/bookmarks';
-import type { OnClickData, CreateArgument, ContextType } from '../../typings/webext/contextMenus';
-import type { Tab } from '../../typings/webext/tabs';
 
 import { createBookmarkItem } from '../shared/Bookmark';
 

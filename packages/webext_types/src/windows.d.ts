@@ -1,4 +1,4 @@
-import { Tab, TabId } from './tabs';
+import type { Tab, TabId } from './tabs';
 
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/WindowType
 export type WindowType = 'normal' | 'popup' | 'panel' | 'devtools';
@@ -9,7 +9,7 @@ export type WindowState = 'normal' | 'minimized' | 'minimized' | 'fullscreen' | 
 export type WindowId = number;
 
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/Window
-export interface Window {
+export interface BrowserWindow {
     alwaysOnTop: boolean;
     focused: boolean;
     height?: number;
@@ -32,7 +32,7 @@ export interface WebExtWindowsService {
         populate?: boolean;
         /** @deprecated */
         windowTypes?: Array<WindowType>;
-    }): Promise<Window>;
+    }): Promise<BrowserWindow>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/create
     create(createData: {
@@ -49,5 +49,5 @@ export interface WebExtWindowsService {
         type?: WindowType;
         url?: string;
         width?: number;
-    }): Promise<Window>;
+    }): Promise<BrowserWindow>;
 }

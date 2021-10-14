@@ -1,4 +1,4 @@
-import type { ExtensionPort } from '../../typings/webext/ExtensionPort';
+import type { ExtensionPort } from '@linkplaces/webext_types';
 
 import { ClientConnection } from '../foundation/tower_like_ipc/ClientConnection';
 import { CONNECTION_PING_FROM_POPUP, RemoteAction } from './RemoteAction';

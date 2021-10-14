@@ -1,0 +1,11 @@
+{
+    "name": "@linkplaces/webext_types",
+    "version": "0.10.0",
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./src/index.d.ts"
+        }
+    },
+    "types": "./src/index.d.ts"
+}

@@ -1,3 +1,4 @@
+import type { BookmarkTreeNode, WebExtBookmarkService } from '@linkplaces/webext_types';
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import {
     BehaviorSubject,
@@ -7,7 +8,6 @@ import {
     map as mapRx,
 } from 'rxjs';
 
-import type { BookmarkTreeNode, WebExtBookmarkService } from '../../typings/webext/bookmarks';
 
 import type { Repository } from '../foundation/Repository';
 import * as Ix from '../foundation/ix/mod';

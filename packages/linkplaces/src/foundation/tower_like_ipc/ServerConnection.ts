@@ -1,7 +1,7 @@
+import type { ExtensionPort } from '@linkplaces/webext_types';
+
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import type { Result } from 'option-t/esm/PlainResult';
-
-import type { ExtensionPort } from '../../../typings/webext/ExtensionPort';
 
 import { assertPacket, Packet } from './Packet';
 import type { TowerService } from './traits';
