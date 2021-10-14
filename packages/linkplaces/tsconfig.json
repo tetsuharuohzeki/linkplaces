@@ -9,8 +9,7 @@
         "./src/**/*"
     ],
     "references": [
-        {
-            "path": "../webext_types"
-        }
+        { "path": "../foundation" },
+        { "path": "../webext_types" }
     ]
 }

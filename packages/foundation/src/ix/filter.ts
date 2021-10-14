@@ -1,4 +1,4 @@
-import { IterableX } from './iterable_x';
+import { IterableX } from './iterable_x.js';
 
 export type FilterFn<T> = (input: T) => boolean;
 

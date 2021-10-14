@@ -1,4 +1,4 @@
-import { AsyncIterableX } from './iterable_x';
+import { AsyncIterableX } from './iterable_x.js';
 
 export type AsyncTransformFn<TInput, TOutput> = (input: TInput) => TOutput | Promise<TOutput>;
 

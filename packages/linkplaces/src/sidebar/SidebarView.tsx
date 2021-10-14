@@ -1,5 +1,6 @@
+import { Ix } from '@linkplaces/foundation';
+
 import { StrictMode } from 'react';
-import * as Ix from '../foundation/ix/mod';
 import { PanelSectionList } from '../shared/component/PanelSectionList';
 import type { SidebarIntent } from './SidebarIntent';
 import type { SidebarState } from './SidebarState';
