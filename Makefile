@@ -43,5 +43,5 @@ build_production: clean ## Run `make build` with `RELEASE_CHANNEL=production`
 # Test
 ####################################
 
-typecheck: clean ## Check static typing integrity
+typecheck: ## Check static typing integrity
 	$(NPM_BIN)/tsc --build

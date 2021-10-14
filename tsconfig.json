@@ -3,6 +3,9 @@
     "compilerOptions": {
         "noEmit": true
     },
+    "exclude": [
+        "./packages/**/*"
+    ],
     "references": [
         {
             "path": "./packages/linkplaces"
