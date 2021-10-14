@@ -1,10 +1,10 @@
-import { type Ipc, NoImplementationError } from '@linkplaces/foundation';
+import { type Ipc, NoImplementationError, BookmarkSvc } from '@linkplaces/foundation';
 import { MSG_TYPE_OPEN_URL, MSG_TYPE_REGISTER_URL, RemoteAction, WhereToOpenItem } from '@linkplaces/ipc_message';
 import { createOk, Result } from 'option-t/esm/PlainResult';
 
-import { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } from '../shared/Bookmark';
-
 import { createTab } from './TabOpener';
+
+const { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } = BookmarkSvc;
 
 export class BackgroundRemoteActionReciever implements Ipc.TowerService<RemoteAction, void> {
     async ready(): Promise<Result<void, Error>> {

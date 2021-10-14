@@ -1,8 +1,10 @@
+import { BookmarkSvc } from '@linkplaces/foundation';
 import { landViewContext } from '@linkplaces/foundation/__dist/view_ctx/mod';
 
-import { getUnfiledBoolmarkFolder } from '../shared/Bookmark';
 import { SidebarContext } from './SidebarContext';
 import { createChannel } from './SidebarMessageChannel';
+
+const getUnfiledBoolmarkFolder = BookmarkSvc.getUnfiledBoolmarkFolder;
 
 (async function main() {
     const [list, channel] = await Promise.all([

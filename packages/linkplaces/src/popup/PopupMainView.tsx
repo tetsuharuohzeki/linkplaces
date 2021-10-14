@@ -1,9 +1,9 @@
+import { BookmarkSvc } from '@linkplaces/foundation';
 import type { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/webext_types';
+
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import { StrictMode, MouseEvent, MouseEventHandler, useState } from 'react';
 
-
-import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../shared/Bookmark';
 import {
     PanelListItem,
     PanelListItemIcon,
@@ -13,6 +13,8 @@ import { PanelSectionList, PanelSectionListSeparator } from '../shared/component
 import type { PopupMainIntent } from './PopupMainIntent';
 
 import type { PopupMainState } from './PopupMainState';
+
+const { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } = BookmarkSvc;
 
 const ICON_DIR = '../resources/icon/';
 
