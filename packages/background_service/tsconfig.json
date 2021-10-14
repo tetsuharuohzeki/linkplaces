@@ -1,15 +1,14 @@
 {
     "extends": "../../tsconfig.base.project_reference.json",
     "compilerOptions": {
-        // This is duplicated with Makefile
-        "outDir": "./__plain/src",
+        "outDir": "./__dist",
         "rootDir": "./src"
     },
     "include": [
-        "./src/**/*"
+        // @prettier-ignore
+        "**/*"
     ],
     "references": [
-        { "path": "../background_service" },
         { "path": "../foundation" },
         { "path": "../ipc_message" },
         { "path": "../webext_types" }
