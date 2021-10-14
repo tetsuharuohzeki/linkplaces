@@ -2,7 +2,7 @@ import { type Ipc, NoImplementationError, BookmarkSvc } from '@linkplaces/founda
 import { MSG_TYPE_OPEN_URL, MSG_TYPE_REGISTER_URL, RemoteAction, WhereToOpenItem } from '@linkplaces/ipc_message';
 import { createOk, Result } from 'option-t/esm/PlainResult';
 
-import { createTab } from './TabOpener';
+import { createTab } from './TabOpener.js';
 
 const { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } = BookmarkSvc;
 

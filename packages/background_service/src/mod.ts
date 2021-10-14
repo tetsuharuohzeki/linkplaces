@@ -1,8 +1,9 @@
 import { Ipc } from '@linkplaces/foundation';
 import { assertIsRemoteAction } from '@linkplaces/ipc_message';
 
-import { BackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever';
-import { createContextMenu } from './ContextMenu';
+import { BackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever.js';
+import { createContextMenu } from './ContextMenu.js';
+
 declare global {
     // We keep this for debugging.
     // eslint-disable-next-line no-var
