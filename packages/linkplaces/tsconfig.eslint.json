@@ -5,9 +5,7 @@
     "extends": "../../tsconfig.base.json",
     "include": [
         "src/**/*",
-        "src/**/.eslintrc.cjs",
-        "typings/**/*",
-        "typings/**/.eslintrc.cjs",
+        "src/**/.eslintrc.cjs"
     ],
     // We need to turn on to lint `.eslintrc.js` X(
     "compilerOptions": {
