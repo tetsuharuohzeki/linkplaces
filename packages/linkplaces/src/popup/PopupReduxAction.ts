@@ -1,8 +1,8 @@
+import type { ActionArcheType } from '@linkplaces/foundation';
 import type {
     OnChangeInfo,
     BookmarkTreeNode,
 } from '@linkplaces/webext_types';
-import type { ActionArcheType } from '../foundation/ReduxLikeStore';
 
 export enum PopupReduxActionType {
     Init = 'POPUP_ACTION_INIT',

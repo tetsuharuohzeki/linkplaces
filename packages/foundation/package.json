@@ -10,6 +10,10 @@
         "./tower_like_ipc": {
             "types": "./__dist/tower_like_ipc/mod.d.ts",
             "default": "./__dist/tower_like_ipc/mod.js"
+        },
+        "./view_ctx": {
+            "types": "./__dist/view_ctx/mod.d.ts",
+            "default": "./__dist/view_ctx/mod.js"
         }
     },
     "typings": "./__dist/mod.d.ts",

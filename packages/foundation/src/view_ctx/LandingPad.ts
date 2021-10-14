@@ -1,5 +1,5 @@
 import { isNull } from 'option-t/esm/Nullable/Nullable';
-import type { ViewContext } from './ViewContext';
+import type { ViewContext } from './ViewContext.js';
 
 const DOM_MOUNTPOINT_ID = 'js-mountpoint';
 

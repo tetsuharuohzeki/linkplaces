@@ -3,12 +3,11 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference types="react-dom/next" />
 
+import { ReactRuledViewContext } from '@linkplaces/foundation';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
 import { StrictMode } from 'react';
-
-import { ReactRuledViewContext } from '../foundation/view_ctx/ReactRuledViewContext';
 
 import { PopupMainEpic } from './PopupMainEpic';
 import { PopupMainIntent } from './PopupMainIntent';

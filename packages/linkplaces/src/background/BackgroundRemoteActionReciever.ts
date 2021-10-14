@@ -1,6 +1,6 @@
-import type { Ipc } from '@linkplaces/foundation';
+import { type Ipc, NoImplementationError } from '@linkplaces/foundation';
 import { createOk, Result } from 'option-t/esm/PlainResult';
-import { NoImplementationError } from '../foundation/NoImplementationError';
+
 import { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } from '../shared/Bookmark';
 import { MSG_TYPE_OPEN_URL, MSG_TYPE_REGISTER_URL, RemoteAction, WhereToOpenItem } from '../shared/RemoteAction';
 

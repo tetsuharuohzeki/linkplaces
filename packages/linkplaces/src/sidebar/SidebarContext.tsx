@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference types="react/next" />
 
+import { ReactRuledViewContext } from '@linkplaces/foundation';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
@@ -13,9 +14,6 @@ import {
     fromEvent as fromEventToObservable,
     subscribeOn as subscribeOnRx,
 } from 'rxjs';
-
-
-import { ReactRuledViewContext } from '../foundation/view_ctx/ReactRuledViewContext';
 
 import type { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarEpic } from './SidebarEpic';

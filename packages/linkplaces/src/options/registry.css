@@ -1,6 +1,6 @@
 @charset 'utf-8';
 
-@import '../foundation/reset_css/mod.css';
+@import '@linkplaces/foundation/src/mod.css';
 
 @import '../shared/reset_css/mod.css';
 
