@@ -1,4 +1,4 @@
-import { isNull, Nullable } from 'option-t/esm/Nullable/Nullable';
+import { isNull, Nullable } from 'option-t/Nullable/Nullable';
 
 export interface Packet<T> {
     readonly id: Nullable<number>;

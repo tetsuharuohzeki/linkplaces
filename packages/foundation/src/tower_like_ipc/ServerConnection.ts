@@ -1,7 +1,7 @@
 import type { ExtensionPort } from '@linkplaces/webext_types';
 
-import type { Nullable } from 'option-t/esm/Nullable/Nullable';
-import type { Result } from 'option-t/esm/PlainResult';
+import type { Nullable } from 'option-t/Nullable/Nullable';
+import type { Result } from 'option-t/PlainResult';
 
 import { assertPacket, Packet } from './Packet.js';
 import type { TowerService } from './traits.js';

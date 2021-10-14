@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference types="react-dom/next" />
 
-import type { Nullable } from 'option-t/esm/Nullable/Nullable';
-import { expectNotNull } from 'option-t/esm/Nullable/expect';
+import type { Nullable } from 'option-t/Nullable/Nullable';
+import { expectNotNull } from 'option-t/Nullable/expect';
 import * as ReactDOM from 'react-dom';
 
 import type { ViewContext } from './ViewContext.js';
