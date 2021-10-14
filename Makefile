@@ -1,4 +1,6 @@
 NODE_BIN := node
+NPM_MOD_DIR := $(CURDIR)/node_modules
+NPM_BIN := $(NPM_MOD_DIR)/.bin
 
 PKG_DIR := $(CURDIR)/packages
 PKG_MAIN := $(PKG_DIR)/linkplaces
@@ -15,11 +17,14 @@ help:
 ####################################
 # Clean
 ####################################
-clean: clean_webext_artifacts ## Clean up all generated files.
+clean: clean_webext_artifacts clean_tsbuild_info ## Clean up all generated files.
 	$(MAKE) $@ -C $(PKG_MAIN)
 
 clean_webext_artifacts:
 	$(NODE_BIN) $(PKG_MAIN)/tools/rm_dir.js $(ARTIFACT_DIR)
+
+clean_tsbuild_info:
+	$(NPM_BIN)/tsc --build --clean
 
 
 ####################################
