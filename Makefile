@@ -1,30 +1,9 @@
 NODE_BIN := node
-NPM_MOD_DIR := $(CURDIR)/node_modules
-NPM_BIN := $(NPM_MOD_DIR)/.bin
 
-SRC_DIR := $(CURDIR)/src
-PLAIN_DIR := $(CURDIR)/__plain
-PLAIN_SRC_DIR := $(PLAIN_DIR)/src
-OBJ_DIR := $(CURDIR)/__obj
-OBJ_SRC_DIR := $(OBJ_DIR)/src
-DIST_DIR := $(CURDIR)/__dist
-ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
+PKG_DIR := $(CURDIR)/packages
+PKG_MAIN := $(PKG_DIR)/linkplaces
 
-ESLINT_TARGET_EXTENSION := js,jsx,cjs,mjs,ts,tsx
-PRETTIER_TARGET := '$(SRC_DIR)/**/*.css'
-
-USE_ESBUILD ?= 0
-
-export RELEASE_CHANNEL ?= production
-
-# ifeq ($(RELEASE_CHANNEL),production)
-# endif
-
-# Sorry. These are depends on *nix way...
-export GIT_REVISION := $(shell git rev-parse --verify HEAD)
-export BUILD_DATE := $(shell date '+%Y/%m/%d %H:%M:%S %z')
-
-.PHONY: lint
+export ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
 
 all: help
 
@@ -33,138 +12,30 @@ help:
 	@grep -E '^[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@exit 1
 
-
-####################################
-# Bootstrap
-####################################
-
-
 ####################################
 # Clean
 ####################################
-clean: clean_dist clean_obj clean_plain clean_webext_artifacts ## Clean up all generated files.
-
-clean_dist:
-	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(DIST_DIR) --force
-
-clean_obj:
-	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(OBJ_DIR) --force
-
-clean_plain:
-	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(PLAIN_DIR) --force
+clean: clean_webext_artifacts ## Clean up all generated files.
+	$(MAKE) $@ -C $(PKG_MAIN)
 
 clean_webext_artifacts:
-	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(ARTIFACT_DIR)
+	$(NODE_BIN) $(PKG_MAIN)/tools/rm_dir.js $(ARTIFACT_DIR)
 
 
 ####################################
 # Build
 ####################################
 .PHONY: build_development
-build_development: ## Run `make build` with `RELEASE_CHANNEL=development`
-	$(MAKE) build RELEASE_CHANNEL=development
+build_development: clean ## Run `make build` with `RELEASE_CHANNEL=development`
+	$(MAKE) $@ -C $(PKG_MAIN)
 
 .PHONY: build_production
-build_production: ## Run `make build` with `RELEASE_CHANNEL=production`
-	$(MAKE) build RELEASE_CHANNEL=production
-
-.PHONY: build
-build: lint typecheck build_package ## Build the artifact and run all lint (This is not for CI).
-
-.PHONY: build_package
-build_package: __webext_xpi ## Build the artifact.
-
-__webext_xpi: clean_webext_artifacts \
-     webextension
-	$(NPM_BIN)/web-ext build -s $(DIST_DIR)
-
-webextension: webextension_cp webextension_js webextension_css
-
-webextension_cp: clean_dist
-	$(NODE_BIN) $(CURDIR)/tools/cp_files.js --basedir $(SRC_DIR) --source '$(SRC_DIR)/**/**.{json,html,svg}' --destination $(DIST_DIR) --verbose
-
-ifeq ($(USE_ESBUILD),1)
-webextension_js: $(addprefix __bundle_js_esbuild_, background popup sidebar options)
-else
-webextension_js: $(addprefix __bundle_js_, background popup sidebar options)
-endif
-
-webextension_css: $(addprefix __bundle_css_, popup sidebar options)
-
-__bundle_js_esbuild_%: clean_dist __obj __external_dependency
-	RELEASE_CHANNEL=$(RELEASE_CHANNEL) \
-	ENTRY_POINT=$(OBJ_SRC_DIR)/$*/index.js \
-	OUTPUT_FILE=$(DIST_DIR)/$*/$*_bundled.js \
-        $(NODE_BIN) $(CURDIR)/tools/run_esbuild.js
-
-__bundle_js_%: clean_dist __obj __external_dependency
-	RELEASE_CHANNEL=$(RELEASE_CHANNEL) $(NPM_BIN)/rollup $(OBJ_SRC_DIR)/$*/index.js --config $(CURDIR)/rollup.config.mjs --output.file $(DIST_DIR)/$*/$*_bundled.js
-
-__bundle_css_%: clean_dist
-	RELEASE_CHANNEL=$(RELEASE_CHANNEL) \
-        ENTRY_POINT=$(SRC_DIR)/$*/registry.css \
-        OUTPUT_FILE=$(DIST_DIR)/$*/$*.css \
-        $(NODE_BIN) $(CURDIR)/tools/run_postcss.js
-
-__external_dependency:
-
-__obj: __plain clean_obj
-	$(NPM_BIN)/babel $(PLAIN_DIR) --out-dir $(OBJ_DIR) --extensions=.js,.jsx --config-file $(CURDIR)/babel.config.mjs
-
-__plain: $(addprefix __plain_, ts js)
-
-__plain_js: clean_plain
-	$(NODE_BIN) $(CURDIR)/tools/cp_files.js --basedir $(SRC_DIR) --source '$(SRC_DIR)/**/*.{js,jsx}' --destination $(PLAIN_SRC_DIR) --verbose
-
-__plain_ts: clean_plain
-	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --outDir $(PLAIN_SRC_DIR)
+build_production: clean ## Run `make build` with `RELEASE_CHANNEL=production`
+	$(MAKE) $@ -C $(PKG_MAIN)
 
 
 ####################################
 # Test
 ####################################
-test: typecheck lint unittest ## Run all tests command (This is not for CI).
-
-lint: eslint stylelint
-
-eslint: ## Run ESLint
-	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
-
-eslint_fix: ## Run ESLint with --fix option
-	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
-
 typecheck: ## Check static typing integrity
-	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --noEmit
-
-stylelint: ## Run stylelint
-	$(NPM_BIN)/stylelint '$(SRC_DIR)/**/*.css' \
-		--config=$(CURDIR)/stylelint.config.cjs \
-		-f verbose \
-		--syntax css \
-		--color
-
-unittest: __obj ## Run unit tests
-	$(MAKE) run_ava
-
-run_ava: ## Only run unit tests
-	$(NPM_BIN)/ava --config $(CURDIR)/ava.config.cjs
-
-git_diff: ## Test whether there is no committed changes.
-	git diff --exit-code
-
-
-####################################
-# Tools
-####################################
-format: format_css format_js ## Apply formetters for files.
-
-format_css:
-	$(NPM_BIN)/prettier --write $(PRETTIER_TARGET)
-
-format_js:
-	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
-
-check_format: check_format_css
-
-check_format_css:
-	$(NPM_BIN)/prettier --check $(PRETTIER_TARGET)
+	$(MAKE) $@ -C $(PKG_MAIN)

@@ -1,58 +1,11 @@
 {
-    "name": "linkplaces",
-    "version": "0.10.0",
-    "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
+    "name": "linkplaces-monorepo",
+    "private": true,
     "type": "module",
-    "scripts": {
-        "test": "make test"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/tetsuharuohzeki/linkplaces.git"
-    },
-    "author": {
-        "name": "Tetsuharu OHZEKI",
-        "email": "saneyuki.snyk@gmail.com",
-        "url": "https://github.com/tetsuharuohzeki/"
-    },
     "license": "MPL-2.0",
-    "bugs": {
-        "url": "https://github.com/tetsuharuohzeki/linkplaces/issues"
-    },
-    "homepage": "https://github.com/tetsuharuohzeki/linkplaces",
-    "dependencies": {
-        "@babel/cli": "^7.15.7",
-        "@babel/core": "^7.15.8",
-        "@babel/preset-react": "^7.14.5",
-        "@rollup/plugin-commonjs": "^21.0.0",
-        "@rollup/plugin-node-resolve": "^13.0.5",
-        "@rollup/plugin-replace": "^3.0.0",
-        "@types/node": "^16.10.9",
-        "@types/react": "^17.0.29",
-        "@types/react-dom": "^17.0.9",
-        "@typescript-eslint/eslint-plugin": "^5.0.0",
-        "@typescript-eslint/parser": "^5.0.0",
-        "ava": "^3.15.0",
-        "esbuild": "^0.13.5",
-        "eslint": "^8.0.0",
-        "eslint-config-abema": "https://github.com/cats-oss/eslint-config-abema/archive/72a943d6271704c5e87cf22d803f409a735398b7.tar.gz",
-        "eslint-plugin-import": "^2.25.2",
-        "eslint-plugin-react": "^7.26.1",
-        "eslint-plugin-react-hooks": "^4.2.0",
-        "jsdom": "^18.0.0",
-        "option-t": "^28.2.0",
-        "picomatch": "^2.3.0",
-        "postcss": "^8.3.9",
-        "postcss-import": "^14.0.2",
-        "prettier": "^2.4.1",
-        "react": "^18.0.0-alpha-5fa4d79b0-20211008",
-        "react-dom": "^18.0.0-alpha-5fa4d79b0-20211008",
-        "rollup": "^2.58.0",
-        "rxjs": "^7.4.0",
-        "stylelint": "^13.13.1",
-        "stylelint-config-prettier": "^9.0.2",
-        "stylelint-config-standard": "^22.0.0",
-        "typescript": "^4.5.0-dev.20211010",
-        "web-ext": "^6.5.0"
+    "workspaces": {
+        "packages": [
+            "packages/*"
+        ]
     }
 }
