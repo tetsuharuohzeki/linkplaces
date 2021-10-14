@@ -1,13 +1,13 @@
-import { isNull } from 'option-t/esm/Nullable/Nullable';
-import { Result, createErr, createOk } from 'option-t/esm/PlainResult/Result';
-import { unwrapFromResult } from 'option-t/esm/PlainResult/unwrap';
-
 import type {
     BookmarkTreeNode,
     BookmarkTreeNodeItem,
     BookmarkTreeNodeFolder,
     BookmarkTreeNodeSeparator,
-} from '../../typings/webext/bookmarks';
+} from '@linkplaces/webext_types';
+
+import { isNull } from 'option-t/esm/Nullable/Nullable';
+import { Result, createErr, createOk } from 'option-t/esm/PlainResult/Result';
+import { unwrapFromResult } from 'option-t/esm/PlainResult/unwrap';
 
 const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/u;
 

@@ -1,4 +1,4 @@
-import type { OnChangeInfo, WebExtBookmarkService } from '../../typings/webext/bookmarks';
+import type { OnChangeInfo, WebExtBookmarkService } from '@linkplaces/webext_types';
 import type { PopupPlainReduxStore } from './PopupMainStore';
 import { createItemChangedAction } from './PopupReduxAction';
 

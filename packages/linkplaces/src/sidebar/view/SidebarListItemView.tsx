@@ -1,7 +1,7 @@
+import type { BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/webext_types';
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import { StrictMode, useState, MouseEventHandler, MouseEvent, SetStateAction, Dispatch } from 'react';
 
-import type { BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '../../../typings/webext/bookmarks';
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '../../shared/Bookmark';
 import { WhereToOpenItem, WHERE_TO_OPEN_ITEM_TO_WINDOW, WHERE_TO_OPEN_ITEM_TO_TAB } from '../../shared/RemoteAction';
 import {

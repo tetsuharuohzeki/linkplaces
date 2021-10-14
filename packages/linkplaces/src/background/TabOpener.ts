@@ -1,8 +1,6 @@
+import type { TabId, BrowserWindow } from '@linkplaces/webext_types';
 import { expectNotNullAndUndefined } from 'option-t/esm/Maybe/expect';
 import { expectNotUndefined } from 'option-t/esm/Undefinable/expect';
-
-import type { TabId } from '../../typings/webext/tabs';
-import type { Window as BrowserWindow } from '../../typings/webext/windows';
 
 import {
     WHERE_TO_OPEN_ITEM_TO_TAB,

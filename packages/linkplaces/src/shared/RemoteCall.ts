@@ -1,6 +1,5 @@
+import type { WebExtSidebarActionService } from '@linkplaces/webext_types';
 import { unwrapOrFromUndefinable } from 'option-t/esm/Undefinable/unwrapOr';
-
-import type { WebExtSidebarActionService } from '../../typings/webext/sidebarAction';
 
 import {
     createOpenUrlAction,

@@ -1,0 +1,12 @@
+{
+    "extends": "../../tsconfig.base.project_reference.json",
+    "compilerOptions": {
+        "emitDeclarationOnly": true,
+        "outDir": "./__dist",
+        //"rootDir": "./src"
+    },
+    "include": [
+        // @prettier-ignore
+        "./src/**/*",
+    ]
+}
