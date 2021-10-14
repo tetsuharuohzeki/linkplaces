@@ -1,1 +1,1 @@
-export * as Ix from './ix/mod';
+export * as Ix from './ix/mod.js';

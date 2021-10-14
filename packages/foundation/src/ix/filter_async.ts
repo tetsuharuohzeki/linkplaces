@@ -1,4 +1,4 @@
-import { AsyncIterableX } from './iterable_x';
+import { AsyncIterableX } from './iterable_x.js';
 
 export type AsyncFilterFn<T> = (input: T) => boolean | Promise<boolean>;
 
