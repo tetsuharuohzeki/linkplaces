@@ -1,12 +1,14 @@
-import { type Ipc, NoImplementationError } from '@linkplaces/foundation';
+import { NoImplementationError, BookmarkSvc } from '@linkplaces/foundation';
+import type { TowerService } from '@linkplaces/foundation/tower_like_ipc';
 import { MSG_TYPE_OPEN_URL, MSG_TYPE_REGISTER_URL, RemoteAction, WhereToOpenItem } from '@linkplaces/ipc_message';
-import { createOk, Result } from 'option-t/esm/PlainResult';
 
-import { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } from '../shared/Bookmark';
+import { createOk, Result } from 'option-t/PlainResult';
 
-import { createTab } from './TabOpener';
+import { createTab } from './TabOpener.js';
 
-export class BackgroundRemoteActionReciever implements Ipc.TowerService<RemoteAction, void> {
+const { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } = BookmarkSvc;
+
+export class BackgroundRemoteActionReciever implements TowerService<RemoteAction, void> {
     async ready(): Promise<Result<void, Error>> {
         return createOk(undefined);
     }

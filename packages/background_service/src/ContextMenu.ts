@@ -1,12 +1,13 @@
+import { BookmarkSvc } from '@linkplaces/foundation';
 import type { BookmarkTreeNode, OnClickData, CreateArgument, ContextType, Tab } from '@linkplaces/webext_types';
-import { Maybe, isNullOrUndefined } from 'option-t/esm/Maybe';
-import type { Result } from 'option-t/esm/PlainResult/Result';
-import { tapErr } from 'option-t/esm/PlainResult/tap';
-import { expectNotUndefined } from 'option-t/esm/Undefinable/expect';
-import { unwrapOrFromUndefinable } from 'option-t/esm/Undefinable/unwrapOr';
 
+import { Maybe, isNullOrUndefined } from 'option-t/Maybe';
+import type { Result } from 'option-t/PlainResult/Result';
+import { tapErr } from 'option-t/PlainResult/tap';
+import { expectNotUndefined } from 'option-t/Undefinable/expect';
+import { unwrapOrFromUndefinable } from 'option-t/Undefinable/unwrapOr';
 
-import { createBookmarkItem } from '../shared/Bookmark';
+const { createBookmarkItem } = BookmarkSvc;
 
 const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';
 const CTXMENU_ID_CONTENT_SAVE_PAGE = 'linkplaces-ctx-content-save-page';

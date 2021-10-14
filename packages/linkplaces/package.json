@@ -24,6 +24,7 @@
         "@babel/cli": "^7.15.7",
         "@babel/core": "^7.15.8",
         "@babel/preset-react": "^7.14.5",
+        "@linkplaces/background_service": "0.10.0",
         "@linkplaces/foundation": "0.10.0",
         "@linkplaces/ipc_message": "0.10.0",
         "@linkplaces/webext_types": "0.10.0",
