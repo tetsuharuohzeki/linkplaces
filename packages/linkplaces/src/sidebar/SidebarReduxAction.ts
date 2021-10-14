@@ -1,4 +1,4 @@
-import type { ActionArcheType } from '../foundation/ReduxLikeStore';
+import type { ActionArcheType } from '@linkplaces/foundation';
 import type { SidebarState } from './SidebarState';
 
 export enum SidebarReduxActionType {
