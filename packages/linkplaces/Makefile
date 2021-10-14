@@ -120,7 +120,7 @@ __plain_js: clean_plain
 	$(NODE_BIN) $(CURDIR)/tools/cp_files.js --basedir $(SRC_DIR) --source '$(SRC_DIR)/**/*.{js,jsx}' --destination $(PLAIN_SRC_DIR) --verbose
 
 __plain_ts: clean_plain
-	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --outDir $(PLAIN_SRC_DIR)
+	$(NPM_BIN)/tsc --build --force
 
 
 ####################################
