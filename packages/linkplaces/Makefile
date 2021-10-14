@@ -72,7 +72,7 @@ build_production: ## Run `make build` with `RELEASE_CHANNEL=production`
 	$(MAKE) build RELEASE_CHANNEL=production
 
 .PHONY: build
-build: lint typecheck build_package ## Build the artifact and run all lint (This is not for CI).
+build: lint build_package ## Build the artifact and run all lint (This is not for CI).
 
 .PHONY: build_package
 build_package: __webext_xpi ## Build the artifact.
@@ -126,7 +126,7 @@ __plain_ts: clean_plain
 ####################################
 # Test
 ####################################
-test: typecheck lint unittest ## Run all tests command (This is not for CI).
+test: lint unittest ## Run all tests command (This is not for CI).
 
 lint: eslint stylelint
 
@@ -135,9 +135,6 @@ eslint: ## Run ESLint
 
 eslint_fix: ## Run ESLint with --fix option
 	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
-
-typecheck: ## Check static typing integrity
-	$(NPM_BIN)/tsc -p $(CURDIR)/tsconfig.json --noEmit
 
 stylelint: ## Run stylelint
 	$(NPM_BIN)/stylelint '$(SRC_DIR)/**/*.css' \
