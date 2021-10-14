@@ -1,12 +1,12 @@
-import { unwrapOrFromNullable } from 'option-t/esm/Nullable/unwrapOr';
-import type * as React from 'react';
-
 import {
     DomRef,
     createDomRef,
     createDomElement as dom,
     createDocFragmentTree as fragment,
-} from '../../foundation/domfactory';
+} from '@linkplaces/foundation';
+
+import { unwrapOrFromNullable } from 'option-t/esm/Nullable/unwrapOr';
+import type * as React from 'react';
 
 export const ATTR_NAME_ICON_DIR = 'icondir';
 export const ATTR_NAME_ICON_FILE = 'iconfile';
