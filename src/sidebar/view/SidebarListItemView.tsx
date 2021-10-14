@@ -41,11 +41,9 @@ function ListBaseItem(props: ListBaseItemProps): JSX.Element {
         <StrictMode>
             <PanelListItem>
                 <PanelListItemIcon>
-                    <picture className={`${CLASS_NAME_PREFIX}__icon_img`}>
-                        <source srcSet={`${iconDir}dark/${iconFile}`} media={'(prefers-color-scheme: dark)'} />
-                        <source srcSet={`${iconDir}light/${iconFile}`} media={'(prefers-color-scheme: light)'} />
-                        <img alt={''} src={`${iconDir}context-fill/${iconFile}`} />
-                    </picture>
+                    <svg viewBox={'0 0 16 16'} width={'16'} height={'16'} className={`${CLASS_NAME_PREFIX}__icon_img`}>
+                        <use href={`${iconDir}context-fill/${iconFile}#icon`} />
+                    </svg>
                 </PanelListItemIcon>
                 <PanelListItemText>
                     {label}
