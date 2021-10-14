@@ -5,7 +5,7 @@ import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
 import * as ReactDOM from 'react-dom';
 
-import type { ViewContext } from './ViewContext';
+import type { ViewContext } from './ViewContext.js';
 
 export abstract class ReactRuledViewContext implements ViewContext {
     private _renderRoot: Nullable<ReactDOM.Root>;
