@@ -3,8 +3,8 @@ import type { ExtensionPort } from '@linkplaces/webext_types';
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import type { Result } from 'option-t/esm/PlainResult';
 
-import { assertPacket, Packet } from './Packet';
-import type { TowerService } from './traits';
+import { assertPacket, Packet } from './Packet.js';
+import type { TowerService } from './traits.js';
 
 interface PacketCreationService<TRequestBody, TResponse> extends TowerService<Packet<TRequestBody>, Nullable<Packet<TResponse>>> {}
 

@@ -6,7 +6,15 @@
         ".": {
             "types": "./__dist/mod.d.ts",
             "default": "./__dist/mod.js"
+        },
+        "./tower_like_ipc": {
+            "types": "./__dist/tower_like_ipc/mod.d.ts",
+            "default": "./__dist/tower_like_ipc/mod.js"
         }
     },
-    "typings": "./__dist/mod.d.ts"
+    "typings": "./__dist/mod.d.ts",
+    "dependencies": {
+        "@linkplaces/webext_types": "0.10.0",
+        "option-t": "^28.2.0"
+    }
 }

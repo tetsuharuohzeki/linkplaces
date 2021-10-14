@@ -1,12 +1,12 @@
+import type { Ipc } from '@linkplaces/foundation';
 import { createOk, Result } from 'option-t/esm/PlainResult';
 import { NoImplementationError } from '../foundation/NoImplementationError';
-import type { TowerService } from '../foundation/tower_like_ipc/traits';
 import { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } from '../shared/Bookmark';
 import { MSG_TYPE_OPEN_URL, MSG_TYPE_REGISTER_URL, RemoteAction, WhereToOpenItem } from '../shared/RemoteAction';
 
 import { createTab } from './TabOpener';
 
-export class BackgroundRemoteActionReciever implements TowerService<RemoteAction, void> {
+export class BackgroundRemoteActionReciever implements Ipc.TowerService<RemoteAction, void> {
     async ready(): Promise<Result<void, Error>> {
         return createOk(undefined);
     }
