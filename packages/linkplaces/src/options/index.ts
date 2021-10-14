@@ -1,4 +1,4 @@
-import { landViewContext } from '@linkplaces/foundation';
+import { landViewContext } from '@linkplaces/foundation/__dist/view_ctx/mod';
 import { OptionsContext } from './OptionsContext';
 
 (async function main() {

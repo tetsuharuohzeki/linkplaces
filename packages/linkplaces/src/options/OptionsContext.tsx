@@ -1,4 +1,4 @@
-import type { ViewContext } from '@linkplaces/foundation';
+import type { ViewContext } from '@linkplaces/foundation/__dist/view_ctx/mod';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
 
 import { createOptionsView } from './OptionsView';
