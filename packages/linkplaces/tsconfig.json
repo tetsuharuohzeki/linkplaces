@@ -12,6 +12,7 @@
         { "path": "../background_service" },
         { "path": "../foundation" },
         { "path": "../ipc_message" },
+        { "path": "../shared" },
         { "path": "../webext_types" }
     ]
 }

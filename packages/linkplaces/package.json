@@ -27,6 +27,7 @@
         "@linkplaces/background_service": "0.10.0",
         "@linkplaces/foundation": "0.10.0",
         "@linkplaces/ipc_message": "0.10.0",
+        "@linkplaces/shared": "0.10.0",
         "@linkplaces/webext_types": "0.10.0",
         "@rollup/plugin-commonjs": "^21.0.0",
         "@rollup/plugin-node-resolve": "^13.0.5",

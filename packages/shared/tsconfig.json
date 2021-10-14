@@ -10,9 +10,6 @@
         "**/*"
     ],
     "references": [
-        { "path": "../foundation" },
-        { "path": "../ipc_message" },
-        { "path": "../shared" },
         { "path": "../webext_types" }
     ]
 }
