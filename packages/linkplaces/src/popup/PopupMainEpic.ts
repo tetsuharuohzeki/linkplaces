@@ -1,11 +1,10 @@
 import {
     WhereToOpenItem,
     WHERE_TO_OPEN_ITEM_TO_TAB,
-} from '../shared/RemoteAction';
-import {
     openItem as openItemViaChannel,
     openWebExtSidebar as openWebExtSidebarDirect,
-} from '../shared/RemoteCall';
+} from '@linkplaces/ipc_message';
+
 import type { PopupPlainReduxStore } from './PopupMainStore';
 import type { RemoteActionChannel } from './PopupMessageChannel';
 

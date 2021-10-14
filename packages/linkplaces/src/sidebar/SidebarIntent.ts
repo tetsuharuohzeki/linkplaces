@@ -1,4 +1,4 @@
-import type { WhereToOpenItem } from '../shared/RemoteAction';
+import type { WhereToOpenItem } from '@linkplaces/ipc_message';
 import type { SidebarEpic } from './SidebarEpic';
 import type { SidebarPlainReduxStore } from './SidebarStore';
 

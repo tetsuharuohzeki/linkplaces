@@ -1,16 +1,16 @@
 {
     "extends": "../../tsconfig.base.project_reference.json",
     "compilerOptions": {
-        // This is duplicated with Makefile
-        "outDir": "./__plain/src",
+        "moduleResolution": "node12",
+        "outDir": "./__dist",
         "rootDir": "./src"
     },
     "include": [
-        "./src/**/*"
+        // @prettier-ignore
+        "**/*"
     ],
     "references": [
         { "path": "../foundation" },
-        { "path": "../ipc_message" },
         { "path": "../webext_types" }
     ]
 }

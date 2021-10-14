@@ -25,6 +25,7 @@
         "@babel/core": "^7.15.8",
         "@babel/preset-react": "^7.14.5",
         "@linkplaces/foundation": "0.10.0",
+        "@linkplaces/ipc_message": "0.10.0",
         "@linkplaces/webext_types": "0.10.0",
         "@rollup/plugin-commonjs": "^21.0.0",
         "@rollup/plugin-node-resolve": "^13.0.5",

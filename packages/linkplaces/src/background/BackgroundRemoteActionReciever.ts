@@ -1,8 +1,8 @@
 import { type Ipc, NoImplementationError } from '@linkplaces/foundation';
+import { MSG_TYPE_OPEN_URL, MSG_TYPE_REGISTER_URL, RemoteAction, WhereToOpenItem } from '@linkplaces/ipc_message';
 import { createOk, Result } from 'option-t/esm/PlainResult';
 
 import { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } from '../shared/Bookmark';
-import { MSG_TYPE_OPEN_URL, MSG_TYPE_REGISTER_URL, RemoteAction, WhereToOpenItem } from '../shared/RemoteAction';
 
 import { createTab } from './TabOpener';
 

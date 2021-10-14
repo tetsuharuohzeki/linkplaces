@@ -1,5 +1,5 @@
 import { Ipc } from '@linkplaces/foundation';
-import { assertIsRemoteAction } from '../shared/RemoteAction';
+import { assertIsRemoteAction } from '@linkplaces/ipc_message';
 
 import { BackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever';
 import { createContextMenu } from './ContextMenu';

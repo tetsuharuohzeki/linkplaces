@@ -1,9 +1,9 @@
-import { Ipc } from '@linkplaces/foundation';
+import { ClientConnection } from '@linkplaces/foundation/tower_like_ipc';
 import type { ExtensionPort } from '@linkplaces/webext_types';
 
-import { CONNECTION_PING_FROM_POPUP, RemoteAction } from './RemoteAction';
+import { CONNECTION_PING_FROM_POPUP, RemoteAction } from './RemoteAction.js';
 
-export type ClientConnection<TPayload> = Ipc.ClientConnection<TPayload>;
+export type { ClientConnection } from '@linkplaces/foundation/tower_like_ipc';
 
 function connectToBgScript(pingMessage: string): ExtensionPort {
     const p = browser.runtime.connect({
@@ -16,6 +16,6 @@ export type RemoteActionChannel = ClientConnection<RemoteAction>;
 
 export async function createChannel(): Promise<RemoteActionChannel> {
     const port = connectToBgScript(CONNECTION_PING_FROM_POPUP);
-    const c = new Ipc.ClientConnection<RemoteAction>(port);
+    const c = new ClientConnection<RemoteAction>(port);
     return c;
 }

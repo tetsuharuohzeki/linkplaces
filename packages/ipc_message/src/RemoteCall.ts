@@ -1,13 +1,13 @@
 import type { WebExtSidebarActionService } from '@linkplaces/webext_types';
-import { unwrapOrFromUndefinable } from 'option-t/esm/Undefinable/unwrapOr';
+import { unwrapOrFromUndefinable } from 'option-t/Undefinable/unwrapOr';
 
 import {
     createOpenUrlAction,
     createRegisterUrlAction,
     WhereToOpenItem,
     RemoteAction,
-} from './RemoteAction';
-import type { ClientConnection } from './RemoteActionChannel';
+} from './RemoteAction.js';
+import type { ClientConnection } from './RemoteActionChannel.js';
 
 export function openItem(chan: ClientConnection<RemoteAction>, bookmarkId: string, url: string, where: WhereToOpenItem): void {
     const a = createOpenUrlAction(bookmarkId, url, where);
