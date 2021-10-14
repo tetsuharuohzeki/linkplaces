@@ -1,7 +1,7 @@
 import { Ipc } from '@linkplaces/foundation';
 import type { ExtensionPort } from '@linkplaces/webext_types';
 
-import { CONNECTION_PING_FROM_POPUP, RemoteAction } from './RemoteAction';
+import { CONNECTION_PING_FROM_POPUP, RemoteAction } from './RemoteAction.js';
 
 export type ClientConnection<TPayload> = Ipc.ClientConnection<TPayload>;
 

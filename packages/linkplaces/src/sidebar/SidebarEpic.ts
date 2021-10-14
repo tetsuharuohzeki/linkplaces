@@ -1,10 +1,8 @@
-
-import type { WhereToOpenItem } from '../shared/RemoteAction';
 import {
+    type WhereToOpenItem,
     openItem as openItemViaChannel,
     registerItem as registerItemViaChannel,
-} from '../shared/RemoteCall';
-
+} from '@linkplaces/ipc_message';
 
 import type { RemoteActionChannel } from './SidebarMessageChannel';
 import type { SidebarPlainReduxStore } from './SidebarStore';

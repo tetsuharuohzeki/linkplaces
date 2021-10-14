@@ -1,14 +1,14 @@
-import type { TabId, BrowserWindow } from '@linkplaces/webext_types';
-import { expectNotNullAndUndefined } from 'option-t/esm/Maybe/expect';
-import { expectNotUndefined } from 'option-t/esm/Undefinable/expect';
-
 import {
     WHERE_TO_OPEN_ITEM_TO_TAB,
     WHERE_TO_OPEN_ITEM_TO_BACKGROUND_TAB,
     WHERE_TO_OPEN_ITEM_TO_WINDOW,
     WHERE_TO_OPEN_ITEM_TO_CURRENT,
     WhereToOpenItem,
-} from '../shared/RemoteAction';
+} from '@linkplaces/ipc_message';
+import type { TabId, BrowserWindow } from '@linkplaces/webext_types';
+import { expectNotNullAndUndefined } from 'option-t/esm/Maybe/expect';
+import { expectNotUndefined } from 'option-t/esm/Undefinable/expect';
+
 
 export async function createTab(url: string, where: WhereToOpenItem): Promise<TabId> {
     switch (where) {
