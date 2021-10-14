@@ -1,11 +1,9 @@
-import { BookmarkSvc } from '@linkplaces/foundation';
 import { landViewContext } from '@linkplaces/foundation/__dist/view_ctx/mod';
+import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/__dist/Bookmark';
 
 import { PopupMainContext } from './PopupMainContext';
 import { createChannel } from './PopupMessageChannel';
 import { registerComponents } from './component/register';
-
-const { getUnfiledBoolmarkFolder } = BookmarkSvc;
 
 (async function main() {
     registerComponents();

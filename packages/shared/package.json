@@ -1,18 +1,23 @@
 {
-    "name": "@linkplaces/background_service",
+    "name": "@linkplaces/shared",
     "version": "0.10.0",
     "type": "module",
     "exports": {
         ".": {
             "types": "./__dist/mod.d.ts",
             "default": "./__dist/mod.js"
+        },
+        "./__dist/Bookmark": {
+            "types": "./__dist/Bookmark.d.ts",
+            "default": "./__dist/Bookmark.js"
+        },
+        "./bookmark": {
+            "types": "./__dist/Bookmark.d.ts",
+            "default": "./__dist/Bookmark.js"
         }
     },
     "typings": "./__dist/mod.d.ts",
     "dependencies": {
-        "@linkplaces/foundation": "0.10.0",
-        "@linkplaces/ipc_message": "0.10.0",
-        "@linkplaces/shared": "0.10.0",
         "@linkplaces/webext_types": "0.10.0",
         "option-t": "^28.2.0"
     }

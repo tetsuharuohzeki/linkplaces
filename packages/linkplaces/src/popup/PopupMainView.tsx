@@ -1,4 +1,4 @@
-import { BookmarkSvc } from '@linkplaces/foundation';
+import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '@linkplaces/shared/__dist/Bookmark';
 import type { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/webext_types';
 
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
@@ -13,8 +13,6 @@ import { PanelSectionList, PanelSectionListSeparator } from '../shared/component
 import type { PopupMainIntent } from './PopupMainIntent';
 
 import type { PopupMainState } from './PopupMainState';
-
-const { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } = BookmarkSvc;
 
 const ICON_DIR = '../resources/icon/';
 

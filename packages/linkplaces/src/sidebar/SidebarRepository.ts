@@ -1,4 +1,5 @@
-import { Ix, BookmarkSvc } from '@linkplaces/foundation';
+import { Ix } from '@linkplaces/foundation';
+import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/__dist/Bookmark';
 import type { BookmarkTreeNode, WebExtBookmarkService } from '@linkplaces/webext_types';
 
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
@@ -12,8 +13,6 @@ import {
 
 import type { Repository } from '../foundation/Repository';
 import { SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain';
-
-const { getUnfiledBoolmarkFolder } = BookmarkSvc;
 
 type BookmarkId = string;
 
