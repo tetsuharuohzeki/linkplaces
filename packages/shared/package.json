@@ -6,6 +6,14 @@
         ".": {
             "types": "./__dist/mod.d.ts",
             "default": "./__dist/mod.js"
+        },
+        "./__dist/Bookmark": {
+            "types": "./__dist/Bookmark.d.ts",
+            "default": "./__dist/Bookmark.js"
+        },
+        "./bookmark": {
+            "types": "./__dist/Bookmark.d.ts",
+            "default": "./__dist/Bookmark.js"
         }
     },
     "typings": "./__dist/mod.d.ts",
