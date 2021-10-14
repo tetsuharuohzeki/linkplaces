@@ -7,8 +7,8 @@ import {
 } from '@linkplaces/ipc_message';
 import type { TabId, BrowserWindow } from '@linkplaces/webext_types';
 
-import { expectNotNullAndUndefined } from 'option-t/esm/Maybe/expect';
-import { expectNotUndefined } from 'option-t/esm/Undefinable/expect';
+import { expectNotNullAndUndefined } from 'option-t/Maybe/expect';
+import { expectNotUndefined } from 'option-t/Undefinable/expect';
 
 export async function createTab(url: string, where: WhereToOpenItem): Promise<TabId> {
     switch (where) {
