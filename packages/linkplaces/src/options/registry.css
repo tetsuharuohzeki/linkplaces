@@ -2,6 +2,6 @@
 
 @import '@linkplaces/foundation/src/mod.css';
 
-@import '../shared/reset_css/mod.css';
+@import '@linkplaces/shared/src/reset_css/mod.css';
 
 @import './vars.css';
