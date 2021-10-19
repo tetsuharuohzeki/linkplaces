@@ -23,6 +23,6 @@
     "typings": "./__dist/mod.d.ts",
     "dependencies": {
         "@linkplaces/webext_types": "0.10.0",
-        "option-t": "^28.2.0"
+        "option-t": "^28.2.2"
     }
 }
