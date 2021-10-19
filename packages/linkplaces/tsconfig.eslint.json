@@ -6,10 +6,5 @@
     "include": [
         "src/**/*",
         "src/**/.eslintrc.cjs"
-    ],
-    // We need to turn on to lint `.eslintrc.js` X(
-    "compilerOptions": {
-        "allowJs": true,
-        "checkJs": true
-    }
+    ]
 }
