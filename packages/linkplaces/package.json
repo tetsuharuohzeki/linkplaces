@@ -29,7 +29,7 @@
         "@linkplaces/ipc_message": "0.10.0",
         "@linkplaces/shared": "0.10.0",
         "@linkplaces/webext_types": "0.10.0",
-        "@rollup/plugin-commonjs": "^21.0.0",
+        "@rollup/plugin-commonjs": "^21.0.1",
         "@rollup/plugin-node-resolve": "^13.0.5",
         "@rollup/plugin-replace": "^3.0.0",
         "@types/node": "^16.11.1",
