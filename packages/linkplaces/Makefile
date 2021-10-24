@@ -140,7 +140,6 @@ stylelint: ## Run stylelint
 	$(NPM_BIN)/stylelint '$(SRC_DIR)/**/*.css' \
 		--config=$(CURDIR)/stylelint.config.cjs \
 		-f verbose \
-		--syntax css \
 		--color
 
 unittest: __obj ## Run unit tests

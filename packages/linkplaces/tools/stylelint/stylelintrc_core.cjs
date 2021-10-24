@@ -36,8 +36,20 @@ module.exports = {
 
     // https://stylelint.io/user-guide/rules/
     'rules': {
+        // Disable the rule enabled in stylelint-config-standard
+        // I don't think this is useful...
+        'alpha-value-notation': null,
+
         // Allow to group the code chunk.
         'at-rule-empty-line-before': null,
+
+        // Disable the rule enabled in stylelint-config-standard
+        // I don't think this is useful...
+        'color-function-notation': null,
+
+        // Disable the rule enabled in stylelint-config-standard
+        // We use BEM style.
+        'custom-property-pattern': null,
 
         // quote
         'font-family-name-quotes': 'always-unless-keyword',
@@ -57,13 +69,15 @@ module.exports = {
         // prevent mixed content.
         'function-url-scheme-allowed-list': ['data', /^https:\/\//u],
 
-        'function-calc-no-invalid': true,
-
         'font-weight-notation': 'named-where-possible',
 
         'selector-type-no-unknown': [true, {
             'ignore': ['custom-elements']
         }],
+
+        // Disable the rule enabled in stylelint-config-standard
+        // We use BEM style.
+        'selector-class-pattern': null,
     },
 
     'reportNeedlessDisables': [true, {
