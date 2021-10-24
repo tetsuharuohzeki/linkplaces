@@ -45,3 +45,22 @@ build_production: clean ## Run `make build` with `RELEASE_CHANNEL=production`
 
 typecheck: ## Check static typing integrity
 	$(NPM_BIN)/tsc --build
+
+
+####################################
+# Tools
+####################################
+eslint: ## Run ESLint
+	$(MAKE) $@ -C $(PKG_MAIN)
+
+eslint_fix: ## Run ESLint with --fix option
+	$(MAKE) $@ -C $(PKG_MAIN)
+
+stylelint: ## Run stylelint
+	$(MAKE) $@ -C $(PKG_MAIN)
+
+format: ## Apply formetters for files.
+	$(MAKE) $@ -C $(PKG_MAIN)
+
+check_format: ## Check a code formatting.
+	$(MAKE) $@ -C $(PKG_MAIN)
