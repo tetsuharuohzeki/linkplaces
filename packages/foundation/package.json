@@ -15,9 +15,17 @@
             "types": "./__dist/view_ctx/mod.d.ts",
             "default": "./__dist/view_ctx/mod.js"
         },
+        "./__dist/view_ctx/ReactRuledViewContext": {
+            "types": "./__dist/view_ctx/ReactRuledViewContext.d.ts",
+            "default": "./__dist/view_ctx/ReactRuledViewContext.js"
+        },
         "./view_ctx": {
             "types": "./__dist/view_ctx/mod.d.ts",
             "default": "./__dist/view_ctx/mod.js"
+        },
+        "./view_ctx/ReactRuledViewContext": {
+            "types": "./__dist/view_ctx/ReactRuledViewContext.d.ts",
+            "default": "./__dist/view_ctx/ReactRuledViewContext.js"
         }
     },
     "typings": "./__dist/mod.d.ts",
