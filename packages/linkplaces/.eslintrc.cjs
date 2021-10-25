@@ -26,6 +26,7 @@ module.exports = {
 
     'rules': {
         'no-magic-numbers': 'off',
+        'no-unused-private-class-members': 'warn',
 
         // Disable until vscode's Electron's node.js will become Node.js v16
         'import/no-unresolved': 'off',
