@@ -45,7 +45,7 @@
         "eslint-plugin-react": "^7.26.1",
         "eslint-plugin-react-hooks": "^4.2.0",
         "jsdom": "^18.0.1",
-        "option-t": "^28.2.2",
+        "option-t": "^29.0.2",
         "picomatch": "^2.3.0",
         "postcss": "^8.3.11",
         "postcss-import": "^14.0.2",
