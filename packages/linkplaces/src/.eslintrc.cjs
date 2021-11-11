@@ -63,6 +63,8 @@ module.exports = {
             'rules': {
                 // FIXME: Re-enable for the future.
                 '@typescript-eslint/member-ordering': 'off',
+
+                'react/no-arrow-function-lifecycle': 'error',
             },
         },
     ],
