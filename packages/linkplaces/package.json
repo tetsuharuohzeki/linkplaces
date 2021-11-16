@@ -50,7 +50,7 @@
         "postcss": "^8.3.11",
         "postcss-import": "^14.0.2",
         "prettier": "^2.4.1",
-        "react": "^18.0.0-alpha-3c4c1c470-20211021",
+        "react": "^18.0.0-beta-96ca8d915-20211115",
         "react-dom": "^18.0.0-alpha-3c4c1c470-20211021",
         "rollup": "^2.59.0",
         "rxjs": "^7.4.0",
