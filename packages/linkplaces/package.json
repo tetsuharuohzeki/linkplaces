@@ -52,7 +52,7 @@
         "prettier": "^2.4.1",
         "react": "^18.0.0-beta-96ca8d915-20211115",
         "react-dom": "^18.0.0-beta-96ca8d915-20211115",
-        "rollup": "^2.59.0",
+        "rollup": "^2.60.0",
         "rxjs": "^7.4.0",
         "stylelint": "^14.0.1",
         "stylelint-config-prettier": "^9.0.3",
