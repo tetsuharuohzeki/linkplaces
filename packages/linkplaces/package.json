@@ -54,7 +54,7 @@
         "react-dom": "^18.0.0-beta-96ca8d915-20211115",
         "rollup": "^2.59.0",
         "rxjs": "^7.4.0",
-        "stylelint": "^14.0.1",
+        "stylelint": "^14.1.0",
         "stylelint-config-prettier": "^9.0.3",
         "stylelint-config-standard": "^23.0.0",
         "typescript": "^4.6.0-dev.20211115",
