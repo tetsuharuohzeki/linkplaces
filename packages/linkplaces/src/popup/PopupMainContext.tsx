@@ -8,10 +8,12 @@ import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
 import { StrictMode } from 'react';
+import { useSyncExternalStore } from 'use-sync-external-store/shim';
 
 import { PopupMainEpic } from './PopupMainEpic';
 import { PopupMainIntent } from './PopupMainIntent';
-import { createPopupMainStore } from './PopupMainStore';
+import type { PopupMainState } from './PopupMainState';
+import { createPopupMainStore, type PopupPlainReduxStore } from './PopupMainStore';
 import { PopupMainView } from './PopupMainView';
 import type { RemoteActionChannel } from './PopupMessageChannel';
 import { PopupRepostiroy } from './PopupRepository';
@@ -45,27 +47,20 @@ export class PopupMainContext extends ReactRuledViewContext {
         const epic = new PopupMainEpic(this._channel, store);
         const intent = new PopupMainIntent(epic, store);
 
-        const render = () => {
-            const state = store.state();
-            const view = (
-                <StrictMode>
-                    <PopupMainView state={state} intent={intent} />
-                </StrictMode>
-            );
-
-            const renderRoot = this._getRenderRoot();
-            renderRoot.render(view);
-        };
-
         const repository = new PopupRepostiroy(browser.bookmarks, store);
 
         this._disposerSet = new Set([
-            store.subscribe(render),
             () => { repository.destroy(); }
         ]);
 
-        // ignite the first rendering
-        render();
+        const view = (
+            <StrictMode>
+                <PopupMainViewUpdater store={store} intent={intent} />
+            </StrictMode>
+        );
+
+        const renderRoot = this._getRenderRoot();
+        renderRoot.render(view);
     }
 
     async onDestroy(_mountpoint: Element): Promise<void> {
@@ -78,4 +73,28 @@ export class PopupMainContext extends ReactRuledViewContext {
         this._disposerSet = null;
         this._destroyRenderRoot();
     }
+}
+
+interface PopupMainViewUpdaterProps {
+    store: PopupPlainReduxStore;
+    intent: PopupMainIntent;
+}
+
+function PopupMainViewUpdater({ store, intent }: PopupMainViewUpdaterProps): JSX.Element {
+    const state: PopupMainState = useSyncExternalStore((onStoreChange) => {
+        const disposer = store.subscribe(onStoreChange);
+        return () => {
+            disposer();
+        };
+    }, () => {
+        const state = store.state();
+        return state;
+    });
+
+    const view = (
+        <StrictMode>
+            <PopupMainView state={state} intent={intent} />
+        </StrictMode>
+    );
+    return view;
 }
