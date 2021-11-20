@@ -15,6 +15,8 @@ import {
     subscribeOn as subscribeOnRx,
 } from 'rxjs';
 
+import { useSyncExternalStore } from 'use-sync-external-store/shim';
+
 import type { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarEpic } from './SidebarEpic';
 import { SidebarIntent } from './SidebarIntent';
@@ -64,20 +66,14 @@ export class SidebarContext extends ReactRuledViewContext {
         const epic = new SidebarEpic(this._channel, store);
         const intent = new SidebarIntent(epic, store);
 
-        const renderSubscription = store.subscribe((state: Readonly<SidebarState>) => {
-            const view = (
-                <StrictMode>
-                    <SidebarView state={state} intent={intent} />
-                </StrictMode>
-            );
+        const view = (
+            <StrictMode>
+                <SidebarViewUpdater store={store} intent={intent} />
+            </StrictMode>
+        );
 
-            const renderRoot = this._getRenderRoot();
-            renderRoot.render(view);
-        });
-        {
-            const s = new Subscription(renderSubscription);
-            rootSubscription.add(s);
-        }
+        const renderRoot = this._getRenderRoot();
+        renderRoot.render(view);
 
         const pastEventObservable = fromEventToObservable(window, 'paste');
 
@@ -113,4 +109,29 @@ function subscribeSidebarRepositoryBySidebarStore(store: SidebarPlainReduxStore,
             store.dispatch(a);
         });
     return subscription;
+}
+
+
+interface SidebarViewUpdaterProps {
+    store: SidebarPlainReduxStore;
+    intent: SidebarIntent;
+}
+
+function SidebarViewUpdater({ store, intent }: SidebarViewUpdaterProps): JSX.Element {
+    const state = useSyncExternalStore((onStoreChange) => {
+        const disposer = store.subscribe(onStoreChange);
+        return () => {
+            disposer();
+        };
+    }, () => {
+        const state = store.state();
+        return state;
+    });
+
+    const view = (
+        <StrictMode>
+            <SidebarView state={state} intent={intent} />
+        </StrictMode>
+    );
+    return view;
 }
