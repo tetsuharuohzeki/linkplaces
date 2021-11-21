@@ -30,6 +30,14 @@ const REACT_RELATED_PKG_LIST = [
     /node_modules\/use-sync-external-store\/.*/u,
 ];
 
+class RollupWarningAsError extends Error {
+    constructor(warning) {
+        super(warning.message, {
+            cause: warning
+        });
+    }
+}
+
 /**
  *  See:
  *      - https://github.com/rollup/rollup/wiki/JavaScript-API
@@ -108,5 +116,10 @@ export default async function createConfiguration(_commandLineArgs) {
                 },
             }),
         ],
+
+        onwarn(warning) {
+            const e = new RollupWarningAsError(warning);
+            throw e;
+        },
     };
 }
