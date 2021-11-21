@@ -51,7 +51,7 @@
         "postcss": "^8.3.11",
         "postcss-import": "^14.0.2",
         "prettier": "^2.4.1",
-        "react": "^18.0.0-beta-fdc1d617a-20211118",
+        "react": "^18.0.0-beta-149b420f6-20211119",
         "react-dom": "^18.0.0-beta-149b420f6-20211119",
         "rollup": "^2.60.0",
         "rxjs": "^7.4.0",
