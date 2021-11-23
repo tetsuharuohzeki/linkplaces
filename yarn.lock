@@ -5692,10 +5692,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^4.6.0-dev.20211121:
-  version "4.6.0-dev.20211121"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.0-dev.20211121.tgz#3a48516e8ebce67c6905a7fbfbc9f5ad754199fe"
-  integrity sha512-GN0hCBNC1rEH40vszUh0H/4APtfBq0Wi3OFEw3+NklbWvPAMXC1sYzbYRG8bzNhYXGgo8xBvsdGFMqwmWCYmlw==
+typescript@^4.6.0-dev.20211122:
+  version "4.6.0-dev.20211122"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.0-dev.20211122.tgz#c23d01ecd22e8539b91a143ebd67a517b97d3021"
+  integrity sha512-pQHqnO48X5zrnqAG/AasWXitqxM87qHJs5cXMBtP76JvlWLGFW1XC9PCuL6DmpTtnDwEBcxopNqlspeqNL6XAg==
 
 unbox-primitive@^1.0.1:
   version "1.0.1"
