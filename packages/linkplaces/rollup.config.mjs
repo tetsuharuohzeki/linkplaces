@@ -27,7 +27,6 @@ const REACT_RELATED_PKG_LIST = [
     /node_modules\/object-assign\/.*/u,
     /node_modules\/react-dom\/.*/u,
     /node_modules\/scheduler\/.*/u,
-    /node_modules\/use-sync-external-store\/.*/u,
 ];
 
 class RollupWarningAsError extends Error {

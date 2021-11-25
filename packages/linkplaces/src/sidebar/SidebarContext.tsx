@@ -6,7 +6,7 @@ import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
-import { StrictMode } from 'react';
+import { StrictMode, useSyncExternalStore } from 'react';
 
 import {
     Subscription,
@@ -14,8 +14,6 @@ import {
     fromEvent as fromEventToObservable,
     subscribeOn as subscribeOnRx,
 } from 'rxjs';
-
-import { useSyncExternalStore } from 'use-sync-external-store/shim';
 
 import type { SidebarItemViewModelEntity } from './SidebarDomain';
 import { SidebarEpic } from './SidebarEpic';

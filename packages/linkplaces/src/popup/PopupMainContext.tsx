@@ -7,8 +7,7 @@ import { ReactRuledViewContext } from '@linkplaces/foundation/__dist/view_ctx/Re
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
-import { StrictMode } from 'react';
-import { useSyncExternalStore } from 'use-sync-external-store/shim';
+import { StrictMode, useSyncExternalStore } from 'react';
 
 import { PopupMainEpic } from './PopupMainEpic';
 import { PopupMainIntent } from './PopupMainIntent';
