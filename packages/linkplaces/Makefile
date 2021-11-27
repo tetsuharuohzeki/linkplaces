@@ -2,6 +2,8 @@ NODE_BIN := node
 NPM_MOD_DIR := $(CURDIR)/node_modules
 NPM_BIN := $(NPM_MOD_DIR)/.bin
 
+REPOSITORY_ROOT_DIR := $(CURDIR)/../..
+
 SRC_DIR := $(CURDIR)/src
 PLAIN_DIR := $(CURDIR)/__plain
 PLAIN_SRC_DIR := $(PLAIN_DIR)/src
@@ -120,7 +122,7 @@ __plain_js: clean_plain
 	$(NODE_BIN) $(CURDIR)/tools/cp_files.js --basedir $(SRC_DIR) --source '$(SRC_DIR)/**/*.{js,jsx}' --destination $(PLAIN_SRC_DIR) --verbose
 
 __plain_ts: clean_plain
-	$(NPM_BIN)/tsc --build --force
+	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)
 
 
 ####################################

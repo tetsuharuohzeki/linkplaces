@@ -38,6 +38,9 @@ build_development: clean ## Run `make build` with `RELEASE_CHANNEL=development`
 build_production: clean ## Run `make build` with `RELEASE_CHANNEL=production`
 	$(MAKE) $@ -C $(PKG_MAIN)
 
+__plain_ts:
+	$(NPM_BIN)/tsc --build --force
+
 
 ####################################
 # Test
