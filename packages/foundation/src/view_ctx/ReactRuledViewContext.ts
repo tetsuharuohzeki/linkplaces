@@ -37,12 +37,4 @@ export abstract class ReactRuledViewContext implements ViewContext {
     abstract onActivate(mountpoint: Element): Promise<void>;
 
     abstract onDestroy(mountpoint: Element): Promise<void>;
-
-    onResume(mountpoint: Element): Promise<void> {
-        return this.onActivate(mountpoint);
-    }
-
-    onSuspend(mountpoint: Element): Promise<void> {
-        return this.onDestroy(mountpoint);
-    }
 }

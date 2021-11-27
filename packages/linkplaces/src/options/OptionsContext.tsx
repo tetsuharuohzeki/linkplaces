@@ -38,12 +38,4 @@ export class OptionsContext implements ViewContext {
             mountpoint.removeChild(lastChild);
         }
     }
-
-    async onResume(mountpoint: Element): Promise<void> {
-        return this.onActivate(mountpoint);
-    }
-
-    async onSuspend(mountpoint: Element): Promise<void> {
-        return this.onDestroy(mountpoint);
-    }
 }

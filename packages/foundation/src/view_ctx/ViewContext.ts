@@ -11,6 +11,6 @@ export interface ViewContext {
     onActivate(mountpoint: Element): Promise<void>;
     onDestroy(mountpoint: Element): Promise<void>;
 
-    onResume(mountpoint: Element): Promise<void>;
-    onSuspend(mountpoint: Element): Promise<void>;
+    onResume?(mountpoint: Element): Promise<void>;
+    onSuspend?(mountpoint: Element): Promise<void>;
 }
