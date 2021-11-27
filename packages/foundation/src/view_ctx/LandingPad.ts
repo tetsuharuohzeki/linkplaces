@@ -1,14 +1,11 @@
-import { isNull } from 'option-t/Nullable/Nullable';
+import { expectNotNull } from 'option-t/Nullable/expect';
 
 import type { ViewContext } from './ViewContext.js';
 
 const DOM_MOUNTPOINT_ID = 'js-mountpoint';
 
 export async function landViewContext(ctx: ViewContext): Promise<void> {
-    const mountpoint = document.getElementById(DOM_MOUNTPOINT_ID);
-    if (isNull(mountpoint)) {
-        throw new TypeError('not found mountpoint');
-    }
-
+    const element = document.getElementById(DOM_MOUNTPOINT_ID);
+    const mountpoint = expectNotNull(element, 'not found mountpoint');
     await ctx.onActivate(mountpoint);
 }

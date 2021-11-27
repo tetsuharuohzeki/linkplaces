@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference types="react-dom/next" />
 
-import type { Nullable } from 'option-t/Nullable/Nullable';
+import { type Nullable, isNotNull } from 'option-t/Nullable/Nullable';
 import { expectNotNull } from 'option-t/Nullable/expect';
 import * as ReactDOM from 'react-dom';
 
@@ -17,7 +17,7 @@ export abstract class ReactRuledViewContext implements ViewContext {
     abstract destroy(): void;
 
     protected _initRenderRoot(mountpoint: Element): void {
-        if (!!this._renderRoot) {
+        if (isNotNull(this._renderRoot)) {
             throw new TypeError('the react render root has been initialized');
         }
 
