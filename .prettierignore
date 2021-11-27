@@ -1,4 +1,4 @@
 # Generated files
-__dist/**/*.*
-__obj/**/*.*
-__plain/**/*.*
+**/__dist/**/*.*
+**/__obj/**/*.*
+**/__plain/**/*.*

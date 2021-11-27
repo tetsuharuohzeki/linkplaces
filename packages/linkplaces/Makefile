@@ -11,8 +11,6 @@ OBJ_DIR := $(CURDIR)/__obj
 OBJ_SRC_DIR := $(OBJ_DIR)/src
 DIST_DIR := $(CURDIR)/__dist
 
-PRETTIER_TARGET := '$(SRC_DIR)/**/*.css'
-
 USE_ESBUILD ?= 0
 
 export RELEASE_CHANNEL ?= production
@@ -140,20 +138,3 @@ unittest: __obj ## Run unit tests
 
 run_ava: ## Only run unit tests
 	$(NPM_BIN)/ava --config $(CURDIR)/ava.config.cjs
-
-
-####################################
-# Tools
-####################################
-format: format_css format_js ## Apply formetters for files.
-
-format_css:
-	$(NPM_BIN)/prettier --write $(PRETTIER_TARGET)
-
-format_js:
-	$(MAKE) eslint_fix -C $(REPOSITORY_ROOT_DIR)
-
-check_format: check_format_css
-
-check_format_css:
-	$(NPM_BIN)/prettier --check $(PRETTIER_TARGET)
