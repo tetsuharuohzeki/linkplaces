@@ -125,7 +125,6 @@ jobs:
 
       - name: Lint
         run: make lint -j
-        working-directory: ./packages/linkplaces
         env:
           CI: true
 

@@ -59,6 +59,8 @@ typecheck: ## Check static typing integrity
 ####################################
 # Tools
 ####################################
+lint: eslint stylelint ## Run all lints.
+
 eslint: ## Run ESLint
 	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
 
