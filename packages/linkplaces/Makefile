@@ -137,10 +137,7 @@ eslint_fix: ## Run ESLint with --fix option
 	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
 
 stylelint: ## Run stylelint
-	$(NPM_BIN)/stylelint '$(SRC_DIR)/**/*.css' \
-		--config=$(CURDIR)/stylelint.config.cjs \
-		-f verbose \
-		--color
+	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)
 
 unittest: __obj ## Run unit tests
 	$(MAKE) run_ava

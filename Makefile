@@ -64,7 +64,10 @@ eslint_fix: ## Run ESLint with --fix option
 	$(MAKE) $@ -C $(PKG_MAIN)
 
 stylelint: ## Run stylelint
-	$(MAKE) $@ -C $(PKG_MAIN)
+	$(NPM_BIN)/stylelint '$(CURDIR)/**/*.css' \
+		--config=$(CURDIR)/stylelint.config.cjs \
+		-f verbose \
+		--color
 
 format: ## Apply formetters for files.
 	$(MAKE) $@ -C $(PKG_MAIN)
