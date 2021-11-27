@@ -1,10 +1,8 @@
-/*eslint-env node*/
+/*eslint-env commonjs*/
 /*eslint quote-props: [2, "always"] */
 
 // eslint-disable-next-line strict
 'use strict';
-
-const path = require('path');
 
 const JS_EXTENSION = ['.mjs', '.js', '.jsx'];
 const TS_EXTENSION = ['.ts', '.tsx', '.d.ts'];
@@ -36,36 +34,4 @@ module.exports = {
             },
         },
     },
-
-    'overrides': [
-        {
-            'files': ['*.ts', '*.tsx', '*.d.ts'],
-
-            'extends': [
-                'eslint-config-abema/config/eslintrc_typescript.js',
-                'eslint-config-abema/config/eslintrc_typescript_react.js',
-            ],
-
-            'parserOptions': {
-                'sourceType': 'module',
-                'ecmaFeatures': {
-                    'jsx': true
-                },
-                'project': path.resolve(__dirname, '../tsconfig.eslint.json'),
-                'extraFileExtensions': ['.cjs'],
-            },
-
-            'globals': {
-                // see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
-                'JSX': 'readonly',
-            },
-
-            'rules': {
-                // FIXME: Re-enable for the future.
-                '@typescript-eslint/member-ordering': 'off',
-
-                'react/no-arrow-function-lifecycle': 'error',
-            },
-        },
-    ],
 };

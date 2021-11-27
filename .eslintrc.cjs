@@ -1,7 +1,11 @@
-/*eslint-env commonjs*/
+/*eslint-env node*/
 /*eslint quote-props: [2, "always"] */
 
 'use strict';
+
+const path = require('path');
+
+const TSCONFIG_PATH = path.resolve(__dirname, './tsconfig.eslint.json');
 
 // ESLint Configuration Files enables to include comments.
 // https://eslint.org/docs/configuring/#comments-in-configuration-files
@@ -49,6 +53,35 @@ module.exports = {
                 'import/extensions': ['error', 'always', {
                     'ignorePackages': true,
                 }],
+            },
+        },
+        {
+            'files': ['*.ts', '*.tsx', '*.d.ts'],
+
+            'extends': [
+                'eslint-config-abema/config/eslintrc_typescript.js',
+                'eslint-config-abema/config/eslintrc_typescript_react.js',
+            ],
+
+            'parserOptions': {
+                'sourceType': 'module',
+                'ecmaFeatures': {
+                    'jsx': true
+                },
+                'project': TSCONFIG_PATH,
+                'extraFileExtensions': ['.cjs'],
+            },
+
+            'globals': {
+                // see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
+                'JSX': 'readonly',
+            },
+
+            'rules': {
+                // FIXME: Re-enable for the future.
+                '@typescript-eslint/member-ordering': 'off',
+
+                'react/no-arrow-function-lifecycle': 'error',
             },
         },
     ],

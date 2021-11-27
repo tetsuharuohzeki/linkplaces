@@ -1,23 +1,12 @@
 /*eslint-env node */
 /*eslint quote-props: [2, "always"] */
-/* eslint-disable @typescript-eslint/no-require-imports */
 
-'use strict'; // eslint-disable-line strict
-
-const path = require('node:path');
+'use strict';
 
 // ESLint Configuration Files enables to include comments.
 // https://eslint.org/docs/configuring/#comments-in-configuration-files
 module.exports = {
-    'extends': [
-        'eslint-config-abema/config/eslintrc_typescript.js',
-    ],
-
-    'parserOptions': {
-        'sourceType': 'module',
-        'project': path.resolve(__dirname, '../tsconfig.eslint.json'),
-    },
-
+    'plugins': ['@typescript-eslint'],
     'settings': {
         'import/resolver': {
             'node': {
