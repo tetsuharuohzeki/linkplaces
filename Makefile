@@ -8,6 +8,8 @@ PKG_MAIN_DIST_DIR := $(PKG_MAIN)/__dist
 
 ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
 
+ESLINT_TARGET_EXTENSION := js,jsx,cjs,mjs,ts,tsx
+
 all: help
 
 help:
@@ -58,10 +60,10 @@ typecheck: ## Check static typing integrity
 # Tools
 ####################################
 eslint: ## Run ESLint
-	$(MAKE) $@ -C $(PKG_MAIN)
+	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
 
 eslint_fix: ## Run ESLint with --fix option
-	$(MAKE) $@ -C $(PKG_MAIN)
+	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
 
 stylelint: ## Run stylelint
 	$(NPM_BIN)/stylelint '$(CURDIR)/**/*.css' \

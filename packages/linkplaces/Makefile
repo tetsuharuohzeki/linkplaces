@@ -11,7 +11,6 @@ OBJ_DIR := $(CURDIR)/__obj
 OBJ_SRC_DIR := $(OBJ_DIR)/src
 DIST_DIR := $(CURDIR)/__dist
 
-ESLINT_TARGET_EXTENSION := js,jsx,cjs,mjs,ts,tsx
 PRETTIER_TARGET := '$(SRC_DIR)/**/*.css'
 
 USE_ESBUILD ?= 0
@@ -131,10 +130,7 @@ test: lint unittest ## Run all tests command (This is not for CI).
 lint: eslint stylelint
 
 eslint: ## Run ESLint
-	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
-
-eslint_fix: ## Run ESLint with --fix option
-	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
+	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)
 
 stylelint: ## Run stylelint
 	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)
@@ -158,7 +154,7 @@ format_css:
 	$(NPM_BIN)/prettier --write $(PRETTIER_TARGET)
 
 format_js:
-	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
+	$(MAKE) eslint_fix -C $(REPOSITORY_ROOT_DIR)
 
 check_format: check_format_css
 
