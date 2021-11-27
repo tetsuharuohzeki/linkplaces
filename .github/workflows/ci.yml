@@ -125,7 +125,6 @@ jobs:
 
       - name: Lint
         run: make lint -j
-        working-directory: ./packages/linkplaces
         env:
           CI: true
 
@@ -190,7 +189,6 @@ jobs:
 
       - name: check formatting
         run: make check_format -j
-        working-directory: ./packages/linkplaces
         env:
           CI: true
 

@@ -8,6 +8,9 @@ PKG_MAIN_DIST_DIR := $(PKG_MAIN)/__dist
 
 ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
 
+ESLINT_TARGET_EXTENSION := js,jsx,cjs,mjs,ts,tsx
+PRETTIER_TARGET := '$(CURDIR)/**/*.css'
+
 all: help
 
 help:
@@ -55,19 +58,39 @@ typecheck: ## Check static typing integrity
 
 
 ####################################
-# Tools
+# Lint
 ####################################
+lint: eslint stylelint ## Run all lints.
+
 eslint: ## Run ESLint
-	$(MAKE) $@ -C $(PKG_MAIN)
+	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
 
 eslint_fix: ## Run ESLint with --fix option
-	$(MAKE) $@ -C $(PKG_MAIN)
+	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
 
 stylelint: ## Run stylelint
-	$(MAKE) $@ -C $(PKG_MAIN)
+	$(NPM_BIN)/stylelint '$(CURDIR)/**/*.css' \
+		--config=$(CURDIR)/stylelint.config.cjs \
+		-f verbose \
+		--color
 
-format: ## Apply formetters for files.
-	$(MAKE) $@ -C $(PKG_MAIN)
 
-check_format: ## Check a code formatting.
-	$(MAKE) $@ -C $(PKG_MAIN)
+####################################
+# Tools
+####################################
+format: format_css format_js ## Apply formetters for files.
+
+format_css:
+	$(NPM_BIN)/prettier --write $(PRETTIER_TARGET)
+
+format_js:
+	$(MAKE) eslint_fix -C $(CURDIR)
+
+check_format: check_format_css ## Check a code formatting.
+
+check_format_css: ## Check CSS code formatting.
+	$(NPM_BIN)/prettier --check $(PRETTIER_TARGET)
+
+git_diff: ## Test whether there is no committed changes.
+	git diff --exit-code
+

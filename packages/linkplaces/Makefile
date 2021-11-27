@@ -11,9 +11,6 @@ OBJ_DIR := $(CURDIR)/__obj
 OBJ_SRC_DIR := $(OBJ_DIR)/src
 DIST_DIR := $(CURDIR)/__dist
 
-ESLINT_TARGET_EXTENSION := js,jsx,cjs,mjs,ts,tsx
-PRETTIER_TARGET := '$(SRC_DIR)/**/*.css'
-
 USE_ESBUILD ?= 0
 
 export RELEASE_CHANNEL ?= production
@@ -131,39 +128,13 @@ test: lint unittest ## Run all tests command (This is not for CI).
 lint: eslint stylelint
 
 eslint: ## Run ESLint
-	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
-
-eslint_fix: ## Run ESLint with --fix option
-	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
+	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)
 
 stylelint: ## Run stylelint
-	$(NPM_BIN)/stylelint '$(SRC_DIR)/**/*.css' \
-		--config=$(CURDIR)/stylelint.config.cjs \
-		-f verbose \
-		--color
+	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)
 
 unittest: __obj ## Run unit tests
 	$(MAKE) run_ava
 
 run_ava: ## Only run unit tests
 	$(NPM_BIN)/ava --config $(CURDIR)/ava.config.cjs
-
-git_diff: ## Test whether there is no committed changes.
-	git diff --exit-code
-
-
-####################################
-# Tools
-####################################
-format: format_css format_js ## Apply formetters for files.
-
-format_css:
-	$(NPM_BIN)/prettier --write $(PRETTIER_TARGET)
-
-format_js:
-	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
-
-check_format: check_format_css
-
-check_format_css:
-	$(NPM_BIN)/prettier --check $(PRETTIER_TARGET)
