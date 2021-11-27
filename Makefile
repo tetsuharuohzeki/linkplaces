@@ -4,8 +4,9 @@ NPM_BIN := $(NPM_MOD_DIR)/.bin
 
 PKG_DIR := $(CURDIR)/packages
 PKG_MAIN := $(PKG_DIR)/linkplaces
+PKG_MAIN_DIST_DIR := $(PKG_MAIN)/__dist
 
-export ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
+ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
 
 all: help
 
@@ -37,6 +38,9 @@ build_development: clean ## Run `make build` with `RELEASE_CHANNEL=development`
 .PHONY: build_production
 build_production: clean ## Run `make build` with `RELEASE_CHANNEL=production`
 	$(MAKE) $@ -C $(PKG_MAIN)
+
+__webext_xpi:
+	$(NPM_BIN)/web-ext build -s $(PKG_MAIN_DIST_DIR) --artifacts-dir $(ARTIFACT_DIR)
 
 __plain_ts:
 	$(NPM_BIN)/tsc --build --force
