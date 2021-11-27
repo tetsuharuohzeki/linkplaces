@@ -78,3 +78,6 @@ format: ## Apply formetters for files.
 
 check_format: ## Check a code formatting.
 	$(MAKE) $@ -C $(PKG_MAIN)
+
+git_diff: ## Test whether there is no committed changes.
+	git diff --exit-code

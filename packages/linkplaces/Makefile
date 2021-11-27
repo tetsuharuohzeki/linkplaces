@@ -141,9 +141,6 @@ unittest: __obj ## Run unit tests
 run_ava: ## Only run unit tests
 	$(NPM_BIN)/ava --config $(CURDIR)/ava.config.cjs
 
-git_diff: ## Test whether there is no committed changes.
-	git diff --exit-code
-
 
 ####################################
 # Tools
