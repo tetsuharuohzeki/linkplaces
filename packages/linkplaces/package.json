@@ -40,7 +40,7 @@
         "jsdom": "^18.1.1",
         "option-t": "^29.1.0",
         "picomatch": "^2.3.0",
-        "postcss": "^8.4.3",
+        "postcss": "^8.4.4",
         "postcss-import": "^14.0.2",
         "react": "^18.0.0-beta-149b420f6-20211119",
         "react-dom": "^18.0.0-beta-149b420f6-20211119",
