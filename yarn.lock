@@ -4651,14 +4651,14 @@ rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-dom@^18.0.0-beta-149b420f6-20211119:
-  version "18.0.0-beta-149b420f6-20211119"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-beta-149b420f6-20211119.tgz#dcf05faf52c6206db642dd50ae13a6647ee39fac"
-  integrity sha512-r8olPiJVDGRLHjF+LMzLBPUWSbG6OXuNInaC/kcJkDwBW8rX2gkOypGvylP5i3VqtpiPX6CHyD599aypa3wpPA==
+react-dom@^18.0.0-beta-4729ff6d1-20211202:
+  version "18.0.0-beta-4729ff6d1-20211202"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-beta-4729ff6d1-20211202.tgz#b8efa747b704da0632f8bb2b14842ec846cad39e"
+  integrity sha512-/U2OjvuGTptM1alZs0prxqTVs8XAAICVQ4l+arHbMiwDGsJ51PpoG3k7quTpCvG9N6mYSgpQJVQWJWC5knpkFw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    scheduler "0.21.0-beta-149b420f6-20211119"
+    scheduler "0.21.0-beta-4729ff6d1-20211202"
 
 react-is@^16.8.1:
   version "16.13.1"
@@ -4934,10 +4934,10 @@ saxes@^5.0.1:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@0.21.0-beta-149b420f6-20211119:
-  version "0.21.0-beta-149b420f6-20211119"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.21.0-beta-149b420f6-20211119.tgz#066b24dc2df762a6197c725930dcc7013de40ad2"
-  integrity sha512-IShAO9AhLkyiHY5wujThaUypxGHJj8IBdTTlerl040NzV/edrGeFTeTEpn4EjEhQzV0hVW9Oo58Fps3p5wtnww==
+scheduler@0.21.0-beta-4729ff6d1-20211202:
+  version "0.21.0-beta-4729ff6d1-20211202"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.21.0-beta-4729ff6d1-20211202.tgz#c3ece567e80ebbba0af03d2c20500807c7688db3"
+  integrity sha512-S2FcDIo49H/16JJVosSpdn+kdSIiJsjoRwXFGwJ8KUaxoHZiy6PUzX3qpsgKkB9crYrSpwinsKEaOrV4EBCZFA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
