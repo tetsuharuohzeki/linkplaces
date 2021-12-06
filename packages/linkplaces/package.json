@@ -42,7 +42,7 @@
         "picomatch": "^2.3.0",
         "postcss": "^8.4.4",
         "postcss-import": "^14.0.2",
-        "react": "^18.0.0-beta-149b420f6-20211119",
+        "react": "^18.0.0-beta-4729ff6d1-20211202",
         "react-dom": "^18.0.0-beta-149b420f6-20211119",
         "rollup": "^2.60.2",
         "rxjs": "^7.4.0",
