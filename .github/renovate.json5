@@ -1,0 +1,39 @@
+{
+    "extends": [
+        "config:base",
+        ":preserveSemverRanges",
+        "schedule:weekdays",
+        ":timezone(Asia/Tokyo)"
+    ],
+    "labels": [
+        "A-dependency",
+        "I-dependency-gardening"
+    ],
+    "packageRules": [
+        {
+            "matchPackageNames": [
+                "react",
+                "react-dom"
+            ],
+            "groupName": "React"
+        },
+        {
+            "matchPackageNames": [
+                "@types/react",
+                "@types/react-dom"
+            ]
+        },
+        {
+            "matchPackagePatterns": [
+                "^@babel/"
+            ],
+            "groupName": "babel"
+        },
+        {
+            "matchPackagePatterns": [
+                "^@typescript-eslint/"
+            ],
+            "groupName": "typescript-eslint"
+        }
+    ]
+}
