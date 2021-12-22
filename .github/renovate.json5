@@ -11,29 +11,30 @@
     ],
     "packageRules": [
         {
+            "groupName": "React",
             "matchPackageNames": [
                 "react",
                 "react-dom"
-            ],
-            "groupName": "React"
+            ]
         },
         {
+            "groupName": "React's d.ts",
             "matchPackageNames": [
                 "@types/react",
                 "@types/react-dom"
             ]
         },
         {
+            "groupName": "babel",
             "matchPackagePatterns": [
                 "^@babel/"
-            ],
-            "groupName": "babel"
+            ]
         },
         {
+            "groupName": "typescript-eslint",
             "matchPackagePatterns": [
                 "^@typescript-eslint/"
-            ],
-            "groupName": "typescript-eslint"
+            ]
         }
     ]
 }
