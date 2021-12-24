@@ -36,7 +36,7 @@
         "@types/react": "^17.0.37",
         "@types/react-dom": "^17.0.11",
         "ava": "^4.0.0-rc.1",
-        "esbuild": "^0.14.7",
+        "esbuild": "^0.14.8",
         "jsdom": "^19.0.0",
         "option-t": "^30.0.0",
         "picomatch": "^2.3.0",
