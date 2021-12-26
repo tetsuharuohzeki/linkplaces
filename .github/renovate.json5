@@ -2,7 +2,7 @@
     "extends": [
         "config:base",
         ":preserveSemverRanges",
-        "schedule:weekdays",
+        "schedule:nonOfficeHours",
         ":timezone(Asia/Tokyo)"
     ],
     "labels": [
