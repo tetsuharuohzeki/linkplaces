@@ -1,6 +1,11 @@
 {
     "extends": [
-        "config:base",
+        ":dependencyDashboard",
+        ":semanticPrefixFixDepsChoreOthers",
+        ":ignoreModulesAndTests",
+        ":autodetectPinVersions",
+        "group:monorepos",
+        "group:recommended",
         "schedule:nonOfficeHours",
         ":timezone(Asia/Tokyo)"
     ],
