@@ -125,12 +125,7 @@ __plain_ts: clean_plain
 ####################################
 test: lint unittest ## Run all tests command (This is not for CI).
 
-lint: eslint stylelint
-
-eslint: ## Run ESLint
-	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)
-
-stylelint: ## Run stylelint
+lint:
 	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)
 
 unittest: __obj ## Run unit tests
