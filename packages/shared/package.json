@@ -15,6 +15,14 @@
             "types": "./__dist/Bookmark.d.ts",
             "default": "./__dist/Bookmark.js"
         },
+        "./__dist/component/mod": {
+            "types": "./__dist/component/mod.d.ts",
+            "default": "./__dist/component/mod.js"
+        },
+        "./component": {
+            "types": "./__dist/component/mod.d.ts",
+            "default": "./__dist/component/mod.js"
+        },
         "./__dist/constants": {
             "types": "./__dist/constants.d.ts",
             "default": "./__dist/constants.js"

@@ -1,7 +1,7 @@
 import { Ix } from '@linkplaces/foundation';
+import { PanelSectionList } from '@linkplaces/shared/__dist/component/mod';
 
 import { StrictMode } from 'react';
-import { PanelSectionList } from '../shared/component/PanelSectionList';
 import type { SidebarIntent } from './SidebarIntent';
 import type { SidebarState } from './SidebarState';
 import { ListItem } from './view/SidebarListItemView';

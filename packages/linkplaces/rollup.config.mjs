@@ -1,8 +1,11 @@
 /* eslint-env node */
 
+import { babel } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
+
+import babelConfig from './babel.config.mjs';
 
 import {
     GIT_REVISION,
@@ -113,6 +116,13 @@ export default async function createConfiguration(_commandLineArgs) {
                 values: {
                     'process.env.NODE_ENV': JSON.stringify(LIB_NODE_ENV),
                 },
+            }),
+
+            // https://github.com/rollup/plugins/tree/master/packages/babel
+            babel({
+                ...babelConfig,
+                babelHelpers: 'bundled',
+                extensions: ['.jsx'],
             }),
         ],
 

@@ -3,6 +3,6 @@
 @import '@linkplaces/foundation/src/mod.css';
 
 @import '@linkplaces/shared/src/reset_css/mod.css';
-@import '../shared/component/mod.css';
+@import '@linkplaces/shared/src/component/mod.css';
 
 @import './view/mod.css';
