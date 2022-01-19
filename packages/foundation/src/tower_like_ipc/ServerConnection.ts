@@ -3,14 +3,14 @@ import type { ExtensionPort } from '@linkplaces/webext_types';
 import { assertPacket, type Packet } from './Packet.js';
 import type { PacketCreationService } from './PacketCreationService.js';
 
-export class ServerConnection<TRequestBody, TResponse> {
+export class ServerConnection {
     private _port: ExtensionPort;
     private _onMessage: (this: this, packet: object) => void;
     private _onDissconnect: (this: this, port: ExtensionPort) => void;
 
-    private _service: PacketCreationService<unknown, TResponse>;
+    private _service: PacketCreationService<unknown, unknown>;
 
-    constructor(port: ExtensionPort, service: PacketCreationService<TRequestBody, TResponse>) {
+    constructor(port: ExtensionPort, service: PacketCreationService<unknown, unknown>) {
         this._port = port;
         this._onMessage = this.onMessage.bind(this);
         this._onDissconnect = this.onDisconnect.bind(this);

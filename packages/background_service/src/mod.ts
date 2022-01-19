@@ -10,7 +10,7 @@ import { createContextMenu } from './ContextMenu.js';
 declare global {
     // We keep this for debugging.
     // eslint-disable-next-line no-var
-    var livingConnectionSet: WeakSet<ServerConnection<unknown, unknown>>;
+    var livingConnectionSet: WeakSet<ServerConnection>;
 }
 
 (function main() {
