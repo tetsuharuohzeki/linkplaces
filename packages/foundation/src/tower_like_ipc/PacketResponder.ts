@@ -10,7 +10,7 @@ import type { PacketCreationService } from './PacketCreationService.js';
 import { ReplyResponder } from './ReplyResponder.js';
 import type { TowerService } from './traits.js';
 
-export class PacketRouter<TRequestBody, TResponse> implements PacketCreationService<unknown, TResponse> {
+export class PacketResponder<TRequestBody, TResponse> implements PacketCreationService<unknown, TResponse> {
     private _oneshotReponder: OneShotResponder<unknown, TResponse>;
     private _replyResponder: ReplyResponder<unknown, TResponse>;
 
