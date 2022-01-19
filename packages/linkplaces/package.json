@@ -1,5 +1,5 @@
 {
-    "name": "linkplaces",
+    "name": "@linkplaces/app",
     "version": "0.10.0",
     "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
     "type": "module",
