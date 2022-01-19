@@ -3,7 +3,7 @@ import type { ExtensionPort } from '@linkplaces/webext_types';
 import type { Nullable } from 'option-t/Nullable/Nullable';
 import type { Result } from 'option-t/PlainResult';
 
-import { assertPacket, Packet } from './Packet.js';
+import { assertOneShotPacket, assertPacket, type Packet } from './Packet.js';
 import type { TowerService } from './traits.js';
 
 interface PacketCreationService<TRequestBody, TResponse> extends TowerService<Packet<TRequestBody>, Nullable<Packet<TResponse>>> {}
@@ -29,6 +29,8 @@ export class OneShotResponder<TRequestBody, TResponse> implements PacketCreation
     }
 
     async call(req: Packet<unknown>): Promise<null> {
+        assertOneShotPacket(req);
+
         const payload = req.payload;
         this._validator(payload);
         await this._source.call(payload);
