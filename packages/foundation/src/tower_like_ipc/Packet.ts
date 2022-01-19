@@ -28,7 +28,7 @@ export function isIdentifiablePacket(
     value: Packet<unknown>
 ): value is OneShotPacket<unknown> {
     const id = value.id;
-    const ok = id >= ONESHOT_PACKET_ID;
+    const ok = id > ONESHOT_PACKET_ID;
     return ok;
 }
 
