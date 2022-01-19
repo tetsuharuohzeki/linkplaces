@@ -24,7 +24,7 @@ export function createPacket<T>(id: number, payload: T): IdentifiablePacket<T> {
     };
 }
 
-function isIdentifiablePacket(
+export function isIdentifiablePacket(
     value: Packet<unknown>
 ): value is OneShotPacket<unknown> {
     const id = value.id;
@@ -39,7 +39,7 @@ export function createOneShotPacket<T>(payload: T): OneShotPacket<T> {
     };
 }
 
-function isOneShotPacket(
+export function isOneShotPacket(
     value: Packet<unknown>
 ): value is OneShotPacket<unknown> {
     const id = value.id;
