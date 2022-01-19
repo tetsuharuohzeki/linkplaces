@@ -1,41 +1,49 @@
-import { isNotNull, isNull, type Nullable } from 'option-t/Nullable/Nullable';
-
 export interface Packet<T> {
-    readonly id: Nullable<number>;
+    readonly id: number;
     readonly payload: T;
 }
 
-export interface IdentifiablePacket<T> extends Packet<T> {
-    readonly id: number;
-}
+export interface IdentifiablePacket<T> extends Packet<T> {}
+
+const ONESHOT_PACKET_ID = -1;
 
 export interface OneShotPacket<T> extends Packet<T> {
-    readonly id: null;
+    readonly id: typeof ONESHOT_PACKET_ID;
 }
 
 export function createPacket<T>(id: number, payload: T): IdentifiablePacket<T> {
+    if (id <= ONESHOT_PACKET_ID) {
+        throw new RangeError(
+            `id must be greater than ${String(ONESHOT_PACKET_ID)}`
+        );
+    }
+
     return {
         id,
         payload,
     };
 }
 
-function isIdentifiablePacket(value: Packet<unknown>): value is OneShotPacket<unknown> {
+function isIdentifiablePacket(
+    value: Packet<unknown>
+): value is OneShotPacket<unknown> {
     const id = value.id;
-    const ok = isNotNull(id);
+    const ok = id >= ONESHOT_PACKET_ID;
     return ok;
 }
 
 export function createOneShotPacket<T>(payload: T): OneShotPacket<T> {
     return {
-        id: null,
+        id: ONESHOT_PACKET_ID,
         payload,
     };
 }
 
-function isOneShotPacket(value: Packet<unknown>): value is OneShotPacket<unknown> {
+function isOneShotPacket(
+    value: Packet<unknown>
+): value is OneShotPacket<unknown> {
     const id = value.id;
-    const ok = isNull(id);
+    const ok = id === ONESHOT_PACKET_ID;
     return ok;
 }
 
@@ -47,15 +55,23 @@ export function assertPacket(value: object): asserts value is Packet<unknown> {
     }
 }
 
-export function assertIdentifiablePacket(value: Packet<unknown>): asserts value is IdentifiablePacket<unknown> {
+export function assertIdentifiablePacket(
+    value: Packet<unknown>
+): asserts value is IdentifiablePacket<unknown> {
     if (!isIdentifiablePacket(value)) {
-        throw new TypeError(`${JSON.stringify(value)} is not IdentifiablePacket<unknown>`);
+        throw new TypeError(
+            `${JSON.stringify(value)} is not IdentifiablePacket<unknown>`
+        );
     }
 }
 
-export function assertOneShotPacket(value: Packet<unknown>): asserts value is OneShotPacket<unknown> {
+export function assertOneShotPacket(
+    value: Packet<unknown>
+): asserts value is OneShotPacket<unknown> {
     if (!isOneShotPacket(value)) {
-        throw new TypeError(`${JSON.stringify(value)} is not OneShotPacket<unknown>`);
+        throw new TypeError(
+            `${JSON.stringify(value)} is not OneShotPacket<unknown>`
+        );
     }
 }
 
@@ -65,7 +81,7 @@ function isPacket(value: object): value is Packet<unknown> {
     }
 
     const { id } = value;
-    if (!(isNull(id) || typeof id === 'number')) {
+    if (typeof id !== 'number') {
         return false;
     }
 
