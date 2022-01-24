@@ -1,10 +1,4 @@
-import {
-    WHERE_TO_OPEN_ITEM_TO_TAB,
-    WHERE_TO_OPEN_ITEM_TO_BACKGROUND_TAB,
-    WHERE_TO_OPEN_ITEM_TO_WINDOW,
-    WHERE_TO_OPEN_ITEM_TO_CURRENT,
-    WhereToOpenItem,
-} from '@linkplaces/ipc_message';
+import { WhereToOpenItem } from '@linkplaces/ipc_message';
 import type { TabId, BrowserWindow } from '@linkplaces/webext_types';
 
 import { expectNotNullAndUndefined } from 'option-t/Maybe/expect';
@@ -12,13 +6,13 @@ import { expectNotUndefined } from 'option-t/Undefinable/expect';
 
 export async function createTab(url: string, where: WhereToOpenItem): Promise<TabId> {
     switch (where) {
-        case WHERE_TO_OPEN_ITEM_TO_CURRENT:
+        case WhereToOpenItem.Current:
             return openItemInCurrentTab(url);
-        case WHERE_TO_OPEN_ITEM_TO_WINDOW:
+        case WhereToOpenItem.Window:
             return openItemInNewWindow(url);
-        case WHERE_TO_OPEN_ITEM_TO_TAB:
+        case WhereToOpenItem.Tab:
             return openItemInNewTab(url, true);
-        case WHERE_TO_OPEN_ITEM_TO_BACKGROUND_TAB:
+        case WhereToOpenItem.BackgroundTab:
             return openItemInNewTab(url, false);
         default:
             throw new RangeError('unexpeced where type');

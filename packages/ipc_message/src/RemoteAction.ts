@@ -6,16 +6,12 @@ export const CONNECTION_PING_FROM_SIDEBAR = 'CONNECTION_PING_FROM_SIDEBAR';
 export const MSG_TYPE_OPEN_URL = 'linkplaces-open-url';
 export const MSG_TYPE_REGISTER_URL = 'linkplaces-register-url';
 
-export const WHERE_TO_OPEN_ITEM_TO_CURRENT = 'current';
-export const WHERE_TO_OPEN_ITEM_TO_WINDOW = 'window';
-export const WHERE_TO_OPEN_ITEM_TO_TAB = 'tab';
-export const WHERE_TO_OPEN_ITEM_TO_BACKGROUND_TAB = 'background_tab';
-
-export type WhereToOpenItem =
-    typeof WHERE_TO_OPEN_ITEM_TO_CURRENT |
-    typeof WHERE_TO_OPEN_ITEM_TO_WINDOW |
-    typeof WHERE_TO_OPEN_ITEM_TO_TAB |
-    typeof WHERE_TO_OPEN_ITEM_TO_BACKGROUND_TAB;
+export enum WhereToOpenItem {
+    Current = 'current',
+    Window = 'window',
+    Tab = 'tab',
+    BackgroundTab = 'background_tab',
+}
 
 export interface RemoteActionBase {
     type: string;

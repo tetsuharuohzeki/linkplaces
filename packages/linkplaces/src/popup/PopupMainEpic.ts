@@ -1,6 +1,5 @@
 import {
     WhereToOpenItem,
-    WHERE_TO_OPEN_ITEM_TO_TAB,
     openItem as openItemViaChannel,
     openWebExtSidebar as openWebExtSidebarDirect,
 } from '@linkplaces/ipc_message';
@@ -17,7 +16,7 @@ export class PopupMainEpic {
     }
 
     async openItem(id: string, url: string): Promise<void> {
-        const where: WhereToOpenItem = WHERE_TO_OPEN_ITEM_TO_TAB;
+        const where: WhereToOpenItem = WhereToOpenItem.Tab;
         openItemViaChannel(this._channel, id, url, where);
         return closeWindow();
     }

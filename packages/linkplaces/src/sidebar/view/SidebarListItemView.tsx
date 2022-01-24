@@ -1,4 +1,4 @@
-import { WhereToOpenItem, WHERE_TO_OPEN_ITEM_TO_WINDOW, WHERE_TO_OPEN_ITEM_TO_TAB } from '@linkplaces/ipc_message';
+import { WhereToOpenItem } from '@linkplaces/ipc_message';
 import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '@linkplaces/shared/__dist/Bookmark';
 import {
     PanelListItem,
@@ -142,10 +142,10 @@ function ListItemForBookmarkItem(props: ListItemForBookmarkItemProps) {
 
 function calculateWhereToOpenItem(syntheticEvent: MouseEvent<HTMLAnchorElement>): WhereToOpenItem {
     if (syntheticEvent.shiftKey) {
-        return WHERE_TO_OPEN_ITEM_TO_WINDOW;
+        return WhereToOpenItem.Window;
     }
 
-    return WHERE_TO_OPEN_ITEM_TO_TAB;
+    return WhereToOpenItem.Tab;
 }
 
 interface ListItemForBookmarkFolderProps {
