@@ -1,4 +1,4 @@
-import type { WebExtSidebarActionService } from '@linkplaces/webext_types';
+import type { BookmarkId, WebExtSidebarActionService } from '@linkplaces/webext_types';
 import { unwrapOrFromUndefinable } from 'option-t/Undefinable/unwrapOr';
 
 import {
@@ -9,7 +9,7 @@ import {
 } from './RemoteAction.js';
 import type { ClientConnection } from './RemoteActionChannel.js';
 
-export function openItem(chan: ClientConnection<RemoteAction>, bookmarkId: string, url: string, where: WhereToOpenItem): void {
+export function openItem(chan: ClientConnection<RemoteAction>, bookmarkId: BookmarkId, url: string, where: WhereToOpenItem): void {
     const a = createOpenUrlAction(bookmarkId, url, where);
     chan.postOneShotMessage(a);
 }

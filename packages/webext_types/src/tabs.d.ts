@@ -3,7 +3,8 @@
 import type { LooselyPartial } from './LooselyPartial';
 import { RunAt } from './extensionTypes';
 
-export type TabId = number;
+declare const tabIdMarker: unique symbol;
+export type TabId = number & { [tabIdMarker]: never; };
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/Tab
 export interface Tab {

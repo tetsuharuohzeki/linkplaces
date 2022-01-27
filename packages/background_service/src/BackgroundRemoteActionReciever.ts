@@ -2,6 +2,7 @@ import { NoImplementationError } from '@linkplaces/foundation';
 import type { TowerService } from '@linkplaces/foundation/tower_like_ipc';
 import { MSG_TYPE_OPEN_URL, MSG_TYPE_REGISTER_URL, RemoteAction, WhereToOpenItem } from '@linkplaces/ipc_message';
 import { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } from '@linkplaces/shared/bookmark';
+import type { BookmarkId } from '@linkplaces/webext_types';
 
 import { createOk, Result } from 'option-t/PlainResult';
 
@@ -30,7 +31,7 @@ export class BackgroundRemoteActionReciever implements TowerService<RemoteAction
     }
 }
 
-async function openUrlFromPopup(url: string, bookmarkId: string, where: WhereToOpenItem): Promise<void> {
+async function openUrlFromPopup(url: string, bookmarkId: BookmarkId, where: WhereToOpenItem): Promise<void> {
     await openUrl(url, where);
     await removeBookmarkItem(bookmarkId);
 }

@@ -1,28 +1,31 @@
 import type { ExtensionEventManager } from './ExtensionEventManager';
 
+declare const bookmarkIdMarker: unique symbol;
+export type BookmarkId = string & { [bookmarkIdMarker]: never; };
+
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks
 export interface WebExtBookmarkService {
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/create
     create(bookmark: CreateDetails): Promise<BookmarkTreeNode>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/get
-    get(idOrIdList: string | Array<string>): Promise<Array<BookmarkTreeNode>>;
+    get(idOrIdList: BookmarkId | Array<BookmarkId>): Promise<Array<BookmarkTreeNode>>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/getChildren
-    getChildren(id: string): Promise<Array<BookmarkTreeNode>>;
+    getChildren(id: BookmarkId): Promise<Array<BookmarkTreeNode>>;
 
     // TODO: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/getRecent
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/getSubTree
-    getSubTree(id: string): Promise<Array<BookmarkTreeNode>>;
+    getSubTree(id: BookmarkId): Promise<Array<BookmarkTreeNode>>;
 
     // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/getTree
     // TODO: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/move
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/remove
-    remove(id: string): Promise<void>;
+    remove(id: BookmarkId): Promise<void>;
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/removeTree
-    removeTree(id: string): Promise<void>;
+    removeTree(id: BookmarkId): Promise<void>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/search
     search(query: {
@@ -34,19 +37,19 @@ export interface WebExtBookmarkService {
     // TODO: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/update
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onCreated
-    onCreated: ExtensionEventManager<(id: string, bookmark: BookmarkTreeNode) => void>;
+    onCreated: ExtensionEventManager<(id: BookmarkId, bookmark: BookmarkTreeNode) => void>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onRemoved
-    onRemoved: ExtensionEventManager<(id: string, removeInfo: OnRemoveInfo) => void>;
+    onRemoved: ExtensionEventManager<(id: BookmarkId, removeInfo: OnRemoveInfo) => void>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onChanged
-    onChanged: ExtensionEventManager<(id: string, changeInfo: OnChangeInfo) => void>;
+    onChanged: ExtensionEventManager<(id: BookmarkId, changeInfo: OnChangeInfo) => void>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onMoved
-    onMoved: ExtensionEventManager<(id: string, moveInfo: OnMoveInfo) => void>;
+    onMoved: ExtensionEventManager<(id: BookmarkId, moveInfo: OnMoveInfo) => void>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onChildrenReordered
-    onChildrenReordered: ExtensionEventManager<(id: string, reorderInfo: OnReorderInfo) => void>;
+    onChildrenReordered: ExtensionEventManager<(id: BookmarkId, reorderInfo: OnReorderInfo) => void>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onImportBegan
     onImportBegan: ExtensionEventManager<() => void>;
@@ -56,7 +59,7 @@ export interface WebExtBookmarkService {
 }
 
 export type OnRemoveInfo = Readonly<{
-    parentId: string;
+    parentId: BookmarkId;
     index: number;
     node: BookmarkTreeNode;
 }>;
@@ -65,13 +68,13 @@ export type OnChangeInfo = Readonly<{
     url?: string;
 }>;
 export type OnMoveInfo = Readonly<{
-    parentId: string;
+    parentId: BookmarkId;
     index: number;
-    oldParentId: string;
+    oldParentId: BookmarkId;
     oldIndex: number;
 }>;
 export type OnReorderInfo = Readonly<{
-    childIds: Array<string>;
+    childIds: Array<BookmarkId>;
 }>;
 
 export enum BookmarkTreeNodeType {
@@ -87,8 +90,8 @@ export type BookmarkTreeNodeUnmodifiable = 'managed';
 export type BookmarkTreeNode = BookmarkTreeNodeFolder | BookmarkTreeNodeItem | BookmarkTreeNodeSeparator;
 
 interface BookmarkTreeNodeBase {
-    readonly id: string;
-    readonly parentId?: string;
+    readonly id: BookmarkId;
+    readonly parentId?: BookmarkId;
     readonly index?: number;
     readonly title: string;
     readonly dateAdded?: number;
@@ -113,7 +116,7 @@ export interface BookmarkTreeNodeSeparator extends BookmarkTreeNodeBase {
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/CreateDetails
 export type CreateDetails = {
-    parentId?: string;
+    parentId?: BookmarkId;
     index?: number;
     title?: string;
     url?: string | null;

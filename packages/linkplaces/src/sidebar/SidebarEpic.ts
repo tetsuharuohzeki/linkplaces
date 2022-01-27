@@ -3,6 +3,7 @@ import {
     openItem as openItemViaChannel,
     registerItem as registerItemViaChannel,
 } from '@linkplaces/ipc_message';
+import type { BookmarkId } from '@linkplaces/webext_types';
 
 import type { RemoteActionChannel } from './SidebarMessageChannel';
 import type { SidebarPlainReduxStore } from './SidebarStore';
@@ -14,7 +15,7 @@ export class SidebarEpic {
         this._channel = channel;
     }
 
-    openItem(id: string, url: string, where: WhereToOpenItem): void {
+    openItem(id: BookmarkId, url: string, where: WhereToOpenItem): void {
         openItemViaChannel(this._channel, id, url, where);
     }
 

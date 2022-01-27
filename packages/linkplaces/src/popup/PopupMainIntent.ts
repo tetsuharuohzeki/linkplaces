@@ -1,3 +1,4 @@
+import type { BookmarkId } from '@linkplaces/webext_types';
 import type { PopupMainEpic } from './PopupMainEpic';
 import type { PopupPlainReduxStore } from './PopupMainStore';
 
@@ -9,7 +10,7 @@ export class PopupMainIntent {
         this._epic = epic;
     }
 
-    async openItem(id: string, url: string): Promise<void> {
+    async openItem(id: BookmarkId, url: string): Promise<void> {
         await this._epic.openItem(id, url);
     }
 

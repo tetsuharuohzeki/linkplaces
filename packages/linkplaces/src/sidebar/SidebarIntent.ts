@@ -1,4 +1,5 @@
 import type { WhereToOpenItem } from '@linkplaces/ipc_message';
+import type { BookmarkId } from '@linkplaces/webext_types';
 import type { SidebarEpic } from './SidebarEpic';
 import type { SidebarPlainReduxStore } from './SidebarStore';
 
@@ -9,7 +10,7 @@ export class SidebarIntent {
         this._epic = epic;
     }
 
-    openItem(id: string, url: string, where: WhereToOpenItem): void {
+    openItem(id: BookmarkId, url: string, where: WhereToOpenItem): void {
         this._epic.openItem(id, url, where);
     }
 

@@ -3,6 +3,7 @@ import {
     openItem as openItemViaChannel,
     openWebExtSidebar as openWebExtSidebarDirect,
 } from '@linkplaces/ipc_message';
+import type { BookmarkId } from '@linkplaces/webext_types';
 
 import type { PopupPlainReduxStore } from './PopupMainStore';
 import type { RemoteActionChannel } from './PopupMessageChannel';
@@ -15,7 +16,7 @@ export class PopupMainEpic {
         this._channel = channel;
     }
 
-    async openItem(id: string, url: string): Promise<void> {
+    async openItem(id: BookmarkId, url: string): Promise<void> {
         const where: WhereToOpenItem = WhereToOpenItem.Tab;
         openItemViaChannel(this._channel, id, url, where);
         return closeWindow();

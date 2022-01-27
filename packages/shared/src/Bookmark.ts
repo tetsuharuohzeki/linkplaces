@@ -1,4 +1,5 @@
 import type {
+    BookmarkId,
     BookmarkTreeNode,
     BookmarkTreeNodeItem,
     BookmarkTreeNodeFolder,
@@ -11,9 +12,11 @@ import { unwrapFromResult } from 'option-t/esm/PlainResult/unwrap';
 
 const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/u;
 
+const UNFILED_BOOKMARK_ID: BookmarkId = 'unfiled_____' as BookmarkId;
+
 export function getUnfiledBoolmarkFolder(): Promise<Array<BookmarkTreeNode>> {
     // This code only works with Firefox.
-    return browser.bookmarks.getChildren('unfiled_____');
+    return browser.bookmarks.getChildren(UNFILED_BOOKMARK_ID);
 }
 
 function validateUrlForRegister(input: string): Result<string, URIError> {
@@ -63,7 +66,7 @@ export async function createBookmarkItem(urlLikeString: string, title: string): 
     return createOk(result);
 }
 
-export function removeBookmarkItem(id: string): Promise<void> {
+export function removeBookmarkItem(id: BookmarkId): Promise<void> {
     const r = browser.bookmarks.remove(id);
     return r;
 }

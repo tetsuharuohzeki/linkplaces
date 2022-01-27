@@ -1,3 +1,4 @@
+import type { BookmarkId } from '@linkplaces/webext_types';
 import { isNull } from 'option-t/Nullable/Nullable';
 
 export const CONNECTION_PING_FROM_POPUP = 'CONNECTION_PING_FROM_POPUP';
@@ -21,7 +22,7 @@ export interface RemoteActionBase {
 export interface OpenUrlAction extends RemoteActionBase {
     type: typeof MSG_TYPE_OPEN_URL;
     value: {
-        id: string;
+        id: BookmarkId;
         url: string;
         where: WhereToOpenItem;
     };
@@ -29,7 +30,7 @@ export interface OpenUrlAction extends RemoteActionBase {
 export function isOpenUrlAction(v: RemoteActionBase): v is OpenUrlAction {
     return v.type === MSG_TYPE_OPEN_URL;
 }
-export function createOpenUrlAction(bookmarkId: string, url: string, where: WhereToOpenItem): OpenUrlAction {
+export function createOpenUrlAction(bookmarkId: BookmarkId, url: string, where: WhereToOpenItem): OpenUrlAction {
     return {
         type: MSG_TYPE_OPEN_URL,
         value: {
