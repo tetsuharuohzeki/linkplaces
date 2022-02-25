@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference types="react-dom/next" />
+/// <reference types="react-dom/next" resolution-mode="require" />
 
 import { type Nullable, isNotNull } from 'option-t/Nullable/Nullable';
 import { expectNotNull } from 'option-t/Nullable/expect';
@@ -25,13 +25,19 @@ export abstract class ReactRuledViewContext implements ViewContext {
     }
 
     protected _destroyRenderRoot(): void {
-        const renderRoot = expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
+        const renderRoot = expectNotNull(
+            this._renderRoot,
+            'should has been initialized the renderRoot'
+        );
         renderRoot.unmount();
         this._renderRoot = null;
     }
 
     protected _getRenderRoot(): ReactDOM.Root {
-        return expectNotNull(this._renderRoot, 'should has been initialized the renderRoot');
+        return expectNotNull(
+            this._renderRoot,
+            'should has been initialized the renderRoot'
+        );
     }
 
     abstract onActivate(mountpoint: Element): Promise<void>;
