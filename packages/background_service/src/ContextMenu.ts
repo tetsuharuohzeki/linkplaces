@@ -3,7 +3,7 @@ import type { BookmarkTreeNode, OnClickData, CreateArgument, ContextType, Tab } 
 
 import { Maybe, isNullOrUndefined } from 'option-t/Maybe';
 import type { Result } from 'option-t/PlainResult/Result';
-import { tapErr } from 'option-t/PlainResult/tap';
+import { inspectErr } from 'option-t/PlainResult/inspect';
 import { expectNotUndefined } from 'option-t/Undefinable/expect';
 import { unwrapOrFromUndefinable } from 'option-t/Undefinable/unwrapOr';
 
@@ -81,7 +81,7 @@ function onClicked(info: OnClickData, tab: Maybe<Tab>): void {
     }
 
     saving.then((result) => {
-        tapErr(result, console.error);
+        inspectErr(result, console.error);
     }).catch(console.error);
 }
 
