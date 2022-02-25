@@ -1,6 +1,5 @@
 NODE_BIN := node
-NPM_MOD_DIR := $(CURDIR)/node_modules
-NPM_BIN := $(NPM_MOD_DIR)/.bin
+YARNPKG_RUN_BIN := yarn run --binaries-only
 
 PKG_DIR := $(CURDIR)/packages
 PKG_MAIN := $(PKG_DIR)/linkplaces
@@ -19,6 +18,16 @@ help:
 	@exit 1
 
 ####################################
+# Setup
+####################################
+setup_yarnpkg:
+	corepack enable yarn
+
+install: ## Install dependencies
+	yarn install --immutable
+
+
+####################################
 # Clean
 ####################################
 clean: clean_webext_artifacts clean_tsbuild_info ## Clean up all generated files.
@@ -28,7 +37,7 @@ clean_webext_artifacts:
 	$(NODE_BIN) $(PKG_MAIN)/tools/rm_dir.js $(ARTIFACT_DIR)
 
 clean_tsbuild_info:
-	$(NPM_BIN)/tsc --build --clean
+	$(YARNPKG_RUN_BIN) tsc --build --clean
 
 
 ####################################
@@ -43,10 +52,10 @@ build_production: clean ## Run `make build` with `RELEASE_CHANNEL=production`
 	$(MAKE) $@ -C $(PKG_MAIN)
 
 __webext_xpi:
-	$(NPM_BIN)/web-ext build -s $(PKG_MAIN_DIST_DIR) --artifacts-dir $(ARTIFACT_DIR)
+	$(YARNPKG_RUN_BIN) web-ext build -s $(PKG_MAIN_DIST_DIR) --artifacts-dir $(ARTIFACT_DIR)
 
 __plain_ts:
-	$(NPM_BIN)/tsc --build --force
+	$(YARNPKG_RUN_BIN) tsc --build --force
 
 
 ####################################
@@ -54,7 +63,7 @@ __plain_ts:
 ####################################
 
 typecheck: ## Check static typing integrity
-	$(NPM_BIN)/tsc --build
+	$(YARNPKG_RUN_BIN) tsc --build
 
 
 ####################################
@@ -63,13 +72,13 @@ typecheck: ## Check static typing integrity
 lint: eslint stylelint ## Run all lints.
 
 eslint: ## Run ESLint
-	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
+	$(YARNPKG_RUN_BIN) eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
 
 eslint_fix: ## Run ESLint with --fix option
-	$(NPM_BIN)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
+	$(YARNPKG_RUN_BIN) eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
 
 stylelint: ## Run stylelint
-	$(NPM_BIN)/stylelint '$(CURDIR)/**/*.css' \
+	$(YARNPKG_RUN_BIN) stylelint '$(CURDIR)/**/*.css' \
 		--config=$(CURDIR)/stylelint.config.cjs \
 		-f verbose \
 		--color
@@ -81,7 +90,7 @@ stylelint: ## Run stylelint
 format: format_css format_js ## Apply formetters for files.
 
 format_css:
-	$(NPM_BIN)/prettier --write $(PRETTIER_TARGET)
+	$(YARNPKG_RUN_BIN) prettier --write $(PRETTIER_TARGET)
 
 format_js:
 	$(MAKE) eslint_fix -C $(CURDIR)
@@ -89,7 +98,7 @@ format_js:
 check_format: check_format_css ## Check a code formatting.
 
 check_format_css: ## Check CSS code formatting.
-	$(NPM_BIN)/prettier --check $(PRETTIER_TARGET)
+	$(YARNPKG_RUN_BIN) prettier --check $(PRETTIER_TARGET)
 
 git_diff: ## Test whether there is no committed changes.
 	git diff --exit-code

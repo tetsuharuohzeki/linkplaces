@@ -21,12 +21,15 @@ jobs:
         with:
           path: node_modules
           key: build-v0-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup corepack to use yarnpkg
+        run: |
+          make setup_yarnpkg
       - name: install dependencies
         # We only cache `yarn cache dir`, not including `node_modules/`.
         # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
-          yarn install --frozen-lockfile
+          make install
       ##### END: sharable parts across jobs #####
 
   build:
@@ -48,12 +51,15 @@ jobs:
         with:
           path: node_modules
           key: build-v0-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup corepack to use yarnpkg
+        run: |
+          make setup_yarnpkg
       - name: install dependencies
         # We only cache `yarn cache dir`, not including `node_modules/`.
         # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
-          yarn install --frozen-lockfile
+          make install
       ##### END: sharable parts across jobs #####
 
       - name: build
@@ -82,12 +88,15 @@ jobs:
         with:
           path: node_modules
           key: build-v0-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup corepack to use yarnpkg
+        run: |
+          make setup_yarnpkg
       - name: install dependencies
         # We only cache `yarn cache dir`, not including `node_modules/`.
         # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
-          yarn install --frozen-lockfile
+          make install
       ##### END: sharable parts across jobs #####
 
       - name: build
@@ -115,12 +124,15 @@ jobs:
         with:
           path: node_modules
           key: build-v0-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup corepack to use yarnpkg
+        run: |
+          make setup_yarnpkg
       - name: install dependencies
         # We only cache `yarn cache dir`, not including `node_modules/`.
         # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
-          yarn install --frozen-lockfile
+          make install
       ##### END: sharable parts across jobs #####
 
       - name: Lint
@@ -147,12 +159,15 @@ jobs:
         with:
           path: node_modules
           key: build-v0-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup corepack to use yarnpkg
+        run: |
+          make setup_yarnpkg
       - name: install dependencies
         # We only cache `yarn cache dir`, not including `node_modules/`.
         # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
-          yarn install --frozen-lockfile
+          make install
       ##### END: sharable parts across jobs #####
 
       - name: typecheck
@@ -179,12 +194,15 @@ jobs:
         with:
           path: node_modules
           key: build-v0-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup corepack to use yarnpkg
+        run: |
+          make setup_yarnpkg
       - name: install dependencies
         # We only cache `yarn cache dir`, not including `node_modules/`.
         # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
-          yarn install --frozen-lockfile
+          make install
       ##### END: sharable parts across jobs #####
 
       - name: check formatting
@@ -211,12 +229,15 @@ jobs:
         with:
           path: node_modules
           key: build-v0-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup corepack to use yarnpkg
+        run: |
+          make setup_yarnpkg
       - name: install dependencies
         # We only cache `yarn cache dir`, not including `node_modules/`.
         # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
-          yarn install --frozen-lockfile
+          make install
       ##### END: sharable parts across jobs #####
 
       - name: Run unittests

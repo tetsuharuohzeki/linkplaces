@@ -2,3 +2,14 @@
 **/__dist/**/*.*
 **/__obj/**/*.*
 **/__plain/**/*.*
+
+# yarnpkg v2~
+# see https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+.pnp.*
+.yarn/*
+# we manage yarn by corepack. So we don't have to exclude these from ignore files.
+#!.yarn/patches
+#!.yarn/plugins
+#!.yarn/releases
+#!.yarn/sdks
+#!.yarn/versions
