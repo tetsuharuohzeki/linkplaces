@@ -42,7 +42,7 @@
         "postcss-import": "14.0.2",
         "react": "18.0.0-rc.1-next-f468816ef-20220225",
         "react-dom": "18.0.0-rc.1-next-f468816ef-20220225",
-        "rollup": "2.68.0",
+        "rollup": "2.69.0",
         "rxjs": "7.5.4"
     }
 }
