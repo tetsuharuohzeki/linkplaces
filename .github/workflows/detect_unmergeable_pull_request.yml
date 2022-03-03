@@ -16,6 +16,9 @@ on:
 jobs:
   detect_unmergeable_pull_request_and_mark_them:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: read
     steps:
       - name: Dump GitHub Context
         env:
