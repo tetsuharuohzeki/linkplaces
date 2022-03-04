@@ -23,7 +23,7 @@
         "stylelint": "14.5.3",
         "stylelint-config-prettier": "9.0.3",
         "stylelint-config-standard": "25.0.0",
-        "typescript": "4.7.0-dev.20220302",
+        "typescript": "4.7.0-dev.20220303",
         "web-ext": "6.7.0"
     }
 }
