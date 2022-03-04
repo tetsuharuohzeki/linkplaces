@@ -1,5 +1,6 @@
 /* eslint-env node */
 
+import alias from '@rollup/plugin-alias';
 import { babel } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
@@ -13,6 +14,7 @@ import {
     RELEASE_CHANNEL,
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
+    ENABLE_REACT_PROFILER,
 } from './tools/buildconfig.js';
 
 console.log(`
@@ -22,8 +24,21 @@ BUILD_DATE: ${BUILD_DATE}
 RELEASE_CHANNEL: ${RELEASE_CHANNEL}
 LIB_NODE_ENV: ${LIB_NODE_ENV}
 IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
+ENABLE_REACT_PROFILER: ${ENABLE_REACT_PROFILER}
 ======================================
 `);
+
+/** @typedef {import('@rollup/plugin-alias').Alias} RollupAlias */
+
+/** @type {Array<RollupAlias>} */
+const PKG_ALIAS_ENTIRIES = [];
+if (ENABLE_REACT_PROFILER) {
+    // See https://fb.me/react-profiling
+    PKG_ALIAS_ENTIRIES.push({
+        find: /^react-dom$/u,
+        replacement: 'react-dom/profiling',
+    });
+}
 
 const REACT_RELATED_PKG_LIST = [
     /node_modules\/react\/.*/u,
@@ -35,7 +50,7 @@ const REACT_RELATED_PKG_LIST = [
 class RollupWarningAsError extends Error {
     constructor(warning) {
         super(warning.message, {
-            cause: warning
+            cause: warning,
         });
     }
 }
@@ -49,7 +64,6 @@ class RollupWarningAsError extends Error {
  */
 // eslint-disable-next-line import/no-default-export
 export default async function createConfiguration(_commandLineArgs) {
-
     return {
         strictDeprecations: true,
 
@@ -79,6 +93,11 @@ export default async function createConfiguration(_commandLineArgs) {
         shimMissingExports: false,
 
         plugins: [
+            // https://github.com/rollup/plugins/tree/master/packages/alias
+            alias({
+                entries: PKG_ALIAS_ENTIRIES,
+            }),
+
             // https://github.com/rollup/plugins/tree/master/packages/node-resolve
             nodeResolve({
                 mainFields: [],
