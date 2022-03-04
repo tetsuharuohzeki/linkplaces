@@ -511,8 +511,8 @@ __metadata:
     picomatch: 2.3.1
     postcss: 8.4.7
     postcss-import: 14.0.2
-    react: 18.0.0-rc.1-next-f468816ef-20220225
-    react-dom: 18.0.0-rc.1-next-f468816ef-20220225
+    react: 18.0.0-rc.1
+    react-dom: 18.0.0-rc.1
     rollup: 2.69.1
     rxjs: 7.5.4
   languageName: unknown
@@ -809,12 +809,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:17.0.11":
-  version: 17.0.11
-  resolution: "@types/react-dom@npm:17.0.11"
+"@types/react-dom@npm:^17.0.13":
+  version: 17.0.13
+  resolution: "@types/react-dom@npm:17.0.13"
   dependencies:
     "@types/react": "*"
-  checksum: 4d5730dffbef86c887cecad7e3cecda424ce6a64d0b5441c63b5b015d48219868660a2bb1aa15e897e565ad8867fa6b885d4358b04e1c4e589ba4c07c3fda55c
+  checksum: 62c42a54ac8961c23a0e74b9cdd8b0a78563757e462b1ab665b2aa365bfd8b86a73d3f6eafc09a4a80fb08659321db168f012aa597c41c0df36f645a94e9266b
   languageName: node
   linkType: hard
 
@@ -5305,7 +5305,7 @@ __metadata:
   dependencies:
     "@types/node": 17.0.21
     "@types/react": 17.0.39
-    "@types/react-dom": 17.0.11
+    "@types/react-dom": ^17.0.13
     "@typescript-eslint/eslint-plugin": 5.13.0
     "@typescript-eslint/parser": 5.13.0
     eslint: 8.10.0
@@ -6800,15 +6800,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.0.0-rc.1-next-f468816ef-20220225":
-  version: 18.0.0-rc.1-next-f468816ef-20220225
-  resolution: "react-dom@npm:18.0.0-rc.1-next-f468816ef-20220225"
+"react-dom@npm:18.0.0-rc.1":
+  version: 18.0.0-rc.1
+  resolution: "react-dom@npm:18.0.0-rc.1"
   dependencies:
     loose-envify: ^1.1.0
-    scheduler: 0.21.0-rc.1-next-f468816ef-20220225
+    scheduler: ^0.21.0-rc.1
   peerDependencies:
-    react: 18.0.0-rc.1-next-f468816ef-20220225
-  checksum: dd72307d51c9cd168cd8076387539b850730a743d1fdc88e43a37f7f0644ab644b2dfd5dae768990d6ca5b4a3b9fe0fea29ff600015c9a83fedee60bf5f4627f
+    react: ^18.0.0-rc.1
+  checksum: a7c1a7afafb83143db5a7c62ffa1063f30744fd97f20b60495a08b0efad521cb51e212169290952a02895472fad3eeffcf1bc6bbcb1aab5507a0441558c2c970
   languageName: node
   linkType: hard
 
@@ -6819,12 +6819,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.0.0-rc.1-next-f468816ef-20220225":
-  version: 18.0.0-rc.1-next-f468816ef-20220225
-  resolution: "react@npm:18.0.0-rc.1-next-f468816ef-20220225"
+"react@npm:18.0.0-rc.1":
+  version: 18.0.0-rc.1
+  resolution: "react@npm:18.0.0-rc.1"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 4e0f7fa6e74a329722594c2b9f6d2c8249040ee4f4daccc08fae8325d41cd2a03ab8577165fb4363e2e589f93d5ac0000864154409560820b39c0dcedf83f68b
+  checksum: 2810f1320c3cbf8763cc4a5e644b7d0705aa9797587d8f15f27840dbfb4f7ecbedb11df7c4105d9ff6dc1f9db87d0e2289c5f52a4fb6324aa6132b9458aa04bd
   languageName: node
   linkType: hard
 
@@ -7205,7 +7205,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.21.0-rc.1-next-f468816ef-20220225":
+"scheduler@npm:^0.21.0-rc.1":
   version: 0.21.0-rc.1-next-f468816ef-20220225
   resolution: "scheduler@npm:0.21.0-rc.1-next-f468816ef-20220225"
   dependencies:

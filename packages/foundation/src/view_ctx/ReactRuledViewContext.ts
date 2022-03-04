@@ -1,9 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference types="react-dom/next" resolution-mode="require" />
+/// <reference types="react-dom/client" resolution-mode="require" />
 
 import { type Nullable, isNotNull } from 'option-t/Nullable/Nullable';
 import { expectNotNull } from 'option-t/Nullable/expect';
-import * as ReactDOM from 'react-dom';
+
+// @ts-expect-error
+import * as ReactDOM from 'react-dom/client';
 
 import type { ViewContext } from './ViewContext.js';
 
