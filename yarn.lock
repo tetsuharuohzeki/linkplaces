@@ -809,7 +809,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^17.0.13":
+"@types/react-dom@npm:17.0.13":
   version: 17.0.13
   resolution: "@types/react-dom@npm:17.0.13"
   dependencies:
@@ -5305,7 +5305,7 @@ __metadata:
   dependencies:
     "@types/node": 17.0.21
     "@types/react": 17.0.39
-    "@types/react-dom": ^17.0.13
+    "@types/react-dom": 17.0.13
     "@typescript-eslint/eslint-plugin": 5.13.0
     "@typescript-eslint/parser": 5.13.0
     eslint: 8.10.0
