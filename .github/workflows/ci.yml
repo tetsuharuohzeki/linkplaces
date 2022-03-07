@@ -19,8 +19,8 @@ jobs:
             subcommand: build_production
 
     build_by_esbuild:
-        needs: [install_dependencies]
         continue-on-error: true
+        needs: [install_dependencies]
         uses: ./.github/workflows/ci_actual_action.yaml
         with:
             node-version: 17.x
