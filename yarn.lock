@@ -5329,7 +5329,7 @@ __metadata:
     stylelint: 14.5.3
     stylelint-config-prettier: 9.0.3
     stylelint-config-standard: 25.0.0
-    typescript: 4.7.0-dev.20220304
+    typescript: 4.7.0-dev.20220306
     web-ext: 6.7.0
   languageName: unknown
   linkType: soft
@@ -8230,23 +8230,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.7.0-dev.20220304":
-  version: 4.7.0-dev.20220304
-  resolution: "typescript@npm:4.7.0-dev.20220304"
+"typescript@npm:4.7.0-dev.20220306":
+  version: 4.7.0-dev.20220306
+  resolution: "typescript@npm:4.7.0-dev.20220306"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: cae85ad905986eff4a5b656cb5ce001359991788b7a8c35ac2220f6a82499a5442b4f506ef776da0d675d12dc3e952478aea3f326e985519ce1b6fcfa6077f06
+  checksum: d6d78e8c61b366fca31ca2505a1fa98e4c64bbd9350d76b1ac36ac795f5b4be6c3dfa14959b0261c44ceba9da742d75459a5d9048620d0a58144ce45a0dd734e
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.7.0-dev.20220304#~builtin<compat/typescript>":
-  version: 4.7.0-dev.20220304
-  resolution: "typescript@patch:typescript@npm%3A4.7.0-dev.20220304#~builtin<compat/typescript>::version=4.7.0-dev.20220304&hash=bda367"
+"typescript@patch:typescript@4.7.0-dev.20220306#~builtin<compat/typescript>":
+  version: 4.7.0-dev.20220306
+  resolution: "typescript@patch:typescript@npm%3A4.7.0-dev.20220306#~builtin<compat/typescript>::version=4.7.0-dev.20220306&hash=bda367"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 8bd825bc892e40b18c33c7c2f2b8d6e3f14db18c7f130b12af63cd61901472547ff5b826e23a7764b9bad32c0c8e7c129ed58ed1486dda32d0f70a78f3f25ee2
+  checksum: fbf2063960714743ba8d59b5f2415901c4eccdc42fb485460a6935524caef6d5c6ac433cacc0b12c79aeb9e29640a32077876b1cf77b73a02517b33f08924fc0
   languageName: node
   linkType: hard
 
