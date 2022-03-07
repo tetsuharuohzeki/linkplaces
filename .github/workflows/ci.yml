@@ -5,28 +5,20 @@ on: push
 jobs:
   install_dependencies:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [17.x]
-
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup_ci
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version: 17.x
 
   build:
     needs: [install_dependencies]
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [17.x]
-
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup_ci
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version: 17.x
       - name: build
         run: make build_package -j
         working-directory: ./packages/linkplaces
@@ -37,15 +29,11 @@ jobs:
     needs: [install_dependencies]
     runs-on: ubuntu-latest
     continue-on-error: true
-    strategy:
-      matrix:
-        node-version: [17.x]
-
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup_ci
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version: 17.x
       - name: build
         run: make build_package -j USE_ESBUILD=1
         working-directory: ./packages/linkplaces
@@ -55,15 +43,11 @@ jobs:
   lint:
     needs: [install_dependencies]
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [17.x]
-
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup_ci
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version: 17.x
       - name: Lint
         run: make lint -j
         env:
@@ -72,15 +56,11 @@ jobs:
   check_type_integrity:
     needs: [install_dependencies]
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [17.x]
-
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup_ci
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version: 17.x
       - name: typecheck
         run: make typecheck -j
         env:
@@ -89,15 +69,11 @@ jobs:
   check_formatting:
     needs: [install_dependencies]
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [17.x]
-
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup_ci
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version: 17.x
       - name: check formatting
         run: make check_format -j
         env:
@@ -106,15 +82,11 @@ jobs:
   unittest:
     needs: [install_dependencies]
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [17.x]
-
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup_ci
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version: 17.x
       - name: Run unittests
         run: make unittest -j
         working-directory: ./packages/linkplaces
