@@ -1,0 +1,31 @@
+name: Setup CI
+description: Setup CI environment
+
+inputs:
+    node-version:
+        type: string
+        required: true
+
+runs:
+    using: composite
+    steps:
+        - name: Use Node.js ${{ inputs.node-version }}
+          uses: actions/setup-node@v3.0.0
+          with:
+              node-version: ${{ inputs.node-version }}
+        - name: cache dependencies
+          uses: actions/cache@v2.1.7
+          with:
+              path: .yarn/cache/
+              key: build-v1-${{ runner.os }}-${{ inputs.node-version }}-${{ hashFiles('**/yarn.lock') }}
+        - name: Setup corepack to use yarnpkg
+          shell: bash
+          run: |
+              make setup_yarnpkg
+        - name: install dependencies
+          shell: bash
+          # We only cache `yarn cache dir`, not including `node_modules/`.
+          # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
+          # if: steps.yarn-cache.outputs.cache-hit != 'true'
+          run: |
+              make install
