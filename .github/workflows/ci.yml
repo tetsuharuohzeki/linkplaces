@@ -3,92 +3,92 @@ name: CI
 on: push
 
 jobs:
-  install_dependencies:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup_ci
-        with:
-          node-version: 17.x
+    install_dependencies:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: ./.github/actions/setup_ci
+              with:
+                  node-version: 17.x
 
-  build:
-    needs: [install_dependencies]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup_ci
-        with:
-          node-version: 17.x
-      - name: build
-        run: make build_package -j
-        working-directory: ./packages/linkplaces
-        env:
-          CI: true
+    build:
+        needs: [install_dependencies]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: ./.github/actions/setup_ci
+              with:
+                  node-version: 17.x
+            - name: build
+              run: make build_package -j
+              working-directory: ./packages/linkplaces
+              env:
+                  CI: true
 
-  build_by_esbuild:
-    needs: [install_dependencies]
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup_ci
-        with:
-          node-version: 17.x
-      - name: build
-        run: make build_package -j USE_ESBUILD=1
-        working-directory: ./packages/linkplaces
-        env:
-          CI: true
+    build_by_esbuild:
+        needs: [install_dependencies]
+        runs-on: ubuntu-latest
+        continue-on-error: true
+        steps:
+            - uses: actions/checkout@v3
+            - uses: ./.github/actions/setup_ci
+              with:
+                  node-version: 17.x
+            - name: build
+              run: make build_package -j USE_ESBUILD=1
+              working-directory: ./packages/linkplaces
+              env:
+                  CI: true
 
-  lint:
-    needs: [install_dependencies]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup_ci
-        with:
-          node-version: 17.x
-      - name: Lint
-        run: make lint -j
-        env:
-          CI: true
+    lint:
+        needs: [install_dependencies]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: ./.github/actions/setup_ci
+              with:
+                  node-version: 17.x
+            - name: Lint
+              run: make lint -j
+              env:
+                  CI: true
 
-  check_type_integrity:
-    needs: [install_dependencies]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup_ci
-        with:
-          node-version: 17.x
-      - name: typecheck
-        run: make typecheck -j
-        env:
-          CI: true
+    check_type_integrity:
+        needs: [install_dependencies]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: ./.github/actions/setup_ci
+              with:
+                  node-version: 17.x
+            - name: typecheck
+              run: make typecheck -j
+              env:
+                  CI: true
 
-  check_formatting:
-    needs: [install_dependencies]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup_ci
-        with:
-          node-version: 17.x
-      - name: check formatting
-        run: make check_format -j
-        env:
-          CI: true
+    check_formatting:
+        needs: [install_dependencies]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: ./.github/actions/setup_ci
+              with:
+                  node-version: 17.x
+            - name: check formatting
+              run: make check_format -j
+              env:
+                  CI: true
 
-  unittest:
-    needs: [install_dependencies]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup_ci
-        with:
-          node-version: 17.x
-      - name: Run unittests
-        run: make unittest -j
-        working-directory: ./packages/linkplaces
-        env:
-          CI: true
+    unittest:
+        needs: [install_dependencies]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: ./.github/actions/setup_ci
+              with:
+                  node-version: 17.x
+            - name: Run unittests
+              run: make unittest -j
+              working-directory: ./packages/linkplaces
+              env:
+                  CI: true
