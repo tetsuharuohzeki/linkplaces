@@ -13,32 +13,20 @@ jobs:
 
     build:
         needs: [install_dependencies]
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - uses: ./.github/actions/setup_ci
-              with:
-                  node-version: 17.x
-            - name: build
-              run: make build_package -j
-              working-directory: ./packages/linkplaces
-              env:
-                  CI: true
+        uses: ./.github/workflows/ci_actual_action.yaml
+        with:
+            node-version: 17.x
+            subcommand: build_production
 
     build_by_esbuild:
         needs: [install_dependencies]
-        runs-on: ubuntu-latest
         continue-on-error: true
-        steps:
-            - uses: actions/checkout@v3
-            - uses: ./.github/actions/setup_ci
-              with:
-                  node-version: 17.x
-            - name: build
-              run: make build_package -j USE_ESBUILD=1
-              working-directory: ./packages/linkplaces
-              env:
-                  CI: true
+        uses: ./.github/workflows/ci_actual_action.yaml
+        with:
+            node-version: 17.x
+            subcommand: build_package
+            makeflags: USE_ESBUILD=1
+            cwd: ./packages/linkplaces
 
     lint:
         needs: [install_dependencies]
@@ -81,14 +69,8 @@ jobs:
 
     unittest:
         needs: [install_dependencies]
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - uses: ./.github/actions/setup_ci
-              with:
-                  node-version: 17.x
-            - name: Run unittests
-              run: make unittest -j
-              working-directory: ./packages/linkplaces
-              env:
-                  CI: true
+        uses: ./.github/workflows/ci_actual_action.yaml
+        with:
+            node-version: 17.x
+            subcommand: unittest
+            cwd: ./packages/linkplaces

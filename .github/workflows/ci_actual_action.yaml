@@ -1,0 +1,31 @@
+name: Reusable CI action
+
+on:
+    workflow_call:
+        inputs:
+            node-version:
+                type: string
+                required: true
+            subcommand:
+                type: string
+                required: true
+            cwd:
+                type: string
+                default: .
+            makeflags:
+                type: string
+                default:
+
+jobs:
+    run_job:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: ./.github/actions/setup_ci
+              with:
+                  node-version: ${{ inputs.node-version }}
+            - name: run `make ${{ inputs.subcommand }}`
+              run: make ${{ inputs.subcommand }} -j ${{ inputs.makeflags }}
+              working-directory: ${{ inputs.cwd }}
+              env:
+                  CI: true
