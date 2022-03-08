@@ -508,7 +508,7 @@ __metadata:
     ava: 4.1.0
     esbuild: 0.14.25
     jsdom: 19.0.0
-    option-t: 30.0.0
+    option-t: 30.0.1
     picomatch: 2.3.1
     postcss: 8.4.7
     postcss-import: 14.0.2
@@ -6178,7 +6178,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"option-t@npm:30.0.0, option-t@npm:^30.0.0":
+"option-t@npm:30.0.1":
+  version: 30.0.1
+  resolution: "option-t@npm:30.0.1"
+  checksum: 75ce432d0bbeefe8fd96b054e111e569625ea685dda82e91de97e013826bae079605cd7af2eb7fa844b748153e2769a822336ce257b27683b7b90e99f45e5390
+  languageName: node
+  linkType: hard
+
+"option-t@npm:^30.0.0":
   version: 30.0.0
   resolution: "option-t@npm:30.0.0"
   checksum: ede3258ca5363204396a2d9d0d9f9eda6ecf7baf0468243caba705c37fe7c145d8170fc3dc0db5d2d7703730c41673454a3e1f481eba2b9bcbe26c9cb40b12b1
