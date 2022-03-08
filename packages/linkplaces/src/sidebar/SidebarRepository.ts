@@ -1,4 +1,4 @@
-import { Ix } from '@linkplaces/foundation';
+import { Ix, type Repository } from '@linkplaces/foundation';
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/__dist/Bookmark';
 import type { BookmarkTreeNode, WebExtBookmarkService } from '@linkplaces/webext_types';
 
@@ -11,7 +11,6 @@ import {
     map as mapRx,
 } from 'rxjs';
 
-import type { Repository } from '../foundation/Repository';
 import { SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain';
 
 type BookmarkId = string;
