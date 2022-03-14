@@ -30,14 +30,16 @@ install: ## Install dependencies
 ####################################
 # Clean
 ####################################
-clean: clean_webext_artifacts clean_tsbuild_info ## Clean up all generated files.
-	$(MAKE) $@ -C $(PKG_MAIN)
+clean: clean_package_main clean_webext_artifacts clean_tsbuild_info ## Clean up all generated files.
 
 clean_webext_artifacts:
 	$(NODE_BIN) $(PKG_MAIN)/tools/rm_dir.js $(ARTIFACT_DIR)
 
 clean_tsbuild_info:
 	$(YARNPKG_RUN_BIN) tsc --build --clean
+
+clean_package_main:
+	$(MAKE) clean -C $(PKG_MAIN)
 
 
 ####################################
