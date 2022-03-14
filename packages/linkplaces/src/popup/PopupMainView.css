@@ -1,6 +1,7 @@
 .popup-c-PopupMainView-ItemListItem__container {
     --shared-com-PanelListItem--inline-size: var(--popup-subview-inline-size);
 
+    contain: content;
     color: unset;
     text-decoration: unset;
     cursor: default;

@@ -1,4 +1,5 @@
 .sidebar-com-SidebarListItemView__container {
+    contain: content;
     color: unset;
     text-decoration: unset;
     cursor: default;

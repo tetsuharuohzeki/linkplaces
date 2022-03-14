@@ -15,6 +15,7 @@ import type { SidebarItemViewModelEntity } from '../SidebarDomain';
 import type { SidebarIntent } from '../SidebarIntent';
 
 const CLASS_NAME_PREFIX = 'sidebar-com-SidebarListItemView';
+const CLASS_NAME_CONTAINER = `${CLASS_NAME_PREFIX}__container`;
 
 interface ListBaseItemProps {
     iconDir: string;
@@ -125,7 +126,7 @@ function ListItemForBookmarkItem(props: ListItemForBookmarkItemProps) {
     return (
         <StrictMode>
             <a
-                className={`${CLASS_NAME_PREFIX}__container`}
+                className={CLASS_NAME_CONTAINER}
                 href={url}
                 onClick={onClick}
                 title={title}
@@ -158,7 +159,7 @@ function ListItemForBookmarkFolder(props: ListItemForBookmarkFolderProps) {
     return (
         <StrictMode>
             <span
-                className={`${CLASS_NAME_PREFIX}__container`}
+                className={CLASS_NAME_CONTAINER}
                 title={bookmarkTitle}
             >
                 <ListBaseItem

@@ -17,6 +17,8 @@ import type { PopupMainState } from './PopupMainState';
 
 const ICON_DIR = '../resources/icon/';
 
+const CLASS_NAME_CONTAINER = 'popup-c-PopupMainView-ItemListItem__container';
+
 export interface PopupMainViewProps {
     state: PopupMainState;
     intent: PopupMainIntent;
@@ -108,7 +110,7 @@ function FolderListItem(props: FolderListItemProps): JSX.Element {
     return (
         <StrictMode>
             <span
-                className={'popup-c-PopupMainView-ItemListItem__container'}
+                className={CLASS_NAME_CONTAINER}
             >
                 <PanelListItem onClick={onClick}>
                     <PanelListItemIcon>
@@ -155,7 +157,7 @@ function ItemListItem(props: ItemListItemProps): Nullable<JSX.Element> {
     return (
         <StrictMode>
             <a
-                className={'popup-c-PopupMainView-ItemListItem__container'}
+                className={CLASS_NAME_CONTAINER}
                 href={url}
                 title={tooltiptext}
                 onClick={onClick}
