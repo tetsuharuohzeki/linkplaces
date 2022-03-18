@@ -1,30 +1,30 @@
 name: Detect unmergeable PRs
 
 on:
-  push:
-    branches:
-      - "*"
-    # Ignore all pushing for tags
-    tags:
-      - "!*"
-  # If you'd like to remove the added label by this action automatically
-  # on updating a pull request by pushing changes.
-  # Please recieve this event.
-  pull_request:
-    types: synchronize
+    push:
+        branches:
+            - "*"
+        # Ignore all pushing for tags
+        tags:
+            - "!*"
+    # If you'd like to remove the added label by this action automatically
+    # on updating a pull request by pushing changes.
+    # Please recieve this event.
+    pull_request:
+        types: synchronize
 
 jobs:
-  detect_unmergeable_pull_request_and_mark_them:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: none
-      pull-requests: write
-    steps:
-      - name: Dump GitHub Context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "${GITHUB_CONTEXT}"
-      - name: Run the action to detect unmergeable PRs
-        uses: cats-oss/github-action-detect-unmergeable@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    detect_unmergeable_pull_request_and_mark_them:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: none
+            pull-requests: write
+        steps:
+            - name: Dump GitHub Context
+              env:
+                  GITHUB_CONTEXT: ${{ toJson(github) }}
+              run: echo "${GITHUB_CONTEXT}"
+            - name: Run the action to detect unmergeable PRs
+              uses: cats-oss/github-action-detect-unmergeable@master
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

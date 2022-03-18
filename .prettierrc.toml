@@ -1,11 +1,38 @@
 # https://prettier.io/docs/en/configuration.html
 
+arrowParens = "always"
+bracketSpacing = true
 semi = true
+singleAttributePerLine = true
 singleQuote = true
 tabWidth = 4
+trailingComma = "es5"
 useTabs = false
+
+[[overrides]]
+    files = [
+        "*.js",
+        "*.cjs",
+        "*.mjs",
+        "*.jsx",
+        "*.ts",
+        "*.cts",
+        "*.mts",
+        "*.tsx",
+    ]
+    [overrides.options]
+    printWidth = 120
 
 [[overrides]]
     files = "*.css"
     [overrides.options]
     printWidth = 256
+
+[[overrides]]
+    files = [
+        "*.yml",
+        "*.yaml",
+    ]
+    [overrides.options]
+    singleQuote = false
+
