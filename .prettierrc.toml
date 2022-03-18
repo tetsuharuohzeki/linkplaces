@@ -9,3 +9,11 @@ useTabs = false
     files = "*.css"
     [overrides.options]
     printWidth = 256
+
+[[overrides]]
+    files = [
+        "*.yml",
+        "*.yaml",
+    ]
+    [overrides.options]
+    singleQuote = false

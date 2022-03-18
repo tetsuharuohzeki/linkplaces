@@ -8,7 +8,7 @@ PKG_MAIN_DIST_DIR := $(PKG_MAIN)/__dist
 ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
 
 ESLINT_TARGET_EXTENSION := js,jsx,cjs,mjs,ts,tsx,cts,mts
-PRETTIER_TARGET := '$(CURDIR)/**/*.css'
+PRETTIER_TARGET := '$(CURDIR)/**/*.{css,yaml,yml}'
 
 all: help
 
@@ -89,9 +89,9 @@ stylelint: ## Run stylelint
 ####################################
 # Tools
 ####################################
-format: format_css format_js ## Apply formetters for files.
+format: format_by_prettier format_js ## Apply formetters for files.
 
-format_css:
+format_by_prettier:
 	$(YARNPKG_RUN_BIN) prettier --write $(PRETTIER_TARGET)
 
 format_js:
