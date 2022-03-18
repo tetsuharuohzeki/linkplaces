@@ -7,7 +7,7 @@ PKG_MAIN_DIST_DIR := $(PKG_MAIN)/__dist
 
 ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
 
-ESLINT_TARGET_EXTENSION := js,jsx,cjs,mjs,ts,tsx
+ESLINT_TARGET_EXTENSION := js,jsx,cjs,mjs,ts,tsx,cts,mts
 PRETTIER_TARGET := '$(CURDIR)/**/*.css'
 
 all: help
