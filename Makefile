@@ -9,6 +9,7 @@ ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
 
 ESLINT_TARGET_EXTENSION := js,jsx,cjs,mjs,ts,tsx,cts,mts
 PRETTIER_TARGET := '$(CURDIR)/**/*.{css,yaml,yml}'
+PRETTIER_TARGET_JS := '$(CURDIR)/**/*.{$(ESLINT_TARGET_EXTENSION)}'
 
 all: help
 
@@ -89,13 +90,13 @@ stylelint: ## Run stylelint
 ####################################
 # Tools
 ####################################
-format: format_by_prettier format_js ## Apply formetters for files.
+format: format_by_prettier ## Apply formetters for files.
 
 format_by_prettier:
 	$(YARNPKG_RUN_BIN) prettier --write $(PRETTIER_TARGET)
 
-format_js:
-	$(MAKE) eslint_fix -C $(CURDIR)
+format_js_by_prettier:
+	$(YARNPKG_RUN_BIN) prettier --write $(PRETTIER_TARGET_JS)
 
 check_format: check_format_css ## Check a code formatting.
 
