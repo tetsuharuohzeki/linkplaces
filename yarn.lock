@@ -532,8 +532,8 @@ __metadata:
     picomatch: 2.3.1
     postcss: 8.4.12
     postcss-import: 14.1.0
-    react: 18.0.0-rc.2
-    react-dom: 18.0.0-rc.2
+    react: 18.0.0-rc.3
+    react-dom: 18.0.0-rc.3
     rollup: 2.70.1
     rxjs: 7.5.5
   languageName: unknown
@@ -6850,15 +6850,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.0.0-rc.2":
-  version: 18.0.0-rc.2
-  resolution: "react-dom@npm:18.0.0-rc.2"
+"react-dom@npm:18.0.0-rc.3":
+  version: 18.0.0-rc.3
+  resolution: "react-dom@npm:18.0.0-rc.3"
   dependencies:
     loose-envify: ^1.1.0
-    scheduler: ^0.21.0-rc.2
+    scheduler: ^0.21.0-rc.3
   peerDependencies:
-    react: ^18.0.0-rc.2
-  checksum: d22c2b7c84cb351b30b9d1542f5aafa7e45ab4c7d040dacc0a42f539a2606f92250530aaaffde8828bddf06f0645930ca9b260b932645fc2e824c6cba00b97d7
+    react: ^18.0.0-rc.3
+  checksum: 4867c051b855cccd234fa62313a881d92348f68c9d9d297b605a8e159a73db72a82f628565c5439298e42d6a7a2fd16b4c6b264e3e4d8f49a3b55296a6361afc
   languageName: node
   linkType: hard
 
@@ -6869,12 +6869,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.0.0-rc.2":
-  version: 18.0.0-rc.2
-  resolution: "react@npm:18.0.0-rc.2"
+"react@npm:18.0.0-rc.3":
+  version: 18.0.0-rc.3
+  resolution: "react@npm:18.0.0-rc.3"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 9f12332e68d87b91bbb4e4cb857b486b04aed321f327a14f440226b6ef0fc8ea2f368ac75b33f4052a97fcb989db9ec7aa83adadd99eb1ad546f3fedc3363c26
+  checksum: 7645007183bd98f28a5f21abccde54b180263d9bc2be204c1d7d623597f4be31fdf414ed3fa8e1e3ac4eba47858b33c94cacc3635ee4a0f1d6de1aa5b026fae3
   languageName: node
   linkType: hard
 
@@ -7255,12 +7255,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:^0.21.0-rc.2":
-  version: 0.21.0-rc.1-next-f468816ef-20220225
-  resolution: "scheduler@npm:0.21.0-rc.1-next-f468816ef-20220225"
+"scheduler@npm:^0.21.0-rc.3":
+  version: 0.21.0-rc.3-next-de516ca5a-20220321
+  resolution: "scheduler@npm:0.21.0-rc.3-next-de516ca5a-20220321"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 7e492fcb51852e0920852071db9e17d76389ad28a9374099ae96f5b6ffdcea5a293c8a29d2af26a76ee3baa40009b5af18d8b25344e505568fb67b030b222ca5
+  checksum: 8a97fb043fc309c0b5f1b7eded272e4a220eb1c57cbb87af18469afae8f1682faf38aa325eab8bf32ab5203aa02e117ce319b78237f18d2cd89e976b7ba1519e
   languageName: node
   linkType: hard
 
