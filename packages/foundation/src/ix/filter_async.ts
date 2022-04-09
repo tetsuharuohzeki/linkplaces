@@ -1,8 +1,8 @@
 import { AsyncIterableX } from './iterable_x.js';
 
-export type AsyncFilterFn<T> = (input: T) => boolean | Promise<boolean>;
+export type AsyncFilterFn<in T> = (input: T) => boolean | Promise<boolean>;
 
-class FilterAsyncIterable<T> extends AsyncIterableX<T> {
+class FilterAsyncIterable<in out T> extends AsyncIterableX<T> {
     private _filter: AsyncFilterFn<T>;
 
     constructor(source: AsyncIterable<T>, filter: AsyncFilterFn<T>) {

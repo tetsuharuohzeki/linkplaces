@@ -6,7 +6,7 @@ import { assertIdentifiablePacket, createPacket, type Packet } from './Packet.js
 import type { PacketCreationService } from './PacketCreationService.js';
 import type { TowerService } from './traits.js';
 
-export class ReplyResponder<TRequestBody, TResponse> implements PacketCreationService<unknown, TResponse> {
+export class ReplyResponder<TRequestBody, out TResponse> implements PacketCreationService<unknown, TResponse> {
     private _validator: AssertTypeGuardFn<TRequestBody>;
     private _source: TowerService<TRequestBody, TResponse>;
 

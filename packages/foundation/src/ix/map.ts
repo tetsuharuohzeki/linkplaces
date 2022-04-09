@@ -1,8 +1,8 @@
 import { IterableX } from './iterable_x.js';
 
-export type TransformFn<TInput, TOutput> = (input: TInput) => TOutput;
+export type TransformFn<TInput, out TOutput> = (input: TInput) => TOutput;
 
-class MapIterable<TInput, TOutput> extends IterableX<TInput, TOutput> {
+class MapIterable<TInput, out TOutput> extends IterableX<TInput, TOutput> {
     private _transformer: TransformFn<TInput, TOutput>;
 
     constructor(
