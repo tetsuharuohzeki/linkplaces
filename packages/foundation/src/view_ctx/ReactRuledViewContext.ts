@@ -1,16 +1,16 @@
-// eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference types="react-dom/client" resolution-mode="require" />
-
 import { type Nullable, isNotNull } from 'option-t/Nullable/Nullable';
 import { expectNotNull } from 'option-t/Nullable/expect';
 
+import type { Root, createRoot } from 'react-dom/client' assert {
+    'resolution-mode': 'require'
+};
 // @ts-expect-error
 import * as ReactDOM from 'react-dom/client';
 
 import type { ViewContext } from './ViewContext.js';
 
 export abstract class ReactRuledViewContext implements ViewContext {
-    private _renderRoot: Nullable<ReactDOM.Root>;
+    private _renderRoot: Nullable<Root>;
 
     constructor() {
         this._renderRoot = null;
@@ -23,7 +23,8 @@ export abstract class ReactRuledViewContext implements ViewContext {
             throw new TypeError('the react render root has been initialized');
         }
 
-        this._renderRoot = ReactDOM.createRoot(mountpoint);
+        const createRootByReactDOM: typeof createRoot = ReactDOM.createRoot;
+        this._renderRoot = createRootByReactDOM(mountpoint);
     }
 
     protected _destroyRenderRoot(): void {
@@ -35,7 +36,7 @@ export abstract class ReactRuledViewContext implements ViewContext {
         this._renderRoot = null;
     }
 
-    protected _getRenderRoot(): ReactDOM.Root {
+    protected _getRenderRoot(): Root {
         return expectNotNull(
             this._renderRoot,
             'should has been initialized the renderRoot'
