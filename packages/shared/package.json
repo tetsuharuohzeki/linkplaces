@@ -35,6 +35,6 @@
     "typings": "./__dist/mod.d.ts",
     "dependencies": {
         "@linkplaces/webext_types": "0.10.0",
-        "option-t": "^31.0.0"
+        "option-t": "^32.0.0"
     }
 }
