@@ -1,11 +1,11 @@
 import type { Nullable } from 'option-t/Nullable/Nullable';
 
-export interface DomRef<T> {
+export interface DomRef<out T> {
     current: Nullable<T>;
     release(): void;
 }
 
-class DomRefImpl<T> implements DomRef<T> {
+class DomRefImpl<out T> implements DomRef<T> {
     current: Nullable<T>;
 
     constructor() {
