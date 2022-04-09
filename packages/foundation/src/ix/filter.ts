@@ -1,8 +1,8 @@
 import { IterableX } from './iterable_x.js';
 
-export type FilterFn<T> = (input: T) => boolean;
+export type FilterFn<in T> = (input: T) => boolean;
 
-class FilterIterable<T> extends IterableX<T> {
+class FilterIterable<in out T> extends IterableX<T> {
     private _filter: FilterFn<T>;
 
     constructor(source: Iterable<T>, filter: FilterFn<T>) {

@@ -1,8 +1,8 @@
 import { AsyncIterableX } from './iterable_x.js';
 
-export type AsyncTransformFn<TInput, TOutput> = (input: TInput) => TOutput | Promise<TOutput>;
+export type AsyncTransformFn<TInput, out TOutput> = (input: TInput) => TOutput | Promise<TOutput>;
 
-class MapAsyncIterable<TInput, TOutput> extends AsyncIterableX<TInput, TOutput> {
+class MapAsyncIterable<TInput, out TOutput> extends AsyncIterableX<TInput, TOutput> {
     private _transformer: AsyncTransformFn<TInput, TOutput>;
 
     constructor(
