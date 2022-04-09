@@ -47,8 +47,6 @@ export function isOneShotPacket(
     return ok;
 }
 
-const hasOwnProperty = Object.prototype.hasOwnProperty;
-
 export function assertPacket(value: object): asserts value is Packet<unknown> {
     if (!isPacket(value)) {
         throw new TypeError(`${JSON.stringify(value)} is not Packet<unknown>`);
@@ -93,11 +91,11 @@ type Opaque<T> = {
 };
 
 function hasPacketShape(value: object): value is Opaque<Packet<unknown>> {
-    if (!hasOwnProperty.call(value, 'id')) {
+    if (!Object.hasOwn(value, 'id')) {
         return false;
     }
 
-    if (!hasOwnProperty.call(value, 'payload')) {
+    if (!Object.hasOwn(value, 'payload')) {
         return false;
     }
 
