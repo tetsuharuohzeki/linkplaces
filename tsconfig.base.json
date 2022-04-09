@@ -28,6 +28,7 @@
         // "useDefineForClassFields": true,                  /* Emit ECMAScript-standard-compliant class fields. */
 
         /* Modules */
+        "moduleDetection": "force",
         "module": "esnext" /* Specify what module code is generated. */,
         // "rootDir": "./",                                  /* Specify the root folder within your source files. */
         "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
