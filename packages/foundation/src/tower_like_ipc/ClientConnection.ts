@@ -10,7 +10,7 @@ interface PromiseResolverTuple {
     readonly reject: (e?: unknown) => void;
 }
 
-export class ClientConnection<TPayload> {
+export class ClientConnection<in TPayload> {
     private _port: ExtensionPort;
     private _callback: Map<number, PromiseResolverTuple>;
     private _callbackIdCandidate: number;
