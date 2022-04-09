@@ -1,12 +1,12 @@
-export interface ActionArcheType<T = unknown> {
+export interface ActionArcheType<out T = unknown> {
     type: T;
 }
 
-type Reducer<TState, TAction> = (initial: TState, action: TAction) => TState;
-type SubscriberFn<TState> = (state: TState) => void;
+type Reducer<in out TState, in TAction> = (initial: TState, action: TAction) => TState;
+type SubscriberFn<in TState> = (state: TState) => void;
 type DisposerFn = () => void;
 
-export class ReduxLikeStore<TState, TAction extends ActionArcheType> {
+export class ReduxLikeStore<in out TState, in TAction extends ActionArcheType> {
     static create<TState, TAction extends ActionArcheType>(reducer: Reducer<TState, TAction>, initial: TState): ReduxLikeStore<TState, TAction> {
         const s = new ReduxLikeStore(reducer, initial);
         return s;
