@@ -3,7 +3,7 @@ import type { BookmarkTreeNode, OnClickData, CreateArgument, ContextType, Tab } 
 
 import { Maybe, isNullOrUndefined } from 'option-t/Maybe';
 import type { Result } from 'option-t/PlainResult/Result';
-import { inspectErr } from 'option-t/PlainResult/inspect';
+import { inspectErrOfResult } from 'option-t/PlainResult/inspect';
 import { expectNotUndefined } from 'option-t/Undefinable/expect';
 import { unwrapOrFromUndefinable } from 'option-t/Undefinable/unwrapOr';
 
@@ -34,8 +34,7 @@ export function createContextMenu(): void {
                 const e = browser.runtime.lastError;
                 if (!!e) {
                     reject(e);
-                }
-                else {
+                } else {
                     resolve();
                 }
             });
@@ -80,9 +79,11 @@ function onClicked(info: OnClickData, tab: Maybe<Tab>): void {
             throw new RangeError(`unexpected \`info.menuItemId\`. info: ${JSON.stringify(info)}`);
     }
 
-    saving.then((result) => {
-        inspectErr(result, console.error);
-    }).catch(console.error);
+    saving
+        .then((result) => {
+            inspectErrOfResult(result, console.error);
+        })
+        .catch(console.error);
 }
 
 function onClickSaveTab(tab: Tab): Promise<Result<BookmarkTreeNode, Error>> {

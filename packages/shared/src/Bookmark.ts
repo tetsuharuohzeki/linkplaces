@@ -8,7 +8,7 @@ import type {
 
 import { isNull } from 'option-t/esm/Nullable/Nullable';
 import { Result, createErr, createOk } from 'option-t/esm/PlainResult/Result';
-import { unwrapFromResult } from 'option-t/esm/PlainResult/unwrap';
+import { unwrapOkFromResult } from 'option-t/esm/PlainResult/unwrap';
 
 const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/u;
 
@@ -55,7 +55,7 @@ export async function createBookmarkItem(urlLikeString: string, title: string): 
         return validatedUrl;
     }
 
-    const url = unwrapFromResult(validatedUrl);
+    const url = unwrapOkFromResult(validatedUrl);
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/create
     // Save to "Other Bookmarks" if there is no `parentId`
