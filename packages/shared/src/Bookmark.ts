@@ -7,7 +7,7 @@ import type {
 } from '@linkplaces/webext_types';
 
 import { isNull } from 'option-t/esm/Nullable/Nullable';
-import { Result, createErr, createOk } from 'option-t/esm/PlainResult/Result';
+import { type Result, createErr, createOk, isErr } from 'option-t/esm/PlainResult/Result';
 import { unwrapOkFromResult } from 'option-t/esm/PlainResult/unwrap';
 
 const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/u;
@@ -53,7 +53,7 @@ function validateUrlForRegister(input: string): Result<string, URIError> {
 
 export async function createBookmarkItem(urlLikeString: string, title: string): Promise<Result<BookmarkTreeNode, Error>> {
     const validatedUrl = validateUrlForRegister(urlLikeString);
-    if (!validatedUrl.ok) {
+    if (isErr(validatedUrl)) {
         return validatedUrl;
     }
 
