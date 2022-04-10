@@ -22,6 +22,13 @@ export class ReduxLikeStore<in out TState, in TAction extends ActionArcheType> {
         this._subscribers = new Set();
     }
 
+    destory(): void {
+        this._subscribers.clear();
+        this._subscribers = null as never;
+        this._reducer = null as never;
+        this._backState = null as never;
+    }
+
     initWith(initial: TState): void {
         this._backState = initial;
     }
