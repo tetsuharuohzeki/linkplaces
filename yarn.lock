@@ -481,7 +481,7 @@ __metadata:
     ava: 4.1.0
     esbuild: 0.14.34
     jsdom: 19.0.0
-    option-t: ^32.1.1
+    option-t: 32.2.0
     picomatch: 2.3.1
     postcss: 8.4.12
     postcss-import: 14.1.0
@@ -6109,6 +6109,13 @@ __metadata:
     is-docker: ^2.0.0
     is-wsl: ^2.1.1
   checksum: 3333900ec0e420d64c23b831bc3467e57031461d843c801f569b2204a1acc3cd7b3ec3c7897afc9dde86491dfa289708eb92bba164093d8bd88fb2c231843c91
+  languageName: node
+  linkType: hard
+
+"option-t@npm:32.2.0":
+  version: 32.2.0
+  resolution: "option-t@npm:32.2.0"
+  checksum: 1f56854a4bdf8fc65a31a0691ecf8e03ced1c198897fb62c3291f22ba3a455b04b1905c7c4eb300aea5ae11f15ec493b8c13cdd1984990b304fa296e52f08171
   languageName: node
   linkType: hard
 
