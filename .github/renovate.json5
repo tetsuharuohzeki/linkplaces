@@ -6,6 +6,7 @@
         ":autodetectPinVersions",
         "group:monorepos",
         "group:recommended",
+        ":preserveSemverRanges",
         "schedule:nonOfficeHours",
         ":timezone(Asia/Tokyo)"
     ],
