@@ -774,10 +774,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:17.0.24":
-  version: 17.0.24
-  resolution: "@types/node@npm:17.0.24"
-  checksum: 9e7c4f863601b2430b4c2429a89935f22eba692956f5013c90a4c7fb0e1401ed8add8c4307453c5d6b8b985384500f8c3f644427ab88632640cc396159af479a
+"@types/node@npm:17.0.25":
+  version: 17.0.25
+  resolution: "@types/node@npm:17.0.25"
+  checksum: 6a820bd624e69ea772f52a6cdb326484eff5829443dc981939373929ade109f58c21698b9f0a831bd6ceea799e722a75dc49c5fa7a6bc32a81e1cbdfc6507b64
   languageName: node
   linkType: hard
 
@@ -5241,7 +5241,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "linkplaces@workspace:."
   dependencies:
-    "@types/node": 17.0.24
+    "@types/node": 17.0.25
     "@types/react": 18.0.5
     "@types/react-dom": 18.0.1
     "@typescript-eslint/eslint-plugin": 5.19.0
