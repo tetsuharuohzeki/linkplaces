@@ -21,7 +21,6 @@
 
 .shared-com-PanelSectionFooter__button > .text-shortcut {
     color: #808080;
-    /* stylelint-disable-next-line font-family-name-quotes */
     font-family: 'Lucida Grande', ui-monospace, monospace;
     font-size: 0.847em;
 }

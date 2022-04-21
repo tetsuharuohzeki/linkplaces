@@ -40,7 +40,6 @@
 
 .shared-com-PanelListItem__text-shortcut {
     color: var(--shared-com-PanelListItem__text-shortcut--color, #808080);
-    /* stylelint-disable-next-line font-family-name-quotes */
     font-family: 'Lucida Grande', ui-monospace, monospace;
     font-size: 0.847em;
     justify-content: flex-end;
