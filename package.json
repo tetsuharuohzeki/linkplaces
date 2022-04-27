@@ -18,7 +18,7 @@
         "eslint-config-abema": "https://github.com/cats-oss/eslint-config-abema/archive/72a943d6271704c5e87cf22d803f409a735398b7.tar.gz",
         "eslint-plugin-import": "2.26.0",
         "eslint-plugin-react": "7.29.4",
-        "eslint-plugin-react-hooks": "4.4.0",
+        "eslint-plugin-react-hooks": "4.5.0",
         "prettier": "2.6.2",
         "stylelint": "14.8.0",
         "stylelint-config-prettier": "9.0.3",
