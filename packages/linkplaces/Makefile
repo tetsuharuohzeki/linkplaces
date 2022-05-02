@@ -19,7 +19,7 @@ export RELEASE_CHANNEL ?= production
 
 # Sorry. These are depends on *nix way...
 export GIT_REVISION := $(shell git rev-parse --verify HEAD)
-export BUILD_DATE := $(shell date '+%Y/%m/%d %H:%M:%S %z')
+export BUILD_DATE := $(shell date -u '+%Y-%m-%d %T%z')
 
 .PHONY: lint
 
