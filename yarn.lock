@@ -3283,6 +3283,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-config-prettier@npm:^8.5.0":
+  version: 8.5.0
+  resolution: "eslint-config-prettier@npm:8.5.0"
+  peerDependencies:
+    eslint: ">=7.0.0"
+  bin:
+    eslint-config-prettier: bin/cli.js
+  checksum: 0d0f5c32e7a0ad91249467ce71ca92394ccd343178277d318baf32063b79ea90216f4c81d1065d60f96366fdc60f151d4d68ae7811a58bd37228b84c2083f893
+  languageName: node
+  linkType: hard
+
 "eslint-import-resolver-node@npm:^0.3.6":
   version: 0.3.6
   resolution: "eslint-import-resolver-node@npm:0.3.6"
@@ -5357,6 +5368,7 @@ __metadata:
     "@typescript-eslint/parser": 5.21.0
     eslint: 8.14.0
     eslint-config-abema: "https://github.com/cats-oss/eslint-config-abema/archive/72a943d6271704c5e87cf22d803f409a735398b7.tar.gz"
+    eslint-config-prettier: ^8.5.0
     eslint-plugin-import: 2.26.0
     eslint-plugin-react: 7.29.4
     eslint-plugin-react-hooks: 4.5.0

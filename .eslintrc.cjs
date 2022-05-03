@@ -13,6 +13,7 @@ module.exports = {
     'extends': [
         'eslint-config-abema/config/eslintrc_core.js',
         'eslint-config-abema/config/eslintrc_import.js',
+        './tools/eslint/prettier.cjs',
     ],
 
     'parserOptions': {
