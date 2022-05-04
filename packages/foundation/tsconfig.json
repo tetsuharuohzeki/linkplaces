@@ -1,7 +1,7 @@
 {
     "extends": "../../tsconfig.base.project_reference.json",
     "compilerOptions": {
-        "moduleResolution": "node12",
+        "moduleResolution": "node16",
         "outDir": "./__dist",
         "rootDir": "./src"
     },

@@ -4,7 +4,7 @@
         // Disallow to touch any DOM object.
         "lib": [],
 
-        "moduleResolution": "node12",
+        "moduleResolution": "node16",
         "outDir": "./__dist",
         "rootDir": "./src"
     },
