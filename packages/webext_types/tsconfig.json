@@ -2,6 +2,7 @@
     "extends": "../../tsconfig.base.project_reference.json",
     "compilerOptions": {
         "emitDeclarationOnly": true,
+        "moduleResolution": "node",
         "outDir": "./__dist",
         //"rootDir": "./src"
     },
