@@ -1,7 +1,7 @@
 import type { WhereToOpenItem } from '@linkplaces/ipc_message';
 import type { BookmarkId } from '@linkplaces/webext_types';
-import type { SidebarEpic } from './SidebarEpic';
-import type { SidebarPlainReduxStore } from './SidebarStore';
+import type { SidebarEpic } from './SidebarEpic.js';
+import type { SidebarPlainReduxStore } from './SidebarStore.js';
 
 export class SidebarIntent {
     private _epic: SidebarEpic;

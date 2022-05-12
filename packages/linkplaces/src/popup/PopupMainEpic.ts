@@ -5,8 +5,8 @@ import {
 } from '@linkplaces/ipc_message';
 import type { BookmarkId } from '@linkplaces/webext_types';
 
-import type { PopupPlainReduxStore } from './PopupMainStore';
-import type { RemoteActionChannel } from './PopupMessageChannel';
+import type { PopupPlainReduxStore } from './PopupMainStore.js';
+import type { RemoteActionChannel } from './PopupMessageChannel.js';
 
 
 export class PopupMainEpic {

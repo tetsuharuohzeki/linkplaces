@@ -1,8 +1,8 @@
 import { ReduxLikeStore } from '@linkplaces/foundation';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
-import { SidebarReduxAction, SidebarReduxActionType } from './SidebarReduxAction';
-import { createInitialSidebarState, SidebarState } from './SidebarState';
+import { SidebarReduxAction, SidebarReduxActionType } from './SidebarReduxAction.js';
+import { createInitialSidebarState, SidebarState } from './SidebarState.js';
 
 function reduceSidebarReduxState(prev: SidebarState, action: SidebarReduxAction): SidebarState {
     switch (action.type) {

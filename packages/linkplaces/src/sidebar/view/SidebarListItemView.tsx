@@ -11,8 +11,8 @@ import type { BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/w
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import { StrictMode, useState, MouseEventHandler, MouseEvent, SetStateAction, Dispatch } from 'react';
 
-import type { SidebarItemViewModelEntity } from '../SidebarDomain';
-import type { SidebarIntent } from '../SidebarIntent';
+import type { SidebarItemViewModelEntity } from '../SidebarDomain.js';
+import type { SidebarIntent } from '../SidebarIntent.js';
 
 const CLASS_NAME_PREFIX = 'sidebar-com-SidebarListItemView';
 const CLASS_NAME_CONTAINER = `${CLASS_NAME_PREFIX}__container`;

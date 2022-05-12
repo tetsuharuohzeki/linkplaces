@@ -1,6 +1,6 @@
 import type { BookmarkId } from '@linkplaces/webext_types';
-import type { PopupMainEpic } from './PopupMainEpic';
-import type { PopupPlainReduxStore } from './PopupMainStore';
+import type { PopupMainEpic } from './PopupMainEpic.js';
+import type { PopupPlainReduxStore } from './PopupMainStore.js';
 
 export class PopupMainIntent {
     private _epic: PopupMainEpic;

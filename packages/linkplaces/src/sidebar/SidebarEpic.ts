@@ -5,8 +5,8 @@ import {
 } from '@linkplaces/ipc_message';
 import type { BookmarkId } from '@linkplaces/webext_types';
 
-import type { RemoteActionChannel } from './SidebarMessageChannel';
-import type { SidebarPlainReduxStore } from './SidebarStore';
+import type { RemoteActionChannel } from './SidebarMessageChannel.js';
+import type { SidebarPlainReduxStore } from './SidebarStore.js';
 
 export class SidebarEpic {
     private _channel: RemoteActionChannel;

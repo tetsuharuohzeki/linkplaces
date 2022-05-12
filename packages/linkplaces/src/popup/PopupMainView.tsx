@@ -11,9 +11,8 @@ import type { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } f
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';
 import { StrictMode, MouseEvent, MouseEventHandler, useState } from 'react';
 
-import type { PopupMainIntent } from './PopupMainIntent';
-
-import type { PopupMainState } from './PopupMainState';
+import type { PopupMainIntent } from './PopupMainIntent.js';
+import type { PopupMainState } from './PopupMainState.js';
 
 const ICON_DIR = '../resources/icon/';
 

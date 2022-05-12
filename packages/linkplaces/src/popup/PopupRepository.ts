@@ -1,6 +1,6 @@
 import type { OnChangeInfo, WebExtBookmarkService } from '@linkplaces/webext_types';
-import type { PopupPlainReduxStore } from './PopupMainStore';
-import { createItemChangedAction } from './PopupReduxAction';
+import type { PopupPlainReduxStore } from './PopupMainStore.js';
+import { createItemChangedAction } from './PopupReduxAction.js';
 
 export class PopupRepostiroy {
     private _onChanged: (id: string, info: OnChangeInfo) => void;

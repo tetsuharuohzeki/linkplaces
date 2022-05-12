@@ -1,9 +1,9 @@
 import { landViewContext } from '@linkplaces/foundation/__dist/view_ctx/mod';
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/__dist/Bookmark';
 
-import { PopupMainContext } from './PopupMainContext';
-import { createChannel } from './PopupMessageChannel';
-import { registerComponents } from './component/register';
+import { PopupMainContext } from './PopupMainContext.js';
+import { createChannel } from './PopupMessageChannel.js';
+import { registerComponents } from './component/register.js';
 
 (async function main() {
     registerComponents();

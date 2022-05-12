@@ -12,15 +12,15 @@ import {
     subscribeOn as subscribeOnRx,
 } from 'rxjs';
 
-import type { SidebarItemViewModelEntity } from './SidebarDomain';
-import { SidebarEpic } from './SidebarEpic';
-import { SidebarIntent } from './SidebarIntent';
-import type { RemoteActionChannel } from './SidebarMessageChannel';
-import { createUpdateFromSourceAction } from './SidebarReduxAction';
-import { SidebarRepository } from './SidebarRepository';
-import type { SidebarState } from './SidebarState';
-import { createSidebarStore, SidebarPlainReduxStore } from './SidebarStore';
-import { SidebarView } from './SidebarView';
+import type { SidebarItemViewModelEntity } from './SidebarDomain.js';
+import { SidebarEpic } from './SidebarEpic.js';
+import { SidebarIntent } from './SidebarIntent.js';
+import type { RemoteActionChannel } from './SidebarMessageChannel.js';
+import { createUpdateFromSourceAction } from './SidebarReduxAction.js';
+import { SidebarRepository } from './SidebarRepository.js';
+import type { SidebarState } from './SidebarState.js';
+import { createSidebarStore, SidebarPlainReduxStore } from './SidebarStore.js';
+import { SidebarView } from './SidebarView.js';
 
 export class SidebarContext extends ReactRuledViewContext {
 

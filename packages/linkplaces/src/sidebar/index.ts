@@ -1,8 +1,8 @@
 import { landViewContext } from '@linkplaces/foundation/__dist/view_ctx/mod';
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/__dist/Bookmark';
 
-import { SidebarContext } from './SidebarContext';
-import { createChannel } from './SidebarMessageChannel';
+import { SidebarContext } from './SidebarContext.js';
+import { createChannel } from './SidebarMessageChannel.js';
 
 (async function main() {
     const [list, channel] = await Promise.all([

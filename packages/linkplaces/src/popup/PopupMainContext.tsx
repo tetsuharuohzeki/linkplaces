@@ -4,13 +4,13 @@ import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';
 import { StrictMode, useSyncExternalStore } from 'react';
 
-import { PopupMainEpic } from './PopupMainEpic';
-import { PopupMainIntent } from './PopupMainIntent';
-import type { PopupMainState } from './PopupMainState';
-import { createPopupMainStore, type PopupPlainReduxStore } from './PopupMainStore';
-import { PopupMainView } from './PopupMainView';
-import type { RemoteActionChannel } from './PopupMessageChannel';
-import { PopupRepostiroy } from './PopupRepository';
+import { PopupMainEpic } from './PopupMainEpic.js';
+import { PopupMainIntent } from './PopupMainIntent.js';
+import type { PopupMainState } from './PopupMainState.js';
+import { createPopupMainStore, type PopupPlainReduxStore } from './PopupMainStore.js';
+import { PopupMainView } from './PopupMainView.js';
+import type { RemoteActionChannel } from './PopupMessageChannel.js';
+import { PopupRepostiroy } from './PopupRepository.js';
 
 export class PopupMainContext extends ReactRuledViewContext {
 

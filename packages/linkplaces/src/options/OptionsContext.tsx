@@ -1,7 +1,7 @@
 import type { ViewContext } from '@linkplaces/foundation/__dist/view_ctx/mod';
 import { expectNotNull } from 'option-t/esm/Nullable/expect';
 
-import { createOptionsView } from './OptionsView';
+import { createOptionsView } from './OptionsView.js';
 
 function getUrl(path: string): { url: string; title: string; } {
     const url = browser.runtime.getURL(path);

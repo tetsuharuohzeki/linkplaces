@@ -1,5 +1,5 @@
 import type { ActionArcheType } from '@linkplaces/foundation';
-import type { SidebarState } from './SidebarState';
+import type { SidebarState } from './SidebarState.js';
 
 export enum SidebarReduxActionType {
     Init = 'SIDEBAR_ACTION_INIT',

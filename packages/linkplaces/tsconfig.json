@@ -1,7 +1,6 @@
 {
     "extends": "../../tsconfig.base.project_reference.json",
     "compilerOptions": {
-        "moduleResolution": "node",
         // This is duplicated with Makefile
         "outDir": "./__plain/src",
         "rootDir": "./src"

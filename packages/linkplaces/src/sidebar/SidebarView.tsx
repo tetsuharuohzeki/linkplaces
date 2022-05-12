@@ -2,9 +2,9 @@ import { Ix } from '@linkplaces/foundation';
 import { PanelSectionList } from '@linkplaces/shared/__dist/component/mod';
 
 import { StrictMode } from 'react';
-import type { SidebarIntent } from './SidebarIntent';
-import type { SidebarState } from './SidebarState';
-import { ListItem } from './view/SidebarListItemView';
+import type { SidebarIntent } from './SidebarIntent.js';
+import type { SidebarState } from './SidebarState.js';
+import { ListItem } from './view/SidebarListItemView.js';
 
 export interface SidebarViewProps {
     state: Readonly<SidebarState>;

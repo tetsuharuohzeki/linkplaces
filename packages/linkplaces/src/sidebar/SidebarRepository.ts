@@ -11,7 +11,7 @@ import {
     map as mapRx,
 } from 'rxjs';
 
-import { SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain';
+import { SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain.js';
 
 type BookmarkId = string;
 
