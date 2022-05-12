@@ -5,7 +5,7 @@ import {
     createDocFragmentTree as fragment,
 } from '@linkplaces/foundation';
 
-import { unwrapOrFromNullable } from 'option-t/esm/Nullable/unwrapOr';
+import { unwrapOrFromNullable } from 'option-t/Nullable/unwrapOr';
 import type * as React from 'react';
 
 export const ATTR_NAME_ICON_DIR = 'icondir';

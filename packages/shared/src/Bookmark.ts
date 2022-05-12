@@ -6,9 +6,9 @@ import type {
     BookmarkTreeNodeSeparator,
 } from '@linkplaces/webext_types';
 
-import { isNull } from 'option-t/esm/Nullable/Nullable';
-import { type Result, createErr, createOk, isErr } from 'option-t/esm/PlainResult/Result';
-import { unwrapOkFromResult } from 'option-t/esm/PlainResult/unwrap';
+import { isNull } from 'option-t/Nullable/Nullable';
+import { type Result, createErr, createOk, isErr } from 'option-t/PlainResult/Result';
+import { unwrapOkFromResult } from 'option-t/PlainResult/unwrap';
 
 const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/u;
 

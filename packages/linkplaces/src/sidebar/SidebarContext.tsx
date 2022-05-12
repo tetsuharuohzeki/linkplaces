@@ -1,8 +1,8 @@
 import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
-import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
-import { expectNotNull } from 'option-t/esm/Nullable/expect';
+import { Nullable, isNotNull } from 'option-t/Nullable/Nullable';
+import { expectNotNull } from 'option-t/Nullable/expect';
 import { StrictMode, useSyncExternalStore } from 'react';
 
 import {

@@ -8,7 +8,7 @@ import {
 } from '@linkplaces/shared/component';
 import type { BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/webext_types';
 
-import type { Nullable } from 'option-t/esm/Nullable/Nullable';
+import type { Nullable } from 'option-t/Nullable/Nullable';
 import { StrictMode, useState, MouseEventHandler, MouseEvent, SetStateAction, Dispatch } from 'react';
 
 import type { SidebarItemViewModelEntity } from '../SidebarDomain.js';
