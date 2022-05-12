@@ -1,5 +1,5 @@
 import { Ix, type Repository } from '@linkplaces/foundation';
-import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/__dist/Bookmark';
+import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 import type { BookmarkTreeNode, WebExtBookmarkService } from '@linkplaces/webext_types';
 
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';

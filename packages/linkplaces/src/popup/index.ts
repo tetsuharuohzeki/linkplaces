@@ -1,5 +1,5 @@
-import { landViewContext } from '@linkplaces/foundation/__dist/view_ctx/mod';
-import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/__dist/Bookmark';
+import { landViewContext } from '@linkplaces/foundation/view_ctx';
+import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 
 import { PopupMainContext } from './PopupMainContext.js';
 import { createChannel } from './PopupMessageChannel.js';

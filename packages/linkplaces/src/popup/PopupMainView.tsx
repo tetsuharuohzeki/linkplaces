@@ -1,11 +1,11 @@
-import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '@linkplaces/shared/__dist/Bookmark';
+import { isBookmarkTreeNodeSeparator, isBookmarkTreeNodeItem } from '@linkplaces/shared/bookmark';
 import {
     PanelListItem,
     PanelListItemIcon,
     PanelListItemText,
     PanelSectionList,
     PanelSectionListSeparator,
-} from '@linkplaces/shared/__dist/component/mod';
+} from '@linkplaces/shared/component';
 import type { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/webext_types';
 
 import type { Nullable } from 'option-t/esm/Nullable/Nullable';

@@ -5,7 +5,7 @@ import {
     createTextNode as text,
 } from '@linkplaces/foundation';
 
-import { BUILD_DATE, GIT_REVISION, RELEASE_CHANNEL } from '@linkplaces/shared/__dist/constants';
+import { BUILD_DATE, GIT_REVISION, RELEASE_CHANNEL } from '@linkplaces/shared/constants';
 
 export type Page = Readonly<{
     url: string;

@@ -1,5 +1,5 @@
 import { Ix } from '@linkplaces/foundation';
-import { PanelSectionList } from '@linkplaces/shared/__dist/component/mod';
+import { PanelSectionList } from '@linkplaces/shared/component';
 
 import { StrictMode } from 'react';
 import type { SidebarIntent } from './SidebarIntent.js';

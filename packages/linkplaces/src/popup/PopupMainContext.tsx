@@ -1,4 +1,4 @@
-import { ReactRuledViewContext } from '@linkplaces/foundation/__dist/view_ctx/ReactRuledViewContext';
+import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { Nullable, isNotNull, isNull } from 'option-t/esm/Nullable/Nullable';

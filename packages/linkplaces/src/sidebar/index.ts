@@ -1,23 +1,24 @@
-import { landViewContext } from '@linkplaces/foundation/__dist/view_ctx/mod';
-import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/__dist/Bookmark';
+import { landViewContext } from '@linkplaces/foundation/view_ctx';
+import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 
 import { SidebarContext } from './SidebarContext.js';
 import { createChannel } from './SidebarMessageChannel.js';
 
 (async function main() {
-    const [list, channel] = await Promise.all([
-        getUnfiledBoolmarkFolder(),
-        createChannel(),
-    ]);
+    const [list, channel] = await Promise.all([getUnfiledBoolmarkFolder(), createChannel()]);
 
     window.addEventListener('contextmenu', disableCtxMenu);
 
-    window.addEventListener('pagehide', function onClose(_event) {
-        window.removeEventListener('contextmenu', disableCtxMenu);
-        channel.destroy();
-    }, {
-        once: true,
-    });
+    window.addEventListener(
+        'pagehide',
+        function onClose(_event) {
+            window.removeEventListener('contextmenu', disableCtxMenu);
+            channel.destroy();
+        },
+        {
+            once: true,
+        }
+    );
 
     const ctx = new SidebarContext(list, channel);
     await landViewContext(ctx);

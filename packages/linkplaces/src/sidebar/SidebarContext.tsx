@@ -1,4 +1,4 @@
-import { ReactRuledViewContext } from '@linkplaces/foundation/__dist/view_ctx/ReactRuledViewContext';
+import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { Nullable, isNotNull } from 'option-t/esm/Nullable/Nullable';
@@ -23,7 +23,6 @@ import { createSidebarStore, SidebarPlainReduxStore } from './SidebarStore.js';
 import { SidebarView } from './SidebarView.js';
 
 export class SidebarContext extends ReactRuledViewContext {
-
     private _list: Array<BookmarkTreeNode>;
     private _subscription: Nullable<Subscription>;
     private _channel: RemoteActionChannel;
@@ -63,7 +62,10 @@ export class SidebarContext extends ReactRuledViewContext {
 
         const view = (
             <StrictMode>
-                <SidebarViewUpdater store={store} intent={intent} />
+                <SidebarViewUpdater
+                    store={store}
+                    intent={intent}
+                />
             </StrictMode>
         );
 
@@ -72,13 +74,15 @@ export class SidebarContext extends ReactRuledViewContext {
 
         const pastEventObservable = fromEventToObservable(window, 'paste');
 
-        rootSubscription.add(pastEventObservable.subscribe((event) => {
-            if (!(event instanceof ClipboardEvent)) {
-                throw new TypeError(`this event should be paste but coming is ${event.type}`);
-            }
+        rootSubscription.add(
+            pastEventObservable.subscribe((event) => {
+                if (!(event instanceof ClipboardEvent)) {
+                    throw new TypeError(`this event should be paste but coming is ${event.type}`);
+                }
 
-            intent.pasteItemFromClipboardActionActual(event);
-        }));
+                intent.pasteItemFromClipboardActionActual(event);
+            })
+        );
 
         this._subscription = rootSubscription;
     }
@@ -92,7 +96,10 @@ export class SidebarContext extends ReactRuledViewContext {
     }
 }
 
-function subscribeSidebarRepositoryBySidebarStore(store: SidebarPlainReduxStore, repo: SidebarRepository): Subscription {
+function subscribeSidebarRepositoryBySidebarStore(
+    store: SidebarPlainReduxStore,
+    repo: SidebarRepository
+): Subscription {
     const subscription = repo
         .asObservable()
         .pipe(subscribeOnRx(asyncRxScheduler))
@@ -106,26 +113,31 @@ function subscribeSidebarRepositoryBySidebarStore(store: SidebarPlainReduxStore,
     return subscription;
 }
 
-
 interface SidebarViewUpdaterProps {
     store: SidebarPlainReduxStore;
     intent: SidebarIntent;
 }
 
 function SidebarViewUpdater({ store, intent }: SidebarViewUpdaterProps): JSX.Element {
-    const state = useSyncExternalStore((onStoreChange) => {
-        const disposer = store.subscribe(onStoreChange);
-        return () => {
-            disposer();
-        };
-    }, () => {
-        const state = store.state();
-        return state;
-    });
+    const state = useSyncExternalStore(
+        (onStoreChange) => {
+            const disposer = store.subscribe(onStoreChange);
+            return () => {
+                disposer();
+            };
+        },
+        () => {
+            const state = store.state();
+            return state;
+        }
+    );
 
     const view = (
         <StrictMode>
-            <SidebarView state={state} intent={intent} />
+            <SidebarView
+                state={state}
+                intent={intent}
+            />
         </StrictMode>
     );
     return view;
