@@ -11,10 +11,6 @@ const ALL_EXTENSION = [...TS_EXTENSION, ...JS_EXTENSION];
 // ESLint Configuration Files enables to include comments.
 // https://eslint.org/docs/configuring/#comments-in-configuration-files
 module.exports = {
-    'extends': [
-        'eslint-config-abema/config/eslintrc_react_hooks.js',
-    ],
-
     'parserOptions': {
         'sourceType': 'module',
         'ecmaFeatures': {
