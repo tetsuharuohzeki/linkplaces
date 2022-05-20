@@ -13,11 +13,6 @@ on:
     pull_request:
         types: synchronize
 
-# see https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-only-cancel-in-progress-jobs-or-runs-for-the-current-workflow
-concurrency:
-    group: ${{ github.workflow }}-${{ github.ref }}
-    cancel-in-progress: true
-
 jobs:
     detect_unmergeable_pull_request_and_mark_them:
         runs-on: ubuntu-latest
