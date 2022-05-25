@@ -8,7 +8,6 @@
             "default": "./__dist/mod.js"
         }
     },
-    "typings": "./__dist/mod.d.ts",
     "dependencies": {
         "@linkplaces/foundation": "0.10.0",
         "@linkplaces/ipc_message": "0.10.0",
