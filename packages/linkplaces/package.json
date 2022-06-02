@@ -34,7 +34,7 @@
         "@rollup/plugin-commonjs": "22.0.0",
         "@rollup/plugin-node-resolve": "13.3.0",
         "@rollup/plugin-replace": "4.0.0",
-        "ava": "4.2.0",
+        "ava": "4.3.0",
         "esbuild": "0.14.42",
         "jsdom": "19.0.0",
         "option-t": "32.2.0",
