@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { getAllGlobMatchedFiles } from './glob.js';
-import { parseArgs } from './parse_argv.js';
+import { parseCliOptions } from './parse_argv.js';
 
 async function createSourceToDestinationMapList(baseDir, sourceList, destinationDir) {
     const normalizedDest = path.normalize(destinationDir);
@@ -52,26 +52,25 @@ async function copyFile(
 }
 
 (async function main() {
-    const argSet = new Set(process.argv);
-    const argv = parseArgs(process.argv.slice(2));
+    const argv = parseCliOptions(process.argv);
 
-    const isVerbose = argSet.has('--verbose');
-    const isDebug = argSet.has('--debug');
+    const isVerbose = argv.isVerbose;
+    const isDebug = argv.isDebug;
     if (isDebug) {
         console.log(`process.argv: ${JSON.stringify(argv)}`);
     }
 
-    const baseDir = argv.get('--basedir');
+    const baseDir = argv.baseDir;
     if (!baseDir) {
         throw new Error('no baseDir');
     }
 
-    const source = argv.get('--source');
+    const source = argv.source;
     if (!source) {
         throw new Error('no source');
     }
 
-    const destinationDir = argv.get('--destination');
+    const destinationDir = argv.destinationDir;
     if (!destinationDir) {
         throw new Error('no destinationDir');
     }

@@ -69,10 +69,39 @@ class SimpleArgvParser {
     }
 }
 
-export function parseArgs(argv) {
-    assert.ok(Array.isArray(argv), 'argv must be an array');
+export function parseCliOptions(processArgv) {
+    assert.ok(Array.isArray(processArgv), 'argv must be an array');
+    const candidate = processArgv.slice(2);
+    const argSet = new Set(candidate);
 
-    const parser = new SimpleArgvParser(argv);
-    const map = new Map(parser);
-    return map;
+    const parser = new SimpleArgvParser(candidate);
+    const argsMap = new Map(parser);
+    console.dir(argsMap);
+
+    const isVerbose = argsMap.has('--verbose');
+    const isDebug = argsMap.has('--debug');
+
+    const baseDir = argsMap.get('--basedir');
+    if (!baseDir) {
+        throw new Error('no baseDir');
+    }
+
+    const source = argsMap.get('--source');
+    if (!source) {
+        throw new Error('no source');
+    }
+
+    const destinationDir = argsMap.get('--destination');
+    if (!destinationDir) {
+        throw new Error('no destinationDir');
+    }
+
+    const result = Object.freeze({
+        isVerbose,
+        isDebug,
+        baseDir,
+        source,
+        destinationDir,
+    });
+    return result;
 }
