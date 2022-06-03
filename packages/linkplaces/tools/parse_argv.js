@@ -69,15 +69,69 @@ class SimpleArgvParser {
     }
 }
 
-export function parseCliOptions(processArgv) {
+const CLI_OPTIONS = {
+    exprimental: {
+        type: 'boolean',
+    },
+    verbose: {
+        type: 'boolean',
+    },
+    debug: {
+        type: 'boolean',
+    },
+    destination: {
+        type: 'string',
+    },
+    basedir: {
+        type: 'string',
+    },
+    source: {
+        type: 'string',
+    },
+};
+
+export async function parseCliOptions(processArgv) {
     assert.ok(Array.isArray(processArgv), 'argv must be an array');
     const candidate = processArgv.slice(2);
     const argSet = new Set(candidate);
 
+    if (argSet.has('--exprimental')) {
+        const { parseArgs } = await import('node:util');
+        const { values } = parseArgs({
+            options: CLI_OPTIONS,
+            strict: true,
+        });
+
+        const isVerbose = !!values.verbose;
+        const isDebug = !!values.debug;
+
+        const baseDir = values.basedir;
+        if (!baseDir) {
+            throw new Error('no baseDir');
+        }
+
+        const source = values.source;
+        if (!source) {
+            throw new Error('no source');
+        }
+
+        const destinationDir = values.destination;
+        if (!destinationDir) {
+            throw new Error('no destinationDir');
+        }
+
+        const result = Object.freeze({
+            isVerbose,
+            isDebug,
+            baseDir,
+            source,
+            destinationDir,
+        });
+        return result;
+    }
+
     const parser = new SimpleArgvParser(candidate);
     const argsMap = new Map(parser);
-    console.dir(argsMap);
-
     const isVerbose = argsMap.has('--verbose');
     const isDebug = argsMap.has('--debug');
 
