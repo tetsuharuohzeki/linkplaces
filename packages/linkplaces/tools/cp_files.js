@@ -52,7 +52,7 @@ async function copyFile(
 }
 
 (async function main() {
-    const argv = await parseCliOptions(process.argv);
+    const argv = parseCliOptions();
 
     const isVerbose = argv.isVerbose;
     const isDebug = argv.isDebug;
