@@ -20,7 +20,8 @@
     "incognito": "spanning",
     "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline';",
     "background": {
-        "page": "background/index.html"
+        "page": "background/index.html",
+        "persistent": false
     },
     "browser_action": {
         "default_icon": {
