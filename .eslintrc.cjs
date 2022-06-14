@@ -35,6 +35,17 @@ module.exports = {
 
         // Disable until vscode's Electron's node.js will become Node.js v16
         'import/no-unresolved': 'off',
+
+        'no-restricted-imports': ['error', {
+            'paths':  [
+                'option-t/cjs/Option',
+                'option-t/cjs/Result',
+                'option-t/esm/Option',
+                'option-t/esm/Result',
+                'option-t/lib/Option',
+                'option-t/lib/Result',
+            ],
+        }],
     },
 
     'overrides': [
