@@ -548,7 +548,7 @@ __metadata:
     postcss-import: 14.1.0
     react: 18.2.0
     react-dom: 18.2.0
-    rollup: 2.75.6
+    rollup: 2.75.7
     rxjs: 7.5.5
   languageName: unknown
   linkType: soft
@@ -7035,9 +7035,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:2.75.6":
-  version: 2.75.6
-  resolution: "rollup@npm:2.75.6"
+"rollup@npm:2.75.7":
+  version: 2.75.7
+  resolution: "rollup@npm:2.75.7"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -7045,7 +7045,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: df83c6d43a144a296daf82bed7f12f2dfcc6c495a64245e840d15fd21f2ab8b66bb3423e61c974875b33ccf53fb659d2ed099f272937ecf23af48815277c6cd5
+  checksum: a6331d46b01062b184efdcb42ce12caf2e1575f989963944534b02f5855f6f3bc239ed0c1a18893572d7695af6d83166f3aef59dbd0365084e1531cb67824674
   languageName: node
   linkType: hard
 
