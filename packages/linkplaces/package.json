@@ -36,7 +36,7 @@
         "@rollup/plugin-replace": "4.0.0",
         "ava": "4.3.0",
         "esbuild": "0.14.45",
-        "jsdom": "19.0.0",
+        "jsdom": "20.0.0",
         "option-t": "32.5.0",
         "picomatch": "2.3.1",
         "postcss": "8.4.14",
