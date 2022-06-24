@@ -536,7 +536,7 @@ __metadata:
     "@linkplaces/webext_types": 0.10.0
     "@rollup/plugin-alias": 3.1.9
     "@rollup/plugin-babel": 5.3.1
-    "@rollup/plugin-commonjs": 22.0.0
+    "@rollup/plugin-commonjs": 22.0.1
     "@rollup/plugin-node-resolve": 13.3.0
     "@rollup/plugin-replace": 4.0.0
     ava: 4.3.0
@@ -689,9 +689,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:22.0.0":
-  version: 22.0.0
-  resolution: "@rollup/plugin-commonjs@npm:22.0.0"
+"@rollup/plugin-commonjs@npm:22.0.1":
+  version: 22.0.1
+  resolution: "@rollup/plugin-commonjs@npm:22.0.1"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     commondir: ^1.0.1
@@ -702,7 +702,7 @@ __metadata:
     resolve: ^1.17.0
   peerDependencies:
     rollup: ^2.68.0
-  checksum: fdcce2bf58875fde0e06f001544c0d9a0509a12929393862f72dcef8fcbf4d5d0ba0d5db6cf10ba4351335caf67a3dbdb95000678c468585e3972994f92e2ce9
+  checksum: 6326227b688d1069ab2146b6f08c3d189da94bb77388691d7496001148041388542ddcbc6ffa7e9e97419c67e9cf3256a2414d770b4539998b4bc5d807404198
   languageName: node
   linkType: hard
 
@@ -5157,7 +5157,7 @@ __metadata:
     stylelint: 14.9.1
     stylelint-config-prettier: 9.0.3
     stylelint-config-standard: 26.0.0
-    typescript: beta
+    typescript: 4.8.0-beta
     web-ext: 7.1.0
   languageName: unknown
   linkType: soft
@@ -8060,7 +8060,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:beta":
+"typescript@npm:4.8.0-beta":
   version: 4.8.0-beta
   resolution: "typescript@npm:4.8.0-beta"
   bin:
@@ -8070,7 +8070,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@beta#~builtin<compat/typescript>":
+"typescript@patch:typescript@4.8.0-beta#~builtin<compat/typescript>":
   version: 4.8.0-beta
   resolution: "typescript@patch:typescript@npm%3A4.8.0-beta#~builtin<compat/typescript>::version=4.8.0-beta&hash=bda367"
   bin:
