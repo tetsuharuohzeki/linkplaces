@@ -36,7 +36,7 @@ function validateUrlForRegister(input: string): Result<string, URIError> {
         // Don't dump the source data to keep it secret.
         const msg = `The input string is not valid URL which is parsible by URL constructor`;
         const e = new URIError(msg, {
-            cause: cause as Error,
+            cause,
         });
         return createErr(e);
     }
