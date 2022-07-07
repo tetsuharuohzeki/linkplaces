@@ -30,6 +30,7 @@ module.exports = {
     'root': true,
 
     'rules': {
+        'no-constant-binary-expression': 'error',
         'no-magic-numbers': 'off',
         'no-unused-private-class-members': 'warn',
 
