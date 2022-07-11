@@ -558,7 +558,7 @@ __metadata:
     "@rollup/plugin-commonjs": 22.0.1
     "@rollup/plugin-node-resolve": 13.3.0
     "@rollup/plugin-replace": 4.0.0
-    ava: 4.3.0
+    ava: 4.3.1
     esbuild: 0.14.48
     jsdom: 20.0.0
     option-t: 32.5.0
@@ -1573,9 +1573,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ava@npm:4.3.0":
-  version: 4.3.0
-  resolution: "ava@npm:4.3.0"
+"ava@npm:4.3.1":
+  version: 4.3.1
+  resolution: "ava@npm:4.3.1"
   dependencies:
     acorn: ^8.7.1
     acorn-walk: ^8.2.0
@@ -1629,7 +1629,7 @@ __metadata:
       optional: true
   bin:
     ava: entrypoints/cli.mjs
-  checksum: fa1ac6d9a8ea01edf4f481a014ca4ae46699c44a1d2b9175644116419a3e7e3c20a94635b15993402fe67f99efc62fdb2bde0dffa42bb354df96b6e9dca73374
+  checksum: 279b139addc4484a639e9636f0b9855b797027c3e715479a189fe678be19618469acea6d89cf62997f60ee967423feac27a731733567c29562815747ecf7b915
   languageName: node
   linkType: hard
 
