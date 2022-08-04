@@ -13,6 +13,9 @@ on:
     pull_request:
         types: synchronize
 
+permissions:
+    pull-requests: write
+
 jobs:
     detect_unmergeable_pull_request_and_mark_them:
         runs-on: ubuntu-latest
