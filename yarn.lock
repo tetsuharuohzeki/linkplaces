@@ -5448,7 +5448,7 @@ __metadata:
     stylelint: 14.11.0
     stylelint-config-prettier: 9.0.3
     stylelint-config-standard: 28.0.0
-    typescript: ^4.8.1-rc
+    typescript: 4.8.1-rc
     web-ext: 7.2.0
   languageName: unknown
   linkType: soft
@@ -8397,7 +8397,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.8.1-rc":
+"typescript@npm:4.8.1-rc":
   version: 4.8.1-rc
   resolution: "typescript@npm:4.8.1-rc"
   bin:
@@ -8407,7 +8407,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.8.1-rc#~builtin<compat/typescript>":
+"typescript@patch:typescript@4.8.1-rc#~builtin<compat/typescript>":
   version: 4.8.1-rc
   resolution: "typescript@patch:typescript@npm%3A4.8.1-rc#~builtin<compat/typescript>::version=4.8.1-rc&hash=bda367"
   bin:
