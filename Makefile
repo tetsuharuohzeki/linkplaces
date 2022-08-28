@@ -76,10 +76,10 @@ typecheck: ## Check static typing integrity
 lint: eslint stylelint check_relationship_between_workspace_and_ts_pj_reference ## Run all lints.
 
 eslint: ## Run ESLint
-	$(NPM_BIN_DIR)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
+	$(NPM_BIN_DIR)/eslint '$(CURDIR)/**/*.{$(ESLINT_TARGET_EXTENSION)}'
 
 eslint_fix: ## Run ESLint with --fix option
-	$(NPM_BIN_DIR)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR) --fix
+	$(NPM_BIN_DIR)/eslint '$(CURDIR)/**/*.{$(ESLINT_TARGET_EXTENSION)}' --fix
 
 stylelint: ## Run stylelint
 	$(NPM_BIN_DIR)/stylelint '$(CURDIR)/**/*.css' \
