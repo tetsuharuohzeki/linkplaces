@@ -35,7 +35,7 @@
         "@rollup/plugin-node-resolve": "13.3.0",
         "@rollup/plugin-replace": "4.0.0",
         "ava": "4.3.3",
-        "esbuild": "0.15.5",
+        "esbuild": "0.15.6",
         "jsdom": "20.0.0",
         "option-t": "32.6.0",
         "picomatch": "2.3.1",
