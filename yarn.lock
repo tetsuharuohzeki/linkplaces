@@ -712,7 +712,7 @@ __metadata:
     ava: 4.3.3
     esbuild: 0.15.6
     jsdom: 20.0.0
-    option-t: 32.6.3
+    option-t: 32.6.5
     picomatch: 2.3.1
     postcss: 8.4.16
     postcss-import: 15.0.0
@@ -731,7 +731,7 @@ __metadata:
     "@linkplaces/ipc_message": 0.10.0
     "@linkplaces/shared": 0.10.0
     "@linkplaces/webext_types": 0.10.0
-    option-t: 32.6.3
+    option-t: 32.6.5
   languageName: unknown
   linkType: soft
 
@@ -740,7 +740,7 @@ __metadata:
   resolution: "@linkplaces/foundation@workspace:packages/foundation"
   dependencies:
     "@linkplaces/webext_types": 0.10.0
-    option-t: 32.6.3
+    option-t: 32.6.5
     rxjs: 7.5.6
   languageName: unknown
   linkType: soft
@@ -751,7 +751,7 @@ __metadata:
   dependencies:
     "@linkplaces/foundation": 0.10.0
     "@linkplaces/webext_types": 0.10.0
-    option-t: 32.6.3
+    option-t: 32.6.5
   languageName: unknown
   linkType: soft
 
@@ -760,7 +760,7 @@ __metadata:
   resolution: "@linkplaces/shared@workspace:packages/shared"
   dependencies:
     "@linkplaces/webext_types": 0.10.0
-    option-t: 32.6.3
+    option-t: 32.6.5
   languageName: unknown
   linkType: soft
 
@@ -6354,10 +6354,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"option-t@npm:32.6.3":
-  version: 32.6.3
-  resolution: "option-t@npm:32.6.3"
-  checksum: ff63b5321facfef93d81819f5935c772faffc895c4d27e37e938915348369f1337853376c590b5dd7806ee41b444c80df94a5f4902b180a4e4a3bb5cac9c5424
+"option-t@npm:32.6.5":
+  version: 32.6.5
+  resolution: "option-t@npm:32.6.5"
+  checksum: a6b44832cd8660e399972b12f1111ba09b38246d47d32003e4dab6eae2b176f798076a652fcec5c870932344641a5ff85173fb976be52f56142b5d0dd5598fd2
   languageName: node
   linkType: hard
 
