@@ -2,7 +2,7 @@ import { SendMessageResponder } from '@linkplaces/foundation/tower_like_ipc';
 import { assertIsRemoteAction } from '@linkplaces/ipc_message';
 
 import { BackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever.js';
-import { createContextMenu } from './ContextMenu.js';
+import { setupContextMenus } from './ContextMenu.js';
 
 declare global {
     // We keep this for debugging.
@@ -11,12 +11,9 @@ declare global {
 }
 
 (function main() {
-    const runtime = browser.runtime;
-    runtime.onInstalled.addListener(function onInstalled() {
-        runtime.onInstalled.removeListener(onInstalled);
-        createContextMenu();
-    });
+    setupContextMenus(browser);
 
+    const runtime = browser.runtime;
     globalThis.livingConnectionSet = new WeakSet();
 
     const service = new BackgroundRemoteActionReciever();

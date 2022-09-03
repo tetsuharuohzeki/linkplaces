@@ -20,7 +20,17 @@ function createCtxMenuArg(id: string, title: string, contexts: Array<ContextType
     };
 }
 
-export function createContextMenu(): void {
+export function setupContextMenus(browser: typeof chrome): void {
+    browser.menus.onClicked.addListener(onClicked);
+
+    const runtimeOnInstalled = browser.runtime.onInstalled;
+    runtimeOnInstalled.addListener(function onInstalled() {
+        runtimeOnInstalled.removeListener(onInstalled);
+        createContextMenu(browser);
+    });
+}
+
+function createContextMenu(browser: typeof chrome): void {
     const list: Array<CreateArgument> = [
         createCtxMenuArg(CTXMENU_ID_TAB_SAVE_TAB, 'Add Tab to LinkPlaces', ['tab']),
         createCtxMenuArg(CTXMENU_ID_CONTENT_SAVE_PAGE, 'Add Page to LinkPlaces', ['page']),
@@ -43,14 +53,11 @@ export function createContextMenu(): void {
         onCreateList.push(menu);
     }
 
-    Promise.all(onCreateList).then(() => {
-        browser.menus.onClicked.addListener(onClicked);
-    }, console.error);
+    Promise.all(onCreateList).catch(console.error);
 }
 
-export function removeContextMenu(): Promise<void> {
+export function removeContextMenu(browser: typeof chrome): Promise<void> {
     browser.menus.onClicked.removeListener(onClicked);
-
     return browser.menus.removeAll();
 }
 
