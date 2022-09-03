@@ -3,7 +3,7 @@ import type { ExtensionPort } from '@linkplaces/webext_types';
 import { assertPacket, type Packet } from './Packet.js';
 import type { PacketCreationService } from './PacketCreationService.js';
 
-export class ServerConnection {
+export class OnPortServerConnection {
     private _port: ExtensionPort;
     private _onMessage: (this: this, packet: object) => void;
     private _onDissconnect: (this: this, port: ExtensionPort) => void;

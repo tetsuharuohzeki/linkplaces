@@ -1,4 +1,4 @@
-import { OneShotResponder, MessageServer } from '@linkplaces/foundation/tower_like_ipc';
+import { OneShotPacketResponder, MessageServer } from '@linkplaces/foundation/tower_like_ipc';
 import { assertIsRemoteAction } from '@linkplaces/ipc_message';
 
 import { BackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever.js';
@@ -20,7 +20,7 @@ declare global {
     globalThis.livingConnectionSet = new WeakSet();
 
     const service = new BackgroundRemoteActionReciever();
-    const wrapper = new OneShotResponder(assertIsRemoteAction, service);
+    const wrapper = new OneShotPacketResponder(assertIsRemoteAction, service);
     const server = new MessageServer(runtime, wrapper);
     server.run();
 

@@ -4,19 +4,19 @@ import type { Result } from 'option-t/PlainResult';
 import { NoImplementationError } from '../NoImplementationError.js';
 
 import type { AssertTypeGuardFn } from './AssertTypeGuardFn.js';
-import { OneShotResponder } from './OneShotResponder.js';
+import { OneShotPacketResponder } from './OneShotPacketResponder.js';
 import { isIdentifiablePacket, isOneShotPacket, type Packet } from './Packet.js';
 import type { PacketCreationService } from './PacketCreationService.js';
-import { ReplyResponder } from './ReplyResponder.js';
+import { ReplyPacketResponder } from './ReplyPacketResponder.js';
 import type { TowerService } from './traits.js';
 
 export class PacketResponder<TRequestBody, out TResponse> implements PacketCreationService<unknown, TResponse> {
-    private _oneshotReponder: OneShotResponder<unknown, TResponse>;
-    private _replyResponder: ReplyResponder<unknown, TResponse>;
+    private _oneshotReponder: OneShotPacketResponder<unknown, TResponse>;
+    private _replyResponder: ReplyPacketResponder<unknown, TResponse>;
 
     constructor(validator: AssertTypeGuardFn<TRequestBody>, source: TowerService<TRequestBody, TResponse>) {
-        this._oneshotReponder = new OneShotResponder(validator, source);
-        this._replyResponder = new ReplyResponder(validator, source);
+        this._oneshotReponder = new OneShotPacketResponder(validator, source);
+        this._replyResponder = new ReplyPacketResponder(validator, source);
     }
 
     destroy(): void {
