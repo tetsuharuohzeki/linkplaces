@@ -3,7 +3,7 @@ import type { AssertTypeGuardFn } from './AssertTypeGuardFn.js';
 
 import type { TowerService } from './traits.js';
 
-export class MessageServer<in out TRequest, in out TResponse> {
+export class SendMessageResponder<in out TRequest, in out TResponse> {
     private _runtime: ExtensionRuntime;
     private _onMessage: (this: this, message: object, sender: ExtensionMessageSender) => Promise<unknown>;
 

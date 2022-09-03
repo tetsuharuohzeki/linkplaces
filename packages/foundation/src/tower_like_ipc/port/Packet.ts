@@ -13,7 +13,7 @@ export interface OneShotPacket<T> extends Packet<T> {
     readonly id: typeof ONESHOT_PACKET_ID;
 }
 
-export function createPacket<T>(id: number, payload: T): IdentifiablePacket<T> {
+export function createIdentifiablePacket<T>(id: number, payload: T): IdentifiablePacket<T> {
     if (id <= ONESHOT_PACKET_ID) {
         throw new RangeError(`id must be greater than ${String(ONESHOT_PACKET_ID)}`);
     }

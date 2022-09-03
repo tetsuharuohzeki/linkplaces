@@ -1,9 +1,9 @@
 import type { Result } from 'option-t/PlainResult';
 
-import type { AssertTypeGuardFn } from './AssertTypeGuardFn.js';
+import type { AssertTypeGuardFn } from '../AssertTypeGuardFn.js';
+import type { TowerService } from '../traits.js';
 import { assertOneShotPacket, type Packet } from './Packet.js';
 import type { PacketCreationService } from './PacketCreationService.js';
-import type { TowerService } from './traits.js';
 
 export class OneShotPacketResponder<TRequestBody, out TResponse> implements PacketCreationService<unknown, null> {
     private _validator: AssertTypeGuardFn<TRequestBody>;

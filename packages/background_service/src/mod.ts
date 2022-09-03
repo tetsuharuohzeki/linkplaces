@@ -1,4 +1,4 @@
-import { MessageServer } from '@linkplaces/foundation/tower_like_ipc';
+import { SendMessageResponder } from '@linkplaces/foundation/tower_like_ipc';
 import { assertIsRemoteAction } from '@linkplaces/ipc_message';
 
 import { BackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever.js';
@@ -7,7 +7,7 @@ import { createContextMenu } from './ContextMenu.js';
 declare global {
     // We keep this for debugging.
     // eslint-disable-next-line no-var, @typescript-eslint/no-explicit-any
-    var livingConnectionSet: WeakSet<MessageServer<any, any>>;
+    var livingConnectionSet: WeakSet<SendMessageResponder<any, any>>;
 }
 
 (function main() {
@@ -20,7 +20,7 @@ declare global {
     globalThis.livingConnectionSet = new WeakSet();
 
     const service = new BackgroundRemoteActionReciever();
-    const server = new MessageServer(runtime, assertIsRemoteAction, service);
+    const server = new SendMessageResponder(runtime, assertIsRemoteAction, service);
     server.run();
 
     globalThis.livingConnectionSet.add(server);

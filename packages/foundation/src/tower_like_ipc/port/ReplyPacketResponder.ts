@@ -1,10 +1,10 @@
 import type { Result } from 'option-t/PlainResult';
 import type { Nullable } from 'option-t/cjs/Nullable/Nullable';
 
-import type { AssertTypeGuardFn } from './AssertTypeGuardFn.js';
-import { assertIdentifiablePacket, createPacket, type Packet } from './Packet.js';
+import type { AssertTypeGuardFn } from '../AssertTypeGuardFn.js';
+import type { TowerService } from '../traits.js';
+import { assertIdentifiablePacket, createIdentifiablePacket, type Packet } from './Packet.js';
 import type { PacketCreationService } from './PacketCreationService.js';
-import type { TowerService } from './traits.js';
 
 export class ReplyPacketResponder<TRequestBody, out TResponse> implements PacketCreationService<unknown, TResponse> {
     private _validator: AssertTypeGuardFn<TRequestBody>;
@@ -30,7 +30,7 @@ export class ReplyPacketResponder<TRequestBody, out TResponse> implements Packet
         const { id, payload } = req;
         this._validator(payload);
         const result: TResponse = await this._source.call(payload);
-        const response = createPacket(id, result);
+        const response = createIdentifiablePacket(id, result);
         return response;
     }
 }

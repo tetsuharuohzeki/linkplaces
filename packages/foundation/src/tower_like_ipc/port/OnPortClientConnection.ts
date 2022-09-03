@@ -3,14 +3,14 @@ import type { ExtensionPort } from '@linkplaces/webext_types';
 import { isNull } from 'option-t/Nullable/Nullable';
 import { isUndefined } from 'option-t/Undefinable/Undefinable';
 
-import { createPacket, createOneShotPacket, assertPacket } from './Packet.js';
+import { createIdentifiablePacket, createOneShotPacket, assertPacket } from './Packet.js';
 
 interface PromiseResolverTuple {
     readonly resolve: (result?: unknown) => void;
     readonly reject: (e?: unknown) => void;
 }
 
-export class ClientConnection<in TPayload> {
+export class OnPortClientConnection<in TPayload> {
     private _port: ExtensionPort;
     private _callback: Map<number, PromiseResolverTuple>;
     private _callbackIdCandidate: number;
@@ -59,7 +59,7 @@ export class ClientConnection<in TPayload> {
 
             const port = this._port;
 
-            const packet = createPacket(id, payload);
+            const packet = createIdentifiablePacket(id, payload);
             port.postMessage(packet);
         });
         return task;

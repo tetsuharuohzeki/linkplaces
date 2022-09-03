@@ -2,7 +2,7 @@ import type { ExtensionRuntime } from '@linkplaces/webext_types';
 import type { Nullable } from 'option-t/Nullable/Nullable';
 import { createOk, createErr, type Result } from 'option-t/PlainResult/Result';
 
-export class MessageServerError extends Error {
+export class MessageResponderSideError extends Error {
     constructor(message: string, cause: Nullable<unknown>) {
         super(message, {
             cause,
@@ -11,7 +11,7 @@ export class MessageServerError extends Error {
     }
 }
 
-export class MessageClient<in TPayload extends object> {
+export class SendMessageSender<in TPayload extends object> {
     private _runtime: ExtensionRuntime;
 
     constructor(runtime: ExtensionRuntime) {
@@ -32,7 +32,7 @@ export class MessageClient<in TPayload extends object> {
             res = await this._runtime.sendMessage<object>(payload);
         } catch (e) {
             const message = String(e);
-            const error = new MessageServerError(message, e);
+            const error = new MessageResponderSideError(message, e);
             const failure = createErr(error);
             return failure;
         }
