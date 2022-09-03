@@ -27,7 +27,7 @@ interface PlatformInfo {
 }
 
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/MessageSender
-interface ExtensionMessageSender {
+export interface ExtensionMessageSender {
     // tab?
     readonly frameId?: number;
     readonly id?: string;
@@ -65,16 +65,17 @@ export interface ExtensionRuntime {
 
     readonly onStartup: ExtensionEventManager;
     readonly onInstalled: ExtensionEventManager;
+    readonly onSuspend: ExtensionEventManager;
     readonly onUpdateAvailable: ExtensionEventManager;
     readonly onConnect: ExtensionEventManager<(port: ExtensionPort) => void>;
     readonly onConnectExternal: ExtensionEventManager<
         (port: ExtensionPort) => void
     >;
     readonly onMessage: ExtensionEventManager<
-        <TResponse>(
-            message: unknown,
+        (
+            message: object,
             sender: ExtensionMessageSender
-        ) => Promise<TResponse>
+        ) => Promise<unknown>
     >;
     readonly onMessageExternal: ExtensionEventManager;
 

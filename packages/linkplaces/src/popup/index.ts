@@ -10,7 +10,7 @@ import { registerComponents } from './component/register.js';
 
     const [list, channel] = await Promise.all([
         getUnfiledBoolmarkFolder(),
-        createChannel(),
+        createChannel(browser.runtime),
     ]);
 
     window.addEventListener('contextmenu', disableCtxMenu);

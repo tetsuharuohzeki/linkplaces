@@ -5,11 +5,10 @@ import {
     createOpenUrlAction,
     createRegisterUrlAction,
     WhereToOpenItem,
-    RemoteAction,
 } from './RemoteAction.js';
-import type { ClientConnection } from './RemoteActionChannel.js';
+import type { RemoteActionChannel } from './RemoteActionChannel.js';
 
-export function openItem(chan: ClientConnection<RemoteAction>, bookmarkId: BookmarkId, url: string, where: WhereToOpenItem): void {
+export function openItem(chan: RemoteActionChannel, bookmarkId: BookmarkId, url: string, where: WhereToOpenItem): void {
     const a = createOpenUrlAction(bookmarkId, url, where);
     chan.postOneShotMessage(a);
 }
@@ -19,7 +18,7 @@ export function openWebExtSidebar(sidebarAction: WebExtSidebarActionService): vo
     sidebarAction.open().catch(console.error);
 }
 
-export function registerItem(chan: ClientConnection<RemoteAction>, url: string, title?: string): void {
+export function registerItem(chan: RemoteActionChannel, url: string, title?: string): void {
     const t = unwrapOrFromUndefinable(title, url);
     const a = createRegisterUrlAction(url, t);
     chan.postOneShotMessage(a);

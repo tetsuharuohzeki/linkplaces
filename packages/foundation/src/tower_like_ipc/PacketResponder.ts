@@ -1,5 +1,5 @@
+import type { Nullable } from 'option-t/Nullable/Nullable';
 import type { Result } from 'option-t/PlainResult';
-import type { Nullable } from 'option-t/cjs/Nullable/Nullable';
 
 import { NoImplementationError } from '../NoImplementationError.js';
 

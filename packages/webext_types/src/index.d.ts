@@ -1,5 +1,7 @@
 import './global';
 
+export type * from './ExtensionRuntime';
+
 export type * from './bookmarks';
 export type * from './contextMenus';
 export type * from './ExtensionPort';

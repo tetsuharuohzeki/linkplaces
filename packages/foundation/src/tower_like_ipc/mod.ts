@@ -1,4 +1,6 @@
 export * from './ClientConnection.js';
+export * from './MessageClient.js';
+export * from './MessageServer.js';
 export * from './OneShotResponder.js';
 export * from './Packet.js';
 export * from './PacketResponder.js';
