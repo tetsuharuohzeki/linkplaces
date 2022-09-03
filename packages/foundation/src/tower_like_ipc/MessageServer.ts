@@ -1,18 +1,19 @@
 import type { ExtensionRuntime, ExtensionMessageSender } from '@linkplaces/webext_types';
-import type { Nullable } from 'option-t/Nullable/Nullable';
+import type { AssertTypeGuardFn } from './AssertTypeGuardFn.js';
 
-import { assertPacket, type Packet } from './Packet.js';
-import type { PacketCreationService } from './PacketCreationService.js';
+import type { TowerService } from './traits.js';
 
-export class MessageServer {
+export class MessageServer<in out TRequest, in out TResponse> {
     private _runtime: ExtensionRuntime;
     private _onMessage: (this: this, message: object, sender: ExtensionMessageSender) => Promise<unknown>;
 
-    private _service: PacketCreationService<unknown, unknown>;
+    private _validator: AssertTypeGuardFn<TRequest>;
+    private _service: TowerService<TRequest, TResponse>;
 
-    constructor(runtime: ExtensionRuntime, service: PacketCreationService<unknown, unknown>) {
+    constructor(runtime: ExtensionRuntime, validator: AssertTypeGuardFn<TRequest>, service: TowerService<TRequest, TResponse>) {
         this._runtime = runtime;
         this._onMessage = this.onMessage.bind(this);
+        this._validator = validator;
         this._service = service;
     }
 
@@ -26,6 +27,7 @@ export class MessageServer {
         runtime.onMessage.removeListener(this._onMessage);
 
         this._service = null as never;
+        this._validator = null as never;
         this._onMessage = null as never;
         this._runtime = null as never;
     }
@@ -35,12 +37,12 @@ export class MessageServer {
     }
 
     async onMessage(message: object, _sender: ExtensionMessageSender): Promise<unknown> {
-        assertPacket(message);
+        this._validator(message);
         const res = this._callService(message);
         return res;
     }
 
-    private async _callService(packet: Packet<unknown>): Promise<Nullable<Packet<unknown>>> {
+    private async _callService(packet: TRequest): Promise<TResponse> {
         const res = await this._service.call(packet);
         return res;
     }

@@ -8,14 +8,9 @@ export interface Packet<T> {
 export interface IdentifiablePacket<T> extends Packet<T> {}
 
 const ONESHOT_PACKET_ID = -1;
-const RUNTIME_MESSAGE_PACKET_ID = -2;
 
 export interface OneShotPacket<T> extends Packet<T> {
     readonly id: typeof ONESHOT_PACKET_ID;
-}
-
-export interface RuntimeMessagePacket<T> extends Packet<T> {
-    readonly id: typeof RUNTIME_MESSAGE_PACKET_ID;
 }
 
 export function createPacket<T>(id: number, payload: T): IdentifiablePacket<T> {
@@ -48,19 +43,6 @@ export function isOneShotPacket(value: Packet<unknown>): value is OneShotPacket<
     return ok;
 }
 
-export function createRuntimeMessagePacket<T>(payload: T): RuntimeMessagePacket<T> {
-    return {
-        id: RUNTIME_MESSAGE_PACKET_ID,
-        payload,
-    };
-}
-
-export function isRuntimeMessagePacket(value: Packet<unknown>): value is RuntimeMessagePacket<unknown> {
-    const id = value.id;
-    const ok = id === RUNTIME_MESSAGE_PACKET_ID;
-    return ok;
-}
-
 export function assertPacket(value: unknown): asserts value is Packet<unknown> {
     if (!isPacket(value)) {
         throw new TypeError(`${JSON.stringify(value)} is not Packet<unknown>`);
@@ -75,12 +57,6 @@ export function assertIdentifiablePacket(value: Packet<unknown>): asserts value 
 
 export function assertOneShotPacket(value: Packet<unknown>): asserts value is OneShotPacket<unknown> {
     if (!isOneShotPacket(value)) {
-        throw new TypeError(`${JSON.stringify(value)} is not OneShotPacket<unknown>`);
-    }
-}
-
-export function assertRuntimeMessagePacket(value: Packet<unknown>): asserts value is RuntimeMessagePacket<unknown> {
-    if (!isRuntimeMessagePacket(value)) {
         throw new TypeError(`${JSON.stringify(value)} is not OneShotPacket<unknown>`);
     }
 }

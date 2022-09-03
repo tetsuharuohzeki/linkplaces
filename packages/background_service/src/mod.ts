@@ -1,4 +1,4 @@
-import { OneShotPacketResponder, MessageServer } from '@linkplaces/foundation/tower_like_ipc';
+import { MessageServer } from '@linkplaces/foundation/tower_like_ipc';
 import { assertIsRemoteAction } from '@linkplaces/ipc_message';
 
 import { BackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever.js';
@@ -6,8 +6,8 @@ import { createContextMenu } from './ContextMenu.js';
 
 declare global {
     // We keep this for debugging.
-    // eslint-disable-next-line no-var
-    var livingConnectionSet: WeakSet<MessageServer>;
+    // eslint-disable-next-line no-var, @typescript-eslint/no-explicit-any
+    var livingConnectionSet: WeakSet<MessageServer<any, any>>;
 }
 
 (function main() {
@@ -20,14 +20,12 @@ declare global {
     globalThis.livingConnectionSet = new WeakSet();
 
     const service = new BackgroundRemoteActionReciever();
-    const wrapper = new OneShotPacketResponder(assertIsRemoteAction, service);
-    const server = new MessageServer(runtime, wrapper);
+    const server = new MessageServer(runtime, assertIsRemoteAction, service);
     server.run();
 
     globalThis.livingConnectionSet.add(server);
 
     runtime.onSuspend.addListener(function onSuspend() {
         server.destory();
-        wrapper.destroy();
     });
 })();
