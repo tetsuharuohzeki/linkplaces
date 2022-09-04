@@ -23,11 +23,12 @@ function createCtxMenuArg(id: string, title: string, contexts: Array<ContextType
 export function setupContextMenus(browser: typeof chrome): void {
     browser.menus.onClicked.addListener(onClicked);
 
-    const runtimeOnInstalled = browser.runtime.onInstalled;
-    runtimeOnInstalled.addListener(function onInstalled() {
-        runtimeOnInstalled.removeListener(onInstalled);
-        createContextMenu(browser);
-    });
+    // [By the backgroun page doc on MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Background_scripts),
+    // an extension should use `browser.runtime.onInstalled` to register a menu
+    // But this code only works once after user install extension
+    // on [Firefox 106.0a1](https://hg.mozilla.org/mozilla-central/rev/c731914e80964349114e473544e7a7165cae3cc1)
+    // So we need place this intializer in the top level scope even if the background page is non-persistent.
+    createContextMenu(browser);
 }
 
 function createContextMenu(browser: typeof chrome): void {
