@@ -1,11 +1,13 @@
-import { createBookmarkItem } from '@linkplaces/shared/bookmark';
-import type { BookmarkTreeNode, OnClickData, CreateArgument, ContextType, Tab } from '@linkplaces/webext_types';
+import { createBookmarkItem, CreateBookmarkItemResult } from '@linkplaces/shared/bookmark';
+import type { OnClickData, CreateArgument, ContextType, Tab, WindowId } from '@linkplaces/webext_types';
 
 import { Maybe, isNullOrUndefined } from 'option-t/Maybe';
-import type { Result } from 'option-t/PlainResult/Result';
+import { createErr, createOk, Result } from 'option-t/PlainResult/Result';
 import { inspectErrOfResult } from 'option-t/PlainResult/inspect';
+import { unwrapOrFromResult } from 'option-t/PlainResult/unwrapOr';
 import { expectNotUndefined } from 'option-t/Undefinable/expect';
 import { unwrapOrFromUndefinable } from 'option-t/Undefinable/unwrapOr';
+import type { Undefinable } from 'option-t/esm/Undefinable/index';
 
 const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';
 const CTXMENU_ID_CONTENT_SAVE_PAGE = 'linkplaces-ctx-content-save-page';
@@ -63,48 +65,109 @@ export function removeContextMenu(browser: typeof chrome): Promise<void> {
 }
 
 function onClicked(info: OnClickData, tab: Maybe<Tab>): void {
-    let saving: Promise<Result<BookmarkTreeNode, Error>>;
+    onClickedAsync(info, tab).catch(console.error);
+}
+
+async function onClickedAsync(info: OnClickData, tab: Maybe<Tab>): Promise<void> {
     switch (info.menuItemId) {
         case CTXMENU_ID_TAB_SAVE_TAB: {
             if (isNullOrUndefined(tab)) {
                 throw new TypeError('could not find `tab`');
             }
-            saving = onClickSaveTab(tab);
+            const resultList = await onClickSaveTab(tab);
+            for (const result of resultList) {
+                inspectErrOfResult(result, console.error);
+            }
             break;
         }
         case CTXMENU_ID_CONTENT_SAVE_PAGE: {
             if (isNullOrUndefined(tab)) {
                 throw new TypeError('could not find `tab`');
             }
-            saving = onClickSavePage(info, tab);
+            const result = await onClickSavePage(info, tab);
+            inspectErrOfResult(result, console.error);
             break;
         }
         case CTXMENU_ID_LINK_SAVE_LINK: {
-            saving = onClickSaveLink(info);
+            const result = await onClickSaveLink(info);
+            inspectErrOfResult(result, console.error);
             break;
         }
         default:
             throw new RangeError(`unexpected \`info.menuItemId\`. info: ${JSON.stringify(info)}`);
     }
-
-    saving
-        .then((result) => {
-            inspectErrOfResult(result, console.error);
-        })
-        .catch(console.error);
 }
 
-function onClickSaveTab(tab: Tab): Promise<Result<BookmarkTreeNode, Error>> {
-    const { title, url } = tab;
-    if (typeof title !== 'string' || typeof url !== 'string') {
-        throw new TypeError('Cannot found both of `title` & `url`');
+async function onClickSaveTab(tab: Tab): Promise<ReadonlyArray<CreateBookmarkItemResult>> {
+    const { title: titleMaybe, url, windowId } = tab;
+    if (typeof url !== 'string') {
+        throw new TypeError('Cannot found both of `url`');
     }
 
-    const created = createBookmarkItem(url, title);
-    return created;
+    const currentSelectedTabsResult = await getSelectedTabsAll(windowId);
+    const currentSelectedTabs = unwrapOrFromResult(currentSelectedTabsResult, []);
+    if (currentSelectedTabs.length === 0) {
+        const result = await saveSingleTab(titleMaybe, url);
+        return result;
+    }
+
+    const result = await saveMultipleTabs(currentSelectedTabs);
+    return result;
 }
 
-function onClickSavePage(info: OnClickData, tab: Tab): Promise<Result<BookmarkTreeNode, Error>> {
+async function saveSingleTab(
+    titleMaybe: Undefinable<string>,
+    url: string
+): Promise<ReadonlyArray<CreateBookmarkItemResult>> {
+    const title = unwrapOrFromUndefinable(titleMaybe, url);
+    const created = await createBookmarkItem(url, title);
+    return [created];
+}
+
+async function saveMultipleTabs(
+    currentSelectedTabs: ReadonlyArray<Tab>
+): Promise<ReadonlyArray<CreateBookmarkItemResult>> {
+    const taskList: Array<Promise<CreateBookmarkItemResult>> = [];
+    for (const tab of currentSelectedTabs) {
+        const { title: titleMaybe, url } = tab;
+        if (typeof url !== 'string') {
+            throw new TypeError('Cannot found both of `title` & `url`');
+        }
+        const title = unwrapOrFromUndefinable(titleMaybe, url);
+        const task = createBookmarkItem(url, title);
+        taskList.push(task);
+    }
+    const taskResult = await Promise.allSettled(taskList);
+    const result: Array<CreateBookmarkItemResult> = [];
+    for (const task of taskResult) {
+        if (task.status !== 'fulfilled') {
+            continue;
+        }
+
+        const val = task.value;
+        result.push(val);
+    }
+
+    return result;
+}
+
+async function getSelectedTabsAll(windowId: WindowId): Promise<Result<ReadonlyArray<Tab>, unknown>> {
+    let result: ReadonlyArray<Tab>;
+    try {
+        // A selected tabs has `.highlighted === true`.
+        // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/Tab
+        result = await browser.tabs.query({
+            highlighted: true,
+            windowId,
+        });
+    } catch (e) {
+        return createErr(e);
+    }
+
+    return createOk(result);
+}
+
+function onClickSavePage(info: OnClickData, tab: Tab): Promise<CreateBookmarkItemResult> {
     const url = expectNotUndefined(info.pageUrl, 'Cannot found `info.pageUrl`');
 
     const title = unwrapOrFromUndefinable<string>(tab.title, url);
@@ -112,7 +175,7 @@ function onClickSavePage(info: OnClickData, tab: Tab): Promise<Result<BookmarkTr
     return created;
 }
 
-function onClickSaveLink(info: OnClickData): Promise<Result<BookmarkTreeNode, Error>> {
+function onClickSaveLink(info: OnClickData): Promise<CreateBookmarkItemResult> {
     const url = expectNotUndefined(info.linkUrl, 'Cannot found `info.linkUrl`');
 
     const title = unwrapOrFromUndefinable(info.linkText, url);

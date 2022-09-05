@@ -51,7 +51,9 @@ function validateUrlForRegister(input: string): Result<string, URIError> {
     return createOk(urlString);
 }
 
-export async function createBookmarkItem(urlLikeString: string, title: string): Promise<Result<BookmarkTreeNode, Error>> {
+export type CreateBookmarkItemResult = Result<BookmarkTreeNode, Error>;
+
+export async function createBookmarkItem(urlLikeString: string, title: string): Promise<CreateBookmarkItemResult> {
     const validatedUrl = validateUrlForRegister(urlLikeString);
     if (isErr(validatedUrl)) {
         return validatedUrl;

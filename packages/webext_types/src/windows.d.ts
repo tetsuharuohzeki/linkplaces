@@ -6,7 +6,10 @@ export type WindowType = 'normal' | 'popup' | 'panel' | 'devtools';
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/WindowState
 export type WindowState = 'normal' | 'minimized' | 'minimized' | 'fullscreen' | 'docked';
 
-export type WindowId = number;
+type WindowIdMarker = unique symbol;
+export type WindowId = number & {
+    readonly: WindowIdMarker;
+};
 
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/Window
 export interface BrowserWindow {

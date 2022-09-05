@@ -2,6 +2,7 @@
 
 import type { LooselyPartial } from './LooselyPartial';
 import { RunAt } from './extensionTypes';
+import type { WindowId } from './windows';
 
 declare const tabIdMarker: unique symbol;
 export type TabId = number & { [tabIdMarker]: never; };
@@ -11,6 +12,7 @@ export interface Tab {
     title?: string;
     url?: string;
     id?: TabId;
+    windowId: WindowId;
 }
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/WindowType
