@@ -1,6 +1,6 @@
 // https://searchfox.org/mozilla-central/source/dom/webidl/ExtensionPort.webidl
 
-import type { ExtensionEventManager } from './ExtensionEventManager';
+import type { ExtensionEventManager } from './ExtensionEventManager.js';
 
 export interface ExtensionPort {
     readonly name: string;

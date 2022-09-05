@@ -1,10 +1,10 @@
-import './global';
+import './global.js';
 
-export type * from './ExtensionRuntime';
+export type * from './ExtensionRuntime.js';
 
-export type * from './bookmarks';
-export type * from './contextMenus';
-export type * from './ExtensionPort';
-export type * from './sidebarAction';
-export type * from './tabs';
-export type * from './windows';
+export type * from './bookmarks.js';
+export type * from './contextMenus.js';
+export type * from './ExtensionPort.js';
+export type * from './sidebarAction.js';
+export type * from './tabs.js';
+export type * from './windows.js';

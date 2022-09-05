@@ -1,4 +1,4 @@
-import type { Tab, TabId } from './tabs';
+import type { Tab, TabId } from './tabs.js';
 
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/WindowType
 export type WindowType = 'normal' | 'popup' | 'panel' | 'devtools';

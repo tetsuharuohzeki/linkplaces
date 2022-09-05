@@ -1,11 +1,11 @@
-import type { ExtensionBrowser } from './ExtensionBrowser';
-import { WebExtBookmarkService } from './bookmarks';
-import { WebExtBrowserActionService } from './browserAction';
-import { WebExtContextMenuService } from './contextMenus';
-import { WebExtPageActionService } from './pageAction';
-import { WebExtSidebarActionService } from './sidebarAction';
-import { WebExtTabsService } from './tabs';
-import { WebExtWindowsService } from './windows';
+import type { ExtensionBrowser } from './ExtensionBrowser.js';
+import { WebExtBookmarkService } from './bookmarks.js';
+import { WebExtBrowserActionService } from './browserAction.js';
+import { WebExtContextMenuService } from './contextMenus.js';
+import { WebExtPageActionService } from './pageAction.js';
+import { WebExtSidebarActionService } from './sidebarAction.js';
+import { WebExtTabsService } from './tabs.js';
+import { WebExtWindowsService } from './windows.js';
 
 
 declare global {

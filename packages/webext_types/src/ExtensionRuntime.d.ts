@@ -1,5 +1,5 @@
-import type { ExtensionEventManager } from './ExtensionEventManager';
-import type { ExtensionPort } from './ExtensionPort';
+import type { ExtensionEventManager } from './ExtensionEventManager.js';
+import type { ExtensionPort } from './ExtensionPort.js';
 
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/connect
 interface ConnectionInfo {
