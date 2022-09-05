@@ -1,3 +1,6 @@
+// https://searchfox.org/mozilla-central/source/dom/webidl/ExtensionRuntime.webidl
+// https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime
+
 import type { ExtensionEventManager } from './ExtensionEventManager.js';
 import type { ExtensionPort } from './ExtensionPort.js';
 
@@ -43,8 +46,9 @@ export interface ExtensionRuntime {
     reload(): void;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/connect
-    connect(connectInfo?: ConnectionInfo): ExtensionPort;
-    connect(extensionId?: string, connectInfo?: ConnectionInfo): ExtensionPort;
+    connect();
+    connect(connectInfo: ConnectionInfo): ExtensionPort;
+    connect(extensionId: string, connectInfo: ConnectionInfo): ExtensionPort;
 
     connectNative(application: string): ExtensionPort;
     sendMessage<TResponse = void>(
