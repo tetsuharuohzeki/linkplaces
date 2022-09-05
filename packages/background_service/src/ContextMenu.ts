@@ -1,3 +1,4 @@
+import { Ix } from '@linkplaces/foundation';
 import { createBookmarkItem, CreateBookmarkItemResult } from '@linkplaces/shared/bookmark';
 import type { OnClickData, CreateArgument, ContextType, Tab, WindowId } from '@linkplaces/webext_types';
 
@@ -5,9 +6,9 @@ import { Maybe, isNullOrUndefined } from 'option-t/Maybe';
 import { createErr, createOk, Result } from 'option-t/PlainResult/Result';
 import { inspectErrOfResult } from 'option-t/PlainResult/inspect';
 import { unwrapOrFromResult } from 'option-t/PlainResult/unwrapOr';
+import type { Undefinable } from 'option-t/Undefinable/Undefinable';
 import { expectNotUndefined } from 'option-t/Undefinable/expect';
 import { unwrapOrFromUndefinable } from 'option-t/Undefinable/unwrapOr';
-import type { Undefinable } from 'option-t/esm/Undefinable/index';
 
 const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';
 const CTXMENU_ID_CONTENT_SAVE_PAGE = 'linkplaces-ctx-content-save-page';
@@ -138,16 +139,16 @@ async function saveMultipleTabs(
         taskList.push(task);
     }
     const taskResult = await Promise.allSettled(taskList);
-    const result: Array<CreateBookmarkItemResult> = [];
-    for (const task of taskResult) {
+    const successOnly = Ix.filterMap(taskResult, (task) => {
         if (task.status !== 'fulfilled') {
-            continue;
+            return null;
         }
 
-        const val = task.value;
-        result.push(val);
-    }
+        const value = task.value;
+        return value;
+    });
 
+    const result = Ix.toArray(successOnly);
     return result;
 }
 
