@@ -23,12 +23,12 @@
         "scripts": ["background/background_bundled.js"],
         "persistent": true
     },
-    "browser_action": {
-        "browser_style": false,
+    "action": {
         "default_icon": {
             "16": "resources/16x16-dark.svg",
             "32": "resources/16x16-dark.svg"
         },
+        "default_area": "navbar",
         "default_title": "LinkPlaces",
         "default_popup": "popup/index.html",
         "theme_icons": [
