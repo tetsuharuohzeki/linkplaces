@@ -20,8 +20,7 @@
     "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline';",
     "background": {
         "type": "module",
-        "scripts": ["background/background_bundled.js"],
-        "persistent": true
+        "scripts": ["background/background_bundled.js"]
     },
     "action": {
         "default_icon": {
