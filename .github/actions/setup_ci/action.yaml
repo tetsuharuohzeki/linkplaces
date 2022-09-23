@@ -13,23 +13,23 @@ runs:
           uses: actions/setup-node@v3.4.1
           with:
               node-version: ${{ inputs.node-version }}
-        - name: Get npm cache directory
+        - name: Setup corepack
+          shell: bash
+          run: |
+              make setup_corepack
+        - name: Get package manager's cache directory
           id: npm-cache-dir
           shell: bash
           run: |
-              echo "::set-output name=dir::$(npm config get cache)"
+              echo "::set-output name=dir::$(pnpm store path)"
         - name: cache dependencies
           uses: actions/cache@v3.0.8
           id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
           with:
               path: ${{ steps.npm-cache-dir.outputs.dir }}
-              key: build-v1-${{ runner.os }}-node-npm-${{ hashFiles('**/package-lock.json') }}
+              key: build-v1-${{ runner.os }}-node-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
               restore-keys: |
-                  build-v1-${{ runner.os }}-node-npm-${{ hashFiles('**/package-lock.json') }}
-        - name: Setup corepack
-          shell: bash
-          run: |
-              make setup_corepack
+                  build-v1-${{ runner.os }}-node-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
         - name: install dependencies
           shell: bash
           # We only cache `npm config get cache`, not including `node_modules/`.

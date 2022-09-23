@@ -1,5 +1,5 @@
 NODE_BIN := node
-NPM_BIN_DIR := $(shell npm bin)
+NPM_BIN_DIR := $(shell pnpm bin)
 
 REPOSITORY_ROOT_DIR := $(CURDIR)/../..
 

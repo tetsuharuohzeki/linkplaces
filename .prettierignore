@@ -2,3 +2,6 @@
 **/__dist/**/*.*
 **/__obj/**/*.*
 **/__plain/**/*.*
+
+# pnpm
+pnpm-lock.yaml
