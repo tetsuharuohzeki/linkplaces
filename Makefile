@@ -1,5 +1,5 @@
 NODE_BIN := node
-NPM_BIN_DIR := $(shell npm bin)
+NPM_BIN_DIR := $(shell pnpm bin)
 
 PKG_DIR := $(CURDIR)/packages
 PKG_MAIN := $(PKG_DIR)/linkplaces
@@ -23,9 +23,10 @@ help:
 ####################################
 setup_corepack:
 	corepack enable
+	corepack prepare pnpm@latest --activate
 
 install: ## Install dependencies
-	npm ci
+	pnpm install
 
 
 ####################################
