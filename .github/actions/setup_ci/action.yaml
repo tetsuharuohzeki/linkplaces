@@ -13,19 +13,27 @@ runs:
           uses: actions/setup-node@v3.4.1
           with:
               node-version: ${{ inputs.node-version }}
-        - name: cache dependencies
-          uses: actions/cache@v3.0.8
-          with:
-              path: .yarn/cache/
-              key: build-v1-${{ runner.os }}-${{ inputs.node-version }}-${{ hashFiles('**/yarn.lock') }}
-        - name: Setup corepack to use yarnpkg
+        - name: Get npm cache directory
+          id: npm-cache-dir
           shell: bash
           run: |
-              make setup_yarnpkg
+              echo "::set-output name=dir::$(npm config get cache)"
+        - name: cache dependencies
+          uses: actions/cache@v3.0.8
+          id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
+          with:
+              path: ${{ steps.npm-cache-dir.outputs.dir }}
+              key: ${{ runner.os }}-node-${{ hashFiles('**/') }}
+              restore-keys: |
+                  build-v1-${{ runner.os }}-node-${{ inputs.node-version }}-${{ hashFiles('**/package-lock.json') }}
+        - name: Setup corepack
+          shell: bash
+          run: |
+              make setup_corepack
         - name: install dependencies
           shell: bash
-          # We only cache `yarn cache dir`, not including `node_modules/`.
-          # thus we need to do `yarn install` to restore `node_modules/` so we need run always this step.
-          # if: steps.yarn-cache.outputs.cache-hit != 'true'
+          # We only cache `npm config get cache`, not including `node_modules/`.
+          # thus we need to do `npm ci` to restore `node_modules/` so we need run always this step.
+          # if: steps.npm-cache.outputs.cache-hit != 'true''
           run: |
               make install
