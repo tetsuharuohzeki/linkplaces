@@ -1,5 +1,5 @@
 NODE_BIN := node
-YARNPKG_RUN_BIN := yarn run --binaries-only
+NPM_BIN_DIR := $(shell npm bin)
 
 REPOSITORY_ROOT_DIR := $(CURDIR)/../..
 
@@ -97,7 +97,7 @@ __bundle_js_esbuild_%: clean_dist __obj __external_dependency
         $(NODE_BIN) $(CURDIR)/tools/run_esbuild.js
 
 __bundle_js_%: clean_dist __obj __external_dependency
-	RELEASE_CHANNEL=$(RELEASE_CHANNEL) $(YARNPKG_RUN_BIN) rollup $(OBJ_SRC_DIR)/$*/index.js --config $(CURDIR)/rollup.config.mjs --output.file $(DIST_DIR)/$*/$*_bundled.js
+	RELEASE_CHANNEL=$(RELEASE_CHANNEL) $(NPM_BIN_DIR)/rollup $(OBJ_SRC_DIR)/$*/index.js --config $(CURDIR)/rollup.config.mjs --output.file $(DIST_DIR)/$*/$*_bundled.js
 
 __bundle_css_%: clean_dist
 	RELEASE_CHANNEL=$(RELEASE_CHANNEL) \
@@ -108,7 +108,7 @@ __bundle_css_%: clean_dist
 __external_dependency:
 
 __obj: __plain clean_obj
-	$(YARNPKG_RUN_BIN) babel $(PLAIN_DIR) --out-dir $(OBJ_DIR) --extensions=.js,.jsx --config-file $(CURDIR)/babel.config.mjs
+	$(NPM_BIN_DIR)/babel $(PLAIN_DIR) --out-dir $(OBJ_DIR) --extensions=.js,.jsx --config-file $(CURDIR)/babel.config.mjs
 
 __plain: $(addprefix __plain_, ts js)
 
@@ -131,4 +131,4 @@ unittest: __obj ## Run unit tests
 	$(MAKE) run_ava
 
 run_ava: ## Only run unit tests
-	$(YARNPKG_RUN_BIN) ava --config $(CURDIR)/ava.config.cjs
+	$(NPM_BIN_DIR)/ava --config $(CURDIR)/ava.config.cjs
