@@ -21,8 +21,8 @@
     },
     "homepage": "https://github.com/tetsuharuohzeki/linkplaces",
     "dependencies": {
-        "@babel/cli": "7.18.10",
-        "@babel/core": "7.19.1",
+        "@babel/cli": "7.19.3",
+        "@babel/core": "7.19.3",
         "@babel/preset-react": "7.18.6",
         "@linkplaces/background_service": "0.10.0",
         "@linkplaces/foundation": "0.10.0",
