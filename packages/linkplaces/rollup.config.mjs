@@ -101,6 +101,9 @@ export default async function createConfiguration(_commandLineArgs) {
 
             // https://github.com/rollup/plugins/tree/master/packages/node-resolve
             nodeResolve({
+                // We override this for rxjs.
+                exportConditions: ['default', 'module', 'import', 'es2015'],
+
                 mainFields: [],
 
                 browser: true, // for browser
