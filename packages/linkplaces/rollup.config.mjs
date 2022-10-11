@@ -77,6 +77,7 @@ export default async function createConfiguration(_commandLineArgs) {
             generatedCode: {
                 preset: 'es2015',
             },
+            interop: 'esModule',
 
             sourcemap: true,
             globals: {
