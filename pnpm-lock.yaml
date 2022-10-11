@@ -90,7 +90,7 @@ importers:
       '@rollup/plugin-babel': 6.0.0
       '@rollup/plugin-commonjs': 23.0.0
       '@rollup/plugin-node-resolve': 15.0.0
-      '@rollup/plugin-replace': 4.0.0
+      '@rollup/plugin-replace': 5.0.0
       ava: 4.3.3
       esbuild: 0.15.10
       jsdom: 20.0.1
@@ -115,7 +115,7 @@ importers:
       '@rollup/plugin-babel': 6.0.0_vy4anxjpv2s44kyfi2kxqu576u
       '@rollup/plugin-commonjs': 23.0.0_rollup@2.79.1
       '@rollup/plugin-node-resolve': 15.0.0_rollup@2.79.1
-      '@rollup/plugin-replace': 4.0.0_rollup@2.79.1
+      '@rollup/plugin-replace': 5.0.0_rollup@2.79.1
       ava: 4.3.3
       esbuild: 0.15.10
       jsdom: 20.0.1
@@ -695,25 +695,17 @@ packages:
       rollup: 2.79.1
     dev: false
 
-  /@rollup/plugin-replace/4.0.0_rollup@2.79.1:
-    resolution: {integrity: sha512-+rumQFiaNac9y64OHtkHGmdjm7us9bo1PlbgQfdihQtuNxzjpaB064HbRnewUOggLQxVCCyINfStkgmBeQpv1g==}
+  /@rollup/plugin-replace/5.0.0_rollup@2.79.1:
+    resolution: {integrity: sha512-TiPmjMuBjQM+KLWK16O5TAM/eW4yXBYyQ17FbfeNzBC1t2kzX2aXoa8AlS9XTSmg6/2TNvkER1lMEEeN4Lhavw==}
+    engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: ^1.20.0 || ^2.0.0
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.79.1
-      magic-string: 0.25.9
-      rollup: 2.79.1
-    dev: false
-
-  /@rollup/pluginutils/3.1.0_rollup@2.79.1:
-    resolution: {integrity: sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==}
-    engines: {node: '>= 8.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0
-    dependencies:
-      '@types/estree': 0.0.39
-      estree-walker: 1.0.1
-      picomatch: 2.3.1
+      '@rollup/pluginutils': 4.2.1
+      magic-string: 0.26.6
       rollup: 2.79.1
     dev: false
 
@@ -740,10 +732,6 @@ packages:
   /@tootallnate/once/2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
-    dev: false
-
-  /@types/estree/0.0.39:
-    resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==}
     dev: false
 
   /@types/estree/1.0.0:
@@ -2729,10 +2717,6 @@ packages:
     resolution: {integrity: sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==}
     engines: {node: '>=4.0'}
 
-  /estree-walker/1.0.1:
-    resolution: {integrity: sha512-1fMXF3YP4pZZVozF8j/ZLfvnR8NSIljt56UhbZ5PeeDmmGHpgpdwQt7ITlGvYaQukCvuBRMLEiKiYC+oeIg4cg==}
-    dev: false
-
   /estree-walker/2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
     dev: false
@@ -4020,12 +4004,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
-
-  /magic-string/0.25.9:
-    resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
-    dependencies:
-      sourcemap-codec: 1.4.8
-    dev: false
 
   /magic-string/0.26.6:
     resolution: {integrity: sha512-6d+3bFybzyQFJYSoRsl9ZC0wheze8M1LrQC7tNMRqXR4izUTDOLMd9BtSuExK9iAukFh+s5K0WAhc/dlQ+HKYA==}
