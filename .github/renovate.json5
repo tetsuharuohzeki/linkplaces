@@ -35,6 +35,12 @@
             ]
         },
         {
+            "groupName": "Rollup",
+            "matchPackagePatterns": [
+                "^@rollup/"
+            ]
+        },
+        {
             "groupName": "typescript-eslint",
             "matchPackagePatterns": [
                 "^@typescript-eslint/"
