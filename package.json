@@ -24,6 +24,6 @@
         "stylelint-config-prettier": "9.0.3",
         "stylelint-config-standard": "28.0.0",
         "typescript": "4.9.1-beta",
-        "web-ext": "7.2.0"
+        "web-ext": "7.3.1"
     }
 }
