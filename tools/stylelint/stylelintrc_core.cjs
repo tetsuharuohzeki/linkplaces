@@ -81,6 +81,9 @@ module.exports = {
         // Disable the rule enabled in stylelint-config-standard
         // We use BEM style.
         'selector-class-pattern': null,
+
+        // Disable for postcss-import
+        'import-notation': null,
     },
 
     'reportNeedlessDisables': [true, {
