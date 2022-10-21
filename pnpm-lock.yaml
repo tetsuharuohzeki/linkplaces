@@ -88,7 +88,7 @@ importers:
       '@linkplaces/webext_types': 0.10.0
       '@rollup/plugin-alias': 4.0.0
       '@rollup/plugin-babel': 6.0.0
-      '@rollup/plugin-commonjs': 23.0.0
+      '@rollup/plugin-commonjs': 23.0.1
       '@rollup/plugin-node-resolve': 15.0.0
       '@rollup/plugin-replace': 5.0.0
       ava: 4.3.3
@@ -113,7 +113,7 @@ importers:
       '@linkplaces/webext_types': link:../webext_types
       '@rollup/plugin-alias': 4.0.0_rollup@3.2.3
       '@rollup/plugin-babel': 6.0.0_t2lseskayu4pmjc4spb5q7neyq
-      '@rollup/plugin-commonjs': 23.0.0_rollup@3.2.3
+      '@rollup/plugin-commonjs': 23.0.1_rollup@3.2.3
       '@rollup/plugin-node-resolve': 15.0.0_rollup@3.2.3
       '@rollup/plugin-replace': 5.0.0_rollup@3.2.3
       ava: 4.3.3
@@ -655,8 +655,8 @@ packages:
       rollup: 3.2.3
     dev: false
 
-  /@rollup/plugin-commonjs/23.0.0_rollup@3.2.3:
-    resolution: {integrity: sha512-JbrTRyDNtLQj/rhl7RFUuYXwQ2fac+33oLDAu2k++WD95zweyo28UAomLVA0JMGx4vmCa7Nw4T6k/1F6lelExg==}
+  /@rollup/plugin-commonjs/23.0.1_rollup@3.2.3:
+    resolution: {integrity: sha512-hIMCvNrYmW5G0VRmitlkKQPk9R7lTnQ138pzyWOWBmihwRKI1HNrZspwdzDGL98SQAG5T2aDRcuTeD166Kk+sw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0
@@ -664,7 +664,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 4.2.1
+      '@rollup/pluginutils': 5.0.1_rollup@3.2.3
       commondir: 1.0.1
       estree-walker: 2.0.2
       glob: 8.0.3
@@ -711,6 +711,21 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    dev: false
+
+  /@rollup/pluginutils/5.0.1_rollup@3.2.3:
+    resolution: {integrity: sha512-4HaCVEXXuObvcPUaUlLt4faHYHCeQOOWNj8NKFGaRSrw3ZLD0TWeAFZicV9vXjnE2nkNuaVTfTuwAnjR+6uc9A==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@types/estree': 1.0.0
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
+      rollup: 3.2.3
     dev: false
 
   /@sindresorhus/is/5.3.0:
