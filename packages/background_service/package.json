@@ -13,6 +13,6 @@
         "@linkplaces/ipc_message": "0.10.0",
         "@linkplaces/shared": "0.10.0",
         "@linkplaces/webext_types": "0.10.0",
-        "option-t": "32.6.5"
+        "option-t": "32.6.6"
     }
 }
