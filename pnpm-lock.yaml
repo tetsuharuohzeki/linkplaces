@@ -93,7 +93,7 @@ importers:
       '@rollup/plugin-replace': 5.0.1
       ava: 5.0.1
       esbuild: 0.15.12
-      jsdom: 20.0.1
+      jsdom: 20.0.2
       option-t: 32.6.6
       picomatch: 2.3.1
       postcss: 8.4.18
@@ -118,7 +118,7 @@ importers:
       '@rollup/plugin-replace': 5.0.1_rollup@3.2.3
       ava: 5.0.1
       esbuild: 0.15.12
-      jsdom: 20.0.1
+      jsdom: 20.0.2
       option-t: 32.6.6
       picomatch: 2.3.1
       postcss: 8.4.18
@@ -3717,8 +3717,8 @@ packages:
     resolution: {integrity: sha512-UVU9dibq2JcFWxQPA6KCqj5O42VOmAY3zQUfEKxU0KpTGXwNoCjkX1e13eHNvw/xPynt6pU0rZ1htjWTNTSXsg==}
     dev: true
 
-  /jsdom/20.0.1:
-    resolution: {integrity: sha512-pksjj7Rqoa+wdpkKcLzQRHhJCEE42qQhl/xLMUKHgoSejaKOdaXEAnqs6uDNwMl/fciHTzKeR8Wm8cw7N+g98A==}
+  /jsdom/20.0.2:
+    resolution: {integrity: sha512-AHWa+QO/cgRg4N+DsmHg1Y7xnz+8KU3EflM0LVDTdmrYOc1WWTSkOjtpUveQH+1Bqd5rtcVnb/DuxV/UjDO4rA==}
     engines: {node: '>=14'}
     peerDependencies:
       canvas: ^2.5.0
