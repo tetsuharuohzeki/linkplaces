@@ -23,8 +23,10 @@ export class PopupMainEpic {
     }
 
     async openWebExtSidebar(): Promise<void> {
-        openWebExtSidebarDirect(browser.sidebarAction);
-        return closeWindow();
+        // These funcs should be called by user interaction.
+        const sidebarOpen = openWebExtSidebarDirect(browser.sidebarAction);
+        const closingPopup = closeWindow();
+        await Promise.all([sidebarOpen, closingPopup]);
     }
 }
 

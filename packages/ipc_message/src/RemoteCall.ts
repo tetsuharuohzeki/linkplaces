@@ -13,9 +13,14 @@ export function openItem(chan: RemoteActionChannel, bookmarkId: BookmarkId, url:
     chan.postOneShotMessage(a);
 }
 
-export function openWebExtSidebar(sidebarAction: WebExtSidebarActionService): void {
+export async function openWebExtSidebar(sidebarAction: WebExtSidebarActionService): Promise<void> {
     // This method should be called by user interaction.
-    sidebarAction.open().catch(console.error);
+    try {
+        await sidebarAction.open();
+    }
+    catch (e: unknown) {
+        console.error(e);
+    }
 }
 
 export function registerItem(chan: RemoteActionChannel, url: string, title?: string): void {
