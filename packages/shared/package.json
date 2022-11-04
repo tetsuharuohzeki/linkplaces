@@ -22,7 +22,7 @@
     },
     "dependencies": {
         "@linkplaces/webext_types": "0.10.0",
-        "option-t": "32.6.6",
+        "option-t": "33.0.0",
         "react": "18.2.0"
     }
 }
