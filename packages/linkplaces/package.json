@@ -37,7 +37,7 @@
         "ava": "5.1.0",
         "esbuild": "0.15.14",
         "jsdom": "20.0.2",
-        "option-t": "33.0.1",
+        "option-t": "33.1.1",
         "picomatch": "2.3.1",
         "postcss": "8.4.19",
         "postcss-import": "15.0.0",
