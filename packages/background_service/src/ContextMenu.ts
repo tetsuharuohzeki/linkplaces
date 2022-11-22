@@ -3,8 +3,9 @@ import { createBookmarkItem, CreateBookmarkItemResult } from '@linkplaces/shared
 import type { OnClickData, CreateArgument, ContextType, Tab, WindowId } from '@linkplaces/webext_types';
 
 import { Maybe, isNullOrUndefined } from 'option-t/Maybe';
-import { createErr, createOk, Result } from 'option-t/PlainResult/Result';
+import type { Result } from 'option-t/PlainResult/Result';
 import { inspectErrOfResult } from 'option-t/PlainResult/inspect';
+import { tryCatchIntoResultWithEnsureErrorAsync } from 'option-t/PlainResult/tryCatchAsync';
 import { unwrapOrFromResult } from 'option-t/PlainResult/unwrapOr';
 import type { Undefinable } from 'option-t/Undefinable/Undefinable';
 import { expectNotUndefined } from 'option-t/Undefinable/expect';
@@ -153,19 +154,16 @@ async function saveMultipleTabs(
 }
 
 async function getSelectedTabsAll(windowId: WindowId): Promise<Result<ReadonlyArray<Tab>, unknown>> {
-    let result: ReadonlyArray<Tab>;
-    try {
+    const result = await tryCatchIntoResultWithEnsureErrorAsync(async () => {
         // A selected tabs has `.highlighted === true`.
         // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/Tab
-        result = await browser.tabs.query({
+        const result: ReadonlyArray<Tab> = await browser.tabs.query({
             highlighted: true,
             windowId,
         });
-    } catch (e) {
-        return createErr(e);
-    }
-
-    return createOk(result);
+        return result;
+    });
+    return result;
 }
 
 function onClickSavePage(info: OnClickData, tab: Tab): Promise<CreateBookmarkItemResult> {
