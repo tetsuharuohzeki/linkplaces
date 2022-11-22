@@ -7,8 +7,8 @@ import type {
 } from '@linkplaces/webext_types';
 
 import { isNull } from 'option-t/Nullable/Nullable';
-import { type Result, createErr, createOk, isErr } from 'option-t/PlainResult/Result';
-import { unwrapOkFromResult } from 'option-t/PlainResult/unwrap';
+import { type Result, createErr, createOk } from 'option-t/PlainResult/Result';
+import { mapAsyncForResult } from 'option-t/PlainResult/mapAsync';
 
 const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/u;
 
@@ -31,8 +31,7 @@ function validateUrlForRegister(input: string): Result<string, URIError> {
     try {
         const url = new URL(input);
         urlString = url.href;
-    }
-    catch (cause) {
+    } catch (cause) {
         // Don't dump the source data to keep it secret.
         const msg = `The input string is not valid URL which is parsible by URL constructor`;
         const e = new URIError(msg, {
@@ -55,19 +54,16 @@ export type CreateBookmarkItemResult = Result<BookmarkTreeNode, Error>;
 
 export async function createBookmarkItem(urlLikeString: string, title: string): Promise<CreateBookmarkItemResult> {
     const validatedUrl = validateUrlForRegister(urlLikeString);
-    if (isErr(validatedUrl)) {
-        return validatedUrl;
-    }
-
-    const url = unwrapOkFromResult(validatedUrl);
-
-    // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/create
-    // Save to "Other Bookmarks" if there is no `parentId`
-    const result = await browser.bookmarks.create({
-        url,
-        title,
+    const result = await mapAsyncForResult(validatedUrl, async (url) => {
+        // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/create
+        // Save to "Other Bookmarks" if there is no `parentId`
+        const created = await browser.bookmarks.create({
+            url,
+            title,
+        });
+        return created;
     });
-    return createOk(result);
+    return result;
 }
 
 export function removeBookmarkItem(id: BookmarkId): Promise<void> {
@@ -124,4 +120,3 @@ export function isBookmarkTreeNodeSeparator(v: BookmarkTreeNode): v is BookmarkT
 
     return false;
 }
-
