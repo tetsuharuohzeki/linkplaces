@@ -14,7 +14,7 @@ importers:
       eslint-plugin-import: 2.26.0
       eslint-plugin-react: 7.31.11
       eslint-plugin-react-hooks: 4.6.0
-      prettier: 2.7.1
+      prettier: 2.8.0
       stylelint: 14.15.0
       stylelint-config-prettier: 9.0.4
       stylelint-config-standard: 29.0.0
@@ -31,7 +31,7 @@ importers:
       eslint-plugin-import: 2.26.0_vfrilbydaxalswvos6uuh4sxs4
       eslint-plugin-react: 7.31.11_eslint@8.28.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.28.0
-      prettier: 2.7.1
+      prettier: 2.8.0
       stylelint: 14.15.0
       stylelint-config-prettier: 9.0.4_stylelint@14.15.0
       stylelint-config-standard: 29.0.0_stylelint@14.15.0
@@ -4838,8 +4838,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier/2.7.1:
-    resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
+  /prettier/2.8.0:
+    resolution: {integrity: sha512-9Lmg8hTFZKG0Asr/kW9Bp8tJjRVluO8EJQVfY2T7FMw9T5jy4I/Uvx0Rca/XWf50QQ1/SS48+6IJWnrb+2yemA==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
