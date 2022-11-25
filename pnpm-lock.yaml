@@ -87,7 +87,7 @@ importers:
       '@linkplaces/shared': 0.10.0
       '@linkplaces/webext_types': 0.10.0
       '@rollup/plugin-alias': 4.0.2
-      '@rollup/plugin-babel': 6.0.2
+      '@rollup/plugin-babel': 6.0.3
       '@rollup/plugin-commonjs': 23.0.2
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-replace': 5.0.1
@@ -112,7 +112,7 @@ importers:
       '@linkplaces/shared': link:../shared
       '@linkplaces/webext_types': link:../webext_types
       '@rollup/plugin-alias': 4.0.2_rollup@3.4.0
-      '@rollup/plugin-babel': 6.0.2_ecxuj7zm5zl7qcys7nvyfh7ewm
+      '@rollup/plugin-babel': 6.0.3_ecxuj7zm5zl7qcys7nvyfh7ewm
       '@rollup/plugin-commonjs': 23.0.2_rollup@3.4.0
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.4.0
       '@rollup/plugin-replace': 5.0.1_rollup@3.4.0
@@ -258,7 +258,7 @@ packages:
     resolution: {integrity: sha512-0NFvs3VkuSYbFi1x2Vd6tKrywq+z/cLeYC/RJNFrIX/30Bf5aiGYbtvGXolEktzJH8o5E5KJ3tT+nkxuuZFVlA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.20.0
+      '@babel/types': 7.20.2
     dev: false
 
   /@babel/helper-module-transforms/7.20.2:
@@ -439,15 +439,6 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /@babel/types/7.20.0:
-    resolution: {integrity: sha512-Jlgt3H0TajCW164wkTOTzHkZb075tMQMULzrLUoUeKmO7eFL96GgDxf7/Axhc5CAuKE3KFyVW1p6ysKsi2oXAg==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/helper-string-parser': 7.19.4
-      '@babel/helper-validator-identifier': 7.19.1
-      to-fast-properties: 2.0.0
     dev: false
 
   /@babel/types/7.20.2:
@@ -656,8 +647,8 @@ packages:
       slash: 4.0.0
     dev: false
 
-  /@rollup/plugin-babel/6.0.2_ecxuj7zm5zl7qcys7nvyfh7ewm:
-    resolution: {integrity: sha512-Vnt8XIWYwCf3MD7qhBWYlP9pjSZvcE++nlPXhQYw6YNehl5742AzFbrV6h4BHb20VAOVUlIksVLymQCTwVCGDg==}
+  /@rollup/plugin-babel/6.0.3_ecxuj7zm5zl7qcys7nvyfh7ewm:
+    resolution: {integrity: sha512-fKImZKppa1A/gX73eg4JGo+8kQr/q1HBQaCGKECZ0v4YBBv3lFqi14+7xyApECzvkLTHCifx+7ntcrvtBIRcpg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@babel/core': ^7.0.0
