@@ -5,14 +5,13 @@ import type { TowerService } from './traits.js';
 
 export class SendMessageResponder<in out TRequest, in out TResponse> {
     private _runtime: ExtensionRuntime;
-    private _onMessage: (this: this, message: object, sender: ExtensionMessageSender) => Promise<unknown>;
+    private _onMessage: typeof SendMessageResponder.prototype.onMessage = this.onMessage.bind(this);
 
     private _validator: AssertTypeGuardFn<TRequest>;
     private _service: TowerService<TRequest, TResponse>;
 
     constructor(runtime: ExtensionRuntime, validator: AssertTypeGuardFn<TRequest>, service: TowerService<TRequest, TResponse>) {
         this._runtime = runtime;
-        this._onMessage = this.onMessage.bind(this);
         this._validator = validator;
         this._service = service;
     }

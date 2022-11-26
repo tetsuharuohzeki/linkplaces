@@ -27,20 +27,14 @@ export class PopupItemIconElement extends HTMLElement {
         return [ATTR_NAME_ICON_DIR, ATTR_NAME_ICON_FILE];
     }
 
-    private _sourceForDark: DomRef<HTMLSourceElement>;
-    private _sourceForLight: DomRef<HTMLSourceElement>;
-    private _img: DomRef<HTMLImageElement>;
-    private _iconDir: string;
-    private _iconFile: string;
+    private _sourceForDark: DomRef<HTMLSourceElement> = createDomRef();
+    private _sourceForLight: DomRef<HTMLSourceElement> = createDomRef();
+    private _img: DomRef<HTMLImageElement> = createDomRef();
+    private _iconDir: string = '';
+    private _iconFile: string = '';
 
     constructor() {
         super();
-
-        this._sourceForDark = createDomRef();
-        this._sourceForLight = createDomRef();
-        this._img = createDomRef();
-        this._iconDir = '';
-        this._iconFile = '';
 
         this._init();
     }

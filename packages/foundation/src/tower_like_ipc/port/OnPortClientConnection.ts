@@ -12,16 +12,13 @@ interface PromiseResolverTuple {
 
 export class OnPortClientConnection<in TPayload> {
     private _port: ExtensionPort;
-    private _callback: Map<number, PromiseResolverTuple>;
-    private _callbackIdCandidate: number;
+    private _callback: Map<number, PromiseResolverTuple> = new Map();
+    private _callbackIdCandidate: number = 0;
 
-    private _onMessage: (this: this, msg: object) => void;
+    private _onMessage: typeof OnPortClientConnection.prototype.onMessage = this.onMessage.bind(this);
 
     constructor(port: ExtensionPort) {
         this._port = port;
-        this._callback = new Map();
-        this._callbackIdCandidate = 0;
-        this._onMessage = this.onMessage.bind(this);
 
         this._initialize();
     }

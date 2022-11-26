@@ -6,11 +6,7 @@ import { type Root, createRoot, } from 'react-dom/client';
 import type { ViewContext } from './ViewContext.js';
 
 export abstract class ReactRuledViewContext implements ViewContext {
-    private _renderRoot: Nullable<Root>;
-
-    constructor() {
-        this._renderRoot = null;
-    }
+    private _renderRoot: Nullable<Root> = null;
 
     abstract destroy(): void;
 

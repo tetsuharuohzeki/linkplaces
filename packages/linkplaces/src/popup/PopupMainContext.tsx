@@ -16,13 +16,12 @@ export class PopupMainContext extends ReactRuledViewContext {
 
     private _channel: RemoteActionChannel;
     private _list: Array<BookmarkTreeNode>;
-    private _disposerSet: Nullable<Set<() => void>>;
+    private _disposerSet: Nullable<Set<() => void>> = null;
 
     constructor(channel: RemoteActionChannel, list: Array<BookmarkTreeNode>) {
         super();
         this._channel = channel;
         this._list = list;
-        this._disposerSet = null;
     }
 
     destroy(): void {

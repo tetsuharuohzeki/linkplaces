@@ -24,7 +24,7 @@ import { SidebarView } from './SidebarView.js';
 
 export class SidebarContext extends ReactRuledViewContext {
     private _list: Array<BookmarkTreeNode>;
-    private _subscription: Nullable<Subscription>;
+    private _subscription: Nullable<Subscription> = null;
     private _channel: RemoteActionChannel;
 
     private _repo: SidebarRepository;
@@ -32,7 +32,6 @@ export class SidebarContext extends ReactRuledViewContext {
     constructor(list: Array<BookmarkTreeNode>, channel: RemoteActionChannel) {
         super();
         this._list = list;
-        this._subscription = null;
         this._channel = channel;
 
         this._repo = SidebarRepository.create(browser.bookmarks, list);

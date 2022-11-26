@@ -6,11 +6,7 @@ export interface DomRef<out T> {
 }
 
 class DomRefImpl<out T> implements DomRef<T> {
-    current: Nullable<T>;
-
-    constructor() {
-        this.current = null;
-    }
+    current: Nullable<T> = null;
 
     release(): void {
         this.current = null;

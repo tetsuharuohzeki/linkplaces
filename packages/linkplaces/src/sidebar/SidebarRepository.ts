@@ -38,11 +38,10 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
     }
 
     private _subject: BehaviorSubject<Array<BookmarkTreeNode>>;
-    private _onRemoveSubject: Subject<BookmarkId>;
+    private _onRemoveSubject: Subject<BookmarkId> = new Subject();
 
     private constructor(init: Array<BookmarkTreeNode>) {
         this._subject = new BehaviorSubject(init);
-        this._onRemoveSubject = new Subject();
     }
 
     latestValue(): Array<BookmarkTreeNode> {
@@ -88,13 +87,11 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
     }
 
     private _driver: BookmarkRepository;
-    private _emitter: Subject<Array<BookmarkTreeNode>>;
-    private _obs: Nullable<Observable<Iterable<SidebarItemViewModelEntity>>>;
+    private _emitter: Subject<Array<BookmarkTreeNode>> = new Subject();
+    private _obs: Nullable<Observable<Iterable<SidebarItemViewModelEntity>>> = null;
 
     private constructor(driver: BookmarkRepository) {
         this._driver = driver;
-        this._emitter = new Subject();
-        this._obs = null;
     }
 
     destroy(): void {

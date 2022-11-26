@@ -14,12 +14,11 @@ export class ReduxLikeStore<in out TState, in TAction extends ActionArcheType> {
 
     private _backState: TState;
     private _reducer: Reducer<TState, TAction>;
-    private _subscribers: Set<SubscriberFn<TState>>;
+    private _subscribers: Set<SubscriberFn<TState>> = new Set();
 
     private constructor(reducer: Reducer<TState, TAction>, initial: TState) {
         this._backState = initial;
         this._reducer = reducer;
-        this._subscribers = new Set();
     }
 
     destory(): void {

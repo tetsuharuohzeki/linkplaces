@@ -5,15 +5,13 @@ import type { PacketCreationService } from './PacketCreationService.js';
 
 export class OnPortServerConnection {
     private _port: ExtensionPort;
-    private _onMessage: (this: this, packet: object) => void;
-    private _onDissconnect: (this: this, port: ExtensionPort) => void;
+    private _onMessage: typeof OnPortServerConnection.prototype.onMessage = this.onMessage.bind(this);
+    private _onDissconnect: typeof OnPortServerConnection.prototype.onDisconnect = this.onDisconnect.bind(this);
 
     private _service: PacketCreationService<unknown, unknown>;
 
     constructor(port: ExtensionPort, service: PacketCreationService<unknown, unknown>) {
         this._port = port;
-        this._onMessage = this.onMessage.bind(this);
-        this._onDissconnect = this.onDisconnect.bind(this);
         this._service = service;
     }
 
@@ -52,7 +50,7 @@ export class OnPortServerConnection {
         this._port.postMessage(res);
     }
 
-    onDisconnect(): void {
+    onDisconnect(_port: ExtensionPort): void {
         this.destory();
     }
 }
