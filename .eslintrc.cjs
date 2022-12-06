@@ -11,8 +11,8 @@ const TSCONFIG_PATH = path.resolve(__dirname, './tsconfig.eslint.json');
 // https://eslint.org/docs/configuring/#comments-in-configuration-files
 module.exports = {
     'extends': [
-        './tools/eslint/core.cjs',
-        './tools/eslint/import.cjs',
+        './tools/eslint/vendor/core.cjs',
+        './tools/eslint/vendor/import.cjs',
         './tools/eslint/prettier.cjs',
     ],
 
@@ -73,8 +73,8 @@ module.exports = {
 
             'extends': [
                 'plugin:react-hooks/recommended',
-                './tools/eslint/typescript.cjs',
-                './tools/eslint/typescript_react.cjs',
+                './tools/eslint/vendor/typescript.cjs',
+                './tools/eslint/vendor/typescript_react.cjs',
                 './tools/eslint/prettier.cjs',
             ],
 
