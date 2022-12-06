@@ -3,9 +3,10 @@
 
 'use strict';
 
-const path = require('path');
-
-const TSCONFIG_PATH = path.resolve(__dirname, './tsconfig.eslint.json');
+const languageOptions = require('./tools/eslint/language_option.cjs');
+const linterOptions = require('./tools/eslint/liniter_option.cjs');
+const projectRules = require('./tools/eslint/project_rules.cjs');
+const typescriptSettings = require('./tools/eslint/typescript.cjs');
 
 // ESLint Configuration Files enables to include comments.
 // https://eslint.org/docs/configuring/#comments-in-configuration-files
@@ -17,7 +18,7 @@ module.exports = {
     ],
 
     'parserOptions': {
-        'ecmaVersion': 2022,
+        'ecmaVersion': languageOptions.ecmaVersion,
         'sourceType': 'module',
     },
 
@@ -25,29 +26,11 @@ module.exports = {
         'es2021': true,
     },
 
-    'reportUnusedDisableDirectives': true,
+    'reportUnusedDisableDirectives': linterOptions.reportUnusedDisableDirectives,
 
     'root': true,
 
-    'rules': {
-        'no-constant-binary-expression': 'error',
-        'no-magic-numbers': 'off',
-        'no-unused-private-class-members': 'warn',
-
-        // Disable until vscode's Electron's node.js will become Node.js v16
-        'import/no-unresolved': 'off',
-
-        'no-restricted-imports': ['error', {
-            'paths':  [
-                'option-t/cjs/Option',
-                'option-t/cjs/Result',
-                'option-t/esm/Option',
-                'option-t/esm/Result',
-                'option-t/lib/Option',
-                'option-t/lib/Result',
-            ],
-        }],
-    },
+    'rules': projectRules.rules,
 
     'overrides': [
         {
@@ -62,11 +45,7 @@ module.exports = {
                 'sourceType': 'module',
             },
 
-            'rules': {
-                'import/extensions': ['error', 'always', {
-                    'ignorePackages': true,
-                }],
-            },
+            'rules': projectRules.rulesForESModule,
         },
         {
             'files': ['*.ts', '*.tsx', '*.d.ts'],
@@ -78,26 +57,9 @@ module.exports = {
                 './tools/eslint/prettier.cjs',
             ],
 
-            'parserOptions': {
-                'sourceType': 'module',
-                'ecmaFeatures': {
-                    'jsx': true
-                },
-                'project': TSCONFIG_PATH,
-                'extraFileExtensions': ['.cjs'],
-            },
-
-            'globals': {
-                // see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
-                'JSX': 'readonly',
-            },
-
-            'rules': {
-                // FIXME: Re-enable for the future.
-                '@typescript-eslint/member-ordering': 'off',
-
-                'react/no-arrow-function-lifecycle': 'error',
-            },
+            'parserOptions': typescriptSettings.createParserOptions(__dirname),
+            'globals': typescriptSettings.globals,
+            'rules': typescriptSettings.rules,
         },
     ],
 };
