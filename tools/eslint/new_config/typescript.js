@@ -26,7 +26,6 @@ export function createlanguageOptionsForTypeScript(baseDir) {
         parserOptions: {
             project: parserOptions.project,
             ecmaFeatures: parserOptions.ecmaFeatures,
-            extraFileExtensions: parserOptions.extraFileExtensions,
         },
     });
 }
