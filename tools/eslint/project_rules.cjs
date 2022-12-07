@@ -18,8 +18,6 @@ const rules = Object.freeze({
             ],
         },
     ],
-    // FIXME: Re-enable for the future.
-    'import/no-unresolved': 'off',
 });
 
 const rulesForESModule = Object.freeze({
