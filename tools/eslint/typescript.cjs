@@ -24,7 +24,6 @@ function createParserOptions(baseDir) {
             jsx: true,
         },
         project: TSCONFIG_PATH,
-        extraFileExtensions: ['.cjs'],
     };
 }
 
