@@ -73,7 +73,7 @@ typecheck: ## Check static typing integrity
 ####################################
 # Lint
 ####################################
-lint: eslint stylelint ## Run all lints.
+lint: eslint stylelint check_relationship_between_workspace_and_ts_pj_reference ## Run all lints.
 
 eslint: ## Run ESLint
 	$(NPM_BIN_DIR)/eslint --ext=$(ESLINT_TARGET_EXTENSION) $(CURDIR)
@@ -86,6 +86,9 @@ stylelint: ## Run stylelint
 		--config=$(CURDIR)/stylelint.config.cjs \
 		-f verbose \
 		--color
+
+check_relationship_between_workspace_and_ts_pj_reference:
+	$(NPM_BIN_DIR)/workspaces-to-typescript-project-references --check
 
 
 ####################################
