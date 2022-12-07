@@ -5,6 +5,7 @@ import reactHooksESLintPlugin from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 
 import tsconfigMod from '../typescript.cjs';
+import reactPresets from '../vendor/react.cjs';
 import tsPresets from '../vendor/typescript.cjs';
 import tsReactPresets from '../vendor/typescript_react.cjs';
 
@@ -39,6 +40,8 @@ export const config = Object.freeze({
     rules: {
         ...reactHooksESLintPlugin.configs.recommended.rules,
         ...tsPresets.rules,
+        ...reactPresets.rules,
+        ...reactESLintPlugin.configs['jsx-runtime'].rules,
         ...tsReactPresets.rules,
         ...tsconfigMod.rules,
 
@@ -52,5 +55,11 @@ export const config = Object.freeze({
 
         // Use TypeScript's checking instead.
         'import/no-unresolved': 'off',
+    },
+
+    settings: {
+        react: {
+            version: '18.2',
+        },
     },
 });
