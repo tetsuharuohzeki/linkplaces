@@ -37,6 +37,7 @@
         {
             "groupName": "Rollup",
             "matchPackagePatterns": [
+                "rollup",
                 "^@rollup/"
             ]
         },
