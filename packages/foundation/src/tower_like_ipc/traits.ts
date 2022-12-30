@@ -14,7 +14,3 @@ export interface MultipleArgsTowerService<
     ready(): Promise<Result<void, Error>>;
     call(...args: TArgs): Promise<TOutput>;
 }
-
-export interface Layer<TInputService, TOutputService> {
-    layer(input: TInputService): TOutputService;
-}
