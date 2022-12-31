@@ -9,10 +9,10 @@
         }
     },
     "dependencies": {
-        "@linkplaces/foundation": "0.10.0",
-        "@linkplaces/ipc_message": "0.10.0",
-        "@linkplaces/shared": "0.10.0",
-        "@linkplaces/webext_types": "0.10.0",
+        "@linkplaces/foundation": "workspace:*",
+        "@linkplaces/ipc_message": "workspace:*",
+        "@linkplaces/shared": "workspace:*",
+        "@linkplaces/webext_types": "workspace:*",
         "option-t": "33.1.1"
     }
 }

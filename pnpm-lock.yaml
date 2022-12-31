@@ -44,10 +44,10 @@ importers:
 
   packages/background_service:
     specifiers:
-      '@linkplaces/foundation': 0.10.0
-      '@linkplaces/ipc_message': 0.10.0
-      '@linkplaces/shared': 0.10.0
-      '@linkplaces/webext_types': 0.10.0
+      '@linkplaces/foundation': workspace:*
+      '@linkplaces/ipc_message': workspace:*
+      '@linkplaces/shared': workspace:*
+      '@linkplaces/webext_types': workspace:*
       option-t: 33.1.1
     dependencies:
       '@linkplaces/foundation': link:../foundation
@@ -58,7 +58,7 @@ importers:
 
   packages/foundation:
     specifiers:
-      '@linkplaces/webext_types': 0.10.0
+      '@linkplaces/webext_types': workspace:*
       option-t: 33.1.1
       react: 18.2.0
       react-dom: 18.2.0
@@ -72,8 +72,8 @@ importers:
 
   packages/ipc_message:
     specifiers:
-      '@linkplaces/foundation': 0.10.0
-      '@linkplaces/webext_types': 0.10.0
+      '@linkplaces/foundation': workspace:*
+      '@linkplaces/webext_types': workspace:*
       option-t: 33.1.1
     dependencies:
       '@linkplaces/foundation': link:../foundation
@@ -85,11 +85,11 @@ importers:
       '@babel/cli': 7.20.7
       '@babel/core': 7.20.7
       '@babel/preset-react': 7.18.6
-      '@linkplaces/background_service': 0.10.0
-      '@linkplaces/foundation': 0.10.0
-      '@linkplaces/ipc_message': 0.10.0
-      '@linkplaces/shared': 0.10.0
-      '@linkplaces/webext_types': 0.10.0
+      '@linkplaces/background_service': workspace:*
+      '@linkplaces/foundation': workspace:*
+      '@linkplaces/ipc_message': workspace:*
+      '@linkplaces/shared': workspace:*
+      '@linkplaces/webext_types': workspace:*
       '@rollup/plugin-alias': 4.0.2
       '@rollup/plugin-babel': 6.0.3
       '@rollup/plugin-commonjs': 24.0.0
@@ -134,7 +134,7 @@ importers:
 
   packages/shared:
     specifiers:
-      '@linkplaces/webext_types': 0.10.0
+      '@linkplaces/webext_types': workspace:*
       option-t: 33.1.1
       react: 18.2.0
     dependencies:
