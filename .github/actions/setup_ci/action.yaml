@@ -10,7 +10,7 @@ runs:
     using: composite
     steps:
         - name: Use Node.js ${{ inputs.node-version }}
-          uses: actions/setup-node@v3.5.1
+          uses: actions/setup-node@v3.6.0
           with:
               node-version: ${{ inputs.node-version }}
         - name: Setup corepack
