@@ -23,7 +23,7 @@ runs:
           run: |
               echo "::set-output name=dir::$(pnpm store path)"
         - name: cache dependencies
-          uses: actions/cache@v3.2.2
+          uses: actions/cache@v3.2.3
           id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
           with:
               path: ${{ steps.npm-cache-dir.outputs.dir }}
