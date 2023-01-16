@@ -1,8 +1,9 @@
 @charset 'utf-8';
+@layer foundation, shared, app;
 
-@import '@linkplaces/foundation/src/mod.css';
+@import '@linkplaces/foundation/src/mod.css' layer(foundation);
 
-@import '@linkplaces/shared/src/reset_css/mod.css';
-@import '@linkplaces/shared/src/component/mod.css';
+@import '@linkplaces/shared/src/reset_css/mod.css' layer(shared);
+@import '@linkplaces/shared/src/component/mod.css' layer(shared);
 
-@import './view/mod.css';
+@import './view/mod.css' layer(app);
