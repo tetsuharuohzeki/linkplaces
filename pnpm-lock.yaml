@@ -90,9 +90,9 @@ importers:
       '@linkplaces/ipc_message': workspace:*
       '@linkplaces/shared': workspace:*
       '@linkplaces/webext_types': workspace:*
-      '@rollup/plugin-alias': 4.0.2
+      '@rollup/plugin-alias': 4.0.3
       '@rollup/plugin-babel': 6.0.3
-      '@rollup/plugin-commonjs': 24.0.0
+      '@rollup/plugin-commonjs': 24.0.1
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-replace': 5.0.2
       ava: 5.1.1
@@ -120,9 +120,9 @@ importers:
       '@babel/cli': 7.20.7_@babel+core@7.20.12
       '@babel/core': 7.20.12
       '@babel/preset-react': 7.18.6_@babel+core@7.20.12
-      '@rollup/plugin-alias': 4.0.2_rollup@3.10.1
+      '@rollup/plugin-alias': 4.0.3_rollup@3.10.1
       '@rollup/plugin-babel': 6.0.3_j5gl3ppangg6ywsqfpneorhloy
-      '@rollup/plugin-commonjs': 24.0.0_rollup@3.10.1
+      '@rollup/plugin-commonjs': 24.0.1_rollup@3.10.1
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.10.1
       '@rollup/plugin-replace': 5.0.2_rollup@3.10.1
       ava: 5.1.1
@@ -835,8 +835,8 @@ packages:
       config-chain: 1.1.13
     dev: true
 
-  /@rollup/plugin-alias/4.0.2_rollup@3.10.1:
-    resolution: {integrity: sha512-1hv7dBOZZwo3SEupxn4UA2N0EDThqSSS+wI1St1TNTBtOZvUchyIClyHcnDcjjrReTPZ47Faedrhblv4n+T5UQ==}
+  /@rollup/plugin-alias/4.0.3_rollup@3.10.1:
+    resolution: {integrity: sha512-ZuDWE1q4PQDhvm/zc5Prun8sBpLJy41DMptYrS6MhAy9s9kL/doN1613BWfEchGVfKxzliJ3BjbOPizXX38DbQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^1.20.0||^2.0.0||^3.0.0
@@ -867,8 +867,8 @@ packages:
       rollup: 3.10.1
     dev: true
 
-  /@rollup/plugin-commonjs/24.0.0_rollup@3.10.1:
-    resolution: {integrity: sha512-0w0wyykzdyRRPHOb0cQt14mIBLujfAv6GgP6g8nvg/iBxEm112t3YPPq+Buqe2+imvElTka+bjNlJ/gB56TD8g==}
+  /@rollup/plugin-commonjs/24.0.1_rollup@3.10.1:
+    resolution: {integrity: sha512-15LsiWRZk4eOGqvrJyu3z3DaBu5BhXIMeWnijSRvd8irrrg9SHpQ1pH+BUK4H6Z9wL9yOxZJMTLU+Au86XHxow==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0
