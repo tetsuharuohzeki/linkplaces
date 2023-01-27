@@ -1,4 +1,4 @@
-import { StrictMode, ReactNode, Key as ReactKey } from 'react';
+import { StrictMode, type ReactNode, type Key as ReactKey } from 'react';
 
 export interface PanelSectionListProps {
     children: ReactNode;

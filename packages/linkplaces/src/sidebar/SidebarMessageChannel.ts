@@ -1,1 +1,1 @@
-export { createChannel, RemoteActionChannel } from '@linkplaces/ipc_message';
+export { createChannel, type RemoteActionChannel } from '@linkplaces/ipc_message';

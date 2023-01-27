@@ -1,7 +1,7 @@
 import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
-import { Nullable, isNotNull } from 'option-t/Nullable/Nullable';
+import { type Nullable, isNotNull } from 'option-t/Nullable/Nullable';
 import { expectNotNull } from 'option-t/Nullable/expect';
 import { StrictMode, useSyncExternalStore } from 'react';
 
@@ -19,7 +19,7 @@ import type { RemoteActionChannel } from './SidebarMessageChannel.js';
 import { createUpdateFromSourceAction } from './SidebarReduxAction.js';
 import { SidebarRepository } from './SidebarRepository.js';
 import type { SidebarState } from './SidebarState.js';
-import { createSidebarStore, SidebarPlainReduxStore } from './SidebarStore.js';
+import { createSidebarStore, type SidebarPlainReduxStore } from './SidebarStore.js';
 import { SidebarView } from './SidebarView.js';
 
 export class SidebarContext extends ReactRuledViewContext {

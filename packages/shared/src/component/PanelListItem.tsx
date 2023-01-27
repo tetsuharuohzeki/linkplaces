@@ -1,4 +1,4 @@
-import {StrictMode, MouseEventHandler, ReactNode} from 'react';
+import { StrictMode, type MouseEventHandler, type ReactNode } from 'react';
 
 export interface PanelListItemProps {
     children: ReactNode;

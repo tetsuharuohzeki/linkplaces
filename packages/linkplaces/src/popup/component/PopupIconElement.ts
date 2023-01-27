@@ -1,5 +1,5 @@
 import {
-    DomRef,
+    type DomRef,
     createDomRef,
     createDomElement as dom,
     createDocFragmentTree as fragment,
