@@ -9,7 +9,7 @@ import {
 import type { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/webext_types';
 
 import type { Nullable } from 'option-t/Nullable/Nullable';
-import { StrictMode, MouseEvent, MouseEventHandler, useState } from 'react';
+import { StrictMode, type MouseEvent, type MouseEventHandler, useState } from 'react';
 
 import type { PopupMainIntent } from './PopupMainIntent.js';
 import type { PopupMainState } from './PopupMainState.js';

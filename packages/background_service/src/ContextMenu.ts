@@ -1,8 +1,8 @@
 import { Ix } from '@linkplaces/foundation';
-import { createBookmarkItem, CreateBookmarkItemResult } from '@linkplaces/shared/bookmark';
+import { createBookmarkItem, type CreateBookmarkItemResult } from '@linkplaces/shared/bookmark';
 import type { OnClickData, CreateArgument, ContextType, Tab, WindowId } from '@linkplaces/webext_types';
 
-import { Maybe, isNullOrUndefined } from 'option-t/Maybe';
+import { type Maybe, isNullOrUndefined } from 'option-t/Maybe';
 import type { Result } from 'option-t/PlainResult/Result';
 import { inspectErrOfResult } from 'option-t/PlainResult/inspect';
 import { tryCatchIntoResultWithEnsureErrorAsync } from 'option-t/PlainResult/tryCatchAsync';

@@ -67,7 +67,7 @@ __plain_ts:
 ####################################
 
 typecheck: ## Check static typing integrity
-	$(NPM_BIN_DIR)/tsc --build
+	$(NPM_BIN_DIR)/tsc --build --emitDeclarationOnly
 
 
 ####################################

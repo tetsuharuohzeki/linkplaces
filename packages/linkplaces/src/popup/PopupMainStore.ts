@@ -1,7 +1,7 @@
 import { ReduxLikeStore } from '@linkplaces/foundation';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
-import { createInitialPopupMainState, PopupMainState, reducePopupMain } from './PopupMainState.js';
+import { createInitialPopupMainState, type PopupMainState, reducePopupMain } from './PopupMainState.js';
 import type { PopupReduxAction } from './PopupReduxAction.js';
 
 export type PopupPlainReduxStore = ReduxLikeStore<PopupMainState, PopupReduxAction>;
