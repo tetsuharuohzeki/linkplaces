@@ -7,8 +7,7 @@ import type { Result } from 'option-t/PlainResult/Result';
 import { inspectErrOfResult } from 'option-t/PlainResult/inspect';
 import { tryCatchIntoResultWithEnsureErrorAsync } from 'option-t/PlainResult/tryCatchAsync';
 import { unwrapOrFromResult } from 'option-t/PlainResult/unwrapOr';
-import type { Undefinable } from 'option-t/Undefinable/Undefinable';
-import { expectNotUndefined } from 'option-t/Undefinable/expect';
+import { type Undefinable, expectNotUndefined } from 'option-t/Undefinable/Undefinable';
 import { unwrapOrFromUndefinable } from 'option-t/Undefinable/unwrapOr';
 
 const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';

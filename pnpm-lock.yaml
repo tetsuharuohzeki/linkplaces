@@ -48,24 +48,24 @@ importers:
       '@linkplaces/ipc_message': workspace:*
       '@linkplaces/shared': workspace:*
       '@linkplaces/webext_types': workspace:*
-      option-t: 33.4.0
+      option-t: 33.5.0
     dependencies:
       '@linkplaces/foundation': link:../foundation
       '@linkplaces/ipc_message': link:../ipc_message
       '@linkplaces/shared': link:../shared
       '@linkplaces/webext_types': link:../webext_types
-      option-t: 33.4.0
+      option-t: 33.5.0
 
   packages/foundation:
     specifiers:
       '@linkplaces/webext_types': workspace:*
-      option-t: 33.4.0
+      option-t: 33.5.0
       react: 18.2.0
       react-dom: 18.2.0
       rxjs: 7.8.0
     dependencies:
       '@linkplaces/webext_types': link:../webext_types
-      option-t: 33.4.0
+      option-t: 33.5.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       rxjs: 7.8.0
@@ -74,11 +74,11 @@ importers:
     specifiers:
       '@linkplaces/foundation': workspace:*
       '@linkplaces/webext_types': workspace:*
-      option-t: 33.4.0
+      option-t: 33.5.0
     dependencies:
       '@linkplaces/foundation': link:../foundation
       '@linkplaces/webext_types': link:../webext_types
-      option-t: 33.4.0
+      option-t: 33.5.0
 
   packages/linkplaces:
     specifiers:
@@ -98,7 +98,7 @@ importers:
       ava: 5.1.1
       esbuild: 0.17.5
       jsdom: 21.1.0
-      option-t: 33.4.0
+      option-t: 33.5.0
       picomatch: 2.3.1
       postcss: 8.4.21
       postcss-import: 15.1.0
@@ -112,7 +112,7 @@ importers:
       '@linkplaces/ipc_message': link:../ipc_message
       '@linkplaces/shared': link:../shared
       '@linkplaces/webext_types': link:../webext_types
-      option-t: 33.4.0
+      option-t: 33.5.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       rxjs: 7.8.0
@@ -136,11 +136,11 @@ importers:
   packages/shared:
     specifiers:
       '@linkplaces/webext_types': workspace:*
-      option-t: 33.4.0
+      option-t: 33.5.0
       react: 18.2.0
     dependencies:
       '@linkplaces/webext_types': link:../webext_types
-      option-t: 33.4.0
+      option-t: 33.5.0
       react: 18.2.0
 
   packages/webext_types:
@@ -4627,8 +4627,8 @@ packages:
       is-wsl: 2.2.0
     dev: true
 
-  /option-t/33.4.0:
-    resolution: {integrity: sha512-rsAtcZEVR2nchh/Ys0ONqlsaN2Q8P2TzIeu77dtXuXgDdeCG/CEeDOf27kJ7+ZvNn47VSLrQPDEjbmu9ozgVyQ==}
+  /option-t/33.5.0:
+    resolution: {integrity: sha512-OAGugugXGtcv7AFV/qyk/LNLvwQwr5Tpf4HckTafbmvJ3VqlQqe7gmVr88eZAM/wKExvWL1ifNP7DI/peYwsHw==}
     dev: false
 
   /optionator/0.8.3:
