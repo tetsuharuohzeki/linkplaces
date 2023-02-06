@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@monorepo-utils/workspaces-to-typescript-project-references': ^2.9.0
-      '@types/node': 18.11.18
+      '@types/node': 18.11.19
       '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
       '@typescript-eslint/eslint-plugin': 5.50.0
@@ -24,7 +24,7 @@ importers:
       web-ext: 7.5.0
     devDependencies:
       '@monorepo-utils/workspaces-to-typescript-project-references': 2.9.0
-      '@types/node': 18.11.18
+      '@types/node': 18.11.19
       '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
       '@typescript-eslint/eslint-plugin': 5.50.0_dics2amlnvrpe2kzfpygqlymby
@@ -973,8 +973,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node/18.11.18:
-    resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==}
+  /@types/node/18.11.19:
+    resolution: {integrity: sha512-YUgMWAQBWLObABqrvx8qKO1enAvBUdjZOAWQ5grBAkp5LQv45jBvYKZ3oFS9iKRCQyFjqw6iuEa1vmFqtxYLZw==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -1018,7 +1018,7 @@ packages:
   /@types/yauzl/2.10.0:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     dependencies:
-      '@types/node': 18.11.18
+      '@types/node': 18.11.19
     dev: true
 
   /@typescript-eslint/eslint-plugin/5.50.0_dics2amlnvrpe2kzfpygqlymby:
@@ -1792,7 +1792,7 @@ packages:
     engines: {node: '>=12.13.0'}
     hasBin: true
     dependencies:
-      '@types/node': 18.11.18
+      '@types/node': 18.11.19
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 1.3.0
