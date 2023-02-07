@@ -1,7 +1,7 @@
 import { WhereToOpenItem } from '@linkplaces/ipc_message';
 import type { TabId, BrowserWindow } from '@linkplaces/webext_types';
 
-import { expectNotNullAndUndefined } from 'option-t/Maybe/Maybe';
+import { expectNotNullOrUndefined } from 'option-t/Maybe/Maybe';
 import { expectNotUndefined } from 'option-t/Undefinable/Undefinable';
 
 export async function createTab(url: string, where: WhereToOpenItem): Promise<TabId> {
@@ -30,7 +30,7 @@ async function getCurrentTabId(): Promise<TabId> {
     }
 
     const currentTab = expectNotUndefined(tabList[0], 'currentTab should not be undefined');
-    const currentId = expectNotNullAndUndefined(currentTab.id, 'currentId should not null');
+    const currentId = expectNotNullOrUndefined(currentTab.id, 'currentId should not null');
 
     return currentId;
 }
@@ -54,9 +54,9 @@ async function openItemInNewWindow(url: string): Promise<TabId> {
         state: 'normal',
         incognito: lastFocused.incognito,
     });
-    const tabs = expectNotNullAndUndefined(window.tabs, 'window.tabs should not be null');
+    const tabs = expectNotNullOrUndefined(window.tabs, 'window.tabs should not be null');
     const tab = expectNotUndefined(tabs[0], 'window.tabs[0] would be the current tab');
-    const id = expectNotNullAndUndefined(tab.id, 'id should not null');
+    const id = expectNotNullOrUndefined(tab.id, 'id should not null');
     return id;
 }
 
@@ -70,7 +70,7 @@ async function openItemInNewTab(url: string, shouldActive: boolean): Promise<Tab
     };
 
     const newTab = await browser.tabs.create(option);
-    const id = expectNotNullAndUndefined(newTab.id, 'id should not null');
+    const id = expectNotNullOrUndefined(newTab.id, 'id should not null');
 
     return id;
 }
