@@ -95,7 +95,7 @@ importers:
       '@rollup/plugin-commonjs': 24.0.1
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-replace': 5.0.2
-      ava: 5.1.1
+      ava: 5.2.0
       esbuild: 0.17.6
       jsdom: 21.1.0
       option-t: 33.8.0
@@ -125,7 +125,7 @@ importers:
       '@rollup/plugin-commonjs': 24.0.1_rollup@3.14.0
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.14.0
       '@rollup/plugin-replace': 5.0.2_rollup@3.14.0
-      ava: 5.1.1
+      ava: 5.2.0
       esbuild: 0.17.6
       jsdom: 21.1.0
       picomatch: 2.3.1
@@ -1470,8 +1470,8 @@ packages:
     engines: {node: '>=8.0.0'}
     dev: true
 
-  /ava/5.1.1:
-    resolution: {integrity: sha512-od1CWgWVIKZSdEc1dhQWhbsd6KBs0EYjek7eqZNGPvy+NyC9Q1bXixcadlgOXwDG9aM0zLMQZwRXfe9gMb1LQQ==}
+  /ava/5.2.0:
+    resolution: {integrity: sha512-W8yxFXJr/P68JP55eMpQIa6AiXhCX3VeuajM8nolyWNExcMDD6rnIWKTjw0B/+GkFHBIaN6Jd0LtcMThcoqVfg==}
     engines: {node: '>=14.19 <15 || >=16.15 <17 || >=18'}
     hasBin: true
     peerDependencies:
