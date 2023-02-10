@@ -16,7 +16,7 @@ importers:
       eslint-plugin-react: 7.32.2
       eslint-plugin-react-hooks: 4.6.0
       globals: ^13.19.0
-      prettier: 2.8.3
+      prettier: 2.8.4
       stylelint: 14.16.1
       stylelint-config-prettier: 9.0.4
       stylelint-config-standard: 29.0.0
@@ -35,7 +35,7 @@ importers:
       eslint-plugin-react: 7.32.2_eslint@8.33.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.33.0
       globals: 13.19.0
-      prettier: 2.8.3
+      prettier: 2.8.4
       stylelint: 14.16.1
       stylelint-config-prettier: 9.0.4_stylelint@14.16.1
       stylelint-config-standard: 29.0.0_stylelint@14.16.1
@@ -4968,8 +4968,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier/2.8.3:
-    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
+  /prettier/2.8.4:
+    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
