@@ -18,7 +18,7 @@ importers:
       globals: ^13.19.0
       prettier: 2.8.4
       stylelint: 14.16.1
-      stylelint-config-prettier: 9.0.4
+      stylelint-config-prettier: 9.0.5
       stylelint-config-standard: 30.0.1
       typescript: 5.0.0-dev.20230130
       web-ext: 7.5.0
@@ -37,7 +37,7 @@ importers:
       globals: 13.19.0
       prettier: 2.8.4
       stylelint: 14.16.1
-      stylelint-config-prettier: 9.0.4_stylelint@14.16.1
+      stylelint-config-prettier: 9.0.5_stylelint@14.16.1
       stylelint-config-standard: 30.0.1_stylelint@14.16.1
       typescript: 5.0.0-dev.20230130
       web-ext: 7.5.0
@@ -5751,12 +5751,12 @@ packages:
     resolution: {integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==}
     dev: true
 
-  /stylelint-config-prettier/9.0.4_stylelint@14.16.1:
-    resolution: {integrity: sha512-38nIGTGpFOiK5LjJ8Ma1yUgpKENxoKSOhbDNSemY7Ep0VsJoXIW9Iq/2hSt699oB9tReynfWicTAoIHiq8Rvbg==}
+  /stylelint-config-prettier/9.0.5_stylelint@14.16.1:
+    resolution: {integrity: sha512-U44lELgLZhbAD/xy/vncZ2Pq8sh2TnpiPvo38Ifg9+zeioR+LAkHu0i6YORIOxFafZoVg0xqQwex6e6F25S5XA==}
     engines: {node: '>= 12'}
     hasBin: true
     peerDependencies:
-      stylelint: '>=11.0.0'
+      stylelint: '>= 11.x < 15'
     dependencies:
       stylelint: 14.16.1
     dev: true
