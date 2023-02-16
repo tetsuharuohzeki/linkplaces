@@ -8,6 +8,5 @@ module.exports = {
 
     'extends': [
         './tools/stylelint/stylelintrc_core.cjs',
-        'stylelint-config-prettier',
     ],
 };
