@@ -54,6 +54,8 @@ module.exports = {
         // For readability, I don't enforce this rule always.
         'declaration-block-no-redundant-longhand-properties': null,
 
+        'declaration-property-value-no-unknown': true,
+
         // quote
         'font-family-name-quotes': 'always-unless-keyword',
         'function-url-quotes': ['always', {
