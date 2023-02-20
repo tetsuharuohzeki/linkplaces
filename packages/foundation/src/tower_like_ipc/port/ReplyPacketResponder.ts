@@ -1,5 +1,5 @@
 import type { Result } from 'option-t/PlainResult';
-import type { Nullable } from 'option-t/cjs/Nullable/Nullable';
+import type { Nullable } from 'option-t/Nullable/Nullable';
 
 import type { AssertTypeGuardFn } from '../AssertTypeGuardFn.js';
 import type { TowerService } from '../traits.js';
