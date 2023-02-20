@@ -54,6 +54,8 @@ export const config = Object.freeze({
 
         // Use TypeScript's checking instead.
         'import/no-unresolved': 'off',
+
+        '@typescript-eslint/no-import-type-side-effects': 'warn',
     },
 
     settings: {
