@@ -1,6 +1,8 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import js from '@eslint/js';
+
 import { config as coreConfig } from './tools/eslint/new_config/core.js';
 import {
     languageOptionsForModule,
@@ -18,7 +20,7 @@ const THIS_DIR_NAME = path.dirname(THIS_FILE_NAME);
 
 // eslint-disable-next-line import/no-anonymous-default-export, import/no-default-export -- ESLint requires default export.
 export default [
-    'eslint:recommended',
+    js.configs.recommended,
     coreConfig,
     {
         linterOptions,
