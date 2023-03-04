@@ -1,8 +1,6 @@
 import globals from 'globals';
 
-import languageOptionMod from '../language_option.cjs';
-
-const { ecmaVersion } = languageOptionMod;
+const ecmaVersion = 2022;
 
 export const languageOptionsForModule = Object.freeze({
     ecmaVersion,

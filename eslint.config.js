@@ -28,6 +28,8 @@ export default [
     {
         ignores: [
             // @prettier-ignore
+
+            // Generated files
             '**/__dist/**/*',
             '**/__obj/**/*',
             '**/__plain/**/*',

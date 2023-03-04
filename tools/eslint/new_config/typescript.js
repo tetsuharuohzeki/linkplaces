@@ -1,18 +1,31 @@
+import * as path from 'node:path';
+
 import tsESLintPlugin from '@typescript-eslint/eslint-plugin';
 import tsESLintParser from '@typescript-eslint/parser';
 import reactESLintPlugin from 'eslint-plugin-react';
 import reactHooksESLintPlugin from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 
-import tsconfigMod from '../typescript.cjs';
 import reactPresets from '../vendor/react.cjs';
 import tsPresets from '../vendor/typescript.cjs';
 import tsReactPresets from '../vendor/typescript_react.cjs';
 
-const { createParserOptions, globals: tsGlobals } = tsconfigMod;
+import { rulesForESModule } from './core.js';
+
+const tsGlobals = Object.freeze({
+    // see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
+    JSX: 'readonly',
+});
+
+const rules = Object.freeze({
+    // FIXME: Re-enable for the future.
+    '@typescript-eslint/member-ordering': 'off',
+
+    'react/no-arrow-function-lifecycle': 'error',
+});
 
 export function createlanguageOptionsForTypeScript(baseDir) {
-    const parserOptions = createParserOptions(baseDir);
+    const TSCONFIG_PATH = path.resolve(baseDir, './tsconfig.eslint.json');
 
     return Object.freeze({
         sourceType: 'module',
@@ -24,8 +37,10 @@ export function createlanguageOptionsForTypeScript(baseDir) {
         },
         parser: tsESLintParser,
         parserOptions: {
-            project: parserOptions.project,
-            ecmaFeatures: parserOptions.ecmaFeatures,
+            project: TSCONFIG_PATH,
+            ecmaFeatures: {
+                jsx: true,
+            },
         },
     });
 }
@@ -42,15 +57,9 @@ export const config = Object.freeze({
         ...reactPresets.rules,
         ...reactESLintPlugin.configs['jsx-runtime'].rules,
         ...tsReactPresets.rules,
-        ...tsconfigMod.rules,
+        ...rules,
 
-        'import/extensions': [
-            'error',
-            'always',
-            {
-                ignorePackages: true,
-            },
-        ],
+        ...rulesForESModule,
 
         // Use TypeScript's checking instead.
         'import/no-unresolved': 'off',

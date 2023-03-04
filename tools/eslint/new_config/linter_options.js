@@ -1,6 +1,4 @@
-import linterOptionsMod from '../liniter_option.cjs';
-
-const { reportUnusedDisableDirectives } = linterOptionsMod;
+const reportUnusedDisableDirectives = true;
 
 export const linterOptions = Object.freeze({
     reportUnusedDisableDirectives,

@@ -1,10 +1,39 @@
 import importPlugin from 'eslint-plugin-import';
 
-import projectRules from '../project_rules.cjs';
 import corePresets from '../vendor/core.cjs';
 import importPresets from '../vendor/import.cjs';
 
 import { config as prettierRules } from './prettier.js';
+
+const projectRules = Object.freeze({
+    'no-constant-binary-expression': 'error',
+    'no-magic-numbers': 'off',
+    'no-unused-private-class-members': 'warn',
+
+    'no-restricted-imports': [
+        'error',
+        {
+            paths: [
+                'option-t/cjs/Option',
+                'option-t/cjs/Result',
+                'option-t/esm/Option',
+                'option-t/esm/Result',
+                'option-t/lib/Option',
+                'option-t/lib/Result',
+            ],
+        },
+    ],
+});
+
+export const rulesForESModule = Object.freeze({
+    'import/extensions': [
+        'error',
+        'always',
+        {
+            ignorePackages: true,
+        },
+    ],
+});
 
 export const config = Object.freeze({
     plugins: {
@@ -14,14 +43,8 @@ export const config = Object.freeze({
         ...corePresets.rules,
         ...importPresets.rules,
         ...prettierRules.rules,
-        ...projectRules.rules,
-        'import/extensions': [
-            'error',
-            'always',
-            {
-                ignorePackages: true,
-            },
-        ],
+        ...projectRules,
+        ...rulesForESModule,
     },
     settings: {
         ...importPresets.settings,
