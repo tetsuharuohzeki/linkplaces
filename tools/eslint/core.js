@@ -1,9 +1,9 @@
 import importPlugin from 'eslint-plugin-import';
 
-import corePresets from '../vendor/core.cjs';
-import importPresets from '../vendor/import.cjs';
-
 import { config as prettierRules } from './prettier.js';
+import corePresets from './vendor/core.cjs';
+import importPresets from './vendor/import.cjs';
+
 
 const projectRules = Object.freeze({
     'no-constant-binary-expression': 'error',

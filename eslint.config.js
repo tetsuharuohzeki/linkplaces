@@ -3,17 +3,17 @@ import { fileURLToPath } from 'node:url';
 
 import js from '@eslint/js';
 
-import { config as coreConfig } from './tools/eslint/new_config/core.js';
+import { config as coreConfig } from './tools/eslint/core.js';
 import {
     languageOptionsForModule,
     languageOptionsForCommonJS,
     languageOptionsForTesting,
-} from './tools/eslint/new_config/language_options.js';
-import { linterOptions } from './tools/eslint/new_config/linter_options.js';
+} from './tools/eslint/language_options.js';
+import { linterOptions } from './tools/eslint/linter_options.js';
 import {
     createlanguageOptionsForTypeScript,
     config as configForTypeScript,
-} from './tools/eslint/new_config/typescript.js';
+} from './tools/eslint/typescript.js';
 
 const THIS_FILE_NAME = fileURLToPath(import.meta.url);
 const THIS_DIR_NAME = path.dirname(THIS_FILE_NAME);
