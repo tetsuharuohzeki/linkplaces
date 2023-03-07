@@ -19,7 +19,8 @@
     "incognito": "spanning",
     "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline';",
     "background": {
-        "page": "background/index.html",
+        "type": "module",
+        "scripts": ["background/background_bundled.js"],
         "persistent": true
     },
     "browser_action": {
