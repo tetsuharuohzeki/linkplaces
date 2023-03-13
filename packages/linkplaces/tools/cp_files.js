@@ -32,6 +32,9 @@ async function createSourceToDestinationMapList(baseDir, sourceList, destination
     return fileList;
 }
 
+// eslint-disable-next-line no-bitwise
+const FS_FILE_COPY_MODE = fs.constants.COPYFILE_EXCL | fs.constants.COPYFILE_FICLONE;
+
 async function copyFile(
     source,
     dest,
@@ -47,7 +50,7 @@ async function copyFile(
         });
     }
 
-    const copying = fs.copyFile(source, dest);
+    const copying = fs.copyFile(source, dest, FS_FILE_COPY_MODE);
     return copying;
 }
 
