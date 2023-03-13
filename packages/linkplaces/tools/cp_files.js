@@ -32,6 +32,8 @@ async function createSourceToDestinationMapList(baseDir, sourceList, destination
     return fileList;
 }
 
+const FS_FILE_COPY_MODE = fs.constants.COPYFILE_EXCL;
+
 async function copyFile(
     source,
     dest,
@@ -47,7 +49,7 @@ async function copyFile(
         });
     }
 
-    const copying = fs.copyFile(source, dest);
+    const copying = fs.copyFile(source, dest, FS_FILE_COPY_MODE);
     return copying;
 }
 
