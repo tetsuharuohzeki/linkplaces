@@ -23,6 +23,9 @@ const projectRules = Object.freeze({
             ],
         },
     ],
+
+    // We disable this rule until https://github.com/import-js/eslint-plugin-import/issues/1810 will be resolved.
+    'import/no-unresolved': 'off',
 });
 
 export const rulesForESModule = Object.freeze({
