@@ -4,7 +4,6 @@ import { config as prettierRules } from './prettier.js';
 import corePresets from './vendor/core.cjs';
 import importPresets from './vendor/import.cjs';
 
-
 const projectRules = Object.freeze({
     'no-constant-binary-expression': 'error',
     'no-magic-numbers': 'off',
@@ -24,8 +23,15 @@ const projectRules = Object.freeze({
         },
     ],
 
-    // We disable this rule until https://github.com/import-js/eslint-plugin-import/issues/1810 will be resolved.
-    'import/no-unresolved': 'off',
+    'import/no-unresolved': [
+        'error',
+        {
+            ignore: [
+                // We disable this rule until https://github.com/import-js/eslint-plugin-import/issues/1810 will be resolved.
+                '^option-t/.*',
+            ],
+        },
+    ],
 });
 
 export const rulesForESModule = Object.freeze({
