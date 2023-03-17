@@ -13,12 +13,12 @@ const projectRules = Object.freeze({
         'error',
         {
             paths: [
-                'option-t/cjs/Option',
-                'option-t/cjs/Result',
-                'option-t/esm/Option',
-                'option-t/esm/Result',
-                'option-t/lib/Option',
-                'option-t/lib/Result',
+                'option-t/cjs/ClassicOption',
+                'option-t/cjs/ClassicResult',
+                'option-t/esm/ClassicOption',
+                'option-t/esm/ClassicResult',
+                'option-t/ClassicOption',
+                'option-t/ClassicResult',
             ],
         },
     ],
