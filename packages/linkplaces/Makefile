@@ -1,7 +1,7 @@
 NODE_BIN := node
 NPM_BIN_DIR := $(shell pnpm bin)
 
-REPOSITORY_ROOT_DIR := $(CURDIR)/../..
+REPOSITORY_ROOT_DIR := $(abspath $(CURDIR)/../..)
 
 SRC_DIR := $(CURDIR)/src
 PLAIN_DIR := $(CURDIR)/__plain
