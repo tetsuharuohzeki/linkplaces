@@ -26,7 +26,7 @@
         "@linkplaces/ipc_message": "workspace:*",
         "@linkplaces/shared": "workspace:*",
         "@linkplaces/webext_types": "workspace:*",
-        "option-t": "37.2.1",
+        "option-t": "37.3.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "rxjs": "7.8.0"
