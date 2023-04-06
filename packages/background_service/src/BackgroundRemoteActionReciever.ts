@@ -1,6 +1,11 @@
 import { NoImplementationError } from '@linkplaces/foundation';
 import type { TowerService } from '@linkplaces/foundation/tower_like_ipc';
-import { MSG_TYPE_OPEN_URL, MSG_TYPE_REGISTER_URL, type RemoteAction, WhereToOpenItem } from '@linkplaces/ipc_message';
+import {
+    type WhereToOpenItem,
+    type RemoteAction,
+    MSG_TYPE_OPEN_URL,
+    MSG_TYPE_REGISTER_URL,
+} from '@linkplaces/ipc_message';
 import { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } from '@linkplaces/shared/bookmark';
 import type { BookmarkId } from '@linkplaces/webext_types';
 

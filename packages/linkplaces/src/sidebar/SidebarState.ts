@@ -2,7 +2,7 @@ import { Ix } from '@linkplaces/foundation';
 
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
-import { mapToSidebarItemEntity, SidebarItemViewModelEntity } from './SidebarDomain.js';
+import { type SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain.js';
 
 export interface SidebarState {
     list: Iterable<SidebarItemViewModelEntity>;

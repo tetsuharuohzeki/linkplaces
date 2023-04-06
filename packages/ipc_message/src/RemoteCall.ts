@@ -2,9 +2,9 @@ import type { BookmarkId, WebExtSidebarActionService } from '@linkplaces/webext_
 import { unwrapOrFromUndefinable } from 'option-t/Undefinable/unwrapOr';
 
 import {
+    type WhereToOpenItem,
     createOpenUrlAction,
-    createRegisterUrlAction,
-    WhereToOpenItem,
+    createRegisterUrlAction
 } from './RemoteAction.js';
 import type { RemoteActionChannel } from './RemoteActionChannel.js';
 

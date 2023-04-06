@@ -1,5 +1,5 @@
 import type { ExtensionEventManager } from './ExtensionEventManager.js';
-import { Tab } from './tabs.js';
+import type { Tab } from './tabs.js';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus/ContextType
 export type ContextType =

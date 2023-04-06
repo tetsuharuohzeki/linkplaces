@@ -3,27 +3,22 @@ import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 import type { BookmarkTreeNode, WebExtBookmarkService } from '@linkplaces/webext_types';
 
 import type { Nullable } from 'option-t/Nullable/Nullable';
-import {
-    BehaviorSubject,
-    Observable,
-    Subject,
-    merge as mergeRx,
-    map as mapRx,
-} from 'rxjs';
+import { type Observable, BehaviorSubject, Subject, merge as mergeRx, map as mapRx } from 'rxjs';
 
-import { SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain.js';
+import { type SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain.js';
 
 type BookmarkId = string;
 
 export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
-
     static create(bookmarks: WebExtBookmarkService, init: Array<BookmarkTreeNode>): BookmarkRepository {
         const s = new BookmarkRepository(init);
 
         const callback = () => {
-            getUnfiledBoolmarkFolder().then((list) => {
-                s.next(list);
-            }).catch(console.error);
+            getUnfiledBoolmarkFolder()
+                .then((list) => {
+                    s.next(list);
+                })
+                .catch(console.error);
         };
         bookmarks.onChanged.addListener(callback);
         // bookmarks.onChildrenReordered.addListener(callback); // unimplemted in Fireofxma
@@ -79,7 +74,6 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
 }
 
 export class SidebarRepository implements Repository<Iterable<SidebarItemViewModelEntity>> {
-
     static create(bookmarks: WebExtBookmarkService, _init: Array<BookmarkTreeNode>): SidebarRepository {
         const driver = BookmarkRepository.create(bookmarks, _init);
         const s = new SidebarRepository(driver);
@@ -108,14 +102,16 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
                 mapRx((input) => {
                     const o = mapBookmarkTreeNodeToSidebarItemViewModelEntity(input);
                     return o;
-                }),
+                })
             );
         }
         return this._obs;
     }
 }
 
-function mapBookmarkTreeNodeToSidebarItemViewModelEntity(input: Iterable<BookmarkTreeNode>): Iterable<SidebarItemViewModelEntity> {
+function mapBookmarkTreeNodeToSidebarItemViewModelEntity(
+    input: Iterable<BookmarkTreeNode>
+): Iterable<SidebarItemViewModelEntity> {
     const iter = Ix.map(input, mapToSidebarItemEntity);
     return iter;
 }

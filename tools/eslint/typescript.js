@@ -64,6 +64,12 @@ export const config = Object.freeze({
         // Use TypeScript's checking instead.
         'import/no-unresolved': 'off',
 
+        '@typescript-eslint/consistent-type-imports': [
+            'warn',
+            {
+                prefer: 'type-imports',
+            },
+        ],
         '@typescript-eslint/no-import-type-side-effects': 'warn',
     },
 
