@@ -3,15 +3,15 @@ import { AsyncIterableX } from './iterable_x.js';
 export type AsyncFilterFn<in T> = (input: T) => boolean | Promise<boolean>;
 
 class FilterAsyncIterable<in out T> extends AsyncIterableX<T> {
-    private _filter: AsyncFilterFn<T>;
+    #filter: AsyncFilterFn<T>;
 
     constructor(source: AsyncIterable<T>, filter: AsyncFilterFn<T>) {
         super(source);
-        this._filter = filter;
+        this.#filter = filter;
     }
 
     [Symbol.asyncIterator](): AsyncIterator<T> {
-        const iter = generateAsyncForAsyncIterator(this._source, this._filter);
+        const iter = generateAsyncForAsyncIterator(this._source, this.#filter);
         return iter;
     }
 }

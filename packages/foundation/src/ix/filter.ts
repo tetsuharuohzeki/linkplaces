@@ -3,15 +3,15 @@ import { IterableX } from './iterable_x.js';
 export type FilterFn<in T> = (input: T) => boolean;
 
 class FilterIterable<in out T> extends IterableX<T> {
-    private _filter: FilterFn<T>;
+    #filter: FilterFn<T>;
 
     constructor(source: Iterable<T>, filter: FilterFn<T>) {
         super(source);
-        this._filter = filter;
+        this.#filter = filter;
     }
 
     [Symbol.iterator](): Iterator<T> {
-        const iter = generateForIterator(this._source, this._filter);
+        const iter = generateForIterator(this._source, this.#filter);
         return iter;
     }
 }

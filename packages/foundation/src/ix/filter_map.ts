@@ -5,8 +5,8 @@ export type NoneValComparatorFn<TValue, TNone> = (input: TValue | TNone) => inpu
 export type FilterMapFn<in TInput, out TOutput, out TNone> = (input: TInput) => TOutput | TNone;
 
 class FilterMapIterable<in out TInput, in out TOutput, in out TNone> extends IterableX<TInput, TOutput> {
-    private _filterMap: FilterMapFn<TInput, TOutput, TNone>;
-    private _nullComparator: NoneValComparatorFn<TOutput, TNone>;
+    #filterMap: FilterMapFn<TInput, TOutput, TNone>;
+    #nullComparator: NoneValComparatorFn<TOutput, TNone>;
 
     constructor(
         source: Iterable<TInput>,
@@ -14,12 +14,12 @@ class FilterMapIterable<in out TInput, in out TOutput, in out TNone> extends Ite
         noneValComparator: NoneValComparatorFn<TOutput, TNone>
     ) {
         super(source);
-        this._filterMap = filterMap;
-        this._nullComparator = noneValComparator;
+        this.#filterMap = filterMap;
+        this.#nullComparator = noneValComparator;
     }
 
     [Symbol.iterator](): Iterator<TOutput> {
-        const iter = generateForIterator(this._source, this._filterMap, this._nullComparator);
+        const iter = generateForIterator(this._source, this.#filterMap, this.#nullComparator);
         return iter;
     }
 }

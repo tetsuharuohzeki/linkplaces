@@ -6,8 +6,8 @@ import { AsyncIterableX } from './iterable_x.js';
 export type AsyncFilterMapFn<in TInput, out TOutput, out TNone> = (input: TInput) => Promise<TOutput | TNone>;
 
 class AsyncFilterMapIterable<in out TInput, in out TOutput, in out TNone> extends AsyncIterableX<TInput, TOutput> {
-    private _filterMap: AsyncFilterMapFn<TInput, TOutput, TNone>;
-    private _nullComparator: NoneValComparatorFn<TOutput, TNone>;
+    #filterMap: AsyncFilterMapFn<TInput, TOutput, TNone>;
+    #nullComparator: NoneValComparatorFn<TOutput, TNone>;
 
     constructor(
         source: AsyncIterable<TInput>,
@@ -15,12 +15,12 @@ class AsyncFilterMapIterable<in out TInput, in out TOutput, in out TNone> extend
         noneValComparator: NoneValComparatorFn<TOutput, TNone>
     ) {
         super(source);
-        this._filterMap = filterMap;
-        this._nullComparator = noneValComparator;
+        this.#filterMap = filterMap;
+        this.#nullComparator = noneValComparator;
     }
 
     [Symbol.asyncIterator](): AsyncIterator<TOutput> {
-        const iter = generateForIterator(this._source, this._filterMap, this._nullComparator);
+        const iter = generateForIterator(this._source, this.#filterMap, this.#nullComparator);
         return iter;
     }
 }
