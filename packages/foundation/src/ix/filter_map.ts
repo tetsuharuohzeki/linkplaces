@@ -4,7 +4,10 @@ import { IterableX } from './iterable_x.js';
 export type NoneValComparatorFn<TValue, TNone> = (input: TValue | TNone) => input is TNone;
 export type FilterMapFn<in TInput, out TOutput, out TNone> = (input: TInput) => TOutput | TNone;
 
-class FilterMapIterable<in out TInput, in out TOutput, in out TNone> extends IterableX<TInput, TOutput> {
+class FilterMapIterable<const in out TInput, const in out TOutput, const in out TNone> extends IterableX<
+    TInput,
+    TOutput
+> {
     #filterMap: FilterMapFn<TInput, TOutput, TNone>;
     #nullComparator: NoneValComparatorFn<TOutput, TNone>;
 
@@ -24,7 +27,7 @@ class FilterMapIterable<in out TInput, in out TOutput, in out TNone> extends Ite
     }
 }
 
-function* generateForIterator<TInput, TOutput, TNone>(
+function* generateForIterator<const TInput, const TOutput, const TNone>(
     iter: Iterable<TInput>,
     transformer: FilterMapFn<TInput, TOutput, TNone>,
     noneValComparator: NoneValComparatorFn<TOutput, TNone>
@@ -38,7 +41,7 @@ function* generateForIterator<TInput, TOutput, TNone>(
     }
 }
 
-export function filterMapForIterable<TInput, TOutput>(
+export function filterMapForIterable<const TInput, const TOutput>(
     source: Iterable<TInput>,
     transformer: FilterMapFn<TInput, TOutput, null>
 ): Iterable<TOutput> {
@@ -46,7 +49,7 @@ export function filterMapForIterable<TInput, TOutput>(
     return wrapper;
 }
 
-export function filterMapWithComparatorForIterable<TInput, TOutput, TNone>(
+export function filterMapWithComparatorForIterable<const TInput, const TOutput, const TNone>(
     source: Iterable<TInput>,
     transformer: FilterMapFn<TInput, TOutput, TNone>,
     noneValComparator: NoneValComparatorFn<TOutput, TNone>

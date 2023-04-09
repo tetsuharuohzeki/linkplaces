@@ -5,7 +5,10 @@ import { AsyncIterableX } from './iterable_x.js';
 
 export type AsyncFilterMapFn<in TInput, out TOutput, out TNone> = (input: TInput) => Promise<TOutput | TNone>;
 
-class AsyncFilterMapIterable<in out TInput, in out TOutput, in out TNone> extends AsyncIterableX<TInput, TOutput> {
+class AsyncFilterMapIterable<const in out TInput, const in out TOutput, const in out TNone> extends AsyncIterableX<
+    TInput,
+    TOutput
+> {
     #filterMap: AsyncFilterMapFn<TInput, TOutput, TNone>;
     #nullComparator: NoneValComparatorFn<TOutput, TNone>;
 
@@ -25,7 +28,7 @@ class AsyncFilterMapIterable<in out TInput, in out TOutput, in out TNone> extend
     }
 }
 
-async function* generateForIterator<TInput, TOutput, TNone>(
+async function* generateForIterator<const TInput, const TOutput, const TNone>(
     iter: AsyncIterable<TInput>,
     transformer: AsyncFilterMapFn<TInput, TOutput, TNone>,
     noneValComparator: NoneValComparatorFn<TOutput, TNone>
@@ -39,7 +42,7 @@ async function* generateForIterator<TInput, TOutput, TNone>(
     }
 }
 
-export function filterMapAsyncForAsyncIterable<TInput, TOutput>(
+export function filterMapAsyncForAsyncIterable<const TInput, const TOutput>(
     source: AsyncIterable<TInput>,
     transformer: AsyncFilterMapFn<TInput, TOutput, null>
 ): AsyncIterable<TOutput> {
@@ -47,7 +50,7 @@ export function filterMapAsyncForAsyncIterable<TInput, TOutput>(
     return wrapper;
 }
 
-export function filterMapAsyncWithComparatorForAsyncIterable<TInput, TOutput, TNone>(
+export function filterMapAsyncWithComparatorForAsyncIterable<const TInput, const TOutput, const TNone>(
     source: AsyncIterable<TInput>,
     transformer: AsyncFilterMapFn<TInput, TOutput, TNone>,
     noneValComparator: NoneValComparatorFn<TOutput, TNone>

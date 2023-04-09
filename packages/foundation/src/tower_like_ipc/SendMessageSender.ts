@@ -11,7 +11,7 @@ export class MessageResponderSideError extends Error {
     }
 }
 
-export class SendMessageSender<in TPayload extends object> {
+export class SendMessageSender<const in TPayload extends object> {
     private _runtime: ExtensionRuntime;
 
     constructor(runtime: ExtensionRuntime) {

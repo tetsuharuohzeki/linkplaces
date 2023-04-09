@@ -6,8 +6,11 @@ type Reducer<in out TState, in TAction> = (initial: TState, action: TAction) => 
 type SubscriberFn<in TState> = (state: TState) => void;
 type DisposerFn = () => void;
 
-export class ReduxLikeStore<in out TState, in TAction extends ActionArcheType> {
-    static create<TState, TAction extends ActionArcheType>(reducer: Reducer<TState, TAction>, initial: TState): ReduxLikeStore<TState, TAction> {
+export class ReduxLikeStore<const in out TState, const in TAction extends ActionArcheType> {
+    static create<const TState, const TAction extends ActionArcheType>(
+        reducer: Reducer<TState, TAction>,
+        initial: TState
+    ): ReduxLikeStore<TState, TAction> {
         const s = new ReduxLikeStore(reducer, initial);
         return s;
     }

@@ -5,7 +5,9 @@ import type { TowerService } from '../traits.js';
 import { assertOneShotPacket, type Packet } from './Packet.js';
 import type { PacketCreationService } from './PacketCreationService.js';
 
-export class OneShotPacketResponder<TRequestBody, out TResponse> implements PacketCreationService<unknown, null> {
+export class OneShotPacketResponder<const TRequestBody, const out TResponse>
+    implements PacketCreationService<unknown, null>
+{
     private _validator: AssertTypeGuardFn<TRequestBody>;
     private _source: TowerService<TRequestBody, TResponse>;
 

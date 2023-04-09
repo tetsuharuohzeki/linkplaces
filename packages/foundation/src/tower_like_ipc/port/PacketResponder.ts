@@ -10,7 +10,9 @@ import { isIdentifiablePacket, isOneShotPacket, type Packet } from './Packet.js'
 import type { PacketCreationService } from './PacketCreationService.js';
 import { ReplyPacketResponder } from './ReplyPacketResponder.js';
 
-export class PacketResponder<TRequestBody, out TResponse> implements PacketCreationService<unknown, TResponse> {
+export class PacketResponder<const TRequestBody, const out TResponse>
+    implements PacketCreationService<unknown, TResponse>
+{
     private _oneshotReponder: OneShotPacketResponder<unknown, TResponse>;
     private _replyResponder: ReplyPacketResponder<unknown, TResponse>;
 

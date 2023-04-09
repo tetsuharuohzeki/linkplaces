@@ -1,4 +1,4 @@
-export abstract class IterableX<in out TInput, out TOutput = TInput> implements Iterable<TOutput> {
+export abstract class IterableX<const in out TInput, const out TOutput = TInput> implements Iterable<TOutput> {
     protected _source: Iterable<TInput>;
     constructor(source: Iterable<TInput>) {
         this._source = source;
@@ -6,7 +6,9 @@ export abstract class IterableX<in out TInput, out TOutput = TInput> implements 
     abstract [Symbol.iterator](): Iterator<TOutput>;
 }
 
-export abstract class AsyncIterableX<in out TInput, out TOutput = TInput> implements AsyncIterable<TOutput> {
+export abstract class AsyncIterableX<const in out TInput, const out TOutput = TInput>
+    implements AsyncIterable<TOutput>
+{
     protected _source: AsyncIterable<TInput>;
     constructor(source: AsyncIterable<TInput>) {
         this._source = source;

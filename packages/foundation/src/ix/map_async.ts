@@ -2,13 +2,10 @@ import { AsyncIterableX } from './iterable_x.js';
 
 export type AsyncTransformFn<TInput, out TOutput> = (input: TInput) => TOutput | Promise<TOutput>;
 
-class MapAsyncIterable<TInput, out TOutput> extends AsyncIterableX<TInput, TOutput> {
+class MapAsyncIterable<const TInput, const out TOutput> extends AsyncIterableX<TInput, TOutput> {
     #transformer: AsyncTransformFn<TInput, TOutput>;
 
-    constructor(
-        source: AsyncIterable<TInput>,
-        transformer: AsyncTransformFn<TInput, TOutput>
-    ) {
+    constructor(source: AsyncIterable<TInput>, transformer: AsyncTransformFn<TInput, TOutput>) {
         super(source);
         this.#transformer = transformer;
     }
@@ -19,7 +16,7 @@ class MapAsyncIterable<TInput, out TOutput> extends AsyncIterableX<TInput, TOutp
     }
 }
 
-async function* generateMapAsyncIterator<TInput, TOutput>(
+async function* generateMapAsyncIterator<const TInput, const TOutput>(
     iter: AsyncIterable<TInput>,
     transform: AsyncTransformFn<TInput, TOutput>
 ): AsyncIterator<TOutput> {
@@ -29,7 +26,7 @@ async function* generateMapAsyncIterator<TInput, TOutput>(
     }
 }
 
-export function mapAsyncForAsyncIterable<TInput, TOutput>(
+export function mapAsyncForAsyncIterable<const TInput, const TOutput>(
     source: AsyncIterable<TInput>,
     transformer: AsyncTransformFn<TInput, TOutput>
 ): AsyncIterable<TOutput> {

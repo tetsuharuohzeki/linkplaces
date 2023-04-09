@@ -2,7 +2,7 @@ import { IterableX } from './iterable_x.js';
 
 export type FilterFn<in T> = (input: T) => boolean;
 
-class FilterIterable<in out T> extends IterableX<T> {
+class FilterIterable<const in out T> extends IterableX<T> {
     #filter: FilterFn<T>;
 
     constructor(source: Iterable<T>, filter: FilterFn<T>) {
@@ -16,7 +16,7 @@ class FilterIterable<in out T> extends IterableX<T> {
     }
 }
 
-function* generateForIterator<T>(
+function* generateForIterator<const T>(
     iter: Iterable<T>,
     filter: FilterFn<T>
 ): Iterator<T> {
@@ -29,7 +29,7 @@ function* generateForIterator<T>(
     }
 }
 
-export function filterForIterable<T>(
+export function filterForIterable<const T>(
     source: Iterable<T>,
     filter: FilterFn<T>
 ): Iterable<T> {

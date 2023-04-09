@@ -5,7 +5,7 @@ export interface DomRef<out T> {
     release(): void;
 }
 
-class DomRefImpl<out T> implements DomRef<T> {
+class DomRefImpl<const out T> implements DomRef<T> {
     current: Nullable<T> = null;
 
     release(): void {
@@ -13,7 +13,7 @@ class DomRefImpl<out T> implements DomRef<T> {
     }
 }
 
-export function createDomRef<T extends Element>(): DomRef<T> {
+export function createDomRef<const T extends Element>(): DomRef<T> {
     const r = new DomRefImpl<T>();
     return r;
 }

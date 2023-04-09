@@ -2,7 +2,7 @@ import { AsyncIterableX } from './iterable_x.js';
 
 export type AsyncFilterFn<in T> = (input: T) => boolean | Promise<boolean>;
 
-class FilterAsyncIterable<in out T> extends AsyncIterableX<T> {
+class FilterAsyncIterable<const in out T> extends AsyncIterableX<T> {
     #filter: AsyncFilterFn<T>;
 
     constructor(source: AsyncIterable<T>, filter: AsyncFilterFn<T>) {
@@ -16,7 +16,7 @@ class FilterAsyncIterable<in out T> extends AsyncIterableX<T> {
     }
 }
 
-async function* generateAsyncForAsyncIterator<T>(
+async function* generateAsyncForAsyncIterator<const T>(
     iter: AsyncIterable<T>,
     filter: AsyncFilterFn<T>
 ): AsyncIterator<T> {
@@ -29,7 +29,7 @@ async function* generateAsyncForAsyncIterator<T>(
     }
 }
 
-export function filterAsyncForAsyncIterable<T>(
+export function filterAsyncForAsyncIterable<const T>(
     source: AsyncIterable<T>,
     filter: AsyncFilterFn<T>
 ): AsyncIterable<T> {

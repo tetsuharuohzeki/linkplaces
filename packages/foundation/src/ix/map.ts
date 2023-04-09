@@ -2,13 +2,10 @@ import { IterableX } from './iterable_x.js';
 
 export type TransformFn<TInput, out TOutput> = (input: TInput) => TOutput;
 
-class MapIterable<TInput, out TOutput> extends IterableX<TInput, TOutput> {
+class MapIterable<const TInput, const out TOutput> extends IterableX<TInput, TOutput> {
     #transformer: TransformFn<TInput, TOutput>;
 
-    constructor(
-        source: Iterable<TInput>,
-        transformer: TransformFn<TInput, TOutput>
-    ) {
+    constructor(source: Iterable<TInput>, transformer: TransformFn<TInput, TOutput>) {
         super(source);
         this.#transformer = transformer;
     }
@@ -19,7 +16,7 @@ class MapIterable<TInput, out TOutput> extends IterableX<TInput, TOutput> {
     }
 }
 
-function* generateMapIterator<TInput, TOutput>(
+function* generateMapIterator<const TInput, const TOutput>(
     iter: Iterable<TInput>,
     transformer: TransformFn<TInput, TOutput>
 ): Iterator<TOutput> {
@@ -29,7 +26,7 @@ function* generateMapIterator<TInput, TOutput>(
     }
 }
 
-export function mapForIterable<TInput, TOutput>(
+export function mapForIterable<const TInput, const TOutput>(
     source: Iterable<TInput>,
     transformer: TransformFn<TInput, TOutput>
 ): Iterable<TOutput> {
