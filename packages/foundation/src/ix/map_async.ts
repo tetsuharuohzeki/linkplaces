@@ -3,15 +3,15 @@ import { AsyncIterableX } from './iterable_x.js';
 export type AsyncTransformFn<TInput, out TOutput> = (input: TInput) => TOutput | Promise<TOutput>;
 
 class MapAsyncIterable<const TInput, const out TOutput> extends AsyncIterableX<TInput, TOutput> {
-    #transformer: AsyncTransformFn<TInput, TOutput>;
+    private _transformer: AsyncTransformFn<TInput, TOutput>;
 
     constructor(source: AsyncIterable<TInput>, transformer: AsyncTransformFn<TInput, TOutput>) {
         super(source);
-        this.#transformer = transformer;
+        this._transformer = transformer;
     }
 
     [Symbol.asyncIterator](): AsyncIterator<TOutput> {
-        const iter = generateMapAsyncIterator(this._source, this.#transformer);
+        const iter = generateMapAsyncIterator(this._source, this._transformer);
         return iter;
     }
 }

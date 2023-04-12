@@ -3,15 +3,15 @@ import { IterableX } from './iterable_x.js';
 export type TransformFn<TInput, out TOutput> = (input: TInput) => TOutput;
 
 class MapIterable<const TInput, const out TOutput> extends IterableX<TInput, TOutput> {
-    #transformer: TransformFn<TInput, TOutput>;
+    private _transformer: TransformFn<TInput, TOutput>;
 
     constructor(source: Iterable<TInput>, transformer: TransformFn<TInput, TOutput>) {
         super(source);
-        this.#transformer = transformer;
+        this._transformer = transformer;
     }
 
     [Symbol.iterator](): Iterator<TOutput> {
-        const iter = generateMapIterator(this._source, this.#transformer);
+        const iter = generateMapIterator(this._source, this._transformer);
         return iter;
     }
 }

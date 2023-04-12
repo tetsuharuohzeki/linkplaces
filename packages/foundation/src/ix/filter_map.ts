@@ -8,8 +8,8 @@ class FilterMapIterable<const in out TInput, const in out TOutput, const in out 
     TInput,
     TOutput
 > {
-    #filterMap: FilterMapFn<TInput, TOutput, TNone>;
-    #nullComparator: NoneValComparatorFn<TOutput, TNone>;
+    private _filterMap: FilterMapFn<TInput, TOutput, TNone>;
+    private _nullComparator: NoneValComparatorFn<TOutput, TNone>;
 
     constructor(
         source: Iterable<TInput>,
@@ -17,12 +17,12 @@ class FilterMapIterable<const in out TInput, const in out TOutput, const in out 
         noneValComparator: NoneValComparatorFn<TOutput, TNone>
     ) {
         super(source);
-        this.#filterMap = filterMap;
-        this.#nullComparator = noneValComparator;
+        this._filterMap = filterMap;
+        this._nullComparator = noneValComparator;
     }
 
     [Symbol.iterator](): Iterator<TOutput> {
-        const iter = generateForIterator(this._source, this.#filterMap, this.#nullComparator);
+        const iter = generateForIterator(this._source, this._filterMap, this._nullComparator);
         return iter;
     }
 }

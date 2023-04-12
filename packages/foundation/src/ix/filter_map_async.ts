@@ -9,8 +9,8 @@ class AsyncFilterMapIterable<const in out TInput, const in out TOutput, const in
     TInput,
     TOutput
 > {
-    #filterMap: AsyncFilterMapFn<TInput, TOutput, TNone>;
-    #nullComparator: NoneValComparatorFn<TOutput, TNone>;
+    private _filterMap: AsyncFilterMapFn<TInput, TOutput, TNone>;
+    private _nullComparator: NoneValComparatorFn<TOutput, TNone>;
 
     constructor(
         source: AsyncIterable<TInput>,
@@ -18,12 +18,12 @@ class AsyncFilterMapIterable<const in out TInput, const in out TOutput, const in
         noneValComparator: NoneValComparatorFn<TOutput, TNone>
     ) {
         super(source);
-        this.#filterMap = filterMap;
-        this.#nullComparator = noneValComparator;
+        this._filterMap = filterMap;
+        this._nullComparator = noneValComparator;
     }
 
     [Symbol.asyncIterator](): AsyncIterator<TOutput> {
-        const iter = generateForIterator(this._source, this.#filterMap, this.#nullComparator);
+        const iter = generateForIterator(this._source, this._filterMap, this._nullComparator);
         return iter;
     }
 }
