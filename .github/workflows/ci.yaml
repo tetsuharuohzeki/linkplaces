@@ -10,7 +10,7 @@ permissions:
     contents: read
 
 jobs:
-    install_dependencies:
+    warmup_dependency_cache:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -19,7 +19,7 @@ jobs:
                   node-version: 19.x
 
     build:
-        needs: [install_dependencies]
+        needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -33,7 +33,7 @@ jobs:
                   CI: true
 
     build_by_esbuild:
-        needs: [install_dependencies]
+        needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         continue-on-error: true
         steps:
@@ -48,7 +48,7 @@ jobs:
                   CI: true
 
     lint:
-        needs: [install_dependencies]
+        needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -61,7 +61,7 @@ jobs:
                   CI: true
 
     check_type_integrity:
-        needs: [install_dependencies]
+        needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -74,7 +74,7 @@ jobs:
                   CI: true
 
     check_formatting:
-        needs: [install_dependencies]
+        needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -87,7 +87,7 @@ jobs:
                   CI: true
 
     unittest:
-        needs: [install_dependencies]
+        needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
