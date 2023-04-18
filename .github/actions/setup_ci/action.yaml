@@ -1,18 +1,12 @@
 name: Setup CI
 description: Setup CI environment
 
-inputs:
-    node-version:
-        type: string
-        required: true
-
 runs:
     using: composite
     steps:
-        - name: Use Node.js ${{ inputs.node-version }}
-          uses: actions/setup-node@v3.6.0
+        - uses: actions/setup-node@v3.6.0
           with:
-              node-version: ${{ inputs.node-version }}
+              node-version: 19
         - name: Setup corepack
           shell: bash
           run: |
