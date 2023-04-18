@@ -15,8 +15,6 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - uses: ./.github/actions/setup_ci
-              with:
-                  node-version: 19.x
 
     build:
         needs: [warmup_dependency_cache]
@@ -24,8 +22,6 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - uses: ./.github/actions/setup_ci
-              with:
-                  node-version: 19.x
             - name: build
               run: make build_package -j
               working-directory: ./packages/linkplaces
@@ -39,8 +35,6 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - uses: ./.github/actions/setup_ci
-              with:
-                  node-version: 19.x
             - name: build
               run: make build_package -j USE_ESBUILD=1
               working-directory: ./packages/linkplaces
@@ -53,8 +47,6 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - uses: ./.github/actions/setup_ci
-              with:
-                  node-version: 19.x
             - name: Lint
               run: make lint -j
               env:
@@ -66,8 +58,6 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - uses: ./.github/actions/setup_ci
-              with:
-                  node-version: 19.x
             - name: typecheck
               run: make typecheck -j
               env:
@@ -79,8 +69,6 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - uses: ./.github/actions/setup_ci
-              with:
-                  node-version: 19.x
             - name: check formatting
               run: make check_format -j
               env:
@@ -92,8 +80,6 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - uses: ./.github/actions/setup_ci
-              with:
-                  node-version: 19.x
             - name: Run unittests
               run: make unittest -j
               working-directory: ./packages/linkplaces
