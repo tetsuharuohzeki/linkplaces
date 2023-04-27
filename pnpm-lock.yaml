@@ -92,8 +92,8 @@ importers:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
       rxjs:
-        specifier: 7.8.0
-        version: 7.8.0
+        specifier: 7.8.1
+        version: 7.8.1
 
   packages/ipc_message:
     dependencies:
@@ -134,8 +134,8 @@ importers:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
       rxjs:
-        specifier: 7.8.0
-        version: 7.8.0
+        specifier: 7.8.1
+        version: 7.8.1
     devDependencies:
       '@babel/cli':
         specifier: 7.21.0
@@ -5497,8 +5497,8 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
-  /rxjs@7.8.0:
-    resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
+  /rxjs@7.8.1:
+    resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
     dependencies:
       tslib: 2.5.0
     dev: false
