@@ -24,7 +24,7 @@
         "eslint-plugin-react-hooks": "4.6.0",
         "globals": "^13.20.0",
         "prettier": "2.8.8",
-        "stylelint": "15.6.0",
+        "stylelint": "15.6.1",
         "stylelint-config-standard": "33.0.0",
         "typescript": "5.1.0-beta",
         "web-ext": "7.6.2"
