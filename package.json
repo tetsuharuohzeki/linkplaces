@@ -8,7 +8,7 @@
             "packages/*"
         ]
     },
-    "packageManager": "pnpm@8.4.0",
+    "packageManager": "pnpm@8.5.1",
     "devDependencies": {
         "@eslint/js": "^8.35.0",
         "@monorepo-utils/workspaces-to-typescript-project-references": "^2.9.0",
