@@ -18,18 +18,18 @@ body * {
 
 a {
     color: var(--global-content__link-color, unset);
-}
 
-a:hover {
-    color: var(--global-content__link-color--hover, unset);
-}
+    &:hover {
+        color: var(--global-content__link-color--hover, unset);
+    }
 
-a:active {
-    color: var(--global-content__link-color--active, unset);
-}
+    &:active {
+        color: var(--global-content__link-color--active, unset);
+    }
 
-a:visited {
-    color: var(--global-content__link-color--visited, unset);
+    &:visited {
+        color: var(--global-content__link-color--visited, unset);
+    }
 }
 
 /* Based on Webkit's `-webkit-direct-focus` */

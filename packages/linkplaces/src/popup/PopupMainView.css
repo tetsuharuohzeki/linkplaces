@@ -5,18 +5,18 @@
     color: unset;
     text-decoration: unset;
     cursor: default;
-}
 
-.popup-c-PopupMainView-ItemListItem__container:hover {
-    color: unset;
-}
+    &:hover {
+        color: unset;
+    }
 
-.popup-c-PopupMainView-ItemListItem__container:active {
-    color: unset;
-}
+    &:active {
+        color: unset;
+    }
 
-.popup-c-PopupMainView-ItemListItem__container:visited {
-    color: unset;
+    &:visited {
+        color: unset;
+    }
 }
 
 :is(.popup-c-PopupMainView-Header__container, .popup-c-PopupMainView-ItemListItem__container) .shared-com-PanelListItem__container {

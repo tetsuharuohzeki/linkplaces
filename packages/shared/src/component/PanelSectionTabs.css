@@ -15,23 +15,23 @@
     margin-inline: -1px;
     padding: 12px;
     text-align: center;
-}
 
-.shared-com-PanelSectionTabs__button:hover {
-    background-color: rgba(0, 0, 0, 0.06);
-}
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.06);
+    }
 
-.shared-com-PanelSectionTabs__button:hover:active {
-    background-color: rgba(0, 0, 0, 0.1);
-}
+    &:hover:active {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
 
-.shared-com-PanelSectionTabs__button.selected {
-    box-shadow: 0 -1px 0 #0670cc inset, 0 -4px 0 #0996f8 inset;
-    color: #0996f8;
-}
+    &.selected {
+        box-shadow: 0 -1px 0 #0670cc inset, 0 -4px 0 #0996f8 inset;
+        color: #0996f8;
+    }
 
-.shared-com-PanelSectionTabs__button.selected:hover {
-    color: #0670cc;
+    &.selected:hover {
+        color: #0670cc;
+    }
 }
 
 .shared-com-PanelSectionTabs__separator {

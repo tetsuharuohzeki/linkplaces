@@ -3,18 +3,18 @@
     color: unset;
     text-decoration: unset;
     cursor: default;
-}
 
-.sidebar-com-SidebarListItemView__container:hover {
-    color: unset;
-}
+    &:hover {
+        color: unset;
+    }
 
-.sidebar-com-SidebarListItemView__container:active {
-    color: unset;
-}
+    &:active {
+        color: unset;
+    }
 
-.sidebar-com-SidebarListItemView__container:visited {
-    color: unset;
+    &:visited {
+        color: unset;
+    }
 }
 
 .sidebar-com-SidebarListItemView__container .shared-com-PanelListItem__container {
