@@ -179,6 +179,9 @@ importers:
       postcss-import:
         specifier: 15.1.0
         version: 15.1.0(postcss@8.4.23)
+      postcss-nesting:
+        specifier: ^11.2.2
+        version: 11.2.2(postcss@8.4.23)
       rollup:
         specifier: 3.22.0
         version: 3.22.0
@@ -5035,6 +5038,17 @@ packages:
 
   /postcss-media-query-parser@0.2.3:
     resolution: {integrity: sha512-3sOlxmbKcSHMjlUXQZKQ06jOswE7oVkXPxmZdoB1r5l0q6gTFTQSHxNxOrCccElbW7dxNytifNEo8qidX2Vsig==}
+    dev: true
+
+  /postcss-nesting@11.2.2(postcss@8.4.23):
+    resolution: {integrity: sha512-aOTiUniAB1bcPE6GGiynWRa6PZFPhOTAm5q3q5cem6QeSijIHHkWr6gs65ukCZMXeak8yXeZVbBJET3VM+HlhA==}
+    engines: {node: ^14 || ^16 || >=18}
+    peerDependencies:
+      postcss: ^8.4
+    dependencies:
+      '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.0.12)
+      postcss: 8.4.23
+      postcss-selector-parser: 6.0.12
     dev: true
 
   /postcss-resolve-nested-selector@0.1.1:

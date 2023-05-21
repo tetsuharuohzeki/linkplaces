@@ -1,6 +1,7 @@
 /* eslint-env node */
 
 import importPlugin from 'postcss-import';
+import nestingPlugin from 'postcss-nesting';
 
 import { RELEASE_CHANNEL, ENABLE_SOURCE_MAP } from './tools/buildconfig.js';
 
@@ -23,6 +24,9 @@ export default function getPostCssConfig() {
                 root: process.cwd(),
                 path: [], // we'd like to enforce to use a relative path.
                 skipDuplicates: true,
+            }),
+            nestingPlugin({
+                noIsPseudoSelector: true,
             }),
         ],
     };
