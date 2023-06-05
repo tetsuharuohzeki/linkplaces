@@ -47,6 +47,6 @@
         "postcss": "8.4.24",
         "postcss-import": "15.1.0",
         "postcss-nesting": "^11.2.2",
-        "rollup": "3.23.0"
+        "rollup": "3.23.1"
     }
 }
