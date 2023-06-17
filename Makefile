@@ -83,7 +83,7 @@ eslint_fix: ## Run ESLint with --fix option
 
 stylelint: ## Run stylelint
 	$(NPM_BIN_DIR)/stylelint '$(CURDIR)/**/*.css' \
-		--config=$(CURDIR)/stylelint.config.cjs \
+		--config=$(CURDIR)/stylelint.config.mjs \
 		-f verbose \
 		--color
 
