@@ -9,9 +9,9 @@ export class OneShotPacketResponder<const TRequestBody, const out TResponse>
     implements PacketCreationService<unknown, null>
 {
     private _validator: AssertTypeGuardFn<TRequestBody>;
-    private _source: TowerService<TRequestBody, TResponse>;
+    private _source: TowerService<[req: TRequestBody], TResponse>;
 
-    constructor(validator: AssertTypeGuardFn<TRequestBody>, source: TowerService<TRequestBody, TResponse>) {
+    constructor(validator: AssertTypeGuardFn<TRequestBody>, source: TowerService<[req: TRequestBody], TResponse>) {
         this._validator = validator;
         this._source = source;
     }

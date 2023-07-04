@@ -8,9 +8,9 @@ export class SendMessageResponder<const in out TRequest, const in out TResponse>
     private _onMessage: typeof SendMessageResponder.prototype.onMessage = this.onMessage.bind(this);
 
     private _validator: AssertTypeGuardFn<TRequest>;
-    private _service: TowerService<TRequest, TResponse>;
+    private _service: TowerService<[req: TRequest], TResponse>;
 
-    constructor(runtime: ExtensionRuntime, validator: AssertTypeGuardFn<TRequest>, service: TowerService<TRequest, TResponse>) {
+    constructor(runtime: ExtensionRuntime, validator: AssertTypeGuardFn<TRequest>, service: TowerService<[req: TRequest], TResponse>) {
         this._runtime = runtime;
         this._validator = validator;
         this._service = service;

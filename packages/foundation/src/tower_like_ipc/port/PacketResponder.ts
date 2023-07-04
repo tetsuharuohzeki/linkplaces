@@ -16,7 +16,7 @@ export class PacketResponder<const TRequestBody, const out TResponse>
     private _oneshotReponder: OneShotPacketResponder<unknown, TResponse>;
     private _replyResponder: ReplyPacketResponder<unknown, TResponse>;
 
-    constructor(validator: AssertTypeGuardFn<TRequestBody>, source: TowerService<TRequestBody, TResponse>) {
+    constructor(validator: AssertTypeGuardFn<TRequestBody>, source: TowerService<[req: TRequestBody], TResponse>) {
         this._oneshotReponder = new OneShotPacketResponder(validator, source);
         this._replyResponder = new ReplyPacketResponder(validator, source);
     }

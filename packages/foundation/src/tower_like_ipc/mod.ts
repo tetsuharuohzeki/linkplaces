@@ -18,4 +18,4 @@ export { PacketResponder } from './port/PacketResponder.js';
 export { ReplyPacketResponder } from './port/ReplyPacketResponder.js';
 export { SendMessageSender, MessageResponderSideError } from './SendMessageSender.js';
 export { SendMessageResponder } from './SendMessageResponder.js';
-export type { TowerService, MultipleArgsTowerService } from './traits.js';
+export type { TowerService } from './traits.js';

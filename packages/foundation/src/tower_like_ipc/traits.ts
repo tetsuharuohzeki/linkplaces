@@ -2,15 +2,7 @@
 
 import type { Result } from 'option-t/PlainResult';
 
-export interface TowerService<TRequest, out TResponse> {
-    ready(): Promise<Result<void, Error>>;
-    call(req: TRequest): Promise<TResponse>;
-}
-
-export interface MultipleArgsTowerService<
-    TArgs extends ReadonlyArray<unknown>,
-    out TOutput
-> {
+export interface TowerService<TArgs extends ReadonlyArray<unknown>, out TOutput> {
     ready(): Promise<Result<void, Error>>;
     call(...args: TArgs): Promise<TOutput>;
 }

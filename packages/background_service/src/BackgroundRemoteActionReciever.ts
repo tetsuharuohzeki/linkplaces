@@ -13,7 +13,7 @@ import { createOk, type Result } from 'option-t/PlainResult';
 
 import { createTab } from './TabOpener.js';
 
-export class BackgroundRemoteActionReciever implements TowerService<RemoteAction, void> {
+export class BackgroundRemoteActionReciever implements TowerService<[req: RemoteAction], void> {
     async ready(): Promise<Result<void, Error>> {
         return createOk(undefined);
     }
