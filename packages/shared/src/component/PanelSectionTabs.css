@@ -25,7 +25,9 @@
     }
 
     &.selected {
-        box-shadow: 0 -1px 0 #0670cc inset, 0 -4px 0 #0996f8 inset;
+        box-shadow:
+            0 -1px 0 #0670cc inset,
+            0 -4px 0 #0996f8 inset;
         color: #0996f8;
     }
 

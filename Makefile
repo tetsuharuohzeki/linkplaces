@@ -97,15 +97,15 @@ check_relationship_between_workspace_and_ts_pj_reference:
 format: format_by_prettier ## Apply formetters for files.
 
 format_by_prettier:
-	$(NPM_BIN_DIR)/prettier --write $(PRETTIER_TARGET)
+	$(NPM_BIN_DIR)/prettier --write $(PRETTIER_TARGET) --ignore-path=.prettierignore
 
 format_js_by_prettier:
-	$(NPM_BIN_DIR)/prettier --write $(PRETTIER_TARGET_JS)
+	$(NPM_BIN_DIR)/prettier --write $(PRETTIER_TARGET_JS) --ignore-path=.prettierignore
 
 check_format: check_format_css ## Check a code formatting.
 
 check_format_css: ## Check CSS code formatting.
-	$(NPM_BIN_DIR)/prettier --check $(PRETTIER_TARGET)
+	$(NPM_BIN_DIR)/prettier --check $(PRETTIER_TARGET) --ignore-path=.prettierignore
 
 git_diff: ## Test whether there is no committed changes.
 	git diff --exit-code
