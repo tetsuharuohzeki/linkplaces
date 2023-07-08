@@ -12,8 +12,8 @@ importers:
         specifier: ^8.44.0
         version: 8.44.0
       '@monorepo-utils/workspaces-to-typescript-project-references':
-        specifier: ^2.9.0
-        version: 2.9.0
+        specifier: ^2.10.2
+        version: 2.10.2
       '@types/node':
         specifier: 20.4.1
         version: 20.4.1
@@ -904,8 +904,8 @@ packages:
     resolution: {integrity: sha512-CD/2ai1W45cDN/zN2AcYduDavU+nq9aStyQizi4MHxnwkRvS/H24WIjgc1qD8CISoqXa8AAIe+A+zpWxwV7a2Q==}
     dev: true
 
-  /@monorepo-utils/package-utils@2.9.0:
-    resolution: {integrity: sha512-KSBtRgDJkErOV0F68AcFmT7Qf2MAY5no0XkClhDgabeIHzk0OlMP4JaSvy0bdIFAB6GQApJ05+qmSF94liLBYw==}
+  /@monorepo-utils/package-utils@2.10.2:
+    resolution: {integrity: sha512-odg+fuirDKxNYMbXWHbOGH/yrMympIoW2mLvlQwFbYvltA4hstAypVmhjenB5mcPitanGVi9Di7sReIHOUBKfg==}
     dependencies:
       globby: 11.1.0
       load-json-file: 6.2.0
@@ -913,11 +913,11 @@ packages:
       yaml: 2.2.1
     dev: true
 
-  /@monorepo-utils/workspaces-to-typescript-project-references@2.9.0:
-    resolution: {integrity: sha512-V31VyxwC20UkNYY08fNaQaWVeFJHIMORFgqB9T/iATfC5fYuqM+VRhC2yDMbldftGi9RVY2NUVpWt4tu9EW+eA==}
+  /@monorepo-utils/workspaces-to-typescript-project-references@2.10.2:
+    resolution: {integrity: sha512-fc2qvUMTtD9UmclT6mAE8sq28J3jIKuv6+BSqAHnpn5emmYJqU2yVsPYuJaSN9S3yXSTUE57nXWRy3g7nYkzEQ==}
     hasBin: true
     dependencies:
-      '@monorepo-utils/package-utils': 2.9.0
+      '@monorepo-utils/package-utils': 2.10.2
       comment-json: 3.0.3
       meow: 7.1.1
       semver-match: 0.1.1
