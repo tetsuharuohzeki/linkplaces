@@ -1,16 +1,40 @@
 version: 2
 
-# https://docs.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 updates:
-    # - package-ecosystem: npm
-    #  directory: "/"
-    #  schedule:
-    #    interval: daily
-    #  open-pull-requests-limit: 99
-    #  labels:
-    #    - A-dependency
-    #    - I-dependency-gardening
-    #  versioning-strategy: increase
+    - package-ecosystem: npm
+      directory: "/"
+      schedule:
+          interval: daily
+          timezone: "Asia/Tokyo"
+      open-pull-requests-limit: 99
+      labels:
+          - A-dependency
+          - I-dependency-gardening
+      versioning-strategy: increase
+      groups:
+          react:
+              patterns:
+                  - react
+                  - react-dom
+          "react d.ts":
+              patterns:
+                  - "@types/react"
+                  - "@types/react-dom"
+          babel:
+              patterns:
+                  - "@babel/*"
+          rollup:
+              patterns:
+                  - rollup
+                  - "@rollup/*"
+          eslint:
+              patterns:
+                  - eslint
+                  - "@eslint/*"
+          typescript-eslint:
+              patterns:
+                  - "@typescript-eslint/*"
 
     - package-ecosystem: github-actions
       directory: "/"
