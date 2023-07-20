@@ -41,6 +41,10 @@ export function createlanguageOptionsForTypeScript(baseDir) {
     });
 }
 
+const tsESLintPluginConfigs = tsESLintPlugin.configs;
+const tsESLintPluginConfigRecommended = tsESLintPluginConfigs.recommended.rules;
+const tsESLintPluginConfigRecommendedTypeCheck = tsESLintPluginConfigs['recommended-type-checked'].rules;
+
 export const config = Object.freeze({
     plugins: {
         '@typescript-eslint': tsESLintPlugin,
@@ -49,6 +53,8 @@ export const config = Object.freeze({
     },
     rules: {
         ...reactHooksESLintPlugin.configs.recommended.rules,
+        ...tsESLintPluginConfigRecommended,
+        ...tsESLintPluginConfigRecommendedTypeCheck,
         ...tsPresets.rules,
         ...reactPresets.rules,
         ...reactESLintPlugin.configs['jsx-runtime'].rules,

@@ -4,7 +4,7 @@ import type { Tab, TabId } from './tabs.js';
 export type WindowType = 'normal' | 'popup' | 'panel' | 'devtools';
 
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/WindowState
-export type WindowState = 'normal' | 'minimized' | 'minimized' | 'fullscreen' | 'docked';
+export type WindowState = 'normal' | 'minimized' | 'fullscreen' | 'docked';
 
 type WindowIdMarker = unique symbol;
 export type WindowId = number & {

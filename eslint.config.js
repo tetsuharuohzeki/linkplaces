@@ -53,6 +53,7 @@ export default [
         rules: {
             // These typings are not parts of this project.
             '@typescript-eslint/naming-convention': 'off',
+            '@typescript-eslint/no-redundant-type-constituents': 'off',
         },
     },
     {
