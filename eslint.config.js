@@ -60,8 +60,6 @@ export default [
         ignores: ['**/.eslintrc.cjs'],
         languageOptions: languageOptionsForTesting,
         rules: {
-            // FIXME: This should be enabled.
-            'import/no-unresolved': 'off',
         },
     },
 ];

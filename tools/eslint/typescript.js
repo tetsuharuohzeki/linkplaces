@@ -1,5 +1,3 @@
-import * as path from 'node:path';
-
 import tsESLintPlugin from '@typescript-eslint/eslint-plugin';
 import tsESLintParser from '@typescript-eslint/parser';
 import reactESLintPlugin from 'eslint-plugin-react';
@@ -10,7 +8,6 @@ import { rulesForESModule } from './core.js';
 import reactPresets from './vendor/react.cjs';
 import tsPresets from './vendor/typescript.cjs';
 import tsReactPresets from './vendor/typescript_react.cjs';
-
 
 const tsGlobals = Object.freeze({
     // see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
@@ -25,8 +22,6 @@ const rules = Object.freeze({
 });
 
 export function createlanguageOptionsForTypeScript(baseDir) {
-    const TSCONFIG_PATH = path.resolve(baseDir, './tsconfig.eslint.json');
-
     return Object.freeze({
         sourceType: 'module',
         globals: {
@@ -37,7 +32,8 @@ export function createlanguageOptionsForTypeScript(baseDir) {
         },
         parser: tsESLintParser,
         parserOptions: {
-            project: TSCONFIG_PATH,
+            tsconfigRootDir: baseDir,
+            project: ['./tsconfig.eslint.json', './packages/*/tsconfig.json'],
             ecmaFeatures: {
                 jsx: true,
             },
@@ -71,6 +67,20 @@ export const config = Object.freeze({
             },
         ],
         '@typescript-eslint/no-import-type-side-effects': 'warn',
+
+        // This TypeScript syntax is useful to reduce declarations of class properties.
+        // However, we feel this syntax has these negative points:
+        //
+        //  * This is not a part of ECMA262 standards.
+        //  * This makes the ordering of initializing members unclear.
+        //
+        // By these things, we enable this rule as defensive choice.
+        '@typescript-eslint/parameter-properties': [
+            'warn',
+            {
+                prefer: 'class-property',
+            },
+        ],
     },
 
     settings: {

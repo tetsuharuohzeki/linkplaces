@@ -28,7 +28,9 @@ const projectRules = Object.freeze({
         {
             ignore: [
                 // We disable this rule until https://github.com/import-js/eslint-plugin-import/issues/1810 will be resolved.
+                'ava',
                 '^option-t/.*',
+                '^@typescript-eslint/.*',
             ],
         },
     ],
