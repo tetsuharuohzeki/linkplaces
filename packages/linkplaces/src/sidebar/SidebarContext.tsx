@@ -2,7 +2,7 @@ import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRule
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { type Nullable, isNotNull, expectNotNull } from 'option-t/Nullable/Nullable';
-import { StrictMode, useSyncExternalStore } from 'react';
+import { StrictMode, useSyncExternalStore, type ReactNode } from 'react';
 
 import {
     Subscription,
@@ -116,7 +116,7 @@ interface SidebarViewUpdaterProps {
     intent: SidebarIntent;
 }
 
-function SidebarViewUpdater({ store, intent }: SidebarViewUpdaterProps): JSX.Element {
+function SidebarViewUpdater({ store, intent }: SidebarViewUpdaterProps): ReactNode {
     const state = useSyncExternalStore(
         (onStoreChange) => {
             const disposer = store.subscribe(onStoreChange);

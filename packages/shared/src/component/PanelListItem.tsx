@@ -6,19 +6,18 @@ export interface PanelListItemProps {
     onClick?: MouseEventHandler;
 }
 
-export function PanelListItem(props: PanelListItemProps): JSX.Element {
-    const {
-        disabled = false,
-        onClick,
-    } = props;
+export function PanelListItem(props: PanelListItemProps): ReactNode {
+    const { disabled = false, onClick } = props;
 
-    const className = disabled ?
-        'shared-com-PanelListItem__container disabled' :
-        'shared-com-PanelListItem__container';
+    const className = disabled ? 'shared-com-PanelListItem__container disabled' : 'shared-com-PanelListItem__container';
 
     return (
         <StrictMode>
-            <div className={className} onClick={onClick} aria-disabled={disabled}>
+            <div
+                className={className}
+                onClick={onClick}
+                aria-disabled={disabled}
+            >
                 {props.children}
             </div>
         </StrictMode>
@@ -29,12 +28,10 @@ export interface PanelListItemIconProps {
     children: ReactNode;
 }
 
-export function PanelListItemIcon(props: PanelListItemIconProps): JSX.Element {
+export function PanelListItemIcon(props: PanelListItemIconProps): ReactNode {
     return (
         <StrictMode>
-            <div className={'shared-com-PanelListItem__icon'}>
-                {props.children}
-            </div>
+            <div className={'shared-com-PanelListItem__icon'}>{props.children}</div>
         </StrictMode>
     );
 }
@@ -43,12 +40,10 @@ export interface PanelListItemTextProps {
     children: ReactNode;
 }
 
-export function PanelListItemText(props: PanelListItemTextProps): JSX.Element {
+export function PanelListItemText(props: PanelListItemTextProps): ReactNode {
     return (
         <StrictMode>
-            <div className={'shared-com-PanelListItem__text'}>
-                {props.children}
-            </div>
+            <div className={'shared-com-PanelListItem__text'}>{props.children}</div>
         </StrictMode>
     );
 }

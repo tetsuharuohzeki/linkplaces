@@ -4,7 +4,7 @@ export interface PanelSectionListProps {
     children: ReactNode;
 }
 
-export function PanelSectionList(props: PanelSectionListProps): JSX.Element {
+export function PanelSectionList(props: PanelSectionListProps): ReactNode {
     return (
         <StrictMode>
             <div className={'shared-com-PanelSectionList__container'}>
@@ -18,7 +18,7 @@ export interface PanelSectionListSeparatorProps {
     key?: ReactKey;
 }
 
-export function PanelSectionListSeparator(_props: PanelSectionListSeparatorProps): JSX.Element {
+export function PanelSectionListSeparator(_props: PanelSectionListSeparatorProps): ReactNode {
     return (
         <StrictMode>
             <div className={'shared-com-PanelSectionList__separator'} role={'separator'}></div>

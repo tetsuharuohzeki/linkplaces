@@ -1,7 +1,7 @@
 import { Ix } from '@linkplaces/foundation';
 import { PanelSectionList } from '@linkplaces/shared/component';
 
-import { StrictMode } from 'react';
+import { StrictMode, type ReactElement } from 'react';
 import type { SidebarIntent } from './SidebarIntent.js';
 import type { SidebarState } from './SidebarState.js';
 import { ListItem } from './view/SidebarListItemView.js';
@@ -11,7 +11,7 @@ export interface SidebarViewProps {
     intent: SidebarIntent;
 }
 
-export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
+export function SidebarView(props: Readonly<SidebarViewProps>): ReactElement {
     const mapped = Ix.map(props.state.list, (item) => {
         const id = item.id();
         return (
@@ -19,7 +19,7 @@ export function SidebarView(props: Readonly<SidebarViewProps>): JSX.Element {
         );
     });
 
-    const r: Array<JSX.Element> = Ix.toArray(mapped);
+    const r: Array<ReactElement> = Ix.toArray(mapped);
     return (
         <StrictMode>
             <main>

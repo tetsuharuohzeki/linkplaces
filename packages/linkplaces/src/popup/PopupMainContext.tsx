@@ -2,7 +2,7 @@ import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRule
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { type Nullable, isNotNull, isNull } from 'option-t/Nullable/Nullable';
-import { StrictMode, useSyncExternalStore } from 'react';
+import { StrictMode, useSyncExternalStore, type ReactNode } from 'react';
 
 import { PopupMainEpic } from './PopupMainEpic.js';
 import { PopupMainIntent } from './PopupMainIntent.js';
@@ -73,7 +73,7 @@ interface PopupMainViewUpdaterProps {
     intent: PopupMainIntent;
 }
 
-function PopupMainViewUpdater({ store, intent }: PopupMainViewUpdaterProps): JSX.Element {
+function PopupMainViewUpdater({ store, intent }: PopupMainViewUpdaterProps): ReactNode {
     const state: PopupMainState = useSyncExternalStore((onStoreChange) => {
         const disposer = store.subscribe(onStoreChange);
         return () => {

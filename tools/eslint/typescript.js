@@ -11,10 +11,7 @@ import reactPresets from './vendor/react.cjs';
 import tsPresets from './vendor/typescript.cjs';
 import tsReactPresets from './vendor/typescript_react.cjs';
 
-const tsGlobals = Object.freeze({
-    // see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
-    JSX: 'readonly',
-});
+const tsGlobals = Object.freeze({});
 
 const rules = Object.freeze({
     // FIXME: Re-enable for the future.

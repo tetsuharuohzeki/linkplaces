@@ -8,8 +8,7 @@ import {
 } from '@linkplaces/shared/component';
 import type { BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/webext_types';
 
-import type { Nullable } from 'option-t/Nullable/Nullable';
-import { StrictMode, useState, type MouseEventHandler, type MouseEvent, type SetStateAction, type Dispatch } from 'react';
+import { StrictMode, useState, type MouseEventHandler, type MouseEvent, type SetStateAction, type Dispatch, type ReactNode } from 'react';
 
 import type { SidebarItemViewModelEntity } from '../SidebarDomain.js';
 import type { SidebarIntent } from '../SidebarIntent.js';
@@ -23,7 +22,7 @@ interface ListBaseItemProps {
     label: string;
 }
 
-function ListBaseItem(props: ListBaseItemProps): JSX.Element {
+function ListBaseItem(props: ListBaseItemProps): ReactNode {
     const {
         iconDir,
         iconFile,
@@ -62,7 +61,7 @@ interface ListItemProps {
     item: SidebarItemViewModelEntity;
     intent: SidebarIntent;
 }
-export function ListItem(props: ListItemProps): Nullable<JSX.Element> {
+export function ListItem(props: ListItemProps): ReactNode {
     const { item, intent } = props;
     const [isOpening, setIsOpening] = useState<boolean>(false);
     if (isOpening) {

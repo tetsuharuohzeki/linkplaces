@@ -8,8 +8,7 @@ import {
 } from '@linkplaces/shared/component';
 import type { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/webext_types';
 
-import type { Nullable } from 'option-t/Nullable/Nullable';
-import { StrictMode, type MouseEvent, type MouseEventHandler, useState } from 'react';
+import { StrictMode, type MouseEvent, type MouseEventHandler, useState, type ReactNode } from 'react';
 
 import type { PopupMainIntent } from './PopupMainIntent.js';
 import type { PopupMainState } from './PopupMainState.js';
@@ -23,7 +22,7 @@ export interface PopupMainViewProps {
     intent: PopupMainIntent;
 }
 
-export function PopupMainView(props: Readonly<PopupMainViewProps>): JSX.Element {
+export function PopupMainView(props: Readonly<PopupMainViewProps>): ReactNode {
     const { state, intent } = props;
 
     const onClickOpenWebExtSidebar = (_event: MouseEvent<HTMLDivElement>) => {
@@ -50,7 +49,7 @@ interface HeaderProps {
     onClick: MouseEventHandler<HTMLElement>;
 }
 
-function Header(props: HeaderProps): JSX.Element {
+function Header(props: HeaderProps): ReactNode {
     return (
         <StrictMode>
             <div className={'popup-c-PopupMainView-Header__container'}>
@@ -76,10 +75,10 @@ interface ListItemProps {
     item: BookmarkTreeNode;
     intent: PopupMainIntent;
 }
-function ListItem(props: ListItemProps): JSX.Element {
+function ListItem(props: ListItemProps): ReactNode {
     const { item, intent } = props;
 
-    let node: JSX.Element;
+    let node: ReactNode;
     if (isBookmarkTreeNodeSeparator(item)) {
         node = <hr />;
     }
@@ -97,7 +96,7 @@ interface FolderListItemProps {
     item: BookmarkTreeNodeFolder;
     intent: PopupMainIntent;
 }
-function FolderListItem(props: FolderListItemProps): JSX.Element {
+function FolderListItem(props: FolderListItemProps): ReactNode {
     const { item } = props;
 
     const onClick: MouseEventHandler<HTMLDivElement> = (event: MouseEvent<HTMLDivElement>) => {
@@ -128,7 +127,7 @@ interface ItemListItemProps {
     item: BookmarkTreeNodeItem;
     intent: PopupMainIntent;
 }
-function ItemListItem(props: ItemListItemProps): Nullable<JSX.Element> {
+function ItemListItem(props: ItemListItemProps): ReactNode {
     const { item, intent, } = props;
     const url = item.url;
     const id = item.id;
