@@ -1,3 +1,5 @@
+import * as path from 'node:path';
+
 import tsESLintPlugin from '@typescript-eslint/eslint-plugin';
 import tsESLintParser from '@typescript-eslint/parser';
 import reactESLintPlugin from 'eslint-plugin-react';
@@ -33,7 +35,11 @@ export function createlanguageOptionsForTypeScript(baseDir) {
         parser: tsESLintParser,
         parserOptions: {
             tsconfigRootDir: baseDir,
-            project: ['./tsconfig.eslint.json', './packages/*/tsconfig.json'],
+            project: [
+                // @prettier-ignore
+                path.resolve(baseDir, './tsconfig.eslint.json'),
+                path.resolve(baseDir, './packages/*/tsconfig.json'),
+            ],
             ecmaFeatures: {
                 jsx: true,
             },
