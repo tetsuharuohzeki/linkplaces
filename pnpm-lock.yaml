@@ -178,11 +178,11 @@ importers:
         specifier: 2.3.1
         version: 2.3.1
       postcss:
-        specifier: 8.4.26
-        version: 8.4.26
+        specifier: 8.4.27
+        version: 8.4.27
       postcss-import:
         specifier: 15.1.0
-        version: 15.1.0(postcss@8.4.26)
+        version: 15.1.0(postcss@8.4.27)
       rollup:
         specifier: 3.26.3
         version: 3.26.3
@@ -5034,13 +5034,13 @@ packages:
       irregular-plurals: 3.5.0
     dev: true
 
-  /postcss-import@15.1.0(postcss@8.4.26):
+  /postcss-import@15.1.0(postcss@8.4.27):
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       postcss: ^8.0.0
     dependencies:
-      postcss: 8.4.26
+      postcss: 8.4.27
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.2
@@ -5050,13 +5050,13 @@ packages:
     resolution: {integrity: sha512-HvExULSwLqHLgUy1rl3ANIqCsvMS0WHss2UOsXhXnQaZ9VCc2oBvIpXrl00IUFT5ZDITME0o6oiXeiHr2SAIfw==}
     dev: true
 
-  /postcss-safe-parser@6.0.0(postcss@8.4.26):
+  /postcss-safe-parser@6.0.0(postcss@8.4.27):
     resolution: {integrity: sha512-FARHN8pwH+WiS2OPCxJI8FuRJpTVnn6ZNFiqAM2aeW2LwTHWWmWgIyKC6cUo0L8aeKiF/14MNvnpls6R2PBeMQ==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.3.3
     dependencies:
-      postcss: 8.4.26
+      postcss: 8.4.27
     dev: true
 
   /postcss-selector-parser@6.0.13:
@@ -5080,8 +5080,8 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /postcss@8.4.26:
-    resolution: {integrity: sha512-jrXHFF8iTloAenySjM/ob3gSj7pCu0Ji49hnjqzsgSRa50hkWCKD0HQ+gMNJkW38jBI68MpAAg7ZWwHwX8NMMw==}
+  /postcss@8.4.27:
+    resolution: {integrity: sha512-gY/ACJtJPSmUFPDCHtX78+01fHa64FaU4zaaWfuh1MhGJISufJAH4cun6k/8fwsHYeK4UQmENQK+tRLCFJE8JQ==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.6
@@ -5995,9 +5995,9 @@ packages:
       micromatch: 4.0.5
       normalize-path: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.4.26
+      postcss: 8.4.27
       postcss-resolve-nested-selector: 0.1.1
-      postcss-safe-parser: 6.0.0(postcss@8.4.26)
+      postcss-safe-parser: 6.0.0(postcss@8.4.27)
       postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
