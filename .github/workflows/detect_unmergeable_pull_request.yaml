@@ -28,6 +28,6 @@ jobs:
                   GITHUB_CONTEXT: ${{ toJson(github) }}
               run: echo "${GITHUB_CONTEXT}"
             - name: Run the action to detect unmergeable PRs
-              uses: cats-oss/github-action-detect-unmergeable@master
+              uses: tetsuharuohzeki/github-action-detect-unmergeable@620b042230a7e447af95e5e5d46320197f84499b
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
