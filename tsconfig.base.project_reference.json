@@ -3,6 +3,11 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
+        // TS5.2~ does not allow to set module=ES2022 + moduleResolution=Node16
+        // To avoid this, we should use moduleResolution bundler.
+        "module": "ES2022",
+        "moduleResolution": "Bundler",
+
         "composite": true,
         "declaration": true,
         "noEmit": false,
