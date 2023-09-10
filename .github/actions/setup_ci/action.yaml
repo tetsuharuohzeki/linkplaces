@@ -4,7 +4,7 @@ description: Setup CI environment
 runs:
     using: composite
     steps:
-        - uses: actions/setup-node@v3.7.0
+        - uses: actions/setup-node@v3
           with:
               node-version: 20.x
         - name: Setup corepack
@@ -16,7 +16,7 @@ runs:
           shell: bash
           run: echo "dir=$(pnpm store path)" >> $GITHUB_OUTPUT
         - name: cache dependencies
-          uses: actions/cache@v3.3.1
+          uses: actions/cache@v3
           id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
           with:
               path: ${{ steps.npm-cache-dir.outputs.dir }}
