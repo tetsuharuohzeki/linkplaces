@@ -78,6 +78,29 @@ export const config = Object.freeze({
         ],
         '@typescript-eslint/no-import-type-side-effects': 'warn',
 
+        // In JavaScript, it's hard to minify a property that is on prototype chain.
+        // Typically, they appears as a pattern as class' instance method.
+        // We cannot remove or mangle a code like `a.foo()` style code.
+        //
+        // This rule bans a class instance method
+        // that does not touch any `this` to improve a possibility to minify a code.
+        // After ES Module or CommonJS era (single module per single file),
+        // excluding the case to improve an API ergonomics or requirement to implement an object interface,
+        // we don't have to belong a function that does not touch `this` to a class as like as Java or C++.
+        //
+        // Rather, to get a chance to improve a code size performance,
+        // it's better that they should be exported as a standalone function directly.
+        'class-methods-use-this': 'off',
+        '@typescript-eslint/class-methods-use-this': [
+            'warn',
+            {
+                // We would like to allow override the base method on super class.
+                ignoreOverrideMethods: true,
+                // We would like to allow to implement an empty method as a part of the interface.
+                ignoreClassesThatImplementAnInterface: true,
+            },
+        ],
+
         // This TypeScript syntax is useful to reduce declarations of class properties.
         // However, we feel this syntax has these negative points:
         //
