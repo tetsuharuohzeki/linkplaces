@@ -38,16 +38,6 @@ module.exports = {
         // We cannot define this. User project should enable this.
         '@typescript-eslint/ban-types': 'off',
 
-        // We should sort with builtin rule.
-        '@typescript-eslint/brace-style': 'off',
-
-        // This should be sorted with ESLint builtin rule.
-        'comma-spacing': 'off',
-        '@typescript-eslint/comma-spacing': ['error', {
-            'before': false,
-            'after': true
-        }],
-
         // Uniform the style.
         '@typescript-eslint/consistent-type-assertions': ['warn', {
             // Sort the style in both of ts and tsx.
@@ -77,20 +67,6 @@ module.exports = {
 
         // TODO: #301
         '@typescript-eslint/explicit-module-boundary-types': 'off',
-
-        // TODO: @typescript-eslint/indent
-
-        // Sort with the preferred style (`;`) in TypeScript world.
-        '@typescript-eslint/member-delimiter-style': ['warn', {
-            'multiline': {
-                'delimiter': 'semi',
-                'requireLast': true,
-            },
-            'singleline': {
-                'delimiter': 'semi',
-                'requireLast': true,
-            }
-        }],
 
         // I don't think it's not efffective to sort the order by public/private/protected.
         '@typescript-eslint/member-ordering': ['warn', {
@@ -255,14 +231,6 @@ module.exports = {
 
         // Detect redundant code
         '@typescript-eslint/no-extra-non-null-assertion': 'warn',
-
-        // This should be sorted with ESLint builtin rule.
-        'no-extra-parens': 'off',
-        '@typescript-eslint/no-extra-parens': 'off',
-
-        // This should be sorted with ESLint builtin rule.
-        'no-extra-semi': 'off',
-        '@typescript-eslint/no-extra-semi': 'warn',
 
         // Of course, this might be redundant if you set unhandledrejection event handler.
         // We still have some points which should be under discussion. See: #135
@@ -484,13 +452,6 @@ module.exports = {
         '@typescript-eslint/promise-function-async': 'off',
 
         // We should sort with builtin rule.
-        'quotes': 'off',
-        '@typescript-eslint/quotes': ['error', 'single', {
-            'avoidEscape': true,
-            'allowTemplateLiterals': true,
-        }],
-
-        // We should sort with builtin rule.
         'require-await': 'off',
         '@typescript-eslint/require-await': 'off',
 
@@ -510,14 +471,6 @@ module.exports = {
         // FIXME: #272
         // '@typescript-eslint/return-await'
 
-        // This should be sorted with ESLint builtin rule.
-        'space-before-function-paren': 'off',
-        '@typescript-eslint/space-before-function-paren': ['warn', {
-            'anonymous': 'ignore',
-            'named': 'never',
-            'asyncArrow': 'ignore',
-        }],
-
         // At v1.12, this rule does not support the idion to convert to boolean value from other type one
         // like `!!<some non boolean value>`. So we disable this until fixing it.
         // FIXME: #152
@@ -534,7 +487,6 @@ module.exports = {
         }],
 
         // TODO: @typescript-eslint/typedef
-        // TODO: @typescript-eslint/type-annotation-spacing
 
         // In some case, function definition by overloading improves IntelliSense ergonomics.
         '@typescript-eslint/unified-signature': 'off',

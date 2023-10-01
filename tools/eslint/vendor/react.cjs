@@ -151,36 +151,21 @@ module.exports = {
 
         // JSX-specific rules
         'react/jsx-boolean-value': [2, 'always'], // Enforce to specify html's boolean type attribute.
-        'react/jsx-child-element-spacing': 0,
-        'react/jsx-closing-bracket-location': 0, // It doesn’t matter.
-        'react/jsx-closing-tag-location': 1,
         // This is a formatter problem.
-        'react/jsx-curly-newline': 'off',
-        'react/jsx-curly-spacing': [1, { 'children': true }],
-        'react/jsx-equals-spacing': [1, 'never'],
         'react/jsx-filename-extension': [2, {
             'extensions': ['.jsx']
         }],
-        'react/jsx-first-prop-new-line': 0, // This is just stylistic issue.
         'react/jsx-fragments': 'off', // I don't think enforce the style for this.
         'react/jsx-handler-names': [2, {
             'eventHandlerPrefix': 'on', // There is no event handler which is diffrent from this rules (`onBarFoo`).
             'eventHandlerPropPrefix': 'on',
             'checkLocalVariables': false,
         }],
-        // Sort with core's `indent` rule.
-        'react/jsx-indent': [1, 4, {
-            'checkAttributes': false,
-            'indentLogicalExpressions': false,
-        }],
-        'react/jsx-indent-props': 0, // we cannot force alphabetical order to our old codebase, and this is not any serious problem.
         'react/jsx-key': [1, {
             'checkFragmentShorthand': true,
             'checkKeyMustBeforeSpread': false,
         }],
-        'react/jsx-newline': 0, // this should be covered by formatter.
         'react/jsx-max-depth': 0, // We should not restrict this by default.
-        'react/jsx-max-props-per-line': 0, // we don't think this is serious problem.
         'react/jsx-no-bind': [2, { // Sort to bind with this in constructor.
             'ignoreDOMComponents': true,
             'ignoreRefs': true, // we may use `refs`.
@@ -218,8 +203,6 @@ module.exports = {
             // but the current rule impl. is pretty buggy and noisey. It's better to disable it.
             'children': 'ignore',
         }],
-        // I seem this is too strict.
-        'react/jsx-one-expression-per-line': 'off',
         'react/jsx-pascal-case': [2, {
             'allowAllCaps': false,
             'ignore': [],
@@ -233,16 +216,8 @@ module.exports = {
         }],
         'react/jsx-sort-default-props': 0,
         'react/jsx-sort-props': 0, // we cannot force alphabetical order to our old codebase, and this is meaningless.
-        'react/jsx-props-no-multi-spaces': 1,
-        'react/jsx-tag-spacing': [1, {
-            'closingSlash': 'never',
-            'beforeClosing': 'never',
-            'beforeSelfClosing': 'allow', // Allow to write more XML-ly
-            'afterOpening': 'never',
-        }],
         // See https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint
         'react/jsx-uses-react': 'off',
         'react/jsx-uses-vars': 1,
-        'react/jsx-wrap-multilines': 2,
     }
 };
