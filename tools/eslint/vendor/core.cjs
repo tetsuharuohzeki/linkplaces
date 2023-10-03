@@ -121,7 +121,6 @@ module.exports = {
         'no-proto': 2,
         'no-restricted-properties': 0, // https://eslint.org/docs/rules/no-restricted-properties
         'no-return-assign': 2, // This is a problem for readability.
-        'no-return-await': 1, // Warn. Because this is not a serious problem which is same degree with `no-return-assign`.
         'no-script-url': 2, // Use an event handler.
         'no-self-compare': 2, // https://eslint.org/docs/rules/no-self-compare
         'no-sequences': 2, // We're not doing a code golf: https://eslint.org/docs/rules/no-sequences
@@ -207,7 +206,6 @@ module.exports = {
         }],
         // This should be handled by the formatter.
         'function-call-argument-newline': 'off',
-        'id-blacklist': 0, // https://eslint.org/docs/rules/id-blacklist
         'id-length': 0, // https://eslint.org/docs/rules/id-length
         'id-match': 0, // https://eslint.org/docs/rules/id-match
         'line-comment-position': 0, // This is needless. https://eslint.org/docs/rules/line-comment-position
@@ -231,7 +229,6 @@ module.exports = {
         'no-multi-assign': 1,
         'no-negated-condition': 0, // https://eslint.org/docs/rules/no-negated-condition
         'no-nested-ternary': 2, // https://eslint.org/docs/rules/no-nested-ternary
-        'no-new-object': 2, // In almost case, we don't have to use it.
         'no-plusplus': 0, // We might use it for loop.
         'no-restricted-syntax': [2,
             // Ban the way to reflection by strings (Enable explicitly if you'd like to use).
