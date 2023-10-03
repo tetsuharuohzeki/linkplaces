@@ -29,6 +29,22 @@ const builtinRules = Object.freeze({
 
     // This detects unused field easily.
     'no-unused-private-class-members': 'warn',
+
+    // We use custom config to make the behavior similar to TypeScript's unused var checker.
+    'no-unused-vars': [
+        // Not make an error for debugging.
+        'warn',
+        {
+            vars: 'all',
+            args: 'after-used',
+            argsIgnorePattern: '^_', // Sort with TypeScript compiler's builtin linter.
+            caughtErrors: 'all',
+            caughtErrorsIgnorePattern: '^_', // Allow `catch (_e) {...}`
+        },
+    ],
+
+    // This prevents the error at the running time.
+    'valid-typeof': ['error', { requireStringLiterals: true }],
 });
 
 const projectRules = Object.freeze({
