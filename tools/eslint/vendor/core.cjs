@@ -18,9 +18,6 @@ module.exports = {
 
         'no-console': 0, // `console`
 
-        'no-empty': 2, // https://eslint.org/docs/rules/no-empty
-        'no-extra-boolean-cast': 0, // Allow to cast to boolean with `!!bar`. This is common idiom.
-        'no-regex-spaces': 2, // https://eslint.org/docs/rules/no-regex-spaces
         'no-template-curly-in-string': 2,
         // This rule might be useful to detect a typical anti pattern about data race.
         // However, it could not detect the problem if we assign a value into an interim variable
@@ -86,7 +83,6 @@ module.exports = {
         'max-classes-per-file': 0, // We don't have to enable this. https://eslint.org/docs/rules/max-classes-per-file
         'no-alert': 1, // for debugging.
         'no-caller': 2, // Don't touch `arguments` in a normal code.
-        'no-case-declarations': 2, // https://eslint.org/docs/rules/no-case-declarations
         'no-constructor-return': 'error', // Generally, we should not return object from _constructor_.
         'no-div-regex': 2, // https://eslint.org/docs/rules/no-div-regex
         'no-else-return': 0, // `else` branch sometimes means "A or B" explicitly.
@@ -96,7 +92,6 @@ module.exports = {
         'no-extend-native': 2, // We don't do this in non-library code.
         'no-extra-bind': 1, // https://eslint.org/docs/rules/no-extra-bind
         'no-extra-label': 2, // https://eslint.org/docs/rules/no-extra-label
-        'no-global-assign': 2, // https://eslint.org/docs/rules/no-global-assign
         'no-implicit-coercion': [2, { // https://eslint.org/docs/rules/no-implicit-coercion
             'boolean': true,
             'number': true,
@@ -118,14 +113,12 @@ module.exports = {
         'no-new': 1,
         'no-new-func': 1, // Just an escape hatch for optimizing technique.
         'no-new-wrappers': 1, // We don't have to `new` to cast a value. https://eslint.org/docs/rules/no-new-wrappers
-        'no-octal': 2,
         'no-octal-escape': 2, // https://eslint.org/docs/rules/no-octal-escape
         'no-param-reassign': [1, {
             'props': true
             // 'ignorePropertyModificationsForRegex': [],
         }],
         'no-proto': 2,
-        'no-redeclare': ['error', { 'builtinGlobals': true }],
         'no-restricted-properties': 0, // https://eslint.org/docs/rules/no-restricted-properties
         'no-return-assign': 2, // This is a problem for readability.
         'no-return-await': 1, // Warn. Because this is not a serious problem which is same degree with `no-return-assign`.
@@ -135,15 +128,11 @@ module.exports = {
         'no-throw-literal': 2,
         'no-unmodified-loop-condition': 1,
         'no-unused-expressions': 2, // https://eslint.org/docs/rules/no-unused-expressions
-        'no-unused-labels': 2, // https://eslint.org/docs/rules/no-unused-labels
         'no-useless-call': 1,
-        'no-useless-catch': 1, // There is no reason to disable this.
         'no-useless-concat': 1,
-        'no-useless-escape': 1,
         'no-useless-return': 1, // https://eslint.org/docs/rules/no-useless-return
         'no-void': 2, // We live in after ES5 : https://eslint.org/docs/rules/no-void
         'no-warning-comments': 0, // We need not always enable this : https://eslint.org/docs/rules/no-warning-comments
-        'no-with': 2,
         'prefer-promise-reject-errors': [1, {
             'allowEmptyReject': true, // Enable to create empty rejected one for compositing promises.
         }],
@@ -189,13 +178,11 @@ module.exports = {
         //  If we keep to enable this rule, `let: a: T;` would be error
         //  and we need to write `let a: T | null = null;` even if a will not be `null`. This is not useful.
         'init-declarations': 'off',
-        'no-delete-var': 2, // In a general case, we don't have to do this.
         'no-label-var': 2,
         'no-restricted-globals': [2, // https://eslint.org/docs/rules/no-restricted-globals
             'name', 'top', 'event'
         ],
         'no-shadow': 0,
-        'no-shadow-restricted-names': 2,
         'no-undefined': 0,
         'no-undef-init': 2,
 
@@ -305,7 +292,6 @@ module.exports = {
         'prefer-rest-params': 1, // Recommend to use rest parameter instead of `arguments`.
         'prefer-spread': 1, // Recommend to use spread operator instead of `Function.prototype.apply`.
         'prefer-template': 0,
-        'require-yield': 2, // Detect missing `yield` in a generator function.
         // 'sort-import': 0,
         'symbol-description': 2, // Force to pass the description to `Symbol()`.
     },

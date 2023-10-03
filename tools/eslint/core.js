@@ -27,6 +27,9 @@ const builtinRules = Object.freeze({
     // This prevents the pattern that is error prone.
     'no-constant-binary-expression': 'error',
 
+    // Allow to cast to boolean with `!!bar`. This is common idiom.
+    'no-extra-boolean-cast': 'off',
+
     // This detects unused field easily.
     'no-unused-private-class-members': 'warn',
 
