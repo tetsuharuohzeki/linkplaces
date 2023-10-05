@@ -35,17 +35,17 @@
         "@babel/cli": "7.23.0",
         "@babel/core": "7.23.0",
         "@babel/preset-react": "7.22.15",
-        "@rollup/plugin-alias": "5.0.0",
-        "@rollup/plugin-babel": "6.0.3",
-        "@rollup/plugin-commonjs": "25.0.4",
-        "@rollup/plugin-node-resolve": "15.2.1",
-        "@rollup/plugin-replace": "5.0.2",
+        "@rollup/plugin-alias": "5.0.1",
+        "@rollup/plugin-babel": "6.0.4",
+        "@rollup/plugin-commonjs": "25.0.5",
+        "@rollup/plugin-node-resolve": "15.2.2",
+        "@rollup/plugin-replace": "5.0.3",
         "ava": "5.3.1",
         "esbuild": "0.19.4",
         "jsdom": "22.1.0",
         "picomatch": "2.3.1",
         "postcss": "8.4.31",
         "postcss-import": "15.1.0",
-        "rollup": "3.29.4"
+        "rollup": "4.0.0"
     }
 }
