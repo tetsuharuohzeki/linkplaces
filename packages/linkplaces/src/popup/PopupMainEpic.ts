@@ -8,7 +8,6 @@ import type { BookmarkId } from '@linkplaces/webext_types';
 import type { PopupPlainReduxStore } from './PopupMainStore.js';
 import type { RemoteActionChannel } from './PopupMessageChannel.js';
 
-
 export class PopupMainEpic {
     private _channel: RemoteActionChannel;
 
@@ -22,6 +21,8 @@ export class PopupMainEpic {
         return closeWindow();
     }
 
+    // This is a part of this object interface.
+    // eslint-disable-next-line @typescript-eslint/class-methods-use-this
     async openWebExtSidebar(): Promise<void> {
         // These funcs should be called by user interaction.
         const sidebarOpen = openWebExtSidebarDirect(browser.sidebarAction);

@@ -3,6 +3,7 @@ import {
     createDomRef,
     createDomElement as dom,
     createDocFragmentTree as fragment,
+    type HTMLCustomElementLifecycleHook,
 } from '@linkplaces/foundation';
 
 import { unwrapOrFromNullable } from 'option-t/Nullable/unwrapOr';
@@ -21,8 +22,7 @@ const createURIForLight = pathGeneratorGen('light');
 const createURIForDark = pathGeneratorGen('dark');
 const createURIForCtxFill = pathGeneratorGen('context-fill');
 
-export class PopupItemIconElement extends HTMLElement {
-
+export class PopupItemIconElement extends HTMLElement implements HTMLCustomElementLifecycleHook {
     static get observedAttributes(): Iterable<string> {
         return [ATTR_NAME_ICON_DIR, ATTR_NAME_ICON_FILE];
     }
@@ -50,38 +50,42 @@ export class PopupItemIconElement extends HTMLElement {
         this._iconFile = iconFile;
 
         const tree = fragment([
-            dom('picture', [
-                ['class', `com-popup-PopupIconElement__icon`],
-            ],
+            dom(
+                'picture',
+                [['class', `com-popup-PopupIconElement__icon`]],
                 [
-                    dom('source', [
-                        ['srcset', createURIForDark(iconDir, iconFile)],
-                        ['media', '(prefers-color-scheme: dark)'],
-                    ], null, this._sourceForDark),
-                    dom('source', [
-                        ['srcset', createURIForLight(iconDir, iconFile)],
-                        ['media', '(prefers-color-scheme: light)'],
-                    ], null, this._sourceForLight),
-                    dom('img', [
-                        ['src', createURIForCtxFill(iconDir, iconFile)],
-                        ['alt', ''],
-                    ],
+                    dom(
+                        'source',
+                        [
+                            ['srcset', createURIForDark(iconDir, iconFile)],
+                            ['media', '(prefers-color-scheme: dark)'],
+                        ],
+                        null,
+                        this._sourceForDark
+                    ),
+                    dom(
+                        'source',
+                        [
+                            ['srcset', createURIForLight(iconDir, iconFile)],
+                            ['media', '(prefers-color-scheme: light)'],
+                        ],
+                        null,
+                        this._sourceForLight
+                    ),
+                    dom(
+                        'img',
+                        [
+                            ['src', createURIForCtxFill(iconDir, iconFile)],
+                            ['alt', ''],
+                        ],
                         null,
                         this._img
                     ),
-                ]),
+                ]
+            ),
         ]);
 
         shadowRoot.appendChild(tree);
-    }
-
-    connectedCallback(): void {
-    }
-
-    disconnectedCallback(): void {
-        // We don't have to destroy operations at here.
-        // Because modern web engines which is like implementing Web Components
-        // can collects a garbage reference over the binding correctly.
     }
 
     attributeChangedCallback(attributeName: string, oldValue: string, newValue: string, _namespace: string): void {
@@ -124,10 +128,6 @@ export class PopupItemIconElement extends HTMLElement {
             img.setAttribute('src', createURIForCtxFill(iconDir, iconFile));
         }
     }
-
-    adoptedCallback(_oldDocument: Document, _newDocument: Document): void {
-        // don't support this operation.
-    }
 }
 
 export const LOCAL_NAME_POPUP_ITEM_ICON = 'popup-item-icon';
@@ -139,7 +139,10 @@ interface PopupItemIconElementAttr {
 declare global {
     namespace JSX {
         interface IntrinsicElements {
-            [LOCAL_NAME_POPUP_ITEM_ICON]: globalThis.React.DetailedHTMLProps<React.HTMLAttributes<PopupItemIconElement> & PopupItemIconElementAttr, PopupItemIconElement>;
+            [LOCAL_NAME_POPUP_ITEM_ICON]: globalThis.React.DetailedHTMLProps<
+                React.HTMLAttributes<PopupItemIconElement> & PopupItemIconElementAttr,
+                PopupItemIconElement
+            >;
         }
     }
 }
