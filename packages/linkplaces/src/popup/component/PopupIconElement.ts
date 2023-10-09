@@ -4,6 +4,7 @@ import {
     createDomElement as dom,
     createDocFragmentTree as fragment,
     type HTMLCustomElementLifecycleHook,
+    type HTMLCustomElementAttributeChangeListenable,
 } from '@linkplaces/foundation';
 
 import { unwrapOrFromNullable } from 'option-t/Nullable/unwrapOr';
@@ -22,7 +23,10 @@ const createURIForLight = pathGeneratorGen('light');
 const createURIForDark = pathGeneratorGen('dark');
 const createURIForCtxFill = pathGeneratorGen('context-fill');
 
-export class PopupItemIconElement extends HTMLElement implements HTMLCustomElementLifecycleHook {
+export class PopupItemIconElement
+    extends HTMLElement
+    implements HTMLCustomElementLifecycleHook, HTMLCustomElementAttributeChangeListenable
+{
     static get observedAttributes(): Iterable<string> {
         return [ATTR_NAME_ICON_DIR, ATTR_NAME_ICON_FILE];
     }

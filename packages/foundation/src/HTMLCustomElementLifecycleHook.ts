@@ -22,4 +22,41 @@ export interface HTMLCustomElementLifecycleHook {
     formStateRestoreCallback?(state: Nullable<string | File | FormData>, reason: FormStateRestoreReason): void;
 }
 
+export interface HTMLCustomElementConnectedListenable {
+    connectedCallback(): void;
+}
+
+export interface HTMLCustomElementDisconnectedListenable {
+    disconnectedCallback(): void;
+}
+
+export interface HTMLCustomElementAdoptedListenable {
+    adoptedCallback(oldDocument: Document, newDocument: Document): void;
+}
+
+export interface HTMLCustomElementAttributeChangeListenable {
+    attributeChangedCallback(
+        localName: string,
+        oldValue: Nullable<string>,
+        newValue: Nullable<string>,
+        namespace?: Nullable<string>
+    ): void;
+}
+
+export interface HTMLCustomElementFormAssociatedListenable {
+    formAssociatedCallback(form: Nullable<HTMLFormElement>): void;
+}
+
+export interface HTMLCustomElementFormDisabledListenable {
+    formDisabledCallback(isDisabled: boolean): void;
+}
+
+export interface HTMLCustomElementFormResetListenable {
+    formResetCallback(): void;
+}
+
+export interface HTMLCustomElementFormStateRestoreListenable {
+    formStateRestoreCallback(state: Nullable<string | File | FormData>, reason: FormStateRestoreReason): void;
+}
+
 type FormStateRestoreReason = 'autocomplete' | 'restore';
