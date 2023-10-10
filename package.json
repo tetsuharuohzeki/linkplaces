@@ -12,7 +12,7 @@
     "devDependencies": {
         "@eslint/js": "^8.51.0",
         "@monorepo-utils/workspaces-to-typescript-project-references": "^2.10.2",
-        "@types/node": "20.8.3",
+        "@types/node": "20.8.4",
         "@types/react": "18.2.27",
         "@types/react-dom": "18.2.12",
         "@typescript-eslint/eslint-plugin": "6.7.4",
