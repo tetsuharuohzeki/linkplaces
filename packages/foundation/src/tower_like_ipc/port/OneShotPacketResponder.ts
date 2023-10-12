@@ -1,5 +1,3 @@
-import type { Result } from 'option-t/PlainResult';
-
 import type { AssertTypeGuardFn } from '../AssertTypeGuardFn.js';
 import type { TowerService } from '../traits.js';
 import { assertOneShotPacket, type Packet } from './Packet.js';
@@ -19,10 +17,6 @@ export class OneShotPacketResponder<const TRequestBody, const out TResponse>
     destroy(): void {
         this._source = null as never;
         this._validator = null as never;
-    }
-
-    ready(): Promise<Result<void, Error>> {
-        return this._source.ready();
     }
 
     async call(req: Packet<unknown>): Promise<null> {

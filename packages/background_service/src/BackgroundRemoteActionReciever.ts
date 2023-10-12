@@ -9,15 +9,9 @@ import {
 import { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } from '@linkplaces/shared/bookmark';
 import type { BookmarkId } from '@linkplaces/webext_types';
 
-import { createOk, type Result } from 'option-t/PlainResult';
-
 import { createTab } from './TabOpener.js';
 
 export class BackgroundRemoteActionReciever implements TowerService<[req: RemoteAction], void> {
-    async ready(): Promise<Result<void, Error>> {
-        return createOk(undefined);
-    }
-
     async call(msg: RemoteAction): Promise<void> {
         switch (msg.type) {
             case MSG_TYPE_OPEN_URL: {

@@ -1,7 +1,4 @@
 import type { Nullable } from 'option-t/Nullable/Nullable';
-import type { Result } from 'option-t/PlainResult';
-
-import { NoImplementationError } from '../../NoImplementationError.js';
 import type { AssertTypeGuardFn } from '../AssertTypeGuardFn.js';
 import type { TowerService } from '../traits.js';
 
@@ -27,10 +24,6 @@ export class PacketResponder<const TRequestBody, const out TResponse>
 
         this._oneshotReponder = null as never;
         this._replyResponder = null as never;
-    }
-
-    async ready(): Promise<Result<void, Error>> {
-        throw new NoImplementationError(``);
     }
 
     async call(req: Packet<unknown>): Promise<Nullable<Packet<TResponse>>> {

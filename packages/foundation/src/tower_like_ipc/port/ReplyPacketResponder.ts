@@ -1,5 +1,4 @@
 import type { Nullable } from 'option-t/Nullable/Nullable';
-import type { Result } from 'option-t/PlainResult';
 
 import type { AssertTypeGuardFn } from '../AssertTypeGuardFn.js';
 import type { TowerService } from '../traits.js';
@@ -20,10 +19,6 @@ export class ReplyPacketResponder<const TRequestBody, const out TResponse>
     destroy(): void {
         this._source = null as never;
         this._validator = null as never;
-    }
-
-    ready(): Promise<Result<void, Error>> {
-        return this._source.ready();
     }
 
     async call(req: Packet<unknown>): Promise<Nullable<Packet<TResponse>>> {
