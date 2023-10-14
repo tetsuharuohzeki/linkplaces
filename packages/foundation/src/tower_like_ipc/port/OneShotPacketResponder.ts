@@ -3,13 +3,13 @@ import type { TowerService } from '../framework/service_trait.js';
 import { assertOneShotPacket, type Packet } from './Packet.js';
 import type { PacketCreationService } from './PacketCreationService.js';
 
-export class OneShotPacketResponder<const TRequestBody, const out TResponse>
+export class OneShotPacketResponder<const in TInnerArgs, const out TInnerOutput>
     implements PacketCreationService<unknown, null>
 {
-    private _validator: AssertTypeGuardFn<TRequestBody>;
-    private _source: TowerService<[req: TRequestBody], TResponse>;
+    private _validator: AssertTypeGuardFn<TInnerArgs>;
+    private _source: TowerService<[req: TInnerArgs], TInnerOutput>;
 
-    constructor(validator: AssertTypeGuardFn<TRequestBody>, source: TowerService<[req: TRequestBody], TResponse>) {
+    constructor(validator: AssertTypeGuardFn<TInnerArgs>, source: TowerService<[req: TInnerArgs], TInnerOutput>) {
         this._validator = validator;
         this._source = source;
     }

@@ -5,13 +5,13 @@ import type { TowerService } from '../framework/service_trait.js';
 import { assertIdentifiablePacket, createIdentifiablePacket, type Packet } from './Packet.js';
 import type { PacketCreationService } from './PacketCreationService.js';
 
-export class ReplyPacketResponder<const TRequestBody, const out TResponse>
-    implements PacketCreationService<unknown, TResponse>
+export class ReplyPacketResponder<const in TInnerArgs, const out TInnerOutput>
+    implements PacketCreationService<Packet<unknown>, TInnerOutput>
 {
-    private _validator: AssertTypeGuardFn<TRequestBody>;
-    private _source: TowerService<[req: TRequestBody], TResponse>;
+    private _validator: AssertTypeGuardFn<TInnerArgs>;
+    private _source: TowerService<[req: TInnerArgs], TInnerOutput>;
 
-    constructor(validator: AssertTypeGuardFn<TRequestBody>, source: TowerService<[req: TRequestBody], TResponse>) {
+    constructor(validator: AssertTypeGuardFn<TInnerArgs>, source: TowerService<[req: TInnerArgs], TInnerOutput>) {
         this._validator = validator;
         this._source = source;
     }
@@ -21,12 +21,12 @@ export class ReplyPacketResponder<const TRequestBody, const out TResponse>
         this._validator = null as never;
     }
 
-    async call(req: Packet<unknown>): Promise<Nullable<Packet<TResponse>>> {
+    async call(req: Packet<unknown>): Promise<Nullable<Packet<TInnerOutput>>> {
         assertIdentifiablePacket(req);
 
         const { id, payload } = req;
         this._validator(payload);
-        const result: TResponse = await this._source.call(payload);
+        const result: TInnerOutput = await this._source.call(payload);
         const response = createIdentifiablePacket(id, result);
         return response;
     }

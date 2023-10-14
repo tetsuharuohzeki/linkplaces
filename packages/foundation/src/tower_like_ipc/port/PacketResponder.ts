@@ -7,11 +7,11 @@ import { isIdentifiablePacket, isOneShotPacket, type Packet } from './Packet.js'
 import type { PacketCreationService } from './PacketCreationService.js';
 import { ReplyPacketResponder } from './ReplyPacketResponder.js';
 
-export class PacketResponder<const TRequestBody, const out TResponse>
+export class PacketResponder<const in TRequestBody, const out TResponse>
     implements PacketCreationService<unknown, TResponse>
 {
-    private _oneshotReponder: OneShotPacketResponder<unknown, TResponse>;
-    private _replyResponder: ReplyPacketResponder<unknown, TResponse>;
+    private _oneshotReponder: OneShotPacketResponder<TRequestBody, TResponse>;
+    private _replyResponder: ReplyPacketResponder<TRequestBody, TResponse>;
 
     constructor(validator: AssertTypeGuardFn<TRequestBody>, source: TowerService<[req: TRequestBody], TResponse>) {
         this._oneshotReponder = new OneShotPacketResponder(validator, source);

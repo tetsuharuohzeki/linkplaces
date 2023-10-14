@@ -2,6 +2,6 @@
 
 export type AnyTuple = ReadonlyArray<unknown>;
 
-export interface TowerService<TArgs extends AnyTuple, out TOutput> {
+export interface TowerService<in TArgs extends AnyTuple, out TOutput> {
     call(...args: TArgs): Promise<TOutput>;
 }
