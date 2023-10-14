@@ -1,5 +1,5 @@
 import type { AssertTypeGuardFn } from '../AssertTypeGuardFn.js';
-import type { TowerService } from '../traits.js';
+import type { TowerService } from '../framework/service_trait.js';
 import { assertOneShotPacket, type Packet } from './Packet.js';
 import type { PacketCreationService } from './PacketCreationService.js';
 

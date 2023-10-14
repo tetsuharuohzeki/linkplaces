@@ -1,7 +1,7 @@
 import type { ExtensionRuntime, ExtensionMessageSender } from '@linkplaces/webext_types';
 import type { AssertTypeGuardFn } from './AssertTypeGuardFn.js';
 
-import type { TowerService } from './traits.js';
+import type { TowerService } from './framework/service_trait.js';
 
 export class SendMessageResponder<const in out TRequest, const in out TResponse> {
     private _runtime: ExtensionRuntime;

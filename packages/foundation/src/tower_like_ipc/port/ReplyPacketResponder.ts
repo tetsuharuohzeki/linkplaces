@@ -1,7 +1,7 @@
 import type { Nullable } from 'option-t/Nullable/Nullable';
 
 import type { AssertTypeGuardFn } from '../AssertTypeGuardFn.js';
-import type { TowerService } from '../traits.js';
+import type { TowerService } from '../framework/service_trait.js';
 import { assertIdentifiablePacket, createIdentifiablePacket, type Packet } from './Packet.js';
 import type { PacketCreationService } from './PacketCreationService.js';
 
