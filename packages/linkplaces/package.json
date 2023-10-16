@@ -37,15 +37,15 @@
         "@babel/preset-react": "7.22.15",
         "@rollup/plugin-alias": "5.0.1",
         "@rollup/plugin-babel": "6.0.4",
-        "@rollup/plugin-commonjs": "25.0.5",
+        "@rollup/plugin-commonjs": "25.0.7",
         "@rollup/plugin-node-resolve": "15.2.3",
-        "@rollup/plugin-replace": "5.0.3",
+        "@rollup/plugin-replace": "5.0.4",
         "ava": "5.3.1",
         "esbuild": "0.19.4",
         "jsdom": "22.1.0",
         "picomatch": "2.3.1",
         "postcss": "8.4.31",
         "postcss-import": "15.1.0",
-        "rollup": "4.0.2"
+        "rollup": "4.1.1"
     }
 }
