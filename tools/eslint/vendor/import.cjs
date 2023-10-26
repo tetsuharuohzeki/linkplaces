@@ -1,8 +1,5 @@
 // copied from https://github.com/cats-oss/eslint-config-abema/blob/72a943d6271704c5e87cf22d803f409a735398b7/config/eslintrc_import.js
 
-// XXX: To uniform the style of an object literals, we enable `quote-props`
-/*eslint quote-props: ['error', 'always'], no-magic-numbers: 0 */
-
 'use strict';
 
 /**

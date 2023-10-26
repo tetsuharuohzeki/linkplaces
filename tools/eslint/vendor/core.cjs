@@ -1,8 +1,5 @@
 // copied from https://github.com/cats-oss/eslint-config-abema/blob/72a943d6271704c5e87cf22d803f409a735398b7/config/eslintrc_core.js
 
-// XXX: To uniform the style of an object literals, we enable `quote-props`
-/* eslint quote-props: ['error', "always"] no-magic-numbers: 0 */
-
 'use strict';
 
 module.exports = {
@@ -152,7 +149,7 @@ module.exports = {
         //        So we enable this rule as _error_.
         'require-unicode-regexp': 2, // https://eslint.org/docs/rules/require-unicode-regexp
         'vars-on-top': 0, // This is a truly ridiculous convention.
-        'yoda': 0, // https://eslint.org/docs/rules/wrap-iife
+        'yoda': 0, // https://eslint.org/docs/rules/yoda
 
         // Strict Mode
         'strict': [2, 'global'],
@@ -204,12 +201,9 @@ module.exports = {
             // but it would be good to allow both forms of declaration/expression.
             'allowArrowFunctions': true,
         }],
-        // This should be handled by the formatter.
-        'function-call-argument-newline': 'off',
         'id-length': 0, // https://eslint.org/docs/rules/id-length
         'id-match': 0, // https://eslint.org/docs/rules/id-match
         'line-comment-position': 0, // This is needless. https://eslint.org/docs/rules/line-comment-position
-        'lines-between-class-members': 0, // https://eslint.org/docs/rules/lines-between-class-members
         'max-depth': [2, 10], // https://eslint.org/docs/rules/max-depth
         'max-lines': 0, // We trust our code review. https://eslint.org/docs/rules/max-lines
         'max-lines-per-function': 0, // We trust our code review. https://eslint.org/docs/rules/max-lines-per-function
@@ -241,25 +235,10 @@ module.exports = {
         'no-unneeded-ternary': 2,
         'one-var': [2, 'never'], // https://eslint.org/docs/rules/one-var
         'operator-assignment': 0, // Unlike `i++` or `++i`, this is not a problem
-        'padding-line-between-statements': [1,
-            /**
-             *  This configuration is valid the case:
-             *
-             *  ```
-             *      "use strict";
-             *      "use asm";
-             *
-             *      foo();
-             *  ```
-             */
-            { 'blankLine': 'always', 'prev': 'directive', 'next': '*' },
-            { 'blankLine': 'any', 'prev': 'directive', 'next': 'directive' },
-        ],
         'prefer-object-spread': 1, // https://eslint.org/docs/rules/prefer-object-spread
         'prefer-exponentiation-operator': 0, // There is no reason to enforce `**` instead of Math.pow()
         'sort-keys': 0, // We don't think this is useful for all object by default.
         'sort-vars': 0, // we don't have to sort vars.
-        'spaced-comment': 0,
         'unicode-bom': 2, // Ban byte-order-mark
 
         // ECMASctipt 6
