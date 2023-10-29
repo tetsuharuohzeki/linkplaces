@@ -43,7 +43,7 @@
         "ava": "5.3.1",
         "esbuild": "0.19.5",
         "jsdom": "22.1.0",
-        "picomatch": "2.3.1",
+        "picomatch": "3.0.1",
         "postcss": "8.4.31",
         "postcss-import": "15.1.0",
         "rollup": "4.1.4"
