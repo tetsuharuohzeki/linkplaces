@@ -15,8 +15,8 @@ importers:
         specifier: ^2.10.2
         version: 2.10.2
       '@reflink/reflink':
-        specifier: ^0.1.12
-        version: 0.1.12
+        specifier: ^0.1.13
+        version: 0.1.13
       '@types/node':
         specifier: 20.8.9
         version: 20.8.9
@@ -984,8 +984,8 @@ packages:
       config-chain: 1.1.13
     dev: true
 
-  /@reflink/reflink-darwin-arm64@0.1.12:
-    resolution: {integrity: sha512-vvxUYe1TxpVBhCOjpX1L7s+0HskBa4bKuG47vmsh9u3rqFoow6Lprgt9il34HoFMJsMfQ3vYtfNkwNTsehWGHw==}
+  /@reflink/reflink-darwin-arm64@0.1.13:
+    resolution: {integrity: sha512-Yk+JAXXOY1aWJhR8l+C7voxO57eKvBmFaf7435uRe/ccysl7zL9L6n+037EZerawKeUgjQOqATZa1p+njFsekg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
@@ -993,8 +993,8 @@ packages:
     dev: true
     optional: true
 
-  /@reflink/reflink-darwin-x64@0.1.12:
-    resolution: {integrity: sha512-wg6P+J08q04jLUoc/GR0m9WVUH1Qzbnrosxwng5GRH0up0RfwUpK88tGWoarwwDmajMNUKy4s+OKwBO6OvBxcA==}
+  /@reflink/reflink-darwin-x64@0.1.13:
+    resolution: {integrity: sha512-+uzjRzM0hriU0JNYes+2Q6IkdA0Sd0YOskSDPNhdMmuB3gO5yfrPmNyBp7QnIUX9zWPTEdm8xd4TQ7psJe3JFA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
@@ -1002,8 +1002,8 @@ packages:
     dev: true
     optional: true
 
-  /@reflink/reflink-linux-arm64-gnu@0.1.12:
-    resolution: {integrity: sha512-g6iYC3NCRdgOwC5lrDKx3Urr4T4ZCzNaE1rVPzKyj7jFVPHUMAhUsfBtClt/705D47c8FGgQ/STP6rMHwBDERw==}
+  /@reflink/reflink-linux-arm64-gnu@0.1.13:
+    resolution: {integrity: sha512-lNs9IrVfK/1IA47Zrb8xaeuiAFZFyoLgtNSNbzhBqgGrikP2DmbI1L8d4+7pFgoP9bW7DV5v+ErZMIAdrTAIog==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -1011,8 +1011,8 @@ packages:
     dev: true
     optional: true
 
-  /@reflink/reflink-linux-arm64-musl@0.1.12:
-    resolution: {integrity: sha512-zOcwGiFbmBQBYAKabyTKENhg5vh4sY8I46ZGAODOFyNm2ojOov9zpuHkcg9FThhdy16CaI4ICAS8Iuzv+hkFLQ==}
+  /@reflink/reflink-linux-arm64-musl@0.1.13:
+    resolution: {integrity: sha512-D8NVooTLWJUAt1QXYxfjt9elbXDF0n3ahCCmAlxyAUC/iXKIlspv+0vrP1ETiUup8nRFAgQSRWooBDbmVNT9DA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -1020,8 +1020,8 @@ packages:
     dev: true
     optional: true
 
-  /@reflink/reflink-linux-x64-gnu@0.1.12:
-    resolution: {integrity: sha512-A7tvkPCm2ct9ckpO95MUht0L9MFzSpRyMH73n4WjDEMJzqztVWlonzcjKQG1mC2FKoMB3DWprkm38i2hJIfUjQ==}
+  /@reflink/reflink-linux-x64-gnu@0.1.13:
+    resolution: {integrity: sha512-571Yruv1HAu53YeCA1LhxlcZ6RNXIfFTj0ElmFZ7NXyNX4BPEXqxczKOiQnhPLdgQw147iPEYexavtF6Zn4SZg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -1029,8 +1029,8 @@ packages:
     dev: true
     optional: true
 
-  /@reflink/reflink-linux-x64-musl@0.1.12:
-    resolution: {integrity: sha512-js2ymRLSzpvNHjDhLccEDrOlNIKHos6YRKLBrPXFDlRa1iqa1hfRsqWud5gU+JF1uyxhNPxAINT6sveyiEJNQQ==}
+  /@reflink/reflink-linux-x64-musl@0.1.13:
+    resolution: {integrity: sha512-ML8yhU0JiFatXjWVSKiwj9GqoFzqlPmycqa4/ZpvqjAViIFvtzrQW6HZRmQGK2ncMZ02shZrFjaXUCzviAvzyA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -1038,8 +1038,8 @@ packages:
     dev: true
     optional: true
 
-  /@reflink/reflink-win32-arm64-msvc@0.1.12:
-    resolution: {integrity: sha512-fGoFaJR+qPjzcv+c2i9QpI3dy0s6JnfbtTrxUXfJMp/Lauod4r3K3zbWAGhbNW4C30ZoA1NZGIoME3m76a144Q==}
+  /@reflink/reflink-win32-arm64-msvc@0.1.13:
+    resolution: {integrity: sha512-ckLwvSu7EoRNk89xXYiAYvtBTlo6alTxq0GiKqY7Solz6x85eyg2g+tjGp2CexZPcGsMq2wjb62oVKDCWUYJWQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
@@ -1047,8 +1047,8 @@ packages:
     dev: true
     optional: true
 
-  /@reflink/reflink-win32-x64-msvc@0.1.12:
-    resolution: {integrity: sha512-sP8krmzDNrZ50yO+UxeLwjF8x8dq3JIb0cKwVhg7kImJrZguwiB/Y0c1aEfaBcliCLR5jcp47Dt9bI5EP8N1jg==}
+  /@reflink/reflink-win32-x64-msvc@0.1.13:
+    resolution: {integrity: sha512-2ZdOxK+sd3ugB0Yw/2Mh50UW/tacCtsF5rgcuK4awWXiz87DXDO0okySJTXkcXp1u/y1zR8vv2wJUFwGZFqPgQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -1056,18 +1056,18 @@ packages:
     dev: true
     optional: true
 
-  /@reflink/reflink@0.1.12:
-    resolution: {integrity: sha512-ew/1rsLaPCUbBjP8caRzyCCAIEb+bNqlR5Tnco6UUk7P1oR3UfwGPdlJIJUqZrWDfhsoTV1I5APPe+w4zJJE0g==}
+  /@reflink/reflink@0.1.13:
+    resolution: {integrity: sha512-bYKb+DSbbv3XjTML7chM0QTddeNi825f7NZuDDHkEHVz0tIYKKWUcUqJTz3etOCZiZzl4QmPsAWLYAzEAVKZPw==}
     engines: {node: '>= 10'}
     optionalDependencies:
-      '@reflink/reflink-darwin-arm64': 0.1.12
-      '@reflink/reflink-darwin-x64': 0.1.12
-      '@reflink/reflink-linux-arm64-gnu': 0.1.12
-      '@reflink/reflink-linux-arm64-musl': 0.1.12
-      '@reflink/reflink-linux-x64-gnu': 0.1.12
-      '@reflink/reflink-linux-x64-musl': 0.1.12
-      '@reflink/reflink-win32-arm64-msvc': 0.1.12
-      '@reflink/reflink-win32-x64-msvc': 0.1.12
+      '@reflink/reflink-darwin-arm64': 0.1.13
+      '@reflink/reflink-darwin-x64': 0.1.13
+      '@reflink/reflink-linux-arm64-gnu': 0.1.13
+      '@reflink/reflink-linux-arm64-musl': 0.1.13
+      '@reflink/reflink-linux-x64-gnu': 0.1.13
+      '@reflink/reflink-linux-x64-musl': 0.1.13
+      '@reflink/reflink-win32-arm64-msvc': 0.1.13
+      '@reflink/reflink-win32-x64-msvc': 0.1.13
     dev: true
 
   /@rollup/plugin-alias@5.0.1(rollup@4.1.5):
