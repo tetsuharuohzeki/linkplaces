@@ -46,6 +46,6 @@
         "picomatch": "3.0.1",
         "postcss": "8.4.31",
         "postcss-import": "15.1.0",
-        "rollup": "4.1.5"
+        "rollup": "4.2.0"
     }
 }
