@@ -5,6 +5,7 @@ import {
 } from '@linkplaces/ipc_message';
 import type { BookmarkId } from '@linkplaces/webext_types';
 
+import { isNotNull } from 'option-t/esm/Nullable';
 import {
     orElseForResult,
     unwrapOk,
@@ -17,7 +18,13 @@ import {
 
 import type { RemoteActionChannel } from './SidebarMessageChannel.js';
 import type { SidebarPlainReduxStore } from './SidebarStore.js';
-import { tryToGetTextPlain, tryToGetTextUriList } from './epic/drag_and_drop.js';
+import {
+    hasSupportedMimeType,
+    isSupportedFirefoxTabDrag,
+    tryGetUrlFromFirefoxTab,
+    tryToGetTextPlain,
+    tryToGetTextUriList,
+} from './epic/drag_and_drop.js';
 
 export class SidebarEpic {
     private _channel: RemoteActionChannel;
@@ -41,9 +48,21 @@ export class SidebarEpic {
         registerItemViaChannel(this._channel, url);
     }
 
-    dropItemLikeHyperLink(event: DragEvent): void {
+    async dropItemLikeHyperLink(event: DragEvent): Promise<void> {
         const dataTransfer = event.dataTransfer;
         if (!dataTransfer) {
+            return;
+        }
+
+        if (!hasSupportedMimeType(dataTransfer)) {
+            return;
+        }
+
+        if (isSupportedFirefoxTabDrag(dataTransfer)) {
+            const items = await tryGetUrlFromFirefoxTab(dataTransfer);
+            if (isNotNull(items)) {
+                registerMultipleItemViaChannel(this._channel, items);
+            }
             return;
         }
 
@@ -55,9 +74,13 @@ export class SidebarEpic {
         }
 
         const list = unwrapOk(result);
-        for (const url of list) {
-            registerItemViaChannel(this._channel, url);
-        }
+        registerMultipleItemViaChannel(this._channel, list);
+    }
+}
+
+function registerMultipleItemViaChannel(channel: RemoteActionChannel, list: Array<string>): void {
+    for (const url of list) {
+        registerItemViaChannel(channel, url);
     }
 }
 

@@ -19,6 +19,6 @@ export class SidebarIntent {
     }
 
     dropItemLikeHyperLink(event: DragEvent): void {
-        this._epic.dropItemLikeHyperLink(event);
+        this._epic.dropItemLikeHyperLink(event).catch(console.error);
     }
 }

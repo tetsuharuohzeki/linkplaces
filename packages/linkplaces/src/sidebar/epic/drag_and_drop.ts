@@ -1,9 +1,12 @@
 import { Ix } from '@linkplaces/foundation';
 import type { Nullable } from 'option-t/Nullable';
 import { type Result, createOk, createErr, unwrapOrFromResult } from 'option-t/PlainResult';
+import { unwrapUndefinable } from 'option-t/esm/Undefinable';
 
 const MIME_TEXT_PLAIN = 'text/plain';
 const MIME_TEXT_URI_LIST = 'text/uri-list';
+// This is set for Firefox's tab D&D.
+const MIME_TEXT_X_MOZ_TEXT_INTERNAL = 'text/x-moz-text-internal';
 
 class SiderbarDropItemProcessingError extends Error {
     constructor(message: string, cause?: unknown) {
@@ -12,6 +15,49 @@ class SiderbarDropItemProcessingError extends Error {
         });
         this.name = this.constructor.name;
     }
+}
+
+const SUPPORTED_MIME_SET: ReadonlySet<string> = new Set([
+    MIME_TEXT_PLAIN,
+    MIME_TEXT_URI_LIST,
+    MIME_TEXT_X_MOZ_TEXT_INTERNAL,
+]);
+
+export function hasSupportedMimeType(dataTransfer: DataTransfer) {
+    for (const type of dataTransfer.types) {
+        const has = SUPPORTED_MIME_SET.has(type);
+        if (has) {
+            return true;
+        }
+    }
+    return false;
+}
+
+export function isSupportedFirefoxTabDrag(dataTransfer: DataTransfer): boolean {
+    const dataTransferTypes = dataTransfer.types;
+    if (dataTransferTypes.length === 0 || !dataTransferTypes.includes(MIME_TEXT_X_MOZ_TEXT_INTERNAL)) {
+        return false;
+    }
+    return true;
+}
+
+export async function tryGetUrlFromFirefoxTab(dataTransfer: DataTransfer): Promise<Nullable<Array<string>>> {
+    const list = [];
+    for (let i = 0, dataTransferItems = dataTransfer.items, l = dataTransferItems.length; i < l; ++i) {
+        const item = unwrapUndefinable(dataTransferItems[i]);
+        if (item.type !== MIME_TEXT_X_MOZ_TEXT_INTERNAL) {
+            continue;
+        }
+
+        const value = new Promise<string>((resolve) => item.getAsString(resolve));
+        list.push(value);
+    }
+
+    const result = await Promise.all(list);
+    const filtered = result.filter((item) => {
+        return URL.canParse(item);
+    });
+    return filtered;
 }
 
 export function tryToGetTextUriList(
