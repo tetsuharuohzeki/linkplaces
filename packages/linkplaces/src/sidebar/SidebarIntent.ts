@@ -17,4 +17,8 @@ export class SidebarIntent {
     pasteItemFromClipboardActionActual(event: ClipboardEvent): void {
         this._epic.pasteItemFromClipboardActionActual(event);
     }
+
+    dropItemLikeHyperLink(event: DragEvent): void {
+        this._epic.dropItemLikeHyperLink(event);
+    }
 }

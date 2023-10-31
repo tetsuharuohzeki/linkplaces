@@ -82,6 +82,8 @@ export class SidebarContext extends ReactRuledViewContext {
             })
         );
 
+        activateDragAndDropTextItemHandling(rootSubscription, intent);
+
         this._subscription = rootSubscription;
     }
 
@@ -92,6 +94,28 @@ export class SidebarContext extends ReactRuledViewContext {
 
         this._destroyRenderRoot();
     }
+}
+
+function activateDragAndDropTextItemHandling(rootSubscription: Subscription, intent: SidebarIntent) {
+    rootSubscription.add(
+        fromEventToObservable(window, 'dragover').subscribe((event) => {
+            // This is required to allow to customize on drop event.
+            event.preventDefault();
+        })
+    );
+
+    const dropEventObservable = fromEventToObservable(window, 'drop');
+    rootSubscription.add(
+        dropEventObservable.subscribe((event) => {
+            if (!(event instanceof DragEvent)) {
+                throw new TypeError(`this event should be paste but coming is ${event.type}`);
+            }
+
+            event.preventDefault();
+
+            intent.dropItemLikeHyperLink(event);
+        })
+    );
 }
 
 function subscribeSidebarRepositoryBySidebarStore(
