@@ -8,7 +8,7 @@ import {
 } from '@linkplaces/foundation';
 
 import { unwrapOrFromNullable } from 'option-t/Nullable/unwrapOr';
-import type * as React from 'react';
+import type { HTMLAttributes as ReactHTMLAttributes } from 'react';
 
 export const ATTR_NAME_ICON_DIR = 'icondir';
 export const ATTR_NAME_ICON_FILE = 'iconfile';
@@ -144,7 +144,7 @@ declare global {
     namespace JSX {
         interface IntrinsicElements {
             [LOCAL_NAME_POPUP_ITEM_ICON]: globalThis.React.DetailedHTMLProps<
-                React.HTMLAttributes<PopupItemIconElement> & PopupItemIconElementAttr,
+                ReactHTMLAttributes<PopupItemIconElement> & PopupItemIconElementAttr,
                 PopupItemIconElement
             >;
         }
