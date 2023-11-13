@@ -12,8 +12,8 @@ importers:
         specifier: ^8.53.0
         version: 8.53.0
       '@monorepo-utils/workspaces-to-typescript-project-references':
-        specifier: ^2.10.2
-        version: 2.10.2
+        specifier: ^2.10.4
+        version: 2.10.4
       '@reflink/reflink':
         specifier: ^0.1.13
         version: 0.1.13
@@ -904,8 +904,8 @@ packages:
     resolution: {integrity: sha512-Y9XQrphVcE6u9xMm+gIqN86opbU/5s2W1pdPyKRyFV5B7+2jWM2gLI5JpfhZncaoDKvhy6FYwK04aCz5UM/bTQ==}
     dev: true
 
-  /@monorepo-utils/package-utils@2.10.2:
-    resolution: {integrity: sha512-odg+fuirDKxNYMbXWHbOGH/yrMympIoW2mLvlQwFbYvltA4hstAypVmhjenB5mcPitanGVi9Di7sReIHOUBKfg==}
+  /@monorepo-utils/package-utils@2.10.4:
+    resolution: {integrity: sha512-K7l4fuqrHfaq5TWmN4S/LclS1E7GocTt7VogEPmxlbISM5YSjZNyk29Q6iOZunCxr//2rO/HL0LzKeM45sTeUA==}
     dependencies:
       globby: 11.1.0
       load-json-file: 6.2.0
@@ -913,11 +913,11 @@ packages:
       yaml: 2.3.2
     dev: true
 
-  /@monorepo-utils/workspaces-to-typescript-project-references@2.10.2:
-    resolution: {integrity: sha512-fc2qvUMTtD9UmclT6mAE8sq28J3jIKuv6+BSqAHnpn5emmYJqU2yVsPYuJaSN9S3yXSTUE57nXWRy3g7nYkzEQ==}
+  /@monorepo-utils/workspaces-to-typescript-project-references@2.10.4:
+    resolution: {integrity: sha512-8Qo8TwVQqw9mOAT46B5svM/Yy7M7ddo1cpZ9cRVMQ5pwylsQUGyDrGtcwN10mHYslxJkVRDCfdQx7yPPBAmCDw==}
     hasBin: true
     dependencies:
-      '@monorepo-utils/package-utils': 2.10.2
+      '@monorepo-utils/package-utils': 2.10.4
       comment-json: 3.0.3
       meow: 7.1.1
       semver-match: 0.1.1
@@ -4040,12 +4040,6 @@ packages:
       ci-info: 3.8.0
     dev: true
 
-  /is-core-module@2.13.0:
-    resolution: {integrity: sha512-Z7dk6Qo8pOCp3l4tsX2C5ZVas4V+UxwQodwZhLopL91TX8UyyHEXafPcyoeeWuLrwzHcr3igO78wNLwHJHsMCQ==}
-    dependencies:
-      has: 1.0.3
-    dev: true
-
   /is-core-module@2.13.1:
     resolution: {integrity: sha512-hHrIjvZsftOsvKSn2TRYl63zvxsgE0K+0mYMoH6gD4omR5IWB2KynivBQczo3+wF1cCkjzvptnI9Q0sPU66ilw==}
     dependencies:
@@ -4982,7 +4976,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       hosted-git-info: 4.1.0
-      is-core-module: 2.13.0
+      is-core-module: 2.13.1
       semver: 7.5.4
       validate-npm-package-license: 3.0.4
     dev: true
@@ -5801,7 +5795,7 @@ packages:
     resolution: {integrity: sha512-Sb+mjNHOULsBv818T40qSPeRiuWLyaGMa5ewydRLFimneixmVy2zdivRl+AF6jaYPC8ERxGDmFSiqui6SfPd+g==}
     hasBin: true
     dependencies:
-      is-core-module: 2.13.0
+      is-core-module: 2.13.1
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
@@ -5819,7 +5813,7 @@ packages:
     resolution: {integrity: sha512-iMDbmAWtfU+MHpxt/I5iWI7cY6YVEZUQ3MBgPQ++XD1PELuJHIl82xBmObyP2KyQmkNB2dsqF7seoQQiAn5yDQ==}
     hasBin: true
     dependencies:
-      is-core-module: 2.13.0
+      is-core-module: 2.13.1
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
