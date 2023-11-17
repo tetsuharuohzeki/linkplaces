@@ -21,6 +21,7 @@ export class PopupMainEpic {
         return closeWindow();
     }
 
+    // eslint-disable-next-line @typescript-eslint/class-methods-use-this
     async openWebExtSidebar(): Promise<void> {
         // These funcs should be called by user interaction.
         const sidebarOpen = openWebExtSidebarDirect(browser.sidebarAction);
