@@ -1,38 +1,20 @@
-import type { ExtensionRuntime, ExtensionMessageSender } from '@linkplaces/webext_types';
+import type { ExtensionMessageSender } from '@linkplaces/webext_types';
 import type { AssertTypeGuardFn } from './AssertTypeGuardFn.js';
 
 import type { TowerService } from './framework/service_trait.js';
 
 export class SendMessageResponder<const in out TRequest, const in out TResponse> {
-    private _runtime: ExtensionRuntime;
-    private _onMessage: typeof SendMessageResponder.prototype.onMessage = this.onMessage.bind(this);
-
     private _validator: AssertTypeGuardFn<TRequest>;
     private _service: TowerService<[req: TRequest], TResponse>;
 
-    constructor(runtime: ExtensionRuntime, validator: AssertTypeGuardFn<TRequest>, service: TowerService<[req: TRequest], TResponse>) {
-        this._runtime = runtime;
+    constructor(validator: AssertTypeGuardFn<TRequest>, service: TowerService<[req: TRequest], TResponse>) {
         this._validator = validator;
         this._service = service;
     }
 
-    private _initialize(): void {
-        const runtime = this._runtime;
-        runtime.onMessage.addListener(this._onMessage);
-    }
-
     destory(): void {
-        const runtime = this._runtime;
-        runtime.onMessage.removeListener(this._onMessage);
-
         this._service = null as never;
         this._validator = null as never;
-        this._onMessage = null as never;
-        this._runtime = null as never;
-    }
-
-    run(): void {
-        this._initialize();
     }
 
     async onMessage(message: object, _sender: ExtensionMessageSender): Promise<unknown> {
