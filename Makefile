@@ -7,9 +7,8 @@ PKG_MAIN_DIST_DIR := $(PKG_MAIN)/__dist
 
 ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
 
-ESLINT_TARGET_EXTENSION := js,jsx,cjs,mjs,ts,tsx,cts,mts
 PRETTIER_TARGET := '$(CURDIR)/**/*.{css,yaml,yml}'
-PRETTIER_TARGET_JS := '$(CURDIR)/**/*.{$(ESLINT_TARGET_EXTENSION)}'
+PRETTIER_TARGET_JS := '$(CURDIR)/**/*.{js,jsx,cjs,mjs,ts,tsx,cts,mts}'
 
 all: help
 
@@ -76,10 +75,10 @@ typecheck: ## Check static typing integrity
 lint: eslint stylelint check_relationship_between_workspace_and_ts_pj_reference ## Run all lints.
 
 eslint: ## Run ESLint
-	$(NPM_BIN_DIR)/eslint '$(CURDIR)/**/*.{$(ESLINT_TARGET_EXTENSION)}'
+	$(NPM_BIN_DIR)/eslint '.'
 
 eslint_fix: ## Run ESLint with --fix option
-	$(NPM_BIN_DIR)/eslint '$(CURDIR)/**/*.{$(ESLINT_TARGET_EXTENSION)}' --fix
+	$(NPM_BIN_DIR)/eslint '.' --fix
 
 stylelint: ## Run stylelint
 	$(NPM_BIN_DIR)/stylelint '$(CURDIR)/**/*.css' \
