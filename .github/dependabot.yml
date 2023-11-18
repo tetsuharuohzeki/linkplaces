@@ -44,3 +44,15 @@ updates:
       labels:
           - A-dependency
           - I-dependency-gardening
+
+    #####################################################
+    #   In-repository composite actions
+    #####################################################
+    - package-ecosystem: github-actions
+      directory: "/.github/actions/setup_ci/"
+      schedule:
+          interval: weekly
+      open-pull-requests-limit: 99
+      labels:
+          - A-dependency
+          - I-dependency-gardening
