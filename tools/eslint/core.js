@@ -1,8 +1,4 @@
-import importPlugin from 'eslint-plugin-import';
-
-import { config as prettierRules } from './prettier.js';
 import corePresets from './vendor/core.cjs';
-import importPresets from './vendor/import.cjs';
 
 const builtinRules = Object.freeze({
     // In JavaScript, after ES Module or CommonJS era (single module per single file),
@@ -56,7 +52,7 @@ const builtinRules = Object.freeze({
     'valid-typeof': ['error', { requireStringLiterals: true }],
 });
 
-const projectRules = Object.freeze({
+const projectSpecificRules = Object.freeze({
     'no-magic-numbers': 'off',
 
     'no-restricted-imports': [
@@ -72,50 +68,15 @@ const projectRules = Object.freeze({
             ],
         },
     ],
-
-    'import/no-unresolved': [
-        'error',
-        {
-            ignore: [
-                // We disable this rule until https://github.com/import-js/eslint-plugin-import/issues/1810 will be resolved.
-                'ava',
-                '^option-t/.*',
-                '^@typescript-eslint/.*',
-            ],
-        },
-    ],
 });
 
-export const rulesForESModule = Object.freeze({
-    'import/extensions': [
-        'error',
-        'always',
-        {
-            ignorePackages: true,
-        },
-    ],
-});
-
+/**
+ *  @type   {import('eslint').Linter.FlatConfig}
+ */
 export const config = Object.freeze({
-    plugins: {
-        import: importPlugin,
-    },
     rules: {
         ...corePresets.rules,
         ...builtinRules,
-        ...importPresets.rules,
-        ...prettierRules.rules,
-        ...projectRules,
-        ...rulesForESModule,
-    },
-    settings: {
-        ...importPresets.settings,
-        'import/parsers': {
-            '@typescript-eslint/parser': [
-                ...['.ts', '.tsx', '.mts', '.cts'],
-                // We need to specify this due to avoid `Parse errors in imported module './prettier.js': parserPath is required!`
-                ...['.js', '.mjs', '.cjs'],
-            ],
-        },
+        ...projectSpecificRules,
     },
 });
