@@ -17,5 +17,5 @@ export {
 export { PacketResponder } from './port/PacketResponder.js';
 export { ReplyPacketResponder } from './port/ReplyPacketResponder.js';
 export { SendMessageSender, MessageResponderSideError } from './SendMessageSender.js';
-export { SendMessageResponder, callResponderServiceWithMessage } from './SendMessageResponder.js';
+export { callResponderServiceWithMessage } from './SendMessageResponder.js';
 export type { TowerService } from './framework/service_trait.js';
