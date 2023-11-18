@@ -42,7 +42,7 @@ export class OnPortServerConnection {
     }
 
     private async _callService(packet: Packet<unknown>): Promise<void> {
-        const res = await this._service.call(packet);
+        const res = await this._service.process(packet);
         if (!res) {
             return;
         }

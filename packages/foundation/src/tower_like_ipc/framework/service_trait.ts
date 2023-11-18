@@ -3,5 +3,8 @@
 export type AnyTuple = ReadonlyArray<unknown>;
 
 export interface TowerService<in TArgs extends AnyTuple, out TOutput> {
-    call(...args: TArgs): Promise<TOutput>;
+    // If we use `.call()` as for this naming,
+    // TypeScript compiler accepts a normal function as an object
+    // having `.call` as `Function.prototype.call`. It's error prone.
+    process(...args: TArgs): Promise<TOutput>;
 }

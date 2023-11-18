@@ -26,14 +26,14 @@ export class PacketResponder<const in TRequestBody, const out TResponse>
         this._replyResponder = null as never;
     }
 
-    async call(req: Packet<unknown>): Promise<Nullable<Packet<TResponse>>> {
+    async process(req: Packet<unknown>): Promise<Nullable<Packet<TResponse>>> {
         if (isIdentifiablePacket(req)) {
-            const res = await this._replyResponder.call(req);
+            const res = await this._replyResponder.process(req);
             return res;
         }
 
         if (isOneShotPacket(req)) {
-            const res = await this._oneshotReponder.call(req);
+            const res = await this._oneshotReponder.process(req);
             return res;
         }
 

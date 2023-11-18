@@ -21,12 +21,12 @@ export class ReplyPacketResponder<const in TInnerArgs, const out TInnerOutput>
         this._validator = null as never;
     }
 
-    async call(req: Packet<unknown>): Promise<Nullable<Packet<TInnerOutput>>> {
+    async process(req: Packet<unknown>): Promise<Nullable<Packet<TInnerOutput>>> {
         assertIdentifiablePacket(req);
 
         const { id, payload } = req;
         this._validator(payload);
-        const result: TInnerOutput = await this._source.call(payload);
+        const result: TInnerOutput = await this._source.process(payload);
         const response = createIdentifiablePacket(id, result);
         return response;
     }

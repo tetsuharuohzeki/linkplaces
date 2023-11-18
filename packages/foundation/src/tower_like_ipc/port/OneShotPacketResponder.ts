@@ -19,12 +19,12 @@ export class OneShotPacketResponder<const in TInnerArgs, const out TInnerOutput>
         this._validator = null as never;
     }
 
-    async call(req: Packet<unknown>): Promise<null> {
+    async process(req: Packet<unknown>): Promise<null> {
         assertOneShotPacket(req);
 
         const payload = req.payload;
         this._validator(payload);
-        await this._source.call(payload);
+        await this._source.process(payload);
         return null;
     }
 }
