@@ -1,5 +1,4 @@
 import { NoImplementationError } from '@linkplaces/foundation';
-import type { TowerService } from '@linkplaces/foundation/tower_like_ipc';
 import {
     type WhereToOpenItem,
     type RemoteAction,
@@ -11,22 +10,20 @@ import type { BookmarkId } from '@linkplaces/webext_types';
 
 import { createTab } from './TabOpener.js';
 
-export class BackgroundRemoteActionReciever implements TowerService<[req: RemoteAction], void> {
-    async call(msg: RemoteAction): Promise<void> {
-        switch (msg.type) {
-            case MSG_TYPE_OPEN_URL: {
-                const { id, url, where } = msg.value;
-                await openUrlFromPopup(url, id, where);
-                return;
-            }
-            case MSG_TYPE_REGISTER_URL: {
-                const { url, title } = msg.value;
-                await createBookmarkItem(url, title);
-                return;
-            }
-            default:
-                throw new RangeError(`undefined type: ${JSON.stringify(msg)}`);
+export async function callBackgroundRemoteActionReciever(msg: RemoteAction): Promise<void> {
+    switch (msg.type) {
+        case MSG_TYPE_OPEN_URL: {
+            const { id, url, where } = msg.value;
+            await openUrlFromPopup(url, id, where);
+            return;
         }
+        case MSG_TYPE_REGISTER_URL: {
+            const { url, title } = msg.value;
+            await createBookmarkItem(url, title);
+            return;
+        }
+        default:
+            throw new RangeError(`undefined type: ${JSON.stringify(msg)}`);
     }
 }
 
