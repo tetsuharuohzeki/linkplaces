@@ -23,12 +23,12 @@ class AsyncFilterMapIterable<const in out TInput, const in out TOutput, const in
     }
 
     [Symbol.asyncIterator](): AsyncIterator<TOutput> {
-        const iter = generateForIterator(this._source, this._filterMap, this._nullComparator);
+        const iter = generateFilterMapIterator(this._source, this._filterMap, this._nullComparator);
         return iter;
     }
 }
 
-async function* generateForIterator<const TInput, const TOutput, const TNone>(
+async function* generateFilterMapIterator<const TInput, const TOutput, const TNone>(
     iter: AsyncIterable<TInput>,
     transformer: AsyncFilterMapFn<TInput, TOutput, TNone>,
     noneValComparator: NoneValComparatorFn<TOutput, TNone>

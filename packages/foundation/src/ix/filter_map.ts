@@ -22,12 +22,12 @@ class FilterMapIterable<const in out TInput, const in out TOutput, const in out 
     }
 
     [Symbol.iterator](): Iterator<TOutput> {
-        const iter = generateForIterator(this._source, this._filterMap, this._nullComparator);
+        const iter = generateFilterMapIterator(this._source, this._filterMap, this._nullComparator);
         return iter;
     }
 }
 
-function* generateForIterator<const TInput, const TOutput, const TNone>(
+function* generateFilterMapIterator<const TInput, const TOutput, const TNone>(
     iter: Iterable<TInput>,
     transformer: FilterMapFn<TInput, TOutput, TNone>,
     noneValComparator: NoneValComparatorFn<TOutput, TNone>

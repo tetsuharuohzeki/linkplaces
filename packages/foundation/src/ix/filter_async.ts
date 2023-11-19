@@ -11,12 +11,12 @@ class FilterAsyncIterable<const in out T> extends AsyncIterableX<T> {
     }
 
     [Symbol.asyncIterator](): AsyncIterator<T> {
-        const iter = generateAsyncForAsyncIterator(this._source, this._filter);
+        const iter = generateFilterAsyncIterator(this._source, this._filter);
         return iter;
     }
 }
 
-async function* generateAsyncForAsyncIterator<const T>(
+async function* generateFilterAsyncIterator<const T>(
     iter: AsyncIterable<T>,
     filter: AsyncFilterFn<T>
 ): AsyncIterator<T> {
