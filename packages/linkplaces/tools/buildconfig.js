@@ -21,7 +21,7 @@ const ENABLE_REACT_PROFILER = mapOrForMaybe(process.env.ENABLE_REACT_PROFILER, f
     return enabled;
 });
 
-const ENABLE_MV3 = false;
+const ENABLE_MV3 = true;
 const USE_EVENT_PAGE_WORKAROUND = ENABLE_MV3;
 
 export {
