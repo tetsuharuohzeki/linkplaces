@@ -15,6 +15,8 @@ import {
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
     ENABLE_REACT_PROFILER,
+    ENABLE_MV3,
+    USE_EVENT_PAGE_WORKAROUND,
 } from './tools/buildconfig.js';
 
 console.log(`
@@ -25,6 +27,8 @@ RELEASE_CHANNEL: ${RELEASE_CHANNEL}
 LIB_NODE_ENV: ${LIB_NODE_ENV}
 IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
 ENABLE_REACT_PROFILER: ${ENABLE_REACT_PROFILER}
+ENABLE_MV3: ${ENABLE_MV3}
+USE_EVENT_PAGE_WORKAROUND: ${USE_EVENT_PAGE_WORKAROUND}
 ======================================
 `);
 
@@ -80,14 +84,12 @@ export default async function createConfiguration(_commandLineArgs) {
             interop: 'esModule',
 
             sourcemap: true,
-            globals: {
-            },
+            globals: {},
 
             inlineDynamicImports: false,
         },
 
-        external: [
-        ],
+        external: [],
 
         perf: false,
 
@@ -121,15 +123,16 @@ export default async function createConfiguration(_commandLineArgs) {
 
             // https://github.com/rollup/plugins/tree/master/packages/replace
             replace({
-                exclude: [
-                    'node_modules/**',
-                ],
+                exclude: ['node_modules/**'],
                 delimiters: ['', ''],
                 preventAssignment: true,
                 values: {
                     '__COMPILE_TIME_EMBEDDED_CONSTANTS__.GIT_REVISION': JSON.stringify(GIT_REVISION),
                     '__COMPILE_TIME_EMBEDDED_CONSTANTS__.BUILD_DATE': JSON.stringify(BUILD_DATE),
                     '__COMPILE_TIME_EMBEDDED_CONSTANTS__.RELEASE_CHANNEL': JSON.stringify(RELEASE_CHANNEL),
+                    '__COMPILE_TIME_EMBEDDED_CONSTANTS__.ENABLE_MV3': JSON.stringify(ENABLE_MV3),
+                    '__COMPILE_TIME_EMBEDDED_CONSTANTS__.USE_EVENT_PAGE_WORKAROUND':
+                        JSON.stringify(USE_EVENT_PAGE_WORKAROUND),
                 },
             }),
             replace({
