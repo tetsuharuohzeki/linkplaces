@@ -10,7 +10,7 @@
     },
     "packageManager": "pnpm@8.11.0",
     "devDependencies": {
-        "@eslint/js": "^8.54.0",
+        "@eslint/js": "^8.55.0",
         "@monorepo-utils/workspaces-to-typescript-project-references": "^2.10.4",
         "@reflink/reflink": "^0.1.14",
         "@types/node": "20.10.3",
@@ -18,7 +18,7 @@
         "@types/react-dom": "18.2.17",
         "@typescript-eslint/eslint-plugin": "6.13.1",
         "@typescript-eslint/parser": "6.13.1",
-        "eslint": "8.54.0",
+        "eslint": "8.55.0",
         "eslint-config-prettier": "9.1.0",
         "eslint-plugin-import": "2.29.0",
         "eslint-plugin-react": "7.33.2",
