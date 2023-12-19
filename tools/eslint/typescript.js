@@ -27,6 +27,9 @@ const rules = Object.freeze({
     // It causes an unpredictable side effect caused by chaning the order of import for whole of the module graph.
     '@typescript-eslint/no-import-type-side-effects': 'error',
 
+    // Sugget more simplified code.
+    '@typescript-eslint/no-useless-template-literals': 'warn',
+
     // In JavaScript, after ES Module or CommonJS era (single module per single file),
     // excluding the case to improve an API ergonomics or requirement to implement an object interface,
     // we don't have to belong a function that does not touch `this` to a class unlike Java or C++.
