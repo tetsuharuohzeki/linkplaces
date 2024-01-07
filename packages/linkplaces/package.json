@@ -42,7 +42,7 @@
         "@rollup/plugin-replace": "5.0.5",
         "ava": "6.0.1",
         "esbuild": "0.19.11",
-        "jsdom": "23.0.1",
+        "jsdom": "23.2.0",
         "picomatch": "3.0.1",
         "postcss": "8.4.32",
         "postcss-import": "16.0.0",
