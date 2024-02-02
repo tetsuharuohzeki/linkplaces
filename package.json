@@ -14,7 +14,7 @@
         "@monorepo-utils/workspaces-to-typescript-project-references": "^2.10.4",
         "@reflink/reflink": "^0.1.16",
         "@types/node": "20.11.15",
-        "@types/react": "18.2.48",
+        "@types/react": "18.2.51",
         "@types/react-dom": "18.2.18",
         "@typescript-eslint/eslint-plugin": "6.20.0",
         "@typescript-eslint/parser": "6.20.0",
