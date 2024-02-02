@@ -40,7 +40,7 @@
         "@rollup/plugin-commonjs": "25.0.7",
         "@rollup/plugin-node-resolve": "15.2.3",
         "@rollup/plugin-replace": "5.0.5",
-        "ava": "6.1.0",
+        "ava": "6.1.1",
         "esbuild": "0.19.12",
         "jsdom": "24.0.0",
         "picomatch": "3.0.1",
