@@ -1,6 +1,3 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
 import js from '@eslint/js';
 
 import { config as coreConfig } from './tools/eslint/core.js';
@@ -14,8 +11,7 @@ import { configs as prettierConfigs } from './tools/eslint/prettier.js';
 import * as reactConfig from './tools/eslint/react.js';
 import { createlanguageOptionsForTypeScript, config as configForTypeScript } from './tools/eslint/typescript.js';
 
-const THIS_FILE_NAME = fileURLToPath(import.meta.url);
-const THIS_DIR_NAME = path.dirname(THIS_FILE_NAME);
+const THIS_DIR_NAME = import.meta.dirname;
 
 const FILE_PATTERN_JS_ESM = ['**/*.mjs', '**/*.js'];
 const FILE_PATTERN_JS_CJS = ['**/*.cjs'];
