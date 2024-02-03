@@ -24,6 +24,7 @@
         "persistent": true
     },
     "browser_action": {
+        "browser_style": false,
         "default_icon": {
             "16": "resources/16x16-dark.svg",
             "32": "resources/16x16-dark.svg"
@@ -44,6 +45,7 @@
         ]
     },
     "sidebar_action": {
+        "browser_style": false,
         "default_icon": {
             "16": "resources/16x16.svg",
             "32": "resources/16x16.svg"
