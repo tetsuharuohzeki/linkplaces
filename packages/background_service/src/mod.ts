@@ -17,6 +17,9 @@ import { appendContextMenu, onClickContextMenu } from './ContextMenu.js';
             // on [Firefox 106.0a1](https://hg.mozilla.org/mozilla-central/rev/c731914e80964349114e473544e7a7165cae3cc1)
             // So we need place this intializer in the top level scope even if the background page is non-persistent.
             appendContextMenu(browser);
+            runtime.onInstalled.addListener(() => {
+                appendContextMenu(browser);
+            });
         } else {
             runtime.onInstalled.addListener(() => {
                 appendContextMenu(browser);
