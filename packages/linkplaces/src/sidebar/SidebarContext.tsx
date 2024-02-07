@@ -1,15 +1,9 @@
+import { Subscription, fromEventToObservable, operators, type Unsubscribable } from '@linkplaces/foundation/rx';
 import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { type Nullable, isNotNull, expectNotNull } from 'option-t/Nullable/Nullable';
 import { StrictMode, useSyncExternalStore, type ReactNode } from 'react';
-
-import {
-    Subscription,
-    asyncScheduler as asyncRxScheduler,
-    fromEvent as fromEventToObservable,
-    subscribeOn as subscribeOnRx,
-} from 'rxjs';
 
 import type { SidebarItemViewModelEntity } from './SidebarDomain.js';
 import { SidebarEpic } from './SidebarEpic.js';
@@ -20,6 +14,8 @@ import { SidebarRepository } from './SidebarRepository.js';
 import type { SidebarState } from './SidebarState.js';
 import { createSidebarStore, type SidebarPlainReduxStore } from './SidebarStore.js';
 import { SidebarView } from './SidebarView.js';
+
+const subscribeOnRx = operators.subscribeOnNextLoop;
 
 export class SidebarContext extends ReactRuledViewContext {
     private _list: Array<BookmarkTreeNode>;
@@ -49,7 +45,7 @@ export class SidebarContext extends ReactRuledViewContext {
         }
         this._initRenderRoot(mountpoint);
 
-        const rootSubscription = new Subscription();
+        const rootSubscription = new Subscription(null);
         const store = createSidebarStore(this._list);
 
         const reduxSubscription = subscribeSidebarRepositoryBySidebarStore(store, this._repo);
@@ -73,7 +69,7 @@ export class SidebarContext extends ReactRuledViewContext {
         const pastEventObservable = fromEventToObservable(window, 'paste');
 
         rootSubscription.add(
-            pastEventObservable.subscribe((event) => {
+            pastEventObservable.subscribeNext((event) => {
                 if (!(event instanceof ClipboardEvent)) {
                     throw new TypeError(`this event should be paste but coming is ${event.type}`);
                 }
@@ -98,7 +94,7 @@ export class SidebarContext extends ReactRuledViewContext {
 
 function activateDragAndDropTextItemHandling(rootSubscription: Subscription, intent: SidebarIntent) {
     rootSubscription.add(
-        fromEventToObservable(window, 'dragover').subscribe((event) => {
+        fromEventToObservable(window, 'dragover').subscribeNext((event) => {
             // This is required to allow to customize on drop event.
             event.preventDefault();
         })
@@ -106,7 +102,7 @@ function activateDragAndDropTextItemHandling(rootSubscription: Subscription, int
 
     const dropEventObservable = fromEventToObservable(window, 'drop');
     rootSubscription.add(
-        dropEventObservable.subscribe((event) => {
+        dropEventObservable.subscribeNext((event) => {
             if (!(event instanceof DragEvent)) {
                 throw new TypeError(`this event should be paste but coming is ${event.type}`);
             }
@@ -121,11 +117,11 @@ function activateDragAndDropTextItemHandling(rootSubscription: Subscription, int
 function subscribeSidebarRepositoryBySidebarStore(
     store: SidebarPlainReduxStore,
     repo: SidebarRepository
-): Subscription {
+): Unsubscribable {
     const subscription = repo
         .asObservable()
-        .pipe(subscribeOnRx(asyncRxScheduler))
-        .subscribe((source: Iterable<SidebarItemViewModelEntity>) => {
+        .pipe(subscribeOnRx())
+        .subscribeNext((source: Iterable<SidebarItemViewModelEntity>) => {
             const state: Readonly<SidebarState> = {
                 list: source,
             };

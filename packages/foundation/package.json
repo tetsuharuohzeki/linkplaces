@@ -7,6 +7,10 @@
             "types": "./__dist/mod.d.ts",
             "default": "./__dist/mod.js"
         },
+        "./rx": {
+            "types": "./__dist/rx/mod.d.ts",
+            "default": "./__dist/rx/mod.js"
+        },
         "./tower_like_ipc": {
             "types": "./__dist/tower_like_ipc/mod.d.ts",
             "default": "./__dist/tower_like_ipc/mod.js"
@@ -24,7 +28,6 @@
         "@linkplaces/webext_types": "workspace:*",
         "option-t": "39.0.1",
         "react": "18.2.0",
-        "react-dom": "18.2.0",
-        "rxjs": "7.8.1"
+        "react-dom": "18.2.0"
     }
 }

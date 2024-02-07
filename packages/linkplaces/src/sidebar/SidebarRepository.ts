@@ -1,10 +1,9 @@
 import { Ix, type Repository } from '@linkplaces/foundation';
+import { BehaviorSubject, Subject, type Observable, operators } from '@linkplaces/foundation/rx';
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 import type { BookmarkTreeNode, WebExtBookmarkService } from '@linkplaces/webext_types';
 
 import type { Nullable } from 'option-t/Nullable/Nullable';
-import { type Observable, BehaviorSubject, Subject, merge as mergeRx, map as mapRx } from 'rxjs';
-
 import { type SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain.js';
 
 type BookmarkId = string;
@@ -40,19 +39,11 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
     }
 
     latestValue(): Array<BookmarkTreeNode> {
-        return this._subject.getValue();
+        return this._subject.value();
     }
 
     next(v: Array<BookmarkTreeNode>): void {
         this._subject.next(v);
-    }
-
-    error(v: Array<BookmarkTreeNode>): void {
-        this._subject.error(v);
-    }
-
-    complete(): void {
-        this._subject.complete();
     }
 
     destroy(): void {
@@ -97,9 +88,9 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
     asObservable(): Observable<Iterable<SidebarItemViewModelEntity>> {
         if (this._obs === null) {
             const o = this._driver.asObservable();
-            const input = mergeRx(o, this._emitter);
+            const input = operators.mergeAll(o, this._emitter);
             this._obs = input.pipe(
-                mapRx((input) => {
+                operators.map((input) => {
                     const o = mapBookmarkTreeNodeToSidebarItemViewModelEntity(input);
                     return o;
                 })
