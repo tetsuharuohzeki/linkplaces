@@ -4,11 +4,13 @@ import type { Unsubscribable } from './subscribable.js';
 import { UnsubscriptionError } from './unsubscription_error.js';
 
 export class Subscription implements Unsubscribable {
-    private _closed: boolean = false;
-    private _finalizers: Nullable<Set<Unsubscribable>> = new Set();
-    private _initialTeardown: Nullable<(this: void) => void> = null;
+    private _closed: boolean;
+    private _finalizers: Nullable<Set<Unsubscribable>>;
+    private _initialTeardown: Nullable<(this: void) => void>;
 
     constructor(initialTeardown: Nullable<() => void>) {
+        this._closed = false;
+        this._finalizers = null;
         this._initialTeardown = initialTeardown;
     }
 

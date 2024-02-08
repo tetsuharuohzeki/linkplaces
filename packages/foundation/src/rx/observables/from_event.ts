@@ -1,7 +1,7 @@
 import { Observable } from '../observable.js';
 import { Subscription } from '../subscription.js';
 
-class FromEventObservable<T extends Event> extends Observable<T> {
+class FromEventObservable extends Observable<Event> {
     constructor(target: EventTarget, eventName: string) {
         super((observer) => {
             const aborter = new AbortController();
@@ -9,7 +9,7 @@ class FromEventObservable<T extends Event> extends Observable<T> {
 
             target.addEventListener(
                 eventName,
-                (event: Event) => {
+                (event) => {
                     observer.next(event);
                 },
                 {
@@ -25,7 +25,7 @@ class FromEventObservable<T extends Event> extends Observable<T> {
     }
 }
 
-export function fromEventToObservable<T extends Event>(target: EventTarget, eventName: string): Observable<T> {
-    const o = new FromEventObservable<T>(target, eventName);
+export function fromEventToObservable(target: EventTarget, eventName: string): Observable<Event> {
+    const o = new FromEventObservable(target, eventName);
     return o;
 }

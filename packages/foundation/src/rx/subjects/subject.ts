@@ -4,21 +4,25 @@ import type { Result } from 'option-t/esm/PlainResult';
 import { Observable } from '../observable.js';
 import type { Observer } from '../observer.js';
 import type { Subscribable } from '../subscribable.js';
-import type { Subscriber } from '../subscriber.js';
+import { PassSubscriber, Subscriber } from '../subscriber.js';
 import { Subscription } from '../subscription.js';
 
 export class Subject<T> extends Observable<T> implements Subscribable<T>, Observer<T> {
-    private _closed: boolean = false;
-    private _observerCounter: number = 0;
-    private _observers: Map<number, Observer<T>> = new Map();
-    private _completeState: Nullable<Result<void, unknown>> = null;
+    private _closed: boolean;
+    private _observerCounter: number;
+    private _observers: Map<number, Observer<T>>;
+    private _completeState: Nullable<Result<void, unknown>>;
 
     constructor() {
-        super((subscriber: Subscriber<unknown, T>) => {
+        super((subscriber: Observer<T>) => {
             this._checkFinalizedStatuses(subscriber);
             const sub = this._innerSubscribe(subscriber);
             return sub;
         });
+        this._closed = false;
+        this._observerCounter = 0;
+        this._observers = new Map();
+        this._completeState = null;
     }
 
     get closed(): boolean {
@@ -70,11 +74,12 @@ export class Subject<T> extends Observable<T> implements Subscribable<T>, Observ
         this._clearObservers();
     }
 
-    protected _innerSubscribe(subscriber: Subscriber<unknown, T>): Subscription {
+    protected _innerSubscribe(observer: Observer<T>): Subscription {
         if (this._closed) {
             return new Subscription(null);
         }
 
+        const subscriber = observer instanceof Subscriber ? observer : new PassSubscriber(observer);
         const currentObservers = this._observers;
         const observerId = this._observerCounter;
         this._observerCounter = observerId + 1;
@@ -87,7 +92,7 @@ export class Subject<T> extends Observable<T> implements Subscribable<T>, Observ
         return subscriber;
     }
 
-    protected _checkFinalizedStatuses(subscriber: Subscriber<unknown, T>) {
+    protected _checkFinalizedStatuses(subscriber: Observer<T>) {
         if (this._closed) {
             const result = unwrapNullable(this._completeState);
             subscriber.complete(result);

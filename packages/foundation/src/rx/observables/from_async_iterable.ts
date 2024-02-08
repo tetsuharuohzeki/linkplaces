@@ -1,6 +1,6 @@
-import { Observable } from '../observable.js';
-import { createObservableFromAsync } from './create_async.js';
+import type { Observable } from '../observable.js';
 import type { Observer } from '../observer.js';
+import { createObservableFromAsync } from './create_async.js';
 
 async function iterate<T>(factory: AsyncIterable<T>, observer: Observer<T>, signal: AbortSignal): Promise<void> {
     for await (const item of factory) {

@@ -3,11 +3,12 @@ import type { Observer } from './observer.js';
 import { Subscription } from './subscription.js';
 
 export abstract class Subscriber<TInput, TOutput> extends Subscription implements Observer<TInput> {
-    private isStopped: boolean = false;
+    private isStopped: boolean;
     protected destination: Observer<TOutput>;
 
     constructor(destination: Observer<TOutput>) {
         super(null);
+        this.isStopped = false;
         this.destination = destination;
     }
 

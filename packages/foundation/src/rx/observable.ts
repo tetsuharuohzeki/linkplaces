@@ -5,20 +5,20 @@ import type { UnaryFunction } from './operator.js';
 import type { Subscribable, Unsubscribable } from './subscribable.js';
 import { PassSubscriber, Subscriber } from './subscriber.js';
 
-type SubscriberFn<T> = (subscriber: Subscriber<unknown, T>) => Unsubscribable;
+type OnSubscribeFn<T> = (subscriber: Observer<T>) => Unsubscribable;
 
 export class Observable<T> implements Subscribable<T> {
-    private _onSubscribe: SubscriberFn<T>;
+    private _onSubscribe: OnSubscribeFn<T>;
 
-    constructor(onSubscribe: SubscriberFn<T>) {
+    constructor(onSubscribe: OnSubscribeFn<T>) {
         this._onSubscribe = onSubscribe;
     }
 
-    protected _getOnSubscribe(): SubscriberFn<T> {
+    protected _getOnSubscribe(): OnSubscribeFn<T> {
         return this._onSubscribe;
     }
 
-    protected _setOnSubscribe(subscriber: SubscriberFn<T>): void {
+    protected _setOnSubscribe(subscriber: OnSubscribeFn<T>): void {
         this._onSubscribe = subscriber;
     }
 
@@ -37,7 +37,7 @@ export class Observable<T> implements Subscribable<T> {
         return s;
     }
 
-    protected _trySubscribe(sink: Subscriber<unknown, T>): Nullable<Unsubscribable> {
+    private _trySubscribe(sink: Subscriber<unknown, T>): Nullable<Unsubscribable> {
         const fn = this._onSubscribe;
         try {
             const s = fn(sink);
