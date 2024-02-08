@@ -1,15 +1,56 @@
+import { isErr, isOk, type Result } from 'option-t/esm/PlainResult';
 import { Observable } from '../observable.js';
+import type { Observer } from '../observer.js';
 import { Subscription } from '../subscription.js';
+
+class MergeObserver<T> implements Observer<T> {
+    private _refCount: number;
+    private _destination: Observer<T>;
+
+    constructor(refCount: number, destination: Observer<T>) {
+        this._refCount = refCount;
+        this._destination = destination;
+    }
+
+    private _decrementRef(): number {
+        this._refCount = this._refCount - 1;
+        return this._refCount;
+    }
+
+    next(value: T): void {
+        this._destination.next(value);
+    }
+
+    errorResume(error: unknown): void {
+        this._destination.errorResume(error);
+    }
+
+    complete(result: Result<void, unknown>): void {
+        if (isErr(result)) {
+            this._destination.complete(result);
+        } else if (isOk(result)) {
+            const currentLivings = this._decrementRef();
+            if (currentLivings <= 0) {
+                this._destination.complete(result);
+            }
+        }
+    }
+}
 
 class MergeAllObservable<T> extends Observable<T> {
     constructor(inputs: ReadonlyArray<Observable<T>>) {
-        super((observer) => {
-            const sub = new Subscription(null);
-            for (const observable of inputs) {
-                const s = observable.subscribe(observer);
-                sub.add(s);
+        super((destination) => {
+            const refCount = inputs.length;
+
+            const rootSubscription = new Subscription(null);
+
+            for (const source of inputs) {
+                const childObserver = new MergeObserver(refCount, destination);
+                const childSubscription = source.subscribe(childObserver);
+                rootSubscription.add(childSubscription);
             }
-            return sub;
+
+            return rootSubscription;
         });
     }
 }
