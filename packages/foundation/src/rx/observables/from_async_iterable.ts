@@ -1,3 +1,4 @@
+import { createOk } from 'option-t/esm/PlainResult';
 import type { Observable } from '../core/observable.js';
 import type { Observer } from '../core/observer.js';
 import { createObservableFromAsync } from './create_async.js';
@@ -10,6 +11,9 @@ async function iterate<T>(factory: AsyncIterable<T>, destination: Observer<T>, s
 
         destination.next(item);
     }
+
+    const ok = createOk<void>(undefined);
+    destination.complete(ok);
 }
 
 export function fromAsyncIterableToObservable<T>(factory: AsyncIterable<T>): Observable<T> {

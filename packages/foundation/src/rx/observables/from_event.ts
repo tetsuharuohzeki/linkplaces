@@ -1,3 +1,4 @@
+import { createOk } from 'option-t/esm/PlainResult';
 import { Observable } from '../core/observable.js';
 import type { Observer } from '../core/observer.js';
 import { Subscription } from '../core/subscription.js';
@@ -20,6 +21,9 @@ class FromEventObservable extends Observable<Event> {
 
             const sub = new Subscription(() => {
                 aborter.abort();
+
+                const ok = createOk<void>(undefined);
+                destination.complete(ok);
             });
             return sub;
         });
