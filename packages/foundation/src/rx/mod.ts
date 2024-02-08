@@ -6,6 +6,7 @@ export { fromEventToObservable } from './observables/from_event.js';
 export * as operators from './operators/mod.js';
 
 export { Observable } from './observable.js';
+export type { Observer } from './observer.js';
 export { Subject } from './subjects/subject.js';
 export { BehaviorSubject } from './subjects/behavior_subject.js';
 export { Subscription } from './subscription.js';
