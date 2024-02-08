@@ -1,4 +1,4 @@
-import type { Subscriber } from '../subscriber.js';
+import type { Observer } from '../observer.js';
 import { Subject } from './subject.js';
 
 export class BehaviorSubject<T> extends Subject<T> {
@@ -7,7 +7,7 @@ export class BehaviorSubject<T> extends Subject<T> {
         super();
         this._value = initial;
         const superSubscribe = this._getOnSubscribe();
-        const sub = (subscriber: Subscriber<unknown, T>) => {
+        const sub = (subscriber: Observer<T>) => {
             const subscription = superSubscribe(subscriber);
             subscriber.next(this._value);
             return subscription;
