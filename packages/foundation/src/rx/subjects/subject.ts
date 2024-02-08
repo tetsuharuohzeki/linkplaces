@@ -8,10 +8,10 @@ import { PassSubscriber, Subscriber } from '../subscriber.js';
 import { Subscription } from '../subscription.js';
 
 export class Subject<T> extends Observable<T> implements Subscribable<T>, Observer<T> {
-    private _closed: boolean = false;
-    private _observerCounter: number = 0;
-    private _observers: Map<number, Observer<T>> = new Map();
-    private _completeState: Nullable<Result<void, unknown>> = null;
+    private _closed: boolean;
+    private _observerCounter: number;
+    private _observers: Map<number, Observer<T>>;
+    private _completeState: Nullable<Result<void, unknown>>;
 
     constructor() {
         super((subscriber: Observer<T>) => {
@@ -19,6 +19,10 @@ export class Subject<T> extends Observable<T> implements Subscribable<T>, Observ
             const sub = this._innerSubscribe(subscriber);
             return sub;
         });
+        this._closed = false;
+        this._observerCounter = 0;
+        this._observers = new Map();
+        this._completeState = null;
     }
 
     get closed(): boolean {

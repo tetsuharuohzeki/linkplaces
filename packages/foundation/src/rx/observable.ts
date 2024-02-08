@@ -37,7 +37,7 @@ export class Observable<T> implements Subscribable<T> {
         return s;
     }
 
-    protected _trySubscribe(sink: Subscriber<unknown, T>): Nullable<Unsubscribable> {
+    private _trySubscribe(sink: Subscriber<unknown, T>): Nullable<Unsubscribable> {
         const fn = this._onSubscribe;
         try {
             const s = fn(sink);
