@@ -14,7 +14,7 @@ export abstract class Observable<T> {
     subscribe(observer: Observer<T>): Unsubscribable {
         const subscriber = observer instanceof Subscriber ? observer : new PassThroughSubscriber(observer);
         try {
-            const subscription = this._onSubscribe(observer);
+            const subscription = this._onSubscribe(subscriber);
             subscriber.setSourceSubscription(subscription);
             return subscriber;
         } catch (err: unknown) {
