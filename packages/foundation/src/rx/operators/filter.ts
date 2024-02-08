@@ -1,8 +1,8 @@
-import type { Observable } from '../observable.js';
-import type { CompletionResult, Observer } from '../observer.js';
-import { OperatorObservable, type OperatorFunction } from '../operator.js';
-import type { Unsubscribable } from '../subscribable.js';
-import { Subscriber } from '../subscriber.js';
+import type { Observable } from '../core/observable.js';
+import type { CompletionResult, Observer } from '../core/observer.js';
+import { OperatorObservable, type OperatorFunction } from '../core/operator.js';
+import type { Unsubscribable } from '../core/subscribable.js';
+import { Subscriber } from '../core/subscriber.js';
 
 export type FilterFn<T> = (value: T) => boolean;
 

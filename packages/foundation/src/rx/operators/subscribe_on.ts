@@ -1,9 +1,9 @@
 import { isNotNull, type Nullable } from 'option-t/esm/Nullable';
-import type { Observable } from '../observable.js';
-import type { Observer } from '../observer.js';
-import { OperatorObservable, type OperatorFunction } from '../operator.js';
-import type { Unsubscribable } from '../subscribable.js';
-import { Subscription } from '../subscription.js';
+import type { Observable } from '../core/observable.js';
+import type { Observer } from '../core/observer.js';
+import { OperatorObservable, type OperatorFunction } from '../core/operator.js';
+import type { Unsubscribable } from '../core/subscribable.js';
+import { Subscription } from '../core/subscription.js';
 
 class SubscribeOnNextLoopObservable<T> extends OperatorObservable<T, T> {
     constructor(source: Observable<T>) {

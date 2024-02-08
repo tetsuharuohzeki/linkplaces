@@ -1,7 +1,7 @@
 import { isErr, isOk, type Result } from 'option-t/esm/PlainResult';
-import { Observable } from '../observable.js';
-import type { Observer } from '../observer.js';
-import { Subscription } from '../subscription.js';
+import { Observable } from '../core/observable.js';
+import type { Observer } from '../core/observer.js';
+import { Subscription } from '../core/subscription.js';
 
 class MergeObserver<T> implements Observer<T> {
     private _refCount: number;

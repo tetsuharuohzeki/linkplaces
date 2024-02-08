@@ -1,7 +1,7 @@
 import { createErr, createOk } from 'option-t/esm/PlainResult';
-import { Observable } from '../observable.js';
-import type { Observer } from '../observer.js';
-import { Subscription } from '../subscription.js';
+import { Observable } from '../core/observable.js';
+import type { Observer } from '../core/observer.js';
+import { Subscription } from '../core/subscription.js';
 
 export type AsyncFactoryFn<T> = (observer: Observer<T>, signal: AbortSignal) => Promise<void>;
 

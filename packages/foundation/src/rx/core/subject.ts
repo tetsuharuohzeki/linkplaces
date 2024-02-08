@@ -1,11 +1,11 @@
 import { unwrapNullable, type Nullable } from 'option-t/esm/Nullable';
 import { createOk, type Result } from 'option-t/esm/PlainResult';
 
-import { Observable } from '../observable.js';
-import type { Observer } from '../observer.js';
-import type { Unsubscribable } from '../subscribable.js';
-import { Subscription } from '../subscription.js';
+import { Observable } from './observable.js';
+import type { Observer } from './observer.js';
 import type { Subjectable } from './subjectable.js';
+import type { Unsubscribable } from './subscribable.js';
+import { Subscription } from './subscription.js';
 
 export class Subject<T> extends Observable<T> implements Subjectable<T> {
     private _isCompleted: boolean;

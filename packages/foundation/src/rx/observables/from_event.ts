@@ -1,6 +1,6 @@
-import { Observable } from '../observable.js';
-import type { Observer } from '../observer.js';
-import { Subscription } from '../subscription.js';
+import { Observable } from '../core/observable.js';
+import type { Observer } from '../core/observer.js';
+import { Subscription } from '../core/subscription.js';
 
 class FromEventObservable extends Observable<Event> {
     constructor(target: EventTarget, eventName: string) {

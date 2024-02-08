@@ -1,7 +1,7 @@
-import type { Observer } from '../observer.js';
-import type { Unsubscribable } from '../subscribable.js';
-import { Subscription } from '../subscription.js';
-import { Subject } from './subject.js';
+import type { Observer } from '../core/observer.js';
+import { Subject } from '../core/subject.js';
+import type { Unsubscribable } from '../core/subscribable.js';
+import { Subscription } from '../core/subscription.js';
 
 export class BehaviorSubject<T> extends Subject<T> {
     private _value: T;
