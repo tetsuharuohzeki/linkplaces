@@ -84,7 +84,7 @@ export abstract class Subscriber<T> implements Observer<T>, Unsubscribable {
         }
 
         this._isClosed = true;
-        this.unsubscribe();
+        this.onUnsubscribe();
 
         const sourceSubscription = this._sourceSubscription;
         if (isNotNull(sourceSubscription)) {
