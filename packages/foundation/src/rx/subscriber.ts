@@ -1,60 +1,110 @@
-import type { Result } from 'option-t/esm/PlainResult';
-import type { Observer } from './observer.js';
-import { Subscription } from './subscription.js';
+import type { Nullable } from 'option-t/esm/Nullable';
+import type { CompletionResult, Observer } from './observer.js';
+import type { Unsubscribable } from './subscribable.js';
 
-export abstract class Subscriber<TInput, TOutput> extends Subscription implements Observer<TInput> {
-    private isStopped: boolean;
-    protected destination: Observer<TOutput>;
-
-    constructor(destination: Observer<TOutput>) {
-        super(null);
-        this.isStopped = false;
-        this.destination = destination;
+/**
+ *  @internal
+ *  This is required to implement the libary.
+ *  Do not expose to user.
+ */
+export abstract class Subscriber<T> implements Observer<T>, Unsubscribable {
+    private _isClosed: boolean;
+    private _calledOnCompleted: boolean;
+    constructor() {
+        this._isClosed = false;
+        this._calledOnCompleted = false;
     }
 
-    next(value: TInput): void {
-        if (!this.isStopped) {
-            this._next(value);
+    protected abstract onNext(value: T): void;
+    protected abstract onErrorResume(error: unknown): void;
+    protected abstract onCompleted(result: CompletionResult): void;
+    // As a part of override point but not required.
+    // eslint-disable-next-line @typescript-eslint/class-methods-use-this
+    protected onUnsubscribe(): void {}
+
+    private _sourceSubscription: Nullable<Unsubscribable> = null;
+    setSourceSubscription(sub: Unsubscribable): void {
+        this._sourceSubscription = sub;
+    }
+
+    isClosed(): boolean {
+        return this._isClosed;
+    }
+
+    private isCalledCompleted(): boolean {
+        return this._calledOnCompleted;
+    }
+
+    next(value: T): void {
+        if (this.isClosed() || this.isCalledCompleted()) {
+            return;
         }
-    }
 
-    errorResume(err: unknown): void {
-        if (!this.isStopped) {
-            this._errorResume(err);
-        }
-    }
-
-    complete(result: Result<void, unknown>): void {
-        if (!this.isStopped) {
-            this.isStopped = true;
-            this._complete(result);
-        }
-    }
-
-    override unsubscribe(): void {
-        if (!this.closed) {
-            this.isStopped = true;
-            super.unsubscribe();
-        }
-    }
-
-    protected abstract _next(value: TInput): void;
-
-    protected _errorResume(err: unknown): void {
-        this.destination.errorResume(err);
-    }
-
-    protected _complete(result: Result<void, unknown>): void {
         try {
-            this.destination.complete(result);
+            this.onNext(value);
+        } catch (err: unknown) {
+            this.errorResume(err);
+        }
+    }
+
+    errorResume(error: unknown): void {
+        if (this.isClosed() || this.isCalledCompleted()) {
+            return;
+        }
+
+        try {
+            this.onErrorResume(error);
+        } catch (e: unknown) {
+            globalThis.reportError(e);
+        }
+    }
+
+    complete(result: CompletionResult): void {
+        if (this.isCalledCompleted()) {
+            return;
+        }
+        this._calledOnCompleted = true;
+
+        if (this.isClosed()) {
+            return;
+        }
+
+        try {
+            this.onCompleted(result);
+        } catch (e: unknown) {
+            globalThis.reportError(e);
         } finally {
             this.unsubscribe();
         }
     }
+
+    unsubscribe(): void {
+        if (this.isClosed()) {
+            return;
+        }
+
+        this._isClosed = true;
+        this.unsubscribe();
+        this._sourceSubscription?.unsubscribe();
+    }
 }
 
-export class PassSubscriber<T> extends Subscriber<T, T> {
-    protected override _next(value: T): void {
-        this.destination.next(value);
+export class PassThroughSubscriber<T> extends Subscriber<T> {
+    private _observer: Observer<T>;
+    constructor(observer: Observer<T>) {
+        super();
+        this._observer = observer;
+    }
+
+    protected override onNext(value: T): void {
+        this._observer.next(value);
+    }
+
+    protected override onErrorResume(error: unknown): void {
+        this._observer.errorResume(error);
+    }
+
+    protected override onCompleted(result: CompletionResult): void {
+        this._observer.complete(result);
     }
 }

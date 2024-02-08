@@ -1,9 +1,10 @@
 import { Observable } from '../observable.js';
+import type { Observer } from '../observer.js';
 import { Subscription } from '../subscription.js';
 
 class FromEventObservable extends Observable<Event> {
     constructor(target: EventTarget, eventName: string) {
-        super((observer) => {
+        super((observer: Observer<Event>) => {
             const aborter = new AbortController();
             const signal = aborter.signal;
 

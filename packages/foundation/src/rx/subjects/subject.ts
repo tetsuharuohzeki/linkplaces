@@ -1,32 +1,31 @@
 import { unwrapNullable, type Nullable } from 'option-t/esm/Nullable';
-import type { Result } from 'option-t/esm/PlainResult';
+import { createOk, type Result } from 'option-t/esm/PlainResult';
 
 import { Observable } from '../observable.js';
 import type { Observer } from '../observer.js';
-import type { Subscribable } from '../subscribable.js';
-import { PassSubscriber, Subscriber } from '../subscriber.js';
+import type { Unsubscribable } from '../subscribable.js';
 import { Subscription } from '../subscription.js';
+import type { Subjectable } from './subjectable.js';
 
-export class Subject<T> extends Observable<T> implements Subscribable<T>, Observer<T> {
-    private _closed: boolean;
+export class Subject<T> extends Observable<T> implements Subjectable<T> {
+    private _isCompleted: boolean;
+    private _completedValue: Nullable<Result<void, unknown>>;
     private _observerCounter: number;
     private _observers: Map<number, Observer<T>>;
-    private _completeState: Nullable<Result<void, unknown>>;
 
     constructor() {
         super((subscriber: Observer<T>) => {
-            this._checkFinalizedStatuses(subscriber);
-            const sub = this._innerSubscribe(subscriber);
+            const sub = this.onSubscribe(subscriber);
             return sub;
         });
-        this._closed = false;
+        this._isCompleted = false;
         this._observerCounter = 0;
         this._observers = new Map();
-        this._completeState = null;
+        this._completedValue = null;
     }
 
-    get closed(): boolean {
-        return this._closed;
+    get isCompleted(): boolean {
+        return this._isCompleted;
     }
 
     private getObserverSnapshots(): ReadonlyArray<Observer<T>> {
@@ -40,67 +39,89 @@ export class Subject<T> extends Observable<T> implements Subscribable<T>, Observ
     }
 
     next(value: T): void {
-        if (!this._closed) {
-            const snapshots = this.getObserverSnapshots();
-            for (const observer of snapshots) {
-                observer.next(value);
-            }
+        if (this._isCompleted) {
+            return;
+        }
+
+        const snapshots = this.getObserverSnapshots();
+        for (const observer of snapshots) {
+            observer.next(value);
         }
     }
 
     errorResume(err: unknown): void {
-        if (!this._closed) {
-            const snapshots = this.getObserverSnapshots();
-            for (const observer of snapshots) {
-                observer.errorResume(err);
-            }
+        if (this._isCompleted) {
+            return;
+        }
+
+        const snapshots = this.getObserverSnapshots();
+        for (const observer of snapshots) {
+            observer.errorResume(err);
         }
     }
 
     complete(result: Result<void, unknown>): void {
-        if (!this._closed) {
-            this._closed = true;
-            this._completeState = result;
-            const snapshots = this.getObserverSnapshots();
-            for (const observer of snapshots) {
-                observer.complete(result);
-            }
-            this._clearObservers();
+        if (this._isCompleted) {
+            return;
         }
-    }
 
-    unsubscribe() {
-        this._closed = true;
+        this._isCompleted = true;
+        this._completedValue = result;
+
+        const snapshots = this.getObserverSnapshots();
+        for (const observer of snapshots) {
+            observer.complete(result);
+        }
+
         this._clearObservers();
     }
 
-    protected _innerSubscribe(observer: Observer<T>): Subscription {
-        if (this._closed) {
+    unsubscribe() {
+        if (!this._isCompleted) {
+            const snapshots = this.getObserverSnapshots();
+            for (const observer of snapshots) {
+                const ok = createOk(undefined);
+                observer.complete(ok);
+            }
+        }
+
+        this._isCompleted = true;
+        this._clearObservers();
+    }
+
+    protected onSubscribe(observer: Observer<T>): Unsubscribable {
+        if (this._isCompleted) {
+            this.onSubscribeButCompleted(observer);
             return new Subscription(null);
         }
 
-        const subscriber = observer instanceof Subscriber ? observer : new PassSubscriber(observer);
+        const sub = this.registerObserverOnSubscribe(observer);
+        return sub;
+    }
+
+    protected registerObserverOnSubscribe(observer: Observer<T>) {
         const currentObservers = this._observers;
-        const observerId = this._observerCounter;
-        this._observerCounter = observerId + 1;
-        currentObservers.set(observerId, subscriber);
+        const observerId = this.getObserverId();
+        currentObservers.set(observerId, observer);
 
         const teardown = new Subscription(() => {
             currentObservers.delete(observerId);
         });
-        subscriber.add(teardown);
-        return subscriber;
+        return teardown;
     }
 
-    protected _checkFinalizedStatuses(subscriber: Observer<T>) {
-        if (this._closed) {
-            const result = unwrapNullable(this._completeState);
-            subscriber.complete(result);
-        }
+    private getObserverId() {
+        const observerId = this._observerCounter;
+        this._observerCounter = observerId + 1;
+        return observerId;
+    }
+
+    protected onSubscribeButCompleted(observer: Observer<T>): void {
+        const result = unwrapNullable(this._completedValue);
+        observer.complete(result);
     }
 
     asObservable(): Observable<T> {
-        const o = new Observable<T>((subscriber) => this.subscribe(subscriber));
-        return o;
+        return this;
     }
 }
