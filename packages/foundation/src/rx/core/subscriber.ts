@@ -1,4 +1,4 @@
-import type { Nullable } from 'option-t/esm/Nullable';
+import { isNotNull, type Nullable } from 'option-t/esm/Nullable';
 import type { CompletionResult, Observer } from './observer.js';
 import type { Unsubscribable } from './subscribable.js';
 
@@ -85,7 +85,12 @@ export abstract class Subscriber<T> implements Observer<T>, Unsubscribable {
 
         this._isClosed = true;
         this.unsubscribe();
-        this._sourceSubscription?.unsubscribe();
+
+        const sourceSubscription = this._sourceSubscription;
+        if (isNotNull(sourceSubscription)) {
+            sourceSubscription.unsubscribe();
+        }
+        this._sourceSubscription = null;
     }
 }
 
