@@ -69,12 +69,14 @@ export class SidebarContext extends ReactRuledViewContext {
         const pastEventObservable = fromEventToObservable(window, 'paste');
 
         rootSubscription.add(
-            pastEventObservable.subscribeNext((event) => {
-                if (!(event instanceof ClipboardEvent)) {
-                    throw new TypeError(`this event should be paste but coming is ${event.type}`);
-                }
+            pastEventObservable.subscribeBy({
+                next(event) {
+                    if (!(event instanceof ClipboardEvent)) {
+                        throw new TypeError(`this event should be paste but coming is ${event.type}`);
+                    }
 
-                intent.pasteItemFromClipboardActionActual(event);
+                    intent.pasteItemFromClipboardActionActual(event);
+                },
             })
         );
 
@@ -94,22 +96,26 @@ export class SidebarContext extends ReactRuledViewContext {
 
 function activateDragAndDropTextItemHandling(rootSubscription: Subscription, intent: SidebarIntent) {
     rootSubscription.add(
-        fromEventToObservable(window, 'dragover').subscribeNext((event) => {
-            // This is required to allow to customize on drop event.
-            event.preventDefault();
+        fromEventToObservable(window, 'dragover').subscribeBy({
+            next(event) {
+                // This is required to allow to customize on drop event.
+                event.preventDefault();
+            },
         })
     );
 
     const dropEventObservable = fromEventToObservable(window, 'drop');
     rootSubscription.add(
-        dropEventObservable.subscribeNext((event) => {
-            if (!(event instanceof DragEvent)) {
-                throw new TypeError(`this event should be paste but coming is ${event.type}`);
-            }
+        dropEventObservable.subscribeBy({
+            next(event) {
+                if (!(event instanceof DragEvent)) {
+                    throw new TypeError(`this event should be paste but coming is ${event.type}`);
+                }
 
-            event.preventDefault();
+                event.preventDefault();
 
-            intent.dropItemLikeHyperLink(event);
+                intent.dropItemLikeHyperLink(event);
+            },
         })
     );
 }
@@ -121,12 +127,14 @@ function subscribeSidebarRepositoryBySidebarStore(
     const subscription = repo
         .asObservable()
         .pipe(subscribeOnRx())
-        .subscribeNext((source: Iterable<SidebarItemViewModelEntity>) => {
-            const state: Readonly<SidebarState> = {
-                list: source,
-            };
-            const a = createUpdateFromSourceAction(state);
-            store.dispatch(a);
+        .subscribeBy({
+            next(source: Iterable<SidebarItemViewModelEntity>) {
+                const state: Readonly<SidebarState> = {
+                    list: source,
+                };
+                const a = createUpdateFromSourceAction(state);
+                store.dispatch(a);
+            },
         });
     return subscription;
 }

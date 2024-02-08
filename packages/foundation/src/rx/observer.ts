@@ -1,3 +1,4 @@
+import { unwrapOrFromMaybe, type Maybe } from 'option-t/cjs/Maybe';
 import type { Result } from 'option-t/esm/PlainResult';
 
 export type CompletionResult = Result<void, unknown>;
@@ -9,14 +10,21 @@ export interface Observer<T> {
 }
 
 export type OnNextFn<T> = (v: T) => void;
+export type OnErrorResumeFn = (error: unknown) => void;
+export type OnCompleteFn = (result: CompletionResult) => void;
 
-export class OnNextObserver<T> implements Observer<T> {
+function genericOnNext<T>(_: T): void {}
+function genericOnErrorResume(_: unknown): void {}
+function genericOnComplete(_: CompletionResult): void {}
+
+export class PartialObserver<T> implements Observer<T> {
     next: OnNextFn<T>;
-    constructor(onNext: OnNextFn<T>) {
-        this.next = onNext;
+    errorResume: OnErrorResumeFn;
+    complete: OnCompleteFn;
+
+    constructor(next: Maybe<OnNextFn<T>>, errorResume: Maybe<OnErrorResumeFn>, complete: Maybe<OnCompleteFn>) {
+        this.next = unwrapOrFromMaybe(next, genericOnNext);
+        this.errorResume = unwrapOrFromMaybe(errorResume, genericOnErrorResume);
+        this.complete = unwrapOrFromMaybe(complete, genericOnComplete);
     }
-
-    errorResume(_: unknown): void {}
-
-    complete(_: Result<void, unknown>): void {}
 }

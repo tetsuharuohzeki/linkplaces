@@ -1,4 +1,4 @@
-import { OnNextObserver, type Observer } from './observer.js';
+import { type Observer, PartialObserver } from './observer.js';
 import type { UnaryFunction } from './operator.js';
 import type { Unsubscribable } from './subscribable.js';
 import { PassThroughSubscriber, Subscriber } from './subscriber.js';
@@ -23,9 +23,10 @@ export abstract class Observable<T> {
         }
     }
 
-    subscribeNext(onNext: (value: T) => void): Unsubscribable {
-        const observer = new OnNextObserver(onNext);
-        const s = this.subscribe(observer);
+    subscribeBy(observer: Partial<Observer<T>>): Unsubscribable {
+        const { next, errorResume, complete } = observer;
+        const o = new PartialObserver<T>(next, errorResume, complete);
+        const s = this.subscribe(o);
         return s;
     }
 
