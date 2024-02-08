@@ -10,9 +10,9 @@ class FilterSubscriber<T> extends Subscriber<T> {
     private _observer: Observer<T>;
     private _filter: FilterFn<T>;
 
-    constructor(observer: Observer<T>, filter: FilterFn<T>) {
+    constructor(destination: Observer<T>, filter: FilterFn<T>) {
         super();
-        this._observer = observer;
+        this._observer = destination;
         this._filter = filter;
     }
 
@@ -40,8 +40,8 @@ class FilterObservable<T> extends OperatorObservable<T, T> {
         this.filter = transformer;
     }
 
-    protected override onSubscribe(observer: Observer<T>): Unsubscribable {
-        const innerSub = new FilterSubscriber(observer, this.filter);
+    protected override onSubscribe(destination: Observer<T>): Unsubscribable {
+        const innerSub = new FilterSubscriber(destination, this.filter);
         const s = this.source.subscribe(innerSub);
         return s;
     }

@@ -23,8 +23,8 @@ export abstract class Subscriber<T> implements Observer<T>, Unsubscribable {
     protected onUnsubscribe(): void {}
 
     private _sourceSubscription: Nullable<Unsubscribable> = null;
-    setSourceSubscription(sub: Unsubscribable): void {
-        this._sourceSubscription = sub;
+    setSourceSubscription(subscription: Unsubscribable): void {
+        this._sourceSubscription = subscription;
     }
 
     isClosed(): boolean {
@@ -96,9 +96,9 @@ export abstract class Subscriber<T> implements Observer<T>, Unsubscribable {
 
 export class PassThroughSubscriber<T> extends Subscriber<T> {
     private _observer: Observer<T>;
-    constructor(observer: Observer<T>) {
+    constructor(destination: Observer<T>) {
         super();
-        this._observer = observer;
+        this._observer = destination;
     }
 
     protected override onNext(value: T): void {

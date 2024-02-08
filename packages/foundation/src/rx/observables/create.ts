@@ -7,19 +7,19 @@ export type SyncFactoryFn<T> = (observer: Observer<T>, signal: AbortSignal) => v
 
 class SyncFactoryObservable<T> extends Observable<T> {
     constructor(factory: SyncFactoryFn<T>) {
-        super((observer) => {
+        super((destination) => {
             const aborter = new AbortController();
             const signal = aborter.signal;
 
             let result: Result<void, unknown>;
             try {
-                factory(observer, signal);
+                factory(destination, signal);
                 result = createOk(undefined);
             } catch (e: unknown) {
-                observer.errorResume(e);
+                destination.errorResume(e);
                 result = createErr(e);
             }
-            observer.complete(result);
+            destination.complete(result);
 
             const sub = new Subscription(() => {
                 aborter.abort();

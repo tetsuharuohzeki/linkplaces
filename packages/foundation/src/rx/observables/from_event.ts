@@ -4,14 +4,14 @@ import { Subscription } from '../core/subscription.js';
 
 class FromEventObservable extends Observable<Event> {
     constructor(target: EventTarget, eventName: string) {
-        super((observer: Observer<Event>) => {
+        super((destination: Observer<Event>) => {
             const aborter = new AbortController();
             const signal = aborter.signal;
 
             target.addEventListener(
                 eventName,
                 (event) => {
-                    observer.next(event);
+                    destination.next(event);
                 },
                 {
                     signal,

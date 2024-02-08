@@ -14,23 +14,23 @@ export type OperatorFunction<TInput, TOutput> = UnaryFunction<Observable<TInput>
 export abstract class OperatorObservable<TInput, TOutput> extends Observable<TOutput> {
     protected source: Observable<TInput>;
     constructor(source: Observable<TInput>) {
-        super((observer: Observer<TOutput>) => {
-            const sub = this.onSubscribe(observer);
+        super((destination: Observer<TOutput>) => {
+            const sub = this.onSubscribe(destination);
             return sub;
         });
         this.source = source;
     }
 
-    protected abstract onSubscribe(observer: Observer<TOutput>): Unsubscribable;
+    protected abstract onSubscribe(destination: Observer<TOutput>): Unsubscribable;
 }
 
 export abstract class DeclarativeObservable<T> extends Observable<T> {
     constructor() {
-        super((observer: Observer<T>) => {
-            const sub = this.onSubscribe(observer);
+        super((destination: Observer<T>) => {
+            const sub = this.onSubscribe(destination);
             return sub;
         });
     }
 
-    protected abstract onSubscribe(observer: Observer<T>): Unsubscribable;
+    protected abstract onSubscribe(destination: Observer<T>): Unsubscribable;
 }

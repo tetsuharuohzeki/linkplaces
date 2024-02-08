@@ -10,10 +10,10 @@ class SubscribeOnNextLoopObservable<T> extends OperatorObservable<T, T> {
         super(source);
     }
 
-    protected override onSubscribe(observer: Observer<T>): Unsubscribable {
+    protected override onSubscribe(destination: Observer<T>): Unsubscribable {
         let actualSubscribe: Nullable<Unsubscribable> = null;
         const id = window.setTimeout(() => {
-            actualSubscribe = this.source.subscribe(observer);
+            actualSubscribe = this.source.subscribe(destination);
         }, 0);
 
         const sub = new Subscription(() => {

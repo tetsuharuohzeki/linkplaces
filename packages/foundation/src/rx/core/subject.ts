@@ -14,8 +14,8 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
     private _observers: Map<number, Observer<T>>;
 
     constructor() {
-        super((subscriber: Observer<T>) => {
-            const sub = this.onSubscribe(subscriber);
+        super((destination: Observer<T>) => {
+            const sub = this.onSubscribe(destination);
             return sub;
         });
         this._isCompleted = false;
@@ -89,20 +89,20 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         this._clearObservers();
     }
 
-    protected onSubscribe(observer: Observer<T>): Unsubscribable {
+    protected onSubscribe(destination: Observer<T>): Unsubscribable {
         if (this._isCompleted) {
-            this.onSubscribeButCompleted(observer);
+            this.onSubscribeButCompleted(destination);
             return new Subscription(null);
         }
 
-        const sub = this.registerObserverOnSubscribe(observer);
+        const sub = this.registerObserverOnSubscribe(destination);
         return sub;
     }
 
-    protected registerObserverOnSubscribe(observer: Observer<T>) {
+    protected registerObserverOnSubscribe(destination: Observer<T>) {
         const currentObservers = this._observers;
         const observerId = this.getObserverId();
-        currentObservers.set(observerId, observer);
+        currentObservers.set(observerId, destination);
 
         const teardown = new Subscription(() => {
             currentObservers.delete(observerId);
@@ -116,9 +116,9 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         return observerId;
     }
 
-    protected onSubscribeButCompleted(observer: Observer<T>): void {
+    protected onSubscribeButCompleted(destination: Observer<T>): void {
         const result = unwrapNullable(this._completedValue);
-        observer.complete(result);
+        destination.complete(result);
     }
 
     asObservable(): Observable<T> {

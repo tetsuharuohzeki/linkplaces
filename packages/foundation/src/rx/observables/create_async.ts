@@ -7,20 +7,20 @@ export type AsyncFactoryFn<T> = (observer: Observer<T>, signal: AbortSignal) => 
 
 class AsyncFactoryObservable<T> extends Observable<T> {
     constructor(factory: AsyncFactoryFn<T>) {
-        super((observer) => {
+        super((destination) => {
             const aborter = new AbortController();
             const signal = aborter.signal;
 
-            const promise = factory(observer, signal);
+            const promise = factory(destination, signal);
             promise.then(
                 () => {
                     const ok = createOk<void>(undefined);
-                    observer.complete(ok);
+                    destination.complete(ok);
                 },
                 (e: unknown) => {
-                    observer.errorResume(e);
+                    destination.errorResume(e);
                     const error = createErr(e);
-                    observer.complete(error);
+                    destination.complete(error);
                 }
             );
 

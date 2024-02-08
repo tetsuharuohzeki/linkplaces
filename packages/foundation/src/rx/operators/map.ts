@@ -10,9 +10,9 @@ class MapSubscriber<TInput, TOutput> extends Subscriber<TInput> {
     private _observer: Observer<TOutput>;
     private _transformer: TransformerFn<TInput, TOutput>;
 
-    constructor(observer: Observer<TOutput>, transformer: TransformerFn<TInput, TOutput>) {
+    constructor(destination: Observer<TOutput>, transformer: TransformerFn<TInput, TOutput>) {
         super();
-        this._observer = observer;
+        this._observer = destination;
         this._transformer = transformer;
     }
 
@@ -38,8 +38,8 @@ class MapObservable<TInput, TOutput> extends OperatorObservable<TInput, TOutput>
         this.transformer = transformer;
     }
 
-    protected override onSubscribe(observer: Observer<TOutput>): Unsubscribable {
-        const innerSub = new MapSubscriber(observer, this.transformer);
+    protected override onSubscribe(destination: Observer<TOutput>): Unsubscribable {
+        const innerSub = new MapSubscriber(destination, this.transformer);
         const s = this.source.subscribe(innerSub);
         return s;
     }

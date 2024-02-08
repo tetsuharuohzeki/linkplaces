@@ -10,15 +10,15 @@ export class BehaviorSubject<T> extends Subject<T> {
         this._value = initial;
     }
 
-    protected override onSubscribe(observer: Observer<T>): Unsubscribable {
+    protected override onSubscribe(destination: Observer<T>): Unsubscribable {
         if (this.isCompleted) {
-            observer.next(this._value);
-            this.onSubscribeButCompleted(observer);
+            destination.next(this._value);
+            this.onSubscribeButCompleted(destination);
             return new Subscription(null);
         }
-        observer.next(this._value);
+        destination.next(this._value);
 
-        const sub = this.registerObserverOnSubscribe(observer);
+        const sub = this.registerObserverOnSubscribe(destination);
         return sub;
     }
 
