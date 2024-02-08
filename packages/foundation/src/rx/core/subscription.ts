@@ -3,12 +3,14 @@ import { isNotNull, unwrapNullable, type Nullable } from 'option-t/esm/Nullable'
 import type { Unsubscribable } from './subscribable.js';
 import { UnsubscriptionError } from './unsubscription_error.js';
 
+type TeardownFn = (this: void) => void;
+
 export class Subscription implements Unsubscribable {
     private _closed: boolean;
     private _finalizers: Nullable<Set<Unsubscribable>>;
-    private _initialTeardown: Nullable<(this: void) => void>;
+    private _initialTeardown: Nullable<TeardownFn>;
 
-    constructor(initialTeardown: Nullable<() => void>) {
+    constructor(initialTeardown: Nullable<TeardownFn>) {
         this._closed = false;
         this._finalizers = null;
         this._initialTeardown = initialTeardown;

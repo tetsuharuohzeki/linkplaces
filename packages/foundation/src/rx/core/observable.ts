@@ -6,7 +6,7 @@ import { PassThroughSubscriber, Subscriber } from './subscriber.js';
 type OnSubscribeFn<T> = (observer: Observer<T>) => Unsubscribable;
 
 export abstract class Observable<T> {
-    protected _onSubscribe: (observer: Observer<T>) => Unsubscribable;
+    protected _onSubscribe: OnSubscribeFn<T>;
     constructor(onSubscribe: OnSubscribeFn<T>) {
         this._onSubscribe = onSubscribe;
     }
