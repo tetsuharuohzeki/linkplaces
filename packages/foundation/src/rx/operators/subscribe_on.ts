@@ -1,8 +1,8 @@
 import { isNotNull, type Nullable } from 'option-t/esm/Nullable';
 import type { Observable } from '../core/observable.js';
-import type { Observer } from '../core/observer.js';
 import { OperatorObservable, type OperatorFunction } from '../core/operator.js';
 import type { Unsubscribable } from '../core/subscribable.js';
+import type { Subscriber } from '../core/subscriber.js';
 import { Subscription } from '../core/subscription.js';
 
 class SubscribeOnNextLoopObservable<T> extends OperatorObservable<T, T> {
@@ -10,7 +10,7 @@ class SubscribeOnNextLoopObservable<T> extends OperatorObservable<T, T> {
         super(source);
     }
 
-    protected override onSubscribe(destination: Observer<T>): Unsubscribable {
+    protected override onSubscribe(destination: Subscriber<T>): Unsubscribable {
         let actualSubscribe: Nullable<Unsubscribable> = null;
         const id = window.setTimeout(() => {
             actualSubscribe = this.source.subscribe(destination);

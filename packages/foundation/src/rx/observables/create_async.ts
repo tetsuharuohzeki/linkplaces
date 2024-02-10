@@ -1,9 +1,9 @@
 import { createErr, createOk } from 'option-t/esm/PlainResult';
 import { Observable } from '../core/observable.js';
-import type { Observer } from '../core/observer.js';
+import type { Subscriber } from '../core/subscriber.js';
 import { Subscription } from '../core/subscription.js';
 
-export type AsyncFactoryFn<T> = (observer: Observer<T>, signal: AbortSignal) => Promise<void>;
+export type AsyncFactoryFn<T> = (observer: Subscriber<T>, signal: AbortSignal) => Promise<void>;
 
 class AsyncFactoryObservable<T> extends Observable<T> {
     constructor(factory: AsyncFactoryFn<T>) {

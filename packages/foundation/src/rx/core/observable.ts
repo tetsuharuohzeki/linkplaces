@@ -1,9 +1,9 @@
-import { type Observer, PartialObserver } from './observer.js';
 import type { UnaryFunction } from './operator.js';
 import type { Unsubscribable } from './subscribable.js';
-import { PassThroughSubscriber, InternalSubscriber } from './subscriber.js';
+import { type Subscriber, PartialObserver, type SubscriptionObserver } from './subscriber.js';
+import { PassThroughSubscriber, InternalSubscriber } from './subscriber_impl.js';
 
-type OnSubscribeFn<T> = (destination: Observer<T>) => Unsubscribable;
+export type OnSubscribeFn<T> = (destination: Subscriber<T>) => Unsubscribable;
 
 export abstract class Observable<T> {
     protected _onSubscribe: OnSubscribeFn<T>;
@@ -11,8 +11,9 @@ export abstract class Observable<T> {
         this._onSubscribe = onSubscribe;
     }
 
-    subscribe(destination: Observer<T>): Unsubscribable {
-        const subscriber = destination instanceof InternalSubscriber ? destination : new PassThroughSubscriber(destination);
+    subscribe(destination: Subscriber<T>): Unsubscribable {
+        const subscriber =
+            destination instanceof InternalSubscriber ? destination : new PassThroughSubscriber(destination);
         try {
             const subscription = this._onSubscribe(subscriber);
             subscriber.setSourceSubscription(subscription);
@@ -23,10 +24,11 @@ export abstract class Observable<T> {
         }
     }
 
-    subscribeBy(destination: Partial<Observer<T>>): Unsubscribable {
+    subscribeBy(destination: SubscriptionObserver<T>): Unsubscribable {
         const { next, errorResume, complete } = destination;
-        const o = new PartialObserver<T>(next, errorResume, complete);
-        const s = this.subscribe(o);
+        const observer = new PartialObserver<T>(next, errorResume, complete);
+        const subscriber = new PassThroughSubscriber(observer);
+        const s = this.subscribe(subscriber);
         return s;
     }
 

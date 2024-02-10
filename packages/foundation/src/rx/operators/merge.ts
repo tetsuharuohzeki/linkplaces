@@ -1,13 +1,13 @@
 import { isErr, isOk, type Result } from 'option-t/esm/PlainResult';
 import { Observable } from '../core/observable.js';
-import type { Observer } from '../core/observer.js';
+import type { Observer, Subscriber } from '../core/subscriber.js';
 import { Subscription } from '../core/subscription.js';
 
 class MergeObserver<T> implements Observer<T> {
     private _refCount: number;
-    private _destination: Observer<T>;
+    private _destination: Subscriber<T>;
 
-    constructor(refCount: number, destination: Observer<T>) {
+    constructor(refCount: number, destination: Subscriber<T>) {
         this._refCount = refCount;
         this._destination = destination;
     }

@@ -1,9 +1,9 @@
 import { createOk } from 'option-t/esm/PlainResult';
 import type { Observable } from '../core/observable.js';
-import type { Observer } from '../core/observer.js';
+import type { Subscriber } from '../core/subscriber.js';
 import { createObservableFromAsync } from './create_async.js';
 
-async function iterate<T>(factory: AsyncIterable<T>, destination: Observer<T>, signal: AbortSignal): Promise<void> {
+async function iterate<T>(factory: AsyncIterable<T>, destination: Subscriber<T>, signal: AbortSignal): Promise<void> {
     for await (const item of factory) {
         if (signal.aborted) {
             break;

@@ -2,19 +2,19 @@ import { unwrapNullable, type Nullable } from 'option-t/esm/Nullable';
 import { createOk, type Result } from 'option-t/esm/PlainResult';
 
 import { Observable } from './observable.js';
-import type { Observer } from './observer.js';
 import type { Subjectable } from './subjectable.js';
 import type { Unsubscribable } from './subscribable.js';
+import type { Subscriber } from './subscriber.js';
 import { Subscription } from './subscription.js';
 
 export class Subject<T> extends Observable<T> implements Subjectable<T> {
     private _isCompleted: boolean;
     private _completedValue: Nullable<Result<void, unknown>>;
     private _observerCounter: number;
-    private _observers: Map<number, Observer<T>>;
+    private _observers: Map<number, Subscriber<T>>;
 
     constructor() {
-        super((destination: Observer<T>) => {
+        super((destination: Subscriber<T>) => {
             const sub = this.onSubscribe(destination);
             return sub;
         });
@@ -28,7 +28,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         return this._isCompleted;
     }
 
-    private getObserverSnapshots(): ReadonlyArray<Observer<T>> {
+    private getObserverSnapshots(): ReadonlyArray<Subscriber<T>> {
         const current = this._observers.values();
         const snapshot = Array.from(current);
         return snapshot;
@@ -89,7 +89,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         this._clearObservers();
     }
 
-    protected onSubscribe(destination: Observer<T>): Unsubscribable {
+    protected onSubscribe(destination: Subscriber<T>): Unsubscribable {
         if (this._isCompleted) {
             this.onSubscribeButCompleted(destination);
             return new Subscription(null);
@@ -99,7 +99,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         return sub;
     }
 
-    protected registerObserverOnSubscribe(destination: Observer<T>) {
+    protected registerObserverOnSubscribe(destination: Subscriber<T>) {
         const currentObservers = this._observers;
         const observerId = this.getObserverId();
         currentObservers.set(observerId, destination);
@@ -116,7 +116,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         return observerId;
     }
 
-    protected onSubscribeButCompleted(destination: Observer<T>): void {
+    protected onSubscribeButCompleted(destination: Subscriber<T>): void {
         const result = unwrapNullable(this._completedValue);
         destination.complete(result);
     }

@@ -1,11 +1,11 @@
 import { createOk } from 'option-t/esm/PlainResult';
 import { Observable } from '../core/observable.js';
-import type { Observer } from '../core/observer.js';
+import type { Subscriber } from '../core/subscriber.js';
 import { Subscription } from '../core/subscription.js';
 
 class FromEventObservable extends Observable<Event> {
     constructor(target: EventTarget, eventName: string) {
-        super((destination: Observer<Event>) => {
+        super((destination: Subscriber<Event>) => {
             const aborter = new AbortController();
             const signal = aborter.signal;
 

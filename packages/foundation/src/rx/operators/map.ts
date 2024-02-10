@@ -1,16 +1,16 @@
 import type { Observable } from '../core/observable.js';
-import type { CompletionResult, Observer } from '../core/observer.js';
 import { OperatorObservable, type OperatorFunction } from '../core/operator.js';
 import type { Unsubscribable } from '../core/subscribable.js';
-import { InternalSubscriber } from '../core/subscriber.js';
+import type { CompletionResult, Subscriber } from '../core/subscriber.js';
+import { InternalSubscriber } from '../core/subscriber_impl.js';
 
 export type TransformerFn<TInput, TOutput> = (value: TInput) => TOutput;
 
 class MapSubscriber<TInput, TOutput> extends InternalSubscriber<TInput> {
-    private _observer: Observer<TOutput>;
+    private _observer: Subscriber<TOutput>;
     private _transformer: TransformerFn<TInput, TOutput>;
 
-    constructor(destination: Observer<TOutput>, transformer: TransformerFn<TInput, TOutput>) {
+    constructor(destination: Subscriber<TOutput>, transformer: TransformerFn<TInput, TOutput>) {
         super();
         this._observer = destination;
         this._transformer = transformer;
@@ -38,7 +38,7 @@ class MapObservable<TInput, TOutput> extends OperatorObservable<TInput, TOutput>
         this.transformer = transformer;
     }
 
-    protected override onSubscribe(destination: Observer<TOutput>): Unsubscribable {
+    protected override onSubscribe(destination: Subscriber<TOutput>): Unsubscribable {
         const innerSub = new MapSubscriber(destination, this.transformer);
         const s = this.source.subscribe(innerSub);
         return s;

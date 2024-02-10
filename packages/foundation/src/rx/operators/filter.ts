@@ -1,16 +1,16 @@
 import type { Observable } from '../core/observable.js';
-import type { CompletionResult, Observer } from '../core/observer.js';
 import { OperatorObservable, type OperatorFunction } from '../core/operator.js';
 import type { Unsubscribable } from '../core/subscribable.js';
-import { InternalSubscriber } from '../core/subscriber.js';
+import type { CompletionResult, Subscriber } from '../core/subscriber.js';
+import { InternalSubscriber } from '../core/subscriber_impl.js';
 
 export type FilterFn<T> = (value: T) => boolean;
 
 class FilterSubscriber<T> extends InternalSubscriber<T> {
-    private _observer: Observer<T>;
+    private _observer: Subscriber<T>;
     private _filter: FilterFn<T>;
 
-    constructor(destination: Observer<T>, filter: FilterFn<T>) {
+    constructor(destination: Subscriber<T>, filter: FilterFn<T>) {
         super();
         this._observer = destination;
         this._filter = filter;
@@ -40,7 +40,7 @@ class FilterObservable<T> extends OperatorObservable<T, T> {
         this.filter = transformer;
     }
 
-    protected override onSubscribe(destination: Observer<T>): Unsubscribable {
+    protected override onSubscribe(destination: Subscriber<T>): Unsubscribable {
         const innerSub = new FilterSubscriber(destination, this.filter);
         const s = this.source.subscribe(innerSub);
         return s;
