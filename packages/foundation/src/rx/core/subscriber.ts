@@ -7,7 +7,7 @@ import type { Unsubscribable } from './subscribable.js';
  *  This is required to implement the libary.
  *  Do not expose to user.
  */
-export abstract class Subscriber<T> implements Observer<T>, Unsubscribable {
+export abstract class InternalSubscriber<T> implements Observer<T>, Unsubscribable {
     private _isClosed: boolean;
     private _calledOnCompleted: boolean;
     constructor() {
@@ -94,7 +94,7 @@ export abstract class Subscriber<T> implements Observer<T>, Unsubscribable {
     }
 }
 
-export class PassThroughSubscriber<T> extends Subscriber<T> {
+export class PassThroughSubscriber<T> extends InternalSubscriber<T> {
     private _observer: Observer<T>;
     constructor(destination: Observer<T>) {
         super();

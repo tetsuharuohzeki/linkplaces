@@ -1,7 +1,7 @@
 import { type Observer, PartialObserver } from './observer.js';
 import type { UnaryFunction } from './operator.js';
 import type { Unsubscribable } from './subscribable.js';
-import { PassThroughSubscriber, Subscriber } from './subscriber.js';
+import { PassThroughSubscriber, InternalSubscriber } from './subscriber.js';
 
 type OnSubscribeFn<T> = (destination: Observer<T>) => Unsubscribable;
 
@@ -12,7 +12,7 @@ export abstract class Observable<T> {
     }
 
     subscribe(destination: Observer<T>): Unsubscribable {
-        const subscriber = destination instanceof Subscriber ? destination : new PassThroughSubscriber(destination);
+        const subscriber = destination instanceof InternalSubscriber ? destination : new PassThroughSubscriber(destination);
         try {
             const subscription = this._onSubscribe(subscriber);
             subscriber.setSourceSubscription(subscription);

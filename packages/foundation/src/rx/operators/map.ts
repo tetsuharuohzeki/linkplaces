@@ -2,11 +2,11 @@ import type { Observable } from '../core/observable.js';
 import type { CompletionResult, Observer } from '../core/observer.js';
 import { OperatorObservable, type OperatorFunction } from '../core/operator.js';
 import type { Unsubscribable } from '../core/subscribable.js';
-import { Subscriber } from '../core/subscriber.js';
+import { InternalSubscriber } from '../core/subscriber.js';
 
 export type TransformerFn<TInput, TOutput> = (value: TInput) => TOutput;
 
-class MapSubscriber<TInput, TOutput> extends Subscriber<TInput> {
+class MapSubscriber<TInput, TOutput> extends InternalSubscriber<TInput> {
     private _observer: Observer<TOutput>;
     private _transformer: TransformerFn<TInput, TOutput>;
 

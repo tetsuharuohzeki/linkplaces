@@ -1,10 +1,10 @@
 import { Observable } from './observable.js';
 import type { Observer } from './observer.js';
 import type { Unsubscribable } from './subscribable.js';
-import type { Subscriber } from './subscriber.js';
+import type { InternalSubscriber } from './subscriber.js';
 
 export interface Operator<TInput, TOutput> {
-    call(subscriber: Subscriber<TOutput>, source: Observable<TInput>): Unsubscribable;
+    call(subscriber: InternalSubscriber<TOutput>, source: Observable<TInput>): Unsubscribable;
 }
 
 export type UnaryFunction<TInput, TOutput> = (source: TInput) => TOutput;

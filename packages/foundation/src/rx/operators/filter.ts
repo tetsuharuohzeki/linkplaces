@@ -2,11 +2,11 @@ import type { Observable } from '../core/observable.js';
 import type { CompletionResult, Observer } from '../core/observer.js';
 import { OperatorObservable, type OperatorFunction } from '../core/operator.js';
 import type { Unsubscribable } from '../core/subscribable.js';
-import { Subscriber } from '../core/subscriber.js';
+import { InternalSubscriber } from '../core/subscriber.js';
 
 export type FilterFn<T> = (value: T) => boolean;
 
-class FilterSubscriber<T> extends Subscriber<T> {
+class FilterSubscriber<T> extends InternalSubscriber<T> {
     private _observer: Observer<T>;
     private _filter: FilterFn<T>;
 
