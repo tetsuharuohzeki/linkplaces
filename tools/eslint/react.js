@@ -28,6 +28,14 @@ export const config = Object.freeze({
 
         ...tsReactPresets.rules,
 
+        'react/jsx-no-useless-fragment': [
+            'warn',
+            {
+                // We allow for typescript's typecheck
+                allowExpressions: true,
+            },
+        ],
+
         'react/no-arrow-function-lifecycle': 'error',
     },
 
