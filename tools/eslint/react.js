@@ -28,6 +28,9 @@ export const config = Object.freeze({
 
         ...tsReactPresets.rules,
 
+        // We would like to use syntax to swap to other libs easily.
+        'react/jsx-fragments': ['warn', 'syntax'],
+        // We would like to remove useless fragment.
         'react/jsx-no-useless-fragment': [
             'warn',
             {
