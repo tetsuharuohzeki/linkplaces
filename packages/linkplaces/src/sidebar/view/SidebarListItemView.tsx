@@ -8,7 +8,16 @@ import {
 } from '@linkplaces/shared/component';
 import type { BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/webext_types';
 
-import { StrictMode, useState, type MouseEventHandler, type MouseEvent, type SetStateAction, type Dispatch, type ReactNode } from 'react';
+import {
+    StrictMode,
+    useState,
+    type MouseEventHandler,
+    type MouseEvent,
+    type SetStateAction,
+    type Dispatch,
+    type ReactNode,
+    useTransition,
+} from 'react';
 
 import type { SidebarItemViewModelEntity } from '../SidebarDomain.js';
 import type { SidebarIntent } from '../SidebarIntent.js';
@@ -23,11 +32,7 @@ interface ListBaseItemProps {
 }
 
 function ListBaseItem(props: ListBaseItemProps): ReactNode {
-    const {
-        iconDir,
-        iconFile,
-        label,
-    } = props;
+    const { iconDir, iconFile, label } = props;
 
     if (!iconDir.endsWith('/')) {
         throw new URIError(`iconDir: \`${iconDir}\` should be ended with /`);
@@ -42,14 +47,21 @@ function ListBaseItem(props: ListBaseItemProps): ReactNode {
             <PanelListItem>
                 <PanelListItemIcon>
                     <picture className={`${CLASS_NAME_PREFIX}__icon_img`}>
-                        <source srcSet={`${iconDir}dark/${iconFile}`} media={'(prefers-color-scheme: dark)'} />
-                        <source srcSet={`${iconDir}light/${iconFile}`} media={'(prefers-color-scheme: light)'} />
-                        <img alt={''} src={`${iconDir}context-fill/${iconFile}`} />
+                        <source
+                            srcSet={`${iconDir}dark/${iconFile}`}
+                            media={'(prefers-color-scheme: dark)'}
+                        />
+                        <source
+                            srcSet={`${iconDir}light/${iconFile}`}
+                            media={'(prefers-color-scheme: light)'}
+                        />
+                        <img
+                            alt={''}
+                            src={`${iconDir}context-fill/${iconFile}`}
+                        />
                     </picture>
                 </PanelListItemIcon>
-                <PanelListItemText>
-                    {label}
-                </PanelListItemText>
+                <PanelListItemText>{label}</PanelListItemText>
             </PanelListItem>
         </StrictMode>
     );
@@ -71,9 +83,7 @@ export function ListItem(props: ListItemProps): ReactNode {
     const bookmark = item.bookmark;
 
     if (isBookmarkTreeNodeSeparator(bookmark)) {
-        return (
-            <PanelSectionListSeparator />
-        );
+        return <PanelSectionListSeparator />;
     }
 
     if (isBookmarkTreeNodeItem(bookmark)) {
@@ -90,9 +100,7 @@ export function ListItem(props: ListItemProps): ReactNode {
 
     return (
         <StrictMode>
-            <ListItemForBookmarkFolder
-                bookmark={bookmark}
-            />
+            <ListItemForBookmarkFolder bookmark={bookmark} />
         </StrictMode>
     );
 }
@@ -105,6 +113,10 @@ interface ListItemForBookmarkItemProps {
 
 function ListItemForBookmarkItem(props: ListItemForBookmarkItemProps) {
     const { bookmark, intent, setIsOpening } = props;
+    const [isPending, startTransition] = useTransition();
+    if (isPending) {
+        return null;
+    }
 
     const id = bookmark.id;
     const url = bookmark.url;
@@ -113,11 +125,12 @@ function ListItemForBookmarkItem(props: ListItemForBookmarkItemProps) {
 
     const onClick: MouseEventHandler<HTMLAnchorElement> = (evt) => {
         evt.preventDefault();
-
         const where = calculateWhereToOpenItem(evt);
         intent.openItem(id, url, where);
 
-        setIsOpening(true);
+        startTransition(() => {
+            setIsOpening(true);
+        });
     };
 
     const label = bookmarkTitle === '' ? url : bookmarkTitle;
