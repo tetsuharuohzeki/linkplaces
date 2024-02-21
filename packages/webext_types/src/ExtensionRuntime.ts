@@ -71,7 +71,7 @@ export interface ExtensionRuntime {
     reload(): void;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/connect
-    connect();
+    connect(): void;
     connect(connectInfo: ConnectionInfo): ExtensionPort;
     connect(extensionId: string, connectInfo: ConnectionInfo): ExtensionPort;
 

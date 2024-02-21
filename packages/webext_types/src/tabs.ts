@@ -2,10 +2,10 @@
 
 import type { LooselyPartial } from './LooselyPartial.js';
 import type { RunAt } from './extensionTypes.js';
-import type { WindowId } from './windows.js';
+import type { WindowId, WindowType } from './windows.js';
 
 declare const tabIdMarker: unique symbol;
-export type TabId = number & { [tabIdMarker]: never; };
+export type TabId = number & { [tabIdMarker]: never };
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/Tab
 export interface Tab {
@@ -14,9 +14,6 @@ export interface Tab {
     id?: TabId;
     windowId: WindowId;
 }
-
-// https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/WindowType
-export type WindowType = 'normal' | 'popup' | 'panel' | 'devtools';
 
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/TabStatus
 export type TabStatus = 'loading' | 'complete';
@@ -38,15 +35,17 @@ export interface WebExtTabsService {
     // TODO: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/connect
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/create
-    create(createProperties: LooselyPartial<{
-        active?: boolean;
-        cookieStoreId?: string;
-        index?: number;
-        openerTabId?: number;
-        pinned?: boolean;
-        url?: string;
-        windowId?: number;
-    }>): Promise<Readonly<Tab>>;
+    create(
+        createProperties: LooselyPartial<{
+            active?: boolean;
+            cookieStoreId?: string;
+            index?: number;
+            openerTabId?: number;
+            pinned?: boolean;
+            url?: string;
+            windowId?: number;
+        }>
+    ): Promise<Readonly<Tab>>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/executeScript
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -3,7 +3,7 @@
     "compilerOptions": {
         "emitDeclarationOnly": true,
         "outDir": "./__dist",
-        //"rootDir": "./src"
+        "rootDir": "./src"
     },
     "include": [
         // @prettier-ignore

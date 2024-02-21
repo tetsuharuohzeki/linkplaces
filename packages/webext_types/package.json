@@ -4,8 +4,7 @@
     "type": "module",
     "exports": {
         ".": {
-            "types": "./src/index.d.ts"
+            "types": "./__dist/index.d.ts"
         }
-    },
-    "types": "./src/index.d.ts"
+    }
 }

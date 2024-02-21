@@ -12,9 +12,11 @@ interface ExecuteScriptFileArgs extends ExecuteScriptArgsBase {
     files: Array<string>;
 }
 
-interface ExecuteScriptFunctionArgs<TFunc extends Function> extends ExecuteScriptArgsBase {
-    func: TFunc;
-    args: Parameters<TFunc>;
+type AnyTuple = ReadonlyArray<unknown>;
+
+interface ExecuteScriptFunctionArgs<TArgs extends AnyTuple> extends ExecuteScriptArgsBase {
+    func: (...args: TArgs) => void;
+    args: TArgs;
 }
 
 interface InsertCSSArgsBase {
@@ -35,7 +37,9 @@ export interface ExtensionScripting {
     /**
      *  https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/scripting/executeScript
      */
-    executeScript(details: ExecuteScriptFileArgs | ExecuteScriptFunctionArgs): Promise<ReadonlyArray<InjectionResult>>;
+    executeScript<TArgs extends AnyTuple>(
+        details: ExecuteScriptFileArgs | ExecuteScriptFunctionArgs<TArgs>
+    ): Promise<ReadonlyArray<InjectionResult>>;
 
     /**
      *  https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/scripting/insertCSS
