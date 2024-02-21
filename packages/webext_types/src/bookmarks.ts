@@ -1,7 +1,7 @@
 import type { ExtensionEventManager } from './ExtensionEventManager.js';
 
 declare const bookmarkIdMarker: unique symbol;
-export type BookmarkId = string & { [bookmarkIdMarker]: never; };
+export type BookmarkId = string & { [bookmarkIdMarker]: never };
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks
 export interface WebExtBookmarkService {
@@ -28,11 +28,7 @@ export interface WebExtBookmarkService {
     removeTree(id: BookmarkId): Promise<void>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/search
-    search(query: {
-        query?: string;
-        url?: string;
-        title?: string;
-    }): Promise<Array<BookmarkTreeNode>>;
+    search(query: { query?: string; url?: string; title?: string }): Promise<Array<BookmarkTreeNode>>;
 
     // TODO: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/update
 
@@ -77,11 +73,14 @@ export type OnReorderInfo = Readonly<{
     childIds: Array<BookmarkId>;
 }>;
 
-export enum BookmarkTreeNodeType {
-    Bookmark = 'bookmark',
-    Folder = 'folder',
-    Separator = 'separator',
-}
+const BOOKMARK_NODE_TYPE_BOOKMARK = 'bookmark';
+const BOOKMARK_NODE_TYPE_FOLDER = 'folder';
+const BOOKMARK_NODE_TYPE_SEPARATOR = 'separator';
+
+export type BookmarkTreeNodeType =
+    | typeof BOOKMARK_NODE_TYPE_BOOKMARK
+    | typeof BOOKMARK_NODE_TYPE_FOLDER
+    | typeof BOOKMARK_NODE_TYPE_SEPARATOR;
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/BookmarkTreeNodeUnmodifiable
 export type BookmarkTreeNodeUnmodifiable = 'managed';
@@ -102,16 +101,16 @@ interface BookmarkTreeNodeBase {
 
 export interface BookmarkTreeNodeItem extends BookmarkTreeNodeBase {
     readonly url: string;
-    readonly type?: BookmarkTreeNodeType.Bookmark;
+    readonly type: typeof BOOKMARK_NODE_TYPE_BOOKMARK;
 }
 
 export interface BookmarkTreeNodeFolder extends BookmarkTreeNodeBase {
     readonly children: Array<BookmarkTreeNode>;
-    readonly type?: BookmarkTreeNodeType.Folder;
+    readonly type: typeof BOOKMARK_NODE_TYPE_FOLDER;
 }
 
 export interface BookmarkTreeNodeSeparator extends BookmarkTreeNodeBase {
-    readonly type?: BookmarkTreeNodeType.Separator;
+    readonly type: typeof BOOKMARK_NODE_TYPE_SEPARATOR;
 }
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/CreateDetails
