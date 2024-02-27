@@ -6,14 +6,20 @@ import { UnsubscriptionError } from './unsubscription_error.js';
 type TeardownFn = (this: void) => void;
 
 export class Subscription implements Unsubscribable {
+    private _aborter: AbortController;
     private _closed: boolean;
     private _finalizers: Nullable<Set<Unsubscribable>>;
     private _initialTeardown: Nullable<TeardownFn>;
 
     constructor(initialTeardown: Nullable<TeardownFn>) {
+        this._aborter = new AbortController();
         this._closed = false;
         this._finalizers = null;
         this._initialTeardown = initialTeardown;
+    }
+
+    get signal(): AbortSignal {
+        return this._aborter.signal;
     }
 
     get closed(): boolean {
@@ -57,6 +63,8 @@ export class Subscription implements Unsubscribable {
             if (errors.length > 0) {
                 throw new UnsubscriptionError(errors);
             }
+
+            this._aborter.abort();
         }
     }
 
