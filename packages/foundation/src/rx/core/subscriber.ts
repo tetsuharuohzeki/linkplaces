@@ -9,7 +9,9 @@ export interface Observer<T> {
     complete(result: CompletionResult): void;
 }
 
-export interface Subscriber<T> extends Observer<T> {}
+export interface Subscriber<T> extends Observer<T> {
+    isClosed(): boolean;
+}
 
 export type OnNextFn<T> = (v: T) => void;
 export type OnErrorResumeFn = (error: unknown) => void;

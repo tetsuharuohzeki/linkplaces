@@ -1,9 +1,15 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import { createOk } from 'option-t/esm/PlainResult';
 import { expect, test, vitest, describe, it, beforeEach } from 'vitest';
-import type { CompletionResult } from '../../core/subscriber.js';
-import { InternalSubscriber } from '../../core/subscriber_impl.js';
-import { Subject, type Observer } from '../../mod.js';
+import type { CompletionResult, Subscriber } from '../../../core/subscriber.js';
+import { InternalSubscriber } from '../../../core/subscriber_impl.js';
+import { Observable, Subscription, type OnSubscribeFn, type Observer } from '../../../mod.js';
+
+class TestObservable<T> extends Observable<T> {
+    constructor(onSubscribe: OnSubscribeFn<T>) {
+        super(onSubscribe);
+    }
+}
 
 class TestSubscriber<T> extends InternalSubscriber<T> {
     override onNext(_value: T): void {}
@@ -13,7 +19,9 @@ class TestSubscriber<T> extends InternalSubscriber<T> {
 
 test('onSubscribe should be invoked by calling `.subscribe()`', () => {
     // arrange
-    const testTarget = new Subject<number>();
+    const onSubscribeFn = vitest.fn(() => new Subscription(null));
+    const testTarget = new TestObservable<number>(onSubscribeFn);
+    expect(onSubscribeFn).toHaveBeenCalledTimes(0);
 
     // act
     const observer: Observer<number> = {
@@ -24,6 +32,7 @@ test('onSubscribe should be invoked by calling `.subscribe()`', () => {
     const subscription = testTarget.subscribe(observer);
 
     // assert
+    expect(onSubscribeFn).toHaveBeenCalledTimes(1);
     expect(observer.next).toHaveBeenCalledTimes(0);
     expect(observer.errorResume).toHaveBeenCalledTimes(0);
     expect(observer.complete).toHaveBeenCalledTimes(0);
@@ -34,21 +43,60 @@ test('onSubscribe should be invoked by calling `.subscribe()`', () => {
     expect(subscription.closed).toBe(true);
 });
 
+test('should throw if onSubscribeFn throw`', () => {
+    // arrange
+    const ERROER_MASSAGE = 'blah_blah_blah';
+    let passedSubscriber: Subscriber<void>;
+    const onSubscribeFn = vitest.fn((destination) => {
+        passedSubscriber = destination;
+        throw new Error(ERROER_MASSAGE);
+    });
+    const testTarget = new TestObservable<void>(onSubscribeFn);
+    expect(onSubscribeFn).toHaveBeenCalledTimes(0);
+
+    const observer = new TestSubscriber<void>();
+    const onNext = vitest.spyOn(observer, 'onNext');
+    const onErrorResume = vitest.spyOn(observer, 'onErrorResume');
+    const onCompleted = vitest.spyOn(observer, 'onCompleted');
+
+    // act
+    expect(() => testTarget.subscribe(observer)).toThrowError(ERROER_MASSAGE);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    expect(passedSubscriber!.isClosed()).toBe(true);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    passedSubscriber!.next();
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    passedSubscriber!.errorResume(new Error());
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    passedSubscriber!.complete(createOk<void>(undefined));
+
+    // assert
+    expect(onSubscribeFn).toHaveBeenCalledTimes(1);
+    expect(onSubscribeFn).toThrowError(ERROER_MASSAGE);
+
+    expect(observer.isClosed()).toBe(true);
+
+    expect(onNext).toHaveBeenCalledTimes(0);
+    expect(onErrorResume).toHaveBeenCalledTimes(0);
+    expect(onCompleted).toHaveBeenCalledTimes(0);
+});
+
 describe('.subscribe() should propagate the passed value to the child', () => {
     it('onNext()', () => {
         // setup
         const TEST_INPUT = [1, 2, 3];
-        const testTarget = new Subject<number>();
+        const testTarget = new TestObservable<number>((destination) => {
+            for (const i of TEST_INPUT) {
+                destination.next(i);
+            }
+
+            return new Subscription(null);
+        });
         const observer = new TestSubscriber<number>();
         const onNext = vitest.spyOn(observer, 'onNext');
 
         // act
         const unsubscriber = testTarget.subscribe(observer);
-        for (const i of TEST_INPUT) {
-            testTarget.next(i);
-        }
-
-        // assertion
         expect(onNext.mock.calls).toStrictEqual([
             // @prettier-ignore
             [1],
@@ -64,22 +112,23 @@ describe('.subscribe() should propagate the passed value to the child', () => {
     it('onError', () => {
         // setup
         const TEST_INPUT = [1, 2, 3, 4];
-        const testTarget = new Subject<number>();
+        const testTarget = new TestObservable<number>((destination) => {
+            for (const i of TEST_INPUT) {
+                if (i % 2 !== 0) {
+                    destination.errorResume(i);
+                } else {
+                    destination.next(i);
+                }
+            }
+
+            return new Subscription(null);
+        });
         const observer = new TestSubscriber<number>();
         const onNext = vitest.spyOn(observer, 'onNext');
         const onError = vitest.spyOn(observer, 'onErrorResume');
 
         // act
         const unsubscriber = testTarget.subscribe(observer);
-        for (const i of TEST_INPUT) {
-            if (i % 2 !== 0) {
-                testTarget.errorResume(i);
-            } else {
-                testTarget.next(i);
-            }
-        }
-
-        // assertion
         expect(onNext.mock.calls).toStrictEqual([
             // @prettier-ignore
             [2],
@@ -99,7 +148,20 @@ describe('.subscribe() should propagate the passed value to the child', () => {
     it('onComplete', () => {
         // setup
         const TEST_INPUT = [1, 2, 3, 4];
-        const testTarget = new Subject<number>();
+        const testTarget = new TestObservable<number>((destination) => {
+            destination.complete(createOk<void>(undefined));
+            destination.complete(createOk<void>(undefined));
+
+            for (const i of TEST_INPUT) {
+                if (i % 2 !== 0) {
+                    destination.errorResume(i);
+                } else {
+                    destination.next(i);
+                }
+            }
+
+            return new Subscription(null);
+        });
         const observer = new TestSubscriber<number>();
         const onNext = vitest.spyOn(observer, 'onNext');
         const onError = vitest.spyOn(observer, 'onErrorResume');
@@ -107,17 +169,6 @@ describe('.subscribe() should propagate the passed value to the child', () => {
 
         // act
         const unsubscriber = testTarget.subscribe(observer);
-        testTarget.complete(createOk<void>(undefined));
-        testTarget.complete(createOk<void>(undefined));
-        for (const i of TEST_INPUT) {
-            if (i % 2 !== 0) {
-                testTarget.errorResume(i);
-            } else {
-                testTarget.next(i);
-            }
-        }
-
-        // assertions
         expect(onCompleted.mock.calls).toStrictEqual([
             // @prettier-ignore
             [createOk<void>(undefined)],
@@ -141,7 +192,13 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         const THROWN_ERROR = new Error(ERR_MESSAGE);
 
         // setup
-        const testTarget = new Subject<number>();
+        let passedSubscriber: Subscriber<number>;
+        const testTarget = new TestObservable<number>((destination) => {
+            passedSubscriber = destination;
+            destination.next(1);
+
+            return new Subscription(null);
+        });
         const observer: Observer<number> = {
             next: vitest.fn((_val) => {
                 throw THROWN_ERROR;
@@ -152,7 +209,6 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
 
         // act
         const subscription = testTarget.subscribe(observer);
-        testTarget.next(1);
 
         // assert
         expect(observer.next).toHaveBeenCalledTimes(1);
@@ -165,6 +221,9 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         expect(observer.complete).toHaveBeenCalledTimes(0);
         expect(subscription.closed).toBe(false);
 
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        expect(passedSubscriber!.isClosed()).toBe(false);
+
         // teardown
         subscription.unsubscribe();
     });
@@ -175,7 +234,13 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         const THROWN_ERROR = new Error(ERR_MESSAGE);
 
         // setup
-        const testTarget = new Subject<number>();
+        let passedSubscriber: Subscriber<number>;
+        const testTarget = new TestObservable<number>((destination) => {
+            passedSubscriber = destination;
+            destination.errorResume(INPUT_ERROR);
+
+            return new Subscription(null);
+        });
         const observer: Observer<number> = {
             next: vitest.fn(),
             errorResume: vitest.fn((_val) => {
@@ -186,7 +251,6 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
 
         // act
         const subscription = testTarget.subscribe(observer);
-        testTarget.errorResume(INPUT_ERROR);
 
         // assert
         expect(observer.next).toHaveBeenCalledTimes(0);
@@ -200,6 +264,8 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         expect(globalThis.reportError).toHaveBeenCalledTimes(1);
         expect(globalThis.reportError).toHaveBeenLastCalledWith(THROWN_ERROR);
 
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        expect(passedSubscriber!.isClosed()).toBe(false);
         expect(subscription.closed).toBe(false);
 
         // teardown
@@ -211,7 +277,14 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         const THROWN_ERROR = new Error(ERR_MESSAGE);
 
         // setup
-        const testTarget = new Subject<number>();
+        let passedSubscriber: Subscriber<number>;
+        const testTarget = new TestObservable<number>((destination) => {
+            passedSubscriber = destination;
+            destination.complete(createOk<void>(undefined));
+            destination.complete(createOk<void>(undefined));
+
+            return new Subscription(null);
+        });
         const observer: Observer<number> = {
             next: vitest.fn(),
             errorResume: vitest.fn(),
@@ -222,8 +295,6 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
 
         // act
         const subscription = testTarget.subscribe(observer);
-        testTarget.complete(createOk<void>(undefined));
-        testTarget.complete(createOk<void>(undefined));
 
         // assert
         expect(observer.next).toHaveBeenCalledTimes(0);
@@ -235,7 +306,8 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         expect(globalThis.reportError).toHaveBeenCalledTimes(1);
         expect(globalThis.reportError).toHaveBeenLastCalledWith(THROWN_ERROR);
 
-        expect(testTarget.isCompleted).toBe(true);
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        expect(passedSubscriber!.isClosed()).toBe(true);
         expect(subscription.closed).toBe(true);
 
         // teardown
@@ -247,7 +319,13 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         const THROWN_ERROR_ON_ERROR_CB = new Error(String(Math.random()));
 
         // setup
-        const testTarget = new Subject<number>();
+        let passedSubscriber: Subscriber<number>;
+        const testTarget = new TestObservable<number>((destination) => {
+            passedSubscriber = destination;
+            destination.next(1);
+
+            return new Subscription(null);
+        });
         const observer: Observer<number> = {
             next: vitest.fn((_val) => {
                 throw THROWN_ERROR_ON_NEXT_CB;
@@ -260,7 +338,6 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
 
         // act
         const subscription = testTarget.subscribe(observer);
-        testTarget.next(1);
 
         // assert
         expect(observer.next).toHaveBeenCalledTimes(1);
@@ -276,7 +353,8 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         expect(globalThis.reportError).toHaveBeenCalledTimes(1);
         expect(globalThis.reportError).toHaveBeenLastCalledWith(THROWN_ERROR_ON_ERROR_CB);
 
-        expect(testTarget.isCompleted).toBe(false);
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        expect(passedSubscriber!.isClosed()).toBe(false);
         expect(subscription.closed).toBe(false);
 
         // teardown
@@ -285,10 +363,19 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
 });
 
 test("the returned subscription's .unsubscribe() should propagate to the source", () => {
-    expect.assertions(4);
+    expect.assertions(7);
 
     // arrange
-    const testTarget = new Subject<void>();
+    let passedSubscriber: Subscriber<void>;
+    const onUnsubscribe = vitest.fn(() => {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        expect(passedSubscriber!.isClosed()).toBe(true);
+    });
+    const testTarget = new TestObservable<void>((destination) => {
+        expect(destination.isClosed()).toBe(false);
+        passedSubscriber = destination;
+        return new Subscription(onUnsubscribe);
+    });
 
     // act
     const observer: Observer<void> = {
@@ -301,16 +388,26 @@ test("the returned subscription's .unsubscribe() should propagate to the source"
     expect(subscription.closed).toBe(true);
 
     // assert
+    expect(onUnsubscribe).toHaveBeenCalledTimes(1);
     expect(observer.next).toHaveBeenCalledTimes(0);
     expect(observer.errorResume).toHaveBeenCalledTimes(0);
     expect(observer.complete).toHaveBeenCalledTimes(0);
 });
 
 test('the destination should not work after calling .unsubscribe() returned by .subscribe()', () => {
-    expect.assertions(5);
+    expect.assertions(7);
 
     // arrange
-    const testTarget = new Subject<void>();
+    let passedSubscriber: Subscriber<void>;
+    const onUnsubscribe = vitest.fn(() => {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        expect(passedSubscriber!.isClosed()).toBe(true);
+    });
+    const testTarget = new TestObservable<void>((destination) => {
+        expect(destination.isClosed()).toBe(false);
+        passedSubscriber = destination;
+        return new Subscription(onUnsubscribe);
+    });
 
     // act
     const observer: Observer<void> = {
@@ -319,25 +416,33 @@ test('the destination should not work after calling .unsubscribe() returned by .
         complete: vitest.fn(),
     };
     const subscription = testTarget.subscribe(observer);
-    expect(subscription.closed).toBe(false);
     subscription.unsubscribe();
     expect(subscription.closed).toBe(true);
 
-    testTarget.next();
-    testTarget.errorResume(new Error());
-    testTarget.complete(createOk<void>(undefined));
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    passedSubscriber!.next();
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    passedSubscriber!.errorResume(new Error());
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    passedSubscriber!.complete(createOk<void>(undefined));
 
     // assert
+    expect(onUnsubscribe).toHaveBeenCalledTimes(1);
     expect(observer.next).toHaveBeenCalledTimes(0);
     expect(observer.errorResume).toHaveBeenCalledTimes(0);
     expect(observer.complete).toHaveBeenCalledTimes(0);
 });
 
 test('if the passed destination calls its unsubscribe() after start subscribing, event should not propagete to it', () => {
-    expect.assertions(6);
+    expect.assertions(7);
 
     // setup
-    const testTarget = new Subject<number>();
+    let passedSubscriber: Subscriber<number>;
+    const testTarget = new TestObservable<number>((destination) => {
+        expect(destination.isClosed()).toBe(false);
+        passedSubscriber = destination;
+        return new Subscription(null);
+    });
     const observer = new TestSubscriber<number>();
     const onNext = vitest.spyOn(observer, 'onNext');
     const onError = vitest.spyOn(observer, 'onErrorResume');
@@ -349,9 +454,12 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
     observer.unsubscribe();
     expect(observer.isClosed()).toBe(true);
 
-    testTarget.next(1);
-    testTarget.errorResume(new Error());
-    testTarget.complete(createOk<void>(undefined));
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    passedSubscriber!.next(1);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    passedSubscriber!.errorResume(new Error());
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    passedSubscriber!.complete(createOk<void>(undefined));
 
     // assertion
     expect(onNext).toHaveBeenCalledTimes(0);
@@ -363,10 +471,23 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
 });
 
 test('if the passed destination is closed', () => {
-    expect.assertions(5);
+    expect.assertions(6);
 
     // setup
-    const testTarget = new Subject<number>();
+    const TEST_INPUT = [1, 2, 3, 4];
+    const testTarget = new TestObservable<number>((destination) => {
+        expect(destination.isClosed()).toBe(true);
+
+        for (const i of TEST_INPUT) {
+            if (i % 2 !== 0) {
+                destination.errorResume(i);
+            } else {
+                destination.next(i);
+            }
+        }
+
+        return new Subscription(null);
+    });
     const observer = new TestSubscriber<number>();
     const onNext = vitest.spyOn(observer, 'onNext');
     const onError = vitest.spyOn(observer, 'onErrorResume');
@@ -377,10 +498,6 @@ test('if the passed destination is closed', () => {
     expect(observer.isClosed()).toBe(true);
     const subscription = testTarget.subscribe(observer);
 
-    testTarget.next(1);
-    testTarget.errorResume(new Error());
-    testTarget.complete(createOk<void>(undefined));
-
     // assertion
     expect(onNext).toHaveBeenCalledTimes(0);
     expect(onError).toHaveBeenCalledTimes(0);
@@ -388,12 +505,4 @@ test('if the passed destination is closed', () => {
 
     // teardown
     expect(subscription.closed).toBe(true);
-});
-
-test('prevent cycle myself', () => {
-    const target = new Subject<number>();
-
-    expect(() => {
-        target.subscribe(target);
-    }).toThrowError(new Error('recursive subscription happens'));
 });

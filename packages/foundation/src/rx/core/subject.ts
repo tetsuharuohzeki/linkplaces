@@ -4,7 +4,7 @@ import { createOk, type Result } from 'option-t/esm/PlainResult';
 import { Observable } from './observable.js';
 import type { Subjectable } from './subjectable.js';
 import type { Unsubscribable } from './subscribable.js';
-import type { Subscriber } from './subscriber.js';
+import type { Observer, Subscriber } from './subscriber.js';
 import { Subscription } from './subscription.js';
 
 export class Subject<T> extends Observable<T> implements Subjectable<T> {
@@ -36,6 +36,15 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
 
     protected _clearObservers(): void {
         this._observers.clear();
+    }
+
+    override subscribe(destination: Observer<T>): Unsubscribable {
+        if (destination === this) {
+            throw new Error('recursive subscription happens');
+        }
+
+        const sub = super.subscribe(destination);
+        return sub;
     }
 
     next(value: T): void {

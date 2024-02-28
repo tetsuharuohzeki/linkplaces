@@ -1,6 +1,6 @@
 import { isNotNull, type Nullable } from 'option-t/esm/Nullable';
 import type { Unsubscribable } from './subscribable.js';
-import type { CompletionResult, Subscriber } from './subscriber.js';
+import type { CompletionResult, Observer, Subscriber } from './subscriber.js';
 
 /**
  *  @internal
@@ -27,6 +27,10 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
         this._sourceSubscription = subscription;
     }
 
+    get closed(): boolean {
+        return this._isClosed;
+    }
+
     isClosed(): boolean {
         return this._isClosed;
     }
@@ -36,7 +40,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     }
 
     next(value: T): void {
-        if (this.isClosed() || this.isCalledCompleted()) {
+        if (this._isClosed || this.isCalledCompleted()) {
             return;
         }
 
@@ -48,7 +52,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     }
 
     errorResume(error: unknown): void {
-        if (this.isClosed() || this.isCalledCompleted()) {
+        if (this._isClosed || this.isCalledCompleted()) {
             return;
         }
 
@@ -65,7 +69,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
         }
         this._calledOnCompleted = true;
 
-        if (this.isClosed()) {
+        if (this._isClosed) {
             return;
         }
 
@@ -79,7 +83,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     }
 
     unsubscribe(): void {
-        if (this.isClosed()) {
+        if (this._isClosed) {
             return;
         }
 
@@ -95,8 +99,8 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
 }
 
 export class PassThroughSubscriber<T> extends InternalSubscriber<T> {
-    private _observer: Subscriber<T>;
-    constructor(destination: Subscriber<T>) {
+    private _observer: Observer<T>;
+    constructor(destination: Observer<T>) {
         super();
         this._observer = destination;
     }
