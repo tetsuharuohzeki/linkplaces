@@ -16,7 +16,6 @@ import {
     type SetStateAction,
     type Dispatch,
     type ReactNode,
-    useTransition,
 } from 'react';
 
 import type { SidebarItemViewModelEntity } from '../SidebarDomain.js';
@@ -113,10 +112,6 @@ interface ListItemForBookmarkItemProps {
 
 function ListItemForBookmarkItem(props: ListItemForBookmarkItemProps) {
     const { bookmark, intent, setIsOpening } = props;
-    const [isPending, startTransition] = useTransition();
-    if (isPending) {
-        return null;
-    }
 
     const id = bookmark.id;
     const url = bookmark.url;
@@ -125,12 +120,11 @@ function ListItemForBookmarkItem(props: ListItemForBookmarkItemProps) {
 
     const onClick: MouseEventHandler<HTMLAnchorElement> = (evt) => {
         evt.preventDefault();
+
         const where = calculateWhereToOpenItem(evt);
         intent.openItem(id, url, where);
 
-        startTransition(() => {
-            setIsOpening(true);
-        });
+        setIsOpening(true);
     };
 
     const label = bookmarkTitle === '' ? url : bookmarkTitle;
