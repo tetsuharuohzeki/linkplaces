@@ -1,13 +1,16 @@
-import { isErr, isOk, type Result } from 'option-t/esm/PlainResult';
+import { isErr, isOk } from 'option-t/esm/PlainResult';
 import { Observable } from '../core/observable.js';
-import type { Observer, Subscriber } from '../core/subscriber.js';
+import type { CompletionResult, Subscriber } from '../core/subscriber.js';
+import { InternalSubscriber } from '../core/subscriber_impl.js';
 import { Subscription } from '../core/subscription.js';
 
-class MergeObserver<T> implements Observer<T> {
+class MergeSubscriber<T> extends InternalSubscriber<T> {
     private _refCount: number;
     private _destination: Subscriber<T>;
 
     constructor(refCount: number, destination: Subscriber<T>) {
+        super();
+
         this._refCount = refCount;
         this._destination = destination;
     }
@@ -17,15 +20,15 @@ class MergeObserver<T> implements Observer<T> {
         return this._refCount;
     }
 
-    next(value: T): void {
+    protected override onNext(value: T): void {
         this._destination.next(value);
     }
 
-    errorResume(error: unknown): void {
+    protected override onErrorResume(error: unknown): void {
         this._destination.errorResume(error);
     }
 
-    complete(result: Result<void, unknown>): void {
+    protected override onCompleted(result: CompletionResult): void {
         if (isErr(result)) {
             this._destination.complete(result);
         } else if (isOk(result)) {
@@ -45,7 +48,7 @@ class MergeAllObservable<T> extends Observable<T> {
             const rootSubscription = new Subscription(null);
 
             for (const source of inputs) {
-                const childObserver = new MergeObserver(refCount, destination);
+                const childObserver = new MergeSubscriber(refCount, destination);
                 const childSubscription = source.subscribe(childObserver);
                 rootSubscription.add(childSubscription);
             }
