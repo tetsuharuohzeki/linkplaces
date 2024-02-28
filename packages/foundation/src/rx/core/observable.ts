@@ -1,17 +1,21 @@
 import type { UnaryFunction } from './operator.js';
 import type { Unsubscribable } from './subscribable.js';
-import { type Subscriber, PartialObserver, type SubscriptionObserver } from './subscriber.js';
+import { type Subscriber, PartialObserver, type SubscriptionObserver, type Observer } from './subscriber.js';
 import { PassThroughSubscriber, InternalSubscriber } from './subscriber_impl.js';
 
 export type OnSubscribeFn<T> = (destination: Subscriber<T>) => Unsubscribable;
 
-export abstract class Observable<T> {
+export interface ObservableLike<T> {
+    subscribe(destination: Observer<T>): Unsubscribable;
+}
+
+export abstract class Observable<T> implements ObservableLike<T> {
     protected _onSubscribe: OnSubscribeFn<T>;
     constructor(onSubscribe: OnSubscribeFn<T>) {
         this._onSubscribe = onSubscribe;
     }
 
-    subscribe(destination: Subscriber<T>): Unsubscribable {
+    subscribe(destination: Observer<T>): Unsubscribable {
         const subscriber =
             destination instanceof InternalSubscriber ? destination : new PassThroughSubscriber(destination);
         try {

@@ -1,7 +1,4 @@
-import type { Observer } from '../mod';
-import type { Unsubscribable } from './subscribable';
-import type { Subscriber } from './subscriber';
+import type { ObservableLike } from './observable';
+import type { Observer } from './subscriber';
 
-export interface Subjectable<T> extends Observer<T> {
-    subscribe(destination: Subscriber<T>): Unsubscribable;
-}
+export interface Subjectable<T> extends Observer<T>, ObservableLike<T> {}
