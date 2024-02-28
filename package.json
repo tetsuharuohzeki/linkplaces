@@ -13,7 +13,7 @@
         "@eslint/js": "^8.57.0",
         "@monorepo-utils/workspaces-to-typescript-project-references": "^2.10.4",
         "@reflink/reflink": "^0.1.16",
-        "@types/node": "20.11.20",
+        "@types/node": "20.11.21",
         "@types/react": "18.2.57",
         "@types/react-dom": "18.2.19",
         "@typescript-eslint/eslint-plugin": "7.0.2",
