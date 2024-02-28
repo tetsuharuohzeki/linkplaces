@@ -1,5 +1,5 @@
-export { Observable } from './core/observable.js';
-export type { Subscriber as Observer } from './core/subscriber.js';
+export { Observable, type OnSubscribeFn } from './core/observable.js';
+export type { Observer, Subscriber, CompletionResult } from './core/subscriber.js';
 export { Subject } from './core/subject.js';
 export { Subscription } from './core/subscription.js';
 export type { Unsubscribable } from './core/subscribable.js';
