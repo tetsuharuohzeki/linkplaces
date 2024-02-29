@@ -108,6 +108,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
             } catch (e: unknown) {
                 globalThis.reportError(e);
             }
+            return;
         }
 
         this._finalizers ??= new Set();
