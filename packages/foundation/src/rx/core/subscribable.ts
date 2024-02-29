@@ -1,4 +1,4 @@
 export interface Unsubscribable {
-    closed: boolean;
+    readonly closed: boolean;
     unsubscribe(): void;
 }
