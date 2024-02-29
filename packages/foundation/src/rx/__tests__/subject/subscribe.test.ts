@@ -344,10 +344,10 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
     const onCompleted = vitest.spyOn(observer, 'onCompleted');
 
     // act
-    expect(observer.isClosed()).toBe(false);
+    expect(observer.isActive()).toBe(true);
     const subscription = testTarget.subscribe(observer);
     observer.unsubscribe();
-    expect(observer.isClosed()).toBe(true);
+    expect(observer.isActive()).toBe(false);
 
     testTarget.next(1);
     testTarget.errorResume(new Error());
@@ -374,7 +374,7 @@ test('if the passed destination is closed', () => {
 
     // act
     observer.unsubscribe();
-    expect(observer.isClosed()).toBe(true);
+    expect(observer.isActive()).toBe(false);
     const subscription = testTarget.subscribe(observer);
 
     testTarget.next(1);

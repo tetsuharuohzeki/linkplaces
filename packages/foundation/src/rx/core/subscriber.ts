@@ -12,7 +12,7 @@ export interface Observer<T> {
 export type TeardownFn = (this: void) => void;
 
 export interface Subscriber<T> extends Observer<T> {
-    isClosed(): boolean;
+    isActive(): boolean;
     addTeardown(teardown: TeardownFn): void;
 }
 

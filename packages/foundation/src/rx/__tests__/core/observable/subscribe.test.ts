@@ -62,7 +62,7 @@ test('should throw if onSubscribeFn throw`', () => {
     // act
     expect(() => testTarget.subscribe(observer)).toThrowError(ERROER_MASSAGE);
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    expect(passedSubscriber!.isClosed()).toBe(true);
+    expect(passedSubscriber!.isActive()).toBe(false);
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     passedSubscriber!.next();
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -74,7 +74,7 @@ test('should throw if onSubscribeFn throw`', () => {
     expect(onSubscribeFn).toHaveBeenCalledTimes(1);
     expect(onSubscribeFn).toThrowError(ERROER_MASSAGE);
 
-    expect(observer.isClosed()).toBe(true);
+    expect(observer.isActive()).toBe(false);
 
     expect(onNext).toHaveBeenCalledTimes(0);
     expect(onErrorResume).toHaveBeenCalledTimes(0);
@@ -214,7 +214,7 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         expect(subscription.closed).toBe(false);
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        expect(passedSubscriber!.isClosed()).toBe(false);
+        expect(passedSubscriber!.isActive()).toBe(true);
 
         // teardown
         subscription.unsubscribe();
@@ -255,7 +255,7 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         expect(globalThis.reportError).toHaveBeenLastCalledWith(THROWN_ERROR);
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        expect(passedSubscriber!.isClosed()).toBe(false);
+        expect(passedSubscriber!.isActive()).toBe(true);
         expect(subscription.closed).toBe(false);
 
         // teardown
@@ -295,7 +295,7 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         expect(globalThis.reportError).toHaveBeenLastCalledWith(THROWN_ERROR);
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        expect(passedSubscriber!.isClosed()).toBe(true);
+        expect(passedSubscriber!.isActive()).toBe(false);
         expect(subscription.closed).toBe(true);
 
         // teardown
@@ -340,7 +340,7 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         expect(globalThis.reportError).toHaveBeenLastCalledWith(THROWN_ERROR_ON_ERROR_CB);
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        expect(passedSubscriber!.isClosed()).toBe(false);
+        expect(passedSubscriber!.isActive()).toBe(true);
         expect(subscription.closed).toBe(false);
 
         // teardown
@@ -355,11 +355,11 @@ test("the returned subscription's .unsubscribe() should propagate to the source"
     let passedSubscriber: Subscriber<void>;
     const onUnsubscribe = vitest.fn(() => {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        expect(passedSubscriber!.isClosed()).toBe(true);
+        expect(passedSubscriber!.isActive()).toBe(false);
     });
     const testTarget = new TestObservable<void>((destination) => {
         destination.addTeardown(onUnsubscribe);
-        expect(destination.isClosed()).toBe(false);
+        expect(destination.isActive()).toBe(true);
         passedSubscriber = destination;
     });
 
@@ -387,11 +387,11 @@ test('the destination should not work after calling .unsubscribe() returned by .
     let passedSubscriber: Subscriber<void>;
     const onUnsubscribe = vitest.fn(() => {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        expect(passedSubscriber!.isClosed()).toBe(true);
+        expect(passedSubscriber!.isActive()).toBe(true);
     });
     const testTarget = new TestObservable<void>((destination) => {
         destination.addTeardown(onUnsubscribe);
-        expect(destination.isClosed()).toBe(false);
+        expect(destination.isActive()).toBe(true);
         passedSubscriber = destination;
     });
 
@@ -425,7 +425,7 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
     // setup
     let passedSubscriber: Subscriber<number>;
     const testTarget = new TestObservable<number>((destination) => {
-        expect(destination.isClosed()).toBe(false);
+        expect(destination.isActive()).toBe(true);
         passedSubscriber = destination;
     });
     const observer = new TestSubscriber<number>();
@@ -434,10 +434,10 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
     const onCompleted = vitest.spyOn(observer, 'onCompleted');
 
     // act
-    expect(observer.isClosed()).toBe(false);
+    expect(observer.isActive()).toBe(true);
     const subscription = testTarget.subscribe(observer);
     observer.unsubscribe();
-    expect(observer.isClosed()).toBe(true);
+    expect(observer.isActive()).toBe(false);
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     passedSubscriber!.next(1);
@@ -461,7 +461,7 @@ test('if the passed destination is closed', () => {
     // setup
     const TEST_INPUT = [1, 2, 3, 4];
     const testTarget = new TestObservable<number>((destination) => {
-        expect(destination.isClosed()).toBe(true);
+        expect(destination.isActive()).toBe(false);
 
         for (const i of TEST_INPUT) {
             if (i % 2 !== 0) {
@@ -478,7 +478,7 @@ test('if the passed destination is closed', () => {
 
     // act
     observer.unsubscribe();
-    expect(observer.isClosed()).toBe(true);
+    expect(observer.isActive()).toBe(false);
     const subscription = testTarget.subscribe(observer);
 
     // assertion

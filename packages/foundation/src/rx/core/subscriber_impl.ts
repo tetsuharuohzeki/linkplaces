@@ -8,11 +8,11 @@ import type { CompletionResult, Observer, Subscriber, TeardownFn } from './subsc
  *  Do not expose to user.
  */
 export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscribable {
-    private _isClosed: boolean;
+    private _isAlive: boolean;
     private _calledOnCompleted: boolean;
     private _finalizers: Nullable<Set<TeardownFn>>;
     constructor() {
-        this._isClosed = false;
+        this._isAlive = true;
         this._calledOnCompleted = false;
         this._finalizers = null;
     }
@@ -25,11 +25,11 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     protected onUnsubscribe(): void {}
 
     get closed(): boolean {
-        return this._isClosed;
+        return !this._isAlive;
     }
 
-    isClosed(): boolean {
-        return this._isClosed;
+    isActive(): boolean {
+        return this._isAlive;
     }
 
     private isCalledCompleted(): boolean {
@@ -37,7 +37,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     }
 
     next(value: T): void {
-        if (this._isClosed || this.isCalledCompleted()) {
+        if (this.closed || this.isCalledCompleted()) {
             return;
         }
 
@@ -49,7 +49,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     }
 
     errorResume(error: unknown): void {
-        if (this._isClosed || this.isCalledCompleted()) {
+        if (this.closed || this.isCalledCompleted()) {
             return;
         }
 
@@ -66,7 +66,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
         }
         this._calledOnCompleted = true;
 
-        if (this._isClosed) {
+        if (this.closed) {
             return;
         }
 
@@ -80,11 +80,11 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     }
 
     unsubscribe(): void {
-        if (this._isClosed) {
+        if (this.closed) {
             return;
         }
 
-        this._isClosed = true;
+        this._isAlive = false;
         this.onUnsubscribe();
 
         const finalizerSet = this._finalizers;
@@ -102,7 +102,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     }
 
     addTeardown(teardown: TeardownFn): void {
-        if (this._isClosed) {
+        if (this.closed) {
             try {
                 teardown();
             } catch (e: unknown) {
