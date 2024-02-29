@@ -2,7 +2,6 @@ import { isErr, isOk } from 'option-t/esm/PlainResult';
 import { Observable } from '../core/observable.js';
 import type { CompletionResult, Subscriber } from '../core/subscriber.js';
 import { InternalSubscriber } from '../core/subscriber_impl.js';
-import { Subscription } from '../core/subscription.js';
 
 class MergeSubscriber<T> extends InternalSubscriber<T> {
     private _refCount: number;
@@ -45,15 +44,13 @@ class MergeAllObservable<T> extends Observable<T> {
         super((destination) => {
             const refCount = inputs.length;
 
-            const rootSubscription = new Subscription(null);
-
             for (const source of inputs) {
                 const childObserver = new MergeSubscriber(refCount, destination);
                 const childSubscription = source.subscribe(childObserver);
-                rootSubscription.add(childSubscription);
+                destination.addTeardown(() => {
+                    childSubscription.unsubscribe();
+                });
             }
-
-            return rootSubscription;
         });
     }
 }

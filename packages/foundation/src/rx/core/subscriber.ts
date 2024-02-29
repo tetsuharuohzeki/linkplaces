@@ -9,8 +9,11 @@ export interface Observer<T> {
     complete(result: CompletionResult): void;
 }
 
+export type TeardownFn = (this: void) => void;
+
 export interface Subscriber<T> extends Observer<T> {
     isClosed(): boolean;
+    addTeardown(teardown: TeardownFn): void;
 }
 
 export type OnNextFn<T> = (v: T) => void;

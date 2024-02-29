@@ -1,9 +1,8 @@
 import { isNotNull, unwrapNullable, type Nullable } from 'option-t/esm/Nullable';
 
 import type { Unsubscribable } from './subscribable.js';
+import type { TeardownFn } from './subscriber.js';
 import { UnsubscriptionError } from './unsubscription_error.js';
-
-type TeardownFn = (this: void) => void;
 
 export class Subscription implements Unsubscribable {
     private _aborter: AbortController;

@@ -3,7 +3,7 @@ import { createOk } from 'option-t/esm/PlainResult';
 import { expect, test, vitest, describe, it, beforeEach } from 'vitest';
 import type { CompletionResult, Subscriber } from '../../../core/subscriber.js';
 import { InternalSubscriber } from '../../../core/subscriber_impl.js';
-import { Observable, Subscription, type OnSubscribeFn, type Observer } from '../../../mod.js';
+import { Observable, type OnSubscribeFn, type Observer } from '../../../mod.js';
 
 class TestObservable<T> extends Observable<T> {
     constructor(onSubscribe: OnSubscribeFn<T>) {
@@ -19,7 +19,7 @@ class TestSubscriber<T> extends InternalSubscriber<T> {
 
 test('onSubscribe should be invoked by calling `.subscribe()`', () => {
     // arrange
-    const onSubscribeFn = vitest.fn(() => new Subscription(null));
+    const onSubscribeFn = vitest.fn();
     const testTarget = new TestObservable<number>(onSubscribeFn);
     expect(onSubscribeFn).toHaveBeenCalledTimes(0);
 
@@ -89,8 +89,6 @@ describe('.subscribe() should propagate the passed value to the child', () => {
             for (const i of TEST_INPUT) {
                 destination.next(i);
             }
-
-            return new Subscription(null);
         });
         const observer = new TestSubscriber<number>();
         const onNext = vitest.spyOn(observer, 'onNext');
@@ -120,8 +118,6 @@ describe('.subscribe() should propagate the passed value to the child', () => {
                     destination.next(i);
                 }
             }
-
-            return new Subscription(null);
         });
         const observer = new TestSubscriber<number>();
         const onNext = vitest.spyOn(observer, 'onNext');
@@ -159,8 +155,6 @@ describe('.subscribe() should propagate the passed value to the child', () => {
                     destination.next(i);
                 }
             }
-
-            return new Subscription(null);
         });
         const observer = new TestSubscriber<number>();
         const onNext = vitest.spyOn(observer, 'onNext');
@@ -196,8 +190,6 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         const testTarget = new TestObservable<number>((destination) => {
             passedSubscriber = destination;
             destination.next(1);
-
-            return new Subscription(null);
         });
         const observer: Observer<number> = {
             next: vitest.fn((_val) => {
@@ -238,8 +230,6 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         const testTarget = new TestObservable<number>((destination) => {
             passedSubscriber = destination;
             destination.errorResume(INPUT_ERROR);
-
-            return new Subscription(null);
         });
         const observer: Observer<number> = {
             next: vitest.fn(),
@@ -282,8 +272,6 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
             passedSubscriber = destination;
             destination.complete(createOk<void>(undefined));
             destination.complete(createOk<void>(undefined));
-
-            return new Subscription(null);
         });
         const observer: Observer<number> = {
             next: vitest.fn(),
@@ -323,8 +311,6 @@ describe('Graceful shutdown subscriptions if the child observer throw the error'
         const testTarget = new TestObservable<number>((destination) => {
             passedSubscriber = destination;
             destination.next(1);
-
-            return new Subscription(null);
         });
         const observer: Observer<number> = {
             next: vitest.fn((_val) => {
@@ -372,9 +358,9 @@ test("the returned subscription's .unsubscribe() should propagate to the source"
         expect(passedSubscriber!.isClosed()).toBe(true);
     });
     const testTarget = new TestObservable<void>((destination) => {
+        destination.addTeardown(onUnsubscribe);
         expect(destination.isClosed()).toBe(false);
         passedSubscriber = destination;
-        return new Subscription(onUnsubscribe);
     });
 
     // act
@@ -404,9 +390,9 @@ test('the destination should not work after calling .unsubscribe() returned by .
         expect(passedSubscriber!.isClosed()).toBe(true);
     });
     const testTarget = new TestObservable<void>((destination) => {
+        destination.addTeardown(onUnsubscribe);
         expect(destination.isClosed()).toBe(false);
         passedSubscriber = destination;
-        return new Subscription(onUnsubscribe);
     });
 
     // act
@@ -441,7 +427,6 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
     const testTarget = new TestObservable<number>((destination) => {
         expect(destination.isClosed()).toBe(false);
         passedSubscriber = destination;
-        return new Subscription(null);
     });
     const observer = new TestSubscriber<number>();
     const onNext = vitest.spyOn(observer, 'onNext');
@@ -485,8 +470,6 @@ test('if the passed destination is closed', () => {
                 destination.next(i);
             }
         }
-
-        return new Subscription(null);
     });
     const observer = new TestSubscriber<number>();
     const onNext = vitest.spyOn(observer, 'onNext');

@@ -15,22 +15,20 @@ export abstract class OperatorObservable<TInput, TOutput> extends Observable<TOu
     protected source: Observable<TInput>;
     constructor(source: Observable<TInput>) {
         super((destination: Subscriber<TOutput>) => {
-            const sub = this.onSubscribe(destination);
-            return sub;
+            this.onSubscribe(destination);
         });
         this.source = source;
     }
 
-    protected abstract onSubscribe(destination: Subscriber<TOutput>): Unsubscribable;
+    protected abstract onSubscribe(destination: Subscriber<TOutput>): void;
 }
 
 export abstract class DeclarativeObservable<T> extends Observable<T> {
     constructor() {
         super((destination: Subscriber<T>) => {
-            const sub = this.onSubscribe(destination);
-            return sub;
+            this.onSubscribe(destination);
         });
     }
 
-    protected abstract onSubscribe(destination: Subscriber<T>): Unsubscribable;
+    protected abstract onSubscribe(destination: Subscriber<T>): void;
 }

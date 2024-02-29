@@ -3,7 +3,7 @@ import type { Unsubscribable } from './subscribable.js';
 import { type Subscriber, PartialObserver, type SubscriptionObserver, type Observer } from './subscriber.js';
 import { PassThroughSubscriber, InternalSubscriber } from './subscriber_impl.js';
 
-export type OnSubscribeFn<T> = (destination: Subscriber<T>) => Unsubscribable;
+export type OnSubscribeFn<T> = (destination: Subscriber<T>) => void;
 
 export interface ObservableLike<T> {
     subscribe(destination: Observer<T>): Unsubscribable;
@@ -18,14 +18,15 @@ export abstract class Observable<T> implements ObservableLike<T> {
     subscribe(destination: Observer<T>): Unsubscribable {
         const subscriber =
             destination instanceof InternalSubscriber ? destination : new PassThroughSubscriber(destination);
+
         try {
-            const subscription = this._onSubscribe(subscriber);
-            subscriber.setSourceSubscription(subscription);
-            return subscriber;
+            this._onSubscribe(subscriber);
         } catch (err: unknown) {
             subscriber.unsubscribe();
             throw err;
         }
+
+        return subscriber;
     }
 
     subscribeBy(destination: SubscriptionObserver<T>): Unsubscribable {

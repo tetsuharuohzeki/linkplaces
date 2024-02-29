@@ -1,6 +1,6 @@
-import { isNotNull, type Nullable } from 'option-t/esm/Nullable';
+import { isNotNull, unwrapNullable, type Nullable } from 'option-t/esm/Nullable';
 import type { Unsubscribable } from './subscribable.js';
-import type { CompletionResult, Observer, Subscriber } from './subscriber.js';
+import type { CompletionResult, Observer, Subscriber, TeardownFn } from './subscriber.js';
 
 /**
  *  @internal
@@ -10,9 +10,11 @@ import type { CompletionResult, Observer, Subscriber } from './subscriber.js';
 export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscribable {
     private _isClosed: boolean;
     private _calledOnCompleted: boolean;
+    private _finalizers: Nullable<Set<TeardownFn>>;
     constructor() {
         this._isClosed = false;
         this._calledOnCompleted = false;
+        this._finalizers = null;
     }
 
     protected abstract onNext(value: T): void;
@@ -21,11 +23,6 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     // As a part of override point but not required.
     // eslint-disable-next-line @typescript-eslint/class-methods-use-this
     protected onUnsubscribe(): void {}
-
-    private _sourceSubscription: Nullable<Unsubscribable> = null;
-    setSourceSubscription(subscription: Unsubscribable): void {
-        this._sourceSubscription = subscription;
-    }
 
     get closed(): boolean {
         return this._isClosed;
@@ -90,11 +87,32 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
         this._isClosed = true;
         this.onUnsubscribe();
 
-        const sourceSubscription = this._sourceSubscription;
-        if (isNotNull(sourceSubscription)) {
-            sourceSubscription.unsubscribe();
+        const finalizerSet = this._finalizers;
+        if (isNotNull(finalizerSet)) {
+            this._finalizers = null;
+            for (const finalizer of finalizerSet) {
+                try {
+                    finalizer();
+                } catch (err: unknown) {
+                    globalThis.reportError(err);
+                }
+            }
+            finalizerSet.clear();
         }
-        this._sourceSubscription = null;
+    }
+
+    addTeardown(teardown: TeardownFn): void {
+        if (this._isClosed) {
+            try {
+                teardown();
+            } catch (e: unknown) {
+                globalThis.reportError(e);
+            }
+        }
+
+        this._finalizers ??= new Set();
+        const finalizers = unwrapNullable(this._finalizers);
+        finalizers.add(teardown);
     }
 }
 

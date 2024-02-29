@@ -5,7 +5,6 @@ import { Observable } from './observable.js';
 import type { Subjectable } from './subjectable.js';
 import type { Unsubscribable } from './subscribable.js';
 import type { Observer, Subscriber } from './subscriber.js';
-import { Subscription } from './subscription.js';
 
 export class Subject<T> extends Observable<T> implements Subjectable<T> {
     private _isCompleted: boolean;
@@ -15,8 +14,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
 
     constructor() {
         super((destination: Subscriber<T>) => {
-            const sub = this.onSubscribe(destination);
-            return sub;
+            this.onSubscribe(destination);
         });
         this._isCompleted = false;
         this._observerCounter = 0;
@@ -98,25 +96,23 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         this._clearObservers();
     }
 
-    protected onSubscribe(destination: Subscriber<T>): Unsubscribable {
+    protected onSubscribe(destination: Subscriber<T>): void {
         if (this._isCompleted) {
             this.onSubscribeButCompleted(destination);
-            return new Subscription(null);
+            return;
         }
 
-        const sub = this.registerObserverOnSubscribe(destination);
-        return sub;
+        this.registerObserverOnSubscribe(destination);
     }
 
-    protected registerObserverOnSubscribe(destination: Subscriber<T>) {
+    protected registerObserverOnSubscribe(destination: Subscriber<T>): void {
         const currentObservers = this._observers;
         const observerId = this.getObserverId();
         currentObservers.set(observerId, destination);
 
-        const teardown = new Subscription(() => {
+        destination.addTeardown(() => {
             currentObservers.delete(observerId);
         });
-        return teardown;
     }
 
     private getObserverId() {

@@ -1,13 +1,18 @@
 import { createOk } from 'option-t/esm/PlainResult';
 import { Observable } from '../core/observable.js';
 import type { Subscriber } from '../core/subscriber.js';
-import { Subscription } from '../core/subscription.js';
 
 class FromEventObservable extends Observable<Event> {
     constructor(target: EventTarget, eventName: string) {
         super((destination: Subscriber<Event>) => {
             const aborter = new AbortController();
             const signal = aborter.signal;
+            destination.addTeardown(() => {
+                aborter.abort();
+
+                const ok = createOk<void>(undefined);
+                destination.complete(ok);
+            });
 
             target.addEventListener(
                 eventName,
@@ -18,14 +23,6 @@ class FromEventObservable extends Observable<Event> {
                     signal,
                 }
             );
-
-            const sub = new Subscription(() => {
-                aborter.abort();
-
-                const ok = createOk<void>(undefined);
-                destination.complete(ok);
-            });
-            return sub;
         });
     }
 }

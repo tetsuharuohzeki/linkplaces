@@ -1,7 +1,5 @@
 import { Subject } from '../core/subject.js';
-import type { Unsubscribable } from '../core/subscribable.js';
 import type { Subscriber } from '../core/subscriber.js';
-import { Subscription } from '../core/subscription.js';
 
 export class BehaviorSubject<T> extends Subject<T> {
     private _value: T;
@@ -10,16 +8,15 @@ export class BehaviorSubject<T> extends Subject<T> {
         this._value = initial;
     }
 
-    protected override onSubscribe(destination: Subscriber<T>): Unsubscribable {
+    protected override onSubscribe(destination: Subscriber<T>): void {
         if (this.isCompleted) {
             this.onSubscribeButCompleted(destination);
-            return new Subscription(null);
+            return;
         } else {
             destination.next(this._value);
         }
 
-        const sub = this.registerObserverOnSubscribe(destination);
-        return sub;
+        this.registerObserverOnSubscribe(destination);
     }
 
     value(): T {

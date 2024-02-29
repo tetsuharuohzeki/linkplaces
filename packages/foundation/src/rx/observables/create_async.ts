@@ -1,7 +1,6 @@
 import { createErr, createOk } from 'option-t/esm/PlainResult';
 import { Observable } from '../core/observable.js';
 import type { Subscriber } from '../core/subscriber.js';
-import { Subscription } from '../core/subscription.js';
 
 export type AsyncFactoryFn<T> = (observer: Subscriber<T>, signal: AbortSignal) => Promise<void>;
 
@@ -10,6 +9,9 @@ class AsyncFactoryObservable<T> extends Observable<T> {
         super((destination) => {
             const aborter = new AbortController();
             const signal = aborter.signal;
+            destination.addTeardown(() => {
+                aborter.abort();
+            });
 
             const promise = factory(destination, signal);
             promise.then(
@@ -23,11 +25,6 @@ class AsyncFactoryObservable<T> extends Observable<T> {
                     destination.complete(error);
                 }
             );
-
-            const sub = new Subscription(() => {
-                aborter.abort();
-            });
-            return sub;
         });
     }
 }

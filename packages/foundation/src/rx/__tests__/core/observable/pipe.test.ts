@@ -4,7 +4,6 @@ import { InternalSubscriber } from '../../../core/subscriber_impl.js';
 import {
     createObservable,
     type Observable,
-    Subscription,
     type Subscriber,
     type CompletionResult,
     type Unsubscribable,
@@ -56,7 +55,6 @@ test('.pipe() should propagate the passed value to the child', () => {
         destination.next();
         destination.next();
         destination.next();
-        return new Subscription(null);
     });
     const chained = source.pipe(testOperator());
 

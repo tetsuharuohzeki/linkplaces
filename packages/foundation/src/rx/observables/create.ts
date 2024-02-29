@@ -1,7 +1,6 @@
 import { createErr, createOk, type Result } from 'option-t/esm/PlainResult';
 import { Observable } from '../core/observable.js';
 import type { Subscriber } from '../core/subscriber.js';
-import { Subscription } from '../core/subscription.js';
 
 export type SyncFactoryFn<T> = (observer: Subscriber<T>, signal: AbortSignal) => void;
 
@@ -10,6 +9,9 @@ class SyncFactoryObservable<T> extends Observable<T> {
         super((destination) => {
             const aborter = new AbortController();
             const signal = aborter.signal;
+            destination.addTeardown(() => {
+                aborter.abort();
+            });
 
             let result: Result<void, unknown>;
             try {
@@ -20,11 +22,6 @@ class SyncFactoryObservable<T> extends Observable<T> {
                 result = createErr(e);
             }
             destination.complete(result);
-
-            const sub = new Subscription(() => {
-                aborter.abort();
-            });
-            return sub;
         });
     }
 }
