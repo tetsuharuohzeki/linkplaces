@@ -9,11 +9,11 @@ import type { CompletionResult, Observer, Subscriber, TeardownFn } from './subsc
  */
 export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscribable {
     private _isActive: boolean;
-    private _calledOnCompleted: boolean;
+    private _isCalledOnCompleted: boolean;
     private _finalizers: Nullable<Set<TeardownFn>>;
     constructor() {
         this._isActive = true;
-        this._calledOnCompleted = false;
+        this._isCalledOnCompleted = false;
         this._finalizers = null;
     }
 
@@ -32,12 +32,8 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
         return this._isActive;
     }
 
-    private isCalledCompleted(): boolean {
-        return this._calledOnCompleted;
-    }
-
     next(value: T): void {
-        if (this.closed || this.isCalledCompleted()) {
+        if (this.closed || this._isCalledOnCompleted) {
             return;
         }
 
@@ -49,7 +45,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     }
 
     errorResume(error: unknown): void {
-        if (this.closed || this.isCalledCompleted()) {
+        if (this.closed || this._isCalledOnCompleted) {
             return;
         }
 
@@ -61,10 +57,10 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     }
 
     complete(result: CompletionResult): void {
-        if (this.isCalledCompleted()) {
+        if (this._isCalledOnCompleted) {
             return;
         }
-        this._calledOnCompleted = true;
+        this._isCalledOnCompleted = true;
 
         if (this.closed) {
             return;
