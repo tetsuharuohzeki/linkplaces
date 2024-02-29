@@ -8,19 +8,8 @@ test('if the passed destination is closed', (t) => {
     t.plan(6);
 
     // setup
-    const TEST_INPUT = [1, 2, 3, 4];
-    const testTarget = new TestObservable<number>((destination) => {
-        // FIXME: This should not be called.
-        t.is(destination.isActive(), false);
-
-        for (const i of TEST_INPUT) {
-            if (i % 2 !== 0) {
-                destination.errorResume(i);
-            } else {
-                destination.next(i);
-            }
-        }
-    });
+    const onSubscribe = tinyspy.spy();
+    const testTarget = new TestObservable<number>(onSubscribe);
     const observer = new TestSubscriber<number>();
     const onNext = tinyspy.spyOn(observer, 'onNext');
     const onError = tinyspy.spyOn(observer, 'onErrorResume');
@@ -35,6 +24,7 @@ test('if the passed destination is closed', (t) => {
     });
 
     // assertion
+    t.is(onSubscribe.callCount, 0, 'onSubscribe should not called');
     t.is(onNext.callCount, 0);
     t.is(onError.callCount, 0);
     t.is(onCompleted.callCount, 0);
