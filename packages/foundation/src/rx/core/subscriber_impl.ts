@@ -8,11 +8,11 @@ import type { CompletionResult, Observer, Subscriber, TeardownFn } from './subsc
  *  Do not expose to user.
  */
 export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscribable {
-    private _isAlive: boolean;
+    private _isActive: boolean;
     private _calledOnCompleted: boolean;
     private _finalizers: Nullable<Set<TeardownFn>>;
     constructor() {
-        this._isAlive = true;
+        this._isActive = true;
         this._calledOnCompleted = false;
         this._finalizers = null;
     }
@@ -25,11 +25,11 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     protected onUnsubscribe(): void {}
 
     get closed(): boolean {
-        return !this._isAlive;
+        return !this._isActive;
     }
 
     isActive(): boolean {
-        return this._isAlive;
+        return this._isActive;
     }
 
     private isCalledCompleted(): boolean {
@@ -84,18 +84,18 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
             return;
         }
 
-        this._isAlive = false;
+        this._isActive = false;
         this.onUnsubscribe();
 
+        this._runFinalizer();
+    }
+
+    private _runFinalizer(): void {
         const finalizerSet = this._finalizers;
         if (isNotNull(finalizerSet)) {
             this._finalizers = null;
             for (const finalizer of finalizerSet) {
-                try {
-                    finalizer();
-                } catch (err: unknown) {
-                    globalThis.reportError(err);
-                }
+                tryToRunTeardown(finalizer);
             }
             finalizerSet.clear();
         }
@@ -103,17 +103,21 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
 
     addTeardown(teardown: TeardownFn): void {
         if (this.closed) {
-            try {
-                teardown();
-            } catch (e: unknown) {
-                globalThis.reportError(e);
-            }
+            tryToRunTeardown(teardown);
             return;
         }
 
         this._finalizers ??= new Set();
         const finalizers = unwrapNullable(this._finalizers);
         finalizers.add(teardown);
+    }
+}
+
+function tryToRunTeardown(finalizer: TeardownFn): void {
+    try {
+        finalizer();
+    } catch (err: unknown) {
+        globalThis.reportError(err);
     }
 }
 
