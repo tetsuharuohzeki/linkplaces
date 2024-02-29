@@ -19,6 +19,7 @@ class SubscribeOnNextLoopObservable<T> extends OperatorObservable<T, T> {
             window.clearTimeout(id);
             if (isNotNull(actualSubscribe)) {
                 actualSubscribe.unsubscribe();
+                actualSubscribe = null;
             }
         });
     }
