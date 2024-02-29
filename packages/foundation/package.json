@@ -29,5 +29,13 @@
         "option-t": "39.0.1",
         "react": "18.2.0",
         "react-dom": "18.2.0"
+    },
+    "devDependencies": {
+        "@ava/typescript": "^4.1.0",
+        "ava": "^6.1.1",
+        "tinyspy": "^2.2.1"
+    },
+    "scripts": {
+        "test": "ava"
     }
 }

@@ -1,8 +1,10 @@
 export { Observable, type OnSubscribeFn } from './core/observable.js';
-export type { Observer, Subscriber, CompletionResult } from './core/subscriber.js';
+export type { Subscriber } from './core/subscriber.js';
+export type { Observer } from './core/observer.js';
 export { Subject } from './core/subject.js';
 export { Subscription } from './core/subscription.js';
 export type { Unsubscribable } from './core/subscribable.js';
+export { type CompletionResult, createCompletionOk, createCompletionErr } from './core/completion_result.js';
 
 export { type SyncFactoryFn, createObservable } from './observables/create.js';
 export { type AsyncFactoryFn, createObservableFromAsync } from './observables/create_async.js';

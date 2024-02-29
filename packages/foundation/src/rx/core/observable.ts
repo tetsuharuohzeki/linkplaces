@@ -1,6 +1,8 @@
+import type { Observer, SubscriptionObserver } from './observer.js';
+import { PartialObserver } from './observer_impl.js';
 import type { UnaryFunction } from './operator.js';
 import type { Unsubscribable } from './subscribable.js';
-import { type Subscriber, PartialObserver, type SubscriptionObserver, type Observer } from './subscriber.js';
+import type { Subscriber } from './subscriber.js';
 import { PassThroughSubscriber, InternalSubscriber } from './subscriber_impl.js';
 
 export type OnSubscribeFn<T> = (destination: Subscriber<T>) => void;

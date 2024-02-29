@@ -1,15 +1,15 @@
+import test from 'ava';
 import { createOk } from 'option-t/esm/PlainResult';
-import { expect, test } from 'vitest';
 import { BehaviorSubject } from '../../../mod.js';
 
-test('set .isCompleted on calling .unsubscribe()', () => {
+test('set .isCompleted on calling .unsubscribe()', (t) => {
     const actual = new BehaviorSubject(0);
     actual.unsubscribe();
 
-    expect(actual.isCompleted).toBe(true);
+    t.is(actual.isCompleted, true);
 });
 
-test('set .isCompleted on calling .complete()', () => {
+test('set .isCompleted on calling .complete()', (t) => {
     const actual = new BehaviorSubject(0);
 
     {
@@ -17,5 +17,5 @@ test('set .isCompleted on calling .complete()', () => {
         actual.complete(result);
     }
 
-    expect(actual.isCompleted).toBe(true);
+    t.is(actual.isCompleted, true);
 });

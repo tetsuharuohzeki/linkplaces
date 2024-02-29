@@ -13,6 +13,10 @@ updates:
           - I-dependency-gardening
       versioning-strategy: increase
       groups:
+          ava:
+              patterns:
+                  - ava
+                  - "@ava/typescript"
           react:
               patterns:
                   - react

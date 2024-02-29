@@ -1,4 +1,6 @@
-import { expect, test, vitest } from 'vitest';
+import test from 'ava';
+import * as tinyspy from 'tinyspy';
+
 import { OperatorObservable, type OperatorFunction } from '../../../core/operator.js';
 import { InternalSubscriber } from '../../../core/subscriber_impl.js';
 import {
@@ -50,24 +52,25 @@ export function testOperator<T>(): OperatorFunction<T, T> {
     return operator;
 }
 
-test('.pipe() should propagate the passed value to the child', () => {
+test('.pipe() should propagate the passed value to the child', (t) => {
     const source = createObservable<void>((destination) => {
         destination.next();
         destination.next();
         destination.next();
     });
-    const chained = source.pipe(testOperator());
 
-    const onNext = vitest.fn();
+    // act
+    const chained = source.pipe(testOperator());
+    const onNext = tinyspy.spy();
     const subscription = chained.subscribeBy({
         next: onNext,
     });
 
     // assert
-    expect(chained).instanceOf(TestObservable);
+    t.assert(chained instanceof TestObservable);
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    expect(onNext).toHaveBeenCalledTimes(3);
-    expect(onNext.mock.calls).toStrictEqual([
+    t.is(onNext.callCount, 3);
+    t.deepEqual(onNext.calls, [
         // @prettier-ignore
         [undefined],
         [undefined],
@@ -76,5 +79,5 @@ test('.pipe() should propagate the passed value to the child', () => {
 
     // teardown
     subscription.unsubscribe();
-    expect(subscription.closed).toBe(true);
+    t.true(subscription.closed);
 });

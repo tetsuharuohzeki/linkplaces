@@ -1,6 +1,7 @@
 import { isErr, isOk } from 'option-t/esm/PlainResult';
+import type { CompletionResult } from '../core/completion_result.js';
 import { Observable } from '../core/observable.js';
-import type { CompletionResult, Subscriber } from '../core/subscriber.js';
+import type { Subscriber } from '../core/subscriber.js';
 import { InternalSubscriber } from '../core/subscriber_impl.js';
 
 class MergeSubscriber<T> extends InternalSubscriber<T> {

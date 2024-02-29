@@ -1,0 +1,33 @@
+import test from 'ava';
+import { spy } from 'tinyspy';
+import { Subject } from '../../../../mod.js';
+
+test('onSubscribe should be invoked by calling `.subscribe()`', (t) => {
+    // arrange
+    const testTarget = new Subject<void>();
+    const onNext = spy();
+    const onError = spy();
+    const onComplete = spy();
+
+    // act
+    const subscription = testTarget.subscribeBy({
+        next: onNext,
+        errorResume: onError,
+        complete: onComplete,
+    });
+    t.teardown(() => {
+        subscription.unsubscribe();
+    });
+
+    // assert
+    t.is(onNext.callCount, 0);
+    t.is(onError.callCount, 0);
+    t.is(onComplete.callCount, 0);
+    t.is(subscription.closed, false);
+
+    // teardown
+    subscription.unsubscribe();
+    t.true(subscription.closed);
+
+    t.is(testTarget.isCompleted, false);
+});

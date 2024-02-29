@@ -1,19 +1,21 @@
+import test from 'ava';
 import { createOk } from 'option-t/esm/PlainResult';
-import { expect, test, vitest } from 'vitest';
-import { Subject, BehaviorSubject } from '../../../mod.js';
+import * as tinyspy from 'tinyspy';
 
-test('.unsubscribe() should stop myself', () => {
+import { Subject, BehaviorSubject, type CompletionResult } from '../../../mod.js';
+
+test('.unsubscribe() should stop myself', (t) => {
     const sub = new BehaviorSubject(0);
     sub.unsubscribe();
-    expect(sub.isCompleted).toBe(true);
+    t.true(sub.isCompleted);
 });
 
-test('.unsubscribe() should stop subscriptions by myself', () => {
+test('.unsubscribe() should stop subscriptions by myself', (t) => {
     const INITIAL_INPUT = Math.random();
 
     const parent = new Subject<number>();
     const target = new BehaviorSubject<number>(INITIAL_INPUT);
-    const onNext = vitest.fn();
+    const onNext = tinyspy.spy<[number], void>();
     target.subscribeBy({
         next: onNext,
     });
@@ -23,14 +25,14 @@ test('.unsubscribe() should stop subscriptions by myself', () => {
     const NOT_PROPAGED_INPUT = Math.random();
     parent.next(NOT_PROPAGED_INPUT);
 
-    expect(onNext).toBeCalledTimes(1);
-    expect(onNext).toBeCalledWith(INITIAL_INPUT);
+    t.is(onNext.callCount, 1);
+    t.deepEqual(onNext.calls.at(0), [INITIAL_INPUT]);
 });
 
-test('.unsubscribe() should stop it if myself is subscribed from others', () => {
+test('.unsubscribe() should stop it if myself is subscribed from others', (t) => {
     const INITIAL_INPUT = Math.random();
     const target = new BehaviorSubject(INITIAL_INPUT);
-    const onNext = vitest.fn();
+    const onNext = tinyspy.spy<[number], void>();
     target.subscribeBy({
         next: onNext,
     });
@@ -39,13 +41,13 @@ test('.unsubscribe() should stop it if myself is subscribed from others', () => 
     const NOT_PROPAGED_INPUT = Math.random();
     target.next(NOT_PROPAGED_INPUT);
 
-    expect(onNext).toBeCalledTimes(1);
-    expect(onNext).toBeCalledWith(INITIAL_INPUT);
+    t.is(onNext.callCount, 1);
+    t.deepEqual(onNext.calls, [[INITIAL_INPUT]]);
 });
 
-test('.unsubscribe() should not behave on calling it twice', () => {
+test('.unsubscribe() should not behave on calling it twice', (t) => {
     const target = new BehaviorSubject(0);
-    const onComplete = vitest.fn();
+    const onComplete = tinyspy.spy<[CompletionResult], void>();
     target.subscribeBy({
         complete: onComplete,
     });
@@ -53,13 +55,13 @@ test('.unsubscribe() should not behave on calling it twice', () => {
     target.unsubscribe();
     target.unsubscribe();
 
-    expect(onComplete).toHaveBeenCalledTimes(1);
+    t.is(onComplete.callCount, 1);
 });
 
-test('.unsubscribe() should not reentrant', () => {
+test('.unsubscribe() should not reentrant', (t) => {
     const target = new BehaviorSubject(0);
-    const innerOnComplete = vitest.fn();
-    const outerOnComplete = vitest.fn(() => {
+    const innerOnComplete = tinyspy.spy<[CompletionResult], void>();
+    const outerOnComplete = tinyspy.spy<[CompletionResult], void>(() => {
         target.subscribeBy({
             complete: innerOnComplete,
         });
@@ -69,19 +71,19 @@ test('.unsubscribe() should not reentrant', () => {
     });
     target.unsubscribe();
 
-    expect(outerOnComplete).toHaveBeenCalledOnce();
-    expect(innerOnComplete).toHaveBeenCalledTimes(0);
+    t.is(outerOnComplete.callCount, 1);
+    t.is(innerOnComplete.callCount, 0);
 });
 
-test('.unsubscribe() should emit the completion to children', () => {
+test('.unsubscribe() should emit the completion to children', (t) => {
     const target = new BehaviorSubject<number>(0);
-    const onComplete = vitest.fn();
+    const onComplete = tinyspy.spy<[CompletionResult], void>();
     target.subscribeBy({
         complete: onComplete,
     });
 
     target.unsubscribe();
 
-    expect(onComplete).toBeCalledTimes(1);
-    expect(onComplete).toHaveBeenCalledWith(createOk(undefined));
+    t.is(onComplete.callCount, 1);
+    t.deepEqual(onComplete.calls.at(0), [createOk(undefined)]);
 });

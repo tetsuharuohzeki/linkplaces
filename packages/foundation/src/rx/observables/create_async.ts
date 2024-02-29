@@ -1,4 +1,4 @@
-import { createErr, createOk } from 'option-t/esm/PlainResult';
+import { createCompletionErr, createCompletionOk } from '../core/completion_result.js';
 import { Observable } from '../core/observable.js';
 import type { Subscriber } from '../core/subscriber.js';
 
@@ -16,12 +16,12 @@ class AsyncFactoryObservable<T> extends Observable<T> {
             const promise = factory(destination, signal);
             promise.then(
                 () => {
-                    const ok = createOk<void>(undefined);
+                    const ok = createCompletionOk();
                     destination.complete(ok);
                 },
                 (e: unknown) => {
                     destination.errorResume(e);
-                    const error = createErr(e);
+                    const error = createCompletionErr(e);
                     destination.complete(error);
                 }
             );

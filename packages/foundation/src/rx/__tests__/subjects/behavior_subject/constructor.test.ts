@@ -1,9 +1,9 @@
-import { expect, test } from 'vitest';
+import test from 'ava';
 import { BehaviorSubject } from '../../../mod.js';
 
-test('constructor', () => {
-    expect(() => {
+test('constructor', (t) => {
+    t.notThrows(() => {
         const actual = new BehaviorSubject(0);
         return actual;
-    }).not.toThrow();
+    });
 });

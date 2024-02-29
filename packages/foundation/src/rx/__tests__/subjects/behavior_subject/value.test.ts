@@ -1,23 +1,23 @@
-import { expect, test } from 'vitest';
+import test from 'ava';
 import { BehaviorSubject, Subject } from '../../../mod.js';
 
-test('.value()', () => {
+test('.value()', (t) => {
     const EXPECTED = Math.random();
 
     const actual = new BehaviorSubject(EXPECTED);
-    expect(actual.value()).toBe(EXPECTED);
+    t.is(actual.value(), EXPECTED);
 });
 
-test('.value should be updated on calling next', () => {
+test('.value should be updated on calling next', (t) => {
     const actual = new BehaviorSubject(0);
 
     const EXPECTED = Math.random();
     actual.next(EXPECTED);
 
-    expect(actual.value()).toBe(EXPECTED);
+    t.is(actual.value(), EXPECTED);
 });
 
-test('.value should be updated on emit through subscribe', () => {
+test('.value should be updated on emit through subscribe', (t) => {
     const emitter = new Subject();
     const target = new BehaviorSubject(0);
     emitter.subscribe(target);
@@ -25,5 +25,5 @@ test('.value should be updated on emit through subscribe', () => {
     const EXPECTED = Math.random();
     emitter.next(EXPECTED);
 
-    expect(target.value()).toBe(EXPECTED);
+    t.is(target.value(), EXPECTED);
 });

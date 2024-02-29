@@ -1,31 +1,32 @@
-import { createOk } from 'option-t/esm/PlainResult';
-import { expect, test, vitest } from 'vitest';
-import { BehaviorSubject } from '../../../mod.js';
+import test from 'ava';
+import { spy } from 'tinyspy';
 
-test('.complete() should propagate it to the child', () => {
-    const INPUT = createOk<void>(undefined);
+import { BehaviorSubject, createCompletionOk } from '../../../mod.js';
+
+test('.complete() should propagate it to the child', (t) => {
+    const INPUT = createCompletionOk();
 
     const target = new BehaviorSubject<number>(0);
-    const onComplete = vitest.fn();
+    const onComplete = spy();
     target.subscribeBy({
         complete: onComplete,
     });
 
     target.complete(INPUT);
 
-    expect(target.isCompleted).toBe(true);
-    expect(onComplete).toHaveBeenCalledOnce();
-    expect(onComplete).toBeCalledWith(INPUT);
+    t.is(target.isCompleted, true);
+    t.is(onComplete.callCount, 1);
+    t.deepEqual(onComplete.calls, [[INPUT]]);
 });
 
-test('.complete() should stop myself', () => {
-    const INPUT = createOk<void>(undefined);
+test('.complete() should stop myself', (t) => {
+    const INPUT = createCompletionOk();
     const INITIAL_INPUT = 0;
     const NORMAL_INPUT = Math.random();
 
     const target = new BehaviorSubject<number>(INITIAL_INPUT);
-    const onNext = vitest.fn();
-    const onComplete = vitest.fn();
+    const onNext = spy();
+    const onComplete = spy();
     target.subscribeBy({
         next: onNext,
         complete: onComplete,
@@ -33,27 +34,27 @@ test('.complete() should stop myself', () => {
 
     target.complete(INPUT);
 
-    expect(target.isCompleted).toBe(true);
-    expect(onComplete).toHaveBeenCalledOnce();
-    expect(onComplete).toBeCalledWith(INPUT);
+    t.is(target.isCompleted, true);
+    t.is(onComplete.callCount, 1);
+    t.deepEqual(onComplete.calls, [[INPUT]]);
 
     target.next(NORMAL_INPUT);
-    expect(onNext).toHaveBeenCalledOnce();
-    expect(onNext.mock.calls).toStrictEqual([
+    t.is(onNext.callCount, 1);
+    t.deepEqual(onNext.calls, [
         // @prettier-ignore
         [INITIAL_INPUT],
     ]);
 });
 
-test('.complete() should flip its flag at the first on calling it', () => {
+test('.complete() should flip its flag at the first on calling it', (t) => {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    expect.assertions(4);
+    t.plan(4);
 
-    const INPUT = createOk<void>(undefined);
+    const INPUT = createCompletionOk();
 
     const target = new BehaviorSubject<number>(0);
-    const onComplete = vitest.fn(() => {
-        expect(target.isCompleted).toBe(true);
+    const onComplete = spy(() => {
+        t.is(target.isCompleted, true);
     });
     target.subscribeBy({
         complete: onComplete,
@@ -61,18 +62,18 @@ test('.complete() should flip its flag at the first on calling it', () => {
 
     target.complete(INPUT);
 
-    expect(target.isCompleted).toBe(true);
-    expect(onComplete).toHaveBeenCalledOnce();
-    expect(onComplete).toBeCalledWith(INPUT);
+    t.is(target.isCompleted, true);
+    t.is(onComplete.callCount, 1);
+    t.deepEqual(onComplete.calls, [[INPUT]]);
 });
 
-test('.complete() should propagate the passed value on reentrant case', () => {
-    const INPUT = createOk<void>(undefined);
+test('.complete() should propagate the passed value on reentrant case', (t) => {
+    const INPUT = createCompletionOk();
 
     // arrange
     const target = new BehaviorSubject<number>(0);
-    const onInnerComplete = vitest.fn();
-    const onOuterComplete = vitest.fn(() => {
+    const onInnerComplete = spy();
+    const onOuterComplete = spy(() => {
         target.subscribeBy({
             complete: onInnerComplete,
         });
@@ -86,11 +87,11 @@ test('.complete() should propagate the passed value on reentrant case', () => {
     target.complete(INPUT);
 
     // assert
-    expect(target.isCompleted).toBe(true);
+    t.is(target.isCompleted, true);
 
-    expect(onOuterComplete).toHaveBeenCalledOnce();
-    expect(onOuterComplete).toBeCalledWith(INPUT);
+    t.is(onOuterComplete.callCount, 1);
+    t.deepEqual(onOuterComplete.calls, [[INPUT]]);
 
-    expect(onInnerComplete).toHaveBeenCalledTimes(1);
-    expect(onOuterComplete).toBeCalledWith(INPUT);
+    t.is(onInnerComplete.callCount, 1);
+    t.deepEqual(onInnerComplete.calls, [[INPUT]]);
 });

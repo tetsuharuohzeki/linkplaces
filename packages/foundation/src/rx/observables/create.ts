@@ -1,4 +1,4 @@
-import { createErr, createOk, type Result } from 'option-t/esm/PlainResult';
+import { createCompletionErr, createCompletionOk, type CompletionResult } from '../core/completion_result.js';
 import { Observable } from '../core/observable.js';
 import type { Subscriber } from '../core/subscriber.js';
 
@@ -13,13 +13,13 @@ class SyncFactoryObservable<T> extends Observable<T> {
                 aborter.abort();
             });
 
-            let result: Result<void, unknown>;
+            let result: CompletionResult;
             try {
                 factory(destination, signal);
-                result = createOk(undefined);
+                result = createCompletionOk();
             } catch (e: unknown) {
                 destination.errorResume(e);
-                result = createErr(e);
+                result = createCompletionErr(e);
             }
             destination.complete(result);
         });

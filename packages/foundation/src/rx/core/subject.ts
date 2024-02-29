@@ -1,14 +1,15 @@
 import { unwrapNullable, type Nullable } from 'option-t/esm/Nullable';
-import { createOk, type Result } from 'option-t/esm/PlainResult';
 
+import { createCompletionOk, type CompletionResult } from './completion_result.js';
 import { Observable } from './observable.js';
+import type { Observer } from './observer.js';
 import type { Subjectable } from './subjectable.js';
 import type { Unsubscribable } from './subscribable.js';
-import type { Observer, Subscriber } from './subscriber.js';
+import type { Subscriber } from './subscriber.js';
 
 export class Subject<T> extends Observable<T> implements Subjectable<T> {
     private _isCompleted: boolean;
-    private _completedValue: Nullable<Result<void, unknown>>;
+    private _completedValue: Nullable<CompletionResult>;
     private _observerCounter: number;
     private _observers: Map<number, Subscriber<T>>;
 
@@ -67,7 +68,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         }
     }
 
-    complete(result: Result<void, unknown>): void {
+    complete(result: CompletionResult): void {
         if (this._isCompleted) {
             return;
         }
@@ -87,7 +88,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         if (!this._isCompleted) {
             const snapshots = this.getObserverSnapshots();
             for (const observer of snapshots) {
-                const ok = createOk(undefined);
+                const ok = createCompletionOk();
                 observer.complete(ok);
             }
         }

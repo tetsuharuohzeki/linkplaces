@@ -1,4 +1,4 @@
-import { createOk } from 'option-t/esm/PlainResult';
+import { createCompletionOk } from '../core/completion_result.js';
 import { Observable } from '../core/observable.js';
 import type { Subscriber } from '../core/subscriber.js';
 
@@ -10,7 +10,7 @@ class FromEventObservable extends Observable<Event> {
             destination.addTeardown(() => {
                 aborter.abort();
 
-                const ok = createOk<void>(undefined);
+                const ok = createCompletionOk();
                 destination.complete(ok);
             });
 

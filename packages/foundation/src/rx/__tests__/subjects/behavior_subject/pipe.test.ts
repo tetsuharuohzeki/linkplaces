@@ -1,8 +1,15 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { expect, test, vitest } from 'vitest';
+import test from 'ava';
+import * as tinyspy from 'tinyspy';
 import { OperatorObservable, type OperatorFunction } from '../../../core/operator.js';
 import { InternalSubscriber } from '../../../core/subscriber_impl.js';
-import { BehaviorSubject, type Observable, type Subscriber, type CompletionResult, type Unsubscribable } from '../../../mod.js';
+import {
+    BehaviorSubject,
+    type Observable,
+    type Subscriber,
+    type CompletionResult,
+    type Unsubscribable,
+} from '../../../mod.js';
 
 class TestSubscriber<T> extends InternalSubscriber<T> {
     private _observer: Subscriber<T>;
@@ -45,11 +52,11 @@ export function testOperator<T>(): OperatorFunction<T, T> {
     return operator;
 }
 
-test('.pipe() should propagate the passed value to the child', () => {
+test('.pipe() should propagate the passed value to the child', (t) => {
     const source = new BehaviorSubject<number>(1);
     const chained = source.pipe(testOperator());
 
-    const onNext = vitest.fn();
+    const onNext = tinyspy.spy<[number], void>();
     const subscription = chained.subscribeBy({
         next: onNext,
     });
@@ -58,9 +65,9 @@ test('.pipe() should propagate the passed value to the child', () => {
     source.next(4);
 
     // assert
-    expect(chained).instanceOf(TestObservable);
-    expect(onNext).toHaveBeenCalledTimes(4);
-    expect(onNext.mock.calls).toStrictEqual([
+    t.assert(chained instanceof TestObservable);
+    t.is(onNext.callCount, 4);
+    t.deepEqual(onNext.calls, [
         // @prettier-ignore
         [1],
         [2],
@@ -70,5 +77,5 @@ test('.pipe() should propagate the passed value to the child', () => {
 
     // teardown
     subscription.unsubscribe();
-    expect(subscription.closed).toBe(true);
+    t.true(subscription.closed);
 });

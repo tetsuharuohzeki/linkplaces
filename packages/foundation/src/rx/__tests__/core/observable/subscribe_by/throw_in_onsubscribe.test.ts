@@ -1,0 +1,54 @@
+import test from 'ava';
+import * as tinyspy from 'tinyspy';
+
+import { type Subscriber, createCompletionOk } from '../../../../mod.js';
+
+import { TestObservable } from './__helpers__/mod.js';
+
+test('should throw if onSubscribeFn throw`', (t) => {
+    // arrange
+    const ERROER_MASSAGE = 'blah_blah_blah';
+    const THROWN_ERROR = new Error(ERROER_MASSAGE);
+
+    let passedSubscriber: Subscriber<void>;
+    const onSubscribeFn = tinyspy.spy((destination) => {
+        passedSubscriber = destination;
+        throw THROWN_ERROR;
+    });
+    const testTarget = new TestObservable<void>(onSubscribeFn);
+    t.is(onSubscribeFn.callCount, 0);
+
+    const onNext = tinyspy.spy();
+    const onErrorResume = tinyspy.spy();
+    const onCompleted = tinyspy.spy();
+
+    // act
+    t.throws(
+        () => {
+            testTarget.subscribeBy({
+                next: onNext,
+                errorResume: onErrorResume,
+                complete: onCompleted,
+            });
+        },
+        {
+            message: ERROER_MASSAGE,
+        }
+    );
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    t.is(passedSubscriber!.isActive(), false);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    passedSubscriber!.next();
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    passedSubscriber!.errorResume(new Error());
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    passedSubscriber!.complete(createCompletionOk());
+
+    // assert
+    t.is(onSubscribeFn.callCount, 1);
+    t.deepEqual(onSubscribeFn.results, [['error', THROWN_ERROR]]);
+
+    t.is(onNext.callCount, 0);
+    t.is(onErrorResume.callCount, 0);
+    t.is(onCompleted.callCount, 0);
+});

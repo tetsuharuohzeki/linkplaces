@@ -1,6 +1,8 @@
 import { isNotNull, unwrapNullable, type Nullable } from 'option-t/esm/Nullable';
+import type { CompletionResult } from './completion_result.js';
+import type { Observer } from './observer.js';
 import type { Unsubscribable } from './subscribable.js';
-import type { CompletionResult, Observer, Subscriber, TeardownFn } from './subscriber.js';
+import type { Subscriber, TeardownFn } from './subscriber.js';
 
 /**
  *  @internal

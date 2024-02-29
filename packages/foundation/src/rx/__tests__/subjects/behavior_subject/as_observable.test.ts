@@ -1,8 +1,8 @@
-import { expect, test } from 'vitest';
+import test from 'ava';
 import { Observable, BehaviorSubject } from '../../../mod.js';
 
-test('.asObservable() should be derived instance', () => {
+test('.asObservable() should be derived instance', (t) => {
     const sub = new BehaviorSubject(1);
     const actual = sub.asObservable();
-    expect(actual).instanceOf(Observable);
+    t.assert(actual instanceof Observable);
 });

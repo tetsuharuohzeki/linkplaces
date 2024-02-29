@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { expect, test, vitest } from 'vitest';
+import test from 'ava';
+import { spy } from 'tinyspy';
 import { BehaviorSubject } from '../../../mod.js';
 
-test('.errorResume() should propagate the passed value to the child', () => {
+test('.errorResume() should propagate the passed value to the child', (t) => {
     const INITIAL_INPUT = 0;
     const ERROR_INPUT = new Error();
 
     const target = new BehaviorSubject<number>(INITIAL_INPUT);
 
-    const onNext = vitest.fn();
-    const onError = vitest.fn();
+    const onNext = spy();
+    const onError = spy();
     target.subscribeBy({
         next: onNext,
         errorResume: onError,
@@ -17,56 +18,61 @@ test('.errorResume() should propagate the passed value to the child', () => {
 
     target.errorResume(ERROR_INPUT);
 
-    expect(target.isCompleted).toBe(false);
-    expect(onError).toHaveBeenCalledOnce();
-    expect(onError).toBeCalledWith(ERROR_INPUT);
+    t.is(target.isCompleted, false);
+    t.is(onError.callCount, 1);
+    t.deepEqual(onError.calls, [[ERROR_INPUT]]);
 });
 
-test('.errorResume() should not stop myself', () => {
+test('.errorResume() should not stop myself', (t) => {
     const INITIAL_INPUT = 0;
     const ERROR_INPUT = new Error();
     const NORMAL_INPUT = Math.random();
-
     const target = new BehaviorSubject<number>(INITIAL_INPUT);
+    const onNext = spy();
+    const onError = spy();
 
-    const onNext = vitest.fn();
-    const onError = vitest.fn();
-    target.subscribeBy({
+    // act
+    const sub = target.subscribeBy({
         next: onNext,
         errorResume: onError,
+    });
+    t.teardown(() => {
+        sub.unsubscribe();
     });
 
     target.errorResume(ERROR_INPUT);
 
-    expect(target.isCompleted).toBe(false);
-    expect(onError).toHaveBeenCalledOnce();
-    expect(onError).toBeCalledWith(ERROR_INPUT);
+    t.is(target.isCompleted, false);
+    t.is(onError.callCount, 1);
+    t.deepEqual(onError.calls, [[ERROR_INPUT]]);
 
     target.next(NORMAL_INPUT);
-    expect(onNext).toHaveBeenCalledTimes(2);
-    expect(onNext).toHaveBeenNthCalledWith(1, INITIAL_INPUT);
-    expect(onNext).toHaveBeenNthCalledWith(2, NORMAL_INPUT)
+    t.is(onNext.callCount, 2);
+    t.deepEqual(onNext.calls, [[INITIAL_INPUT], [NORMAL_INPUT]]);
 });
 
-test('.errorResume() should propagate the passed value but not reentrant', () => {
+test('.errorResume() should propagate the passed value but not reentrant', (t) => {
     const INITIAL_INPUT = 0;
     const ERROR_INPUT = new Error();
 
     const target = new BehaviorSubject<number>(INITIAL_INPUT);
-    const innerOnError = vitest.fn();
-    const outerOnError = vitest.fn((_value) => {
+    const innerOnError = spy();
+    const outerOnError = spy((_value) => {
         target.subscribeBy({
             errorResume: innerOnError,
         });
     });
-    target.subscribeBy({
+    const sub = target.subscribeBy({
         errorResume: outerOnError,
+    });
+    t.teardown(() => {
+        sub.unsubscribe();
     });
 
     target.errorResume(ERROR_INPUT);
 
-    expect(outerOnError).toHaveBeenCalledOnce();
-    expect(outerOnError).toBeCalledWith(ERROR_INPUT);
+    t.is(outerOnError.callCount, 1);
+    t.deepEqual(outerOnError.calls, [[ERROR_INPUT]]);
 
-    expect(innerOnError).toBeCalledTimes(0);
+    t.is(innerOnError.callCount, 0);
 });
