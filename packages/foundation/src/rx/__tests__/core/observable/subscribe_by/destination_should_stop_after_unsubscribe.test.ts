@@ -6,7 +6,7 @@ import { type Subscriber, createCompletionOk } from '../../../../mod.js';
 
 import { TestObservable } from './__helpers__/mod.js';
 
-test('the destination should not work after calling .unsubscribe() returned by .subscribe()', (t) => {
+test('the destination should not be called after cancelled the subscription', (t) => {
     t.plan(7);
 
     // arrange
@@ -31,7 +31,7 @@ test('the destination should not work after calling .unsubscribe() returned by .
         complete: onCompleted,
     });
     subscription.unsubscribe();
-    t.is(subscription.closed, true);
+    t.is(subscription.closed, true, 'subscription should be closed here');
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     passedSubscriber!.next();
@@ -41,8 +41,8 @@ test('the destination should not work after calling .unsubscribe() returned by .
     passedSubscriber!.complete(createCompletionOk());
 
     // assert
-    t.is(onUnsubscribe.callCount, 1);
-    t.is(onNext.callCount, 0);
-    t.is(onError.callCount, 0);
-    t.is(onCompleted.callCount, 0);
+    t.is(onUnsubscribe.callCount, 1, 'onUnsubscribe callcount');
+    t.is(onNext.callCount, 0, 'should not call next callback');
+    t.is(onError.callCount, 0, 'should not call error callback');
+    t.is(onCompleted.callCount, 0, 'should not call complete callback');
 });
