@@ -2,39 +2,35 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { BehaviorSubject, createCompletionOk } from '../../../../mod.js';
+import { BehaviorSubject, SubscriptionError, createCompletionOk } from '../../../../mod.js';
 import { TestSubscriber } from './__helpers__/mod.js';
 
 test('if the passed destination is closed', (t) => {
-    t.plan(6);
+    t.plan(5);
 
     // setup
     const INITIAL_VALUE = Math.random();
     const SECOND_VALUE = 1 + Math.random();
     const testTarget = new BehaviorSubject<number>(INITIAL_VALUE);
-    const observer = new TestSubscriber<number>();
-    const onNext = tinyspy.spyOn(observer, 'onNext');
-    const onError = tinyspy.spyOn(observer, 'onError');
-    const onCompleted = tinyspy.spyOn(observer, 'onCompleted');
+    const destination = new TestSubscriber<number>();
+    const onNext = tinyspy.spyOn(destination, 'onNext');
+    const onError = tinyspy.spyOn(destination, 'onError');
+    const onCompleted = tinyspy.spyOn(destination, 'onCompleted');
 
     // act
-    observer.unsubscribe();
-    t.is(observer.closed, true, 'observer should be deactive before act');
-    const subscription = testTarget.subscribe(observer);
-    t.teardown(() => {
-        subscription.unsubscribe();
+    destination.unsubscribe();
+    t.is(destination.closed, true, 'observer should be closed before act');
+    t.throws(() => testTarget.subscribe(destination), {
+        instanceOf: SubscriptionError,
+        message: 'subscriber has been closed',
     });
+
     testTarget.next(SECOND_VALUE);
     testTarget.error(new Error());
     testTarget.complete(createCompletionOk());
 
     // assertion
-    t.is(onNext.callCount, 0);
-    t.is(onError.callCount, 0);
-    t.is(onCompleted.callCount, 0);
-
-    // teardown
-    t.is(subscription.closed, true);
-
-    t.is(testTarget.isCompleted, true);
+    t.is(onNext.callCount, 0, 'should not call onNext');
+    t.is(onError.callCount, 0, 'should not call onError');
+    t.is(onCompleted.callCount, 0, 'should not call onCompleted');
 });

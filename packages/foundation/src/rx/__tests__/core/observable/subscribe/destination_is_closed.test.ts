@@ -2,6 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
+import { SubscriptionError } from '../../../../mod.js';
 import { TestObservable, TestSubscriber } from './__helpers__/mod.js';
 
 test('if the passed destination is closed', (t) => {
@@ -10,25 +11,22 @@ test('if the passed destination is closed', (t) => {
     // setup
     const onSubscribe = tinyspy.spy();
     const testTarget = new TestObservable<number>(onSubscribe);
-    const observer = new TestSubscriber<number>();
-    const onNext = tinyspy.spyOn(observer, 'onNext');
-    const onError = tinyspy.spyOn(observer, 'onError');
-    const onCompleted = tinyspy.spyOn(observer, 'onCompleted');
+    const destination = new TestSubscriber<number>();
+    const onNext = tinyspy.spyOn(destination, 'onNext');
+    const onError = tinyspy.spyOn(destination, 'onError');
+    const onCompleted = tinyspy.spyOn(destination, 'onCompleted');
 
     // act
-    observer.unsubscribe();
-    t.is(observer.isActive(), false, 'observer should be deactive before act');
-    const subscription = testTarget.subscribe(observer);
-    t.teardown(() => {
-        subscription.unsubscribe();
+    destination.unsubscribe();
+    t.is(destination.closed, true, 'observer should be closed before act');
+    t.throws(() => testTarget.subscribe(destination), {
+        instanceOf: SubscriptionError,
+        message: 'subscriber has been closed',
     });
 
     // assertion
-    t.is(onSubscribe.callCount, 0, 'onSubscribe should not called');
-    t.is(onNext.callCount, 0);
-    t.is(onError.callCount, 0);
-    t.is(onCompleted.callCount, 0);
-
-    // teardown
-    t.is(subscription.closed, true);
+    t.is(onSubscribe.callCount, 0, 'should not call onSubscribe');
+    t.is(onNext.callCount, 0, 'should not call onNext');
+    t.is(onError.callCount, 0, 'should not call onError');
+    t.is(onCompleted.callCount, 0, 'should not call onCompleted');
 });

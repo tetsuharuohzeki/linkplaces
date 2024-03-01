@@ -4,6 +4,7 @@ import type { UnaryFunction } from './operator.js';
 import type { Unsubscribable } from './subscribable.js';
 import type { Subscriber } from './subscriber.js';
 import { PassThroughSubscriber, InternalSubscriber } from './subscriber_impl.js';
+import { SubscriptionError } from './subscription_error.js';
 
 export type OnSubscribeFn<T> = (destination: Subscriber<T>) => void;
 
@@ -21,7 +22,7 @@ export abstract class Observable<T> implements ObservableLike<T> {
         const subscriber: InternalSubscriber<T> =
             destination instanceof InternalSubscriber ? destination : new PassThroughSubscriber(destination);
         if (subscriber.closed) {
-            return subscriber;
+            throw new SubscriptionError('subscriber has been closed');
         }
 
         try {
