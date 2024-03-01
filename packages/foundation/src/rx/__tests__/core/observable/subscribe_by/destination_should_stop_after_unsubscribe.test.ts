@@ -22,13 +22,13 @@ test('the destination should not work after calling .unsubscribe() returned by .
     });
     const onNext = tinyspy.spy();
     const onError = tinyspy.spy();
-    const onComplete = tinyspy.spy();
+    const onCompleted = tinyspy.spy();
 
     // act
     const subscription = testTarget.subscribeBy({
         next: onNext,
-        errorResume: onError,
-        complete: onComplete,
+        error: onError,
+        complete: onCompleted,
     });
     subscription.unsubscribe();
     t.is(subscription.closed, true);
@@ -36,7 +36,7 @@ test('the destination should not work after calling .unsubscribe() returned by .
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     passedSubscriber!.next();
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    passedSubscriber!.errorResume(new Error());
+    passedSubscriber!.error(new Error());
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     passedSubscriber!.complete(createCompletionOk());
 
@@ -44,5 +44,5 @@ test('the destination should not work after calling .unsubscribe() returned by .
     t.is(onUnsubscribe.callCount, 1);
     t.is(onNext.callCount, 0);
     t.is(onError.callCount, 0);
-    t.is(onComplete.callCount, 0);
+    t.is(onCompleted.callCount, 0);
 });

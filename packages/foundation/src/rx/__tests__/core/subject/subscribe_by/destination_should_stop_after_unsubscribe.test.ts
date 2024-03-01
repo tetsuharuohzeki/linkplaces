@@ -11,25 +11,25 @@ test('the destination should not work after calling .unsubscribe() returned by .
     const testTarget = new Subject<void>();
     const onNext = tinyspy.spy();
     const onError = tinyspy.spy();
-    const onComplete = tinyspy.spy();
+    const onCompleted = tinyspy.spy();
 
     // act
     const subscription = testTarget.subscribeBy({
         next: onNext,
-        errorResume: onError,
-        complete: onComplete,
+        error: onError,
+        complete: onCompleted,
     });
     subscription.unsubscribe();
     t.is(subscription.closed, true);
 
     testTarget.next();
-    testTarget.errorResume(new Error());
+    testTarget.error(new Error());
     testTarget.complete(createCompletionOk());
 
     // assert
     t.is(onNext.callCount, 0);
     t.is(onError.callCount, 0);
-    t.is(onComplete.callCount, 0);
+    t.is(onCompleted.callCount, 0);
 
     t.is(testTarget.isCompleted, true);
 });

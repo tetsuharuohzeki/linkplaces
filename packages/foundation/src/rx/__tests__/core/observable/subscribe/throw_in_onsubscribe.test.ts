@@ -23,7 +23,7 @@ test('should throw if onSubscribeFn throw`', (t) => {
 
     const observer = new TestSubscriber<void>();
     const onNext = tinyspy.spyOn(observer, 'onNext');
-    const onErrorResume = tinyspy.spyOn(observer, 'onErrorResume');
+    const onError = tinyspy.spyOn(observer, 'onError');
     const onCompleted = tinyspy.spyOn(observer, 'onCompleted');
 
     // act
@@ -35,7 +35,7 @@ test('should throw if onSubscribeFn throw`', (t) => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     passedSubscriber!.next();
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    passedSubscriber!.errorResume(new Error());
+    passedSubscriber!.error(new Error());
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     passedSubscriber!.complete(createCompletionOk());
 
@@ -46,6 +46,6 @@ test('should throw if onSubscribeFn throw`', (t) => {
     t.is(observer.isActive(), false);
 
     t.is(onNext.callCount, 0);
-    t.is(onErrorResume.callCount, 0);
+    t.is(onError.callCount, 0);
     t.is(onCompleted.callCount, 0);
 });

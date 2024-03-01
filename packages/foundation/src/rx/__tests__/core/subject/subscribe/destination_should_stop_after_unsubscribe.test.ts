@@ -11,7 +11,7 @@ test('the destination should not work after calling .unsubscribe() returned by .
     const testTarget = new Subject<void>();
     const observer = {
         next: tinyspy.spy(),
-        errorResume: tinyspy.spy(),
+        error: tinyspy.spy(),
         complete: tinyspy.spy(),
     } satisfies Observer<void>;
 
@@ -21,12 +21,12 @@ test('the destination should not work after calling .unsubscribe() returned by .
     t.is(subscription.closed, true);
 
     testTarget.next();
-    testTarget.errorResume(new Error());
+    testTarget.error(new Error());
     testTarget.complete(createCompletionOk());
 
     // assert
     t.is(observer.next.callCount, 0);
-    t.is(observer.errorResume.callCount, 0);
+    t.is(observer.error.callCount, 0);
     t.is(observer.complete.callCount, 0);
 
     t.is(testTarget.isCompleted, true);

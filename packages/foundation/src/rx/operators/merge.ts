@@ -24,8 +24,8 @@ class MergeSubscriber<T> extends InternalSubscriber<T> {
         this._destination.next(value);
     }
 
-    protected override onErrorResume(error: unknown): void {
-        this._destination.errorResume(error);
+    protected override onError(error: unknown): void {
+        this._destination.error(error);
     }
 
     protected override onCompleted(result: CompletionResult): void {

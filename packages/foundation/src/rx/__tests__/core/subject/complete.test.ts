@@ -7,16 +7,16 @@ test('.complete() should propagate it to the child', (t) => {
     const INPUT = createOk<void>(undefined);
 
     const target = new Subject<number>();
-    const onComplete = tinyspy.spy();
+    const onCompleted = tinyspy.spy();
     target.subscribeBy({
-        complete: onComplete,
+        complete: onCompleted,
     });
 
     target.complete(INPUT);
 
     t.is(target.isCompleted, true);
-    t.is(onComplete.callCount, 1);
-    t.deepEqual(onComplete.calls, [[INPUT]]);
+    t.is(onCompleted.callCount, 1);
+    t.deepEqual(onCompleted.calls, [[INPUT]]);
 });
 
 test('.complete() should stop myself', (t) => {
@@ -25,17 +25,17 @@ test('.complete() should stop myself', (t) => {
 
     const target = new Subject<number>();
     const onNext = tinyspy.spy();
-    const onComplete = tinyspy.spy();
+    const onCompleted = tinyspy.spy();
     target.subscribeBy({
         next: onNext,
-        complete: onComplete,
+        complete: onCompleted,
     });
 
     target.complete(INPUT);
 
     t.is(target.isCompleted, true);
-    t.is(onComplete.callCount, 1);
-    t.deepEqual(onComplete.calls, [[INPUT]]);
+    t.is(onCompleted.callCount, 1);
+    t.deepEqual(onCompleted.calls, [[INPUT]]);
 
     target.next(NORMAL_INPUT);
     t.is(onNext.callCount, 0);
@@ -48,18 +48,18 @@ test('.complete() should flip its flag at the first on calling it', (t) => {
     const INPUT = createOk<void>(undefined);
 
     const target = new Subject<number>();
-    const onComplete = tinyspy.spy(() => {
+    const onCompleted = tinyspy.spy(() => {
         t.is(target.isCompleted, true);
     });
     target.subscribeBy({
-        complete: onComplete,
+        complete: onCompleted,
     });
 
     target.complete(INPUT);
 
     t.is(target.isCompleted, true);
-    t.is(onComplete.callCount, 1);
-    t.deepEqual(onComplete.calls, [[INPUT]]);
+    t.is(onCompleted.callCount, 1);
+    t.deepEqual(onCompleted.calls, [[INPUT]]);
 });
 
 test('.complete() should propagate the passed value on reentrant case', (t) => {

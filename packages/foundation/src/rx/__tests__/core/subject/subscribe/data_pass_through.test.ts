@@ -41,7 +41,7 @@ test('.subscribe() should propagate the passed value to the child: onError', (t)
     const testTarget = new Subject<number>();
     const observer = new TestSubscriber<number>();
     const onNext = tinyspy.spyOn(observer, 'onNext');
-    const onError = tinyspy.spyOn(observer, 'onErrorResume');
+    const onError = tinyspy.spyOn(observer, 'onError');
 
     // act
     const unsubscriber = testTarget.subscribe(observer);
@@ -50,7 +50,7 @@ test('.subscribe() should propagate the passed value to the child: onError', (t)
     });
     for (const i of TEST_INPUT) {
         if (i % 2 !== 0) {
-            testTarget.errorResume(i);
+            testTarget.error(i);
         } else {
             testTarget.next(i);
         }
@@ -74,13 +74,13 @@ test('.subscribe() should propagate the passed value to the child: onError', (t)
     t.is(testTarget.isCompleted, false);
 });
 
-test('.subscribe() should propagate the passed value to the child: onComplete', (t) => {
+test('.subscribe() should propagate the passed value to the child: onCompleted', (t) => {
     // setup
     const TEST_INPUT = [1, 2, 3, 4];
     const testTarget = new Subject<number>();
     const observer = new TestSubscriber<number>();
     const onNext = tinyspy.spyOn(observer, 'onNext');
-    const onError = tinyspy.spyOn(observer, 'onErrorResume');
+    const onError = tinyspy.spyOn(observer, 'onError');
     const onCompleted = tinyspy.spyOn(observer, 'onCompleted');
 
     // act
@@ -89,7 +89,7 @@ test('.subscribe() should propagate the passed value to the child: onComplete', 
     testTarget.complete(createCompletionOk());
     for (const i of TEST_INPUT) {
         if (i % 2 !== 0) {
-            testTarget.errorResume(i);
+            testTarget.error(i);
         } else {
             testTarget.next(i);
         }

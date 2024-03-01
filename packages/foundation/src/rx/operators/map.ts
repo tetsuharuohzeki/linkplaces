@@ -22,8 +22,8 @@ class MapSubscriber<TInput, TOutput> extends InternalSubscriber<TInput> {
         this._observer.next(result);
     }
 
-    protected override onErrorResume(error: unknown): void {
-        this._observer.errorResume(error);
+    protected override onError(error: unknown): void {
+        this._observer.error(error);
     }
 
     protected override onCompleted(result: CompletionResult): void {

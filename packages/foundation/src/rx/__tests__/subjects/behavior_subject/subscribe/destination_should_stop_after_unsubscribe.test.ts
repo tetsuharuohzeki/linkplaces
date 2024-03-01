@@ -13,7 +13,7 @@ test('the destination should not work after calling .unsubscribe() returned by .
     const testTarget = new BehaviorSubject<number>(INITIAL_VALUE);
     const observer = {
         next: tinyspy.spy(),
-        errorResume: tinyspy.spy(),
+        error: tinyspy.spy(),
         complete: tinyspy.spy(),
     } satisfies Observer<number>;
 
@@ -23,7 +23,7 @@ test('the destination should not work after calling .unsubscribe() returned by .
     t.is(subscription.closed, true);
 
     testTarget.next(SECOND_VALUE);
-    testTarget.errorResume(new Error());
+    testTarget.error(new Error());
     testTarget.complete(createCompletionOk());
 
     // assert
@@ -32,7 +32,7 @@ test('the destination should not work after calling .unsubscribe() returned by .
         // @prettier-ignore
         [INITIAL_VALUE],
     ]);
-    t.is(observer.errorResume.callCount, 0);
+    t.is(observer.error.callCount, 0);
     t.is(observer.complete.callCount, 0);
 
     t.is(testTarget.isCompleted, true);

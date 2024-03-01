@@ -18,7 +18,7 @@ class SyncFactoryObservable<T> extends Observable<T> {
                 factory(destination, signal);
                 result = createCompletionOk();
             } catch (e: unknown) {
-                destination.errorResume(e);
+                destination.error(e);
                 result = createCompletionErr(e);
             }
             destination.complete(result);

@@ -7,13 +7,13 @@ test('onSubscribe should be invoked by calling `.subscribe()`', (t) => {
     const testTarget = new Subject<void>();
     const onNext = spy();
     const onError = spy();
-    const onComplete = spy();
+    const onCompleted = spy();
 
     // act
     const subscription = testTarget.subscribeBy({
         next: onNext,
-        errorResume: onError,
-        complete: onComplete,
+        error: onError,
+        complete: onCompleted,
     });
     t.teardown(() => {
         subscription.unsubscribe();
@@ -22,7 +22,7 @@ test('onSubscribe should be invoked by calling `.subscribe()`', (t) => {
     // assert
     t.is(onNext.callCount, 0);
     t.is(onError.callCount, 0);
-    t.is(onComplete.callCount, 0);
+    t.is(onCompleted.callCount, 0);
     t.is(subscription.closed, false);
 
     // teardown
