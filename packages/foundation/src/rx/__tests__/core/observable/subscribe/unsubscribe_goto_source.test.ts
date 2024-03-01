@@ -23,7 +23,7 @@ test("the returned subscription's .unsubscribe() should propagate to the source"
     // act
     const observer = {
         next: tinyspy.spy(),
-        errorResume: tinyspy.spy(),
+        error: tinyspy.spy(),
         complete: tinyspy.spy(),
     } satisfies Observer<void>;
     const subscription = testTarget.subscribe(observer);
@@ -33,6 +33,6 @@ test("the returned subscription's .unsubscribe() should propagate to the source"
     // assert
     t.is(onUnsubscribe.callCount, 1);
     t.is(observer.next.callCount, 0);
-    t.is(observer.errorResume.callCount, 0);
+    t.is(observer.error.callCount, 0);
     t.is(observer.complete.callCount, 0);
 });

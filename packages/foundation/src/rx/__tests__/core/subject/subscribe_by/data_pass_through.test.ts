@@ -45,14 +45,14 @@ test('.subscribe() should propagate the passed value to the child: onError', (t)
     // act
     const unsubscriber = testTarget.subscribeBy({
         next: onNext,
-        errorResume: onError,
+        error: onError,
     });
     t.teardown(() => {
         unsubscriber.unsubscribe();
     });
     for (const i of TEST_INPUT) {
         if (i % 2 !== 0) {
-            testTarget.errorResume(i);
+            testTarget.error(i);
         } else {
             testTarget.next(i);
         }
@@ -76,7 +76,7 @@ test('.subscribe() should propagate the passed value to the child: onError', (t)
     t.is(testTarget.isCompleted, false);
 });
 
-test('.subscribe() should propagate the passed value to the child: onComplete', (t) => {
+test('.subscribe() should propagate the passed value to the child: onCompleted', (t) => {
     // setup
     const TEST_INPUT = [1, 2, 3, 4];
     const testTarget = new Subject<number>();
@@ -87,7 +87,7 @@ test('.subscribe() should propagate the passed value to the child: onComplete', 
     // act
     const unsubscriber = testTarget.subscribeBy({
         next: onNext,
-        errorResume: onError,
+        error: onError,
         complete: onCompleted,
     });
     t.teardown(() => {
@@ -97,7 +97,7 @@ test('.subscribe() should propagate the passed value to the child: onComplete', 
     testTarget.complete(createCompletionOk());
     for (const i of TEST_INPUT) {
         if (i % 2 !== 0) {
-            testTarget.errorResume(i);
+            testTarget.error(i);
         } else {
             testTarget.next(i);
         }

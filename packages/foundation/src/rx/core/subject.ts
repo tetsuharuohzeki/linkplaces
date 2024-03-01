@@ -57,14 +57,14 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         }
     }
 
-    errorResume(err: unknown): void {
+    error(err: unknown): void {
         if (this._isCompleted) {
             return;
         }
 
         const snapshots = this.getObserverSnapshots();
         for (const observer of snapshots) {
-            observer.errorResume(err);
+            observer.error(err);
         }
     }
 

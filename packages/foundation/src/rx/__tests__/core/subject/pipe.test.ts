@@ -16,8 +16,8 @@ class TestSubscriber<T> extends InternalSubscriber<T> {
         this._observer.next(value);
     }
 
-    protected override onErrorResume(error: unknown): void {
-        this._observer.errorResume(error);
+    protected override onError(error: unknown): void {
+        this._observer.error(error);
     }
 
     protected override onCompleted(result: CompletionResult): void {

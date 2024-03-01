@@ -31,7 +31,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     // act
     const subscription = testTarget.subscribeBy({
         next: onNext,
-        errorResume: onError,
+        error: onError,
         complete: onCompleted,
     });
     t.teardown(() => {
@@ -77,13 +77,13 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     // act
     const subscription = testTarget.subscribeBy({
         next: onNext,
-        errorResume: onError,
+        error: onError,
         complete: onCompleted,
     });
     t.teardown(() => {
         subscription.unsubscribe();
     });
-    testTarget.errorResume(INPUT_ERROR);
+    testTarget.error(INPUT_ERROR);
 
     // assert
     t.is(onNext.callCount, 1);
@@ -102,7 +102,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     t.is(testTarget.isCompleted, false);
 });
 
-test.serial('Graceful shutdown subscriptions if the child observer throw the error: onComplete', (t) => {
+test.serial('Graceful shutdown subscriptions if the child observer throw the error: onCompleted', (t) => {
     const INITIAL_VALUE = Math.random();
     const ERR_MESSAGE = String(Math.random());
     const THROWN_ERROR = new Error(ERR_MESSAGE);
@@ -118,7 +118,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     // act
     const subscription = testTarget.subscribeBy({
         next: onNext,
-        errorResume: onError,
+        error: onError,
         complete: onCompleted,
     });
     t.teardown(() => {
@@ -170,7 +170,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     // act
     const subscription = testTarget.subscribeBy({
         next: onNext,
-        errorResume: onError,
+        error: onError,
         complete: onCompleted,
     });
     t.teardown(() => {

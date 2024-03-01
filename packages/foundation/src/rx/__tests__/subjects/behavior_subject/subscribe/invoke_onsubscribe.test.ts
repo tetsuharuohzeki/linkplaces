@@ -11,7 +11,7 @@ test('onSubscribe should be invoked by calling `.subscribe()`', (t) => {
     // act
     const observer = {
         next: tinyspy.spy(),
-        errorResume: tinyspy.spy(),
+        error: tinyspy.spy(),
         complete: tinyspy.spy(),
     } satisfies Observer<number>;
     const subscription = testTarget.subscribe(observer);
@@ -25,7 +25,7 @@ test('onSubscribe should be invoked by calling `.subscribe()`', (t) => {
         // @prettier-ignore
         [INITIAL_VALUE],
     ]);
-    t.is(observer.errorResume.callCount, 0);
+    t.is(observer.error.callCount, 0);
     t.is(observer.complete.callCount, 0);
     t.is(subscription.closed, false);
 

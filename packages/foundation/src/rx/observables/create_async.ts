@@ -20,7 +20,7 @@ class AsyncFactoryObservable<T> extends Observable<T> {
                     destination.complete(ok);
                 },
                 (e: unknown) => {
-                    destination.errorResume(e);
+                    destination.error(e);
                     const error = createCompletionErr(e);
                     destination.complete(error);
                 }

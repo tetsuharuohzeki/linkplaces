@@ -39,15 +39,15 @@ test('.unsubscribe() should stop it if myself is subscribed from others', (t) =>
 
 test('.unsubscribe() should not behave on calling it twice', (t) => {
     const target = new Subject();
-    const onComplete = tinyspy.spy();
+    const onCompleted = tinyspy.spy();
     target.subscribeBy({
-        complete: onComplete,
+        complete: onCompleted,
     });
 
     target.unsubscribe();
     target.unsubscribe();
 
-    t.is(onComplete.callCount, 1);
+    t.is(onCompleted.callCount, 1);
 });
 
 test('.unsubscribe() should not reentrant', (t) => {
@@ -69,13 +69,13 @@ test('.unsubscribe() should not reentrant', (t) => {
 
 test('.unsubscribe() should emit the completion to children', (t) => {
     const target = new Subject<number>();
-    const onComplete = tinyspy.spy();
+    const onCompleted = tinyspy.spy();
     target.subscribeBy({
-        complete: onComplete,
+        complete: onCompleted,
     });
 
     target.unsubscribe();
 
-    t.is(onComplete.callCount, 1);
-    t.deepEqual(onComplete.calls, [[createCompletionOk()]]);
+    t.is(onCompleted.callCount, 1);
+    t.deepEqual(onCompleted.calls, [[createCompletionOk()]]);
 });

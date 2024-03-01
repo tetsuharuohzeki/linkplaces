@@ -17,7 +17,7 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
     });
     const observer = new TestSubscriber<number>();
     const onNext = tinyspy.spyOn(observer, 'onNext');
-    const onError = tinyspy.spyOn(observer, 'onErrorResume');
+    const onError = tinyspy.spyOn(observer, 'onError');
     const onCompleted = tinyspy.spyOn(observer, 'onCompleted');
 
     // act
@@ -33,7 +33,7 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     passedSubscriber!.next(1);
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    passedSubscriber!.errorResume(new Error());
+    passedSubscriber!.error(new Error());
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     passedSubscriber!.complete(createCompletionOk());
 

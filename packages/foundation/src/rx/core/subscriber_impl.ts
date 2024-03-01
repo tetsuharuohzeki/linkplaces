@@ -20,7 +20,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     }
 
     protected abstract onNext(value: T): void;
-    protected abstract onErrorResume(error: unknown): void;
+    protected abstract onError(error: unknown): void;
     protected abstract onCompleted(result: CompletionResult): void;
     // As a part of override point but not required.
     // eslint-disable-next-line @typescript-eslint/class-methods-use-this
@@ -42,17 +42,17 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
         try {
             this.onNext(value);
         } catch (err: unknown) {
-            this.errorResume(err);
+            this.error(err);
         }
     }
 
-    errorResume(error: unknown): void {
+    error(error: unknown): void {
         if (this.closed || this._isCalledOnCompleted) {
             return;
         }
 
         try {
-            this.onErrorResume(error);
+            this.onError(error);
         } catch (e: unknown) {
             globalThis.reportError(e);
         }
@@ -130,8 +130,8 @@ export class PassThroughSubscriber<T> extends InternalSubscriber<T> {
         this._observer.next(value);
     }
 
-    protected override onErrorResume(error: unknown): void {
-        this._observer.errorResume(error);
+    protected override onError(error: unknown): void {
+        this._observer.error(error);
     }
 
     protected override onCompleted(result: CompletionResult): void {

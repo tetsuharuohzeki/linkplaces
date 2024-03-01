@@ -35,8 +35,8 @@ export abstract class Observable<T> implements ObservableLike<T> {
     }
 
     subscribeBy(destination: SubscriptionObserver<T>): Unsubscribable {
-        const { next, errorResume, complete } = destination;
-        const observer = new PartialObserver<T>(next, errorResume, complete);
+        const { next, error, complete } = destination;
+        const observer = new PartialObserver<T>(next, error, complete);
         const subscriber = new PassThroughSubscriber(observer);
         const s = this.subscribe(subscriber);
         return s;

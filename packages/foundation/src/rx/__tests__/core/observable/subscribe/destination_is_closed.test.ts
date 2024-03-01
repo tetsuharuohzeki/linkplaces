@@ -12,7 +12,7 @@ test('if the passed destination is closed', (t) => {
     const testTarget = new TestObservable<number>(onSubscribe);
     const observer = new TestSubscriber<number>();
     const onNext = tinyspy.spyOn(observer, 'onNext');
-    const onError = tinyspy.spyOn(observer, 'onErrorResume');
+    const onError = tinyspy.spyOn(observer, 'onError');
     const onCompleted = tinyspy.spyOn(observer, 'onCompleted');
 
     // act

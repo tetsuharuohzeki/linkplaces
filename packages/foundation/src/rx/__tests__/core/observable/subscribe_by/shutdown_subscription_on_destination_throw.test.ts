@@ -34,7 +34,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     // act
     const subscription = testTarget.subscribeBy({
         next: onNext,
-        errorResume: onError,
+        error: onError,
         complete: onCompleted,
     });
     t.teardown(() => {
@@ -65,7 +65,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     let passedSubscriber: Subscriber<number>;
     const testTarget = new TestObservable<number>((destination) => {
         passedSubscriber = destination;
-        destination.errorResume(INPUT_ERROR);
+        destination.error(INPUT_ERROR);
     });
     const onNext = tinyspy.spy();
     const onError = tinyspy.spy(() => {
@@ -76,7 +76,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     // act
     const subscription = testTarget.subscribeBy({
         next: onNext,
-        errorResume: onError,
+        error: onError,
         complete: onCompleted,
     });
     t.teardown(() => {
@@ -100,7 +100,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     t.is(subscription.closed, false);
 });
 
-test.serial('Graceful shutdown subscriptions if the child observer throw the error: onComplete', (t) => {
+test.serial('Graceful shutdown subscriptions if the child observer throw the error: onCompleted', (t) => {
     const ERR_MESSAGE = String(Math.random());
     const THROWN_ERROR = new Error(ERR_MESSAGE);
 
@@ -120,7 +120,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     // act
     const subscription = testTarget.subscribeBy({
         next: onNext,
-        errorResume: onError,
+        error: onError,
         complete: onCompleted,
     });
 
@@ -162,7 +162,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     // act
     const subscription = testTarget.subscribeBy({
         next: onNext,
-        errorResume: onError,
+        error: onError,
         complete: onCompleted,
     });
     t.teardown(() => {

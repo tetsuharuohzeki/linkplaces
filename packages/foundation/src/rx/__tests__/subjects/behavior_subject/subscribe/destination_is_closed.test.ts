@@ -14,7 +14,7 @@ test('if the passed destination is closed', (t) => {
     const testTarget = new BehaviorSubject<number>(INITIAL_VALUE);
     const observer = new TestSubscriber<number>();
     const onNext = tinyspy.spyOn(observer, 'onNext');
-    const onError = tinyspy.spyOn(observer, 'onErrorResume');
+    const onError = tinyspy.spyOn(observer, 'onError');
     const onCompleted = tinyspy.spyOn(observer, 'onCompleted');
 
     // act
@@ -25,7 +25,7 @@ test('if the passed destination is closed', (t) => {
         subscription.unsubscribe();
     });
     testTarget.next(SECOND_VALUE);
-    testTarget.errorResume(new Error());
+    testTarget.error(new Error());
     testTarget.complete(createCompletionOk());
 
     // assertion

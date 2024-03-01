@@ -13,7 +13,7 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
     const testTarget = new Subject<void>();
     const observer = new TestSubscriber<void>();
     const onNext = tinyspy.spyOn(observer, 'onNext');
-    const onError = tinyspy.spyOn(observer, 'onErrorResume');
+    const onError = tinyspy.spyOn(observer, 'onError');
     const onCompleted = tinyspy.spyOn(observer, 'onCompleted');
 
     // act
@@ -26,7 +26,7 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
     t.is(observer.isActive(), false);
 
     testTarget.next();
-    testTarget.errorResume(new Error());
+    testTarget.error(new Error());
     testTarget.complete(createCompletionOk());
 
     // assertion

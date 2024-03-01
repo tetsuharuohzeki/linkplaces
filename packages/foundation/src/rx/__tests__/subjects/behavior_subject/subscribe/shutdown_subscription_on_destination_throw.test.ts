@@ -26,7 +26,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
         next: tinyspy.spy((_val) => {
             throw THROWN_ERROR;
         }),
-        errorResume: tinyspy.spy(),
+        error: tinyspy.spy(),
         complete: tinyspy.spy(),
     } satisfies Observer<number>;
 
@@ -45,8 +45,8 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
         ['error', THROWN_ERROR],
     ]);
 
-    t.is(observer.errorResume.callCount, 2);
-    t.deepEqual(observer.errorResume.calls, [[THROWN_ERROR], [THROWN_ERROR]]);
+    t.is(observer.error.callCount, 2);
+    t.deepEqual(observer.error.calls, [[THROWN_ERROR], [THROWN_ERROR]]);
 
     t.is(observer.complete.callCount, 0);
     t.is(subscription.closed, false);
@@ -62,7 +62,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     const testTarget = new BehaviorSubject<number>(INITIAL_VALUE);
     const observer = {
         next: tinyspy.spy(),
-        errorResume: tinyspy.spy((_val) => {
+        error: tinyspy.spy((_val) => {
             throw THROWN_ERROR;
         }),
         complete: tinyspy.spy(),
@@ -73,7 +73,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     t.teardown(() => {
         subscription.unsubscribe();
     });
-    testTarget.errorResume(INPUT_ERROR);
+    testTarget.error(INPUT_ERROR);
 
     // assert
     t.is(observer.next.callCount, 1);
@@ -82,9 +82,9 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
         [INITIAL_VALUE],
     ]);
 
-    t.is(observer.errorResume.callCount, 1);
-    t.deepEqual(observer.errorResume.calls, [[INPUT_ERROR]]);
-    t.deepEqual(observer.errorResume.results, [['error', THROWN_ERROR]]);
+    t.is(observer.error.callCount, 1);
+    t.deepEqual(observer.error.calls, [[INPUT_ERROR]]);
+    t.deepEqual(observer.error.results, [['error', THROWN_ERROR]]);
 
     t.is(observer.complete.callCount, 0);
 
@@ -94,7 +94,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     t.is(subscription.closed, false);
 });
 
-test.serial('Graceful shutdown subscriptions if the child observer throw the error: onComplete', (t) => {
+test.serial('Graceful shutdown subscriptions if the child observer throw the error: onCompleted', (t) => {
     const INITIAL_VALUE = Math.random();
     const ERR_MESSAGE = String(Math.random());
     const THROWN_ERROR = new Error(ERR_MESSAGE);
@@ -103,7 +103,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     const testTarget = new BehaviorSubject<number>(INITIAL_VALUE);
     const observer = {
         next: tinyspy.spy(),
-        errorResume: tinyspy.spy(),
+        error: tinyspy.spy(),
         complete: tinyspy.spy((_val) => {
             throw THROWN_ERROR;
         }),
@@ -120,7 +120,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     // assert
     t.is(observer.next.callCount, 1);
     t.deepEqual(observer.next.calls, [[INITIAL_VALUE]]);
-    t.is(observer.errorResume.callCount, 0);
+    t.is(observer.error.callCount, 0);
     t.is(observer.complete.callCount, 1);
     t.deepEqual(observer.complete.calls, [
         // @prettier-ignore
@@ -146,7 +146,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
         next: tinyspy.spy((_val) => {
             throw THROWN_ERROR_ON_NEXT_CB;
         }),
-        errorResume: tinyspy.spy((_val) => {
+        error: tinyspy.spy((_val) => {
             throw THROWN_ERROR_ON_ERROR_CB;
         }),
         complete: tinyspy.spy(),
@@ -171,13 +171,13 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
         ['error', THROWN_ERROR_ON_NEXT_CB],
     ]);
 
-    t.is(observer.errorResume.callCount, 2);
-    t.deepEqual(observer.errorResume.calls, [
+    t.is(observer.error.callCount, 2);
+    t.deepEqual(observer.error.calls, [
         // @prettier-ignore
         [THROWN_ERROR_ON_NEXT_CB],
         [THROWN_ERROR_ON_NEXT_CB],
     ]);
-    t.deepEqual(observer.errorResume.results, [
+    t.deepEqual(observer.error.results, [
         ['error', THROWN_ERROR_ON_ERROR_CB],
         ['error', THROWN_ERROR_ON_ERROR_CB],
     ]);

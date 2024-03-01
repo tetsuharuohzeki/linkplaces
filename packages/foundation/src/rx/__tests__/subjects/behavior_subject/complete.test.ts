@@ -7,16 +7,16 @@ test('.complete() should propagate it to the child', (t) => {
     const INPUT = createCompletionOk();
 
     const target = new BehaviorSubject<number>(0);
-    const onComplete = spy();
+    const onCompleted = spy();
     target.subscribeBy({
-        complete: onComplete,
+        complete: onCompleted,
     });
 
     target.complete(INPUT);
 
     t.is(target.isCompleted, true);
-    t.is(onComplete.callCount, 1);
-    t.deepEqual(onComplete.calls, [[INPUT]]);
+    t.is(onCompleted.callCount, 1);
+    t.deepEqual(onCompleted.calls, [[INPUT]]);
 });
 
 test('.complete() should stop myself', (t) => {
@@ -26,17 +26,17 @@ test('.complete() should stop myself', (t) => {
 
     const target = new BehaviorSubject<number>(INITIAL_INPUT);
     const onNext = spy();
-    const onComplete = spy();
+    const onCompleted = spy();
     target.subscribeBy({
         next: onNext,
-        complete: onComplete,
+        complete: onCompleted,
     });
 
     target.complete(INPUT);
 
     t.is(target.isCompleted, true);
-    t.is(onComplete.callCount, 1);
-    t.deepEqual(onComplete.calls, [[INPUT]]);
+    t.is(onCompleted.callCount, 1);
+    t.deepEqual(onCompleted.calls, [[INPUT]]);
 
     target.next(NORMAL_INPUT);
     t.is(onNext.callCount, 1);
@@ -53,18 +53,18 @@ test('.complete() should flip its flag at the first on calling it', (t) => {
     const INPUT = createCompletionOk();
 
     const target = new BehaviorSubject<number>(0);
-    const onComplete = spy(() => {
+    const onCompleted = spy(() => {
         t.is(target.isCompleted, true);
     });
     target.subscribeBy({
-        complete: onComplete,
+        complete: onCompleted,
     });
 
     target.complete(INPUT);
 
     t.is(target.isCompleted, true);
-    t.is(onComplete.callCount, 1);
-    t.deepEqual(onComplete.calls, [[INPUT]]);
+    t.is(onCompleted.callCount, 1);
+    t.deepEqual(onCompleted.calls, [[INPUT]]);
 });
 
 test('.complete() should propagate the passed value on reentrant case', (t) => {

@@ -24,8 +24,8 @@ class FilterSubscriber<T> extends InternalSubscriber<T> {
         }
     }
 
-    protected override onErrorResume(error: unknown): void {
-        this._observer.errorResume(error);
+    protected override onError(error: unknown): void {
+        this._observer.error(error);
     }
 
     protected override onCompleted(result: CompletionResult): void {
