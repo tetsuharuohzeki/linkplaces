@@ -15,7 +15,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
 
     constructor() {
         super((destination: Subscriber<T>) => {
-            this.onSubscribe(destination);
+            this._onSubjectSubscribe(destination);
         });
         this._isCompleted = false;
         this._observerCounter = 0;
@@ -27,7 +27,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         return this._isCompleted;
     }
 
-    private getObserverSnapshots(): ReadonlyArray<Subscriber<T>> {
+    private _getObserverSnapshots(): ReadonlyArray<Subscriber<T>> {
         const current = this._observers.values();
         const snapshot = Array.from(current);
         return snapshot;
@@ -51,7 +51,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
             return;
         }
 
-        const snapshots = this.getObserverSnapshots();
+        const snapshots = this._getObserverSnapshots();
         for (const observer of snapshots) {
             observer.next(value);
         }
@@ -62,7 +62,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
             return;
         }
 
-        const snapshots = this.getObserverSnapshots();
+        const snapshots = this._getObserverSnapshots();
         for (const observer of snapshots) {
             observer.error(err);
         }
@@ -76,7 +76,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         this._isCompleted = true;
         this._completedValue = result;
 
-        const snapshots = this.getObserverSnapshots();
+        const snapshots = this._getObserverSnapshots();
         for (const observer of snapshots) {
             observer.complete(result);
         }
@@ -86,7 +86,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
 
     unsubscribe() {
         if (!this._isCompleted) {
-            const snapshots = this.getObserverSnapshots();
+            const snapshots = this._getObserverSnapshots();
             for (const observer of snapshots) {
                 const ok = createCompletionOk();
                 observer.complete(ok);
@@ -97,18 +97,18 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         this._clearObservers();
     }
 
-    protected onSubscribe(destination: Subscriber<T>): void {
+    protected _onSubjectSubscribe(destination: Subscriber<T>): void {
         if (this._isCompleted) {
-            this.onSubscribeButCompleted(destination);
+            this._onSubscribeButCompleted(destination);
             return;
         }
 
-        this.registerObserverOnSubscribe(destination);
+        this._registerObserverOnSubscribe(destination);
     }
 
-    protected registerObserverOnSubscribe(destination: Subscriber<T>): void {
+    protected _registerObserverOnSubscribe(destination: Subscriber<T>): void {
         const currentObservers = this._observers;
-        const observerId = this.getObserverId();
+        const observerId = this._getObserverId();
         currentObservers.set(observerId, destination);
 
         destination.addTeardown(() => {
@@ -116,13 +116,13 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         });
     }
 
-    private getObserverId() {
+    private _getObserverId() {
         const observerId = this._observerCounter;
         this._observerCounter = observerId + 1;
         return observerId;
     }
 
-    protected onSubscribeButCompleted(destination: Subscriber<T>): void {
+    protected _onSubscribeButCompleted(destination: Subscriber<T>): void {
         const result = unwrapNullable(this._completedValue);
         destination.complete(result);
     }
