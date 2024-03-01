@@ -119,6 +119,11 @@ function tryToRunTeardown(finalizer: TeardownFn): void {
     }
 }
 
+/**
+ *  @internal
+ *  This is required to implement the libary.
+ *  Do not expose to user.
+ */
 export class PassThroughSubscriber<T> extends InternalSubscriber<T> {
     private _observer: Observer<T>;
     constructor(destination: Observer<T>) {
