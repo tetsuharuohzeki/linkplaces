@@ -10,8 +10,8 @@ test('.error() should propagate the passed value to the child', (t) => {
     const onNext = spy();
     const onError = spy();
     target.subscribeBy({
-        next: onNext,
-        error: onError,
+        onNext: onNext,
+        onError: onError,
     });
 
     target.error(ERROR_INPUT);
@@ -30,8 +30,8 @@ test('.error() should not stop myself', (t) => {
     const onNext = spy();
     const onError = spy();
     target.subscribeBy({
-        next: onNext,
-        error: onError,
+        onNext: onNext,
+        onError: onError,
     });
 
     target.error(ERROR_INPUT);
@@ -52,11 +52,11 @@ test('.error() should propagate the passed value but not reentrant', (t) => {
     const innerOnError = spy();
     const outerOnError = spy((_value) => {
         target.subscribeBy({
-            error: innerOnError,
+            onError: innerOnError,
         });
     });
     target.subscribeBy({
-        error: outerOnError,
+        onError: outerOnError,
     });
 
     target.error(ERROR_INPUT);

@@ -26,9 +26,9 @@ test('the destination should not be called after cancelled the subscription', (t
 
     // act
     const subscription = testTarget.subscribeBy({
-        next: onNext,
-        error: onError,
-        complete: onCompleted,
+        onNext: onNext,
+        onError: onError,
+        onCompleted: onCompleted,
     });
     subscription.unsubscribe();
     t.is(subscription.closed, true, 'subscription should be closed here');

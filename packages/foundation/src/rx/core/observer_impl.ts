@@ -6,14 +6,14 @@ function genericOnNext<T>(_: T): void {}
 function genericOnError(_: unknown): void {}
 function genericOnCompleted(_: CompletionResult): void {}
 
-export class PartialObserver<T> implements Observer<T> {
+export class PartialObserverWrapper<T> implements Observer<T> {
     next: OnNextFn<T>;
     error: OnErrorFn;
     complete: OnCompletedFn;
 
-    constructor(next: Maybe<OnNextFn<T>>, error: Maybe<OnErrorFn>, complete: Maybe<OnCompletedFn>) {
-        this.next = unwrapOrFromMaybe(next, genericOnNext);
-        this.error = unwrapOrFromMaybe(error, genericOnError);
-        this.complete = unwrapOrFromMaybe(complete, genericOnCompleted);
+    constructor(onNext: Maybe<OnNextFn<T>>, onError: Maybe<OnErrorFn>, onCompleted: Maybe<OnCompletedFn>) {
+        this.next = unwrapOrFromMaybe(onNext, genericOnNext);
+        this.error = unwrapOrFromMaybe(onError, genericOnError);
+        this.complete = unwrapOrFromMaybe(onCompleted, genericOnCompleted);
     }
 }

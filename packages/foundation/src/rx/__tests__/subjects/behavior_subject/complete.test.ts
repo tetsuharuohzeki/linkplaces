@@ -9,7 +9,7 @@ test('.complete() should propagate it to the child', (t) => {
     const target = new BehaviorSubject<number>(0);
     const onCompleted = spy();
     target.subscribeBy({
-        complete: onCompleted,
+        onCompleted: onCompleted,
     });
 
     target.complete(INPUT);
@@ -28,8 +28,8 @@ test('.complete() should stop myself', (t) => {
     const onNext = spy();
     const onCompleted = spy();
     target.subscribeBy({
-        next: onNext,
-        complete: onCompleted,
+        onNext: onNext,
+        onCompleted: onCompleted,
     });
 
     target.complete(INPUT);
@@ -57,7 +57,7 @@ test('.complete() should flip its flag at the first on calling it', (t) => {
         t.is(target.isCompleted, true);
     });
     target.subscribeBy({
-        complete: onCompleted,
+        onCompleted: onCompleted,
     });
 
     target.complete(INPUT);
@@ -75,13 +75,13 @@ test('.complete() should propagate the passed value on reentrant case', (t) => {
     const onInnerComplete = spy();
     const onOuterComplete = spy(() => {
         target.subscribeBy({
-            complete: onInnerComplete,
+            onCompleted: onInnerComplete,
         });
     });
 
     // act
     target.subscribeBy({
-        complete: onOuterComplete,
+        onCompleted: onOuterComplete,
     });
 
     target.complete(INPUT);

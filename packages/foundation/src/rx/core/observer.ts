@@ -11,10 +11,10 @@ export type OnNextFn<T> = (v: T) => void;
 export type OnErrorFn = (error: unknown) => void;
 export type OnCompleteFn = (result: CompletionResult) => void;
 
-export interface SubscriptionObserver<T> {
-    next?: Maybe<OnNextFn<T>>;
-    error?: Maybe<OnErrorFn>;
-    complete?: Maybe<OnCompleteFn>;
+export interface PartialObserver<T> {
+    onNext?: Maybe<OnNextFn<T>>;
+    onError?: Maybe<OnErrorFn>;
+    onCompleted?: Maybe<OnCompleteFn>;
 }
 
 

@@ -17,7 +17,7 @@ test('.subscribe() should propagate the passed value to the child: onNext()', (t
 
     // act
     const unsubscriber = testTarget.subscribeBy({
-        next: onNext,
+        onNext: onNext,
     });
     t.teardown(() => {
         unsubscriber.unsubscribe();
@@ -52,8 +52,8 @@ test('.subscribe() should propagate the passed value to the child: onError', (t)
 
     // act
     const unsubscriber = testTarget.subscribeBy({
-        next: onNext,
-        error: onError,
+        onNext: onNext,
+        onError: onError,
     });
     t.teardown(() => {
         unsubscriber.unsubscribe();
@@ -96,9 +96,9 @@ test('.subscribe() should propagate the passed value to the child: onCompleted',
 
     // act
     const unsubscriber = testTarget.subscribeBy({
-        next: onNext,
-        error: onError,
-        complete: onCompleted,
+        onNext: onNext,
+        onError: onError,
+        onCompleted: onCompleted,
     });
     t.teardown(() => {
         unsubscriber.unsubscribe();

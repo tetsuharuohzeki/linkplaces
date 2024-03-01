@@ -30,9 +30,9 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
 
     // act
     const subscription = testTarget.subscribeBy({
-        next: onNext,
-        error: onError,
-        complete: onCompleted,
+        onNext: onNext,
+        onError: onError,
+        onCompleted: onCompleted,
     });
     t.teardown(() => {
         subscription.unsubscribe();
@@ -76,9 +76,9 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
 
     // act
     const subscription = testTarget.subscribeBy({
-        next: onNext,
-        error: onError,
-        complete: onCompleted,
+        onNext: onNext,
+        onError: onError,
+        onCompleted: onCompleted,
     });
     t.teardown(() => {
         subscription.unsubscribe();
@@ -117,9 +117,9 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
 
     // act
     const subscription = testTarget.subscribeBy({
-        next: onNext,
-        error: onError,
-        complete: onCompleted,
+        onNext: onNext,
+        onError: onError,
+        onCompleted: onCompleted,
     });
     t.teardown(() => {
         subscription.unsubscribe();
@@ -169,9 +169,9 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
 
     // act
     const subscription = testTarget.subscribeBy({
-        next: onNext,
-        error: onError,
-        complete: onCompleted,
+        onNext: onNext,
+        onError: onError,
+        onCompleted: onCompleted,
     });
     t.teardown(() => {
         subscription.unsubscribe();

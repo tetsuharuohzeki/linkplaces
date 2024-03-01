@@ -51,7 +51,7 @@ test('.pipe() should propagate the passed value to the child', (t) => {
 
     const onNext = spy();
     const subscription = chained.subscribeBy({
-        next: onNext,
+        onNext: onNext,
     });
     source.next();
     source.next();

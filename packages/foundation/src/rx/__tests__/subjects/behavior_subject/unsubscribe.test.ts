@@ -17,7 +17,7 @@ test('.unsubscribe() should stop subscriptions by myself', (t) => {
     const target = new BehaviorSubject<number>(INITIAL_INPUT);
     const onNext = tinyspy.spy<[number], void>();
     target.subscribeBy({
-        next: onNext,
+        onNext: onNext,
     });
 
     parent.subscribe(target);
@@ -34,7 +34,7 @@ test('.unsubscribe() should stop it if myself is subscribed from others', (t) =>
     const target = new BehaviorSubject(INITIAL_INPUT);
     const onNext = tinyspy.spy<[number], void>();
     target.subscribeBy({
-        next: onNext,
+        onNext: onNext,
     });
 
     target.unsubscribe();
@@ -49,7 +49,7 @@ test('.unsubscribe() should not behave on calling it twice', (t) => {
     const target = new BehaviorSubject(0);
     const onCompleted = tinyspy.spy<[CompletionResult], void>();
     target.subscribeBy({
-        complete: onCompleted,
+        onCompleted: onCompleted,
     });
 
     target.unsubscribe();
@@ -63,11 +63,11 @@ test('.unsubscribe() should not reentrant', (t) => {
     const innerOnComplete = tinyspy.spy<[CompletionResult], void>();
     const outerOnComplete = tinyspy.spy<[CompletionResult], void>(() => {
         target.subscribeBy({
-            complete: innerOnComplete,
+            onCompleted: innerOnComplete,
         });
     });
     target.subscribeBy({
-        complete: outerOnComplete,
+        onCompleted: outerOnComplete,
     });
     target.unsubscribe();
 
@@ -79,7 +79,7 @@ test('.unsubscribe() should emit the completion to children', (t) => {
     const target = new BehaviorSubject<number>(0);
     const onCompleted = tinyspy.spy<[CompletionResult], void>();
     target.subscribeBy({
-        complete: onCompleted,
+        onCompleted: onCompleted,
     });
 
     target.unsubscribe();

@@ -7,7 +7,7 @@ test('.next() should propagate the passed value to the child', (t) => {
     const target = new Subject<number>();
     const onNext = spy();
     target.subscribeBy({
-        next: onNext,
+        onNext: onNext,
     });
 
     const INPUT = Math.random();
@@ -21,11 +21,11 @@ test('.next() should propagate the passed value but not reentrant', (t) => {
     const innerOnNext = spy();
     const outerOnNext = spy((_value) => {
         target.subscribeBy({
-            next: innerOnNext,
+            onNext: innerOnNext,
         });
     });
     target.subscribeBy({
-        next: outerOnNext,
+        onNext: outerOnNext,
     });
 
     const INPUT = Math.random();

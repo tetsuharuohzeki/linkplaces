@@ -9,7 +9,7 @@ test('.complete() should propagate it to the child', (t) => {
     const target = new Subject<number>();
     const onCompleted = tinyspy.spy();
     target.subscribeBy({
-        complete: onCompleted,
+        onCompleted: onCompleted,
     });
 
     target.complete(INPUT);
@@ -27,8 +27,8 @@ test('.complete() should stop myself', (t) => {
     const onNext = tinyspy.spy();
     const onCompleted = tinyspy.spy();
     target.subscribeBy({
-        next: onNext,
-        complete: onCompleted,
+        onNext: onNext,
+        onCompleted: onCompleted,
     });
 
     target.complete(INPUT);
@@ -52,7 +52,7 @@ test('.complete() should flip its flag at the first on calling it', (t) => {
         t.is(target.isCompleted, true);
     });
     target.subscribeBy({
-        complete: onCompleted,
+        onCompleted: onCompleted,
     });
 
     target.complete(INPUT);
@@ -70,13 +70,13 @@ test('.complete() should propagate the passed value on reentrant case', (t) => {
     const onInnerComplete = tinyspy.spy();
     const onOuterComplete = tinyspy.spy(() => {
         target.subscribeBy({
-            complete: onInnerComplete,
+            onCompleted: onInnerComplete,
         });
     });
 
     // act
     target.subscribeBy({
-        complete: onOuterComplete,
+        onCompleted: onOuterComplete,
     });
 
     target.complete(INPUT);

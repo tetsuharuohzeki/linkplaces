@@ -26,9 +26,9 @@ test('should throw if onSubscribeFn throw`', (t) => {
     t.throws(
         () => {
             testTarget.subscribeBy({
-                next: onNext,
-                error: onError,
-                complete: onCompleted,
+                onNext: onNext,
+                onError: onError,
+                onCompleted: onCompleted,
             });
         },
         {

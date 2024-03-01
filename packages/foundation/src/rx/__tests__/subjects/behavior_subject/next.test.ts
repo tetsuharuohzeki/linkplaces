@@ -11,7 +11,7 @@ test('.next() should propagate the passed value to the child', (t) => {
 
     // act
     const sub = target.subscribeBy({
-        next: onNext,
+        onNext: onNext,
     });
     t.teardown(() => {
         sub.unsubscribe();
@@ -38,13 +38,13 @@ test('.next() should propagate the passed value even if in reentrant', (t) => {
         }
 
         target.subscribeBy({
-            next: innerOnNext,
+            onNext: innerOnNext,
         });
     });
 
     // act
     const sub = target.subscribeBy({
-        next: outerOnNext,
+        onNext: outerOnNext,
     });
     t.teardown(() => {
         sub.unsubscribe();

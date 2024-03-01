@@ -16,9 +16,9 @@ test("the returned subscription's .unsubscribe() should propagate to the source"
 
     // act
     const subscription = testTarget.subscribeBy({
-        next: onNext,
-        error: onError,
-        complete: onCompleted,
+        onNext: onNext,
+        onError: onError,
+        onCompleted: onCompleted,
     });
     subscription.unsubscribe();
     t.is(subscription.closed, true);

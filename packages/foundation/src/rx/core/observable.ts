@@ -1,5 +1,5 @@
-import type { Observer, SubscriptionObserver } from './observer.js';
-import { PartialObserver } from './observer_impl.js';
+import type { Observer, PartialObserver } from './observer.js';
+import { PartialObserverWrapper } from './observer_impl.js';
 import type { UnaryFunction } from './operator.js';
 import type { Unsubscribable } from './subscribable.js';
 import type { Subscriber } from './subscriber.js';
@@ -34,9 +34,9 @@ export abstract class Observable<T> implements ObservableLike<T> {
         return subscriber;
     }
 
-    subscribeBy(destination: SubscriptionObserver<T>): Unsubscribable {
-        const { next, error, complete } = destination;
-        const observer = new PartialObserver<T>(next, error, complete);
+    subscribeBy(destination: PartialObserver<T>): Unsubscribable {
+        const { onNext, onError, onCompleted } = destination;
+        const observer = new PartialObserverWrapper<T>(onNext, onError, onCompleted);
         const subscriber = new PassThroughSubscriber(observer);
         const s = this.subscribe(subscriber);
         return s;

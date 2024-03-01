@@ -11,9 +11,9 @@ test('onSubscribe should be invoked by calling `.subscribe()`', (t) => {
 
     // act
     const subscription = testTarget.subscribeBy({
-        next: onNext,
-        error: onError,
-        complete: onCompleted,
+        onNext: onNext,
+        onError: onError,
+        onCompleted: onCompleted,
     });
     t.teardown(() => {
         subscription.unsubscribe();
