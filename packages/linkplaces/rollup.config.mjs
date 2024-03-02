@@ -5,6 +5,7 @@ import { babel } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
+import { default as swc } from '@rollup/plugin-swc';
 
 import babelConfig from './babel.config.mjs';
 
@@ -14,10 +15,12 @@ import {
     RELEASE_CHANNEL,
     LIB_NODE_ENV,
     IS_PRODUCTION_MODE,
+    ENABLE_SWC_REACT_TRANSFORM,
     ENABLE_REACT_PROFILER,
     ENABLE_MV3,
     USE_EVENT_PAGE_WORKAROUND,
 } from './tools/buildconfig.js';
+import { swcOptions } from './tools/swc_config.js';
 
 console.log(`
 =========== rollup configuration vars ============
@@ -26,6 +29,7 @@ BUILD_DATE: ${BUILD_DATE}
 RELEASE_CHANNEL: ${RELEASE_CHANNEL}
 LIB_NODE_ENV: ${LIB_NODE_ENV}
 IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
+ENABLE_SWC_REACT_TRANSFORM: ${ENABLE_SWC_REACT_TRANSFORM}
 ENABLE_REACT_PROFILER: ${ENABLE_REACT_PROFILER}
 ENABLE_MV3: ${ENABLE_MV3}
 USE_EVENT_PAGE_WORKAROUND: ${USE_EVENT_PAGE_WORKAROUND}
@@ -143,12 +147,17 @@ export default async function createConfiguration(_commandLineArgs) {
                 },
             }),
 
-            // https://github.com/rollup/plugins/tree/master/packages/babel
-            babel({
-                ...babelConfig,
-                babelHelpers: 'bundled',
-                extensions: ['.jsx'],
-            }),
+            ENABLE_SWC_REACT_TRANSFORM
+                ? // https://www.npmjs.com/package/@rollup/plugin-swc#options
+                  swc({
+                      swc: swcOptions,
+                      include: ['**/**/*.jsx'],
+                  }) // https://github.com/rollup/plugins/tree/master/packages/babel
+                : babel({
+                      ...babelConfig,
+                      babelHelpers: 'bundled',
+                      extensions: ['.jsx'],
+                  }),
         ],
 
         onwarn(warning) {
