@@ -8,6 +8,7 @@ export {
     filterMapAsyncForAsyncIterable as filterMapAsync,
     filterMapAsyncWithComparatorForAsyncIterable as filterMapAsyncWithComparator,
 } from './filter_map_async.js';
+export { flatMapForIterable as flatMap } from './flat_map.js';
 export { mapForIterable as map } from './map.js';
 export { mapAsyncForAsyncIterable as mapAsync } from './map_async.js';
 export { toArrayFromIterable as toArray } from './to_array.js';
