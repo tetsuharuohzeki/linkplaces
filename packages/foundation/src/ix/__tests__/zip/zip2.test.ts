@@ -7,10 +7,33 @@ import { InfiniteIterator } from '../__helpers__/infinite_iterable.js';
 const INPUT_A = [1, 2, 3];
 const INPUT_B = ['a', 'b', 'c'];
 
+test.before((t) => {
+    t.is(INPUT_A.length, INPUT_B.length);
+});
+
 test('all inputs have same length', (t) => {
     const zipped = Ix.zip(INPUT_A, INPUT_B);
     const actual: Array<[number, string]> = Array.from(zipped);
     t.deepEqual(actual, [
+        [1, 'a'],
+        [2, 'b'],
+        [3, 'c'],
+    ]);
+});
+
+test('allow to consume the same instance multiple times', (t) => {
+    const zipped = Ix.zip(INPUT_A, INPUT_B);
+    // act
+    const actualConsumedFirst: Array<[number, string]> = Array.from(zipped);
+    const actualConsumedTwice: Array<[number, string]> = Array.from(zipped);
+
+    // assert
+    t.deepEqual(actualConsumedFirst, [
+        [1, 'a'],
+        [2, 'b'],
+        [3, 'c'],
+    ]);
+    t.deepEqual(actualConsumedTwice, [
         [1, 'a'],
         [2, 'b'],
         [3, 'c'],

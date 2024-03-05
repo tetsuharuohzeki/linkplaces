@@ -8,6 +8,12 @@ const INPUT_A = [1, 2, 3];
 const INPUT_B = ['a', 'b', 'c'];
 const INPUT_C = ['壱', '弍', '参'];
 
+test.before((t) => {
+    t.is(INPUT_A.length, INPUT_B.length);
+    t.is(INPUT_B.length, INPUT_C.length);
+    t.is(INPUT_A.length, INPUT_C.length);
+});
+
 test('all inputs have same length', (t) => {
     // act
     const zipped = Ix.zip(INPUT_A, INPUT_B, INPUT_C);
@@ -15,6 +21,25 @@ test('all inputs have same length', (t) => {
 
     // assert
     t.deepEqual(actual, [
+        [1, 'a', '壱'],
+        [2, 'b', '弍'],
+        [3, 'c', '参'],
+    ]);
+});
+
+test('allow to consume the same instance multiple times', (t) => {
+    const zipped = Ix.zip(INPUT_A, INPUT_B, INPUT_C);
+    // act
+    const actualConsumedFirst: Array<[number, string, string]> = Array.from(zipped);
+    const actualConsumedTwice: Array<[number, string, string]> = Array.from(zipped);
+
+    // assert
+    t.deepEqual(actualConsumedFirst, [
+        [1, 'a', '壱'],
+        [2, 'b', '弍'],
+        [3, 'c', '参'],
+    ]);
+    t.deepEqual(actualConsumedTwice, [
         [1, 'a', '壱'],
         [2, 'b', '弍'],
         [3, 'c', '参'],

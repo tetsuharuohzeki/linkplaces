@@ -19,3 +19,25 @@ test('check the normal behavior', (t) => {
 
     t.deepEqual(actual, [1, 3]);
 });
+
+test('allow to consume the same instance multiple times', (t) => {
+    // arrange
+    const source = [1, 2, 3];
+    const mapped = Ix.filterMapWithComparator<number, Undefinable<number>, undefined>(
+        source,
+        (val) => {
+            if (val % 2 === 0) {
+                return undefined;
+            }
+            return val;
+        },
+        isUndefined
+    );
+    // act
+    const actualConsumedFirst = Array.from(mapped);
+    const actualConsumedTwice = Array.from(mapped);
+
+    // assert
+    t.deepEqual(actualConsumedFirst, [1, 3]);
+    t.deepEqual(actualConsumedTwice, [1, 3]);
+});
