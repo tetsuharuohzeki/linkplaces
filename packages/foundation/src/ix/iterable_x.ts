@@ -15,3 +15,11 @@ export abstract class AsyncIterableX<const in out TInput, const out TOutput = TI
     }
     abstract [Symbol.asyncIterator](): AsyncIterator<TOutput>;
 }
+
+export function getIterator<T>(iter: Iterable<T>): Iterator<T> {
+    return iter[Symbol.iterator]();
+}
+
+export function closeIterator(iter: Iterator<unknown>): void {
+    iter.return?.();
+}
