@@ -1,4 +1,7 @@
-let original = null;
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+import type { Nullable } from 'option-t/esm/Nullable';
+
+let original: Nullable<typeof Math.random> = null;
 
 function createFakeMathRandom() {
     let seed = 49734321;

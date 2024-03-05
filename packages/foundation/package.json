@@ -11,6 +11,10 @@
             "types": "./__dist/rx/mod.d.ts",
             "default": "./__dist/rx/mod.js"
         },
+        "./test_helper": {
+            "types": "./__dist/test_helper/mod.d.ts",
+            "default": "./__dist/test_helper/mod.js"
+        },
         "./tower_like_ipc": {
             "types": "./__dist/tower_like_ipc/mod.d.ts",
             "default": "./__dist/tower_like_ipc/mod.js"
