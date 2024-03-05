@@ -1,5 +1,5 @@
 import test from 'ava';
-import * as Ix from '../mod.js';
+import * as Ix from '../../mod.js';
 
 test('with single argument', (t) => {
     t.throws(

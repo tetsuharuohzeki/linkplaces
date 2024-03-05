@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import test from 'ava';
 import { spyOn } from 'tinyspy';
-import * as Ix from '../mod.js';
-import { InfiniteIterator } from './__helpers__/infinite_iterable.js';
+import * as Ix from '../../mod.js';
+import { InfiniteIterator } from '../__helpers__/infinite_iterable.js';
 
 const INPUT_A = [1, 2, 3];
 const INPUT_B = ['a', 'b', 'c'];
