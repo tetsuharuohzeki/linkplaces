@@ -1,5 +1,4 @@
 import test from 'ava';
-// eslint-disable-next-line @typescript-eslint/naming-convention
 import * as Ix from '../mod.js';
 
 test('with single argument', (t) => {

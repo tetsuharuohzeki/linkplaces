@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import test from 'ava';
 import { spyOn } from 'tinyspy';
-// eslint-disable-next-line @typescript-eslint/naming-convention
 import * as Ix from '../mod.js';
 import { InfiniteIterator } from './__helpers__/infinite_iterable.js';
 
