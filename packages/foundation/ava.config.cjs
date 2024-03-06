@@ -9,7 +9,7 @@ module.exports = function resolveAvaConfig() {
             rewritePaths: {
                 'src/': '__dist/',
             },
-            compile: 'tsc',
+            compile: false,
         },
     };
 };
