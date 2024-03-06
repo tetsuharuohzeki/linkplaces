@@ -21,8 +21,6 @@ export RELEASE_CHANNEL ?= production
 export GIT_REVISION := $(shell git rev-parse --verify HEAD)
 export BUILD_DATE := $(shell date -u '+%Y-%m-%d %T%z')
 
-.PHONY: lint
-
 all: help
 
 help:
@@ -69,7 +67,7 @@ build_production: ## Run `make build` with `RELEASE_CHANNEL=production`
 	$(MAKE) build RELEASE_CHANNEL=production
 
 .PHONY: build
-build: lint build_package ## Build the artifact and run all lint (This is not for CI).
+build: build_package ## Build the artifact (This is not for CI).
 
 .PHONY: build_package
 build_package: __webext_xpi ## Build the artifact.
@@ -122,10 +120,7 @@ __plain_ts: clean_plain
 ####################################
 # Test
 ####################################
-test: lint unittest ## Run all tests command (This is not for CI).
-
-lint:
-	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)
+test: unittest ## Run all tests command (This is not for CI).
 
 unittest: __obj ## Run unit tests
 	$(MAKE) run_ava

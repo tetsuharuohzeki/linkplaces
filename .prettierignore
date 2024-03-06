@@ -5,3 +5,6 @@
 
 # pnpm
 pnpm-lock.yaml
+
+# turborepo
+.turbo/

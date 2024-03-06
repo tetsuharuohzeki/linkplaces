@@ -69,8 +69,7 @@ typecheck: ## Check static typing integrity
 	$(NPM_BIN_DIR)/tsc --build --emitDeclarationOnly
 
 test: ## Run unit tests
-	$(NPM_BIN_DIR)/tsc --build
-	pnpm test -r
+	pnpm turbo test lint
 
 
 ####################################

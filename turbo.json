@@ -1,0 +1,20 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "pipeline": {
+        // See https://turbo.build/messages/missing-root-task-in-turbo-json
+        "//#build": {
+            "cache": false
+        },
+        "test": {
+            "dependsOn": ["^//#build"],
+            "inputs": [
+                // @prettier-ignore
+                "src/**/*",
+                "__dist/**/*"
+            ]
+        },
+        "//#lint": {
+            "cache": false
+        }
+    }
+}
