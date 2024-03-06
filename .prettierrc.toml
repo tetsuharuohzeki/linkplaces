@@ -36,3 +36,8 @@ useTabs = false
     [overrides.options]
     singleQuote = false
 
+[[overrides]]
+    files = "turbo.json"
+    [overrides.options]
+    parser = "jsonc"
+    trailingComma = "none"

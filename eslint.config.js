@@ -38,6 +38,9 @@ export default [
             '**/__dist/**/*',
             '**/__obj/**/*',
             '**/__plain/**/*',
+
+            // turborepo
+            '**/.turbo/**/*'
         ],
     },
     {
