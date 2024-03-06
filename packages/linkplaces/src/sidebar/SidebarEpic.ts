@@ -5,7 +5,7 @@ import {
 } from '@linkplaces/ipc_message';
 import type { BookmarkId } from '@linkplaces/webext_types';
 
-import { isNotNull } from 'option-t/esm/Nullable';
+import { isNotNull } from 'option-t/Nullable';
 import {
     orElseForResult,
     unwrapOk,
@@ -14,7 +14,7 @@ import {
     isErr,
     type Result,
     mapErrForResult,
-} from 'option-t/esm/PlainResult';
+} from 'option-t/PlainResult';
 
 import type { RemoteActionChannel } from './SidebarMessageChannel.js';
 import type { SidebarPlainReduxStore } from './SidebarStore.js';

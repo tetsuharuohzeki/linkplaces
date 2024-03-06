@@ -1,4 +1,4 @@
-import { unwrapOrFromMaybe, type Maybe } from 'option-t/cjs/Maybe';
+import { unwrapOrFromMaybe, type Maybe } from 'option-t/Maybe';
 import type { CompletionResult } from './completion_result';
 import type { Observer, OnNextFn, OnErrorFn, OnCompleteFn as OnCompletedFn } from './observer';
 

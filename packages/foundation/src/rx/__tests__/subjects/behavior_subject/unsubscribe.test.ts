@@ -1,5 +1,5 @@
 import test from 'ava';
-import { createOk } from 'option-t/esm/PlainResult';
+import { createOk } from 'option-t/PlainResult';
 import * as tinyspy from 'tinyspy';
 
 import { Subject, BehaviorSubject, type CompletionResult } from '../../../mod.js';

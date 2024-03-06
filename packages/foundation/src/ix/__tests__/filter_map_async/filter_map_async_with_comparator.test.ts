@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import test from 'ava';
-import { isUndefined } from 'option-t/esm/Undefinable';
+import { isUndefined } from 'option-t/Undefinable';
 import * as Ix from '../../mod.js';
 import { toAsyncIterable } from '../__helpers__/to_async_iterable.js';
 

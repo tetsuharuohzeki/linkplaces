@@ -1,4 +1,4 @@
-import { isErr, isOk } from 'option-t/esm/PlainResult';
+import { isErr, isOk } from 'option-t/PlainResult';
 import type { CompletionResult } from '../core/completion_result.js';
 import { Observable } from '../core/observable.js';
 import type { Subscriber } from '../core/subscriber.js';

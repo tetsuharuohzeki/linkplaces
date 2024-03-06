@@ -1,7 +1,7 @@
 import { Ix } from '@linkplaces/foundation';
 import type { Nullable } from 'option-t/Nullable';
 import { type Result, createOk, createErr, unwrapOrFromResult } from 'option-t/PlainResult';
-import { unwrapUndefinable } from 'option-t/esm/Undefinable';
+import { unwrapUndefinable } from 'option-t/Undefinable';
 
 const MIME_TEXT_PLAIN = 'text/plain';
 const MIME_TEXT_URI_LIST = 'text/uri-list';

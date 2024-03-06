@@ -1,4 +1,4 @@
-import { unwrapUndefinable } from 'option-t/esm/Undefinable';
+import { unwrapUndefinable } from 'option-t/Undefinable';
 import { closeIterator, getIterator } from './iterable_x.js';
 
 type IterableInputTuple<T> = {

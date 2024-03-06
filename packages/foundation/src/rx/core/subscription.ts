@@ -1,4 +1,4 @@
-import { isNotNull, unwrapNullable, type Nullable } from 'option-t/esm/Nullable';
+import { isNotNull, unwrapNullable, type Nullable } from 'option-t/Nullable';
 
 import type { Unsubscribable } from './subscribable.js';
 import type { TeardownFn } from './subscriber.js';

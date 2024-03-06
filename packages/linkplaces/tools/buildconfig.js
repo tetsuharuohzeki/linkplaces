@@ -1,6 +1,6 @@
 import * as assert from 'node:assert/strict';
 
-import { mapOrForMaybe } from 'option-t/esm/Maybe';
+import { mapOrForMaybe } from 'option-t/Maybe';
 
 const GIT_REVISION = mapOrForMaybe(process.env.GIT_REVISION, 'unknown', String);
 const BUILD_DATE = mapOrForMaybe(process.env.BUILD_DATE, 'unknown', String);
