@@ -11,6 +11,7 @@ export {
 export { flatMapForIterable as flatMap } from './impls/flat_map.js';
 export { mapForIterable as map } from './impls/map.js';
 export { mapAsyncForAsyncIterable as mapAsync } from './impls/map_async.js';
+export { skipForIterable as skip } from './impls/skip.js';
 export { toArrayFromIterable as toArray } from './impls/to_array.js';
 export { toArrayAsyncFromAsyncIterable as toArrayAsync } from './impls/to_array_async.js';
 export { zipForIterable as zip } from './impls/zip.js';
