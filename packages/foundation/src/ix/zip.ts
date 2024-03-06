@@ -27,8 +27,8 @@ function* iterateAsZip<TTuple extends ReadonlyArray<unknown>>(sources: VariadicS
     // eslint-disable-next-line no-unmodified-loop-condition
     while (sourcesLength > 0) {
         const values = new Array(sourcesLength);
-        for (let index = -1; ++index < sourcesLength; ) {
-            const iter = unwrapUndefinable(iterators[index]);
+        for (let i = 0; i < sourcesLength; ++i) {
+            const iter = unwrapUndefinable(iterators[i]);
             const result = iter.next();
             if (result.done) {
                 for (const iter of iterators) {
@@ -36,7 +36,7 @@ function* iterateAsZip<TTuple extends ReadonlyArray<unknown>>(sources: VariadicS
                 }
                 return;
             }
-            values[index] = result.value;
+            values[i] = result.value;
         }
         // I don't have a nice way to make this type to return type properly with variadic.
         // @ts-expect-error
