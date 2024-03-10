@@ -30,7 +30,7 @@
     },
     "dependencies": {
         "@linkplaces/webext_types": "workspace:*",
-        "option-t": "39.0.2",
+        "option-t": "39.0.3",
         "react": "18.2.0",
         "react-dom": "18.2.0"
     },
