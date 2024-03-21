@@ -45,7 +45,7 @@
         "esbuild": "0.20.2",
         "jsdom": "24.0.0",
         "picomatch": "4.0.1",
-        "postcss": "8.4.36",
+        "postcss": "8.4.37",
         "postcss-import": "16.0.1",
         "rollup": "4.13.0"
     }
