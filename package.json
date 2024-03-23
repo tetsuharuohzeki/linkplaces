@@ -28,7 +28,7 @@
         "stylelint": "^16.2.1",
         "stylelint-config-standard": "^36.0.0",
         "turbo": "^1.12.5",
-        "typescript": "5.4.2",
+        "typescript": "5.4.3",
         "web-ext": "7.11.0"
     },
     "scripts": {
