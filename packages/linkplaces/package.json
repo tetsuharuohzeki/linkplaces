@@ -46,7 +46,7 @@
         "jsdom": "24.0.0",
         "picomatch": "4.0.1",
         "postcss": "8.4.38",
-        "postcss-import": "16.0.1",
+        "postcss-import": "16.1.0",
         "rollup": "4.13.0"
     }
 }
