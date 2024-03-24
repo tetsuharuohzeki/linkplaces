@@ -73,6 +73,20 @@ const rules = Object.freeze({
     ],
 });
 
+const rulesRequiringTypeInfo = Object.freeze({
+    // This are unsafe pattern that we would like to ban.
+    '@typescript-eslint/no-unsafe-argument': 'warn',
+    // FIXME: This causes a false positive and I seem that cannot handles generics correctly......
+    //'@typescript-eslint/no-unsafe-assignment': 'warn',
+    // FIXME: This causes a false positive.
+    //'@typescript-eslint/no-unsafe-call': 'warn',
+    '@typescript-eslint/no-unsafe-declaration-merging': 'warn',
+    // FIXME:
+    // @typescript-eslint/no-unsafe-enum-comparison': 'warn',
+    '@typescript-eslint/no-unsafe-member-access': 'warn',
+    '@typescript-eslint/no-unsafe-return': 'warn',
+});
+
 const projectSpecificRules = Object.freeze({
     // FIXME: Re-enable for the future.
     '@typescript-eslint/member-ordering': 'off',
@@ -116,6 +130,7 @@ export const config = Object.freeze({
         ...tsPresets.rules,
 
         ...rules,
+        ...rulesRequiringTypeInfo,
         ...projectSpecificRules,
     },
 });

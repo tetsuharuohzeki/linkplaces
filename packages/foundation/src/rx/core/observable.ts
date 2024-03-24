@@ -19,7 +19,7 @@ export abstract class Observable<T> implements ObservableLike<T> {
     }
 
     subscribe(destination: Observer<T>): Unsubscribable {
-        const subscriber: InternalSubscriber<T> =
+        const subscriber: InternalSubscriber<unknown> =
             destination instanceof InternalSubscriber ? destination : new PassThroughSubscriber(destination);
         if (subscriber.closed) {
             throw new SubscriptionError('subscriber has been closed');
