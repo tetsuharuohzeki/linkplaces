@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "LinkPlaces",
     "version": "0.0.1",
     "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
@@ -17,18 +17,19 @@
         "tabs"
     ],
     "incognito": "spanning",
-    "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline';",
+    "content_security_policy": {
+        "extension_pages": "default-src 'self'; style-src 'self' 'unsafe-inline';"
+    },
     "background": {
         "type": "module",
-        "scripts": ["background/background_bundled.js"],
-        "persistent": true
+        "scripts": ["background/background_bundled.js"]
     },
-    "browser_action": {
-        "browser_style": false,
+    "action": {
         "default_icon": {
             "16": "resources/16x16-dark.svg",
             "32": "resources/16x16-dark.svg"
         },
+        "default_area": "navbar",
         "default_title": "LinkPlaces",
         "default_popup": "popup/index.html",
         "theme_icons": [
@@ -45,7 +46,6 @@
         ]
     },
     "sidebar_action": {
-        "browser_style": false,
         "default_icon": {
             "16": "resources/16x16.svg",
             "32": "resources/16x16.svg"
