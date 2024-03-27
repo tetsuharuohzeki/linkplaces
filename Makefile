@@ -69,7 +69,7 @@ typecheck: ## Check static typing integrity
 	$(NPM_BIN_DIR)/tsc --build --emitDeclarationOnly
 
 test: ## Run unit tests
-	pnpm turbo test lint
+	$(NPM_BIN_DIR)/turbo test
 
 
 ####################################
@@ -78,10 +78,10 @@ test: ## Run unit tests
 lint: eslint stylelint check_relationship_between_workspace_and_ts_pj_reference ## Run all lints.
 
 eslint: ## Run ESLint
-	$(NPM_BIN_DIR)/eslint '.'
+	$(NPM_BIN_DIR)/turbo eslint
 
 eslint_fix: ## Run ESLint with --fix option
-	$(NPM_BIN_DIR)/eslint '.' --fix
+	$(NPM_BIN_DIR)/turbo eslint -- --fix
 
 stylelint: ## Run stylelint
 	$(NPM_BIN_DIR)/stylelint '$(CURDIR)/**/*.css' \

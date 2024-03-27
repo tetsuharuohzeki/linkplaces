@@ -13,7 +13,9 @@
                 "__dist/**/*"
             ]
         },
-        "//#lint": {
+        "//#eslint": {
+            // typescript-eslint with type info requires all compiled type declarations.
+            "dependsOn": ["^//#build"],
             "inputs": [
                 // Include all files in this repo to avoid unlimited tweaking.
                 // It's better for us even if it do just only skip null build
