@@ -1,4 +1,4 @@
-import type { Nullable } from 'option-t/Nullable/Nullable';
+import type { Nullable } from 'option-t/Nullable';
 
 export interface DomRef<out T> {
     current: Nullable<T>;

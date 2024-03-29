@@ -1,7 +1,7 @@
 import type { ExtensionPort } from '@linkplaces/webext_types';
 
-import { isNull } from 'option-t/Nullable/Nullable';
-import { isUndefined } from 'option-t/Undefinable/Undefinable';
+import { isNull } from 'option-t/Nullable';
+import { isUndefined } from 'option-t/Undefinable';
 
 import { createIdentifiablePacket, createOneShotPacket, assertPacket } from './Packet.js';
 

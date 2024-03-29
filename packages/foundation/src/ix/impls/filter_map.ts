@@ -1,4 +1,4 @@
-import { isNull } from 'option-t/Nullable/Nullable';
+import { isNull } from 'option-t/Nullable';
 import { IterableX } from './iterable_x.js';
 
 export type NoneValComparatorFn<TValue, TNone> = (input: TValue | TNone) => input is TNone;

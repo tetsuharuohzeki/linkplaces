@@ -1,5 +1,5 @@
 import type { BookmarkId } from '@linkplaces/webext_types';
-import { isNull } from 'option-t/Nullable/Nullable';
+import { isNull } from 'option-t/Nullable';
 
 export const CONNECTION_PING_FROM_POPUP = 'CONNECTION_PING_FROM_POPUP';
 export const CONNECTION_PING_FROM_SIDEBAR = 'CONNECTION_PING_FROM_SIDEBAR';

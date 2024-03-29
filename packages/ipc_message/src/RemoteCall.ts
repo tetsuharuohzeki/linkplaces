@@ -1,5 +1,5 @@
 import type { BookmarkId, WebExtSidebarActionService } from '@linkplaces/webext_types';
-import { unwrapOrFromUndefinable } from 'option-t/Undefinable/unwrapOr';
+import { unwrapOrFromUndefinable } from 'option-t/Undefinable';
 
 import {
     type WhereToOpenItem,

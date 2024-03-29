@@ -7,7 +7,7 @@ import {
     type HTMLCustomElementAttributeChangeListenable,
 } from '@linkplaces/foundation';
 
-import { unwrapOrFromNullable } from 'option-t/Nullable/unwrapOr';
+import { unwrapOrFromNullable } from 'option-t/Nullable';
 import type { HTMLAttributes as ReactHTMLAttributes } from 'react';
 
 export const ATTR_NAME_ICON_DIR = 'icondir';

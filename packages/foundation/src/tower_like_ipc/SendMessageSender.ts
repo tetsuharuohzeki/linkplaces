@@ -1,6 +1,6 @@
 import type { ExtensionRuntime } from '@linkplaces/webext_types';
-import type { Nullable } from 'option-t/Nullable/Nullable';
-import { createOk, createErr, type Result } from 'option-t/PlainResult/Result';
+import type { Nullable } from 'option-t/Nullable';
+import { createOk, createErr, type Result } from 'option-t/PlainResult';
 
 export class MessageResponderSideError extends Error {
     constructor(message: string, cause: Nullable<unknown>) {

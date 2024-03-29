@@ -3,12 +3,9 @@ import { createBookmarkItem, type CreateBookmarkItemResult } from '@linkplaces/s
 import type { OnClickData, CreateArgument, ContextType, Tab, WindowId } from '@linkplaces/webext_types';
 
 import { type Maybe, isNullOrUndefined } from 'option-t/Maybe';
-import type { Result } from 'option-t/PlainResult/Result';
-import { inspectErrOfResult } from 'option-t/PlainResult/inspect';
+import { type Result, inspectErrOfResult, unwrapOrFromResult } from 'option-t/PlainResult';
 import { tryCatchIntoResultWithEnsureErrorAsync } from 'option-t/PlainResult/tryCatchAsync';
-import { unwrapOrFromResult } from 'option-t/PlainResult/unwrapOr';
-import { type Undefinable, expectNotUndefined } from 'option-t/Undefinable/Undefinable';
-import { unwrapOrFromUndefinable } from 'option-t/Undefinable/unwrapOr';
+import { type Undefinable, expectNotUndefined, unwrapOrFromUndefinable } from 'option-t/Undefinable';
 
 const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';
 const CTXMENU_ID_CONTENT_SAVE_PAGE = 'linkplaces-ctx-content-save-page';

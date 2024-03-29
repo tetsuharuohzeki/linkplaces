@@ -3,7 +3,7 @@ import { BehaviorSubject, Subject, type Observable, operators } from '@linkplace
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 import type { BookmarkTreeNode, WebExtBookmarkService } from '@linkplaces/webext_types';
 
-import type { Nullable } from 'option-t/Nullable/Nullable';
+import type { Nullable } from 'option-t/Nullable';
 import { type SidebarItemViewModelEntity, mapToSidebarItemEntity } from './SidebarDomain.js';
 
 type BookmarkId = string;

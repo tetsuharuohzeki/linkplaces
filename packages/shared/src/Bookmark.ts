@@ -6,9 +6,8 @@ import type {
     BookmarkTreeNodeSeparator,
 } from '@linkplaces/webext_types';
 
-import { isNull } from 'option-t/Nullable/Nullable';
-import { type Result, createErr, createOk } from 'option-t/PlainResult/Result';
-import { mapAsyncForResult } from 'option-t/PlainResult/mapAsync';
+import { isNull } from 'option-t/Nullable';
+import { type Result, createErr, createOk, mapAsyncForResult } from 'option-t/PlainResult';
 
 const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/u;
 
@@ -98,7 +97,7 @@ export function getLinkSchemeType(url: string): LinkSchemeType {
 }
 
 export function isBookmarkTreeNodeItem(v: BookmarkTreeNode): v is BookmarkTreeNodeItem {
-     
+
     if (typeof v.type === 'string' && v.type === 'bookmark') {
         return true;
     }
@@ -107,7 +106,7 @@ export function isBookmarkTreeNodeItem(v: BookmarkTreeNode): v is BookmarkTreeNo
 }
 
 export function isBookmarkTreeNodeFolder(v: BookmarkTreeNode): v is BookmarkTreeNodeFolder {
-     
+
     if (typeof v.type === 'string' && v.type === 'folder') {
         return true;
     }
@@ -116,7 +115,7 @@ export function isBookmarkTreeNodeFolder(v: BookmarkTreeNode): v is BookmarkTree
 }
 
 export function isBookmarkTreeNodeSeparator(v: BookmarkTreeNode): v is BookmarkTreeNodeSeparator {
-     
+
     if (typeof v.type === 'string' && v.type === 'separator') {
         return true;
     }

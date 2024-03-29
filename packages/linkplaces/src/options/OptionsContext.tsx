@@ -1,5 +1,5 @@
 import type { ViewContext } from '@linkplaces/foundation/view_ctx';
-import { expectNotNull } from 'option-t/Nullable/Nullable';
+import { expectNotNull } from 'option-t/Nullable';
 
 import { createOptionsView } from './OptionsView.js';
 

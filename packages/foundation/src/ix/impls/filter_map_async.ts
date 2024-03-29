@@ -1,4 +1,4 @@
-import { isNull } from 'option-t/Nullable/Nullable';
+import { isNull } from 'option-t/Nullable';
 
 import type { NoneValComparatorFn } from './filter_map.js';
 import { AsyncIterableX } from './iterable_x.js';

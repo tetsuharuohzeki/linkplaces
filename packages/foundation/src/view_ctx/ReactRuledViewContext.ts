@@ -1,4 +1,4 @@
-import { type Nullable, isNotNull, expectNotNull } from 'option-t/Nullable/Nullable';
+import { type Nullable, isNotNull, expectNotNull } from 'option-t/Nullable';
 
 import { type Root, createRoot, } from 'react-dom/client';
 

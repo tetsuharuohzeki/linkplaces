@@ -1,4 +1,4 @@
-import { isNull } from 'option-t/Nullable/Nullable';
+import { isNull } from 'option-t/Nullable';
 
 export interface Packet<T> {
     readonly id: number;
