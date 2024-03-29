@@ -59,10 +59,7 @@ const projectSpecificRules = Object.freeze({
         'error',
         {
             paths: [
-                'option-t/cjs/ClassicOption',
-                'option-t/cjs/ClassicResult',
-                'option-t/esm/ClassicOption',
-                'option-t/esm/ClassicResult',
+                //
                 'option-t/ClassicOption',
                 'option-t/ClassicResult',
             ],
