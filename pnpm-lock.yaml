@@ -84,8 +84,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 40.6.0
-        version: 40.6.0
+        specifier: 40.7.0
+        version: 40.7.0
 
   packages/foundation:
     dependencies:
@@ -93,8 +93,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 40.6.0
-        version: 40.6.0
+        specifier: 40.7.0
+        version: 40.7.0
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -121,8 +121,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 40.6.0
-        version: 40.6.0
+        specifier: 40.7.0
+        version: 40.7.0
 
   packages/linkplaces:
     dependencies:
@@ -142,8 +142,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 40.6.0
-        version: 40.6.0
+        specifier: 40.7.0
+        version: 40.7.0
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -209,8 +209,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 40.6.0
-        version: 40.6.0
+        specifier: 40.7.0
+        version: 40.7.0
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -5571,8 +5571,8 @@ packages:
       is-wsl: 2.2.0
     dev: true
 
-  /option-t@40.6.0:
-    resolution: {integrity: sha512-r9CPhIrB7gKhW/ymnugYXByEPgDuNXWmWJogAfBsk59uwF3129FOpi5MM63Elq7PnrwnogR2M9wM/Al9lqCQQQ==}
+  /option-t@40.7.0:
+    resolution: {integrity: sha512-YvnHD/zkR5xUMVl4Y28HaBdWX5nfftcA1PWSAeRMVXba7EqaD3yp4PF/2d0Hw6wBkmqw1lZxPHsz+BZR915Uaw==}
     engines: {node: '>=16.20.0'}
     dev: false
 
