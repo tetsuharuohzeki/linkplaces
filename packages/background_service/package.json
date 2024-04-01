@@ -13,6 +13,6 @@
         "@linkplaces/ipc_message": "workspace:*",
         "@linkplaces/shared": "workspace:*",
         "@linkplaces/webext_types": "workspace:*",
-        "option-t": "40.3.0"
+        "option-t": "40.6.0"
     }
 }
