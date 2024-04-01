@@ -1,6 +1,6 @@
 import { Ix } from '@linkplaces/foundation';
 import type { Nullable } from 'option-t/Nullable';
-import { type Result, createOk, createErr, unwrapOrFromResult } from 'option-t/PlainResult';
+import { type Result, createOk, createErr, unwrapOrForResult } from 'option-t/PlainResult';
 import { unwrapUndefinable } from 'option-t/Undefinable';
 
 const MIME_TEXT_PLAIN = 'text/plain';
@@ -72,7 +72,7 @@ export function tryToGetTextUriList(
     const candidateList = text.split('\n');
     const list = Ix.map(candidateList, validateUrlLikeString);
     const success = Ix.filterMap(list, (item) => {
-        const result: Nullable<string> = unwrapOrFromResult(item, null);
+        const result: Nullable<string> = unwrapOrForResult(item, null);
         return result;
     });
     const successList = Ix.toArray(success);

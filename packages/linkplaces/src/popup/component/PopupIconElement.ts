@@ -7,7 +7,7 @@ import {
     type HTMLCustomElementAttributeChangeListenable,
 } from '@linkplaces/foundation';
 
-import { unwrapOrFromNullable } from 'option-t/Nullable';
+import { unwrapOrForNullable } from 'option-t/Nullable';
 import type { HTMLAttributes as ReactHTMLAttributes } from 'react';
 
 export const ATTR_NAME_ICON_DIR = 'icondir';
@@ -48,8 +48,8 @@ export class PopupItemIconElement
             mode: 'open',
         });
 
-        const iconDir = unwrapOrFromNullable(this.getAttribute(ATTR_NAME_ICON_DIR), '');
-        const iconFile = unwrapOrFromNullable(this.getAttribute(ATTR_NAME_ICON_FILE), '');
+        const iconDir = unwrapOrForNullable(this.getAttribute(ATTR_NAME_ICON_DIR), '');
+        const iconFile = unwrapOrForNullable(this.getAttribute(ATTR_NAME_ICON_FILE), '');
         this._iconDir = iconDir;
         this._iconFile = iconFile;
 

@@ -3,9 +3,9 @@ import { createBookmarkItem, type CreateBookmarkItemResult } from '@linkplaces/s
 import type { OnClickData, CreateArgument, ContextType, Tab, WindowId } from '@linkplaces/webext_types';
 
 import { type Maybe, isNullOrUndefined } from 'option-t/Maybe';
-import { type Result, inspectErrOfResult, unwrapOrFromResult } from 'option-t/PlainResult';
+import { type Result, inspectErrOfResult, unwrapOrForResult } from 'option-t/PlainResult';
 import { tryCatchIntoResultWithEnsureErrorAsync } from 'option-t/PlainResult/tryCatchAsync';
-import { type Undefinable, expectNotUndefined, unwrapOrFromUndefinable } from 'option-t/Undefinable';
+import { type Undefinable, expectNotUndefined, unwrapOrForUndefinable } from 'option-t/Undefinable';
 
 const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';
 const CTXMENU_ID_CONTENT_SAVE_PAGE = 'linkplaces-ctx-content-save-page';
@@ -92,7 +92,7 @@ async function onClickSaveTab(tab: Tab): Promise<ReadonlyArray<CreateBookmarkIte
     }
 
     const currentSelectedTabsResult = await getSelectedTabsAll(windowId);
-    const currentSelectedTabs = unwrapOrFromResult(currentSelectedTabsResult, []);
+    const currentSelectedTabs = unwrapOrForResult(currentSelectedTabsResult, []);
     if (currentSelectedTabs.length === 0) {
         const result = await saveSingleTab(titleMaybe, url);
         return result;
@@ -106,7 +106,7 @@ async function saveSingleTab(
     titleMaybe: Undefinable<string>,
     url: string
 ): Promise<ReadonlyArray<CreateBookmarkItemResult>> {
-    const title = unwrapOrFromUndefinable(titleMaybe, url);
+    const title = unwrapOrForUndefinable(titleMaybe, url);
     const created = await createBookmarkItem(url, title);
     return [created];
 }
@@ -120,7 +120,7 @@ async function saveMultipleTabs(
         if (typeof url !== 'string') {
             throw new TypeError('Cannot found both of `title` & `url`');
         }
-        const title = unwrapOrFromUndefinable(titleMaybe, url);
+        const title = unwrapOrForUndefinable(titleMaybe, url);
         const task = createBookmarkItem(url, title);
         taskList.push(task);
     }
@@ -154,7 +154,7 @@ async function getSelectedTabsAll(windowId: WindowId): Promise<Result<ReadonlyAr
 function onClickSavePage(info: OnClickData, tab: Tab): Promise<CreateBookmarkItemResult> {
     const url = expectNotUndefined(info.pageUrl, 'Cannot found `info.pageUrl`');
 
-    const title = unwrapOrFromUndefinable<string>(tab.title, url);
+    const title = unwrapOrForUndefinable<string>(tab.title, url);
     const created = createBookmarkItem(url, title);
     return created;
 }
@@ -162,7 +162,7 @@ function onClickSavePage(info: OnClickData, tab: Tab): Promise<CreateBookmarkIte
 function onClickSaveLink(info: OnClickData): Promise<CreateBookmarkItemResult> {
     const url = expectNotUndefined(info.linkUrl, 'Cannot found `info.linkUrl`');
 
-    const title = unwrapOrFromUndefinable(info.linkText, url);
+    const title = unwrapOrForUndefinable(info.linkText, url);
     const created = createBookmarkItem(url, title);
     return created;
 }

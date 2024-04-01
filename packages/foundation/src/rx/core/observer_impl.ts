@@ -1,4 +1,4 @@
-import { unwrapOrFromMaybe, type Maybe } from 'option-t/Maybe';
+import { unwrapOrForMaybe, type Maybe } from 'option-t/Maybe';
 import type { CompletionResult } from './completion_result';
 import type { Observer, OnNextFn, OnErrorFn, OnCompleteFn as OnCompletedFn } from './observer';
 
@@ -12,8 +12,8 @@ export class PartialObserverWrapper<T> implements Observer<T> {
     complete: OnCompletedFn;
 
     constructor(onNext: Maybe<OnNextFn<T>>, onError: Maybe<OnErrorFn>, onCompleted: Maybe<OnCompletedFn>) {
-        this.next = unwrapOrFromMaybe(onNext, genericOnNext);
-        this.error = unwrapOrFromMaybe(onError, genericOnError);
-        this.complete = unwrapOrFromMaybe(onCompleted, genericOnCompleted);
+        this.next = unwrapOrForMaybe(onNext, genericOnNext);
+        this.error = unwrapOrForMaybe(onError, genericOnError);
+        this.complete = unwrapOrForMaybe(onCompleted, genericOnCompleted);
     }
 }
