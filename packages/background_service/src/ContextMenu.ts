@@ -3,7 +3,7 @@ import { createBookmarkItem, type CreateBookmarkItemResult } from '@linkplaces/s
 import type { OnClickData, CreateArgument, ContextType, Tab, WindowId } from '@linkplaces/webext_types';
 
 import { type Maybe, isNullOrUndefined } from 'option-t/Maybe';
-import { type Result, inspectErrOfResult, unwrapOrForResult } from 'option-t/PlainResult';
+import { type Result, inspectErrForResult, unwrapOrForResult } from 'option-t/PlainResult';
 import { tryCatchIntoResultWithEnsureErrorAsync } from 'option-t/PlainResult/tryCatchAsync';
 import { type Undefinable, expectNotUndefined, unwrapOrForUndefinable } from 'option-t/Undefinable';
 
@@ -63,7 +63,7 @@ async function onClickedAsync(info: OnClickData, tab: Maybe<Tab>): Promise<void>
             }
             const resultList = await onClickSaveTab(tab);
             for (const result of resultList) {
-                inspectErrOfResult(result, console.error);
+                inspectErrForResult(result, console.error);
             }
             break;
         }
@@ -72,12 +72,12 @@ async function onClickedAsync(info: OnClickData, tab: Maybe<Tab>): Promise<void>
                 throw new TypeError('could not find `tab`');
             }
             const result = await onClickSavePage(info, tab);
-            inspectErrOfResult(result, console.error);
+            inspectErrForResult(result, console.error);
             break;
         }
         case CTXMENU_ID_LINK_SAVE_LINK: {
             const result = await onClickSaveLink(info);
-            inspectErrOfResult(result, console.error);
+            inspectErrForResult(result, console.error);
             break;
         }
         default:
