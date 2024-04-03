@@ -1,4 +1,4 @@
-import { isNull } from 'option-t/Nullable';
+import { isNull, type NotNull } from 'option-t/Nullable';
 
 import type { NoneValComparatorFn } from './filter_map.js';
 import { AsyncIterableX } from './iterable_x.js';
@@ -44,7 +44,7 @@ async function* generateFilterMapIterator<const TInput, const TOutput, const TNo
 
 export function filterMapAsyncForAsyncIterable<const TInput, const TOutput>(
     source: AsyncIterable<TInput>,
-    transformer: AsyncFilterMapFn<TInput, TOutput, null>
+    transformer: AsyncFilterMapFn<TInput, NotNull<TOutput>, null>
 ): AsyncIterable<TOutput> {
     const wrapper = new AsyncFilterMapIterable(source, transformer, isNull);
     return wrapper;

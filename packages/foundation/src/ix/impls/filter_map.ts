@@ -1,4 +1,4 @@
-import { isNull } from 'option-t/Nullable';
+import { isNull, type NotNull } from 'option-t/Nullable';
 import { IterableX } from './iterable_x.js';
 
 export type NoneValComparatorFn<TValue, TNone> = (input: TValue | TNone) => input is TNone;
@@ -43,7 +43,7 @@ function* generateFilterMapIterator<const TInput, const TOutput, const TNone>(
 
 export function filterMapForIterable<const TInput, const TOutput>(
     source: Iterable<TInput>,
-    transformer: FilterMapFn<TInput, TOutput, null>
+    transformer: FilterMapFn<TInput, NotNull<TOutput>, null>
 ): Iterable<TOutput> {
     const wrapper = new FilterMapIterable(source, transformer, isNull);
     return wrapper;
