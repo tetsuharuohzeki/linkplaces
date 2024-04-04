@@ -1,4 +1,6 @@
 import { isErr, isOk } from 'option-t/PlainResult';
+
+import { assertUnreachable } from '../../assert_never.js';
 import type { CompletionResult } from '../core/completion_result.js';
 import { Observable } from '../core/observable.js';
 import type { Subscriber } from '../core/subscriber.js';
@@ -36,6 +38,8 @@ class MergeSubscriber<T> extends InternalSubscriber<T> {
             if (currentLivings <= 0) {
                 this._destination.complete(result);
             }
+        } else {
+            assertUnreachable(result);
         }
     }
 }
