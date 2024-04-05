@@ -73,6 +73,7 @@ const rules = Object.freeze({
     ],
 });
 
+/*
 const rulesRequiringTypeInfo = Object.freeze({
     // This are unsafe pattern that we would like to ban.
     '@typescript-eslint/no-unsafe-argument': 'warn',
@@ -86,6 +87,7 @@ const rulesRequiringTypeInfo = Object.freeze({
     '@typescript-eslint/no-unsafe-member-access': 'warn',
     '@typescript-eslint/no-unsafe-return': 'warn',
 });
+*/
 
 const projectSpecificRules = Object.freeze({
     // FIXME: Re-enable for the future.
@@ -130,7 +132,9 @@ export const config = Object.freeze({
         ...tsPresets.rules,
 
         ...rules,
-        ...rulesRequiringTypeInfo,
+        // They are useful but it's too noisy in monorepo.
+        // I disable them once.
+        //...rulesRequiringTypeInfo,
         ...projectSpecificRules,
     },
 });
