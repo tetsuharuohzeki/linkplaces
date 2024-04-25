@@ -8,7 +8,7 @@
             "packages/*"
         ]
     },
-    "packageManager": "pnpm@9.0.1+sha256.46d50ee2afecb42b185ebbd662dc7bdd52ef5be56bf035bb615cab81a75345df",
+    "packageManager": "pnpm@9.0.6+sha256.0624e30eff866cdeb363b15061bdb7fd9425b17bc1bb42c22f5f4efdea21f6b3",
     "devDependencies": {
         "@eslint/js": "^8.57.0",
         "@monorepo-utils/workspaces-to-typescript-project-references": "^2.10.4",
