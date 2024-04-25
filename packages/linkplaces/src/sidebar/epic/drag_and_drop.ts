@@ -23,7 +23,7 @@ const SUPPORTED_MIME_SET: ReadonlySet<string> = new Set([
     MIME_TEXT_X_MOZ_TEXT_INTERNAL,
 ]);
 
-export function hasSupportedMimeType(dataTransfer: DataTransfer) {
+export function hasSupportedMimeType(dataTransfer: DataTransfer): boolean {
     for (const type of dataTransfer.types) {
         const has = SUPPORTED_MIME_SET.has(type);
         if (has) {

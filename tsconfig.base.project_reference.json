@@ -10,6 +10,8 @@
 
         "composite": true,
         "declaration": true,
+        "isolatedDeclarations": true,
+
         "noEmit": false,
         // This is not required for project reference's minimum set.
         // But we add this to here to avoid emit codes side-by-side accidentally,

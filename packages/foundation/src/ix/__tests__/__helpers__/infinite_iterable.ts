@@ -18,7 +18,7 @@ export class InfiniteIterator implements Iterator<string, unknown>, Iterable<str
         };
     }
 
-    [Symbol.iterator]() {
+    [Symbol.iterator](): Iterator<string, unknown> {
         return this;
     }
 }

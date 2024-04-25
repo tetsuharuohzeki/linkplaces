@@ -22,7 +22,7 @@ export class SendMessageSender<const in TPayload extends object> {
         this._runtime = null as never;
     }
 
-    destroy() {
+    destroy(): void {
         this._finalize();
     }
 

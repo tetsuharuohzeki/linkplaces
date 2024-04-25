@@ -37,7 +37,7 @@ export class OnPortClientConnection<const in TPayload> {
         this._callback.clear();
     }
 
-    destroy() {
+    destroy(): void {
         this._finalize();
 
         this._onMessage = null as never;

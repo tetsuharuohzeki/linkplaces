@@ -6,4 +6,4 @@ export function createCompletionOk(): Ok<void> {
     return createOk(undefined);
 }
 
-export const createCompletionErr = createErr<unknown>;
+export const createCompletionErr: typeof createErr<unknown> = createErr<unknown>;

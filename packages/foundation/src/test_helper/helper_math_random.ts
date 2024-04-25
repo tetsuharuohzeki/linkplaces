@@ -21,7 +21,7 @@ function createFakeMathRandom() {
     };
 }
 
-export function replaceMathRandomWithFake() {
+export function replaceMathRandomWithFake(): void {
     if (original !== null) {
         throw new TypeError('Math.random() has been mocked. You may call this twice');
     }
@@ -30,7 +30,7 @@ export function replaceMathRandomWithFake() {
     globalThis.Math.random = createFakeMathRandom();
 }
 
-export function revetMathRandomToOriginal() {
+export function revetMathRandomToOriginal(): void {
     if (original === null) {
         throw new TypeError('Math.random() has NOT been mocked. You may call this twice');
     }

@@ -84,7 +84,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         this._clearObservers();
     }
 
-    unsubscribe() {
+    unsubscribe(): void {
         if (!this._isCompleted) {
             const snapshots = this._getObserverSnapshots();
             for (const observer of snapshots) {
