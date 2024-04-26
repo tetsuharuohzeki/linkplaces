@@ -84,8 +84,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 42.1.0
-        version: 42.1.0
+        specifier: 43.0.0
+        version: 43.0.0
 
   packages/foundation:
     dependencies:
@@ -93,8 +93,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 42.1.0
-        version: 42.1.0
+        specifier: 43.0.0
+        version: 43.0.0
       react:
         specifier: 18.3.0
         version: 18.3.0
@@ -121,8 +121,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 42.1.0
-        version: 42.1.0
+        specifier: 43.0.0
+        version: 43.0.0
 
   packages/linkplaces:
     dependencies:
@@ -142,8 +142,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 42.1.0
-        version: 42.1.0
+        specifier: 43.0.0
+        version: 43.0.0
       react:
         specifier: 18.3.0
         version: 18.3.0
@@ -206,8 +206,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 42.1.0
-        version: 42.1.0
+        specifier: 43.0.0
+        version: 43.0.0
       react:
         specifier: 18.3.0
         version: 18.3.0
@@ -3119,8 +3119,8 @@ packages:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
 
-  option-t@42.1.0:
-    resolution: {integrity: sha512-jrfdhKDEH2exwzbTFpgGawWPzGVrTQPEPZPk//qJbjbfmrlyMCnEujCOPe0VD0cglmx1yaLY5EhI0b/RZj0q0w==}
+  option-t@43.0.0:
+    resolution: {integrity: sha512-90GYlYqOezANh4dtGO3qwmxLKqIB6+thdtXcUs7XCj/Rv11vx2pOIP1Is8aP21udpsyFHiSag57am5TxilPvuw==}
     engines: {node: '>=16.20.0'}
 
   optionator@0.9.3:
@@ -7377,7 +7377,7 @@ snapshots:
       is-docker: 2.2.1
       is-wsl: 2.2.0
 
-  option-t@42.1.0: {}
+  option-t@43.0.0: {}
 
   optionator@0.9.3:
     dependencies:
