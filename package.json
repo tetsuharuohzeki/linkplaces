@@ -14,8 +14,8 @@
         "@monorepo-utils/workspaces-to-typescript-project-references": "^2.10.4",
         "@reflink/reflink": "^0.1.16",
         "@types/node": "20.12.7",
-        "@types/react": "18.3.0",
-        "@types/react-dom": "18.3.0",
+        "@types/react": "npm:types-react@19.0.0-beta.1",
+        "@types/react-dom": "npm:types-react-dom@19.0.0-beta.1",
         "@typescript-eslint/eslint-plugin": "7.7.1",
         "@typescript-eslint/parser": "7.7.1",
         "eslint": "8.57.0",
@@ -30,6 +30,12 @@
         "turbo": "^1.13.3",
         "typescript": "5.5.0-beta",
         "web-ext": "7.11.0"
+    },
+    "pnpm": {
+        "overrides": {
+            "@types/react": "npm:types-react@beta",
+            "@types/react-dom": "npm:types-react-dom@beta"
+        }
     },
     "scripts": {
         "build": "tsc --build",

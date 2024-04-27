@@ -140,9 +140,10 @@ interface PopupItemIconElementAttr {
     [ATTR_NAME_ICON_FILE]: string;
 }
 
-declare global {
+declare module 'react' {
     namespace JSX {
         interface IntrinsicElements {
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-qualifier
             [LOCAL_NAME_POPUP_ITEM_ICON]: globalThis.React.DetailedHTMLProps<
                 ReactHTMLAttributes<PopupItemIconElement> & PopupItemIconElementAttr,
                 PopupItemIconElement
