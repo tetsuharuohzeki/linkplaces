@@ -10,10 +10,10 @@ import { SidebarEpic } from './SidebarEpic.js';
 import { SidebarIntent } from './SidebarIntent.js';
 import type { RemoteActionChannel } from './SidebarMessageChannel.js';
 import { createUpdateFromSourceAction } from './SidebarReduxAction.js';
-import { SidebarRepository } from './SidebarRepository.js';
 import type { SidebarState } from './SidebarState.js';
 import { createSidebarStore, type SidebarPlainReduxStore } from './SidebarStore.js';
 import { SidebarView } from './SidebarView.js';
+import { SidebarRepository } from './repository/SidebarRepository.js';
 
 const subscribeOnRx = operators.subscribeOnNextLoop;
 
