@@ -53,7 +53,9 @@ updates:
     #   In-repository composite actions
     #####################################################
     - package-ecosystem: github-actions
-      directory: "/.github/actions/setup_ci/"
+      directories:
+          - "/"
+          - "/.github/actions/setup_ci/"
       schedule:
           interval: weekly
       open-pull-requests-limit: 99
