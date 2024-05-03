@@ -8,15 +8,7 @@ import {
 } from '@linkplaces/shared/component';
 import type { BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/webext_types';
 
-import {
-    StrictMode,
-    useState,
-    type MouseEventHandler,
-    type MouseEvent,
-    type SetStateAction,
-    type Dispatch,
-    type ReactNode,
-} from 'react';
+import { StrictMode, useState, type MouseEventHandler, type MouseEvent, type ReactNode } from 'react';
 
 import type { SidebarItemViewModelEntity } from '../SidebarDomain.js';
 import type { SidebarIntent } from '../SidebarIntent.js';
@@ -74,11 +66,6 @@ interface ListItemProps {
 }
 export function ListItem(props: ListItemProps): ReactNode {
     const { item, intent } = props;
-    const [isOpening, setIsOpening] = useState<boolean>(false);
-    if (isOpening) {
-        return null;
-    }
-
     const bookmark = item.bookmark;
 
     if (isBookmarkTreeNodeSeparator(bookmark)) {
@@ -91,7 +78,6 @@ export function ListItem(props: ListItemProps): ReactNode {
                 <ListItemForBookmarkItem
                     bookmark={bookmark}
                     intent={intent}
-                    setIsOpening={setIsOpening}
                 />
             </StrictMode>
         );
@@ -107,12 +93,15 @@ export function ListItem(props: ListItemProps): ReactNode {
 interface ListItemForBookmarkItemProps {
     bookmark: BookmarkTreeNodeItem;
     intent: SidebarIntent;
-    setIsOpening: Dispatch<SetStateAction<boolean>>;
 }
 
 function ListItemForBookmarkItem(props: ListItemForBookmarkItemProps) {
-    const { bookmark, intent, setIsOpening } = props;
+    const [isOpening, setIsOpening] = useState<boolean>(false);
+    if (isOpening) {
+        return null;
+    }
 
+    const { bookmark, intent } = props;
     const id = bookmark.id;
     const url = bookmark.url;
     const bookmarkTitle = bookmark.title;
