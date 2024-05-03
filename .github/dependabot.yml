@@ -41,18 +41,6 @@ updates:
                   - "@typescript-eslint/*"
 
     - package-ecosystem: github-actions
-      directory: "/"
-      schedule:
-          interval: weekly
-      open-pull-requests-limit: 99
-      labels:
-          - A-dependency
-          - I-dependency-gardening
-
-    #####################################################
-    #   In-repository composite actions
-    #####################################################
-    - package-ecosystem: github-actions
       directories:
           - "/"
           - "/.github/actions/setup_ci/"
