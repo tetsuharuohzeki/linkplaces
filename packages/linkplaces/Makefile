@@ -85,13 +85,13 @@ endif
 
 webextension_css: $(addprefix __bundle_css_, popup sidebar options)
 
-__bundle_js_esbuild_%: clean_dist __obj __external_dependency
+__bundle_js_esbuild_%: clean_dist __obj
 	RELEASE_CHANNEL=$(RELEASE_CHANNEL) \
 	ENTRY_POINT=$(OBJ_SRC_DIR)/$*/index.js \
 	OUTPUT_FILE=$(DIST_DIR)/$*/$*_bundled.js \
         $(NODE_BIN) $(CURDIR)/tools/run_esbuild.js
 
-__bundle_js_%: clean_dist __obj __external_dependency
+__bundle_js_%: clean_dist __obj
 	RELEASE_CHANNEL=$(RELEASE_CHANNEL) $(NPM_BIN_DIR)/rollup $(OBJ_SRC_DIR)/$*/index.js --config $(CURDIR)/rollup.config.mjs --output.file $(DIST_DIR)/$*/$*_bundled.js
 
 __bundle_css_%: clean_dist
@@ -99,8 +99,6 @@ __bundle_css_%: clean_dist
         ENTRY_POINT=$(SRC_DIR)/$*/registry.css \
         OUTPUT_FILE=$(DIST_DIR)/$*/$*.css \
         $(NODE_BIN) $(CURDIR)/tools/run_postcss.js
-
-__external_dependency:
 
 __obj: __plain clean_obj
 	$(NPM_BIN_DIR)/babel $(PLAIN_DIR) --out-dir $(OBJ_DIR) --extensions=.js,.jsx --config-file $(CURDIR)/babel.config.mjs
