@@ -37,7 +37,7 @@ help:
 ####################################
 # Clean
 ####################################
-clean: clean_compiler_info clean_dist clean_obj clean_plain clean_webext_artifacts ## Clean up all generated files.
+clean: clean_compiler_info clean_dist clean_obj clean_plain ## Clean up all generated files.
 
 clean_compiler_info:
 	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(CURDIR)/tsconfig.tsbuildinfo --force
@@ -50,9 +50,6 @@ clean_obj:
 
 clean_plain:
 	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(PLAIN_DIR) --force
-
-clean_webext_artifacts:
-	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)
 
 
 ####################################
@@ -72,7 +69,7 @@ build: build_package ## Build the artifact (This is not for CI).
 .PHONY: build_package
 build_package: __webext_xpi ## Build the artifact.
 
-__webext_xpi: clean_webext_artifacts webextension
+__webext_xpi: webextension
 	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)
 
 webextension: webextension_cp webextension_js webextension_css

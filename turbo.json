@@ -1,6 +1,9 @@
 {
     "$schema": "https://turbo.build/schema.json",
     "pipeline": {
+        "clean": {
+            "cache": false
+        },
         // See https://turbo.build/messages/missing-root-task-in-turbo-json
         "//#build": {
             "cache": false

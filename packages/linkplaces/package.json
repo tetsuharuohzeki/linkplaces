@@ -4,6 +4,7 @@
     "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
     "type": "module",
     "scripts": {
+        "clean": "make clean -j",
         "test": "make test"
     },
     "repository": {
@@ -27,13 +28,14 @@
         "@linkplaces/shared": "workspace:*",
         "@linkplaces/webext_types": "workspace:*",
         "option-t": "43.0.0",
-        "react": "19.0.0-canary-657428a9e-20240416",
-        "react-dom": "19.0.0-canary-657428a9e-20240416"
+        "react": "19.0.0-beta-94eed63c49-20240425",
+        "react-dom": "19.0.0-beta-94eed63c49-20240425"
     },
     "devDependencies": {
         "@babel/cli": "7.24.5",
         "@babel/core": "7.24.5",
         "@babel/preset-react": "7.24.1",
+        "@linkplaces/tools": "workspace:*",
         "@rollup/plugin-alias": "5.1.0",
         "@rollup/plugin-babel": "6.0.4",
         "@rollup/plugin-commonjs": "25.0.7",

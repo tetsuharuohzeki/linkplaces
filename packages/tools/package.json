@@ -1,0 +1,13 @@
+{
+    "name": "@linkplaces/tools",
+    "version": "0.10.0",
+    "type": "module",
+    "exports": {
+        ".": {
+            "default": "./src/mod.js"
+        }
+    },
+    "dependencies": {
+        "option-t": "43.0.0"
+    }
+}

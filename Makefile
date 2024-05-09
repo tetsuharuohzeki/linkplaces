@@ -31,16 +31,11 @@ install: ## Install dependencies
 ####################################
 # Clean
 ####################################
-clean: clean_package_main clean_webext_artifacts clean_tsbuild_info ## Clean up all generated files.
+clean: clean_webext_artifacts ## Clean up all generated files.
+	$(NPM_BIN_DIR)/turbo clean
 
 clean_webext_artifacts:
-	$(NODE_BIN) $(PKG_MAIN)/tools/rm_dir.js $(ARTIFACT_DIR)
-
-clean_tsbuild_info:
-	$(NPM_BIN_DIR)/tsc --build --clean
-
-clean_package_main:
-	$(MAKE) clean -C $(PKG_MAIN)
+	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(ARTIFACT_DIR)
 
 
 ####################################
@@ -54,7 +49,7 @@ build_development: clean ## Run `make build` with `RELEASE_CHANNEL=development`
 build_production: clean ## Run `make build` with `RELEASE_CHANNEL=production`
 	$(MAKE) $@ -C $(PKG_MAIN)
 
-__webext_xpi:
+__webext_xpi: clean_webext_artifacts
 	$(NPM_BIN_DIR)/web-ext build -s $(PKG_MAIN_DIST_DIR) --artifacts-dir $(ARTIFACT_DIR)
 
 __plain_ts:

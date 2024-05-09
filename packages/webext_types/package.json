@@ -6,5 +6,12 @@
         ".": {
             "types": "./__dist/index.d.ts"
         }
+    },
+    "devDependencies": {
+        "@linkplaces/tools": "workspace:*",
+        "option-t": "43.0.0"
+    },
+    "scripts": {
+        "clean": "node tools/clean.js"
     }
 }
