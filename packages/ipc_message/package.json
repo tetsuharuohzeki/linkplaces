@@ -11,7 +11,7 @@
     "dependencies": {
         "@linkplaces/foundation": "workspace:*",
         "@linkplaces/webext_types": "workspace:*",
-        "option-t": "43.2.0"
+        "option-t": "43.2.1"
     },
     "devDependencies": {
         "@linkplaces/tools": "workspace:*"
