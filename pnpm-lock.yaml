@@ -91,8 +91,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 43.1.0
-        version: 43.1.0
+        specifier: 43.2.0
+        version: 43.2.0
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -104,8 +104,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 43.1.0
-        version: 43.1.0
+        specifier: 43.2.0
+        version: 43.2.0
       react:
         specifier: 19.0.0-beta-94eed63c49-20240425
         version: 19.0.0-beta-94eed63c49-20240425
@@ -135,8 +135,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 43.1.0
-        version: 43.1.0
+        specifier: 43.2.0
+        version: 43.2.0
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -160,8 +160,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 43.1.0
-        version: 43.1.0
+        specifier: 43.2.0
+        version: 43.2.0
       react:
         specifier: 19.0.0-beta-94eed63c49-20240425
         version: 19.0.0-beta-94eed63c49-20240425
@@ -227,8 +227,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 43.1.0
-        version: 43.1.0
+        specifier: 43.2.0
+        version: 43.2.0
       react:
         specifier: 19.0.0-beta-94eed63c49-20240425
         version: 19.0.0-beta-94eed63c49-20240425
@@ -243,8 +243,8 @@ importers:
   packages/tools:
     dependencies:
       option-t:
-        specifier: 43.1.0
-        version: 43.1.0
+        specifier: 43.2.0
+        version: 43.2.0
 
   packages/webext_types:
     devDependencies:
@@ -252,8 +252,8 @@ importers:
         specifier: workspace:*
         version: link:../tools
       option-t:
-        specifier: 43.1.0
-        version: 43.1.0
+        specifier: 43.2.0
+        version: 43.2.0
 
 packages:
 
@@ -3149,8 +3149,8 @@ packages:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
 
-  option-t@43.1.0:
-    resolution: {integrity: sha512-gEuGaQ4IokP6GZxWolR1Qe6mEqjtBKxhtIjdof8iVXm4RR8/wc5oqbNHlSSqEt0pHe/4vyNiVmp/jikFgBuh3A==}
+  option-t@43.2.0:
+    resolution: {integrity: sha512-sQynlQi897KxWQdx/vLlHSuKGpDxJPBGb8VbYrklXsemH1ErYobg4SA2Ckk+52iUd6zLYVvHmXFiokF0QP9RbA==}
     engines: {node: '>=16.20.0'}
 
   optionator@0.9.4:
@@ -7408,7 +7408,7 @@ snapshots:
       is-docker: 2.2.1
       is-wsl: 2.2.0
 
-  option-t@43.1.0: {}
+  option-t@43.2.0: {}
 
   optionator@0.9.4:
     dependencies:
