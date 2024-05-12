@@ -60,17 +60,25 @@ test('.subscribe() should propagate the passed value to the child: onError', (t)
     }
 
     // assert
-    t.deepEqual(onNext.calls, [
-        // @prettier-ignore
-        [INITIAL_VALUE],
-        [2],
-        [4],
-    ], 'onNext input');
-    t.deepEqual(onError.calls, [
-        // @prettier-ignore
-        [1],
-        [3],
-    ], 'onError input');
+    t.deepEqual(
+        onNext.calls,
+        [
+            // @prettier-ignore
+            [INITIAL_VALUE],
+            [2],
+            [4],
+        ],
+        'onNext input'
+    );
+    t.deepEqual(
+        onError.calls,
+        [
+            // @prettier-ignore
+            [1],
+            [3],
+        ],
+        'onError input'
+    );
 
     unsubscriber.unsubscribe();
     t.is(unsubscriber.closed, true);

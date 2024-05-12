@@ -1,10 +1,6 @@
 import test from 'ava';
 
-import {
-    createJsDomWindow,
-    replaceGlobalWithJsDom,
-    revertGlobalToOriginal,
-} from './_helper_jsdom.js';
+import { createJsDomWindow, replaceGlobalWithJsDom, revertGlobalToOriginal } from './_helper_jsdom.js';
 
 /* eslint-env browser */
 

@@ -1,2 +1,1 @@
-export interface WebExtPageActionService {
-}
+export interface WebExtPageActionService {}

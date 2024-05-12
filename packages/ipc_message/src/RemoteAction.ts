@@ -61,8 +61,7 @@ export function createRegisterUrlAction(url: string, title: string): RegisterUrl
     };
 }
 
-export type RemoteAction =
-    OpenUrlAction | RegisterUrlAction;
+export type RemoteAction = OpenUrlAction | RegisterUrlAction;
 
 export function assertIsRemoteAction(value: unknown): asserts value is RemoteAction {
     if (isRemoteAction(value)) {

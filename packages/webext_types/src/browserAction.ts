@@ -1,2 +1,1 @@
-export interface WebExtBrowserActionService {
-}
+export interface WebExtBrowserActionService {}

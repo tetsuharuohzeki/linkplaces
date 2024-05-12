@@ -20,17 +20,23 @@ const possibleErrors = {
     'import/namespace': 'warn',
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-absolute-path.md
-    'import/no-absolute-path': ['error', {
-        'commonjs': true,
-        // Allow to absolute path for esmodule for on browser.
-        'esmodule': false,
-    }],
+    'import/no-absolute-path': [
+        'error',
+        {
+            commonjs: true,
+            // Allow to absolute path for esmodule for on browser.
+            esmodule: false,
+        },
+    ],
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-cycle.md
-    'import/no-cycle': ['warn', {
-        // If we comment out this, `maxDepth` is `Infinity`.
-        //'maxDepth': 1,
-    }],
+    'import/no-cycle': [
+        'warn',
+        {
+            // If we comment out this, `maxDepth` is `Infinity`.
+            //'maxDepth': 1,
+        },
+    ],
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-dynamic-require.md
     'import/no-dynamic-require': 'error',
@@ -45,23 +51,32 @@ const possibleErrors = {
     'import/no-relative-parent-imports': 'off',
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-restricted-paths.md
-    'import/no-restricted-paths': ['warn', {
-        //'zones': [],
-    }],
+    'import/no-restricted-paths': [
+        'warn',
+        {
+            //'zones': [],
+        },
+    ],
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md
     'import/no-self-import': 'error',
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unresolved.md
-    'import/no-unresolved': ['error', {
-        'caseSensitive': true,
-        'commonjs': true,
-    }],
+    'import/no-unresolved': [
+        'error',
+        {
+            caseSensitive: true,
+            commonjs: true,
+        },
+    ],
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-useless-path-segments.md
-    'import/no-useless-path-segments': ['error', {
-        'noUselessIndex': false,
-    }],
+    'import/no-useless-path-segments': [
+        'error',
+        {
+            noUselessIndex: false,
+        },
+    ],
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md
     'import/no-webpack-loader-syntax': 'error',
@@ -127,8 +142,7 @@ const styleguide = {
     'import/exports-last': 'off',
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
-    'import/extensions': ['warn', 'never', {
-    }],
+    'import/extensions': ['warn', 'never', {}],
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/first.md
     'import/first': ['warn', 'absolute-first'],
@@ -150,12 +164,15 @@ const styleguide = {
     'import/no-default-export': 'error',
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-duplicates.md
-    'import/no-duplicates': ['warn', {
-        // XXX:
-        // browsers will resolve a path having query string as different module.
-        // Howver, I seem it is rare case in generally. So I disable this option and we should use `eslint-disable-next-line`
-        'considerQueryString': false,
-    }],
+    'import/no-duplicates': [
+        'warn',
+        {
+            // XXX:
+            // browsers will resolve a path having query string as different module.
+            // Howver, I seem it is rare case in generally. So I disable this option and we should use `eslint-disable-next-line`
+            considerQueryString: false,
+        },
+    ],
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-named-default.md
     'import/no-named-default': 'off',
@@ -170,20 +187,17 @@ const styleguide = {
     'import/no-unassigned-import': 'off',
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md
-    'import/order': ['warn', {
-        'alphabetize': {
-            'caseInsensitive': false,
-            'order': 'asc',
+    'import/order': [
+        'warn',
+        {
+            alphabetize: {
+                caseInsensitive: false,
+                order: 'asc',
+            },
+            groups: ['builtin', 'external', 'parent', 'sibling', 'index'],
+            // 'newlines-between': 'always',
         },
-        'groups': [
-            'builtin',
-            'external',
-            'parent',
-            'sibling',
-            'index',
-        ],
-        // 'newlines-between': 'always',
-    }],
+    ],
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md
     // default export is hard to find a usage of symbols.
@@ -192,42 +206,40 @@ const styleguide = {
 /* eslint-disable sort-keys */
 
 module.exports = {
-    'plugins': [
-        'import',
-    ],
+    plugins: ['import'],
 
-    'settings': {
+    settings: {
         'import/resolver': {
-            'node': {
-                'extensions': ['.mjs', '.js', '.jsx', '.ts', '.tsx'],
+            node: {
+                extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx'],
             },
         },
 
         // By default, this option does not include `.jsx` extension.
-        'import/extensions': [
-            '.mjs',
-            '.js',
-            '.jsx',
-        ],
+        'import/extensions': ['.mjs', '.js', '.jsx'],
     },
 
     // eslint-plugin-import
     // https://github.com/benmosher/eslint-plugin-import
-    'rules': {
+    rules: {
         ...possibleErrors,
         ...helpfulWarnings,
         ...moduleSystems,
         ...styleguide,
     },
 
-    'overrides': [
+    overrides: [
         {
-            'files': ['*.mjs'],
-            'rules': {
+            files: ['*.mjs'],
+            rules: {
                 // See https://nodejs.org/dist/latest-v13.x/docs/api/esm.html
-                'import/extensions': ['error', 'always', {
-                    'ignorePackages': true,
-                }],
+                'import/extensions': [
+                    'error',
+                    'always',
+                    {
+                        ignorePackages: true,
+                    },
+                ],
             },
         },
     ],

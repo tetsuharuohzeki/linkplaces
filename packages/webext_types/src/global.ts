@@ -7,7 +7,6 @@ import type { WebExtSidebarActionService } from './sidebarAction.js';
 import type { WebExtTabsService } from './tabs.js';
 import type { WebExtWindowsService } from './windows.js';
 
-
 declare global {
     const browser: WebExtGlobal & ExtensionBrowser;
     const chrome: WebExtGlobal & ExtensionBrowser;

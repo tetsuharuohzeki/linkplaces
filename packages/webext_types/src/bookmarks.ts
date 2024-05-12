@@ -1,7 +1,7 @@
 import type { ExtensionEventManager } from './ExtensionEventManager.js';
 
 declare const bookmarkIdMarker: unique symbol;
-export type BookmarkId = string & { [bookmarkIdMarker]: never; };
+export type BookmarkId = string & { [bookmarkIdMarker]: never };
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks
 export interface WebExtBookmarkService {
@@ -28,11 +28,7 @@ export interface WebExtBookmarkService {
     removeTree(id: BookmarkId): Promise<void>;
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/search
-    search(query: {
-        query?: string;
-        url?: string;
-        title?: string;
-    }): Promise<Array<BookmarkTreeNode>>;
+    search(query: { query?: string; url?: string; title?: string }): Promise<Array<BookmarkTreeNode>>;
 
     // TODO: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/update
 

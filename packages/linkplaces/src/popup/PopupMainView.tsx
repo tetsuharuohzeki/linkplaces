@@ -30,7 +30,13 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): ReactNode {
     };
 
     const items = state.list.map((item, i) => {
-        const v = <ListItem key={i} item={item} intent={intent} />;
+        const v = (
+            <ListItem
+                key={i}
+                item={item}
+                intent={intent}
+            />
+        );
         return v;
     });
 
@@ -61,9 +67,7 @@ function Header(props: HeaderProps): ReactNode {
                                 iconfile={'sidebars.svg'}
                             />
                         </PanelListItemIcon>
-                        <PanelListItemText>
-                            {'View LinkPlaces Sidebar'}
-                        </PanelListItemText>
+                        <PanelListItemText>{'View LinkPlaces Sidebar'}</PanelListItemText>
                     </PanelListItem>
                 </PanelSectionList>
             </div>
@@ -81,12 +85,20 @@ function ListItem(props: ListItemProps): ReactNode {
     let node: ReactNode;
     if (isBookmarkTreeNodeSeparator(item)) {
         node = <hr />;
-    }
-    else if (isBookmarkTreeNodeItem(item)) {
-        node = <ItemListItem item={item} intent={intent} />;
-    }
-    else {
-        node = <FolderListItem item={item} intent={intent} />;
+    } else if (isBookmarkTreeNodeItem(item)) {
+        node = (
+            <ItemListItem
+                item={item}
+                intent={intent}
+            />
+        );
+    } else {
+        node = (
+            <FolderListItem
+                item={item}
+                intent={intent}
+            />
+        );
     }
 
     return node;
@@ -107,16 +119,15 @@ function FolderListItem(props: FolderListItemProps): ReactNode {
     // https://design.firefox.com/StyleGuide/#/navigation
     return (
         <StrictMode>
-            <span
-                className={CLASS_NAME_CONTAINER}
-            >
+            <span className={CLASS_NAME_CONTAINER}>
                 <PanelListItem onClick={onClick}>
                     <PanelListItemIcon>
-                        <popup-item-icon icondir={ICON_DIR} iconfile={'folder.svg'} />
+                        <popup-item-icon
+                            icondir={ICON_DIR}
+                            iconfile={'folder.svg'}
+                        />
                     </PanelListItemIcon>
-                    <PanelListItemText>
-                        {item.title}
-                    </PanelListItemText>
+                    <PanelListItemText>{item.title}</PanelListItemText>
                 </PanelListItem>
             </span>
         </StrictMode>
@@ -128,7 +139,7 @@ interface ItemListItemProps {
     intent: PopupMainIntent;
 }
 function ItemListItem(props: ItemListItemProps): ReactNode {
-    const { item, intent, } = props;
+    const { item, intent } = props;
     const url = item.url;
     const id = item.id;
 
@@ -147,9 +158,7 @@ function ItemListItem(props: ItemListItemProps): ReactNode {
 
     const title = item.title;
     const tooltiptext = `"${title}"\n${url}`;
-    const label = (title === '') ?
-        url :
-        title;
+    const label = title === '' ? url : title;
 
     // https://design.firefox.com/StyleGuide/#/navigation
     return (
@@ -162,11 +171,12 @@ function ItemListItem(props: ItemListItemProps): ReactNode {
             >
                 <PanelListItem>
                     <PanelListItemIcon>
-                        <popup-item-icon icondir={ICON_DIR} iconfile={'defaultFavicon.svg'} />
+                        <popup-item-icon
+                            icondir={ICON_DIR}
+                            iconfile={'defaultFavicon.svg'}
+                        />
                     </PanelListItemIcon>
-                    <PanelListItemText>
-                        {label}
-                    </PanelListItemText>
+                    <PanelListItemText>{label}</PanelListItemText>
                 </PanelListItem>
             </a>
         </StrictMode>

@@ -76,7 +76,6 @@ async function openItemInNewTab(url: string, shouldActive: boolean): Promise<Tab
 }
 
 function getLastFocusedWindow(): Promise<BrowserWindow> {
-    const w = browser.windows.getLastFocused({
-    });
+    const w = browser.windows.getLastFocused({});
     return w;
 }

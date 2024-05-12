@@ -27,14 +27,12 @@
 'use strict';
 
 module.exports = {
-    'plugins': [],
+    plugins: [],
 
-    'extends': [
-        'stylelint-config-standard'
-    ],
+    extends: ['stylelint-config-standard'],
 
     // https://stylelint.io/user-guide/rules/
-    'rules': {
+    rules: {
         // Disable the rule enabled in stylelint-config-standard
         // I don't think this is useful...
         'alpha-value-notation': null,
@@ -57,9 +55,12 @@ module.exports = {
 
         // quote
         'font-family-name-quotes': 'always-unless-keyword',
-        'function-url-quotes': ['always', {
-            // except: ['empty'],
-        }],
+        'function-url-quotes': [
+            'always',
+            {
+                // except: ['empty'],
+            },
+        ],
 
         // vendor prefix
         'at-rule-no-vendor-prefix': true,
@@ -75,9 +76,12 @@ module.exports = {
 
         'font-weight-notation': 'named-where-possible',
 
-        'selector-type-no-unknown': [true, {
-            'ignore': ['custom-elements']
-        }],
+        'selector-type-no-unknown': [
+            true,
+            {
+                ignore: ['custom-elements'],
+            },
+        ],
 
         // Disable the rule enabled in stylelint-config-standard
         // We use BEM style.
@@ -87,13 +91,22 @@ module.exports = {
         'import-notation': null,
     },
 
-    'reportNeedlessDisables': [true, {
-        'severity': 'warning',
-    }],
-    'reportInvalidScopeDisables': [true, {
-        'severity': 'warning',
-    }],
-    'reportDescriptionlessDisables': [false, {
-        'severity': 'warning',
-    }]
+    reportNeedlessDisables: [
+        true,
+        {
+            severity: 'warning',
+        },
+    ],
+    reportInvalidScopeDisables: [
+        true,
+        {
+            severity: 'warning',
+        },
+    ],
+    reportDescriptionlessDisables: [
+        false,
+        {
+            severity: 'warning',
+        },
+    ],
 };

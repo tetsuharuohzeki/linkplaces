@@ -2,7 +2,6 @@
 import { replaceMathRandomWithFake, revetMathRandomToOriginal } from '@linkplaces/foundation/test_helper';
 import test from 'ava';
 
-
 test.before(() => {
     replaceMathRandomWithFake();
 });

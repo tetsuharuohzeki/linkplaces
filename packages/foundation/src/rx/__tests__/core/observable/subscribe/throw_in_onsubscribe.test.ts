@@ -1,10 +1,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import {
-    type Subscriber,
-    createCompletionOk,
-} from '../../../../mod.js';
+import { type Subscriber, createCompletionOk } from '../../../../mod.js';
 
 import { TestObservable, TestSubscriber } from './__helpers__/mod.js';
 

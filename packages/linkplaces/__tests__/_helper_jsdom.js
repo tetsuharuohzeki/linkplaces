@@ -2,8 +2,7 @@ import jsdom from 'jsdom';
 
 const { JSDOM } = jsdom;
 
-const HTML =
-    `<!DOCTYPE html>
+const HTML = `<!DOCTYPE html>
 <html>
 </html>
 `;
@@ -45,7 +44,7 @@ function createWinProxy(win) {
         get: function (obj, prop) {
             const hasOnWindow = prop in obj;
             return hasOnWindow ? obj[prop] : originalGlobal[prop];
-        }
+        },
     });
     return winproxy;
 }

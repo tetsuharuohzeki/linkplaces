@@ -40,7 +40,7 @@ export default [
             '**/__plain/**/*',
 
             // turborepo
-            '**/.turbo/**/*'
+            '**/.turbo/**/*',
         ],
     },
     {

@@ -6,9 +6,7 @@ export enum SidebarReduxActionType {
     UpdateFromSource = 'SIDEBAR_ACTION_UPDATE_FROM_SOURCE',
 }
 
-export type SidebarReduxAction =
-    InitAction |
-    UpdateFromSourceAction;
+export type SidebarReduxAction = InitAction | UpdateFromSourceAction;
 
 type SidebarReduxActionBase = ActionArcheType<SidebarReduxActionType>;
 

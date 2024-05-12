@@ -1,7 +1,6 @@
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 export class SidebarItemViewModelEntity {
-
     static create(bookmark: BookmarkTreeNode): SidebarItemViewModelEntity {
         const s = new SidebarItemViewModelEntity(bookmark);
         return s;

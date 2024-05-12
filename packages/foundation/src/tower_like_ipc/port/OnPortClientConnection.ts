@@ -73,9 +73,7 @@ export class OnPortClientConnection<const in TPayload> {
 
         const { id, payload } = packet;
         if (isNull(id)) {
-            throw new TypeError(
-                'For response, Packet.id must be not undefined.'
-            );
+            throw new TypeError('For response, Packet.id must be not undefined.');
         }
 
         this._processResponse(id, payload);

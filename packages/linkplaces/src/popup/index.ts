@@ -8,19 +8,20 @@ import { registerComponents } from './component/register.js';
 (async function main() {
     registerComponents();
 
-    const [list, channel] = await Promise.all([
-        getUnfiledBoolmarkFolder(),
-        createChannel(browser.runtime),
-    ]);
+    const [list, channel] = await Promise.all([getUnfiledBoolmarkFolder(), createChannel(browser.runtime)]);
 
     window.addEventListener('contextmenu', disableCtxMenu);
 
-    window.addEventListener('pagehide', function onClose(_event) {
-        window.removeEventListener('contextmenu', disableCtxMenu);
-        channel.destroy();
-    }, {
-        once: true,
-    });
+    window.addEventListener(
+        'pagehide',
+        function onClose(_event) {
+            window.removeEventListener('contextmenu', disableCtxMenu);
+            channel.destroy();
+        },
+        {
+            once: true,
+        }
+    );
 
     const ctx = new PopupMainContext(channel, list);
     await landViewContext(ctx);

@@ -5,5 +5,3 @@ export function toArrayFromIterable<const T>(iter: Iterable<T>): Array<T> {
     }
     return result;
 }
-
-

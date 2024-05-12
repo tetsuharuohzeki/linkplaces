@@ -3,8 +3,19 @@ import type { Tab } from './tabs.js';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus/ContextType
 export type ContextType =
-    'all' | 'audio' | 'browser_action' | 'editable' | 'frame' | 'image' | 'link' |
-    'page' | 'page_action' | 'password' | 'selection' | 'tab' | 'video';
+    | 'all'
+    | 'audio'
+    | 'browser_action'
+    | 'editable'
+    | 'frame'
+    | 'image'
+    | 'link'
+    | 'page'
+    | 'page_action'
+    | 'password'
+    | 'selection'
+    | 'tab'
+    | 'video';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus/ItemType
 export type ItemType = 'normal' | 'checkbox' | 'radio';

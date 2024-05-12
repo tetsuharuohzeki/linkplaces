@@ -7,9 +7,7 @@ export interface PanelSectionHeaderProps {
 export function PanelSectionHeader(props: PanelSectionHeaderProps): ReactNode {
     return (
         <StrictMode>
-            <header className={'shared-com-PanelSectionHeader__container'}>
-                {props.children}
-            </header>
+            <header className={'shared-com-PanelSectionHeader__container'}>{props.children}</header>
         </StrictMode>
     );
 }
@@ -21,9 +19,7 @@ export interface PanelSectionHeaderIconProps {
 export function PanelSectionHeaderIcon(props: PanelSectionHeaderIconProps): ReactNode {
     return (
         <StrictMode>
-            <div className={'shared-com-PanelSectionHeader__icon'}>
-                {props.children}
-            </div>
+            <div className={'shared-com-PanelSectionHeader__icon'}>{props.children}</div>
         </StrictMode>
     );
 }
@@ -35,9 +31,7 @@ export interface PanelSectionHeaderTextProps {
 export function PanelSectionHeaderText(props: PanelSectionHeaderTextProps): ReactNode {
     return (
         <StrictMode>
-            <div className={'shared-com-PanelSectionHeader__text'}>
-                {props.children}
-            </div>
+            <div className={'shared-com-PanelSectionHeader__text'}>{props.children}</div>
         </StrictMode>
     );
 }

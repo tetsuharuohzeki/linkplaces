@@ -16,5 +16,3 @@ export interface PartialObserver<T> {
     onError?: Maybe<OnErrorFn>;
     onCompleted?: Maybe<OnCompleteFn>;
 }
-
-

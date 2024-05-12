@@ -18,10 +18,12 @@ export function createDomRef<const T extends Element>(): DomRef<T> {
     return r;
 }
 
-export function createDomElement(localname: string,
+export function createDomElement(
+    localname: string,
     attrs: Nullable<Iterable<[string, string]>>,
     children: Nullable<Iterable<Node>>,
-    ref?: DomRef<Element>): Element {
+    ref?: DomRef<Element>
+): Element {
     const subroot = window.document.createElement(localname);
 
     if (attrs !== null) {

@@ -97,7 +97,6 @@ export function getLinkSchemeType(url: string): LinkSchemeType {
 }
 
 export function isBookmarkTreeNodeItem(v: BookmarkTreeNode): v is BookmarkTreeNodeItem {
-
     if (typeof v.type === 'string' && v.type === 'bookmark') {
         return true;
     }
@@ -106,7 +105,6 @@ export function isBookmarkTreeNodeItem(v: BookmarkTreeNode): v is BookmarkTreeNo
 }
 
 export function isBookmarkTreeNodeFolder(v: BookmarkTreeNode): v is BookmarkTreeNodeFolder {
-
     if (typeof v.type === 'string' && v.type === 'folder') {
         return true;
     }
@@ -115,7 +113,6 @@ export function isBookmarkTreeNodeFolder(v: BookmarkTreeNode): v is BookmarkTree
 }
 
 export function isBookmarkTreeNodeSeparator(v: BookmarkTreeNode): v is BookmarkTreeNodeSeparator {
-
     if (typeof v.type === 'string' && v.type === 'separator') {
         return true;
     }

@@ -1,11 +1,7 @@
 import type { BookmarkId, WebExtSidebarActionService } from '@linkplaces/webext_types';
 import { unwrapOrForUndefinable } from 'option-t/Undefinable';
 
-import {
-    type WhereToOpenItem,
-    createOpenUrlAction,
-    createRegisterUrlAction
-} from './RemoteAction.js';
+import { type WhereToOpenItem, createOpenUrlAction, createRegisterUrlAction } from './RemoteAction.js';
 import type { RemoteActionChannel } from './RemoteActionChannel.js';
 
 export function openItem(chan: RemoteActionChannel, bookmarkId: BookmarkId, url: string, where: WhereToOpenItem): void {
@@ -17,8 +13,7 @@ export async function openWebExtSidebar(sidebarAction: WebExtSidebarActionServic
     // This method should be called by user interaction.
     try {
         await sidebarAction.open();
-    }
-    catch (e: unknown) {
+    } catch (e: unknown) {
         console.error(e);
     }
 }

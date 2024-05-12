@@ -13,7 +13,6 @@ import type { RemoteActionChannel } from './PopupMessageChannel.js';
 import { PopupRepostiroy } from './PopupRepository.js';
 
 export class PopupMainContext extends ReactRuledViewContext {
-
     private _channel: RemoteActionChannel;
     private _list: Array<BookmarkTreeNode>;
     private _disposerSet: Nullable<Set<() => void>> = null;
@@ -43,12 +42,17 @@ export class PopupMainContext extends ReactRuledViewContext {
         const repository = new PopupRepostiroy(browser.bookmarks, store);
 
         this._disposerSet = new Set([
-            () => { repository.destroy(); }
+            () => {
+                repository.destroy();
+            },
         ]);
 
         const view = (
             <StrictMode>
-                <PopupMainViewUpdater store={store} intent={intent} />
+                <PopupMainViewUpdater
+                    store={store}
+                    intent={intent}
+                />
             </StrictMode>
         );
 
@@ -74,19 +78,25 @@ interface PopupMainViewUpdaterProps {
 }
 
 function PopupMainViewUpdater({ store, intent }: PopupMainViewUpdaterProps): ReactNode {
-    const state: PopupMainState = useSyncExternalStore((onStoreChange) => {
-        const disposer = store.subscribe(onStoreChange);
-        return () => {
-            disposer();
-        };
-    }, () => {
-        const state = store.state();
-        return state;
-    });
+    const state: PopupMainState = useSyncExternalStore(
+        (onStoreChange) => {
+            const disposer = store.subscribe(onStoreChange);
+            return () => {
+                disposer();
+            };
+        },
+        () => {
+            const state = store.state();
+            return state;
+        }
+    );
 
     const view = (
         <StrictMode>
-            <PopupMainView state={state} intent={intent} />
+            <PopupMainView
+                state={state}
+                intent={intent}
+            />
         </StrictMode>
     );
     return view;

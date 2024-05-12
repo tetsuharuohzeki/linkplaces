@@ -1,17 +1,12 @@
 import type { ActionArcheType } from '@linkplaces/foundation';
-import type {
-    OnChangeInfo,
-    BookmarkTreeNode,
-} from '@linkplaces/webext_types';
+import type { OnChangeInfo, BookmarkTreeNode } from '@linkplaces/webext_types';
 
 export enum PopupReduxActionType {
     Init = 'POPUP_ACTION_INIT',
     ItemChanged = 'POPUP_ACTION_ITEM_CHANGED',
 }
 
-export type PopupReduxAction =
-    InitAction |
-    ItemChangedAction;
+export type PopupReduxAction = InitAction | ItemChangedAction;
 
 type PopupReduxActionBase = ActionArcheType<PopupReduxActionType>;
 

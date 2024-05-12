@@ -1,15 +1,7 @@
 import * as assert from 'node:assert/strict';
 import ESBuildMod from 'esbuild';
 
-
-import {
-    GIT_REVISION,
-    BUILD_DATE,
-    RELEASE_CHANNEL,
-    LIB_NODE_ENV,
-    IS_PRODUCTION_MODE,
-} from './buildconfig.js';
-
+import { GIT_REVISION, BUILD_DATE, RELEASE_CHANNEL, LIB_NODE_ENV, IS_PRODUCTION_MODE } from './buildconfig.js';
 
 console.log(`
 =========== esbuild configuration vars ============
@@ -21,7 +13,6 @@ IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
 ======================================
 `);
 
-
 const { build } = ESBuildMod;
 
 const ENTRY_POINT = process.env.ENTRY_POINT;
@@ -31,9 +22,7 @@ const OUTPUT_FILE = process.env.OUTPUT_FILE;
 assert.ok(typeof OUTPUT_FILE === 'string', `OUTPUT_FILE was '${OUTPUT_FILE}'`);
 
 build({
-    entryPoints: [
-        ENTRY_POINT,
-    ],
+    entryPoints: [ENTRY_POINT],
     outfile: OUTPUT_FILE,
 
     target: 'es2020',

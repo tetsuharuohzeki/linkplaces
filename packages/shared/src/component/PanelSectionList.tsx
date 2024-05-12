@@ -7,9 +7,7 @@ export interface PanelSectionListProps {
 export function PanelSectionList(props: PanelSectionListProps): ReactNode {
     return (
         <StrictMode>
-            <div className={'shared-com-PanelSectionList__container'}>
-                {props.children}
-            </div>
+            <div className={'shared-com-PanelSectionList__container'}>{props.children}</div>
         </StrictMode>
     );
 }
@@ -21,7 +19,10 @@ export interface PanelSectionListSeparatorProps {
 export function PanelSectionListSeparator(_props: PanelSectionListSeparatorProps): ReactNode {
     return (
         <StrictMode>
-            <div className={'shared-com-PanelSectionList__separator'} role={'separator'}></div>
+            <div
+                className={'shared-com-PanelSectionList__separator'}
+                role={'separator'}
+            ></div>
         </StrictMode>
     );
 }
