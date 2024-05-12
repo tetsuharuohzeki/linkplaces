@@ -107,11 +107,11 @@ importers:
         specifier: 45.1.0
         version: 45.1.0
       react:
-        specifier: 19.0.0-beta-94eed63c49-20240425
-        version: 19.0.0-beta-94eed63c49-20240425
+        specifier: 19.0.0-canary-657428a9e-20240416
+        version: 19.0.0-canary-657428a9e-20240416
       react-dom:
-        specifier: 19.0.0-beta-94eed63c49-20240425
-        version: 19.0.0-beta-94eed63c49-20240425(react@19.0.0-beta-94eed63c49-20240425)
+        specifier: 19.0.0-canary-657428a9e-20240416
+        version: 19.0.0-canary-657428a9e-20240416(react@19.0.0-canary-657428a9e-20240416)
     devDependencies:
       '@ava/typescript':
         specifier: ^5.0.0
@@ -163,11 +163,11 @@ importers:
         specifier: 45.1.0
         version: 45.1.0
       react:
-        specifier: 19.0.0-beta-94eed63c49-20240425
-        version: 19.0.0-beta-94eed63c49-20240425
+        specifier: 19.0.0-canary-657428a9e-20240416
+        version: 19.0.0-canary-657428a9e-20240416
       react-dom:
-        specifier: 19.0.0-beta-94eed63c49-20240425
-        version: 19.0.0-beta-94eed63c49-20240425(react@19.0.0-beta-94eed63c49-20240425)
+        specifier: 19.0.0-canary-657428a9e-20240416
+        version: 19.0.0-canary-657428a9e-20240416(react@19.0.0-canary-657428a9e-20240416)
     devDependencies:
       '@babel/cli':
         specifier: 7.24.5
@@ -230,11 +230,11 @@ importers:
         specifier: 45.1.0
         version: 45.1.0
       react:
-        specifier: 19.0.0-beta-94eed63c49-20240425
-        version: 19.0.0-beta-94eed63c49-20240425
+        specifier: 19.0.0-canary-657428a9e-20240416
+        version: 19.0.0-canary-657428a9e-20240416
       react-dom:
-        specifier: 19.0.0-beta-94eed63c49-20240425
-        version: 19.0.0-beta-94eed63c49-20240425(react@19.0.0-beta-94eed63c49-20240425)
+        specifier: 19.0.0-canary-657428a9e-20240416
+        version: 19.0.0-canary-657428a9e-20240416(react@19.0.0-canary-657428a9e-20240416)
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -3413,16 +3413,16 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
-  react-dom@19.0.0-beta-94eed63c49-20240425:
-    resolution: {integrity: sha512-V0uHW7Xd0u/LDlmFO8sJ9TTNizAESS+pexJNOi3KbOU1taf2gUO5J8YIWis60xcQbh7YBqSklyYIIq3DfiKz3Q==}
+  react-dom@19.0.0-canary-657428a9e-20240416:
+    resolution: {integrity: sha512-ohHgxPBZIkMsipWlk5p6O1aXl14z7wkDSLsoEJup/sl4BkcB2K7lgiOgWF4bNQf/5YogA4PYmP5B7ifjl01cfw==}
     peerDependencies:
-      react: 19.0.0-beta-94eed63c49-20240425
+      react: 19.0.0-canary-657428a9e-20240416
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
-  react@19.0.0-beta-94eed63c49-20240425:
-    resolution: {integrity: sha512-BPPKh5bZwcpw/Dgfh3A0MoU1GSl2edR2JggCq3QPdghQsrFg1aBuMkul5YB4rpII400RYq9VC5eF5Nm3spx0gA==}
+  react@19.0.0-canary-657428a9e-20240416:
+    resolution: {integrity: sha512-MU2b0pnUzab0fLXmvjUAv6/UPQaSJzDp2oglGRyGIQ8f3fu9K6DaVyLP7wBVf/Gz+TR/c3sQYAAa7mjDkOeWNA==}
     engines: {node: '>=0.10.0'}
 
   read-cache@1.0.0:
@@ -3584,8 +3584,8 @@ packages:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
 
-  scheduler@0.25.0-beta-94eed63c49-20240425:
-    resolution: {integrity: sha512-U8hoOV7uut5E8cMvRSMikEBBqLXfv2BpdxUsG45euaOfnqEgFrCdLLh6ydM+YBJ36+28olXMNmK2PFFzeg4UdQ==}
+  scheduler@0.25.0-canary-657428a9e-20240416:
+    resolution: {integrity: sha512-WvpNxI0tQ9JycmaRXYB2lGS0uxqeJlttt56MyJOUlXCW8RhVxIoBzYiTpszPzr7488AgnVXzscP0K1g+BJMgrg==}
 
   semver-diff@4.0.0:
     resolution: {integrity: sha512-0Ju4+6A8iOnpL/Thra7dZsSlOHYAHIeMxfhWQRI1/VLcT3WDBZKKtQt/QkBOsiIN9ZpuvHE6cGZ0x4glCMmfiA==}
@@ -7650,14 +7650,14 @@ snapshots:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
 
-  react-dom@19.0.0-beta-94eed63c49-20240425(react@19.0.0-beta-94eed63c49-20240425):
+  react-dom@19.0.0-canary-657428a9e-20240416(react@19.0.0-canary-657428a9e-20240416):
     dependencies:
-      react: 19.0.0-beta-94eed63c49-20240425
-      scheduler: 0.25.0-beta-94eed63c49-20240425
+      react: 19.0.0-canary-657428a9e-20240416
+      scheduler: 0.25.0-canary-657428a9e-20240416
 
   react-is@16.13.1: {}
 
-  react@19.0.0-beta-94eed63c49-20240425: {}
+  react@19.0.0-canary-657428a9e-20240416: {}
 
   read-cache@1.0.0:
     dependencies:
@@ -7870,7 +7870,7 @@ snapshots:
     dependencies:
       xmlchars: 2.2.0
 
-  scheduler@0.25.0-beta-94eed63c49-20240425: {}
+  scheduler@0.25.0-canary-657428a9e-20240416: {}
 
   semver-diff@4.0.0:
     dependencies:

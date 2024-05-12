@@ -31,8 +31,8 @@
     "dependencies": {
         "@linkplaces/webext_types": "workspace:*",
         "option-t": "45.1.0",
-        "react": "19.0.0-beta-94eed63c49-20240425",
-        "react-dom": "19.0.0-beta-94eed63c49-20240425"
+        "react": "19.0.0-canary-657428a9e-20240416",
+        "react-dom": "19.0.0-canary-657428a9e-20240416"
     },
     "devDependencies": {
         "@ava/typescript": "^5.0.0",
