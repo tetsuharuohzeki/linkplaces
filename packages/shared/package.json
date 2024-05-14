@@ -23,8 +23,8 @@
     "dependencies": {
         "@linkplaces/webext_types": "workspace:*",
         "option-t": "45.1.0",
-        "react": "19.0.0-beta-94eed63c49-20240425",
-        "react-dom": "19.0.0-beta-94eed63c49-20240425"
+        "react": "19.0.0-beta-26f2496093-20240514",
+        "react-dom": "19.0.0-beta-26f2496093-20240514"
     },
     "devDependencies": {
         "@linkplaces/tools": "workspace:*"
