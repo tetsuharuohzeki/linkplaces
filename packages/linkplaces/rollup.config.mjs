@@ -17,6 +17,7 @@ import {
     IS_PRODUCTION_MODE,
     ENABLE_SWC_REACT_TRANSFORM,
     ENABLE_REACT_PROFILER,
+    ENABLE_REACT_COMPILER,
     ENABLE_MV3,
     USE_EVENT_PAGE_WORKAROUND,
 } from './tools/buildconfig.js';
@@ -31,6 +32,7 @@ LIB_NODE_ENV: ${LIB_NODE_ENV}
 IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
 ENABLE_SWC_REACT_TRANSFORM: ${ENABLE_SWC_REACT_TRANSFORM}
 ENABLE_REACT_PROFILER: ${ENABLE_REACT_PROFILER}
+ENABLE_REACT_COMPILER: ${ENABLE_REACT_COMPILER}
 ENABLE_MV3: ${ENABLE_MV3}
 USE_EVENT_PAGE_WORKAROUND: ${USE_EVENT_PAGE_WORKAROUND}
 ======================================
@@ -62,6 +64,29 @@ class RollupWarningAsError extends Error {
         });
     }
 }
+
+const reactTransformer = ENABLE_SWC_REACT_TRANSFORM
+    ? [
+          // https://github.com/rollup/plugins/tree/master/packages/babel
+          babel({
+              ...babelConfig,
+              babelHelpers: 'bundled',
+              extensions: ['.jsx'],
+          }),
+          // https://www.npmjs.com/package/@rollup/plugin-swc#options
+          swc({
+              swc: swcOptions,
+              include: ['**/**/*.jsx'],
+          }),
+      ]
+    : [
+          // https://github.com/rollup/plugins/tree/master/packages/babel
+          babel({
+              ...babelConfig,
+              babelHelpers: 'bundled',
+              extensions: ['.jsx'],
+          }),
+      ];
 
 /**
  *  See:
@@ -147,17 +172,7 @@ export default async function createConfiguration(_commandLineArgs) {
                 },
             }),
 
-            ENABLE_SWC_REACT_TRANSFORM
-                ? // https://www.npmjs.com/package/@rollup/plugin-swc#options
-                  swc({
-                      swc: swcOptions,
-                      include: ['**/**/*.jsx'],
-                  }) // https://github.com/rollup/plugins/tree/master/packages/babel
-                : babel({
-                      ...babelConfig,
-                      babelHelpers: 'bundled',
-                      extensions: ['.jsx'],
-                  }),
+            ...reactTransformer,
         ],
 
         onwarn(warning) {
