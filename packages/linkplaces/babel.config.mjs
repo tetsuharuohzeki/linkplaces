@@ -1,5 +1,15 @@
-import { IS_PRODUCTION_MODE } from './tools/buildconfig.js';
+import { IS_PRODUCTION_MODE, ENABLE_REACT_COMPILER } from './tools/buildconfig.js';
 
+const REACT_COMPILER_CONFIG = {};
+
+const plugins = ENABLE_REACT_COMPILER
+    ? [
+          //
+          ['babel-plugin-react-compiler', REACT_COMPILER_CONFIG],
+      ]
+    : [];
+
+// This is used from babel cli.
 // eslint-disable-next-line import/no-anonymous-default-export,import/no-default-export
 export default {
     presets: [
@@ -13,5 +23,5 @@ export default {
             },
         ],
     ],
-    plugins: [],
+    plugins,
 };
