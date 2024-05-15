@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 
 import reactESLintPlugin from 'eslint-plugin-react';
+import reactCompilerPlugin from 'eslint-plugin-react-compiler/dist/index.js';
 import reactHooksESLintPlugin from 'eslint-plugin-react-hooks';
 
 import reactPresets from './vendor/react.cjs';
@@ -14,6 +15,7 @@ assert(reactPluginJsxRuntimeRules);
 const plugins = Object.freeze({
     react: reactESLintPlugin,
     'react-hooks': reactHooksESLintPlugin,
+    'react-compiler': reactCompilerPlugin,
 });
 
 /**
@@ -40,6 +42,8 @@ export const config = Object.freeze({
         ],
 
         'react/no-arrow-function-lifecycle': 'error',
+
+        'react-compiler/react-compiler': 'error',
     },
 
     settings: {
