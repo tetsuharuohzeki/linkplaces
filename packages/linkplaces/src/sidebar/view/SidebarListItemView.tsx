@@ -96,8 +96,6 @@ interface ListItemForBookmarkItemProps {
 }
 
 function ListItemForBookmarkItem(props: ListItemForBookmarkItemProps) {
-    // eslint-plugin-react-compiler cannot recognize TS' generics syntax...
-    // eslint-disable-next-line react-compiler/react-compiler
     const [isOpening, setIsOpening] = useState<boolean>(false);
     if (isOpening) {
         return null;
