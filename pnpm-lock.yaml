@@ -12,6 +12,9 @@ importers:
 
   .:
     devDependencies:
+      '@babel/plugin-syntax-jsx':
+        specifier: ^7.24.1
+        version: 7.24.1(@babel/core@7.24.5)
       '@eslint/js':
         specifier: ^8.57.0
         version: 8.57.0
