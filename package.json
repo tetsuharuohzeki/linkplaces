@@ -14,7 +14,7 @@
         "@linkplaces/tools": "workspace:*",
         "@monorepo-utils/workspaces-to-typescript-project-references": "^2.10.4",
         "@reflink/reflink": "^0.1.16",
-        "@types/node": "20.12.11",
+        "@types/node": "20.12.12",
         "@types/react": "npm:types-react@beta",
         "@types/react-dom": "npm:types-react-dom@beta",
         "@typescript-eslint/eslint-plugin": "7.8.0",
