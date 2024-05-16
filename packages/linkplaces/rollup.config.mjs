@@ -7,8 +7,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import { default as swc } from '@rollup/plugin-swc';
 
-import babelConfig from './babel.config.mjs';
-
+import { rollupConfig as babelConfig } from './tools/babel_config.mjs';
 import {
     GIT_REVISION,
     BUILD_DATE,
@@ -65,6 +64,8 @@ class RollupWarningAsError extends Error {
     }
 }
 
+// This is for jsx files placed in other workspace.
+// For the current workspace, we transform react jsx by babel cli offline.
 const reactTransformer = ENABLE_SWC_REACT_TRANSFORM
     ? [
           // https://github.com/rollup/plugins/tree/master/packages/babel
