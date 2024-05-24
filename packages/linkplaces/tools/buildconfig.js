@@ -21,8 +21,6 @@ const ENABLE_REACT_PROFILER = mapOrForMaybe(process.env.ENABLE_REACT_PROFILER, f
     return enabled;
 });
 
-const ENABLE_MV3 = true;
-
 export {
     GIT_REVISION,
     BUILD_DATE,
@@ -31,7 +29,6 @@ export {
     IS_PRODUCTION_MODE,
     ENABLE_SOURCE_MAP,
     ENABLE_REACT_PROFILER,
-    ENABLE_MV3,
     ENABLE_SWC_REACT_TRANSFORM,
     ENABLE_REACT_COMPILER,
 };

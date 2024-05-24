@@ -1,7 +1,6 @@
 import { callResponderServiceWithMessage } from '@linkplaces/foundation/tower_like_ipc';
 import { assertIsRemoteAction } from '@linkplaces/ipc_message';
 
-import { CompileTimeEmbeddedConstants } from '@linkplaces/shared';
 import { callBackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever.js';
 import { appendContextMenu, onClickContextMenu } from './ContextMenu.js';
 
@@ -9,13 +8,9 @@ import { appendContextMenu, onClickContextMenu } from './ContextMenu.js';
     const runtime = browser.runtime;
     const menus = browser.menus;
 
-    if (CompileTimeEmbeddedConstants.ENABLE_MV3) {
-        runtime.onInstalled.addListener(() => {
-            appendContextMenu(browser);
-        });
-    } else {
+    runtime.onInstalled.addListener(() => {
         appendContextMenu(browser);
-    }
+    });
 
     menus.onClicked.addListener(onClickContextMenu);
 
