@@ -10,21 +10,9 @@ import { appendContextMenu, onClickContextMenu } from './ContextMenu.js';
     const menus = browser.menus;
 
     if (CompileTimeEmbeddedConstants.ENABLE_MV3) {
-        if (CompileTimeEmbeddedConstants.USE_EVENT_PAGE_WORKAROUND) {
-            // [By the backgroun page doc on MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Background_scripts),
-            // an extension should use `browser.runtime.onInstalled` to register a menu
-            // But this code only works once after user install extension
-            // on [Firefox 106.0a1](https://hg.mozilla.org/mozilla-central/rev/c731914e80964349114e473544e7a7165cae3cc1)
-            // So we need place this intializer in the top level scope even if the background page is non-persistent.
+        runtime.onInstalled.addListener(() => {
             appendContextMenu(browser);
-            runtime.onInstalled.addListener(() => {
-                appendContextMenu(browser);
-            });
-        } else {
-            runtime.onInstalled.addListener(() => {
-                appendContextMenu(browser);
-            });
-        }
+        });
     } else {
         appendContextMenu(browser);
     }

@@ -18,7 +18,6 @@ import {
     ENABLE_REACT_PROFILER,
     ENABLE_REACT_COMPILER,
     ENABLE_MV3,
-    USE_EVENT_PAGE_WORKAROUND,
 } from './tools/buildconfig.js';
 import { swcOptions } from './tools/swc_config.js';
 
@@ -33,7 +32,6 @@ ENABLE_SWC_REACT_TRANSFORM: ${ENABLE_SWC_REACT_TRANSFORM}
 ENABLE_REACT_PROFILER: ${ENABLE_REACT_PROFILER}
 ENABLE_REACT_COMPILER: ${ENABLE_REACT_COMPILER}
 ENABLE_MV3: ${ENABLE_MV3}
-USE_EVENT_PAGE_WORKAROUND: ${USE_EVENT_PAGE_WORKAROUND}
 ======================================
 `);
 
@@ -160,8 +158,6 @@ export default async function createConfiguration(_commandLineArgs) {
                     '__COMPILE_TIME_EMBEDDED_CONSTANTS__.BUILD_DATE': JSON.stringify(BUILD_DATE),
                     '__COMPILE_TIME_EMBEDDED_CONSTANTS__.RELEASE_CHANNEL': JSON.stringify(RELEASE_CHANNEL),
                     '__COMPILE_TIME_EMBEDDED_CONSTANTS__.ENABLE_MV3': JSON.stringify(ENABLE_MV3),
-                    '__COMPILE_TIME_EMBEDDED_CONSTANTS__.USE_EVENT_PAGE_WORKAROUND':
-                        JSON.stringify(USE_EVENT_PAGE_WORKAROUND),
                 },
             }),
             replace({
