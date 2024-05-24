@@ -6,8 +6,6 @@ declare global {
         readonly GIT_REVISION: string;
         readonly BUILD_DATE: string;
         readonly RELEASE_CHANNEL: string;
-        readonly ENABLE_MV3: boolean;
-        readonly USE_EVENT_PAGE_WORKAROUND: boolean;
     }
 
     // this will be embedded by the linker.
@@ -20,6 +18,3 @@ export const GIT_REVISION: string = __COMPILE_TIME_EMBEDDED_CONSTANTS__.GIT_REVI
 export const BUILD_DATE: string = __COMPILE_TIME_EMBEDDED_CONSTANTS__.BUILD_DATE;
 
 export const RELEASE_CHANNEL: string = __COMPILE_TIME_EMBEDDED_CONSTANTS__.RELEASE_CHANNEL;
-
-export const ENABLE_MV3: boolean = __COMPILE_TIME_EMBEDDED_CONSTANTS__.ENABLE_MV3;
-export const USE_EVENT_PAGE_WORKAROUND: boolean = __COMPILE_TIME_EMBEDDED_CONSTANTS__.USE_EVENT_PAGE_WORKAROUND;
