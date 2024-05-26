@@ -31,9 +31,9 @@
         "react": "19.0.0-rc-935180c7e0-20240524"
     },
     "devDependencies": {
-        "@babel/cli": "7.24.5",
-        "@babel/core": "7.24.5",
-        "@babel/preset-react": "7.24.1",
+        "@babel/cli": "7.24.6",
+        "@babel/core": "7.24.6",
+        "@babel/preset-react": "7.24.6",
         "@linkplaces/tools": "workspace:*",
         "@rollup/plugin-alias": "5.1.0",
         "@rollup/plugin-babel": "6.0.4",
