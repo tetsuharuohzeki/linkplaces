@@ -5,8 +5,8 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  '@types/react': npm:types-react@beta
-  '@types/react-dom': npm:types-react-dom@beta
+  '@types/react': npm:types-react@rc
+  '@types/react-dom': npm:types-react-dom@rc
 
 importers:
 
@@ -31,11 +31,11 @@ importers:
         specifier: 20.12.12
         version: 20.12.12
       '@types/react':
-        specifier: npm:types-react@beta
-        version: types-react@19.0.0-beta.2
+        specifier: npm:types-react@rc
+        version: types-react@19.0.0-rc.0
       '@types/react-dom':
-        specifier: npm:types-react-dom@beta
-        version: types-react-dom@19.0.0-beta.2
+        specifier: npm:types-react-dom@rc
+        version: types-react-dom@19.0.0-rc.0
       '@typescript-eslint/eslint-plugin':
         specifier: 7.11.0
         version: 7.11.0(@typescript-eslint/parser@7.11.0(eslint@8.57.0)(typescript@5.5.0-dev.20240522))(eslint@8.57.0)(typescript@5.5.0-dev.20240522)
@@ -4126,11 +4126,11 @@ packages:
   typedarray@0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
 
-  types-react-dom@19.0.0-beta.2:
-    resolution: {integrity: sha512-U1qAZtPiPsv7R6BJlxeXFZsPre2jBG/DtzWJ0tAqqZfwuySo+0pT0df39wn+42OaHvXNDterwC4O0uw8el5BXQ==}
+  types-react-dom@19.0.0-rc.0:
+    resolution: {integrity: sha512-wGlQSD6H6EeCxhH+dSip1cPcCU7nNTOwHEr29rjiNtGkUPlmEofOizoQaPMEqQH2V76ME3NLvBDLGajRu3xZOw==}
 
-  types-react@19.0.0-beta.2:
-    resolution: {integrity: sha512-bcE50h2P/Ajmf3jMPIqL01PDqxo8lwqRIy3idjyadaLKF9vcXbma2CsJkKj0KHBAFllQZkXLTJ8ZpwmUnTv5EQ==}
+  types-react@19.0.0-rc.0:
+    resolution: {integrity: sha512-JFd3qtgXZ+EdHht8WXMPSF231brd6Bu4yLKqyo0JjpzhmjYxJptT6TBh/xFqOhx+ee2Nagj7Ttkh5F/jc49TVQ==}
 
   typescript@5.5.0-dev.20240522:
     resolution: {integrity: sha512-Lckk1709+mAFXxFVbO+QnpXo5TRSZsYcq0a96OTfcgP7eLOa0ZjX6/4lnS/8DODWBlQCPa0EvkegzWIwLZqC3w==}
@@ -8522,11 +8522,11 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  types-react-dom@19.0.0-beta.2:
+  types-react-dom@19.0.0-rc.0:
     dependencies:
-      '@types/react': types-react@19.0.0-beta.2
+      '@types/react': types-react@19.0.0-rc.0
 
-  types-react@19.0.0-beta.2:
+  types-react@19.0.0-rc.0:
     dependencies:
       csstype: 3.1.3
 
