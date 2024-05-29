@@ -43,8 +43,8 @@ importers:
         specifier: 7.11.0
         version: 7.11.0(eslint@8.57.0)(typescript@5.5.0-dev.20240522)
       babel-plugin-react-compiler:
-        specifier: 0.0.0-experimental-592953e-20240517
-        version: 0.0.0-experimental-592953e-20240517
+        specifier: 0.0.0-experimental-487cb0e-20240529
+        version: 0.0.0-experimental-487cb0e-20240529
       eslint:
         specifier: 8.57.0
         version: 8.57.0
@@ -1351,8 +1351,8 @@ packages:
   aws4@1.13.0:
     resolution: {integrity: sha512-3AungXC4I8kKsS9PuS4JH2nc+0bVY/mjgrephHTIi8fpEeGsTHBUJeosp0Wc1myYMElmD0B3Oc4XL/HVJ4PV2g==}
 
-  babel-plugin-react-compiler@0.0.0-experimental-592953e-20240517:
-    resolution: {integrity: sha512-OjG1SVaeQZaJrqkMFJatg8W/MTow8Ak5rx2SI0ETQBO1XvOk/XZGMbltNCPdFJLKghBYoBjC+Y3Ap/Xr7B01mA==}
+  babel-plugin-react-compiler@0.0.0-experimental-487cb0e-20240529:
+    resolution: {integrity: sha512-77FYmA+oiCQnq5fK0jvoR0b78oKkgXrECc8n9U+gyWh+8P0zFJSX0wyI16Z456m/lrcANE56VWbr6+VxzoMBJg==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -5535,7 +5535,7 @@ snapshots:
 
   aws4@1.13.0: {}
 
-  babel-plugin-react-compiler@0.0.0-experimental-592953e-20240517:
+  babel-plugin-react-compiler@0.0.0-experimental-487cb0e-20240529:
     dependencies:
       '@babel/generator': 7.2.0
       '@babel/types': 7.24.6
