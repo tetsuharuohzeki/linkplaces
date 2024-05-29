@@ -4,7 +4,7 @@ import { unwrapOrForUndefinable } from 'option-t/Undefinable';
 import { type WhereToOpenItem, createOpenUrlAction, createRegisterUrlAction } from './RemoteAction.js';
 import type { RemoteActionChannel } from './RemoteActionChannel.js';
 
-export function openItem(chan: RemoteActionChannel, bookmarkId: BookmarkId, url: string, where: WhereToOpenItem): void {
+export function openItemOneshot(chan: RemoteActionChannel, bookmarkId: BookmarkId, url: string, where: WhereToOpenItem): void {
     const a = createOpenUrlAction(bookmarkId, url, where);
     chan.postOneShotMessage(a);
 }

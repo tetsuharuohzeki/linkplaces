@@ -1,6 +1,6 @@
 import {
     type WhereToOpenItem,
-    openItem as openItemViaChannel,
+    openItemOneshot as openItemViaChannel,
     registerItem as registerItemViaChannel,
 } from '@linkplaces/ipc_message';
 import type { BookmarkId } from '@linkplaces/webext_types';
