@@ -2,10 +2,10 @@ import { Ix } from '@linkplaces/foundation';
 import { createBookmarkItem, type CreateBookmarkItemResult } from '@linkplaces/shared/bookmark';
 import type { OnClickData, CreateArgument, ContextType, Tab, WindowId } from '@linkplaces/webext_types';
 
-import { type Maybe, isNullOrUndefined } from 'option-t/Maybe';
-import { type Result, inspectErrForResult, unwrapOrForResult } from 'option-t/PlainResult';
-import { tryCatchIntoResultWithEnsureErrorAsync } from 'option-t/PlainResult/tryCatchAsync';
-import { type Undefinable, expectNotUndefined, unwrapOrForUndefinable } from 'option-t/Undefinable';
+import { type Maybe, isNullOrUndefined } from 'option-t/maybe';
+import { type Result, inspectErrForResult, unwrapOrForResult } from 'option-t/plain_result';
+import { tryCatchIntoResultWithEnsureErrorAsync } from 'option-t/plain_result/try_catch_async';
+import { type Undefinable, expectNotUndefined, unwrapOrForUndefinable } from 'option-t/undefinable';
 
 const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';
 const CTXMENU_ID_CONTENT_SAVE_PAGE = 'linkplaces-ctx-content-save-page';

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import test from 'ava';
-import { isUndefined, type Undefinable } from 'option-t/Undefinable';
+import { isUndefined, type Undefinable } from 'option-t/undefinable';
 import * as Ix from '../../mod.js';
 
 test('check the normal behavior', (t) => {

@@ -1,4 +1,4 @@
-import { isNotNull, unwrapNullable, type Nullable } from 'option-t/Nullable';
+import { isNotNull, unwrapNullable, type Nullable } from 'option-t/nullable';
 import type { CompletionResult } from './completion_result.js';
 import type { Observer } from './observer.js';
 import type { Unsubscribable } from './subscribable.js';

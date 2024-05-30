@@ -6,8 +6,8 @@ import type {
     BookmarkTreeNodeSeparator,
 } from '@linkplaces/webext_types';
 
-import { isNull } from 'option-t/Nullable';
-import { type Result, createErr, createOk, mapAsyncForResult } from 'option-t/PlainResult';
+import { isNull } from 'option-t/nullable';
+import { type Result, createErr, createOk, mapAsyncForResult } from 'option-t/plain_result';
 
 const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/u;
 

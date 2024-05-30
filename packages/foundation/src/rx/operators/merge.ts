@@ -1,4 +1,4 @@
-import { isErr, isOk } from 'option-t/PlainResult';
+import { isErr, isOk } from 'option-t/plain_result';
 
 import { assertUnreachable } from '../../assert_never.js';
 import type { CompletionResult } from '../core/completion_result.js';

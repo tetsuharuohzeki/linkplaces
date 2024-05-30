@@ -1,4 +1,4 @@
-import { unwrapOrForMaybe, type Maybe } from 'option-t/Maybe';
+import { unwrapOrForMaybe, type Maybe } from 'option-t/maybe';
 import type { CompletionResult } from './completion_result';
 import type { Observer, OnNextFn, OnErrorFn, OnCompleteFn as OnCompletedFn } from './observer';
 

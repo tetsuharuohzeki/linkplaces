@@ -1,4 +1,4 @@
-import { unwrapNullable, type Nullable } from 'option-t/Nullable';
+import { unwrapNullable, type Nullable } from 'option-t/nullable';
 
 import { createCompletionOk, type CompletionResult } from './completion_result.js';
 import { Observable } from './observable.js';

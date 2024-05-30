@@ -1,4 +1,4 @@
-import type { Maybe } from 'option-t/Maybe';
+import type { Maybe } from 'option-t/maybe';
 import type { CompletionResult } from './completion_result';
 
 export interface Observer<T> {

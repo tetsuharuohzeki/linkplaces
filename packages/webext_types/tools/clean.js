@@ -1,7 +1,7 @@
 /** env node */
 // eslint-disable-next-line import/no-unresolved
 import { Remover } from '@linkplaces/tools';
-import { isNotNull } from 'option-t/Nullable';
+import { isNotNull } from 'option-t/nullable';
 
 const { isDryRun, isForce, isVerbose } = Remover.parseArgs(process);
 const [deletedFilePaths, error] = await Remover.deleteAsync(

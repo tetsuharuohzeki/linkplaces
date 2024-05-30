@@ -1,4 +1,4 @@
-import type { Nullable } from 'option-t/Nullable';
+import type { Nullable } from 'option-t/nullable';
 
 /**
  *  This interface is useful to avoid warnings by `@typescript-eslint/class-methods-use-this`'s false positive.

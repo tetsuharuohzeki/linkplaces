@@ -1,7 +1,7 @@
 import { Ix, type Repository } from '@linkplaces/foundation';
 import { Subject, type Observable, operators } from '@linkplaces/foundation/rx';
 import type { BookmarkTreeNode, WebExtBookmarkService } from '@linkplaces/webext_types';
-import type { Nullable } from 'option-t/Nullable';
+import type { Nullable } from 'option-t/nullable';
 import { type SidebarItemViewModelEntity, mapToSidebarItemEntity } from '../SidebarDomain.js';
 import { BookmarkRepository } from './BookmarkRepository.js';
 

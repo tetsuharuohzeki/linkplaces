@@ -60,8 +60,8 @@ const projectSpecificRules = Object.freeze({
         {
             paths: [
                 //
-                'option-t/ClassicOption',
-                'option-t/ClassicResult',
+                'option-t/classic_option',
+                'option-t/classic_result',
             ],
         },
     ],

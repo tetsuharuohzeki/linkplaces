@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import type { Nullable } from 'option-t/Nullable';
+import type { Nullable } from 'option-t/nullable';
 
 let original: Nullable<typeof Math.random> = null;
 

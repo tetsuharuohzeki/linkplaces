@@ -1,5 +1,5 @@
 import test from 'ava';
-import { createOk } from 'option-t/PlainResult';
+import { createOk } from 'option-t/plain_result';
 import * as tinyspy from 'tinyspy';
 import { Subject } from '../../../mod.js';
 

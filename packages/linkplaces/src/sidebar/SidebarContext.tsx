@@ -2,7 +2,7 @@ import { Subscription, fromEventToObservable, operators, type Unsubscribable } f
 import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
-import { type Nullable, isNotNull, expectNotNull } from 'option-t/Nullable';
+import { type Nullable, isNotNull, expectNotNull } from 'option-t/nullable';
 import { StrictMode, useSyncExternalStore, type ReactNode } from 'react';
 
 import type { SidebarItemViewModelEntity } from './SidebarDomain.js';

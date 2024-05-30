@@ -1,4 +1,4 @@
-import { expectNotNull } from 'option-t/Nullable';
+import { expectNotNull } from 'option-t/nullable';
 
 import type { ViewContext } from './ViewContext.js';
 

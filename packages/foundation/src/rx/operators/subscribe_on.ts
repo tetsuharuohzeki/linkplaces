@@ -1,4 +1,4 @@
-import { isNotNull, type Nullable } from 'option-t/Nullable';
+import { isNotNull, type Nullable } from 'option-t/nullable';
 import type { Observable } from '../core/observable.js';
 import { OperatorObservable, type OperatorFunction } from '../core/operator.js';
 import type { Unsubscribable } from '../core/subscribable.js';

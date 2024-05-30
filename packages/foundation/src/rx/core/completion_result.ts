@@ -1,4 +1,4 @@
-import { createErr, createOk, type Ok, type Result } from 'option-t/PlainResult';
+import { createErr, createOk, type Ok, type Result } from 'option-t/plain_result';
 
 export type CompletionResult = Result<void, unknown>;
 
