@@ -9,7 +9,7 @@
     },
     "devDependencies": {
         "@linkplaces/tools": "workspace:*",
-        "option-t": "47.0.0"
+        "option-t": "48.0.1"
     },
     "scripts": {
         "clean": "node tools/clean.js"
