@@ -43,8 +43,8 @@ importers:
         specifier: 7.11.0
         version: 7.11.0(eslint@8.57.0)(typescript@5.5.0-dev.20240522)
       babel-plugin-react-compiler:
-        specifier: 0.0.0-experimental-487cb0e-20240529
-        version: 0.0.0-experimental-487cb0e-20240529
+        specifier: 0.0.0-experimental-938cd9a-20240601
+        version: 0.0.0-experimental-938cd9a-20240601
       eslint:
         specifier: 8.57.0
         version: 8.57.0
@@ -1341,8 +1341,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  babel-plugin-react-compiler@0.0.0-experimental-487cb0e-20240529:
-    resolution: {integrity: sha512-77FYmA+oiCQnq5fK0jvoR0b78oKkgXrECc8n9U+gyWh+8P0zFJSX0wyI16Z456m/lrcANE56VWbr6+VxzoMBJg==}
+  babel-plugin-react-compiler@0.0.0-experimental-938cd9a-20240601:
+    resolution: {integrity: sha512-t+uBHxbfxq2z4j83ZYgOsV0dlSaRgPfhrYB5+CMv6ByXUAv5wm7m7YLFx67fWKrG3eDhq3+KH1OMeFypuDLkUA==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -5434,7 +5434,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  babel-plugin-react-compiler@0.0.0-experimental-487cb0e-20240529:
+  babel-plugin-react-compiler@0.0.0-experimental-938cd9a-20240601:
     dependencies:
       '@babel/generator': 7.2.0
       '@babel/types': 7.24.6
