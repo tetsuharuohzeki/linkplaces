@@ -28,7 +28,7 @@
         "eslint-plugin-react-compiler": "0.0.0-experimental-a97cca1-20240529",
         "eslint-plugin-react-hooks": "4.6.2",
         "globals": "^15.3.0",
-        "prettier": "3.2.5",
+        "prettier": "3.3.0",
         "stylelint": "^16.6.1",
         "stylelint-config-standard": "^36.0.0",
         "turbo": "^1.13.3",
