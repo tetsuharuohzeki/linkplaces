@@ -116,11 +116,11 @@ importers:
         specifier: 48.2.1
         version: 48.2.1
       react:
-        specifier: 19.0.0-rc-6f23540c7d-20240528
-        version: 19.0.0-rc-6f23540c7d-20240528
+        specifier: 19.0.0-rc-6d3110b4d9-20240531
+        version: 19.0.0-rc-6d3110b4d9-20240531
       react-dom:
-        specifier: 19.0.0-rc-6f23540c7d-20240528
-        version: 19.0.0-rc-6f23540c7d-20240528(react@19.0.0-rc-6f23540c7d-20240528)
+        specifier: 19.0.0-rc-6d3110b4d9-20240531
+        version: 19.0.0-rc-6d3110b4d9-20240531(react@19.0.0-rc-6d3110b4d9-20240531)
     devDependencies:
       '@ava/typescript':
         specifier: ^5.0.0
@@ -172,8 +172,8 @@ importers:
         specifier: 48.2.1
         version: 48.2.1
       react:
-        specifier: 19.0.0-rc-6f23540c7d-20240528
-        version: 19.0.0-rc-6f23540c7d-20240528
+        specifier: 19.0.0-rc-6d3110b4d9-20240531
+        version: 19.0.0-rc-6d3110b4d9-20240531
     devDependencies:
       '@babel/cli':
         specifier: 7.24.6
@@ -236,8 +236,8 @@ importers:
         specifier: 48.2.1
         version: 48.2.1
       react:
-        specifier: 19.0.0-rc-6f23540c7d-20240528
-        version: 19.0.0-rc-6f23540c7d-20240528
+        specifier: 19.0.0-rc-6d3110b4d9-20240531
+        version: 19.0.0-rc-6d3110b4d9-20240531
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -3430,16 +3430,16 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
-  react-dom@19.0.0-rc-6f23540c7d-20240528:
-    resolution: {integrity: sha512-TPZ7f0MYH/y51jHuPx0UdMH+WdZ7xX1UOcydOZWpjbjs2GXSgJFV2ilIm7FUSinHB6DSoGFVxhPqm1sa63IkbA==}
+  react-dom@19.0.0-rc-6d3110b4d9-20240531:
+    resolution: {integrity: sha512-+dPxMs8RKrvt+rqc+yXLxjUV8D4WyrsvhlKrIm+Sfcek3t+tQfp0L9nHqiFrYnWmr2QGUijAZr18JK6GMHkYAw==}
     peerDependencies:
-      react: 19.0.0-rc-6f23540c7d-20240528
+      react: 19.0.0-rc-6d3110b4d9-20240531
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
-  react@19.0.0-rc-6f23540c7d-20240528:
-    resolution: {integrity: sha512-fo4drQwFP/R7ZJF5USwhn8YccEqOiH9C1ci5Jg7iM2+5pId8Bjcno+dDT/Cv5iYGmgwZzQIa+EwczD5IHEsmQA==}
+  react@19.0.0-rc-6d3110b4d9-20240531:
+    resolution: {integrity: sha512-PeNhsJDvPc12kjbohywr1Mgl3J53LzbUTTpE5A5uqQxlA/ZcXs2ErZvBndiYBT3jqqgnqCcGIdvvZ8A0r0FsAQ==}
     engines: {node: '>=0.10.0'}
 
   read-cache@1.0.0:
@@ -3605,8 +3605,8 @@ packages:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
 
-  scheduler@0.25.0-rc-6f23540c7d-20240528:
-    resolution: {integrity: sha512-5V2Aa+F16Qe+kT1zjwxPzBRoF6/xjw+LU9L2c1j2Dzw2GTiLEV8DxG3RAkRN8Lm5jlqbyK9ivRH3GGtipy+a6Q==}
+  scheduler@0.25.0-rc-6d3110b4d9-20240531:
+    resolution: {integrity: sha512-DQp/XrKAuIFX153kxp1yVa8dLuGRcm/z8RAGLLEv97iEMrFlwyOXx+AIvPk3jLrX1Y68oDyNBfXh3Su7LDGcOg==}
 
   semver-diff@4.0.0:
     resolution: {integrity: sha512-0Ju4+6A8iOnpL/Thra7dZsSlOHYAHIeMxfhWQRI1/VLcT3WDBZKKtQt/QkBOsiIN9ZpuvHE6cGZ0x4glCMmfiA==}
@@ -7644,14 +7644,14 @@ snapshots:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
 
-  react-dom@19.0.0-rc-6f23540c7d-20240528(react@19.0.0-rc-6f23540c7d-20240528):
+  react-dom@19.0.0-rc-6d3110b4d9-20240531(react@19.0.0-rc-6d3110b4d9-20240531):
     dependencies:
-      react: 19.0.0-rc-6f23540c7d-20240528
-      scheduler: 0.25.0-rc-6f23540c7d-20240528
+      react: 19.0.0-rc-6d3110b4d9-20240531
+      scheduler: 0.25.0-rc-6d3110b4d9-20240531
 
   react-is@16.13.1: {}
 
-  react@19.0.0-rc-6f23540c7d-20240528: {}
+  react@19.0.0-rc-6d3110b4d9-20240531: {}
 
   read-cache@1.0.0:
     dependencies:
@@ -7847,7 +7847,7 @@ snapshots:
     dependencies:
       xmlchars: 2.2.0
 
-  scheduler@0.25.0-rc-6f23540c7d-20240528: {}
+  scheduler@0.25.0-rc-6d3110b4d9-20240531: {}
 
   semver-diff@4.0.0:
     dependencies:
