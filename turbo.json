@@ -13,7 +13,8 @@
             "inputs": [
                 // @prettier-ignore
                 "src/**/*",
-                "__dist/**/*"
+                "__dist/**/*",
+                "ava.config.js"
             ]
         },
         "//#eslint": {
