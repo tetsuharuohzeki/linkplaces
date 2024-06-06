@@ -10,7 +10,10 @@
 
         "composite": true,
         "declaration": true,
-        "isolatedDeclarations": true,
+
+        // FIXME: We'd like to enable this.
+        // This still has not supported yet `[Symbol.iterator]`.
+        // "isolatedDeclarations": true,
 
         "noEmit": false,
         // This is not required for project reference's minimum set.
