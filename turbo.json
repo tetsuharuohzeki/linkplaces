@@ -1,10 +1,10 @@
 {
     "$schema": "https://turbo.build/schema.json",
-    "pipeline": {
+    "tasks": {
         "clean": {
             "cache": false
         },
-        // See https://turbo.build/messages/missing-root-task-in-turbo-json
+        // See https://turbo.build/repo/docs/messages/missing-root-task-in-turbo-json
         "//#build": {
             "cache": false
         },
@@ -20,7 +20,7 @@
             "inputs": [
                 // Include all files in this repo to avoid unlimited tweaking.
                 // It's better for us even if it do just only skip null build
-                // See https://turbo.build/repo/docs/core-concepts/caching/file-inputs
+                // See https://turbo.build/repo/docs/crafting-your-repository/caching#task-inputs
                 "$TURBO_DEFAULT$"
             ]
         }
