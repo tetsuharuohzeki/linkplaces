@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "clean": "make clean -j",
-        "test": "make test"
+        "test": "ava"
     },
     "repository": {
         "type": "git",
