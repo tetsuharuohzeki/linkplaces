@@ -35,10 +35,7 @@
         "react-dom": "19.0.0-rc.0"
     },
     "devDependencies": {
-        "@ava/typescript": "^5.0.0",
-        "@linkplaces/tools": "workspace:*",
-        "ava": "^6.1.3",
-        "tinyspy": "^3.0.0"
+        "@linkplaces/tools": "workspace:*"
     },
     "scripts": {
         "clean": "node tools/clean.js",
