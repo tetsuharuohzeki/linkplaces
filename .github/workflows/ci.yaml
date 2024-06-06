@@ -81,7 +81,6 @@ jobs:
             - uses: actions/checkout@v4
             - uses: ./.github/actions/setup_ci
             - name: Run unittests
-              run: make unittest -j
-              working-directory: ./packages/linkplaces
+              run: make test -j
               env:
                   CI: true

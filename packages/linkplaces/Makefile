@@ -110,15 +110,3 @@ __plain_js: clean_plain
 
 __plain_ts: clean_plain
 	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)
-
-
-####################################
-# Test
-####################################
-test: unittest ## Run all tests command (This is not for CI).
-
-unittest: __obj ## Run unit tests
-	$(MAKE) run_ava
-
-run_ava: ## Only run unit tests
-	$(NPM_BIN_DIR)/ava --config $(CURDIR)/ava.config.cjs
