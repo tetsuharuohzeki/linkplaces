@@ -41,12 +41,12 @@ clean_webext_artifacts:
 ####################################
 # Build
 ####################################
-.PHONY: build_development
-build_development: clean ## Run `make build` with `RELEASE_CHANNEL=development`
+.PHONY: build_debug
+build_debug: clean ## Run `make build` with `RELEASE_CHANNEL=development`
 	$(MAKE) $@ -C $(PKG_MAIN)
 
-.PHONY: build_production
-build_production: clean ## Run `make build` with `RELEASE_CHANNEL=production`
+.PHONY: build_release
+build_release: clean ## Run `make build` with `RELEASE_CHANNEL=production`
 	$(MAKE) $@ -C $(PKG_MAIN)
 
 __webext_xpi: clean_webext_artifacts
