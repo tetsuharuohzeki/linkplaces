@@ -41,7 +41,7 @@
         "@rollup/plugin-node-resolve": "15.2.3",
         "@rollup/plugin-replace": "5.0.7",
         "@rollup/plugin-swc": "^0.3.1",
-        "@swc/core": "^1.6.3",
+        "@swc/core": "^1.6.5",
         "esbuild": "0.21.5",
         "jsdom": "24.1.0",
         "postcss": "8.4.38",
