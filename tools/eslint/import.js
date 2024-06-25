@@ -34,6 +34,14 @@ const projectSpecificRules = Object.freeze({
             ],
         },
     ],
+
+    // These are crash with ESLint v9
+    'import/no-named-as-default': 'off',
+    'import/no-named-as-default-member': 'off',
+    'import/no-amd': 'off',
+    'import/no-mutable-exports': 'off',
+    'import/namespace': 'off',
+    'import/no-deprecated': 'off',
 });
 
 const ruleset = Object.freeze({
