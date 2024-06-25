@@ -1,6 +1,6 @@
 import importPlugin from 'eslint-plugin-import';
 
-import { possibleErrors, helpfulWarnings, moduleSystems, styleguide } from './vendor/import.cjs';
+import { possibleErrors, helpfulWarnings, moduleSystems, styleguide } from './vendor/import.js';
 
 const plugins = {
     import: importPlugin,
@@ -49,7 +49,15 @@ const projectSpecificRules = Object.freeze({
     'import/no-deprecated': 'off',
 });
 
-const rules = Object.freeze({
+const rulesForCJS = Object.freeze({
+    ...possibleErrors,
+    ...helpfulWarnings,
+    ...moduleSystems,
+    ...styleguide,
+    ...projectSpecificRules,
+});
+
+const rulesForESM = Object.freeze({
     ...possibleErrors,
     ...helpfulWarnings,
     ...moduleSystems,
@@ -64,7 +72,7 @@ const rules = Object.freeze({
 export const configForJavaScriptCJS = Object.freeze({
     plugins,
     rules: {
-        ...rules,
+        ...rulesForCJS,
     },
     settings,
 });
@@ -75,7 +83,7 @@ export const configForJavaScriptCJS = Object.freeze({
 export const configForJavaScriptESM = Object.freeze({
     plugins,
     rules: {
-        ...rules,
+        ...rulesForESM,
     },
     settings: {
         ...settings,
@@ -95,7 +103,7 @@ export const configForJavaScriptESM = Object.freeze({
 export const configForTypeScript = Object.freeze({
     plugins,
     rules: {
-        ...rules,
+        ...rulesForESM,
 
         // Use TypeScript's checking instead.
         'import/no-unresolved': 'off',

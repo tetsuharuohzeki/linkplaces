@@ -1,7 +1,5 @@
 // copied from https://github.com/cats-oss/eslint-config-abema/blob/72a943d6271704c5e87cf22d803f409a735398b7/config/eslintrc_import.js
 
-'use strict';
-
 /**
  *  This rule set is assumed on that we use some module bundlers like webpack or rollup.
  *  For the future, we will have to change some points to use ES Modules natively on browsers
@@ -9,7 +7,7 @@
  */
 
 /* eslint sort-keys: 'error' */
-const possibleErrors = {
+export const possibleErrors = Object.freeze({
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/default.md
     'import/default': 'error',
 
@@ -80,9 +78,9 @@ const possibleErrors = {
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md
     'import/no-webpack-loader-syntax': 'error',
-};
+});
 
-const helpfulWarnings = {
+export const helpfulWarnings = Object.freeze({
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/export.md
     'import/export': 'warn',
 
@@ -111,9 +109,9 @@ const helpfulWarnings = {
     // This feature is useful for refactoring/clean up.
     // Then it might be better to enable this.
     'import/no-unused-modules': 'off',
-};
+});
 
-const moduleSystems = {
+export const moduleSystems = Object.freeze({
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-amd.md
     // We don't think about amd.
     'import/no-amd': 'error',
@@ -131,9 +129,9 @@ const moduleSystems = {
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/unambiguous.md
     // These are useful for pure ES Module project.
     'import/unambiguous': 'off',
-};
+});
 
-const styleguide = {
+export const styleguide = Object.freeze({
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/dynamic-import-chunkname.md
     // If we used webpack, this rule would be useful.
     'import/dynamic-import-chunkname': 'off',
@@ -202,14 +200,4 @@ const styleguide = {
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md
     // default export is hard to find a usage of symbols.
     'import/prefer-default-export': 'off',
-};
-/* eslint-disable sort-keys */
-
-module.exports = {
-    // eslint-plugin-import
-    // https://github.com/benmosher/eslint-plugin-import
-    possibleErrors,
-    helpfulWarnings,
-    moduleSystems,
-    styleguide,
-};
+});
