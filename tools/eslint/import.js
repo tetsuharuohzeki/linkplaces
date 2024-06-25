@@ -1,15 +1,20 @@
-import assert from 'node:assert/strict';
 import importPlugin from 'eslint-plugin-import';
 
-import importPresets from './vendor/import.cjs';
-
-const importPresetsRules = importPresets.rules;
-assert(importPresetsRules);
-const importPresetsSettings = importPresets.settings;
-assert(importPresetsSettings);
+import { possibleErrors, helpfulWarnings, moduleSystems, styleguide } from './vendor/import.cjs';
 
 const plugins = {
     import: importPlugin,
+};
+
+const settings = {
+    'import/resolver': {
+        node: {
+            extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx'],
+        },
+    },
+
+    // By default, this option does not include `.jsx` extension.
+    'import/extensions': ['.mjs', '.js', '.jsx'],
 };
 
 const rulesForESModule = Object.freeze({
@@ -44,8 +49,11 @@ const projectSpecificRules = Object.freeze({
     'import/no-deprecated': 'off',
 });
 
-const ruleset = Object.freeze({
-    ...importPresetsRules,
+const rules = Object.freeze({
+    ...possibleErrors,
+    ...helpfulWarnings,
+    ...moduleSystems,
+    ...styleguide,
     ...rulesForESModule,
     ...projectSpecificRules,
 });
@@ -53,13 +61,24 @@ const ruleset = Object.freeze({
 /**
  *  @type   {import('eslint').Linter.FlatConfig}
  */
-export const configForJavaScript = Object.freeze({
+export const configForJavaScriptCJS = Object.freeze({
     plugins,
     rules: {
-        ...ruleset,
+        ...rules,
+    },
+    settings,
+});
+
+/**
+ *  @type   {import('eslint').Linter.FlatConfig}
+ */
+export const configForJavaScriptESM = Object.freeze({
+    plugins,
+    rules: {
+        ...rules,
     },
     settings: {
-        ...importPresetsSettings,
+        ...settings,
         // We need this to avoid the error:
         //  ```
         //  Parse errors in imported module '......': parserPath or languageOptions.parser is required! (undefined:undefined)
@@ -76,13 +95,13 @@ export const configForJavaScript = Object.freeze({
 export const configForTypeScript = Object.freeze({
     plugins,
     rules: {
-        ...ruleset,
+        ...rules,
 
         // Use TypeScript's checking instead.
         'import/no-unresolved': 'off',
     },
     settings: {
-        ...importPresetsSettings,
+        ...settings,
         'import/parsers': {
             '@typescript-eslint/parser': [
                 ...['.ts', '.tsx', '.mts', '.cts'],

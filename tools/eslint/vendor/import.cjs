@@ -206,41 +206,10 @@ const styleguide = {
 /* eslint-disable sort-keys */
 
 module.exports = {
-    plugins: ['import'],
-
-    settings: {
-        'import/resolver': {
-            node: {
-                extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx'],
-            },
-        },
-
-        // By default, this option does not include `.jsx` extension.
-        'import/extensions': ['.mjs', '.js', '.jsx'],
-    },
-
     // eslint-plugin-import
     // https://github.com/benmosher/eslint-plugin-import
-    rules: {
-        ...possibleErrors,
-        ...helpfulWarnings,
-        ...moduleSystems,
-        ...styleguide,
-    },
-
-    overrides: [
-        {
-            files: ['*.mjs'],
-            rules: {
-                // See https://nodejs.org/dist/latest-v13.x/docs/api/esm.html
-                'import/extensions': [
-                    'error',
-                    'always',
-                    {
-                        ignorePackages: true,
-                    },
-                ],
-            },
-        },
-    ],
+    possibleErrors,
+    helpfulWarnings,
+    moduleSystems,
+    styleguide,
 };

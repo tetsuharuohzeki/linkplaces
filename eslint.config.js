@@ -61,11 +61,11 @@ export default [
     // eslint-plugin-import
     {
         files: FILE_PATTERN_JS_ESM,
-        ...importConfig.configForJavaScript,
+        ...importConfig.configForJavaScriptESM,
     },
     {
         files: FILE_PATTERN_JS_CJS,
-        ...importConfig.configForJavaScript,
+        ...importConfig.configForJavaScriptCJS,
     },
     {
         files: FILE_PATTERN_TS,
