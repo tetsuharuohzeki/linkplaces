@@ -1,4 +1,4 @@
-import importPlugin from 'eslint-plugin-import';
+import importPlugin from 'eslint-plugin-import-x';
 
 import { possibleErrors, helpfulWarnings, moduleSystems, styleguide } from './vendor/import.js';
 
@@ -7,14 +7,14 @@ const plugins = {
 };
 
 const settings = {
-    'import/resolver': {
+    'import-x/resolver': {
         node: {
             extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx'],
         },
     },
 
     // By default, this option does not include `.jsx` extension.
-    'import/extensions': ['.mjs', '.js', '.jsx'],
+    'import-x/extensions': ['.mjs', '.js', '.jsx'],
 };
 
 const rulesForESModule = Object.freeze({
@@ -39,14 +39,6 @@ const projectSpecificRules = Object.freeze({
             ],
         },
     ],
-
-    // These are crash with ESLint v9
-    'import/no-named-as-default': 'off',
-    'import/no-named-as-default-member': 'off',
-    'import/no-amd': 'off',
-    'import/no-mutable-exports': 'off',
-    'import/namespace': 'off',
-    'import/no-deprecated': 'off',
 });
 
 const rulesForCJS = Object.freeze({
@@ -91,7 +83,7 @@ export const configForJavaScriptESM = Object.freeze({
         //  ```
         //  Parse errors in imported module '......': parserPath or languageOptions.parser is required! (undefined:undefined)
         //  ```
-        'import/parsers': {
+        'import-x/parsers': {
             '@typescript-eslint/parser': [...['.js', '.mjs', '.cjs']],
         },
     },
@@ -110,7 +102,7 @@ export const configForTypeScript = Object.freeze({
     },
     settings: {
         ...settings,
-        'import/parsers': {
+        'import-x/parsers': {
             '@typescript-eslint/parser': [
                 ...['.ts', '.tsx', '.mts', '.cts'],
                 // We need to specify this due to avoid `Parse errors in imported module '....': parserPath is required!`
