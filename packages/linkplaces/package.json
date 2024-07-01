@@ -42,7 +42,7 @@
         "@rollup/plugin-replace": "5.0.7",
         "@rollup/plugin-swc": "^0.3.1",
         "@swc/core": "^1.6.5",
-        "esbuild": "0.21.5",
+        "esbuild": "0.22.0",
         "jsdom": "24.1.0",
         "postcss": "8.4.38",
         "postcss-import": "16.1.0",
