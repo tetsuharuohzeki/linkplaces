@@ -26,7 +26,7 @@
         "eslint": "^9.6.0",
         "eslint-config-prettier": "9.1.0",
         "eslint-plugin-import-x": "^0.5.3",
-        "eslint-plugin-react": "7.34.3",
+        "eslint-plugin-react": "7.34.4",
         "eslint-plugin-react-compiler": "0.0.0-experimental-0998c1e-20240625",
         "eslint-plugin-react-hooks": "4.6.2",
         "globals": "^15.8.0",
