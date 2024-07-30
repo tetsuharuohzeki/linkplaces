@@ -16,6 +16,9 @@ assert(tsESLintPluginConfigRecommended);
 const tsGlobals = Object.freeze({});
 
 const rules = Object.freeze({
+    // See https://eslint.org/docs/latest/rules/no-undef
+    'no-undef': 'off',
+
     // See https://typescript-eslint.io/blog/consistent-type-imports-and-exports-why-and-how/
     '@typescript-eslint/consistent-type-imports': [
         'warn',
