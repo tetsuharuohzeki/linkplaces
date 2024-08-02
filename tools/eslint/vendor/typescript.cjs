@@ -36,9 +36,6 @@ module.exports = {
             },
         ],
 
-        // We cannot define this. User project should enable this.
-        '@typescript-eslint/ban-types': 'off',
-
         // Uniform the style.
         '@typescript-eslint/consistent-type-assertions': [
             'warn',
@@ -331,9 +328,6 @@ module.exports = {
             },
         ],
 
-        // Should throw only Error or derived classes.
-        '@typescript-eslint/no-throw-literal': 'error',
-
         // Disabling this does not make sense completely.
         '@typescript-eslint/no-type-alias': 'off',
 
@@ -402,11 +396,6 @@ module.exports = {
 
         // We should sort with builtin rule.
         '@typescript-eslint/no-useless-constructor': 'off',
-
-        // Basically, we would not use `require()` and ban its style with @typescript-eslint/no-require-imports.
-        // Thus it's emergency case if user disable its rule explicitly and we hasitate to stop it
-        // because then user would know what they are doing.
-        '@typescript-eslint/no-var-requires': 'off',
 
         // I think this rule should be enabled.
         '@typescript-eslint/prefer-as-const': 'warn',

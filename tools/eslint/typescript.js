@@ -1,5 +1,4 @@
 import assert from 'node:assert/strict';
-import * as path from 'node:path';
 
 import tsESLintPlugin from '@typescript-eslint/eslint-plugin';
 import tsESLintParser from '@typescript-eslint/parser';
@@ -31,7 +30,7 @@ const rules = Object.freeze({
     '@typescript-eslint/no-import-type-side-effects': 'error',
 
     // Sugget more simplified code.
-    '@typescript-eslint/no-useless-template-literals': 'warn',
+    '@typescript-eslint/no-unnecessary-template-expression': 'warn',
 
     // In JavaScript, after ES Module or CommonJS era (single module per single file),
     // excluding the case to improve an API ergonomics or requirement to implement an object interface,
@@ -60,6 +59,20 @@ const rules = Object.freeze({
             ignoreClassesThatImplementAnInterface: 'public-fields',
         },
     ],
+
+    // We would like to allow to create a new derived interface for future extension.
+    '@typescript-eslint/no-empty-object-type': 'off',
+
+    '@typescript-eslint/no-restricted-types': 'error',
+
+    // We would like to allow an arbitary function type
+    '@typescript-eslint/no-unsafe-function-type': 'warn',
+
+    '@typescript-eslint/no-wrapper-object-types': 'error',
+
+    // Should throw only Error or derived classes.
+    'no-throw-literal': 'off',
+    '@typescript-eslint/only-throw-error': 'error',
 
     // This TypeScript syntax is useful to reduce declarations of class properties.
     // However, we feel this syntax has these negative points:
@@ -109,11 +122,10 @@ export function createlanguageOptionsForTypeScript(baseDir) {
         parser: tsESLintParser,
         parserOptions: {
             tsconfigRootDir: baseDir,
-            project: [
-                // @prettier-ignore
-                path.resolve(baseDir, './tsconfig.eslint.json'),
-                path.resolve(baseDir, './packages/*/tsconfig.json'),
-            ],
+            projectService: {
+                allowDefaultProject: ['./*.js'],
+                defaultProject: './tsconfig.json',
+            },
             ecmaFeatures: {
                 jsx: true,
             },
