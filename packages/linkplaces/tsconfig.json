@@ -2,8 +2,8 @@
     "extends": "../../tsconfig.base.project_reference.json",
     "compilerOptions": {
         // This is duplicated with Makefile
-        "outDir": "./__plain/src",
-        "rootDir": "./src"
+        "outDir": "${configDir}/__plain/src",
+        "rootDir": "${configDir}/src"
     },
     "include": [
         "./src/**/*"

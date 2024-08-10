@@ -4,8 +4,8 @@
         // Disallow to touch any DOM object.
         "lib": [],
 
-        "outDir": "./__dist",
-        "rootDir": "./src"
+        "outDir": "${configDir}/__dist",
+        "rootDir": "${configDir}/src"
     },
     "include": [
         // @prettier-ignore
