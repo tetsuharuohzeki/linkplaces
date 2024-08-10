@@ -10,7 +10,7 @@ class MapIterable<const TInput, const out TOutput> extends IterableX<TInput, TOu
         this._transformer = transformer;
     }
 
-    [Symbol.iterator](): Iterator<TOutput> {
+    [Symbol.iterator](): BuiltinIterator<TOutput> {
         const iter = generateMapIterator(this._source, this._transformer);
         return iter;
     }
@@ -19,7 +19,7 @@ class MapIterable<const TInput, const out TOutput> extends IterableX<TInput, TOu
 function* generateMapIterator<const TInput, const TOutput>(
     iter: Iterable<TInput>,
     transformer: TransformFn<TInput, TOutput>
-): Iterator<TOutput> {
+): BuiltinIterator<TOutput> {
     for (const item of iter) {
         const result = transformer(item);
         yield result;

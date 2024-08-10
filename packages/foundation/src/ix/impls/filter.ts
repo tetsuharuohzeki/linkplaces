@@ -10,13 +10,13 @@ class FilterIterable<const in out T> extends IterableX<T> {
         this._filter = filter;
     }
 
-    [Symbol.iterator](): Iterator<T> {
+    [Symbol.iterator](): BuiltinIterator<T> {
         const iter = generateFilterIterator(this._source, this._filter);
         return iter;
     }
 }
 
-function* generateFilterIterator<const T>(iter: Iterable<T>, filter: FilterFn<T>): Iterator<T> {
+function* generateFilterIterator<const T>(iter: Iterable<T>, filter: FilterFn<T>): BuiltinIterator<T> {
     for (const item of iter) {
         const ok: boolean = filter(item);
         if (!ok) {

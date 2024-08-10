@@ -14,14 +14,14 @@ class ZipIterable<TTuple extends ReadonlyArray<unknown>> implements Iterable<TTu
         this._sources = sources;
     }
 
-    [Symbol.iterator](): Iterator<TTuple> {
+    [Symbol.iterator](): BuiltinIterator<TTuple> {
         const sources = this._sources;
         const iter = iterateAsZip(sources);
         return iter;
     }
 }
 
-function* iterateAsZip<TTuple extends ReadonlyArray<unknown>>(sources: VariadicSource<TTuple>): Iterator<TTuple> {
+function* iterateAsZip<TTuple extends ReadonlyArray<unknown>>(sources: VariadicSource<TTuple>): BuiltinIterator<TTuple> {
     const sourcesLength = sources.length;
     const iterators = sources.map(getIterator);
     // eslint-disable-next-line no-unmodified-loop-condition
