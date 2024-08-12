@@ -22,7 +22,7 @@ class AsyncFilterMapIterable<const in out TInput, const in out TOutput, const in
         this._nullComparator = noneValComparator;
     }
 
-    [Symbol.asyncIterator](): BuiltinAsyncIterator<TOutput> {
+    [Symbol.asyncIterator](): AsyncIteratorObject<TOutput> {
         const iter = generateFilterMapIterator(this._source, this._filterMap, this._nullComparator);
         return iter;
     }
@@ -32,7 +32,7 @@ async function* generateFilterMapIterator<const TInput, const TOutput, const TNo
     iter: AsyncIterable<TInput>,
     transformer: AsyncFilterMapFn<TInput, TOutput, TNone>,
     noneValComparator: NoneValComparatorFn<TOutput, TNone>
-): BuiltinAsyncIterator<TOutput> {
+): AsyncGenerator<TOutput> {
     for await (const item of iter) {
         const result: TOutput | TNone = await transformer(item);
         if (noneValComparator(result)) {

@@ -21,7 +21,7 @@ class FilterMapIterable<const in out TInput, const in out TOutput, const in out 
         this._nullComparator = noneValComparator;
     }
 
-    [Symbol.iterator](): BuiltinIterator<TOutput> {
+    [Symbol.iterator](): IteratorObject<TOutput> {
         const iter = generateFilterMapIterator(this._source, this._filterMap, this._nullComparator);
         return iter;
     }
@@ -31,7 +31,7 @@ function* generateFilterMapIterator<const TInput, const TOutput, const TNone>(
     iter: Iterable<TInput>,
     transformer: FilterMapFn<TInput, TOutput, TNone>,
     noneValComparator: NoneValComparatorFn<TOutput, TNone>
-): BuiltinIterator<TOutput> {
+): Generator<TOutput> {
     for (const item of iter) {
         const result: TOutput | TNone = transformer(item);
         if (noneValComparator(result)) {

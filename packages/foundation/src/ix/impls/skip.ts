@@ -8,13 +8,13 @@ class SkipIterable<const in out T> extends IterableX<T, T> {
         this._count = count;
     }
 
-    [Symbol.iterator](): BuiltinIterator<T> {
+    [Symbol.iterator](): IteratorObject<T> {
         const iter = generateSkipIterator(this._source, this._count);
         return iter;
     }
 }
 
-function* generateSkipIterator<const T>(iter: Iterable<T>, count: number): BuiltinIterator<T> {
+function* generateSkipIterator<const T>(iter: Iterable<T>, count: number): Generator<T> {
     let i = 0;
     for (const item of iter) {
         i += 1;

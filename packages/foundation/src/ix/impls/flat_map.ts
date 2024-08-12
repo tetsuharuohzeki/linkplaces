@@ -10,7 +10,7 @@ class FlatMapIterable<const TInput, const out TOutput> extends IterableX<TInput,
         this._transformer = transformer;
     }
 
-    [Symbol.iterator](): BuiltinIterator<TOutput> {
+    [Symbol.iterator](): IteratorObject<TOutput> {
         const iter = generateFlatMapIterator(this._source, this._transformer);
         return iter;
     }
@@ -19,7 +19,7 @@ class FlatMapIterable<const TInput, const out TOutput> extends IterableX<TInput,
 function* generateFlatMapIterator<const TInput, const TOutput>(
     iter: Iterable<TInput>,
     transformer: FlatMapTransformFn<TInput, TOutput>
-): BuiltinIterator<TOutput> {
+): Generator<TOutput> {
     for (const item of iter) {
         const result = transformer(item);
         yield* result;

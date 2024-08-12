@@ -10,7 +10,7 @@ class MapAsyncIterable<const TInput, const out TOutput> extends AsyncIterableX<T
         this._transformer = transformer;
     }
 
-    [Symbol.asyncIterator](): BuiltinAsyncIterator<TOutput> {
+    [Symbol.asyncIterator](): AsyncIteratorObject<TOutput> {
         const iter = generateMapAsyncIterator(this._source, this._transformer);
         return iter;
     }
@@ -19,7 +19,7 @@ class MapAsyncIterable<const TInput, const out TOutput> extends AsyncIterableX<T
 async function* generateMapAsyncIterator<const TInput, const TOutput>(
     iter: AsyncIterable<TInput>,
     transform: AsyncTransformFn<TInput, TOutput>
-): BuiltinAsyncIterator<TOutput> {
+): AsyncGenerator<TOutput> {
     for await (const item of iter) {
         const result: TOutput = await transform(item);
         yield result;

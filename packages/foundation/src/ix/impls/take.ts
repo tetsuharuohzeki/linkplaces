@@ -8,13 +8,13 @@ class TakeIterable<const in out T> extends IterableX<T, T> {
         this._count = count;
     }
 
-    [Symbol.iterator](): BuiltinIterator<T> {
+    [Symbol.iterator](): IteratorObject<T> {
         const iter = generateTakeIterator(this._source, this._count);
         return iter;
     }
 }
 
-function* generateTakeIterator<const T>(iter: Iterable<T>, count: number): BuiltinIterator<T> {
+function* generateTakeIterator<const T>(iter: Iterable<T>, count: number): Generator<T> {
     let i = count;
     for (const item of iter) {
         i -= 1;
