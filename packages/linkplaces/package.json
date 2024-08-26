@@ -43,7 +43,7 @@
         "@rollup/plugin-swc": "^0.3.1",
         "@swc/core": "^1.7.18",
         "esbuild": "0.23.1",
-        "jsdom": "24.1.1",
+        "jsdom": "25.0.0",
         "postcss": "8.4.41",
         "postcss-import": "16.1.0",
         "rollup": "4.21.0"
