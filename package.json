@@ -33,7 +33,7 @@
         "prettier": "3.3.3",
         "stylelint": "^16.9.0",
         "stylelint-config-standard": "^36.0.1",
-        "tinyspy": "^3.0.0",
+        "tinyspy": "^3.0.2",
         "turbo": "^2.1.0",
         "typescript": "5.6.1-rc",
         "web-ext": "8.2.0"
