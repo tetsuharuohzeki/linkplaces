@@ -22,7 +22,7 @@
     },
     "dependencies": {
         "@linkplaces/webext_types": "workspace:*",
-        "option-t": "49.1.0",
+        "option-t": "49.2.0",
         "react": "19.0.0-rc-5dcb0097-20240918"
     },
     "devDependencies": {
