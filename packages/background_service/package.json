@@ -13,7 +13,7 @@
         "@linkplaces/ipc_message": "workspace:*",
         "@linkplaces/shared": "workspace:*",
         "@linkplaces/webext_types": "workspace:*",
-        "option-t": "49.1.0"
+        "option-t": "49.2.0"
     },
     "devDependencies": {
         "@linkplaces/tools": "workspace:*"
