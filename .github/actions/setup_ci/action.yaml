@@ -15,14 +15,13 @@ runs:
           id: npm-cache-dir
           shell: bash
           run: echo "dir=$(pnpm store path)" >> $GITHUB_OUTPUT
-        - name: cache dependencies
-          uses: actions/cache@v4
+        - name: Restore dependency caches
+          uses: actions/cache/restore@v4
           id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
           with:
               path: ${{ steps.npm-cache-dir.outputs.dir }}
+              # We use an exact match to avoid to store unnecessary dependencies in the later step.
               key: build-v1-${{ runner.os }}-node-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-              restore-keys: |
-                  build-v1-${{ runner.os }}-node-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
         - name: install dependencies
           shell: bash
           # We only cache `npm config get cache`, not including `node_modules/`.
@@ -30,3 +29,12 @@ runs:
           # if: steps.npm-cache.outputs.cache-hit != 'true''
           run: |
               make install
+        - name: Save dependency caches
+          uses: actions/cache/save@v4
+          # We run this step only on _trunk_ to aim to improve cache hit.
+          # For example, dependabot's pull request sometimes shoot down a cache hit ratio by conflicting a lock file.
+          # Then we cannot reuse cache ideally. So we gave up to save the cache on each of pull requests.
+          if: github.ref == 'refs/heads/main'
+          with:
+              path: ${{ steps.npm-cache-dir.outputs.dir }}
+              key: build-v1-${{ runner.os }}-node-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
