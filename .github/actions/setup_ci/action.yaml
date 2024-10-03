@@ -31,9 +31,12 @@ runs:
               make install
         - name: Save dependency caches
           uses: actions/cache/save@v4
-          # We run this step only on _trunk_ to aim to improve cache hit.
-          # For example, dependabot's pull request sometimes shoot down a cache hit ratio by conflicting a lock file.
-          # Then we cannot reuse cache ideally. So we gave up to save the cache on each of pull requests.
+          # We run this step only on _trunk_ to aim to improve a cache hit.
+          # For example, dependabot's pull requests sometimes shoot down a cache hit ratio
+          # by changing a lock file with multiple variants.
+          # Then we cannot reuse cache ideally because the lockfile is changed high frequently under such situation.
+          # Cache utilization is down.
+          # So we give up to save the cache on each of pull requests.
           if: github.ref == 'refs/heads/main'
           with:
               path: ${{ steps.npm-cache-dir.outputs.dir }}
