@@ -37,7 +37,7 @@ runs:
           # Then we cannot reuse cache ideally because the lockfile is changed high frequently under such situation.
           # Cache utilization is down.
           # So we give up to save the cache on each of pull requests.
-          if: github.ref == 'refs/heads/main'
+          if: ${{ (steps.npm-cache.outputs.cache-hit != 'true') && (github.ref == 'refs/heads/main') }}
           with:
               path: ${{ steps.npm-cache-dir.outputs.dir }}
               key: build-v1-${{ runner.os }}-node-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
