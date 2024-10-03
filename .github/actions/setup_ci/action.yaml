@@ -7,21 +7,30 @@ runs:
         - uses: actions/setup-node@v4
           with:
               node-version: 22.x
+
         - name: Setup corepack
           shell: bash
           run: |
               make setup_corepack
+
         - name: Get package manager's cache directory
           id: npm-cache-dir
           shell: bash
           run: echo "dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+        - name: Get cache unique key
+          id: npm-cache-key
+          shell: bash
+          run: echo "id=${{ hashFiles('**/pnpm-lock.yaml') }}" >> $GITHUB_OUTPUT
+
         - name: Restore dependency caches
           uses: actions/cache/restore@v4
           id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
           with:
               path: ${{ steps.npm-cache-dir.outputs.dir }}
               # We use an exact match to avoid to store unnecessary dependencies in the later step.
-              key: build-v1-${{ runner.os }}-node-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+              key: build-v1-${{ runner.os }}-node-pnpm-${{ steps.npm-cache-key.outputs.id }}
+
         - name: install dependencies
           shell: bash
           # We only cache `npm config get cache`, not including `node_modules/`.
@@ -29,6 +38,7 @@ runs:
           # if: steps.npm-cache.outputs.cache-hit != 'true''
           run: |
               make install
+
         - name: Save dependency caches
           uses: actions/cache/save@v4
           # We run this step only on _trunk_ to aim to improve a cache hit.
@@ -40,4 +50,4 @@ runs:
           if: ${{ (steps.npm-cache.outputs.cache-hit != 'true') && (github.ref == 'refs/heads/main') }}
           with:
               path: ${{ steps.npm-cache-dir.outputs.dir }}
-              key: build-v1-${{ runner.os }}-node-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+              key: build-v1-${{ runner.os }}-node-pnpm-${{ steps.npm-cache-key.outputs.id }}
