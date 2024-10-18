@@ -70,8 +70,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0(eslint@9.12.0)
       eslint-plugin-turbo:
-        specifier: ^2.1.3
-        version: 2.1.3(eslint@9.12.0)
+        specifier: ^2.2.0
+        version: 2.2.0(eslint@9.12.0)
       globals:
         specifier: ^15.11.0
         version: 15.11.0
@@ -1934,8 +1934,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
 
-  eslint-plugin-turbo@2.1.3:
-    resolution: {integrity: sha512-I9vPArzyOSYa6bm0iMCgD07MgdExc1VK2wGuVz21g4BUdj83w7mDKyCXR2rwOtCEW+wemFwgxanJ81imQZijNg==}
+  eslint-plugin-turbo@2.2.0:
+    resolution: {integrity: sha512-Xu99K8R6/wEVX34WreTbItyX25YYqW7VZU7/nyvKtlusHdsO6Be8IfhWIzIOgThigq4IiBsZXk/lhdcG1KzaNQ==}
     peerDependencies:
       eslint: '>6.6.0'
 
@@ -5998,7 +5998,7 @@ snapshots:
       string.prototype.matchall: 4.0.11
       string.prototype.repeat: 1.0.0
 
-  eslint-plugin-turbo@2.1.3(eslint@9.12.0):
+  eslint-plugin-turbo@2.2.0(eslint@9.12.0):
     dependencies:
       dotenv: 16.0.3
       eslint: 9.12.0
