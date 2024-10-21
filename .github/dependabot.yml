@@ -21,14 +21,6 @@ updates:
           - dependency-name: "react-dom"
             update-types:
                 ["version-update:semver-minor", "version-update:semver-patch"]
-          # Remove this ignore after return to react stable channel.
-          - dependency-name: "babel-plugin-react-compiler"
-            update-types:
-                ["version-update:semver-minor", "version-update:semver-patch"]
-          # Remove this ignore after return to react stable channel.
-          - dependency-name: "eslint-plugin-react-compiler"
-            update-types:
-                ["version-update:semver-minor", "version-update:semver-patch"]
       groups:
           ava:
               patterns:
