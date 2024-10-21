@@ -28,7 +28,7 @@
         "@linkplaces/shared": "workspace:*",
         "@linkplaces/webext_types": "workspace:*",
         "option-t": "50.0.0",
-        "react": "19.0.0-rc-5dcb0097-20240918"
+        "react": "19.0.0-rc-65a56d0e-20241020"
     },
     "devDependencies": {
         "@babel/cli": "7.25.7",
