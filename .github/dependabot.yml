@@ -45,6 +45,10 @@ updates:
               patterns:
                   - eslint
                   - "@eslint/*"
+          turborepo:
+              patterns:
+                  - turbo
+                  - eslint-plugin-turbo
           typescript-eslint:
               patterns:
                   - "@typescript-eslint/*"
