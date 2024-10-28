@@ -22,7 +22,7 @@
         "@typescript-eslint/eslint-plugin": "^8.11.0",
         "@typescript-eslint/parser": "^8.11.0",
         "ava": "^6.2.0",
-        "babel-plugin-react-compiler": "19.0.0-beta-8a03594-20241020",
+        "babel-plugin-react-compiler": "19.0.0-beta-9ee70a1-20241017",
         "eslint": "^9.13.0",
         "eslint-config-prettier": "9.1.0",
         "eslint-plugin-import-x": "^4.3.1",
