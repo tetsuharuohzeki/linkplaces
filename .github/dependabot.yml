@@ -52,6 +52,10 @@ updates:
           typescript-eslint:
               patterns:
                   - "@typescript-eslint/*"
+          react-compiler:
+              patterns:
+                  - "babel-plugin-react-compiler"
+                  - "eslint-plugin-react-compiler"
 
     - package-ecosystem: github-actions
       directories:
