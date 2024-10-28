@@ -64,8 +64,8 @@ importers:
         specifier: 7.37.2
         version: 7.37.2(eslint@9.13.0)
       eslint-plugin-react-compiler:
-        specifier: 19.0.0-beta-8a03594-20241020
-        version: 19.0.0-beta-8a03594-20241020(eslint@9.13.0)
+        specifier: 19.0.0-beta-9ee70a1-20241017
+        version: 19.0.0-beta-9ee70a1-20241017(eslint@9.13.0)
       eslint-plugin-react-hooks:
         specifier: 5.0.0
         version: 5.0.0(eslint@9.13.0)
@@ -375,11 +375,6 @@ packages:
   '@babel/highlight@7.25.9':
     resolution: {integrity: sha512-llL88JShoCsth8fF8R4SJnIn+WLvR6ccFxu1H3FlMhDontdcmZWf2HgIZ7AIqV3Xcck1idlohrN4EUBQz6klbw==}
     engines: {node: '>=6.9.0'}
-
-  '@babel/parser@7.25.8':
-    resolution: {integrity: sha512-HcttkxzdPucv3nNFmfOOMfFf64KgdJVqm1KaCm25dPGMLElo9nsLvXeJECQg8UzPuBGLyTSA0ZzqCtDSzKTEoQ==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
 
   '@babel/parser@7.25.9':
     resolution: {integrity: sha512-aI3jjAAO1fh7vY/pBGsn1i9LDbRP43+asrRlkPuTXW5yHXtd1NgTEMudbBoDDxrf1daEEfPJqR+JBMakzrR4Dg==}
@@ -1901,8 +1896,8 @@ packages:
     peerDependencies:
       eslint: ^6 || ^7 || ^8
 
-  eslint-plugin-react-compiler@19.0.0-beta-8a03594-20241020:
-    resolution: {integrity: sha512-bYg1COih1s3r14IV/AKdQs/SN7CQmNI0ZaMtPdgZ6gp1S1Q/KGP9P43w7R6dHJ4wYpuMBvekNJHQdVu+x6UM+A==}
+  eslint-plugin-react-compiler@19.0.0-beta-9ee70a1-20241017:
+    resolution: {integrity: sha512-GdJHMa9Wqfc/JPiv4WW5JjQsuSISdBo7oM/6IjRO8uxaZncDrKK/RyFqbPvgEiNFzDcX8ZZvR8dgfSGvxh2Qpw==}
     engines: {node: ^14.17.0 || ^16.0.0 || >= 18.0.0}
     peerDependencies:
       eslint: '>=7'
@@ -4307,10 +4302,6 @@ snapshots:
       js-tokens: 4.0.0
       picocolors: 1.1.1
 
-  '@babel/parser@7.25.8':
-    dependencies:
-      '@babel/types': 7.25.9
-
   '@babel/parser@7.25.9':
     dependencies:
       '@babel/types': 7.25.9
@@ -5918,10 +5909,10 @@ snapshots:
     dependencies:
       eslint: 8.57.1
 
-  eslint-plugin-react-compiler@19.0.0-beta-8a03594-20241020(eslint@9.13.0):
+  eslint-plugin-react-compiler@19.0.0-beta-9ee70a1-20241017(eslint@9.13.0):
     dependencies:
       '@babel/core': 7.25.9
-      '@babel/parser': 7.25.8
+      '@babel/parser': 7.25.9
       '@babel/plugin-proposal-private-methods': 7.18.6(@babel/core@7.25.9)
       eslint: 9.13.0
       hermes-parser: 0.20.1
