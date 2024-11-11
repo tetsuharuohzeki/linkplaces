@@ -44,7 +44,7 @@
         "@swc/core": "^1.7.40",
         "esbuild": "0.24.0",
         "jsdom": "25.0.1",
-        "postcss": "8.4.47",
+        "postcss": "8.4.48",
         "postcss-import": "16.1.0",
         "rollup": "4.24.2"
     }
