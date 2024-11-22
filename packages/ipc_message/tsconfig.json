@@ -2,7 +2,7 @@
     "extends": "../../tsconfig.base.project_reference.json",
     "compilerOptions": {
         // Disallow to touch any DOM object.
-        "lib": ["ES2024"],
+        "lib": ["es2022"],
 
         "outDir": "${configDir}/__dist",
         "rootDir": "${configDir}/src"
