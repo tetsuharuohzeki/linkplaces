@@ -5,6 +5,8 @@ import { type SidebarReduxAction, SidebarReduxActionType } from './SidebarReduxA
 import { createInitialSidebarState, type SidebarState } from './SidebarState.js';
 
 function reduceSidebarReduxState(prev: SidebarState, action: SidebarReduxAction): SidebarState {
+    // FIXME:
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     switch (action.type) {
         case SidebarReduxActionType.UpdateFromSource: {
             const state = action.state;
