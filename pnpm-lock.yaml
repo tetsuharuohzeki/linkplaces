@@ -28,8 +28,8 @@ importers:
         specifier: ^2.10.4
         version: 2.10.4
       '@reflink/reflink':
-        specifier: ^0.1.16
-        version: 0.1.16
+        specifier: ^0.1.17
+        version: 0.1.17
       '@types/node':
         specifier: 22.9.3
         version: 22.9.3
@@ -743,56 +743,50 @@ packages:
     resolution: {integrity: sha512-c83qWb22rNRuB0UaVCI0uRPNRr8Z0FWnEIvT47jiHAmOIUHbBOg5XvV7pM5x+rKn9HRpjxquDbXYSXr3fAKFcw==}
     engines: {node: '>=12'}
 
-  '@reflink/reflink-darwin-arm64@0.1.16':
-    resolution: {integrity: sha512-s61AeZ0br2LtqOl2Rbq0k833hQ00sXJ+l9LGJmjM53dupWft3HEX9C5WUIMDDiU2Scx7f7UKAE4DvIvv7XjBWQ==}
+  '@reflink/reflink-darwin-arm64@0.1.17':
+    resolution: {integrity: sha512-ATlkKHl/9wFwZNezuUfHBGR5O4OpXs5ikD+3OKNOl+CzSPUY95ZSm3DyVUaTfGM5O7rCC1N7PXv/Q73uEdy/wA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@reflink/reflink-darwin-x64@0.1.16':
-    resolution: {integrity: sha512-ssrJj3K0Euua2LAkA4ff5y693wGKUHfznrGeWWtMw2aoLZRAH+C9Ne5oQvmcPPEK6wa929nRhA0ABrvhUa9mvA==}
-    engines: {node: '>= 10'}
-    cpu: [x64]
-    os: [darwin]
-
-  '@reflink/reflink-linux-arm64-gnu@0.1.16':
-    resolution: {integrity: sha512-I4PCAcsAKFRSfOSHdz+rck6ARg4jzo4PvVqcnS2odcXy1Inbehxk3IcKBpHnuuDbXRCUoWV6NP7wSx1wG7ZBuA==}
+  '@reflink/reflink-linux-arm64-gnu@0.1.17':
+    resolution: {integrity: sha512-RTKNhBHn7rvQyqciqY5yylcsdOcxuFbTbg81fRR/b8WOTNJ6WXDQpdX0AcL38IC7VYSe4fRhqwvyEuVg/d5wbg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@reflink/reflink-linux-arm64-musl@0.1.16':
-    resolution: {integrity: sha512-xzcdtfwTXWUzN5yHdJgCdyAZSBO0faSgTqGdT4QKDxGHmiokf7+tgVBd6bU2nT4sL26AiIFyIBwp8buXGQYyaw==}
+  '@reflink/reflink-linux-arm64-musl@0.1.17':
+    resolution: {integrity: sha512-dCKQLGkDiAjlwWGZvkzeRwY51RZWPFgNx9QDJ1SKR1nGxC3/tNukyC8doG1ssFfBYTlo/YMfEk6SZXnxbbFaUg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@reflink/reflink-linux-x64-gnu@0.1.16':
-    resolution: {integrity: sha512-4/jscn1A/hx6maOowUjcvIs7YBs0fj//1vxB16TdMYk3tH9FHNmMBv5Pvw8eeRDimAzHP9fQJ9/t4dR6HCf32w==}
+  '@reflink/reflink-linux-x64-gnu@0.1.17':
+    resolution: {integrity: sha512-RIfW4D5gQCS9svw9XvKQSO368/FQSs4Yo+t2buAdgg9KhWxBWcjmtm7z4jlaMRGBimQE4I86PFhtPrXHrcbufg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@reflink/reflink-linux-x64-musl@0.1.16':
-    resolution: {integrity: sha512-03kRXoAXhS/ZKxU2TKax59mLyKP7mev0EoIs+yXejUQo6D4uU46j+Sc243xMp72jRTgbWV4hQykcov98KtXEKQ==}
+  '@reflink/reflink-linux-x64-musl@0.1.17':
+    resolution: {integrity: sha512-Ha6NXgIH0qbEpTWDIdqO94NMmcz3lxVzH17VeWjRQe05M7wxtB2ODpxEY6uTkJrNrP3T5fiX4DT0X1t0PJegfg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@reflink/reflink-win32-arm64-msvc@0.1.16':
-    resolution: {integrity: sha512-N7r+6YB3vXijs7PF3eg306B5s82hGS2TzsMM4+B9DNN9sbvN2yV5HQw29zyCXHY9c9SLe5kEzERp0rsDtN+6TA==}
+  '@reflink/reflink-win32-arm64-msvc@0.1.17':
+    resolution: {integrity: sha512-eB2+v47QmAH2XKVykWLevCLSnJG+xSszcUiqc3LReMI4oa1yyR1L5Pa/WHs18ac8mPq6lsgSovdVO2voZVLb8g==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@reflink/reflink-win32-x64-msvc@0.1.16':
-    resolution: {integrity: sha512-CaslGjfhpvtjHqr8Cw1MhkYZAkcLWFiL1pMXOPv4fwngtLC5/OlcL/Y4Rw2QEZwDvPG3gaeY7pjF1NYEGnDrZA==}
+  '@reflink/reflink-win32-x64-msvc@0.1.17':
+    resolution: {integrity: sha512-S9mUCeVcty9vnekD9x5eSUvUqcTCha1Iscd0fN0PoXusj/IqaYcyMO9Vke9Qr/UFcKPQBFLj6F52b8PP3EaNsQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
 
-  '@reflink/reflink@0.1.16':
-    resolution: {integrity: sha512-i2zYt2FH1CE/1HUwK96HcwiahGhaS4wSCgaUnlIrl/4bxTnaZ0T/sYcLJ5VNSrbuczWjtyJ4WUROB+qMcRI9jA==}
+  '@reflink/reflink@0.1.17':
+    resolution: {integrity: sha512-+drVOToSW+6HouIpY0kFGC9DwETJJTBIS3UqUUxrR8C0bHRX93XYOgG6BEYqguOJA6+Qz0VfPt+CL3zSrsdjfg==}
     engines: {node: '>= 10'}
 
   '@rollup/plugin-alias@5.1.1':
@@ -4587,40 +4581,36 @@ snapshots:
       '@pnpm/network.ca-file': 1.0.2
       config-chain: 1.1.13
 
-  '@reflink/reflink-darwin-arm64@0.1.16':
+  '@reflink/reflink-darwin-arm64@0.1.17':
     optional: true
 
-  '@reflink/reflink-darwin-x64@0.1.16':
+  '@reflink/reflink-linux-arm64-gnu@0.1.17':
     optional: true
 
-  '@reflink/reflink-linux-arm64-gnu@0.1.16':
+  '@reflink/reflink-linux-arm64-musl@0.1.17':
     optional: true
 
-  '@reflink/reflink-linux-arm64-musl@0.1.16':
+  '@reflink/reflink-linux-x64-gnu@0.1.17':
     optional: true
 
-  '@reflink/reflink-linux-x64-gnu@0.1.16':
+  '@reflink/reflink-linux-x64-musl@0.1.17':
     optional: true
 
-  '@reflink/reflink-linux-x64-musl@0.1.16':
+  '@reflink/reflink-win32-arm64-msvc@0.1.17':
     optional: true
 
-  '@reflink/reflink-win32-arm64-msvc@0.1.16':
+  '@reflink/reflink-win32-x64-msvc@0.1.17':
     optional: true
 
-  '@reflink/reflink-win32-x64-msvc@0.1.16':
-    optional: true
-
-  '@reflink/reflink@0.1.16':
+  '@reflink/reflink@0.1.17':
     optionalDependencies:
-      '@reflink/reflink-darwin-arm64': 0.1.16
-      '@reflink/reflink-darwin-x64': 0.1.16
-      '@reflink/reflink-linux-arm64-gnu': 0.1.16
-      '@reflink/reflink-linux-arm64-musl': 0.1.16
-      '@reflink/reflink-linux-x64-gnu': 0.1.16
-      '@reflink/reflink-linux-x64-musl': 0.1.16
-      '@reflink/reflink-win32-arm64-msvc': 0.1.16
-      '@reflink/reflink-win32-x64-msvc': 0.1.16
+      '@reflink/reflink-darwin-arm64': 0.1.17
+      '@reflink/reflink-linux-arm64-gnu': 0.1.17
+      '@reflink/reflink-linux-arm64-musl': 0.1.17
+      '@reflink/reflink-linux-x64-gnu': 0.1.17
+      '@reflink/reflink-linux-x64-musl': 0.1.17
+      '@reflink/reflink-win32-arm64-msvc': 0.1.17
+      '@reflink/reflink-win32-x64-msvc': 0.1.17
 
   '@rollup/plugin-alias@5.1.1(rollup@4.27.4)':
     optionalDependencies:
