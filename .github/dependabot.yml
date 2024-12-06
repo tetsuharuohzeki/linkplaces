@@ -13,14 +13,6 @@ updates:
           - I-dependency-gardening
       versioning-strategy: increase
       ignore:
-          # Remove this ignore after return to react stable channel.
-          - dependency-name: "react"
-            update-types:
-                ["version-update:semver-minor", "version-update:semver-patch"]
-          # Remove this ignore after return to react stable channel.
-          - dependency-name: "react-dom"
-            update-types:
-                ["version-update:semver-minor", "version-update:semver-patch"]
       groups:
           ava:
               patterns:

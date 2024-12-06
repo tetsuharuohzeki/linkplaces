@@ -17,18 +17,18 @@
         "@monorepo-utils/workspaces-to-typescript-project-references": "^2.10.4",
         "@reflink/reflink": "^0.1.19",
         "@types/node": "22.10.1",
-        "@types/react": "npm:types-react@rc",
-        "@types/react-dom": "npm:types-react-dom@rc",
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0",
         "@typescript-eslint/eslint-plugin": "^8.17.0",
         "@typescript-eslint/parser": "^8.17.0",
         "ava": "^6.2.0",
-        "babel-plugin-react-compiler": "19.0.0-beta-63b359f-20241101",
+        "babel-plugin-react-compiler": "19.0.0-beta-df7b47d-20241124",
         "eslint": "^9.16.0",
         "eslint-config-prettier": "9.1.0",
         "eslint-plugin-import-x": "^4.5.0",
         "eslint-plugin-react": "7.37.2",
-        "eslint-plugin-react-compiler": "19.0.0-beta-63b359f-20241101",
-        "eslint-plugin-react-hooks": "5.0.0",
+        "eslint-plugin-react-compiler": "19.0.0-beta-df7b47d-20241124",
+        "eslint-plugin-react-hooks": "5.1.0",
         "eslint-plugin-turbo": "^2.3.3",
         "globals": "^15.13.0",
         "prettier": "3.4.2",
@@ -38,12 +38,6 @@
         "turbo": "^2.3.3",
         "typescript": "5.7.2",
         "web-ext": "8.3.0"
-    },
-    "pnpm": {
-        "overrides": {
-            "@types/react": "npm:types-react@rc",
-            "@types/react-dom": "npm:types-react-dom@rc"
-        }
     },
     "scripts": {
         "build": "tsc --build",
