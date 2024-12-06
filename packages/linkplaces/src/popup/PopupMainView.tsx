@@ -12,6 +12,7 @@ import { StrictMode, type MouseEvent, type MouseEventHandler, useState, type Rea
 
 import type { PopupMainIntent } from './PopupMainIntent.js';
 import type { PopupMainState } from './PopupMainState.js';
+import { PopupItemIcon } from './component/PopupIconElement.js';
 
 const ICON_DIR = '../resources/icon/';
 
@@ -62,7 +63,7 @@ function Header(props: HeaderProps): ReactNode {
                 <PanelSectionList>
                     <PanelListItem onClick={props.onClick}>
                         <PanelListItemIcon>
-                            <popup-item-icon
+                            <PopupItemIcon
                                 icondir={ICON_DIR}
                                 iconfile={'sidebars.svg'}
                             />
@@ -122,7 +123,7 @@ function FolderListItem(props: FolderListItemProps): ReactNode {
             <span className={CLASS_NAME_CONTAINER}>
                 <PanelListItem onClick={onClick}>
                     <PanelListItemIcon>
-                        <popup-item-icon
+                        <PopupItemIcon
                             icondir={ICON_DIR}
                             iconfile={'folder.svg'}
                         />
@@ -171,7 +172,7 @@ function ItemListItem(props: ItemListItemProps): ReactNode {
             >
                 <PanelListItem>
                     <PanelListItemIcon>
-                        <popup-item-icon
+                        <PopupItemIcon
                             icondir={ICON_DIR}
                             iconfile={'defaultFavicon.svg'}
                         />

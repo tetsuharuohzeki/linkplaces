@@ -8,6 +8,7 @@ import {
 } from '@linkplaces/foundation';
 
 import { unwrapOrForNullable } from 'option-t/nullable';
+import type { Undefinable } from 'option-t/undefinable';
 import type { HTMLAttributes as ReactHTMLAttributes } from 'react';
 
 export const ATTR_NAME_ICON_DIR = 'icondir';
@@ -134,20 +135,24 @@ export class PopupItemIconElement
     }
 }
 
-export const LOCAL_NAME_POPUP_ITEM_ICON = 'popup-item-icon';
+export const PopupItemIcon = 'popup-item-icon';
+
 interface PopupItemIconElementAttr {
     [ATTR_NAME_ICON_DIR]: string;
     [ATTR_NAME_ICON_FILE]: string;
 }
 
+/**
+ *  https://reactjs.org/docs/web-components.html#using-web-components-in-react
+ */
+interface ReactCustomElementHTMLAttributes<T extends HTMLElement> extends Omit<ReactHTMLAttributes<T>, 'className'> {
+    class?: Undefinable<string>;
+}
+
 declare module 'react' {
     namespace JSX {
         interface IntrinsicElements {
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-qualifier
-            [LOCAL_NAME_POPUP_ITEM_ICON]: globalThis.React.DetailedHTMLProps<
-                ReactHTMLAttributes<PopupItemIconElement> & PopupItemIconElementAttr,
-                PopupItemIconElement
-            >;
+            [PopupItemIcon]: ReactCustomElementHTMLAttributes<PopupItemIconElement> & PopupItemIconElementAttr;
         }
     }
 }
