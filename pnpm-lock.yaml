@@ -175,8 +175,8 @@ importers:
         version: 19.0.0
     devDependencies:
       '@babel/cli':
-        specifier: 7.25.9
-        version: 7.25.9(@babel/core@7.26.0)
+        specifier: 7.26.4
+        version: 7.26.4(@babel/core@7.26.0)
       '@babel/core':
         specifier: 7.26.0
         version: 7.26.0
@@ -264,8 +264,8 @@ packages:
     resolution: {integrity: sha512-2twsQz2fUd95QK1MtKuEnjkiN47SKHZfi/vWj040EN6Eo2ZW3SNcAwncJqXXoMTYZTWtBRXYp3Fg8z+JkFI9aQ==}
     engines: {node: ^18.18 || ^20.8 || ^21 || ^22}
 
-  '@babel/cli@7.25.9':
-    resolution: {integrity: sha512-I+02IfrTiSanpxJBlZQYb18qCxB6c2Ih371cVpfgIrPQrjAYkf45XxomTJOG8JBWX5GY35/+TmhCMdJ4ZPkL8Q==}
+  '@babel/cli@7.26.4':
+    resolution: {integrity: sha512-+mORf3ezU3p3qr+82WvJSnQNE1GAYeoCfEv4fik6B5/2cvKZ75AX8oawWQdXtM9MmndooQj15Jr9kelRFWsuRw==}
     engines: {node: '>=6.9.0'}
     hasBin: true
     peerDependencies:
@@ -4073,7 +4073,7 @@ snapshots:
       escape-string-regexp: 5.0.0
       execa: 8.0.1
 
-  '@babel/cli@7.25.9(@babel/core@7.26.0)':
+  '@babel/cli@7.26.4(@babel/core@7.26.0)':
     dependencies:
       '@babel/core': 7.26.0
       '@jridgewell/trace-mapping': 0.3.25
