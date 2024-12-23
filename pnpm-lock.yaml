@@ -108,8 +108,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 50.0.1
-        version: 50.0.1
+        specifier: 51.0.0
+        version: 51.0.0
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -121,8 +121,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 50.0.1
-        version: 50.0.1
+        specifier: 51.0.0
+        version: 51.0.0
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -143,8 +143,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 50.0.1
-        version: 50.0.1
+        specifier: 51.0.0
+        version: 51.0.0
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -168,8 +168,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 50.0.1
-        version: 50.0.1
+        specifier: 51.0.0
+        version: 51.0.0
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -229,8 +229,8 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 50.0.1
-        version: 50.0.1
+        specifier: 51.0.0
+        version: 51.0.0
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -242,8 +242,8 @@ importers:
   packages/tools:
     dependencies:
       option-t:
-        specifier: 50.0.1
-        version: 50.0.1
+        specifier: 51.0.0
+        version: 51.0.0
 
   packages/webext_types:
     devDependencies:
@@ -251,8 +251,8 @@ importers:
         specifier: workspace:*
         version: link:../tools
       option-t:
-        specifier: 50.0.1
-        version: 50.0.1
+        specifier: 51.0.0
+        version: 51.0.0
 
 packages:
 
@@ -3015,8 +3015,8 @@ packages:
     resolution: {integrity: sha512-OS+QTnw1/4vrf+9hh1jc1jnYjzSG4ttTBB8UxOwAnInG3Uo4ssetzC1ihqaIHjLJnA5GGlRl6QlZXOTQhRBUvg==}
     engines: {node: '>=14.16'}
 
-  option-t@50.0.1:
-    resolution: {integrity: sha512-QZkAjLrO0fY8DICD0tXJtjnsd7wGjgDDyPOvRf+bmIZAwAt98V0TiQ2JqN9gElAxHw2Dz376lPrZtvimcBGAbA==}
+  option-t@51.0.0:
+    resolution: {integrity: sha512-qgmiuyGKqWdK/dWxX6JX8KX/I0XPyKKZysKioMqXz5+uElzYe+Av5LyF5rMXiBDD2/46RnWrHRYwsKeo5jht2A==}
     engines: {node: '>=16.20.0'}
 
   optionator@0.9.4:
@@ -6995,7 +6995,7 @@ snapshots:
       is-inside-container: 1.0.0
       is-wsl: 2.2.0
 
-  option-t@50.0.1: {}
+  option-t@51.0.0: {}
 
   optionator@0.9.4:
     dependencies:
