@@ -8,9 +8,14 @@ const BUILD_DATE = mapOrForMaybe(process.env.BUILD_DATE, 'unknown', String);
 const RELEASE_CHANNEL_VALUE_PRODUCTION = 'production';
 const RELEASE_CHANNEL_VALUE_DEVELOPMENT = 'development';
 
+export const NODE_ENV = process.env.NODE_ENV;
+
 const RELEASE_CHANNEL = mapOrForMaybe(process.env.RELEASE_CHANNEL, 'production', String);
 const LIB_NODE_ENV =
     RELEASE_CHANNEL === 'production' ? RELEASE_CHANNEL_VALUE_PRODUCTION : RELEASE_CHANNEL_VALUE_DEVELOPMENT;
+
+// https://github.com/rollup/plugins/pull/1823
+export const LIB_NODE_ENV_IS_NOT_PRODUCTION = RELEASE_CHANNEL !== 'production';
 
 const IS_PRODUCTION_MODE = RELEASE_CHANNEL === RELEASE_CHANNEL_VALUE_PRODUCTION;
 const IS_DEVELOPMENT_MODE = RELEASE_CHANNEL === RELEASE_CHANNEL_VALUE_DEVELOPMENT;

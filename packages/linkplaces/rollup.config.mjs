@@ -12,7 +12,9 @@ import {
     GIT_REVISION,
     BUILD_DATE,
     RELEASE_CHANNEL,
+    NODE_ENV,
     LIB_NODE_ENV,
+    LIB_NODE_ENV_IS_NOT_PRODUCTION,
     IS_PRODUCTION_MODE,
     ENABLE_SWC_REACT_TRANSFORM,
     ENABLE_REACT_PROFILER,
@@ -25,7 +27,9 @@ console.log(`
 GIT_REVISION: ${GIT_REVISION}
 BUILD_DATE: ${BUILD_DATE}
 RELEASE_CHANNEL: ${RELEASE_CHANNEL}
+NODE_ENV: ${NODE_ENV}
 LIB_NODE_ENV: ${LIB_NODE_ENV}
+LIB_NODE_ENV_IS_NOT_PRODUCTION: ${LIB_NODE_ENV_IS_NOT_PRODUCTION}
 IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
 ENABLE_SWC_REACT_TRANSFORM: ${ENABLE_SWC_REACT_TRANSFORM}
 ENABLE_REACT_PROFILER: ${ENABLE_REACT_PROFILER}
@@ -129,7 +133,12 @@ export default async function createConfiguration(_commandLineArgs) {
 
             // https://github.com/rollup/plugins/tree/master/packages/node-resolve
             nodeResolve({
-                exportConditions: ['default', 'module', 'import'],
+                exportConditions: [
+                    'default',
+                    'import',
+                    // https://github.com/rollup/plugins/pull/1823
+                    LIB_NODE_ENV_IS_NOT_PRODUCTION ? 'development' : 'production',
+                ],
 
                 mainFields: [],
 
