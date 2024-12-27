@@ -12,7 +12,7 @@ updates:
           - A-dependency
           - I-dependency-gardening
       versioning-strategy: increase
-      ignore:
+#      ignore:
       groups:
           ava:
               patterns:
