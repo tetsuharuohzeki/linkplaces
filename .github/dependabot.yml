@@ -40,7 +40,7 @@ updates:
           turborepo:
               patterns:
                   - turbo
-                  - eslint-plugin-turbo
+                  - eslint-config-turbo
           typescript-eslint:
               patterns:
                   - "@typescript-eslint/*"

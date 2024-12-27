@@ -53,6 +53,9 @@ importers:
       eslint-config-prettier:
         specifier: 9.1.0
         version: 9.1.0(eslint@9.16.0)
+      eslint-config-turbo:
+        specifier: ^2.3.3
+        version: 2.3.3(eslint@9.16.0)
       eslint-plugin-import-x:
         specifier: ^4.6.1
         version: 4.6.1(eslint@9.16.0)(typescript@5.7.2)
@@ -65,9 +68,6 @@ importers:
       eslint-plugin-react-hooks:
         specifier: 5.1.0
         version: 5.1.0(eslint@9.16.0)
-      eslint-plugin-turbo:
-        specifier: ^2.3.3
-        version: 2.3.3(eslint@9.16.0)
       globals:
         specifier: ^15.14.0
         version: 15.14.0
@@ -1891,6 +1891,11 @@ packages:
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
+
+  eslint-config-turbo@2.3.3:
+    resolution: {integrity: sha512-cM9wSBYowQIrjx2MPCzFE6jTnG4vpTPJKZ/O+Ps3CqrmGK/wtNOsY6WHGMwLtKY/nNbgRahAJH6jGVF6k2coOg==}
+    peerDependencies:
+      eslint: '>6.6.0'
 
   eslint-import-resolver-node@0.3.9:
     resolution: {integrity: sha512-WFj2isz22JahUv+B788TlO3N6zL3nNJGU8CcZbPZvVEkBPaJdCV4vy5wyghty5ROFbCRnm132v8BScu5/1BQ8g==}
@@ -5857,6 +5862,11 @@ snapshots:
   eslint-config-prettier@9.1.0(eslint@9.16.0):
     dependencies:
       eslint: 9.16.0
+
+  eslint-config-turbo@2.3.3(eslint@9.16.0):
+    dependencies:
+      eslint: 9.16.0
+      eslint-plugin-turbo: 2.3.3(eslint@9.16.0)
 
   eslint-import-resolver-node@0.3.9:
     dependencies:

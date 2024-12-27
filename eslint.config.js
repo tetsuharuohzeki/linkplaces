@@ -2,7 +2,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import js from '@eslint/js';
-import turbo from 'eslint-plugin-turbo';
+import turboConfig from 'eslint-config-turbo/flat';
 
 import { config as coreConfig } from './tools/eslint/core.js';
 import * as importConfig from './tools/eslint/import.js';
@@ -91,15 +91,6 @@ export default [
         files: ['**/__tests__/*'],
         languageOptions: languageOptionsForTesting,
     },
-    {
-        plugins: {
-            turbo: {
-                rules: turbo.rules,
-            },
-        },
-        rules: {
-            'turbo/no-undeclared-env-vars': 'error',
-        },
-    },
+    ...turboConfig,
     ...prettierConfigs,
 ];
