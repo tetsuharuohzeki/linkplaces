@@ -27,8 +27,8 @@ importers:
         specifier: ^0.1.19
         version: 0.1.19
       '@types/node':
-        specifier: 22.10.5
-        version: 22.10.5
+        specifier: 22.10.7
+        version: 22.10.7
       '@types/react':
         specifier: ^19.0.7
         version: 19.0.7
@@ -1052,8 +1052,8 @@ packages:
   '@types/minimist@1.2.5':
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
 
-  '@types/node@22.10.5':
-    resolution: {integrity: sha512-F8Q+SeGimwOo86fiovQh8qiXfFEh2/ocYv7tU5pJ3EXMSSxk1Joj5wefpFK2fHTf/N6HKGSxIDBT9f3gCxXPkQ==}
+  '@types/node@22.10.7':
+    resolution: {integrity: sha512-V09KvXxFiutGp6B7XkpaDXlNadZxrzajcY50EuoLIpQ6WWYCSvf19lVIazzfIzQvhUN2HjX12spLojTnhuKlGg==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -4885,7 +4885,7 @@ snapshots:
 
   '@types/minimist@1.2.5': {}
 
-  '@types/node@22.10.5':
+  '@types/node@22.10.7':
     dependencies:
       undici-types: 6.20.0
 
@@ -4903,7 +4903,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 22.10.5
+      '@types/node': 22.10.7
 
   '@typescript-eslint/eslint-plugin@8.19.1(@typescript-eslint/parser@8.19.1(eslint@9.18.0)(typescript@5.7.3))(eslint@9.18.0)(typescript@5.7.3)':
     dependencies:
@@ -5473,7 +5473,7 @@ snapshots:
 
   chrome-launcher@1.1.2:
     dependencies:
-      '@types/node': 22.10.5
+      '@types/node': 22.10.7
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 2.0.1
