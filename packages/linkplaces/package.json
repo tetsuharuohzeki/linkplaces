@@ -46,6 +46,6 @@
         "jsdom": "26.0.0",
         "postcss": "8.5.1",
         "postcss-import": "16.1.0",
-        "rollup": "4.31.0"
+        "rollup": "4.32.0"
     }
 }
