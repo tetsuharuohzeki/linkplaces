@@ -32,7 +32,7 @@
     },
     "devDependencies": {
         "@babel/cli": "7.26.4",
-        "@babel/core": "7.26.0",
+        "@babel/core": "7.26.7",
         "@babel/preset-react": "7.26.3",
         "@linkplaces/tools": "workspace:*",
         "@rollup/plugin-alias": "5.1.1",
@@ -41,11 +41,11 @@
         "@rollup/plugin-node-resolve": "16.0.0",
         "@rollup/plugin-replace": "6.0.2",
         "@rollup/plugin-swc": "^0.4.0",
-        "@swc/core": "^1.10.11",
+        "@swc/core": "^1.10.12",
         "esbuild": "0.24.2",
         "jsdom": "26.0.0",
         "postcss": "8.5.1",
         "postcss-import": "16.1.0",
-        "rollup": "4.32.0"
+        "rollup": "4.32.1"
     }
 }
