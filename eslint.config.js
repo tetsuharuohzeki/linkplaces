@@ -29,6 +29,7 @@ export default [
     {
         linterOptions: {
             reportUnusedDisableDirectives: true,
+            reportUnusedInlineConfigs: 'warn',
         },
     },
     {
