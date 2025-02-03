@@ -28,7 +28,7 @@ export default [
     coreConfig,
     {
         linterOptions: {
-            reportUnusedDisableDirectives: true,
+            reportUnusedDisableDirectives: 'warn',
             reportUnusedInlineConfigs: 'warn',
         },
     },
