@@ -12,7 +12,7 @@
     "devDependencies": {
         "@ava/typescript": "^5.0.0",
         "@babel/plugin-syntax-jsx": "^7.25.9",
-        "@eslint/js": "^9.19.0",
+        "@eslint/js": "^9.20.0",
         "@linkplaces/tools": "workspace:*",
         "@monorepo-utils/workspaces-to-typescript-project-references": "^2.10.4",
         "@reflink/reflink": "^0.1.19",
@@ -23,7 +23,7 @@
         "@typescript-eslint/parser": "^8.23.0",
         "ava": "^6.2.0",
         "babel-plugin-react-compiler": "19.0.0-beta-714736e-20250131",
-        "eslint": "^9.19.0",
+        "eslint": "^9.20.0",
         "eslint-config-prettier": "10.0.1",
         "eslint-config-turbo": "^2.4.0",
         "eslint-plugin-import-x": "^4.6.1",
