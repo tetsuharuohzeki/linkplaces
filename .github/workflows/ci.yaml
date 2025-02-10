@@ -28,19 +28,6 @@ jobs:
               env:
                   CI: true
 
-    build_by_esbuild:
-        needs: [warmup_dependency_cache]
-        runs-on: ubuntu-latest
-        continue-on-error: true
-        steps:
-            - uses: actions/checkout@v4
-            - uses: ./.github/actions/setup_ci
-            - name: build
-              run: make build_package -j USE_ESBUILD=1
-              working-directory: ./packages/linkplaces
-              env:
-                  CI: true
-
     lint:
         needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
