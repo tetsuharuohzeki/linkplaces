@@ -10,8 +10,6 @@ OBJ_DIR := $(CURDIR)/__obj
 OBJ_SRC_DIR := $(OBJ_DIR)/src
 DIST_DIR := $(CURDIR)/__dist
 
-USE_ESBUILD ?= 0
-
 export RELEASE_CHANNEL ?= production
 
 # ifeq ($(RELEASE_CHANNEL),production)
@@ -77,19 +75,9 @@ webextension: webextension_cp webextension_js webextension_css
 webextension_cp: clean_dist
 	$(NODE_BIN) $(CURDIR)/tools/cp_files.js --basedir $(SRC_DIR) --source '$(SRC_DIR)/**/**.{json,html,svg}' --destination $(DIST_DIR) --verbose
 
-ifeq ($(USE_ESBUILD),1)
-webextension_js: $(addprefix __bundle_js_esbuild_, background popup sidebar options)
-else
 webextension_js: $(addprefix __bundle_js_, background popup sidebar options)
-endif
 
 webextension_css: $(addprefix __bundle_css_, popup sidebar options)
-
-__bundle_js_esbuild_%: clean_dist __obj
-	RELEASE_CHANNEL=$(RELEASE_CHANNEL) \
-	ENTRY_POINT=$(OBJ_SRC_DIR)/$*/index.js \
-	OUTPUT_FILE=$(DIST_DIR)/$*/$*_bundled.js \
-        $(NODE_BIN) $(CURDIR)/tools/run_esbuild.js
 
 __bundle_js_%: clean_dist __obj
 	RELEASE_CHANNEL=$(RELEASE_CHANNEL) $(NPM_BIN_DIR)/rollup $(OBJ_SRC_DIR)/$*/index.js --config $(CURDIR)/rollup.config.mjs --output.file $(DIST_DIR)/$*/$*_bundled.js
