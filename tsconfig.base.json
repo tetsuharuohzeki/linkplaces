@@ -109,6 +109,7 @@
 
         /* Completeness */
         // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
+        "libReplacement": false, /* We don't use this feature. */
         "skipLibCheck": true /* Skip type checking all .d.ts files. */
     }
 }
