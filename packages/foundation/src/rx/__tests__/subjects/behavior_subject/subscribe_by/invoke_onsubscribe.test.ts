@@ -12,7 +12,7 @@ test('onSubscribe should be invoked by calling `.subscribe()`', (t) => {
     const onCompleted = spy();
 
     // act
-    const subscription = testTarget.subscribeBy({
+    const subscription = testTarget.asObservable().subscribeBy({
         onNext: onNext,
         onError: onError,
         onCompleted: onCompleted,

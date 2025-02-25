@@ -29,7 +29,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     } satisfies Observer<number>;
 
     // act
-    const subscription = testTarget.subscribe(observer);
+    const subscription = testTarget.asObservable().subscribe(observer);
     t.teardown(() => {
         subscription.unsubscribe();
     });
@@ -63,7 +63,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     } satisfies Observer<number>;
 
     // act
-    const subscription = testTarget.subscribe(observer);
+    const subscription = testTarget.asObservable().subscribe(observer);
     t.teardown(() => {
         subscription.unsubscribe();
     });
@@ -99,7 +99,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     } satisfies Observer<number>;
 
     // act
-    const subscription = testTarget.subscribe(observer);
+    const subscription = testTarget.asObservable().subscribe(observer);
     t.teardown(() => {
         subscription.unsubscribe();
     });
@@ -134,7 +134,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     } satisfies Observer<number>;
 
     // act
-    const subscription = testTarget.subscribe(observer);
+    const subscription = testTarget.asObservable().subscribe(observer);
     t.teardown(() => {
         subscription.unsubscribe();
     });

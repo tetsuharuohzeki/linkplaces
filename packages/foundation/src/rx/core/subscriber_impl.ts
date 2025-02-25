@@ -34,6 +34,10 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
         return this._isActive;
     }
 
+    destination(): Observer<T> {
+        return this;
+    }
+
     next(value: T): void {
         if (this.closed || this._isCalledOnCompleted) {
             return;
@@ -129,6 +133,10 @@ export class PassThroughSubscriber<T> extends InternalSubscriber<T> {
     constructor(destination: Observer<T>) {
         super();
         this._observer = destination;
+    }
+
+    override destination(): Observer<T> {
+        return this._observer;
     }
 
     protected override onNext(value: T): void {

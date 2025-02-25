@@ -14,7 +14,7 @@ test('onSubscribe should be invoked by calling `.subscribe()`', (t) => {
         error: tinyspy.spy(),
         complete: tinyspy.spy(),
     } satisfies Observer<number>;
-    const subscription = testTarget.subscribe(observer);
+    const subscription = testTarget.asObservable().subscribe(observer);
     t.teardown(() => {
         subscription.unsubscribe();
     });

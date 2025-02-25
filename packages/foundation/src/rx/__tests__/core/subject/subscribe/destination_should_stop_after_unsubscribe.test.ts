@@ -16,7 +16,7 @@ test('the destination should not be called after cancelled the subscription', (t
     const onCompleted = tinyspy.spyOn(destination, 'onCompleted');
 
     // act
-    const subscription = subject.subscribe(destination);
+    const subscription = subject.asObservable().subscribe(destination);
     subscription.unsubscribe();
     t.is(subscription.closed, true, 'subscript should be closed here');
     t.is(destination.closed, true, 'destination closed status');

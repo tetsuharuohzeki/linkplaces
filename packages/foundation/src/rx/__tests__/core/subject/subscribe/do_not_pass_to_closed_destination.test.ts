@@ -18,7 +18,7 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
 
     // act
     t.is(observer.isActive(), true);
-    const subscription = testTarget.subscribe(observer);
+    const subscription = testTarget.asObservable().subscribe(observer);
     t.teardown(() => {
         subscription.unsubscribe();
     });

@@ -10,7 +10,7 @@ test('.next() should propagate the passed value to the child', (t) => {
     const onNext = spy();
 
     // act
-    const sub = target.subscribeBy({
+    const sub = target.asObservable().subscribeBy({
         onNext: onNext,
     });
     t.teardown(() => {
@@ -37,13 +37,13 @@ test('.next() should propagate the passed value even if in reentrant', (t) => {
             return;
         }
 
-        target.subscribeBy({
+        target.asObservable().subscribeBy({
             onNext: innerOnNext,
         });
     });
 
     // act
-    const sub = target.subscribeBy({
+    const sub = target.asObservable().subscribeBy({
         onNext: outerOnNext,
     });
     t.teardown(() => {

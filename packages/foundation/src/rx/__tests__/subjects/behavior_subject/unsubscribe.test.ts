@@ -16,11 +16,11 @@ test('.unsubscribe() should stop subscriptions by myself', (t) => {
     const parent = new Subject<number>();
     const target = new BehaviorSubject<number>(INITIAL_INPUT);
     const onNext = tinyspy.spy<[number], void>();
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onNext: onNext,
     });
 
-    parent.subscribe(target);
+    parent.asObservable().subscribe(target);
     target.unsubscribe();
     const NOT_PROPAGED_INPUT = Math.random();
     parent.next(NOT_PROPAGED_INPUT);
@@ -33,7 +33,7 @@ test('.unsubscribe() should stop it if myself is subscribed from others', (t) =>
     const INITIAL_INPUT = Math.random();
     const target = new BehaviorSubject(INITIAL_INPUT);
     const onNext = tinyspy.spy<[number], void>();
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onNext: onNext,
     });
 
@@ -48,7 +48,7 @@ test('.unsubscribe() should stop it if myself is subscribed from others', (t) =>
 test('.unsubscribe() should not behave on calling it twice', (t) => {
     const target = new BehaviorSubject(0);
     const onCompleted = tinyspy.spy<[CompletionResult], void>();
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onCompleted: onCompleted,
     });
 
@@ -62,11 +62,11 @@ test('.unsubscribe() should not reentrant', (t) => {
     const target = new BehaviorSubject(0);
     const innerOnComplete = tinyspy.spy<[CompletionResult], void>();
     const outerOnComplete = tinyspy.spy<[CompletionResult], void>(() => {
-        target.subscribeBy({
+        target.asObservable().subscribeBy({
             onCompleted: innerOnComplete,
         });
     });
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onCompleted: outerOnComplete,
     });
     target.unsubscribe();
@@ -78,7 +78,7 @@ test('.unsubscribe() should not reentrant', (t) => {
 test('.unsubscribe() should emit the completion to children', (t) => {
     const target = new BehaviorSubject<number>(0);
     const onCompleted = tinyspy.spy<[CompletionResult], void>();
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onCompleted: onCompleted,
     });
 

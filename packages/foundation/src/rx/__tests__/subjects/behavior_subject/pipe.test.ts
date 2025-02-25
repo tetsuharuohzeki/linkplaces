@@ -54,7 +54,7 @@ export function testOperator<T>(): OperatorFunction<T, T> {
 
 test('.pipe() should propagate the passed value to the child', (t) => {
     const source = new BehaviorSubject<number>(1);
-    const chained = source.pipe(testOperator());
+    const chained = source.asObservable().pipe(testOperator());
 
     const onNext = tinyspy.spy<[number], void>();
     const subscription = chained.subscribeBy({

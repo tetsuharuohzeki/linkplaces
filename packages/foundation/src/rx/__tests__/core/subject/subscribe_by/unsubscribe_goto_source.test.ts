@@ -14,7 +14,7 @@ test("the returned subscription's .unsubscribe() should propagate to the source"
     const onCompleted = tinyspy.spy();
 
     // act
-    const subscription = testTarget.subscribeBy({
+    const subscription = testTarget.asObservable().subscribeBy({
         onNext: onNext,
         onError: onError,
         onCompleted: onCompleted,

@@ -17,7 +17,7 @@ test("the returned subscription's .unsubscribe() should propagate to the source"
         error: tinyspy.spy(),
         complete: tinyspy.spy(),
     };
-    const subscription = testTarget.subscribe(observer);
+    const subscription = testTarget.asObservable().subscribe(observer);
     subscription.unsubscribe();
     t.is(subscription.closed, true);
 

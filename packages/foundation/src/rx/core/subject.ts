@@ -2,25 +2,30 @@ import { unwrapNullable, type Nullable } from 'option-t/nullable';
 
 import { createCompletionOk, type CompletionResult } from './completion_result.js';
 import { Observable } from './observable.js';
-import type { Observer } from './observer.js';
 import type { Subjectable } from './subjectable.js';
-import type { Unsubscribable } from './subscribable.js';
 import type { Subscriber } from './subscriber.js';
 
-export class Subject<T> extends Observable<T> implements Subjectable<T> {
+class SubjectObservable<T> extends Observable<T> {}
+
+export class Subject<T> implements Subjectable<T> {
     private _isCompleted: boolean;
     private _completedValue: Nullable<CompletionResult>;
     private _observerCounter: number;
     private _observers: Map<number, Subscriber<T>>;
+    private _observable: Observable<T>;
 
     constructor() {
-        super((destination: Subscriber<T>) => {
-            this._onSubjectSubscribe(destination);
-        });
         this._isCompleted = false;
         this._observerCounter = 0;
         this._observers = new Map();
         this._completedValue = null;
+        this._observable = new SubjectObservable<T>((subscriber) => {
+            if (subscriber.destination() === this) {
+                throw new Error('recursive subscription happens');
+            }
+
+            this._onSubjectSubscribe(subscriber);
+        });
     }
 
     get isCompleted(): boolean {
@@ -33,17 +38,8 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
         return snapshot;
     }
 
-    protected _clearObservers(): void {
+    private _clearObservers(): void {
         this._observers.clear();
-    }
-
-    override subscribe(destination: Observer<T>): Unsubscribable {
-        if (destination === this) {
-            throw new Error('recursive subscription happens');
-        }
-
-        const sub = super.subscribe(destination);
-        return sub;
     }
 
     next(value: T): void {
@@ -128,6 +124,7 @@ export class Subject<T> extends Observable<T> implements Subjectable<T> {
     }
 
     asObservable(): Observable<T> {
-        return this;
+        const cached = this._observable;
+        return cached;
     }
 }

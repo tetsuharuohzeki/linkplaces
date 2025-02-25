@@ -49,7 +49,7 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
     }
 
     asObservable(): Observable<Array<BookmarkTreeNode>> {
-        return this._subject;
+        return this._subject.asObservable();
     }
 
     private _onRemoved(id: BookmarkId): void {

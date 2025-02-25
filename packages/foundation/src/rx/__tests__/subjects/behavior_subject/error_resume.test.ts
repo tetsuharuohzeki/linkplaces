@@ -11,7 +11,7 @@ test('.error() should propagate the passed value to the child', (t) => {
 
     const onNext = spy();
     const onError = spy();
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onNext: onNext,
         onError: onError,
     });
@@ -32,7 +32,7 @@ test('.error() should not stop myself', (t) => {
     const onError = spy();
 
     // act
-    const sub = target.subscribeBy({
+    const sub = target.asObservable().subscribeBy({
         onNext: onNext,
         onError: onError,
     });
@@ -58,11 +58,11 @@ test('.error() should propagate the passed value but not reentrant', (t) => {
     const target = new BehaviorSubject<number>(INITIAL_INPUT);
     const innerOnError = spy();
     const outerOnError = spy((_value) => {
-        target.subscribeBy({
+        target.asObservable().subscribeBy({
             onError: innerOnError,
         });
     });
-    const sub = target.subscribeBy({
+    const sub = target.asObservable().subscribeBy({
         onError: outerOnError,
     });
     t.teardown(() => {
