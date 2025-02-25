@@ -20,11 +20,7 @@ export class Subject<T> implements Subjectable<T> {
         this._observers = new Map();
         this._completedValue = null;
         this._observable = new SubjectObservable<T>((subscriber) => {
-            if (subscriber.destination() === this) {
-                throw new Error('recursive subscription happens');
-            }
-
-            this._onSubjectSubscribe(subscriber);
+            this._onSubscribe(subscriber);
         });
     }
 
@@ -91,6 +87,14 @@ export class Subject<T> implements Subjectable<T> {
 
         this._isCompleted = true;
         this._clearObservers();
+    }
+
+    private _onSubscribe(subscriber: Subscriber<T>): void {
+        if (subscriber.destination() === this) {
+            throw new Error('recursive subscription happens');
+        }
+
+        this._onSubjectSubscribe(subscriber);
     }
 
     protected _onSubjectSubscribe(destination: Subscriber<T>): void {
