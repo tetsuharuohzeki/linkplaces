@@ -27,7 +27,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     const onCompleted = tinyspy.spy();
 
     // act
-    const subscription = testTarget.subscribeBy({
+    const subscription = testTarget.asObservable().subscribeBy({
         onNext: onNext,
         onError: onError,
         onCompleted: onCompleted,
@@ -65,7 +65,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     const onCompleted = tinyspy.spy();
 
     // act
-    const subscription = testTarget.subscribeBy({
+    const subscription = testTarget.asObservable().subscribeBy({
         onNext: onNext,
         onError: onError,
         onCompleted: onCompleted,
@@ -104,7 +104,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     });
 
     // act
-    const subscription = testTarget.subscribeBy({
+    const subscription = testTarget.asObservable().subscribeBy({
         onNext: onNext,
         onError: onError,
         onCompleted: onCompleted,
@@ -142,7 +142,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     const onCompleted = tinyspy.spy();
 
     // act
-    const subscription = testTarget.subscribeBy({
+    const subscription = testTarget.asObservable().subscribeBy({
         onNext: onNext,
         onError: onError,
         onCompleted: onCompleted,

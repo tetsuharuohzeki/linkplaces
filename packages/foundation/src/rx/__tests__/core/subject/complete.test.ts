@@ -8,7 +8,7 @@ test('.complete() should propagate it to the child', (t) => {
 
     const target = new Subject<number>();
     const onCompleted = tinyspy.spy();
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onCompleted: onCompleted,
     });
 
@@ -26,7 +26,7 @@ test('.complete() should stop myself', (t) => {
     const target = new Subject<number>();
     const onNext = tinyspy.spy();
     const onCompleted = tinyspy.spy();
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onNext: onNext,
         onCompleted: onCompleted,
     });
@@ -51,7 +51,7 @@ test('.complete() should flip its flag at the first on calling it', (t) => {
     const onCompleted = tinyspy.spy(() => {
         t.is(target.isCompleted, true);
     });
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onCompleted: onCompleted,
     });
 
@@ -69,13 +69,13 @@ test('.complete() should propagate the passed value on reentrant case', (t) => {
     const target = new Subject<number>();
     const onInnerComplete = tinyspy.spy();
     const onOuterComplete = tinyspy.spy(() => {
-        target.subscribeBy({
+        target.asObservable().subscribeBy({
             onCompleted: onInnerComplete,
         });
     });
 
     // act
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onCompleted: onOuterComplete,
     });
 

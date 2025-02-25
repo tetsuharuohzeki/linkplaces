@@ -20,7 +20,7 @@ test('.value should be updated on calling next', (t) => {
 test('.value should be updated on emit through subscribe', (t) => {
     const emitter = new Subject();
     const target = new BehaviorSubject(0);
-    emitter.subscribe(target);
+    emitter.asObservable().subscribe(target);
 
     const EXPECTED = Math.random();
     emitter.next(EXPECTED);

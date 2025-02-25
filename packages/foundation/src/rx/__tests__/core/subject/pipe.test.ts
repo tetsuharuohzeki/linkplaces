@@ -47,7 +47,7 @@ export function testOperator<T>(): OperatorFunction<T, T> {
 
 test('.pipe() should propagate the passed value to the child', (t) => {
     const source = new Subject<void>();
-    const chained = source.pipe(testOperator());
+    const chained = source.asObservable().pipe(testOperator());
 
     const onNext = spy();
     const subscription = chained.subscribeBy({

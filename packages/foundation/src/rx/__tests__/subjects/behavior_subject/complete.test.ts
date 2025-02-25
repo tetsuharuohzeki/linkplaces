@@ -8,7 +8,7 @@ test('.complete() should propagate it to the child', (t) => {
 
     const target = new BehaviorSubject<number>(0);
     const onCompleted = spy();
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onCompleted: onCompleted,
     });
 
@@ -27,7 +27,7 @@ test('.complete() should stop myself', (t) => {
     const target = new BehaviorSubject<number>(INITIAL_INPUT);
     const onNext = spy();
     const onCompleted = spy();
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onNext: onNext,
         onCompleted: onCompleted,
     });
@@ -56,7 +56,7 @@ test('.complete() should flip its flag at the first on calling it', (t) => {
     const onCompleted = spy(() => {
         t.is(target.isCompleted, true);
     });
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onCompleted: onCompleted,
     });
 
@@ -74,13 +74,13 @@ test('.complete() should propagate the passed value on reentrant case', (t) => {
     const target = new BehaviorSubject<number>(0);
     const onInnerComplete = spy();
     const onOuterComplete = spy(() => {
-        target.subscribeBy({
+        target.asObservable().subscribeBy({
             onCompleted: onInnerComplete,
         });
     });
 
     // act
-    target.subscribeBy({
+    target.asObservable().subscribeBy({
         onCompleted: onOuterComplete,
     });
 

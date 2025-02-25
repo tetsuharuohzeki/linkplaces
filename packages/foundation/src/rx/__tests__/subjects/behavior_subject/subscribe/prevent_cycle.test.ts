@@ -6,7 +6,7 @@ test('prevent cycle myself', (t) => {
 
     t.throws(
         () => {
-            target.subscribe(target);
+            target.asObservable().subscribe(target);
         },
         {
             instanceOf: Error,
