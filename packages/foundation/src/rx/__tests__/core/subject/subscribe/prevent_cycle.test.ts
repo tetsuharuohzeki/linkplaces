@@ -1,5 +1,5 @@
 import test from 'ava';
-import { Subject } from '../../../../mod.js';
+import { Subject, SubscriptionError } from '../../../../mod.js';
 
 test('prevent cycle myself', (t) => {
     const target = new Subject<number>();
@@ -9,7 +9,7 @@ test('prevent cycle myself', (t) => {
             target.asObservable().subscribe(target);
         },
         {
-            instanceOf: Error,
+            instanceOf: SubscriptionError,
             message: 'recursive subscription happens',
         }
     );

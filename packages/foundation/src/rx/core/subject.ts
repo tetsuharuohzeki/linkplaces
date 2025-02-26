@@ -4,6 +4,7 @@ import { createCompletionOk, type CompletionResult } from './completion_result.j
 import { Observable } from './observable.js';
 import type { Subjectable } from './subjectable.js';
 import type { Subscriber } from './subscriber.js';
+import { SubscriptionError } from './subscription_error.js';
 
 class SubjectObservable<T> extends Observable<T> {}
 
@@ -91,7 +92,7 @@ export class Subject<T> implements Subjectable<T> {
 
     private _onSubscribe(subscriber: Subscriber<T>): void {
         if (subscriber.destination() === this) {
-            throw new Error('recursive subscription happens');
+            throw new SubscriptionError('recursive subscription happens');
         }
 
         this._onSubjectSubscribe(subscriber);
