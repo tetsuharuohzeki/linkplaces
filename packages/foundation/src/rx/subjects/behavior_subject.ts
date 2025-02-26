@@ -8,15 +8,8 @@ export class BehaviorSubject<T> extends Subject<T> {
         this._value = initial;
     }
 
-    protected override _onSubjectSubscribe(destination: Subscriber<T>): void {
-        if (this.isCompleted) {
-            this._onSubscribeButCompleted(destination);
-            return;
-        } else {
-            destination.next(this._value);
-        }
-
-        this._registerObserverOnSubscribe(destination);
+    protected override _onInitialValueEmittablePointInSubjectSubscribe(destination: Subscriber<T>): void {
+        destination.next(this._value);
     }
 
     value(): T {

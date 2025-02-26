@@ -97,16 +97,22 @@ export class Subject<T> implements Subjectable<T> {
         this._onSubjectSubscribe(subscriber);
     }
 
-    protected _onSubjectSubscribe(destination: Subscriber<T>): void {
+    private _onSubjectSubscribe(destination: Subscriber<T>): void {
         if (this._isCompleted) {
             this._onSubscribeButCompleted(destination);
             return;
         }
 
+        this._onInitialValueEmittablePointInSubjectSubscribe(destination);
+
         this._registerObserverOnSubscribe(destination);
     }
 
-    protected _registerObserverOnSubscribe(destination: Subscriber<T>): void {
+    // XXX: This allows to extend the emittion point for  derived class.
+    // eslint-disable-next-line @typescript-eslint/class-methods-use-this
+    protected _onInitialValueEmittablePointInSubjectSubscribe(_destination: Subscriber<T>): void {}
+
+    private _registerObserverOnSubscribe(destination: Subscriber<T>): void {
         const currentObservers = this._observers;
         const observerId = this._getObserverId();
         currentObservers.set(observerId, destination);
@@ -122,7 +128,7 @@ export class Subject<T> implements Subjectable<T> {
         return observerId;
     }
 
-    protected _onSubscribeButCompleted(destination: Subscriber<T>): void {
+    private _onSubscribeButCompleted(destination: Subscriber<T>): void {
         const result = unwrapNullable(this._completedValue);
         destination.complete(result);
     }
