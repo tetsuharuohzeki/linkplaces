@@ -1,10 +1,11 @@
 import test from 'ava';
-import { Observable, Subject } from '../../../mod.js';
+import { expectTypeOf } from 'expect-type';
+import { type Observable, Subject } from '../../../mod.js';
 
 test('.asObservable() should be derived instance', (t) => {
     const sub = new Subject();
     const actual = sub.asObservable();
-    t.assert(actual instanceof Observable);
+    t.true(expectTypeOf(actual).toEqualTypeOf<Observable<unknown>>());
 });
 
 test('.asObservable() should be return the same value', (t) => {
