@@ -8,11 +8,7 @@ import { SubscriptionError } from './subscription_error.js';
 
 export type OnSubscribeFn<T> = (destination: Subscriber<T>) => void;
 
-export interface ObservableLike<T> {
-    subscribe(destination: Observer<T>): Unsubscribable;
-}
-
-export abstract class Observable<T> implements ObservableLike<T> {
+export abstract class Observable<T> {
     protected _onSubscribe: OnSubscribeFn<T>;
     constructor(onSubscribe: OnSubscribeFn<T>) {
         this._onSubscribe = onSubscribe;
