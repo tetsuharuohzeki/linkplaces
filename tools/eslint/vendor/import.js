@@ -61,7 +61,10 @@ export const possibleErrors = Object.freeze({
 
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unresolved.md
     'import/no-unresolved': [
-        'error',
+        // This still lacks a `exports` support and has other many problems.
+        // https://github.com/import-js/eslint-plugin-import/issues/1810
+        // We don't have a motivation to enable this.
+        'off',
         {
             caseSensitive: true,
             commonjs: true,

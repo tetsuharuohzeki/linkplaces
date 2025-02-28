@@ -1,5 +1,4 @@
 /** env node */
-// eslint-disable-next-line import/no-unresolved
 import { Remover } from '@linkplaces/tools';
 import { isNotNull } from 'option-t/nullable';
 

@@ -27,20 +27,7 @@ const rulesForESModule = Object.freeze({
     ],
 });
 
-const projectSpecificRules = Object.freeze({
-    'import/no-unresolved': [
-        'error',
-        {
-            ignore: [
-                // We disable this rule until https://github.com/import-js/eslint-plugin-import/issues/1810 will be resolved.
-                'ava',
-                '^option-t/.*',
-                '^@typescript-eslint/.*',
-                '^eslint-config-turbo/.*'
-            ],
-        },
-    ],
-});
+const projectSpecificRules = Object.freeze({});
 
 const rulesForCJS = Object.freeze({
     ...possibleErrors,
@@ -97,9 +84,6 @@ export const configForTypeScript = Object.freeze({
     plugins,
     rules: {
         ...rulesForESM,
-
-        // Use TypeScript's checking instead.
-        'import/no-unresolved': 'off',
     },
     settings: {
         ...settings,
