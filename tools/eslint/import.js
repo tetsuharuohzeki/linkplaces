@@ -36,6 +36,7 @@ const projectSpecificRules = Object.freeze({
                 'ava',
                 '^option-t/.*',
                 '^@typescript-eslint/.*',
+                '^eslint-config-turbo/.*'
             ],
         },
     ],
