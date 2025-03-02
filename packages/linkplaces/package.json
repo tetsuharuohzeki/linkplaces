@@ -27,7 +27,7 @@
         "@linkplaces/ipc_message": "workspace:*",
         "@linkplaces/shared": "workspace:*",
         "@linkplaces/webext_types": "workspace:*",
-        "option-t": "51.1.0",
+        "option-t": "52.0.1",
         "react": "19.0.0"
     },
     "devDependencies": {
