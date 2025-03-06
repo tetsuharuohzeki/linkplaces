@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { createCompletionOk, Subject } from '../../../../mod.js';
+import {  Subject } from '../../../../mod.js';
 
 import { TestSubscriber } from './__helpers__/mod.js';
 
@@ -27,7 +27,7 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
 
     testTarget.next();
     testTarget.error(new Error());
-    testTarget.complete(createCompletionOk());
+    testTarget.complete(null);
 
     // assertion
     t.is(onNext.callCount, 0);

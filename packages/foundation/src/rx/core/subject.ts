@@ -1,6 +1,7 @@
-import { unwrapNullable, type Nullable } from 'option-t/nullable';
+import { isNull } from 'option-t/nullable';
 
-import { createCompletionOk, type CompletionResult } from './completion_result.js';
+import { unwrapUndefinable, type Undefinable } from 'option-t/undefinable';
+import type { CompletionResult } from './completion_result.js';
 import { Observable } from './observable.js';
 import type { Subjectable } from './subjectable.js';
 import type { Subscriber } from './subscriber.js';
@@ -10,7 +11,7 @@ class SubjectObservable<T> extends Observable<T> {}
 
 export class Subject<T> implements Subjectable<T> {
     private _isCompleted: boolean;
-    private _completedValue: Nullable<CompletionResult>;
+    private _completedValue: Undefinable<CompletionResult>;
     private _observerCounter: number;
     private _observers: Map<number, Subscriber<T>>;
     private _observable: Observable<T>;
@@ -19,7 +20,7 @@ export class Subject<T> implements Subjectable<T> {
         this._isCompleted = false;
         this._observerCounter = 0;
         this._observers = new Map();
-        this._completedValue = null;
+        this._completedValue = undefined;
         this._observable = new SubjectObservable<T>((subscriber) => {
             this._onSubscribe(subscriber);
         });
@@ -62,6 +63,16 @@ export class Subject<T> implements Subjectable<T> {
     }
 
     complete(result: CompletionResult): void {
+        if (
+            !(
+                isNull(null) ||
+                // FIXME: This should be `Error.isError`
+                result instanceof Error
+            )
+        ) {
+            throw new TypeError('the passed result must be CompletionResult');
+        }
+
         if (this._isCompleted) {
             return;
         }
@@ -81,8 +92,7 @@ export class Subject<T> implements Subjectable<T> {
         if (!this._isCompleted) {
             const snapshots = this._getObserverSnapshots();
             for (const observer of snapshots) {
-                const ok = createCompletionOk();
-                observer.complete(ok);
+                observer.complete(null);
             }
         }
 
@@ -130,7 +140,7 @@ export class Subject<T> implements Subjectable<T> {
     }
 
     private _onSubscribeButCompleted(destination: Subscriber<T>): void {
-        const result = unwrapNullable(this._completedValue);
+        const result = unwrapUndefinable(this._completedValue);
         destination.complete(result);
     }
 

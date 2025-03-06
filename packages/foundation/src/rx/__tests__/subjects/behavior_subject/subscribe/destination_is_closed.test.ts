@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { BehaviorSubject, SubscriptionError, createCompletionOk } from '../../../../mod.js';
+import { BehaviorSubject, SubscriptionError } from '../../../../mod.js';
 import { TestSubscriber } from './__helpers__/mod.js';
 
 test('if the passed destination is closed', (t) => {
@@ -27,7 +27,7 @@ test('if the passed destination is closed', (t) => {
 
     testTarget.next(SECOND_VALUE);
     testTarget.error(new Error());
-    testTarget.complete(createCompletionOk());
+    testTarget.complete(null);
 
     // assertion
     t.is(onNext.callCount, 0, 'should not call onNext');

@@ -1,4 +1,4 @@
-import { isNotNull, unwrapNullable, type Nullable } from 'option-t/nullable';
+import { isNotNull, isNull, unwrapNullable, type Nullable } from 'option-t/nullable';
 import type { CompletionResult } from './completion_result.js';
 import type { Observer } from './observer.js';
 import type { Unsubscribable } from './subscribable.js';
@@ -76,6 +76,16 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     }
 
     complete(result: CompletionResult): void {
+        if (
+            !(
+                isNull(null) ||
+                // FIXME: This should be `Error.isError`
+                result instanceof Error
+            )
+        ) {
+            throw new TypeError('the passed result must be CompletionResult');
+        }
+
         if (this._isCalledOnCompleted) {
             return;
         }

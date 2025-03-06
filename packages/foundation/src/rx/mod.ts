@@ -1,4 +1,4 @@
-export { createCompletionErr, createCompletionOk, type CompletionResult } from './core/completion_result.js';
+export type { CompletionResult } from './core/completion_result.js';
 export { Observable, type OnSubscribeFn } from './core/observable.js';
 export type { Observer } from './core/observer.js';
 export { Subject } from './core/subject.js';

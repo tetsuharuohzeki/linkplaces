@@ -1,5 +1,4 @@
 import test from 'ava';
-import { createOk } from 'option-t/plain_result';
 import { BehaviorSubject } from '../../../mod.js';
 
 test('set .isCompleted on calling .unsubscribe()', (t) => {
@@ -13,7 +12,7 @@ test('set .isCompleted on calling .complete()', (t) => {
     const actual = new BehaviorSubject(0);
 
     {
-        const result = createOk(undefined);
+        const result = null;
         actual.complete(result);
     }
 

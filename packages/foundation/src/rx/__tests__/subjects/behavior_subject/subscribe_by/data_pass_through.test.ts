@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { BehaviorSubject, createCompletionOk } from '../../../../mod.js';
+import { BehaviorSubject, } from '../../../../mod.js';
 
 test('.subscribe() should propagate the passed value to the child: onNext()', (t) => {
     // setup
@@ -98,8 +98,8 @@ test('.subscribe() should propagate the passed value to the child: onCompleted',
     t.teardown(() => {
         unsubscriber.unsubscribe();
     });
-    testTarget.complete(createCompletionOk());
-    testTarget.complete(createCompletionOk());
+    testTarget.complete(null);
+    testTarget.complete(null);
     for (const i of TEST_INPUT) {
         if (i % 2 !== 0) {
             testTarget.error(i);
@@ -111,7 +111,7 @@ test('.subscribe() should propagate the passed value to the child: onCompleted',
     // assert
     t.deepEqual(onCompleted.calls, [
         // @prettier-ignore
-        [createCompletionOk()],
+        [null],
     ]);
     t.is(onNext.callCount, 1);
     t.deepEqual(onNext.calls, [

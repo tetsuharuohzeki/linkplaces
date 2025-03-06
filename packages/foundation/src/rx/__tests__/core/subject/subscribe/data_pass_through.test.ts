@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { Subject, createCompletionOk } from '../../../../mod.js';
+import { Subject, } from '../../../../mod.js';
 import { TestSubscriber } from './__helpers__/mod.js';
 
 test('.subscribe() should propagate the passed value to the child: onNext()', (t) => {
@@ -85,8 +85,8 @@ test('.subscribe() should propagate the passed value to the child: onCompleted',
 
     // act
     const unsubscriber = testTarget.asObservable().subscribe(observer);
-    testTarget.complete(createCompletionOk());
-    testTarget.complete(createCompletionOk());
+    testTarget.complete(null);
+    testTarget.complete(null);
     for (const i of TEST_INPUT) {
         if (i % 2 !== 0) {
             testTarget.error(i);
@@ -101,7 +101,7 @@ test('.subscribe() should propagate the passed value to the child: onCompleted',
     // assert
     t.deepEqual(onCompleted.calls, [
         // @prettier-ignore
-        [createCompletionOk()],
+        [null],
     ]);
     t.is(onNext.callCount, 0);
     t.is(onError.callCount, 0);

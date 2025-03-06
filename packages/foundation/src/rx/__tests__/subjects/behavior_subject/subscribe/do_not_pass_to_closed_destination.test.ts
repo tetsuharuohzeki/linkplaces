@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { BehaviorSubject, createCompletionOk } from '../../../../mod.js';
+import { BehaviorSubject,  } from '../../../../mod.js';
 
 import { TestSubscriber } from './__helpers__/mod.js';
 
@@ -29,7 +29,7 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
 
     testTarget.next(SECOND_VALUE);
     testTarget.error(new Error());
-    testTarget.complete(createCompletionOk());
+    testTarget.complete(null);
 
     // assertion
     t.is(onNext.callCount, 1);

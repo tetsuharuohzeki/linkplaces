@@ -1,7 +1,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { type Observer, createCompletionOk, Subject } from '../../../../mod.js';
+import { type Observer,  Subject } from '../../../../mod.js';
 
 const spiedReportError = tinyspy.spy();
 
@@ -103,8 +103,8 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     t.teardown(() => {
         subscription.unsubscribe();
     });
-    testTarget.complete(createCompletionOk());
-    testTarget.complete(createCompletionOk());
+    testTarget.complete(null);
+    testTarget.complete(null);
 
     // assert
     t.is(observer.next.callCount, 0);

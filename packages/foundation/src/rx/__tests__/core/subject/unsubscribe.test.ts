@@ -1,7 +1,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { Subject, createCompletionOk } from '../../../mod.js';
+import { Subject, } from '../../../mod.js';
 
 test('.unsubscribe() should stop myself', (t) => {
     const sub = new Subject();
@@ -77,5 +77,5 @@ test('.unsubscribe() should emit the completion to children', (t) => {
     target.unsubscribe();
 
     t.is(onCompleted.callCount, 1);
-    t.deepEqual(onCompleted.calls, [[createCompletionOk()]]);
+    t.deepEqual(onCompleted.calls, [[null]]);
 });

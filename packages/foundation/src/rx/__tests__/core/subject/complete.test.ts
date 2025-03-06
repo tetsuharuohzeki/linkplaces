@@ -1,26 +1,22 @@
 import test from 'ava';
-import { createOk } from 'option-t/plain_result';
 import * as tinyspy from 'tinyspy';
 import { Subject } from '../../../mod.js';
 
 test('.complete() should propagate it to the child', (t) => {
-    const INPUT = createOk<void>(undefined);
-
     const target = new Subject<number>();
     const onCompleted = tinyspy.spy();
     target.asObservable().subscribeBy({
         onCompleted: onCompleted,
     });
 
-    target.complete(INPUT);
+    target.complete(null);
 
     t.is(target.isCompleted, true);
     t.is(onCompleted.callCount, 1);
-    t.deepEqual(onCompleted.calls, [[INPUT]]);
+    t.deepEqual(onCompleted.calls, [[null]]);
 });
 
 test('.complete() should stop myself', (t) => {
-    const INPUT = createOk<void>(undefined);
     const NORMAL_INPUT = Math.random();
 
     const target = new Subject<number>();
@@ -31,11 +27,11 @@ test('.complete() should stop myself', (t) => {
         onCompleted: onCompleted,
     });
 
-    target.complete(INPUT);
+    target.complete(null);
 
     t.is(target.isCompleted, true);
     t.is(onCompleted.callCount, 1);
-    t.deepEqual(onCompleted.calls, [[INPUT]]);
+    t.deepEqual(onCompleted.calls, [[null]]);
 
     target.next(NORMAL_INPUT);
     t.is(onNext.callCount, 0);
@@ -45,8 +41,6 @@ test('.complete() should flip its flag at the first on calling it', (t) => {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     t.plan(4);
 
-    const INPUT = createOk<void>(undefined);
-
     const target = new Subject<number>();
     const onCompleted = tinyspy.spy(() => {
         t.is(target.isCompleted, true);
@@ -55,16 +49,14 @@ test('.complete() should flip its flag at the first on calling it', (t) => {
         onCompleted: onCompleted,
     });
 
-    target.complete(INPUT);
+    target.complete(null);
 
     t.is(target.isCompleted, true);
     t.is(onCompleted.callCount, 1);
-    t.deepEqual(onCompleted.calls, [[INPUT]]);
+    t.deepEqual(onCompleted.calls, [[null]]);
 });
 
 test('.complete() should propagate the passed value on reentrant case', (t) => {
-    const INPUT = createOk<void>(undefined);
-
     // arrange
     const target = new Subject<number>();
     const onInnerComplete = tinyspy.spy();
@@ -79,14 +71,14 @@ test('.complete() should propagate the passed value on reentrant case', (t) => {
         onCompleted: onOuterComplete,
     });
 
-    target.complete(INPUT);
+    target.complete(null);
 
     // assert
     t.is(target.isCompleted, true);
 
     t.is(onOuterComplete.callCount, 1);
-    t.deepEqual(onOuterComplete.calls, [[INPUT]]);
+    t.deepEqual(onOuterComplete.calls, [[null]]);
 
     t.is(onInnerComplete.callCount, 1);
-    t.deepEqual(onOuterComplete.calls, [[INPUT]]);
+    t.deepEqual(onOuterComplete.calls, [[null]]);
 });

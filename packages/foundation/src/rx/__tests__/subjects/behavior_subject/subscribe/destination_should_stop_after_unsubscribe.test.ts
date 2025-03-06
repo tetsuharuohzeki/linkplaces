@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { createCompletionOk, BehaviorSubject } from '../../../../mod.js';
+import {  BehaviorSubject } from '../../../../mod.js';
 import { TestSubscriber } from './__helpers__/mod.js';
 
 test('the destination should not be called after cancelled the subscription', (t) => {
@@ -25,7 +25,7 @@ test('the destination should not be called after cancelled the subscription', (t
 
     subject.next(SECOND_VALUE);
     subject.error(new Error());
-    subject.complete(createCompletionOk());
+    subject.complete(null);
 
     // assert
     t.is(onNext.callCount, 1, 'should call next calback');
