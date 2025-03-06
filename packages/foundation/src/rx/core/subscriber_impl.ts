@@ -4,6 +4,19 @@ import type { Observer } from './observer.js';
 import type { Unsubscribable } from './subscribable.js';
 import type { Subscriber, TeardownFn } from './subscriber.js';
 
+function reportError(e: unknown): void {
+    const reportError = globalThis.reportError;
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    if (!!reportError) {
+        reportError(e);
+    } else {
+        // This path is for Node.js.
+        globalThis.setTimeout(() => {
+            throw e;
+        }, 0);
+    }
+}
+
 /**
  *  @internal
  *  This is required to implement the libary.
@@ -58,7 +71,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
         try {
             this.onError(error);
         } catch (e: unknown) {
-            globalThis.reportError(e);
+            reportError(e);
         }
     }
 
@@ -75,7 +88,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
         try {
             this.onCompleted(result);
         } catch (e: unknown) {
-            globalThis.reportError(e);
+            reportError(e);
         } finally {
             this.unsubscribe();
         }
@@ -119,7 +132,7 @@ function tryToRunTeardown(finalizer: TeardownFn): void {
     try {
         finalizer();
     } catch (err: unknown) {
-        globalThis.reportError(err);
+        reportError(err);
     }
 }
 
