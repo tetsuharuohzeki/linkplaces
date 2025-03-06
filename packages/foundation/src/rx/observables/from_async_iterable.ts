@@ -1,4 +1,3 @@
-import { createCompletionOk } from '../core/completion_result.js';
 import type { Observable } from '../core/observable.js';
 import type { Subscriber } from '../core/subscriber.js';
 import { createObservableFromAsync } from './create_async.js';
@@ -12,8 +11,7 @@ async function iterate<T>(factory: AsyncIterable<T>, destination: Subscriber<T>,
         destination.next(item);
     }
 
-    const ok = createCompletionOk();
-    destination.complete(ok);
+    destination.complete(null);
 }
 
 export function fromAsyncIterableToObservable<T>(factory: AsyncIterable<T>): Observable<T> {

@@ -1,6 +1,5 @@
-import { isErr, isOk } from 'option-t/plain_result';
+import { isNull } from 'option-t/nullable';
 
-import { assertUnreachable } from '../../assert_never.js';
 import type { CompletionResult } from '../core/completion_result.js';
 import { Observable } from '../core/observable.js';
 import type { Subscriber } from '../core/subscriber.js';
@@ -31,16 +30,15 @@ class MergeSubscriber<T> extends InternalSubscriber<T> {
     }
 
     protected override onCompleted(result: CompletionResult): void {
-        if (isErr(result)) {
-            this._destination.complete(result);
-        } else if (isOk(result)) {
+        if (isNull(result)) {
             const currentLivings = this._decrementRef();
             if (currentLivings <= 0) {
                 this._destination.complete(result);
             }
-        } else {
-            assertUnreachable(result);
+            return;
         }
+
+        this._destination.complete(result);
     }
 }
 

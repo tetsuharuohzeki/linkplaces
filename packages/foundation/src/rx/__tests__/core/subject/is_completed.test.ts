@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import { Subject, createCompletionOk } from '../../../mod.js';
+import { Subject, } from '../../../mod.js';
 
 test('set .isCompleted on calling .unsubscribe()', (t) => {
     const actual = new Subject();
@@ -13,7 +13,7 @@ test('set .isCompleted on calling .complete()', (t) => {
     const actual = new Subject();
 
     {
-        const result = createCompletionOk();
+        const result = null;
         actual.complete(result);
     }
 

@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { type Subscriber, createCompletionOk } from '../../../../mod.js';
+import type { Subscriber } from '../../../../mod.js';
 
 import { TestObservable, TestSubscriber } from './__helpers__/mod.js';
 
@@ -35,7 +35,7 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     passedSubscriber!.error(new Error());
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    passedSubscriber!.complete(createCompletionOk());
+    passedSubscriber!.complete(null);
 
     // assertion
     t.is(onNext.callCount, 0);

@@ -1,5 +1,4 @@
 import test from 'ava';
-import { createOk } from 'option-t/plain_result';
 import * as tinyspy from 'tinyspy';
 
 import { Subject, BehaviorSubject, type CompletionResult } from '../../../mod.js';
@@ -85,5 +84,5 @@ test('.unsubscribe() should emit the completion to children', (t) => {
     target.unsubscribe();
 
     t.is(onCompleted.callCount, 1);
-    t.deepEqual(onCompleted.calls.at(0), [createOk(undefined)]);
+    t.deepEqual(onCompleted.calls.at(0), [null]);
 });

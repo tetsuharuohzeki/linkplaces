@@ -1,8 +1,21 @@
-import { isNotNull, unwrapNullable, type Nullable } from 'option-t/nullable';
+import { isNotNull, isNull, unwrapNullable, type Nullable } from 'option-t/nullable';
 import type { CompletionResult } from './completion_result.js';
 import type { Observer } from './observer.js';
 import type { Unsubscribable } from './subscribable.js';
 import type { Subscriber, TeardownFn } from './subscriber.js';
+
+function reportError(e: unknown): void {
+    const reportError = globalThis.reportError;
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    if (!!reportError) {
+        reportError(e);
+    } else {
+        // This path is for Node.js.
+        globalThis.setTimeout(() => {
+            throw e;
+        }, 0);
+    }
+}
 
 /**
  *  @internal
@@ -58,11 +71,21 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
         try {
             this.onError(error);
         } catch (e: unknown) {
-            globalThis.reportError(e);
+            reportError(e);
         }
     }
 
     complete(result: CompletionResult): void {
+        if (
+            !(
+                isNull(null) ||
+                // FIXME: This should be `Error.isError`
+                result instanceof Error
+            )
+        ) {
+            throw new TypeError('the passed result must be CompletionResult');
+        }
+
         if (this._isCalledOnCompleted) {
             return;
         }
@@ -75,7 +98,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
         try {
             this.onCompleted(result);
         } catch (e: unknown) {
-            globalThis.reportError(e);
+            reportError(e);
         } finally {
             this.unsubscribe();
         }
@@ -119,7 +142,7 @@ function tryToRunTeardown(finalizer: TeardownFn): void {
     try {
         finalizer();
     } catch (err: unknown) {
-        globalThis.reportError(err);
+        reportError(err);
     }
 }
 

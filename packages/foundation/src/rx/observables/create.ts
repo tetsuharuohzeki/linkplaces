@@ -1,6 +1,7 @@
-import { createCompletionErr, createCompletionOk, type CompletionResult } from '../core/completion_result.js';
+import type { CompletionResult } from '../core/completion_result.js';
 import { Observable } from '../core/observable.js';
 import type { Subscriber } from '../core/subscriber.js';
+import { SubscriptionCompleteByFailureError } from '../core/subscription_error.js';
 
 export type SyncFactoryFn<T> = (observer: Subscriber<T>, signal: AbortSignal) => void;
 
@@ -16,10 +17,10 @@ class SyncFactoryObservable<T> extends Observable<T> {
             let result: CompletionResult;
             try {
                 factory(destination, signal);
-                result = createCompletionOk();
+                result = null;
             } catch (e: unknown) {
                 destination.error(e);
-                result = createCompletionErr(e);
+                result = new SubscriptionCompleteByFailureError(e);
             }
             destination.complete(result);
         });

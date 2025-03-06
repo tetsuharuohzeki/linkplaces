@@ -1,4 +1,3 @@
-import { createCompletionOk } from '../core/completion_result.js';
 import { Observable } from '../core/observable.js';
 import type { Subscriber } from '../core/subscriber.js';
 
@@ -10,8 +9,7 @@ class FromEventObservable extends Observable<Event> {
             destination.addTeardown(() => {
                 aborter.abort();
 
-                const ok = createCompletionOk();
-                destination.complete(ok);
+                destination.complete(null);
             });
 
             target.addEventListener(

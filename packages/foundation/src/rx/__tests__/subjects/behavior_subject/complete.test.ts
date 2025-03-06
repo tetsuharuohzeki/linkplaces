@@ -1,10 +1,10 @@
 import test from 'ava';
 import { spy } from 'tinyspy';
 
-import { BehaviorSubject, createCompletionOk } from '../../../mod.js';
+import { BehaviorSubject, } from '../../../mod.js';
 
 test('.complete() should propagate it to the child', (t) => {
-    const INPUT = createCompletionOk();
+    const INPUT = null;
 
     const target = new BehaviorSubject<number>(0);
     const onCompleted = spy();
@@ -20,7 +20,7 @@ test('.complete() should propagate it to the child', (t) => {
 });
 
 test('.complete() should stop myself', (t) => {
-    const INPUT = createCompletionOk();
+    const INPUT = null;
     const INITIAL_INPUT = 0;
     const NORMAL_INPUT = Math.random();
 
@@ -50,8 +50,6 @@ test('.complete() should flip its flag at the first on calling it', (t) => {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     t.plan(4);
 
-    const INPUT = createCompletionOk();
-
     const target = new BehaviorSubject<number>(0);
     const onCompleted = spy(() => {
         t.is(target.isCompleted, true);
@@ -60,16 +58,14 @@ test('.complete() should flip its flag at the first on calling it', (t) => {
         onCompleted: onCompleted,
     });
 
-    target.complete(INPUT);
+    target.complete(null);
 
     t.is(target.isCompleted, true);
     t.is(onCompleted.callCount, 1);
-    t.deepEqual(onCompleted.calls, [[INPUT]]);
+    t.deepEqual(onCompleted.calls, [[null]]);
 });
 
 test('.complete() should propagate the passed value on reentrant case', (t) => {
-    const INPUT = createCompletionOk();
-
     // arrange
     const target = new BehaviorSubject<number>(0);
     const onInnerComplete = spy();
@@ -84,14 +80,14 @@ test('.complete() should propagate the passed value on reentrant case', (t) => {
         onCompleted: onOuterComplete,
     });
 
-    target.complete(INPUT);
+    target.complete(null);
 
     // assert
     t.is(target.isCompleted, true);
 
     t.is(onOuterComplete.callCount, 1);
-    t.deepEqual(onOuterComplete.calls, [[INPUT]]);
+    t.deepEqual(onOuterComplete.calls, [[null]]);
 
     t.is(onInnerComplete.callCount, 1);
-    t.deepEqual(onInnerComplete.calls, [[INPUT]]);
+    t.deepEqual(onInnerComplete.calls, [[null]]);
 });

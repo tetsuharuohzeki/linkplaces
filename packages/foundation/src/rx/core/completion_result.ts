@@ -1,9 +1,10 @@
-import { createErr, createOk, type Ok, type Result } from 'option-t/plain_result';
+import type { Nullable } from 'option-t/nullable';
 
-export type CompletionResult = Result<void, unknown>;
-
-export function createCompletionOk(): Ok<void> {
-    return createOk(undefined);
-}
-
-export const createCompletionErr: typeof createErr<unknown> = createErr<unknown>;
+// XXX:
+// We use this only on calling `.complete()` now, thus:
+//
+//  1. We don't pass an arbitrary sucess value.
+//  2. We don't pass an arbitrary error value that is not `Error` instance.
+//
+//  By these reasons, we stopped to use _result_ type here.
+export type CompletionResult = Nullable<Error>;

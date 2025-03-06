@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { BehaviorSubject, createCompletionOk } from '../../../../mod.js';
+import { BehaviorSubject } from '../../../../mod.js';
 
 const spiedReportError = tinyspy.spy();
 
@@ -124,8 +124,8 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     t.teardown(() => {
         subscription.unsubscribe();
     });
-    testTarget.complete(createCompletionOk());
-    testTarget.complete(createCompletionOk());
+    testTarget.complete(null);
+    testTarget.complete(null);
 
     // assert
     t.is(onNext.callCount, 1);
@@ -137,7 +137,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     t.is(onCompleted.callCount, 1);
     t.deepEqual(onCompleted.calls, [
         // @prettier-ignore
-        [createCompletionOk()],
+        [null],
     ]);
     t.deepEqual(onCompleted.results, [['error', THROWN_ERROR]]);
 
