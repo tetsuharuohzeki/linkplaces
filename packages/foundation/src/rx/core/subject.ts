@@ -101,6 +101,12 @@ export class Subject<T> implements Subjectable<T> {
     }
 
     private _onSubscribe(subscriber: Subscriber<T>): void {
+        // FIXME:
+        // This is a simple check to recursive subscription by self
+        // by the assumption which a event broadcaster is only this (or derived) class in this observable framework.
+        // This cannot prevents the case a multiple chaining of observables.
+        // We should remove this check as non practical assertion or
+        // should introduce a more comprehensive mechanism to check a such kind of recursive chain.
         if (subscriber.destination() === this) {
             throw new SubscriptionError('recursive subscription happens');
         }
