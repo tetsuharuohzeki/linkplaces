@@ -14,6 +14,7 @@ export {
     fromEventToObservable,
     fromEventToObservableOnHTMLElement,
     fromEventToObservableOnWindow,
+    FromEventObservableMode,
 } from './observables/from_event.js';
 
 export * as operators from './operators/mod.js';
