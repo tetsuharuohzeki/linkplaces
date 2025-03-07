@@ -10,7 +10,11 @@ export { SubscriptionError } from './core/subscription_error.js';
 export { createObservable, type SyncFactoryFn } from './observables/create.js';
 export { createObservableFromAsync, type AsyncFactoryFn } from './observables/create_async.js';
 export { fromAsyncIterableToObservable } from './observables/from_async_iterable.js';
-export { fromEventToObservable } from './observables/from_event.js';
+export {
+    fromEventToObservable,
+    fromEventToObservableOnHTMLElement,
+    fromEventToObservableOnWindow,
+} from './observables/from_event.js';
 
 export * as operators from './operators/mod.js';
 

@@ -29,3 +29,19 @@ export function fromEventToObservable(target: EventTarget, eventName: string): O
     const o = new FromEventObservable(target, eventName);
     return o;
 }
+
+export function fromEventToObservableOnHTMLElement<TEventName extends keyof HTMLElementEventMap>(
+    target: HTMLElement,
+    eventName: TEventName
+): Observable<HTMLElementEventMap[TEventName]> {
+    const o = fromEventToObservable(target, eventName);
+    return o;
+}
+
+export function fromEventToObservableOnWindow<TEventName extends keyof WindowEventMap>(
+    target: Window,
+    eventName: TEventName
+): Observable<WindowEventMap[TEventName]> {
+    const o = fromEventToObservable(target, eventName);
+    return o;
+}
