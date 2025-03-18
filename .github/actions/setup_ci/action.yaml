@@ -4,7 +4,7 @@ description: Setup CI environment
 runs:
     using: composite
     steps:
-        - uses: actions/setup-node@v4
+        - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e
           with:
               node-version: 23.x
 
@@ -24,7 +24,7 @@ runs:
           run: echo "id=${{ hashFiles('**/pnpm-lock.yaml') }}" >> $GITHUB_OUTPUT
 
         - name: Restore dependency caches
-          uses: actions/cache/restore@v4
+          uses: actions/cache/restore@d4323d4df104b026a6aa633fdb11d772146be0bf
           id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
           with:
               path: ${{ steps.npm-cache-dir.outputs.dir }}
@@ -40,7 +40,7 @@ runs:
               make install
 
         - name: Save dependency caches
-          uses: actions/cache/save@v4
+          uses: actions/cache/save@d4323d4df104b026a6aa633fdb11d772146be0bf
           # We run this step only on _trunk_ to aim to improve a cache hit.
           # For example, dependabot's pull requests sometimes shoot down a cache hit ratio
           # by changing a lock file with multiple variants.
