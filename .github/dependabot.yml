@@ -59,3 +59,8 @@ updates:
       labels:
           - A-dependency
           - I-dependency-gardening
+      groups:
+          "actions/cache":
+              patterns:
+                  - "actions/cache/restore"
+                  - "actions/cache/save"
