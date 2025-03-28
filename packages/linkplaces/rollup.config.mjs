@@ -44,7 +44,7 @@ const PKG_ALIAS_ENTIRIES = [];
 if (ENABLE_REACT_PROFILER) {
     // See https://fb.me/react-profiling
     PKG_ALIAS_ENTIRIES.push({
-        find: /^react-dom$/u,
+        find: 'react-dom/client',
         replacement: 'react-dom/profiling',
     });
 }
