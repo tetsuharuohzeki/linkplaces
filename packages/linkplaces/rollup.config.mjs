@@ -51,7 +51,6 @@ if (ENABLE_REACT_PROFILER) {
 
 const REACT_RELATED_PKG_LIST = [
     /node_modules\/react\/.*/u,
-    /node_modules\/object-assign\/.*/u,
     /node_modules\/react-dom\/.*/u,
     /node_modules\/scheduler\/.*/u,
 ];
