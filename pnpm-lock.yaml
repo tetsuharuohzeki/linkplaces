@@ -81,8 +81,8 @@ importers:
         specifier: ^37.0.0
         version: 37.0.0(stylelint@16.17.0(typescript@5.8.2))
       tinyspy:
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^4.0.2
+        version: 4.0.2
       turbo:
         specifier: ^2.4.4
         version: 2.4.4
@@ -3666,8 +3666,8 @@ packages:
     resolution: {integrity: sha512-TIsDdtKo6+XrPtiTm1ssmMngN1sAhyKnTO2kunQWqNPWIVvCm15Wmw4SWInwTVgJ5u/Tr04+8Ei9TNcw4x4ONA==}
     engines: {node: '>=4'}
 
-  tinyspy@4.0.0:
-    resolution: {integrity: sha512-cfaGNABIQGjWsqbj1snffI3KPwAFQfyj7mLqKQlosPgGcWKW4mXDO3/yo5+JqiL9EQkvInSot4qxbvbK2uOtRw==}
+  tinyspy@4.0.2:
+    resolution: {integrity: sha512-1gniIIoDOAivEwCUNJI1Vz0y47HfxLlVJLYAi3TtDvu0PIxeV6tICaJPiZFUxc/0RoohyECxSwLHvnBDBIhDdw==}
     engines: {node: '>=14.0.0'}
 
   titleize@3.0.0:
@@ -7773,7 +7773,7 @@ snapshots:
 
   time-zone@1.0.0: {}
 
-  tinyspy@4.0.0: {}
+  tinyspy@4.0.2: {}
 
   titleize@3.0.0: {}
 
