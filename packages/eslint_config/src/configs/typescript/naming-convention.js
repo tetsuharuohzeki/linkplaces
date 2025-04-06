@@ -1,6 +1,17 @@
-const detaultLeadingUnderscorePolicy = {
-    // Basically, unused items should be removed.
-    leadingUnderscore: 'forbid',
+const privateMemberShouldHaveLeadingUndescrore = {
+    //
+    // Enforce that private members are prefixed with an underscore
+    // By these reasons, I think we recommend to add `_` prefix to private fields.
+    //
+    //  * Historically, JavaScript wolrd use `_` prefix to mark fields as _private_.
+    //  * Until coming [private fields of class field declarations proposal](https://github.com/tc39/proposal-class-fields),
+    //    there is no true private fields in JavaScript.
+    //      * If TypeScript compiler supports it, it might be better to relax this rule.
+    //  * TypeScript will be transformed into plain JavaScript and plain JavaScript does not any informations
+    //    to express whether a field is private or not.
+    selector: 'memberLike',
+    format: ['strictCamelCase'],
+    leadingUnderscore: 'allow',
 };
 
 /**
@@ -19,7 +30,8 @@ export const rules = {
         {
             selector: 'default',
             format: ['camelCase'],
-            leadingUnderscore: 'allow',
+            // Basically, unused items should be removed.
+            leadingUnderscore: 'forbid',
             // allow to similar semantic items
             trailingUnderscore: 'allow',
         },
@@ -39,27 +51,38 @@ export const rules = {
                 //  ```
                 'PascalCase',
             ],
-            ...detaultLeadingUnderscorePolicy,
         },
         {
             selector: 'function',
             // For React's Function Component, we need allow `PascalCase`.
             format: ['camelCase', 'PascalCase'],
-            ...detaultLeadingUnderscorePolicy,
+        },
+        {
+            selector: 'parameter',
+            format: ['strictCamelCase'],
+            leadingUnderscore: 'allow',
         },
 
         // MARK: Detailed configs covered by `memberLike`
         {
             selector: 'enumMember',
             format: ['PascalCase'],
-            ...detaultLeadingUnderscorePolicy,
+        },
+        {
+            ...privateMemberShouldHaveLeadingUndescrore,
+            // `modifiers` is always _AND_ operation. We need to configure private and protected separatedly.
+            modifiers: ['private'],
+        },
+        {
+            ...privateMemberShouldHaveLeadingUndescrore,
+            // `modifiers` is always _AND_ operation. We need to configure private and protected separatedly.
+            modifiers: ['protected'],
         },
 
         // MARK: Detailed configs covered by `typeLike`
         {
             selector: 'typeLike',
             format: ['PascalCase'],
-            ...detaultLeadingUnderscorePolicy,
         },
         // Enforce that interface names do not begin with an I
         // [By TypeScript coding guidelines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines),
@@ -73,7 +96,6 @@ export const rules = {
                 regex: '^I[A-Z]',
                 match: false,
             },
-            ...detaultLeadingUnderscorePolicy,
         },
         //  * We accept the style for T , TA , TAbc , TA1Bca , T1 , T2.
         //      * You seem this style is similar to C# or typescript compiler.
@@ -93,31 +115,12 @@ export const rules = {
             //    'regex': '^T([A-Z0-9][a-zA-Z0-9]*){0,1}$',
             //    'match': true,
             //},
-            ...detaultLeadingUnderscorePolicy,
         },
 
         // MARK: not covered by group selectors
         {
             selector: 'import',
             format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-            ...detaultLeadingUnderscorePolicy,
-        },
-
-        {
-            //
-            // Enforce that private members are prefixed with an underscore
-            // By these reasons, I think we recommend to add `_` prefix to private fields.
-            //
-            //  * Historically, JavaScript wolrd use `_` prefix to mark fields as _private_.
-            //  * Until coming [private fields of class field declarations proposal](https://github.com/tc39/proposal-class-fields),
-            //    there is no true private fields in JavaScript.
-            //      * If TypeScript compiler supports it, it might be better to relax this rule.
-            //  * TypeScript will be transformed into plain JavaScript and plain JavaScript does not any informations
-            //    to express whether a field is private or not.
-            selector: ['classProperty', 'classMethod', 'autoAccessor', 'classicAccessor'],
-            modifiers: ['private', 'protected'],
-            format: ['camelCase'],
-            ...detaultLeadingUnderscorePolicy,
         },
     ],
 };
