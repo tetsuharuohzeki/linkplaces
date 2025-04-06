@@ -13,6 +13,7 @@ import {
     createlanguageOptionsForTypeScript,
     configForTypeScript,
 } from '@linkplaces/eslint_config';
+import { defineConfig } from 'eslint/config';
 import turboConfig from 'eslint-config-turbo/flat';
 
 const THIS_FILE_NAME = fileURLToPath(import.meta.url);
@@ -22,8 +23,8 @@ const FILE_PATTERN_JS_ESM = ['**/*.mjs', '**/*.js'];
 const FILE_PATTERN_JS_CJS = ['**/*.cjs'];
 const FILE_PATTERN_TS = ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'];
 
-// eslint-disable-next-line import/no-anonymous-default-export, import/no-default-export -- ESLint requires default export.
-export default [
+// eslint-disable-next-line import/no-default-export -- ESLint requires default export.
+export default defineConfig([
     js.configs.recommended,
     coreConfig,
     {
@@ -94,4 +95,4 @@ export default [
     },
     ...turboConfig,
     ...prettierConfigs,
-];
+]);

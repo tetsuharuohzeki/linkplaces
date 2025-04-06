@@ -4,6 +4,7 @@ import tsESLintPlugin from '@typescript-eslint/eslint-plugin';
 import tsESLintParser from '@typescript-eslint/parser';
 import globals from 'globals';
 
+import * as tsNamingConvention from './typescript/naming-convention.js';
 import tsPresets from './vendor/typescript.cjs';
 
 const tsESLintPluginConfigs = tsESLintPlugin.configs;
@@ -87,6 +88,8 @@ const rules = Object.freeze({
             prefer: 'class-property',
         },
     ],
+
+    ...tsNamingConvention.rules,
 });
 
 /*
