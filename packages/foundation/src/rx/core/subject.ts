@@ -126,7 +126,7 @@ export class Subject<T> implements Subjectable<T> {
     }
 
     // XXX: This allows to extend the emittion point for  derived class.
-    // eslint-disable-next-line @typescript-eslint/class-methods-use-this
+    // eslint-disable-next-line class-methods-use-this
     protected _onInitialValueEmittablePointInSubjectSubscribe(_destination: Subscriber<T>): void {}
 
     private _registerObserverOnSubscribe(destination: Subscriber<T>): void {

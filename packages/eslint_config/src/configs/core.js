@@ -18,7 +18,16 @@ const builtinRules = Object.freeze({
     // To get a chance to improve a code size performance and to simplify a code,
     // it's better that we should export a standalone function directly
     // instead of a part of class if it does not affect an API ergonomics.
-    'class-methods-use-this': 'warn',
+    'class-methods-use-this': [
+        'warn',
+        {
+            enforceForClassFields: true,
+            // We would like to allow override the base method on super class.
+            ignoreOverrideMethods: true,
+            // We would like to allow to implement an empty method as a part of the interface.
+            ignoreClassesWithImplements: 'public-fields',
+        },
+    ],
 
     // This prevents the pattern that is error prone.
     'no-constant-binary-expression': 'error',

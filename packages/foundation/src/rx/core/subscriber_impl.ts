@@ -36,7 +36,7 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     protected abstract onError(error: unknown): void;
     protected abstract onCompleted(result: CompletionResult): void;
     // As a part of override point but not required.
-    // eslint-disable-next-line @typescript-eslint/class-methods-use-this
+    // eslint-disable-next-line class-methods-use-this
     protected onUnsubscribe(): void {}
 
     get closed(): boolean {
