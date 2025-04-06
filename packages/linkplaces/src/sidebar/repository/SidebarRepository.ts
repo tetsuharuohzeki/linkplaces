@@ -6,8 +6,8 @@ import { type SidebarItemViewModelEntity, mapToSidebarItemEntity } from '../Side
 import { BookmarkRepository } from './BookmarkRepository.js';
 
 export class SidebarRepository implements Repository<Iterable<SidebarItemViewModelEntity>> {
-    static create(bookmarks: WebExtBookmarkService, _init: Array<BookmarkTreeNode>): SidebarRepository {
-        const driver = BookmarkRepository.create(bookmarks, _init);
+    static create(bookmarks: WebExtBookmarkService, init: Array<BookmarkTreeNode>): SidebarRepository {
+        const driver = BookmarkRepository.create(bookmarks, init);
         const s = new SidebarRepository(driver);
         return s;
     }
