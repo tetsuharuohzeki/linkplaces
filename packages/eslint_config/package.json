@@ -1,0 +1,19 @@
+{
+    "name": "@linkplaces/eslint_config",
+    "version": "0.10.0",
+    "type": "module",
+    "exports": {
+        ".": {
+            "default": "./src/mod.js"
+        }
+    },
+    "dependencies": {
+        "@typescript-eslint/eslint-plugin": "^8.29.0",
+        "@typescript-eslint/parser": "^8.29.0",
+        "eslint-plugin-import-x": "^4.10.0",
+        "eslint-config-prettier": "10.1.1",
+        "eslint-plugin-react": "7.37.4",
+        "eslint-plugin-react-compiler": "19.0.0-beta-714736e-20250131",
+        "eslint-plugin-react-hooks": "5.2.0"
+    }
+}

@@ -2,18 +2,18 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import js from '@eslint/js';
-import turboConfig from 'eslint-config-turbo/flat';
-
-import { config as coreConfig } from './tools/eslint/core.js';
-import * as importConfig from './tools/eslint/import.js';
 import {
+    coreConfig,
+    importConfig,
     languageOptionsForModule,
     languageOptionsForCommonJS,
     languageOptionsForTesting,
-} from './tools/eslint/language_options.js';
-import { configs as prettierConfigs } from './tools/eslint/prettier.js';
-import * as reactConfig from './tools/eslint/react.js';
-import { createlanguageOptionsForTypeScript, config as configForTypeScript } from './tools/eslint/typescript.js';
+    prettierConfigs,
+    reactConfig,
+    createlanguageOptionsForTypeScript,
+    configForTypeScript,
+} from '@linkplaces/eslint_config';
+import turboConfig from 'eslint-config-turbo/flat';
 
 const THIS_FILE_NAME = fileURLToPath(import.meta.url);
 const THIS_DIR_NAME = path.dirname(THIS_FILE_NAME);

@@ -17,6 +17,9 @@ importers:
       '@eslint/js':
         specifier: ^9.23.0
         version: 9.23.0
+      '@linkplaces/eslint_config':
+        specifier: workspace:*
+        version: link:packages/eslint_config
       '@linkplaces/tools':
         specifier: workspace:*
         version: link:packages/tools
@@ -35,12 +38,6 @@ importers:
       '@types/react-dom':
         specifier: ^19.1.1
         version: 19.1.1(@types/react@19.1.0)
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^8.29.0
-        version: 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.23.0)(typescript@5.8.2))(eslint@9.23.0)(typescript@5.8.2)
-      '@typescript-eslint/parser':
-        specifier: ^8.29.0
-        version: 8.29.0(eslint@9.23.0)(typescript@5.8.2)
       ava:
         specifier: ^6.2.0
         version: 6.2.0(@ava/typescript@5.0.0)(rollup@4.38.0)
@@ -50,24 +47,9 @@ importers:
       eslint:
         specifier: ^9.23.0
         version: 9.23.0
-      eslint-config-prettier:
-        specifier: 10.1.1
-        version: 10.1.1(eslint@9.23.0)
       eslint-config-turbo:
         specifier: ^2.4.4
         version: 2.4.4(eslint@9.23.0)(turbo@2.4.4)
-      eslint-plugin-import-x:
-        specifier: ^4.10.0
-        version: 4.10.0(eslint@9.23.0)(typescript@5.8.2)
-      eslint-plugin-react:
-        specifier: 7.37.4
-        version: 7.37.4(eslint@9.23.0)
-      eslint-plugin-react-compiler:
-        specifier: 19.0.0-beta-714736e-20250131
-        version: 19.0.0-beta-714736e-20250131(eslint@9.23.0)
-      eslint-plugin-react-hooks:
-        specifier: 5.2.0
-        version: 5.2.0(eslint@9.23.0)
       globals:
         specifier: ^16.0.0
         version: 16.0.0
@@ -114,6 +96,30 @@ importers:
       '@linkplaces/tools':
         specifier: workspace:*
         version: link:../tools
+
+  packages/eslint_config:
+    dependencies:
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^8.29.0
+        version: 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.23.0)(typescript@5.8.2))(eslint@9.23.0)(typescript@5.8.2)
+      '@typescript-eslint/parser':
+        specifier: ^8.29.0
+        version: 8.29.0(eslint@9.23.0)(typescript@5.8.2)
+      eslint-config-prettier:
+        specifier: 10.1.1
+        version: 10.1.1(eslint@9.23.0)
+      eslint-plugin-import-x:
+        specifier: ^4.10.0
+        version: 4.10.0(eslint@9.23.0)(typescript@5.8.2)
+      eslint-plugin-react:
+        specifier: 7.37.4
+        version: 7.37.4(eslint@9.23.0)
+      eslint-plugin-react-compiler:
+        specifier: 19.0.0-beta-714736e-20250131
+        version: 19.0.0-beta-714736e-20250131(eslint@9.23.0)
+      eslint-plugin-react-hooks:
+        specifier: 5.2.0
+        version: 5.2.0(eslint@9.23.0)
 
   packages/foundation:
     dependencies:
@@ -354,11 +360,6 @@ packages:
 
   '@babel/parser@7.26.10':
     resolution: {integrity: sha512-6aQR2zGE/QFi8JpDLjUZEPYOs7+mhKXm86VaKFiLP35JQwQb6bwUE+XbvkH0EptsYhbNBSUGaUBLKqxH1xSgsA==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
-
-  '@babel/parser@7.26.7':
-    resolution: {integrity: sha512-kEvgGGgEjRUutvdVvZhbn/BxVt+5VSpwXz1j3WYXQbXDo8KzFOPNG2GQbdAiNq8g6wn1yKk7C/qrke03a84V+w==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -4211,10 +4212,6 @@ snapshots:
     dependencies:
       '@babel/types': 7.26.10
 
-  '@babel/parser@7.26.7':
-    dependencies:
-      '@babel/types': 7.26.10
-
   '@babel/plugin-proposal-private-methods@7.18.6(@babel/core@7.26.10)':
     dependencies:
       '@babel/core': 7.26.10
@@ -5825,7 +5822,7 @@ snapshots:
   eslint-plugin-react-compiler@19.0.0-beta-714736e-20250131(eslint@9.23.0):
     dependencies:
       '@babel/core': 7.26.10
-      '@babel/parser': 7.26.7
+      '@babel/parser': 7.26.10
       '@babel/plugin-proposal-private-methods': 7.18.6(@babel/core@7.26.10)
       eslint: 9.23.0
       hermes-parser: 0.25.1
