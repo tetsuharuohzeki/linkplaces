@@ -5,6 +5,7 @@ import tsESLintParser from '@typescript-eslint/parser';
 import globals from 'globals';
 
 import * as tsNamingConvention from './typescript/naming-convention.js';
+import * as tsNoRestrictedSyntax from './typescript/no-restricted-syntax.js';
 import tsPresets from './vendor/typescript.cjs';
 
 const tsESLintPluginConfigs = tsESLintPlugin.configs;
@@ -111,6 +112,8 @@ const rulesRequiringTypeInfo = Object.freeze({
 const projectSpecificRules = Object.freeze({
     // FIXME: Re-enable for the future.
     '@typescript-eslint/member-ordering': 'off',
+
+    ...tsNoRestrictedSyntax.rules,
 });
 
 export function createlanguageOptionsForTypeScript(baseDir) {
