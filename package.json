@@ -14,7 +14,7 @@
         "@reflink/reflink": "^0.1.19",
         "@types/node": "22.14.0",
         "@types/react": "^19.1.0",
-        "@types/react-dom": "^19.1.1",
+        "@types/react-dom": "^19.1.2",
         "ava": "^6.2.0",
         "babel-plugin-react-compiler": "19.0.0-beta-e993439-20250328",
         "eslint": "^9.24.0",
