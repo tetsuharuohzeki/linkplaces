@@ -14,9 +14,9 @@
         --global-body__background-color: #38383d;
         --global-body__text-color: rgb(249, 249, 250);
 
-        --shared-com-PanelListItem__container__hover--bg-color: rgba(249, 249, 250, 0.15);
-        --shared-com-PanelListItem__container__hover--border-color: rgba(249, 249, 250, 0.15);
-        --shared-com-PanelListItem__container__active--bg-color: rgba(249, 249, 250, 0.2);
+        --shared-com-PanelListItem__container__hover--bg-color: rgb(249, 249, 250, 0.15);
+        --shared-com-PanelListItem__container__hover--border-color: rgb(249, 249, 250, 0.15);
+        --shared-com-PanelListItem__container__active--bg-color: rgb(249, 249, 250, 0.2);
 
         --global-content__link-color: #45a1ff;
         --global-content__link-color--hover: #0a84ff;

@@ -9,13 +9,13 @@
 }
 
 .shared-com-PanelListItem__container:not(.disabled):hover {
-    background-color: var(--shared-com-PanelListItem__container__hover--bg-color, rgba(0, 0, 0, 0.06));
-    border-block-end: 1px solid var(--shared-com-PanelListItem__container__hover--border-color, rgba(0, 0, 0, 0.1));
-    border-block-start: 1px solid var(--shared-com-PanelListItem__container__hover--border-color, rgba(0, 0, 0, 0.1));
+    background-color: var(--shared-com-PanelListItem__container__hover--bg-color, rgb(0, 0, 0, 0.06));
+    border-block-end: 1px solid var(--shared-com-PanelListItem__container__hover--border-color, rgb(0, 0, 0, 0.1));
+    border-block-start: 1px solid var(--shared-com-PanelListItem__container__hover--border-color, rgb(0, 0, 0, 0.1));
 }
 
 .shared-com-PanelListItem__container:not(.disabled):hover:active {
-    background-color: var(--shared-com-PanelListItem__container__active--bg-color, rgba(0, 0, 0, 0.1));
+    background-color: var(--shared-com-PanelListItem__container__active--bg-color, rgb(0, 0, 0, 0.1));
 }
 
 .shared-com-PanelListItem__container.disabled {
