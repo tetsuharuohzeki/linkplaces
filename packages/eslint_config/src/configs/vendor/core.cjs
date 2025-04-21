@@ -34,7 +34,6 @@ module.exports = {
             },
         ],
         'block-scoped-var': 2, // https://eslint.org/docs/rules/block-scoped-var
-        'class-methods-use-this': 0, // A class method does not use `this` in some case.
         complexity: 0, // We think there is no meaning to measure it in a daily linting.
         'consistent-return': 2,
         'default-case': 0, // This is not a problem.
