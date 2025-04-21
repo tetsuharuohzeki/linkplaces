@@ -2,7 +2,7 @@
 .shared-com-PanelSectionHeader__container {
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid rgb(0, 0, 0, 0.15);
+    border-block-end: 1px solid rgb(0, 0, 0, 0.15);
     padding: 16px;
 }
 
@@ -10,7 +10,7 @@
     background-position: center center;
     background-repeat: no-repeat;
     block-size: 32px;
-    margin-right: 16px;
+    margin-inline-end: 16px;
     position: relative;
     inline-size: 32px;
 }

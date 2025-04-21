@@ -19,7 +19,7 @@
 .shared-com-PanelSectionForm__item label {
     flex-shrink: 0;
     margin-inline-end: 6px;
-    text-align: right;
+    text-align: end;
 }
 
 .shared-com-PanelSectionForm__item input[type='text'],
