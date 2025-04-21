@@ -4,7 +4,6 @@ body {
     background: var(--global-body__background-color, transparent);
     color: var(--global-body__text-color, #222426);
     cursor: default;
-    /* stylelint-disable-next-line font-family-name-quotes */
     font: caption;
     margin: 0;
     padding: 0;

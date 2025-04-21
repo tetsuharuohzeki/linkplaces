@@ -70,19 +70,13 @@ test: ## Run unit tests
 ####################################
 # Lint
 ####################################
-lint: eslint stylelint check_relationship_between_workspace_and_ts_pj_reference ## Run all lints.
+lint: eslint check_relationship_between_workspace_and_ts_pj_reference ## Run all lints.
 
 eslint: ## Run ESLint
 	$(NPM_BIN_DIR)/turbo eslint
 
 eslint_fix: ## Run ESLint with --fix option
 	$(NPM_BIN_DIR)/turbo eslint -- --fix
-
-stylelint: ## Run stylelint
-	$(NPM_BIN_DIR)/stylelint '$(CURDIR)/**/*.css' \
-		--config=$(CURDIR)/stylelint.config.mjs \
-		-f verbose \
-		--color
 
 check_relationship_between_workspace_and_ts_pj_reference:
 	$(NPM_BIN_DIR)/workspaces-to-typescript-project-references --check
