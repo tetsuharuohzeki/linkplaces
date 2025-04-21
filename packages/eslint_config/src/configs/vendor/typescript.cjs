@@ -51,9 +51,6 @@ module.exports = {
         // Each style has its own pros & cons.
         '@typescript-eslint/consistent-type-definitions': 'off',
 
-        // This avoid misusing functions
-        '@typescript-eslint/default-param-last': 'error',
-
         // TODO: (#64) @typescript-eslint/explicit-function-return-type
 
         // It's redundant to enforce to supply `public`.
