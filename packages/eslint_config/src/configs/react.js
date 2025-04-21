@@ -46,7 +46,7 @@ export const config = Object.freeze({
 
     settings: {
         react: {
-            version: '18.2',
+            version: '19.1',
         },
     },
 });
