@@ -29,6 +29,9 @@ const builtinRules = Object.freeze({
         },
     ],
 
+    // In almost case, we don't have to use it.
+    'no-array-constructor': 'error',
+
     // This prevents the pattern that is error prone.
     'no-constant-binary-expression': 'error',
 

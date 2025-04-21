@@ -88,10 +88,6 @@ module.exports = {
         ],
 
         // This should be sorted with ESLint builtin rule.
-        'no-array-constructor': 'off',
-        '@typescript-eslint/no-array-constructor': 'error',
-
-        // This should be sorted with ESLint builtin rule.
         'no-dupe-class-members': 'off',
         '@typescript-eslint/no-dupe-class-members': 'error',
 

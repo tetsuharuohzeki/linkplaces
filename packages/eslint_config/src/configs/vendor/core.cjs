@@ -241,7 +241,6 @@ module.exports = {
         'max-statements': 0, // https://eslint.org/docs/rules/max-statements
         'multiline-comment-style': 0, // https://eslint.org/docs/rules/multiline-comment-style
         'new-cap': 1,
-        'no-array-constructor': 2, // In almost case, we don't have to use it.
         'no-bitwise': [
             2,
             {
