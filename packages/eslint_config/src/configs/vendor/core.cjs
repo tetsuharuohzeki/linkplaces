@@ -284,7 +284,6 @@ module.exports = {
         'no-duplicate-imports': 1, // https://eslint.org/docs/rules/no-duplicate-imports
         'no-restricted-imports': 0, // Should specified by for each projects: https://eslint.org/docs/rules/no-restricted-imports
         'no-useless-computed-key': 1,
-        'no-useless-constructor': 0, // This is a stylistic issue.
         'no-useless-rename': 1,
         'no-var': 1,
         'object-shorthand': 0,

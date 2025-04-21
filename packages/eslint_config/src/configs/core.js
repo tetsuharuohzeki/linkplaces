@@ -57,6 +57,9 @@ const builtinRules = Object.freeze({
         },
     ],
 
+    // Allow shorthand syntax.
+    'no-useless-constructor': 'off',
+
     // This prevents the error at the running time.
     'valid-typeof': ['error', { requireStringLiterals: true }],
 });

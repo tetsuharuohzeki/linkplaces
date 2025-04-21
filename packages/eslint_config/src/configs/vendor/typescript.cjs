@@ -276,9 +276,6 @@ module.exports = {
             },
         ],
 
-        // We should sort with builtin rule.
-        '@typescript-eslint/no-useless-constructor': 'off',
-
         // I think this rule should be enabled.
         '@typescript-eslint/prefer-as-const': 'warn',
 
