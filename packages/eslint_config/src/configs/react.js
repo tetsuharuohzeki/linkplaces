@@ -1,52 +1,61 @@
-import assert from 'node:assert/strict';
-
 import reactESLintPlugin from 'eslint-plugin-react';
 import reactHooksESLintPlugin from 'eslint-plugin-react-hooks';
 
 import reactPresets from './vendor/react.cjs';
 import tsReactPresets from './vendor/typescript_react.cjs';
 
-const reactHooksPluginRecommendedConfigRules = reactHooksESLintPlugin.configs.recommended.rules;
-assert(reactHooksPluginRecommendedConfigRules);
-const reactPluginJsxRuntimeRules = reactESLintPlugin.configs['jsx-runtime'].rules;
-assert(reactPluginJsxRuntimeRules);
-
-const plugins = Object.freeze({
-    react: reactESLintPlugin,
-    'react-hooks': reactHooksESLintPlugin,
-});
-
 /**
- *  @type   {import('eslint').Linter.FlatConfig}
+ *  @type   {ReadonlyArray<import('eslint').Linter.Config>}
  */
-export const config = Object.freeze({
-    plugins,
-    rules: {
-        ...reactHooksPluginRecommendedConfigRules,
-        ...reactPresets.rules,
-        ...reactPluginJsxRuntimeRules,
-
-        ...tsReactPresets.rules,
-
-        // We would like to use syntax to swap to other libs easily.
-        'react/jsx-fragments': ['warn', 'syntax'],
-        // We would like to remove useless fragment.
-        'react/jsx-no-useless-fragment': [
-            'warn',
-            {
-                // We allow for typescript's typecheck
-                allowExpressions: true,
+const reactPluginConfigs = [
+    reactESLintPlugin.configs.flat.recommended,
+    reactESLintPlugin.configs.flat['jsx-runtime'],
+    {
+        plugins: {
+            react: reactESLintPlugin,
+        },
+        settings: {
+            react: {
+                version: '19.1',
             },
-        ],
+        },
+        rules: {
+            ...reactPresets.rules,
+            ...tsReactPresets.rules,
 
-        'react/no-arrow-function-lifecycle': 'error',
+            // We would like to use syntax to swap to other libs easily.
+            'react/jsx-fragments': ['warn', 'syntax'],
+            // We would like to remove useless fragment.
+            'react/jsx-no-useless-fragment': [
+                'warn',
+                {
+                    // We allow for typescript's typecheck
+                    allowExpressions: true,
+                },
+            ],
 
-        'react-hooks/react-compiler': 'error',
-    },
-
-    settings: {
-        react: {
-            version: '19.1',
+            'react/no-arrow-function-lifecycle': 'error',
         },
     },
-});
+];
+
+/**
+ *  @type   {ReadonlyArray<import('eslint').Linter.Config>}
+ */
+const hooksPluginConfigs = [
+    reactHooksESLintPlugin.configs.recommended,
+    {
+        rules: {
+            'react-hooks/react-compiler': 'error',
+        },
+    },
+];
+
+/**
+ *  @type   {ReadonlyArray<import('eslint').Linter.Config>}
+ */
+export const configs = Object.freeze([
+    // @prettier-ignore
+    ...reactPluginConfigs,
+    ...hooksPluginConfigs,
+]);

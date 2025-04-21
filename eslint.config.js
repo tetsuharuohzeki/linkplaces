@@ -87,10 +87,12 @@ export default defineConfig([
     },
 
     // for react
-    {
-        files: FILE_PATTERN_TS,
-        ...reactConfig.config,
-    },
+    ...reactConfig.configs.map((config) => {
+        return {
+            files: FILE_PATTERN_TS,
+            ...config,
+        };
+    }),
 
     {
         files: ['packages/webext_types/src/**/*.ts'],
