@@ -44,6 +44,9 @@ const builtinRules = Object.freeze({
     // We should not use it by the reason described in https://eslint.org/docs/latest/rules/no-object-constructor
     'no-object-constructor': 'warn',
 
+    // Warn a variable that don't be non `undefined` value.
+    'no-unassigned-vars': 'warn',
+
     // This detects unused field easily.
     'no-unused-private-class-members': 'warn',
 
