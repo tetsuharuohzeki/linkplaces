@@ -69,8 +69,8 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
       web-ext:
-        specifier: 8.7.0
-        version: 8.7.0
+        specifier: 8.7.1
+        version: 8.7.1
 
   packages/background_service:
     dependencies:
@@ -107,7 +107,7 @@ importers:
         version: 10.1.5(eslint@9.27.0)
       eslint-plugin-import-x:
         specifier: ^4.12.2
-        version: 4.13.1(eslint@9.27.0)(typescript@5.8.3)
+        version: 4.13.3(eslint@9.27.0)(typescript@5.8.3)
       eslint-plugin-react:
         specifier: 7.37.5
         version: 7.37.5(eslint@9.27.0)
@@ -1132,8 +1132,8 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  addons-linter@7.12.0:
-    resolution: {integrity: sha512-nvVnLqZvLCtPlvLiiJx8s217k5UvXOMQ/Y2qDutBXu8I8CK3pL6uLr5KvZan4eqEY1c1iHekvb3fnvf86a/4fA==}
+  addons-linter@7.13.0:
+    resolution: {integrity: sha512-PCtnZtFfMw+7NSwHEsXPxlUC37ixvx4WBMUbT3T2WQ4N002lATRJQD4ixIXYbRNMDESrC8H2H91ReEE5jmS+Qg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -1780,8 +1780,8 @@ packages:
       eslint: '>6.6.0'
       turbo: '>2.0.0'
 
-  eslint-import-context@0.1.4:
-    resolution: {integrity: sha512-x3+etvB5TPxjFIq2m4tTnpt/9Ekp5GZKzXNp5ExLaS7Qv9E5BVs/Td7jxSnRtSzrgTCExXZlc0MuOdSuDLURiQ==}
+  eslint-import-context@0.1.5:
+    resolution: {integrity: sha512-jalO1mLiEvTv0io0koz1AE4LwkHQxDBFLaSXWweWtJR0y/NC1yyxvU61Z54bghIFNeM1M4TvwRwVRhLunQJ3gw==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       unrs-resolver: ^1.0.0
@@ -1792,8 +1792,8 @@ packages:
   eslint-import-resolver-node@0.3.9:
     resolution: {integrity: sha512-WFj2isz22JahUv+B788TlO3N6zL3nNJGU8CcZbPZvVEkBPaJdCV4vy5wyghty5ROFbCRnm132v8BScu5/1BQ8g==}
 
-  eslint-plugin-import-x@4.13.1:
-    resolution: {integrity: sha512-Ua4HZBmG5TNr18q3Is+nT6mKCzNNpycqtv/+TkIK7E3w4LBlPlZI6vLwmDjXdIZtJPP2Z1Oh5+wksWwlcCjMpA==}
+  eslint-plugin-import-x@4.13.3:
+    resolution: {integrity: sha512-CDewJDEeYQhm94KGCDYiuwU1SdaWc/vh+SziSKkF7kichAqAFnQYtSYUvSwSBbiBjYLxV5uUxocxxQobRI9YXA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
@@ -3647,8 +3647,8 @@ packages:
   wcwidth@1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}
 
-  web-ext@8.7.0:
-    resolution: {integrity: sha512-A0djEbKMcRhlWVQW0NMX8I8dQyEeXjnbWaDrJ/++v790BcCG5foHTDPdAC38pRfwGaToTqgehztzCiT+68kLYw==}
+  web-ext@8.7.1:
+    resolution: {integrity: sha512-erzzLemPynhFSmSavgQ92PJkFGlY0XQEMZOHbc85D2f+pKi2wk7edaAwa8GU1E9AbyVrdPaFk7wGLpRGfRw8zw==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -4715,7 +4715,7 @@ snapshots:
 
   acorn@8.14.1: {}
 
-  addons-linter@7.12.0:
+  addons-linter@7.13.0:
     dependencies:
       '@fluent/syntax': 0.19.0
       '@fregante/relaxed-json': 2.0.0
@@ -5488,7 +5488,7 @@ snapshots:
       eslint-plugin-turbo: 2.5.3(eslint@9.27.0)(turbo@2.5.3)
       turbo: 2.5.3
 
-  eslint-import-context@0.1.4(unrs-resolver@1.7.2):
+  eslint-import-context@0.1.5(unrs-resolver@1.7.2):
     dependencies:
       get-tsconfig: 4.10.1
       stable-hash: 0.0.5
@@ -5503,13 +5503,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import-x@4.13.1(eslint@9.27.0)(typescript@5.8.3):
+  eslint-plugin-import-x@4.13.3(eslint@9.27.0)(typescript@5.8.3):
     dependencies:
       '@typescript-eslint/utils': 8.32.1(eslint@9.27.0)(typescript@5.8.3)
       comment-parser: 1.4.1
       debug: 4.4.1
       eslint: 9.27.0
-      eslint-import-context: 0.1.4(unrs-resolver@1.7.2)
+      eslint-import-context: 0.1.5(unrs-resolver@1.7.2)
       eslint-import-resolver-node: 0.3.9
       is-glob: 4.0.3
       minimatch: 10.0.1
@@ -7497,11 +7497,11 @@ snapshots:
     dependencies:
       defaults: 1.0.4
 
-  web-ext@8.7.0:
+  web-ext@8.7.1:
     dependencies:
       '@babel/runtime': 7.27.1
       '@devicefarmer/adbkit': 3.3.8
-      addons-linter: 7.12.0
+      addons-linter: 7.13.0
       camelcase: 8.0.0
       chrome-launcher: 1.2.0
       debounce: 1.2.1
