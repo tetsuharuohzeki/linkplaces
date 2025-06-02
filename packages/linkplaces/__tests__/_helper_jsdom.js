@@ -26,13 +26,13 @@ export function replaceGlobalWithJsDom(win) {
     originalGlobal.document = win.document;
 
     // This is dirty hack to mocking DOM env with using jsdom.
-    // eslint-disable-next-line no-global-assign
+    // eslint-disable-next-line no-global-assign, no-implicit-globals
     globalThis = winproxy;
 }
 
 export function revertGlobalToOriginal() {
     // This is dirty hack to mocking DOM env with using jsdom.
-    // eslint-disable-next-line no-global-assign
+    // eslint-disable-next-line no-global-assign, no-implicit-globals
     globalThis = originalGlobal;
 
     delete originalGlobal.window;
