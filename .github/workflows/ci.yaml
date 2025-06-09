@@ -13,14 +13,14 @@ jobs:
     warmup_dependency_cache:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+            - uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
             - uses: ./.github/actions/setup_ci
 
     build:
         needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+            - uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
             - uses: ./.github/actions/setup_ci
             - name: build
               run: make build_package -j
@@ -32,7 +32,7 @@ jobs:
         needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+            - uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
             - uses: ./.github/actions/setup_ci
             - name: Lint
               run: make lint -j
@@ -43,7 +43,7 @@ jobs:
         needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+            - uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
             - uses: ./.github/actions/setup_ci
             - name: typecheck
               run: make typecheck -j
@@ -54,7 +54,7 @@ jobs:
         needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+            - uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
             - uses: ./.github/actions/setup_ci
             - name: check formatting
               run: make check_format -j
@@ -65,7 +65,7 @@ jobs:
         needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+            - uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
             - uses: ./.github/actions/setup_ci
             - name: Run unittests
               run: make test -j
