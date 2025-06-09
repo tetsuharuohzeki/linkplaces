@@ -4,6 +4,12 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    option-t:
+      specifier: ^53.0.0
+      version: 53.0.0
+
 importers:
 
   .:
@@ -87,7 +93,7 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 53.0.0
+        specifier: 'catalog:'
         version: 53.0.0
     devDependencies:
       '@linkplaces/tools':
@@ -121,7 +127,7 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 53.0.0
+        specifier: 'catalog:'
         version: 53.0.0
       react:
         specifier: 19.1.0
@@ -146,7 +152,7 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 53.0.0
+        specifier: 'catalog:'
         version: 53.0.0
     devDependencies:
       '@linkplaces/tools':
@@ -171,7 +177,7 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 53.0.0
+        specifier: 'catalog:'
         version: 53.0.0
       react:
         specifier: 19.1.0
@@ -229,7 +235,7 @@ importers:
         specifier: workspace:*
         version: link:../webext_types
       option-t:
-        specifier: 53.0.0
+        specifier: 'catalog:'
         version: 53.0.0
       react:
         specifier: 19.1.0
@@ -242,7 +248,7 @@ importers:
   packages/tools:
     dependencies:
       option-t:
-        specifier: 53.0.0
+        specifier: 'catalog:'
         version: 53.0.0
 
   packages/webext_types:
@@ -251,7 +257,7 @@ importers:
         specifier: workspace:*
         version: link:../tools
       option-t:
-        specifier: 53.0.0
+        specifier: 'catalog:'
         version: 53.0.0
 
 packages:
