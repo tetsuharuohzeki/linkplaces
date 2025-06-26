@@ -84,6 +84,8 @@ export const configForTypeScript = Object.freeze({
     plugins,
     rules: {
         ...rulesForESM,
+        // This can be detected by typescript compiler.
+        'import/named': 'off',
     },
     settings: {
         ...settings,
