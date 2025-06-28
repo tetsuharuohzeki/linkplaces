@@ -170,13 +170,6 @@ module.exports = {
 
         // JSX-specific rules
         'react/jsx-boolean-value': [2, 'always'], // Enforce to specify html's boolean type attribute.
-        // This is a formatter problem.
-        'react/jsx-filename-extension': [
-            2,
-            {
-                extensions: ['.jsx'],
-            },
-        ],
         'react/jsx-fragments': 'off', // I don't think enforce the style for this.
         'react/jsx-handler-names': [
             2,

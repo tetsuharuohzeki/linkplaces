@@ -3,7 +3,6 @@ import reactESLintPlugin from 'eslint-plugin-react';
 import reactHooksESLintPlugin from 'eslint-plugin-react-hooks';
 
 import reactPresets from './vendor/react.cjs';
-import tsReactPresets from './vendor/typescript_react.cjs';
 
 /**
  *  @type   {ReadonlyArray<import('eslint').Linter.Config>}
@@ -23,7 +22,6 @@ const reactPluginConfigs = [
         },
         rules: {
             ...reactPresets.rules,
-            ...tsReactPresets.rules,
 
             // We would like to use syntax to swap to other libs easily.
             'react/jsx-fragments': ['warn', 'syntax'],
