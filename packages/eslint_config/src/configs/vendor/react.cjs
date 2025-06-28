@@ -68,7 +68,6 @@ module.exports = {
         'react/no-did-update-set-state': [1, 'disallow-in-func'],
 
         'react/no-direct-mutation-state': 2,
-        'react/no-find-dom-node': 2, // Disallow to use `ReactDOM.findDOMNode()`.
         'react/no-is-mounted': 2,
         'react/no-multi-comp': 0, // Enable to define a multiple component to a single file.
         'react/no-render-return-value': 2,
