@@ -1,3 +1,4 @@
+import eslintReact from "@eslint-react/eslint-plugin";
 import reactESLintPlugin from 'eslint-plugin-react';
 import reactHooksESLintPlugin from 'eslint-plugin-react-hooks';
 
@@ -10,6 +11,7 @@ import tsReactPresets from './vendor/typescript_react.cjs';
 const reactPluginConfigs = [
     reactESLintPlugin.configs.flat.recommended,
     reactESLintPlugin.configs.flat['jsx-runtime'],
+    eslintReact.configs["recommended-typescript"],
     {
         plugins: {
             react: reactESLintPlugin,
