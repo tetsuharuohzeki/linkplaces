@@ -13,7 +13,7 @@
         "@linkplaces/tools": "workspace:*",
         "@monorepo-utils/workspaces-to-typescript-project-references": "^2.11.0",
         "@reflink/reflink": "^0.1.19",
-        "@types/node": "24.0.4",
+        "@types/node": "24.0.7",
         "@types/react": "^19.1.8",
         "@types/react-dom": "^19.1.6",
         "ava": "^6.4.0",
