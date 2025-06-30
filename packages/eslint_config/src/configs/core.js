@@ -35,6 +35,8 @@ const builtinRules = Object.freeze({
     // This prevents the pattern that is error prone.
     'no-constant-binary-expression': 'error',
 
+    'no-dupe-class-members': 'error',
+
     // Allow to cast to boolean with `!!bar`. This is common idiom.
     'no-extra-boolean-cast': 'off',
 

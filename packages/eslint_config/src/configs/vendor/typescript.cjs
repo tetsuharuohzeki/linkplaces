@@ -87,10 +87,6 @@ module.exports = {
             },
         ],
 
-        // This should be sorted with ESLint builtin rule.
-        'no-dupe-class-members': 'off',
-        '@typescript-eslint/no-dupe-class-members': 'error',
-
         // In a general case, we don't have to do this.
         // This kind of `delete` operation causes an unnecessary shape transition.
         // This _shape_ means Shape (SpiderMonkey), Hidden Class (V8), or Structure (JSC).
