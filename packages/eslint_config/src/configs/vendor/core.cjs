@@ -133,7 +133,6 @@ module.exports = {
         'no-sequences': 2, // We're not doing a code golf: https://eslint.org/docs/rules/no-sequences
         'no-throw-literal': 2,
         'no-unmodified-loop-condition': 1,
-        'no-unused-expressions': 2, // https://eslint.org/docs/rules/no-unused-expressions
         'no-useless-call': 1,
         'no-useless-concat': 1,
         'no-useless-return': 1, // https://eslint.org/docs/rules/no-useless-return

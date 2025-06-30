@@ -47,6 +47,9 @@ const builtinRules = Object.freeze({
     // Warn a variable that don't be non `undefined` value.
     'no-unassigned-vars': 'warn',
 
+    // It should be removed.
+    'no-unused-expressions': 'error',
+
     // This detects unused field easily.
     'no-unused-private-class-members': 'warn',
 
