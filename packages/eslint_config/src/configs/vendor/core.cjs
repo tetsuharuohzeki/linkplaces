@@ -284,7 +284,6 @@ module.exports = {
         'no-restricted-imports': 0, // Should specified by for each projects: https://eslint.org/docs/rules/no-restricted-imports
         'no-useless-computed-key': 1,
         'no-useless-rename': 1,
-        'no-var': 1,
         'object-shorthand': 0,
         'prefer-arrow-callback': [
             0,

@@ -66,6 +66,9 @@ const builtinRules = Object.freeze({
     // Allow shorthand syntax.
     'no-useless-constructor': 'off',
 
+    // Now, we don't have to use `var` generally.
+    'no-var': 'warn',
+
     // This prevents the error at the running time.
     'valid-typeof': ['error', { requireStringLiterals: true }],
 });
