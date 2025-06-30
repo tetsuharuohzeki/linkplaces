@@ -96,11 +96,6 @@ module.exports = {
         // This _shape_ means Shape (SpiderMonkey), Hidden Class (V8), or Structure (JSC).
         '@typescript-eslint/no-dynamic-delete': 'error',
 
-        // This should be sorted with ESLint builtin rule.
-        // Allow to set a no-op function.
-        'no-empty-function': 'off',
-        '@typescript-eslint/no-empty-function': 'off',
-
         // It works as a marker that to implement some interfaces.
         '@typescript-eslint/no-empty-interface': 'off',
 

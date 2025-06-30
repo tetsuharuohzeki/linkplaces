@@ -84,7 +84,6 @@ module.exports = {
         'no-constructor-return': 'error', // Generally, we should not return object from _constructor_.
         'no-div-regex': 2, // https://eslint.org/docs/rules/no-div-regex
         'no-else-return': 0, // `else` branch sometimes means "A or B" explicitly.
-        'no-empty-function': 0, // Allow to set a no-op function.
         'no-eq-null': 2, // Sort with `eqeqeq`. We might disable this for Flowtype's semantics for the future.
         'no-eval': 2,
         'no-extend-native': 2, // We don't do this in non-library code.
