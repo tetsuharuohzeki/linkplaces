@@ -260,18 +260,6 @@ module.exports = {
         //    'ignoreArgsIfArgsAfterAreUsed': false,
         // }],
 
-        // This should be sorted with ESLint builtin rule.
-        'no-use-before-define': 'off',
-        '@typescript-eslint/no-use-before-define': [
-            'error',
-            {
-                functions: false, //  Function declarations are hoisted.
-                classes: true, // Class declarations are not hoisted. We should warn it.
-                variables: true, // for Temporary Dead Zone.
-                typedefs: true, // We rely TypeScript compiler.
-            },
-        ],
-
         // I think this rule should be enabled.
         '@typescript-eslint/prefer-as-const': 'warn',
 

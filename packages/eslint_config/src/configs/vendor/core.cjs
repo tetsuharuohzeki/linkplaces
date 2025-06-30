@@ -199,15 +199,6 @@ module.exports = {
         'no-undefined': 0,
         'no-undef-init': 2,
 
-        'no-use-before-define': [
-            2,
-            {
-                // the measure for Temporary Dead Zone
-                functions: false, //  Function declarations are hoisted.
-                classes: true, // Class declarations are not hoisted. We should warn it.
-            },
-        ],
-
         // Stylistic Issues
         camelcase: [
             2,

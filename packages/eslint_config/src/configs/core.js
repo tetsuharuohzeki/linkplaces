@@ -63,6 +63,17 @@ const builtinRules = Object.freeze({
         },
     ],
 
+    'no-use-before-define': [
+        'error',
+        {
+            functions: false, //  Function declarations are hoisted.
+            classes: true, // Class declarations are not hoisted. We should warn it.
+            variables: true, // for Temporary Dead Zone.
+            enums: true,
+            typedefs: true, // We rely TypeScript compiler.
+        },
+    ],
+
     // Allow shorthand syntax.
     'no-useless-constructor': 'off',
 
