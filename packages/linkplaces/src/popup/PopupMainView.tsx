@@ -31,9 +31,10 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): ReactNode {
     };
 
     const items = state.list.map((item, i) => {
+        const key = `PopupMainView-${String(i)}`;
         const v = (
             <ListItem
-                key={i}
+                key={key}
                 item={item}
                 intent={intent}
             />
