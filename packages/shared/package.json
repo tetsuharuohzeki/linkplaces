@@ -23,7 +23,7 @@
     "dependencies": {
         "@linkplaces/webext_types": "workspace:*",
         "option-t": "catalog:",
-        "react": "19.1.0"
+        "react": "catalog:"
     },
     "devDependencies": {
         "@linkplaces/tools": "workspace:*"
