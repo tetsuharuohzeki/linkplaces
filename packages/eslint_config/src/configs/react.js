@@ -6,16 +6,9 @@ import reactHooksESLintPlugin from 'eslint-plugin-react-hooks';
  *  @type   {ReadonlyArray<import('eslint').Linter.Config>}
  */
 const reactPluginConfigs = [
-    reactESLintPlugin.configs.flat.recommended,
-    reactESLintPlugin.configs.flat['jsx-runtime'],
     {
         plugins: {
             react: reactESLintPlugin,
-        },
-        settings: {
-            react: {
-                version: '19.1',
-            },
         },
         rules: {
             'react/self-closing-comp': [
