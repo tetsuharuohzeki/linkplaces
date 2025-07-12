@@ -81,12 +81,6 @@ module.exports = {
         'react/no-will-update-set-state': 2,
         // At v7.13, this only supports Flowtype.
         'react/prefer-read-only-props': 'off',
-        'react/prop-types': [
-            1,
-            {
-                skipUndeclared: false,
-            },
-        ],
         // See https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint
         'react/react-in-jsx-scope': 'off',
         'react/require-default-props': 0, // This does not resolve the essence of problem.
