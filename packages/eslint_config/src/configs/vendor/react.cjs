@@ -5,19 +5,12 @@
 module.exports = {
     plugins: ['react'],
 
-    settings: {
-        react: {
-            version: 'detect', // used for 'no-deprecated' rule.
-        },
-    },
-
     // ESLint-plugin-React
     // https://github.com/yannickcr/eslint-plugin-react
     rules: {
         'react/boolean-prop-naming': 0, // We don't want to give special weight to `boolean`.
         'react/button-has-type': 1,
         'react/default-props-match-prop-types': 1,
-        'react/display-name': 0, // Auto covered by jsx transformer.
         'react/forbid-component-props': 1,
 
         'react/no-access-state-in-setstate': 1,
@@ -26,25 +19,12 @@ module.exports = {
         // even if a item has an "unique" id. This rule cannot prevent it. meaningless.
         'react/no-array-index-key': 0,
         'react/no-adjacent-inline-elements': 0,
-        'react/no-children-prop': 2, // children should be nested between the opening and closing tags.
-        'react/no-deprecated': 2, // Detect deprected styles
 
-        'react/no-direct-mutation-state': 2,
-        'react/no-is-mounted': 2,
         'react/no-multi-comp': 0, // Enable to define a multiple component to a single file.
-        'react/no-render-return-value': 2,
         'react/no-redundant-should-component-update': 1,
         'react/no-set-state': 0,
-        'react/no-string-refs': [
-            2,
-            {
-                noTemplateLiterals: true,
-            },
-        ],
         'react/no-this-in-sfc': 1,
         'react/no-typos': 0,
-        'react/no-unescaped-entities': 2,
-        'react/no-unknown-property': 2,
         'react/no-unsafe': 2, // We should ban an unsafe operation.
         'react/no-unused-prop-types': [
             0,
@@ -59,8 +39,6 @@ module.exports = {
         'react/no-will-update-set-state': 2,
         // At v7.13, this only supports Flowtype.
         'react/prefer-read-only-props': 'off',
-        // See https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint
-        'react/react-in-jsx-scope': 'off',
         'react/require-default-props': 0, // This does not resolve the essence of problem.
         'react/require-optimization': [
             0,
@@ -68,7 +46,6 @@ module.exports = {
                 allowDecorators: [],
             },
         ],
-        'react/require-render-return': 2,
         'react/self-closing-comp': [
             2,
             {
@@ -127,13 +104,6 @@ module.exports = {
                 checkLocalVariables: false,
             },
         ],
-        'react/jsx-key': [
-            1,
-            {
-                checkFragmentShorthand: true,
-                checkKeyMustBeforeSpread: false,
-            },
-        ],
         'react/jsx-max-depth': 0, // We should not restrict this by default.
         'react/jsx-no-bind': [
             2,
@@ -145,29 +115,9 @@ module.exports = {
                 allowBind: false,
             },
         ],
-        'react/jsx-no-comment-textnodes': 2,
         'react/jsx-no-constructed-context-values': 'warn',
-        'react/jsx-no-duplicate-props': 2,
         'react/jsx-no-literals': 1,
         'react/jsx-no-script-url': 2,
-        'react/jsx-no-target-blank': [
-            1,
-            {
-                // see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md
-                enforceDynamicLinks: 'always',
-                // For legacy browsers which does not support `rel=noopener`, this option is useful.
-                // But almost modern browser support it. We don't have to turn off this option
-                // if we don't care about legacy browsers (IE11 & legacy Edge!).
-                // If you need to support legacy IE11 & legacy Edge, turn off this option.
-                // See also
-                //  * https://caniuse.com/#feat=rel-noopener
-                //  * https://mathiasbynens.github.io/rel-noopener
-                //  * https://html.spec.whatwg.org/multipage/links.html#link-type-noreferrer
-                allowReferrer: true,
-                warnOnSpreadAttributes: true,
-            },
-        ],
-        'react/jsx-no-undef': 2,
         // This rule is conservative choice for plain JS world.
         'react/jsx-curly-brace-presence': [
             'warn',
@@ -202,8 +152,5 @@ module.exports = {
         ],
         'react/jsx-sort-default-props': 0,
         'react/jsx-sort-props': 0, // we cannot force alphabetical order to our old codebase, and this is meaningless.
-        // See https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint
-        'react/jsx-uses-react': 'off',
-        'react/jsx-uses-vars': 1,
     },
 };
