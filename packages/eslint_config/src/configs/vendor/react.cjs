@@ -12,7 +12,6 @@ module.exports = {
 
         'react/no-access-state-in-setstate': 1,
 
-        'react/no-unsafe': 2, // We should ban an unsafe operation.
         'react/self-closing-comp': [
             2,
             {
