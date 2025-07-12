@@ -105,16 +105,6 @@ module.exports = {
             },
         ],
         'react/jsx-max-depth': 0, // We should not restrict this by default.
-        'react/jsx-no-bind': [
-            2,
-            {
-                // Sort to bind with this in constructor.
-                ignoreDOMComponents: true,
-                ignoreRefs: true, // we may use `refs`.
-                allowArrowFunctions: true,
-                allowBind: false,
-            },
-        ],
         'react/jsx-no-constructed-context-values': 'warn',
         'react/jsx-no-literals': 1,
         'react/jsx-no-script-url': 2,
