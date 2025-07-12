@@ -18,7 +18,6 @@ module.exports = {
 
         // JSX-specific rules
         'react/jsx-boolean-value': [2, 'always'], // Enforce to specify html's boolean type attribute.
-        'react/jsx-no-constructed-context-values': 'warn',
         'react/jsx-no-literals': 1,
         // This rule is conservative choice for plain JS world.
         'react/jsx-curly-brace-presence': [
