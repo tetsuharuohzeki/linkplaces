@@ -93,15 +93,8 @@ module.exports = {
         'react/no-unused-state': 1,
         // We don't think this code is produced in a  common case. If you need it, let's opt out/
         'react/no-will-update-set-state': 2,
-        'react/prefer-es6-class': 2,
         // At v7.13, this only supports Flowtype.
         'react/prefer-read-only-props': 'off',
-        'react/prefer-stateless-function': [
-            1,
-            {
-                ignorePureComponents: true,
-            },
-        ],
         'react/prop-types': [
             1,
             {

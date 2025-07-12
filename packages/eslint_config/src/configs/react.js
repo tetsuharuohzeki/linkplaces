@@ -1,4 +1,4 @@
-import eslintReact from "@eslint-react/eslint-plugin";
+import eslintReact from '@eslint-react/eslint-plugin';
 import reactESLintPlugin from 'eslint-plugin-react';
 import reactHooksESLintPlugin from 'eslint-plugin-react-hooks';
 
@@ -10,7 +10,7 @@ import reactPresets from './vendor/react.cjs';
 const reactPluginConfigs = [
     reactESLintPlugin.configs.flat.recommended,
     reactESLintPlugin.configs.flat['jsx-runtime'],
-    eslintReact.configs["recommended-typescript"],
+    eslintReact.configs['recommended-typescript'],
     {
         plugins: {
             react: reactESLintPlugin,
@@ -35,6 +35,14 @@ const reactPluginConfigs = [
             ],
 
             'react/no-arrow-function-lifecycle': 'error',
+
+            // We don't have to use a react class component excluding some situations
+            // that you need to implement react error boundary with `getDerivedStateFromError()`.
+            // See:
+            //  - https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
+            //  - https://react.dev/reference/react/Component#static-getderivedstatefromerror
+            //  - https://eslint-react.xyz/docs/rules/no-class-component
+            '@eslint-react/no-class-component': 'error',
         },
     },
 ];
