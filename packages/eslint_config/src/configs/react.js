@@ -43,6 +43,9 @@ const modernReactPluginConfigs = [
     eslintReact.configs['recommended-typescript'],
     {
         rules: {
+            // Enforce to specify html's boolean type attribute.
+            '@eslint-react/avoid-shorthand-boolean': 'error',
+
             // We don't have to use a react class component excluding some situations
             // that you need to implement react error boundary with `getDerivedStateFromError()`.
             // See:
