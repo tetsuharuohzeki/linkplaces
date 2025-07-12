@@ -2,8 +2,6 @@ import eslintReact from '@eslint-react/eslint-plugin';
 import reactESLintPlugin from 'eslint-plugin-react';
 import reactHooksESLintPlugin from 'eslint-plugin-react-hooks';
 
-import reactPresets from './vendor/react.cjs';
-
 /**
  *  @type   {ReadonlyArray<import('eslint').Linter.Config>}
  */
@@ -20,7 +18,16 @@ const reactPluginConfigs = [
             },
         },
         rules: {
-            ...reactPresets.rules,
+            'react/self-closing-comp': [
+                2,
+                {
+                    component: true,
+                    html: false,
+                },
+            ],
+
+            // JSX-specific rules
+            'react/jsx-no-literals': 1,
 
             // We would like to use syntax to swap to other libs easily.
             'react/jsx-fragments': ['warn', 'syntax'],
