@@ -60,6 +60,9 @@ const modernReactPluginConfigs = [
             //  - https://react.dev/reference/react/Component#static-getderivedstatefromerror
             //  - https://eslint-react.xyz/docs/rules/no-class-component
             '@eslint-react/no-class-component': 'error',
+
+            // We respect JSX syntax
+            '@eslint-react/no-children-prop': 'error',
         },
     },
 ];
