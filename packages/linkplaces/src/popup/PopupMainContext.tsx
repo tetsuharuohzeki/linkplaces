@@ -2,12 +2,11 @@ import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRule
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { type Nullable, isNotNull, isNull } from 'option-t/nullable';
-import { StrictMode, useSyncExternalStore, type ReactNode } from 'react';
+import { StrictMode, type ReactNode } from 'react';
 
 import { PopupMainEpic } from './PopupMainEpic.js';
 import { PopupMainIntent } from './PopupMainIntent.js';
-import type { PopupMainState } from './PopupMainState.js';
-import { createPopupMainStore, type PopupPlainReduxStore } from './PopupMainStore.js';
+import { createPopupMainStore, usePopupMainState, type PopupPlainReduxStore } from './PopupMainStore.js';
 import { PopupMainView } from './PopupMainView.js';
 import type { RemoteActionChannel } from './PopupMessageChannel.js';
 import { PopupRepostiroy } from './PopupRepository.js';
@@ -78,18 +77,7 @@ interface PopupMainViewUpdaterProps {
 }
 
 function PopupMainViewUpdater({ store, intent }: PopupMainViewUpdaterProps): ReactNode {
-    const state: PopupMainState = useSyncExternalStore(
-        (onStoreChange) => {
-            const disposer = store.subscribe(onStoreChange);
-            return () => {
-                disposer();
-            };
-        },
-        () => {
-            const state = store.state();
-            return state;
-        }
-    );
+    const state = usePopupMainState(store);
 
     const view = (
         <StrictMode>
