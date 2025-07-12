@@ -22,14 +22,6 @@ module.exports = {
 
         // JSX-specific rules
         'react/jsx-boolean-value': [2, 'always'], // Enforce to specify html's boolean type attribute.
-        'react/jsx-handler-names': [
-            2,
-            {
-                eventHandlerPrefix: 'on', // There is no event handler which is diffrent from this rules (`onBarFoo`).
-                eventHandlerPropPrefix: 'on',
-                checkLocalVariables: false,
-            },
-        ],
         'react/jsx-no-constructed-context-values': 'warn',
         'react/jsx-no-literals': 1,
         'react/jsx-no-script-url': 2,
