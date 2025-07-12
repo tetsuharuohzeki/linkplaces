@@ -10,8 +10,6 @@ module.exports = {
     rules: {
         'react/boolean-prop-naming': 0, // We don't want to give special weight to `boolean`.
         'react/button-has-type': 1,
-        'react/default-props-match-prop-types': 1,
-        'react/forbid-component-props': 1,
 
         'react/no-access-state-in-setstate': 1,
         // The index of `Array<T>` is not suitable for `key` props.
@@ -21,9 +19,6 @@ module.exports = {
         'react/no-adjacent-inline-elements': 0,
 
         'react/no-multi-comp': 0, // Enable to define a multiple component to a single file.
-        'react/no-redundant-should-component-update': 1,
-        'react/no-set-state': 0,
-        'react/no-this-in-sfc': 1,
         'react/no-typos': 0,
         'react/no-unsafe': 2, // We should ban an unsafe operation.
         'react/no-unused-prop-types': [
@@ -34,9 +29,6 @@ module.exports = {
                 skipShapeProps: false,
             },
         ],
-        'react/no-unused-state': 1,
-        // We don't think this code is produced in a  common case. If you need it, let's opt out/
-        'react/no-will-update-set-state': 2,
         // At v7.13, this only supports Flowtype.
         'react/prefer-read-only-props': 'off',
         'react/require-default-props': 0, // This does not resolve the essence of problem.
@@ -53,36 +45,12 @@ module.exports = {
                 html: false,
             },
         ],
-        // A _state_ usually depends on some value hold by its instance.
-        // So it's more reasonable way to init in the constructor.
-        'react/state-in-constructor': ['error', 'always'],
         // I seem this might be a problematic only for class component,
         // But we lives in the era of hooks and almost properties which is targeted by this rule
         // are classic (non-recommended in today) ones.
         'react/static-property-placement': 'off',
         'react/void-dom-elements-no-children': 1,
 
-        // We define customized rules because we thought default settings mixes with
-        // component's arguments and lifecycle methods.
-        'react/sort-comp': [
-            1,
-            {
-                order: ['constructor', 'metadata', 'rendering', 'lifecycle', 'everything-else'],
-                groups: {
-                    metadata: [
-                        'displayName',
-                        'propTypes',
-                        'contextTypes',
-                        'childContextTypes',
-                        'mixins',
-                        'getDefaultProps',
-                        'getInitialState',
-                        'getChildContext',
-                    ],
-                    rendering: ['type-annotations', 'render', '/^render.+$/'],
-                },
-            },
-        ],
         'react/sort-prop-types': [
             0,
             {
