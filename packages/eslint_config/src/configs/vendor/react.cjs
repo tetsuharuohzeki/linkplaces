@@ -8,8 +8,6 @@ module.exports = {
     // ESLint-plugin-React
     // https://github.com/yannickcr/eslint-plugin-react
     rules: {
-        'react/button-has-type': 1,
-
         'react/no-access-state-in-setstate': 1,
 
         'react/self-closing-comp': [
