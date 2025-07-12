@@ -29,16 +29,7 @@ const reactPluginConfigs = [
             // JSX-specific rules
             'react/jsx-no-literals': 1,
 
-            // We would like to use syntax to swap to other libs easily.
             'react/jsx-fragments': ['warn', 'syntax'],
-            // We would like to remove useless fragment.
-            'react/jsx-no-useless-fragment': [
-                'warn',
-                {
-                    // We allow for typescript's typecheck
-                    allowExpressions: true,
-                },
-            ],
         },
     },
 ];
@@ -63,6 +54,9 @@ const modernReactPluginConfigs = [
 
             // We respect JSX syntax
             '@eslint-react/no-children-prop': 'error',
+
+            // Should clean up codes.
+            '@eslint-react/no-useless-fragment': 'warn',
         },
     },
 ];
