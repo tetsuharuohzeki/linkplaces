@@ -18,8 +18,6 @@ module.exports = {
             },
         ],
 
-        'react/style-prop-object': 2,
-
         // JSX-specific rules
         'react/jsx-boolean-value': [2, 'always'], // Enforce to specify html's boolean type attribute.
         'react/jsx-no-constructed-context-values': 'warn',
