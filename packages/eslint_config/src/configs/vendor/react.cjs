@@ -49,7 +49,6 @@ module.exports = {
         'react/no-array-index-key': 0,
         'react/no-adjacent-inline-elements': 0,
         'react/no-children-prop': 2, // children should be nested between the opening and closing tags.
-        'react/no-danger': 2,
         'react/no-danger-with-children': 2,
         'react/no-deprecated': 2, // Detect deprected styles
 
