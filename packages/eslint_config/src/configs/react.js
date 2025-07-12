@@ -28,8 +28,6 @@ const reactPluginConfigs = [
 
             // JSX-specific rules
             'react/jsx-no-literals': 1,
-
-            'react/jsx-fragments': ['warn', 'syntax'],
         },
     },
 ];
@@ -57,6 +55,9 @@ const modernReactPluginConfigs = [
 
             // Should clean up codes.
             '@eslint-react/no-useless-fragment': 'warn',
+
+            // We would like to use syntax to swap to other libs easily.
+            '@eslint-react/prefer-shorthand-fragment': 'warn',
         },
     },
 ];
