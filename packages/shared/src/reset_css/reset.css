@@ -1,4 +1,6 @@
+/* eslint css/no-invalid-properties: ["error", { allowUnknownVariables: true }] */
 /* Based on https://hg.mozilla.org/mozilla-central/file/e57c44d5ec97/browser/components/extensions/extension.css */
+
 html,
 body {
     background: var(--global-body__background-color, transparent);

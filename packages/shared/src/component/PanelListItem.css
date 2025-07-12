@@ -1,3 +1,5 @@
+/* eslint css/no-invalid-properties: ["error", { allowUnknownVariables: true }] */
+
 @import '../reset_css/vars.css';
 
 .shared-com-PanelListItem__container {
