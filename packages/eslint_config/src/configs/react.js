@@ -10,7 +10,6 @@ import reactPresets from './vendor/react.cjs';
 const reactPluginConfigs = [
     reactESLintPlugin.configs.flat.recommended,
     reactESLintPlugin.configs.flat['jsx-runtime'],
-    eslintReact.configs['recommended-typescript'],
     {
         plugins: {
             react: reactESLintPlugin,
@@ -33,7 +32,17 @@ const reactPluginConfigs = [
                     allowExpressions: true,
                 },
             ],
+        },
+    },
+];
 
+/**
+ *  @type   {ReadonlyArray<import('eslint').Linter.Config>}
+ */
+const modernReactPluginConfigs = [
+    eslintReact.configs['recommended-typescript'],
+    {
+        rules: {
             // We don't have to use a react class component excluding some situations
             // that you need to implement react error boundary with `getDerivedStateFromError()`.
             // See:
@@ -63,5 +72,6 @@ const hooksPluginConfigs = [
 export const configs = Object.freeze([
     // @prettier-ignore
     ...reactPluginConfigs,
+    ...modernReactPluginConfigs,
     ...hooksPluginConfigs,
 ]);

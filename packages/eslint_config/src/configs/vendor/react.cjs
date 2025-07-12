@@ -52,15 +52,5 @@ module.exports = {
                 children: 'ignore',
             },
         ],
-        // This is good for maintainability by avoiding passing unintentional extra props.
-        'react/jsx-props-no-spreading': [
-            'error',
-            {
-                html: 'enforce',
-                custom: 'enforce',
-                explicitSpread: 'enforce',
-                exceptions: [],
-            },
-        ],
     },
 };
