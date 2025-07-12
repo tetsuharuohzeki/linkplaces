@@ -17,7 +17,6 @@ module.exports = {
                 html: false,
             },
         ],
-        'react/void-dom-elements-no-children': 1,
 
         'react/style-prop-object': 2,
 
