@@ -19,12 +19,6 @@ module.exports = {
         'react/default-props-match-prop-types': 1,
         'react/display-name': 0, // Auto covered by jsx transformer.
         'react/forbid-component-props': 1,
-        'react/forbid-dom-props': [
-            1,
-            {
-                forbid: ['id'],
-            },
-        ],
 
         'react/no-access-state-in-setstate': 1,
         // The index of `Array<T>` is not suitable for `key` props.
