@@ -25,22 +25,6 @@ module.exports = {
                 forbid: ['id'],
             },
         ],
-        'react/forbid-elements': [
-            1,
-            {
-                forbid: [],
-            },
-        ],
-        'react/forbid-foreign-prop-types': [
-            2,
-            {
-                allowInPropTypes: false, // We doubt this option is really useful.
-            },
-        ],
-        'react/forbid-prop-types': 0,
-
-        // TODO(#298): This rule should be sort with project style.
-        'react/function-component-definition': 0,
 
         'react/no-access-state-in-setstate': 1,
         // The index of `Array<T>` is not suitable for `key` props.
