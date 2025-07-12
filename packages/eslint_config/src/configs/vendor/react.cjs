@@ -133,13 +133,6 @@ module.exports = {
                 children: 'ignore',
             },
         ],
-        'react/jsx-pascal-case': [
-            2,
-            {
-                allowAllCaps: false,
-                ignore: [],
-            },
-        ],
         // This is good for maintainability by avoiding passing unintentional extra props.
         'react/jsx-props-no-spreading': [
             'error',
