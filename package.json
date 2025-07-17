@@ -19,11 +19,11 @@
         "ava": "^6.4.1",
         "babel-plugin-react-compiler": "19.1.0-rc.2",
         "eslint": "^9.31.0",
-        "eslint-config-turbo": "^2.5.4",
+        "eslint-config-turbo": "^2.5.5",
         "globals": "^16.3.0",
         "prettier": "3.6.2",
         "tinyspy": "^4.0.3",
-        "turbo": "^2.5.4",
+        "turbo": "^2.5.5",
         "typescript": "5.8.3",
         "web-ext": "8.8.0"
     },
