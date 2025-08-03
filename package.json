@@ -24,7 +24,7 @@
         "prettier": "3.6.2",
         "tinyspy": "^4.0.3",
         "turbo": "^2.5.5",
-        "typescript": "5.9.1-rc",
+        "typescript": "5.9.2",
         "web-ext": "8.9.0"
     },
     "scripts": {
