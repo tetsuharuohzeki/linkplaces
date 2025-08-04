@@ -46,6 +46,9 @@ const modernReactPluginConfigs = [
             // We respect JSX syntax
             '@eslint-react/no-children-prop': 'error',
 
+            // We would like to keep the code readability simple
+            '@eslint-react/no-complex-conditional-rendering': 'warn',
+
             // Should clean up codes.
             '@eslint-react/no-useless-fragment': 'warn',
 
