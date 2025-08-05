@@ -46,6 +46,10 @@ const modernReactPluginConfigs = [
             // We respect JSX syntax
             '@eslint-react/no-children-prop': 'error',
 
+            // Improve the debuggability on react devtools.
+            '@eslint-react/no-missing-component-display-name': 'warn',
+            '@eslint-react/no-missing-context-display-name': 'warn',
+
             // Should clean up codes.
             '@eslint-react/no-useless-fragment': 'warn',
 
