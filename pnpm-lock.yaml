@@ -7,8 +7,8 @@ settings:
 catalogs:
   default:
     option-t:
-      specifier: ^54.2.0
-      version: 54.2.0
+      specifier: ^54.2.2
+      version: 54.2.2
     react:
       specifier: ^19.1.1
       version: 19.1.1
@@ -100,7 +100,7 @@ importers:
         version: link:../webext_types
       option-t:
         specifier: 'catalog:'
-        version: 54.2.0
+        version: 54.2.2
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -137,7 +137,7 @@ importers:
         version: link:../webext_types
       option-t:
         specifier: 'catalog:'
-        version: 54.2.0
+        version: 54.2.2
       react:
         specifier: 'catalog:'
         version: 19.1.1
@@ -162,7 +162,7 @@ importers:
         version: link:../webext_types
       option-t:
         specifier: 'catalog:'
-        version: 54.2.0
+        version: 54.2.2
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -187,7 +187,7 @@ importers:
         version: link:../webext_types
       option-t:
         specifier: 'catalog:'
-        version: 54.2.0
+        version: 54.2.2
       react:
         specifier: 'catalog:'
         version: 19.1.1
@@ -245,7 +245,7 @@ importers:
         version: link:../webext_types
       option-t:
         specifier: 'catalog:'
-        version: 54.2.0
+        version: 54.2.2
       react:
         specifier: 'catalog:'
         version: 19.1.1
@@ -258,7 +258,7 @@ importers:
     dependencies:
       option-t:
         specifier: 'catalog:'
-        version: 54.2.0
+        version: 54.2.2
 
   packages/webext_types:
     devDependencies:
@@ -267,7 +267,7 @@ importers:
         version: link:../tools
       option-t:
         specifier: 'catalog:'
-        version: 54.2.0
+        version: 54.2.2
 
 packages:
 
@@ -2965,8 +2965,8 @@ packages:
     resolution: {integrity: sha512-YgBpdJHPyQ2UE5x+hlSXcnejzAvD0b22U2OuAP+8OnlJT+PjWPxtgmGqKKc+RgTM63U9gN0YzrYc71R2WT/hTA==}
     engines: {node: '>=18'}
 
-  option-t@54.2.0:
-    resolution: {integrity: sha512-NQ1No4nrbjU/29mXvzaHpB2okGgagHK62a/okU83pQMtWjbHbbGEf6RHjXc0cxmDqr4dox0ZQMDG8ntZfsvvfg==}
+  option-t@54.2.2:
+    resolution: {integrity: sha512-6xcRpVax5leZ3anwU8grFulEaPXvuzuqJmZp6NQd859xcNpPXp59W8UtqZVZDOv6SHolUBFcEltMpcVfYUlHJA==}
     engines: {node: '>=24.5.0'}
 
   optionator@0.9.4:
@@ -7002,7 +7002,7 @@ snapshots:
       is-inside-container: 1.0.0
       wsl-utils: 0.1.0
 
-  option-t@54.2.0: {}
+  option-t@54.2.2: {}
 
   optionator@0.9.4:
     dependencies:
