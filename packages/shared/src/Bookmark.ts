@@ -7,7 +7,7 @@ import type {
 } from '@linkplaces/webext_types';
 
 import { isNull } from 'option-t/nullable';
-import { type Result, createErr, createOk, mapAsyncForResult } from 'option-t/plain_result';
+import { type Result, createErr, createOk, experimental_ResultOperator as ResultOperator } from 'option-t/plain_result';
 
 const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/u;
 
@@ -53,7 +53,7 @@ export type CreateBookmarkItemResult = Result<BookmarkTreeNode, Error>;
 
 export async function createBookmarkItem(urlLikeString: string, title: string): Promise<CreateBookmarkItemResult> {
     const validatedUrl = validateUrlForRegister(urlLikeString);
-    const result = await mapAsyncForResult(validatedUrl, async (url) => {
+    const result = await ResultOperator.mapAsync(validatedUrl, async (url) => {
         // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/create
         // Save to "Other Bookmarks" if there is no `parentId`
         const created = await browser.bookmarks.create({

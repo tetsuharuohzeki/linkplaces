@@ -1,5 +1,5 @@
 import type { BookmarkId, WebExtSidebarActionService } from '@linkplaces/webext_types';
-import { unwrapOrForUndefinable } from 'option-t/undefinable';
+import { experimental_UndefinableOperator as UndefinableOperator } from 'option-t/undefinable';
 
 import { type WhereToOpenItem, createOpenUrlAction, createRegisterUrlAction } from './RemoteAction.js';
 import type { RemoteActionChannel } from './RemoteActionChannel.js';
@@ -24,7 +24,7 @@ export async function openWebExtSidebar(sidebarAction: WebExtSidebarActionServic
 }
 
 export function registerItem(chan: RemoteActionChannel, url: string, title?: string): void {
-    const t = unwrapOrForUndefinable(title, url);
+    const t = UndefinableOperator.unwrapOr(title, url);
     const a = createRegisterUrlAction(url, t);
     chan.postOneShotMessage(a);
 }

@@ -1,16 +1,16 @@
 import * as assert from 'node:assert/strict';
 
-import { mapOrElseForMaybe, mapOrForMaybe } from 'option-t/maybe';
+import { experimental_MaybeOperator as MaybeOperator } from 'option-t/maybe';
 
-const GIT_REVISION = mapOrForMaybe(process.env.GIT_REVISION, 'unknown', String);
-const BUILD_DATE = mapOrForMaybe(process.env.BUILD_DATE, 'unknown', String);
+const GIT_REVISION = MaybeOperator.unwrapOr(process.env.GIT_REVISION, 'unknown', String);
+const BUILD_DATE = MaybeOperator.unwrapOr(process.env.BUILD_DATE, 'unknown', String);
 
 const RELEASE_CHANNEL_VALUE_PRODUCTION = 'production';
 const RELEASE_CHANNEL_VALUE_DEVELOPMENT = 'development';
 
 export const NODE_ENV = process.env.NODE_ENV;
 
-const RELEASE_CHANNEL = mapOrForMaybe(process.env.RELEASE_CHANNEL, 'production', String);
+const RELEASE_CHANNEL = MaybeOperator.unwrapOr(process.env.RELEASE_CHANNEL, 'production', String);
 const LIB_NODE_ENV =
     RELEASE_CHANNEL === 'production' ? RELEASE_CHANNEL_VALUE_PRODUCTION : RELEASE_CHANNEL_VALUE_DEVELOPMENT;
 
@@ -24,7 +24,7 @@ const SHOULD_FORCE_ENABLE_SOURCE_MAP = process.env.FORCE_ENABLE_SOURCE_MAP === '
 const ENABLE_SOURCE_MAP = SHOULD_FORCE_ENABLE_SOURCE_MAP || !IS_PRODUCTION_MODE;
 
 const ENABLE_SWC_REACT_TRANSFORM = process.env.ENABLE_SWC_REACT_TRANSFORM !== 'false';
-const ENABLE_REACT_COMPILER = mapOrElseForMaybe(
+const ENABLE_REACT_COMPILER = MaybeOperator.mapOrElse(
     process.env.ENABLE_REACT_COMPILER,
     () => {
         if (IS_DEVELOPMENT_MODE) {
@@ -40,7 +40,7 @@ const ENABLE_REACT_COMPILER = mapOrElseForMaybe(
     }
 );
 
-const ENABLE_REACT_PROFILER = mapOrForMaybe(process.env.ENABLE_REACT_PROFILER, false, (val) => {
+const ENABLE_REACT_PROFILER = MaybeOperator.mapOr(process.env.ENABLE_REACT_PROFILER, false, (val) => {
     assert.ok(IS_PRODUCTION_MODE, `ENABLE_REACT_PROFILER is only enabled in the production build`);
     const enabled = val === 'true';
     return enabled;

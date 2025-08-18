@@ -7,13 +7,11 @@ import type { BookmarkId } from '@linkplaces/webext_types';
 
 import { isNotNull } from 'option-t/nullable';
 import {
-    orElseForResult,
     unwrapOk,
     unwrapErr,
-    mapForResult,
     isErr,
     type Result,
-    mapErrForResult,
+    experimental_ResultOperator as ResultOperator,
 } from 'option-t/plain_result';
 
 import type { RemoteActionChannel } from './SidebarMessageChannel.js';
@@ -87,10 +85,10 @@ function registerMultipleItemViaChannel(channel: RemoteActionChannel, list: Arra
 // TODO: support text/x-moz-url
 function processDropItemLikeHyperLink(dataTransfer: DataTransfer): Result<Array<string>, Error> {
     const textUriList = tryToGetTextUriList(dataTransfer);
-    const result = orElseForResult(textUriList, (reason) => {
+    const result = ResultOperator.orElse(textUriList, (reason) => {
         const result = tryToGetTextPlain(dataTransfer);
-        const normalized = mapForResult(result, (url) => [url]);
-        const errorAggregated = mapErrForResult(normalized, (err) => {
+        const normalized = ResultOperator.map(result, (url) => [url]);
+        const errorAggregated = ResultOperator.mapErr(normalized, (err) => {
             const e = new AggregateError([reason, err]);
             return e;
         });
