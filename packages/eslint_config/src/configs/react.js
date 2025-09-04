@@ -63,11 +63,9 @@ const modernReactPluginConfigs = [
  *  @type   {ReadonlyArray<import('eslint').Linter.Config>}
  */
 const hooksPluginConfigs = [
-    reactHooksESLintPlugin.configs.recommended,
     {
-        rules: {
-            'react-hooks/react-compiler': 'error',
-        },
+        extends: [reactHooksESLintPlugin.configs['recommended-latest']],
+        rules: {},
     },
 ];
 
