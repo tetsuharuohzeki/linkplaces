@@ -1,4 +1,4 @@
-@charset 'utf-8';
+@charset "utf-8";
 @layer foundation, shared, app;
 
 @import '@linkplaces/foundation/src/mod.css' layer(foundation);
