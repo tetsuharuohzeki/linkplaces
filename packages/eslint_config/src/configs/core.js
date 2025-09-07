@@ -85,6 +85,14 @@ const builtinRules = Object.freeze({
     // Now, we don't have to use `var` generally.
     'no-var': 'warn',
 
+    // We should carry the root cause properly.
+    'preserve-caught-error': [
+        'warn',
+        {
+            requireCatchParameter: true,
+        },
+    ],
+
     // This prevents the error at the running time.
     'valid-typeof': ['error', { requireStringLiterals: true }],
 });
