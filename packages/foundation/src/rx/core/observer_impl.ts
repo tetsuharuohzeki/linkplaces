@@ -1,4 +1,4 @@
-import { experimental_MaybeOperator as MaybeOperator, type Maybe } from 'option-t/maybe';
+import { MaybeOperator, type Maybe } from 'option-t/maybe';
 import type { CompletionResult } from './completion_result';
 import type { Observer, OnNextFn, OnErrorFn, OnCompleteFn as OnCompletedFn } from './observer';
 

@@ -7,7 +7,7 @@ import {
     type HTMLCustomElementAttributeChangeListenable,
 } from '@linkplaces/foundation';
 
-import { experimental_NullableOperator as NullableOperator } from 'option-t/nullable';
+import { NullableOperator } from 'option-t/nullable';
 import type { Undefinable } from 'option-t/undefinable';
 import type { HTMLAttributes as ReactHTMLAttributes } from 'react';
 

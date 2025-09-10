@@ -1,5 +1,5 @@
 import type { BookmarkId, WebExtSidebarActionService } from '@linkplaces/webext_types';
-import { experimental_UndefinableOperator as UndefinableOperator } from 'option-t/undefinable';
+import { UndefinableOperator } from 'option-t/undefinable';
 
 import { type WhereToOpenItem, createOpenUrlAction, createRegisterUrlAction } from './RemoteAction.js';
 import type { RemoteActionChannel } from './RemoteActionChannel.js';

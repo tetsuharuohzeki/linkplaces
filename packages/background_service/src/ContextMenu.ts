@@ -4,11 +4,7 @@ import type { OnClickData, CreateArgument, ContextType, Tab, WindowId } from '@l
 
 import { type Maybe, isNullOrUndefined } from 'option-t/maybe';
 import { type Result, experimental_ResultOperator as ResultOperator } from 'option-t/plain_result';
-import {
-    type Undefinable,
-    expectNotUndefined,
-    experimental_UndefinableOperator as UndefinableOperator,
-} from 'option-t/undefinable';
+import { type Undefinable, expectNotUndefined, UndefinableOperator } from 'option-t/undefinable';
 
 const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';
 const CTXMENU_ID_CONTENT_SAVE_PAGE = 'linkplaces-ctx-content-save-page';

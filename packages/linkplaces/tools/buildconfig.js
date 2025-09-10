@@ -1,6 +1,6 @@
 import * as assert from 'node:assert/strict';
 
-import { experimental_MaybeOperator as MaybeOperator } from 'option-t/maybe';
+import { MaybeOperator } from 'option-t/maybe';
 
 const GIT_REVISION = MaybeOperator.unwrapOr(process.env.GIT_REVISION, 'unknown', String);
 const BUILD_DATE = MaybeOperator.unwrapOr(process.env.BUILD_DATE, 'unknown', String);
