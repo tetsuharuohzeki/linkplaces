@@ -2,15 +2,15 @@ import * as assert from 'node:assert/strict';
 
 import { MaybeOperator } from 'option-t/maybe';
 
-const GIT_REVISION = MaybeOperator.unwrapOr(process.env.GIT_REVISION, 'unknown', String);
-const BUILD_DATE = MaybeOperator.unwrapOr(process.env.BUILD_DATE, 'unknown', String);
+const GIT_REVISION = MaybeOperator.mapOr(process.env.GIT_REVISION, 'unknown', String);
+const BUILD_DATE = MaybeOperator.mapOr(process.env.BUILD_DATE, 'unknown', String);
 
 const RELEASE_CHANNEL_VALUE_PRODUCTION = 'production';
 const RELEASE_CHANNEL_VALUE_DEVELOPMENT = 'development';
 
 export const NODE_ENV = process.env.NODE_ENV;
 
-const RELEASE_CHANNEL = MaybeOperator.unwrapOr(process.env.RELEASE_CHANNEL, 'production', String);
+const RELEASE_CHANNEL = MaybeOperator.mapOr(process.env.RELEASE_CHANNEL, 'production', String);
 const LIB_NODE_ENV =
     RELEASE_CHANNEL === 'production' ? RELEASE_CHANNEL_VALUE_PRODUCTION : RELEASE_CHANNEL_VALUE_DEVELOPMENT;
 
