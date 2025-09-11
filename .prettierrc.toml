@@ -40,3 +40,9 @@ useTabs = false
     files = "turbo.jsonc"
     [overrides.options]
     trailingComma = "none"
+
+
+[[overrides]]
+    files = "pnpm-workspace.yaml"
+    [overrides.options]
+    tabWidth = 2

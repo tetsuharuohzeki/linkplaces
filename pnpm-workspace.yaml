@@ -1,7 +1,7 @@
 packages:
-    - packages/*
+  - packages/*
 
 catalog:
-    option-t: ^54.4.2
-    react: ^19.1.1
-    react-dom: ^19.1.1
+  option-t: ^54.4.2
+  react: ^19.1.1
+  react-dom: ^19.1.1
