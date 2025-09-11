@@ -3,7 +3,7 @@ import { createBookmarkItem, type CreateBookmarkItemResult } from '@linkplaces/s
 import type { OnClickData, CreateArgument, ContextType, Tab, WindowId } from '@linkplaces/webext_types';
 
 import { type Maybe, isNullOrUndefined } from 'option-t/maybe';
-import { type Result, experimental_ResultOperator as ResultOperator } from 'option-t/plain_result';
+import { type Result, ResultOperator } from 'option-t/plain_result';
 import { type Undefinable, expectNotUndefined, UndefinableOperator } from 'option-t/undefinable';
 
 const CTXMENU_ID_TAB_SAVE_TAB = 'linkplaces-ctx-tab-save-tab';

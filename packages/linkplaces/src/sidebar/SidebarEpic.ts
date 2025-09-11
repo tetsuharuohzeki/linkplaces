@@ -11,7 +11,7 @@ import {
     unwrapErr,
     isErr,
     type Result,
-    experimental_ResultOperator as ResultOperator,
+    ResultOperator,
 } from 'option-t/plain_result';
 
 import type { RemoteActionChannel } from './SidebarMessageChannel.js';

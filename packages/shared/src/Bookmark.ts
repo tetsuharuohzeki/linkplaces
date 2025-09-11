@@ -7,7 +7,7 @@ import type {
 } from '@linkplaces/webext_types';
 
 import { isNull } from 'option-t/nullable';
-import { type Result, createErr, createOk, experimental_ResultOperator as ResultOperator } from 'option-t/plain_result';
+import { type Result, createErr, createOk, ResultOperator } from 'option-t/plain_result';
 
 const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/u;
 

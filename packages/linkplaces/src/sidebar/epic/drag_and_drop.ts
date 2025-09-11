@@ -1,6 +1,6 @@
 import { Ix } from '@linkplaces/foundation';
 import type { Nullable } from 'option-t/nullable';
-import { type Result, createOk, createErr, experimental_ResultOperator as ResultOperator } from 'option-t/plain_result';
+import { type Result, createOk, createErr, ResultOperator } from 'option-t/plain_result';
 import { unwrapUndefinable } from 'option-t/undefinable';
 
 const MIME_TEXT_PLAIN = 'text/plain';
