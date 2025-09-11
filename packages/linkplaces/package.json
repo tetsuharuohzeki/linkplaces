@@ -32,7 +32,7 @@
     },
     "devDependencies": {
         "@babel/cli": "7.28.3",
-        "@babel/core": "7.28.3",
+        "@babel/core": "7.28.4",
         "@babel/preset-react": "7.27.1",
         "@linkplaces/tools": "workspace:*",
         "@rollup/plugin-alias": "5.1.1",
