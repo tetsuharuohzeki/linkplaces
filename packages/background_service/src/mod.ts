@@ -1,6 +1,7 @@
 import { callResponderServiceWithMessage } from '@linkplaces/foundation/tower_like_ipc';
 import { assertIsRemoteAction } from '@linkplaces/ipc_message';
 
+import { browser } from '@linkplaces/webext_types';
 import { callBackgroundRemoteActionReciever } from './BackgroundRemoteActionReciever.js';
 import { appendContextMenu, onClickContextMenu } from './ContextMenu.js';
 

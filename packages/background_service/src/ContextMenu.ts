@@ -1,6 +1,14 @@
 import { Ix } from '@linkplaces/foundation';
 import { createBookmarkItem, type CreateBookmarkItemResult } from '@linkplaces/shared/bookmark';
-import type { OnClickData, CreateArgument, ContextType, Tab, WindowId } from '@linkplaces/webext_types';
+import {
+    type OnClickData,
+    type CreateArgument,
+    type ContextType,
+    type Tab,
+    type WindowId,
+    type WebExtGlobalNamespace,
+    browser,
+} from '@linkplaces/webext_types';
 
 import { type Maybe, isNullOrUndefined } from 'option-t/maybe';
 import { type Result, ResultOperator } from 'option-t/plain_result';
@@ -19,7 +27,7 @@ function createCtxMenuArg(id: string, title: string, contexts: Array<ContextType
     };
 }
 
-export function appendContextMenu(browser: typeof chrome): void {
+export function appendContextMenu(browser: WebExtGlobalNamespace): void {
     const list: Array<CreateArgument> = [
         createCtxMenuArg(CTXMENU_ID_TAB_SAVE_TAB, 'Add Tab to LinkPlaces', ['tab']),
         createCtxMenuArg(CTXMENU_ID_CONTENT_SAVE_PAGE, 'Add Page to LinkPlaces', ['page']),
@@ -45,7 +53,7 @@ export function appendContextMenu(browser: typeof chrome): void {
     Promise.all(onCreateList).catch(console.error);
 }
 
-export function removeContextMenu(browser: typeof chrome): Promise<void> {
+export function removeContextMenu(browser: WebExtGlobalNamespace): Promise<void> {
     browser.menus.onClicked.removeListener(onClickContextMenu);
     return browser.menus.removeAll();
 }

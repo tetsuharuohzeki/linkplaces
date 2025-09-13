@@ -1,4 +1,5 @@
 import type { ViewContext } from '@linkplaces/foundation/view_ctx';
+import { browser } from '@linkplaces/webext_types';
 import { expectNotNull } from 'option-t/nullable';
 
 import { createOptionsView } from './OptionsView.js';

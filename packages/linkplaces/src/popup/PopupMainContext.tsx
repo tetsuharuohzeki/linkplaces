@@ -1,5 +1,5 @@
 import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
-import type { BookmarkTreeNode } from '@linkplaces/webext_types';
+import { browser, type BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { type Nullable, isNotNull, isNull } from 'option-t/nullable';
 import { StrictMode, type ReactNode } from 'react';

@@ -1,6 +1,7 @@
 import { landViewContext } from '@linkplaces/foundation/view_ctx';
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 
+import { browser } from '@linkplaces/webext_types';
 import { PopupMainContext } from './PopupMainContext.js';
 import { createChannel } from './PopupMessageChannel.js';
 import { registerComponents } from './component/register.js';

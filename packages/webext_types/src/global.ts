@@ -7,11 +7,6 @@ import type { WebExtSidebarActionService } from './sidebarAction.js';
 import type { WebExtTabsService } from './tabs.js';
 import type { WebExtWindowsService } from './windows.js';
 
-declare global {
-    const browser: WebExtGlobal & ExtensionBrowser;
-    const chrome: WebExtGlobal & ExtensionBrowser;
-}
-
 export interface WebExtGlobal {
     bookmarks: WebExtBookmarkService;
     browserAction: WebExtBrowserActionService;
@@ -21,3 +16,12 @@ export interface WebExtGlobal {
     tabs: WebExtTabsService;
     windows: WebExtWindowsService;
 }
+
+export type WebExtGlobalNamespace = WebExtGlobal & ExtensionBrowser;
+
+export const browser: WebExtGlobalNamespace =
+    // @ts-expect-error
+    globalThis.browser;
+export const chrome: WebExtGlobalNamespace =
+    // @ts-expect-error
+    globalThis.chrome;

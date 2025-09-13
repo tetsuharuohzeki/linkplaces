@@ -1,6 +1,6 @@
 import { Subscription, fromEventToObservable, operators, type Unsubscribable } from '@linkplaces/foundation/rx';
 import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
-import type { BookmarkTreeNode } from '@linkplaces/webext_types';
+import { browser, type BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { type Nullable, isNotNull, expectNotNull } from 'option-t/nullable';
 import { StrictMode, useSyncExternalStore, type ReactNode } from 'react';

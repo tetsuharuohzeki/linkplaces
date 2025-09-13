@@ -1,4 +1,4 @@
-import './global.js';
+export { browser, chrome, type WebExtGlobalNamespace } from './global.js';
 
 export type * from './ExtensionRuntime.js';
 export type {

@@ -1,9 +1,10 @@
-import type {
-    BookmarkId,
-    BookmarkTreeNode,
-    BookmarkTreeNodeItem,
-    BookmarkTreeNodeFolder,
-    BookmarkTreeNodeSeparator,
+import {
+    type BookmarkId,
+    type BookmarkTreeNode,
+    type BookmarkTreeNodeItem,
+    type BookmarkTreeNodeFolder,
+    type BookmarkTreeNodeSeparator,
+    browser,
 } from '@linkplaces/webext_types';
 
 import { isNull } from 'option-t/nullable';

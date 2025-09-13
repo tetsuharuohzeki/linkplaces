@@ -3,7 +3,7 @@ import {
     openItemOneshot as openItemViaChannel,
     openWebExtSidebar as openWebExtSidebarDirect,
 } from '@linkplaces/ipc_message';
-import type { BookmarkId } from '@linkplaces/webext_types';
+import { browser, type BookmarkId } from '@linkplaces/webext_types';
 
 import type { PopupPlainReduxStore } from './PopupMainStore.js';
 import type { RemoteActionChannel } from './PopupMessageChannel.js';

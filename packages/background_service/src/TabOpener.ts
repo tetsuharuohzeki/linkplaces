@@ -1,5 +1,5 @@
 import { WhereToOpenItem } from '@linkplaces/ipc_message';
-import type { TabId, BrowserWindow } from '@linkplaces/webext_types';
+import { type TabId, type BrowserWindow, browser } from '@linkplaces/webext_types';
 
 import { expectNotNullOrUndefined } from 'option-t/maybe';
 import { expectNotUndefined } from 'option-t/undefinable';

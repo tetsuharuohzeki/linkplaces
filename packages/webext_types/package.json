@@ -4,7 +4,8 @@
     "type": "module",
     "exports": {
         ".": {
-            "types": "./__dist/index.d.ts"
+            "types": "./__dist/index.d.ts",
+            "default": "./__dist/index.js"
         }
     },
     "devDependencies": {
