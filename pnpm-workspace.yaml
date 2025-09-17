@@ -1,6 +1,8 @@
 packages:
   - packages/*
 
+minimumReleaseAge: 1440 # 60min * 24
+
 catalog:
   option-t: ^55.1.0
   react: ^19.1.1
