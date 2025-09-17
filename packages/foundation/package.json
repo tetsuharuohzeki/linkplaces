@@ -36,7 +36,7 @@
     },
     "devDependencies": {
         "@linkplaces/tools": "workspace:*",
-        "expect-type": "^1.2.2"
+        "expect-type": "catalog:"
     },
     "scripts": {
         "clean": "node tools/clean.js",
