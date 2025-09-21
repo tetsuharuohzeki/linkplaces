@@ -42,7 +42,6 @@
         "@rollup/plugin-replace": "catalog:",
         "@rollup/plugin-swc": "catalog:",
         "@swc/core": "catalog:",
-        "jsdom": "catalog:",
         "postcss": "catalog:",
         "postcss-import": "catalog:",
         "rollup": "catalog:"
