@@ -46,3 +46,4 @@ useTabs = false
     files = "pnpm-workspace.yaml"
     [overrides.options]
     tabWidth = 2
+    singleQuote = true
