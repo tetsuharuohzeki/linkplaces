@@ -33,7 +33,12 @@ const modernReactPluginConfigs = [
     {
         rules: {
             // Enforce to specify html's boolean type attribute.
-            '@eslint-react/avoid-shorthand-boolean': 'error',
+            '@eslint-react/jsx-shorthand-boolean': [
+                'error',
+                // This should be set `-1` to warn shorthand boolean
+                // ref https://github.com/Rel1cx/eslint-react/blob/5d8e0c5f7f6ca254f66e3c59a9d24f4483431fda/packages/plugins/eslint-plugin-react-x/src/rules/jsx-shorthand-boolean.ts#L75C25-L86
+                -1,
+            ],
 
             // We don't have to use a react class component excluding some situations
             // that you need to implement react error boundary with `getDerivedStateFromError()`.
@@ -54,7 +59,12 @@ const modernReactPluginConfigs = [
             '@eslint-react/no-useless-fragment': 'warn',
 
             // We would like to use syntax to swap to other libs easily.
-            '@eslint-react/prefer-shorthand-fragment': 'warn',
+            '@eslint-react/jsx-shorthand-fragment': [
+                'warn',
+                // This should be set `-1` to warn non shorthand syntax
+                // See https://github.com/Rel1cx/eslint-react/blob/5d8e0c5f7f6ca254f66e3c59a9d24f4483431fda/packages/plugins/eslint-plugin-react-x/src/rules/jsx-shorthand-fragment.ts#L63-L84
+                1,
+            ],
         },
     },
 ];
