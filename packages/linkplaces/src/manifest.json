@@ -5,7 +5,10 @@
     "description": "This provides Sidebar to display \"Unsorted Bookmarks\" folder in Places, as \"Temporary Links\"",
     "browser_specific_settings": {
         "gecko": {
-            "id": "{5744b0bf-569c-4666-b1fc-3915c3fa5767}"
+            "id": "{5744b0bf-569c-4666-b1fc-3915c3fa5767}",
+            "data_collection_permissions": {
+                "required": ["none"]
+            }
         }
     },
     "icons": {
