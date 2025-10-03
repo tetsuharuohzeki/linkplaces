@@ -2,7 +2,7 @@ import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRule
 import { browser, type BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { type Nullable, isNotNull, isNull } from 'option-t/nullable';
-import { StrictMode, type ReactNode } from 'react';
+import { StrictMode, useEffect, useMemo, type ReactNode } from 'react';
 
 import { PopupMainEpic } from './PopupMainEpic.js';
 import { PopupMainIntent } from './PopupMainIntent.js';
@@ -38,13 +38,7 @@ export class PopupMainContext extends ReactRuledViewContext {
         const epic = new PopupMainEpic(this._channel, store);
         const intent = new PopupMainIntent(epic, store);
 
-        const repository = new PopupRepostiroy(browser.bookmarks, store);
-
-        this._disposerSet = new Set([
-            () => {
-                repository.destroy();
-            },
-        ]);
+        this._disposerSet = new Set();
 
         const view = (
             <StrictMode>
@@ -77,7 +71,15 @@ interface PopupMainViewUpdaterProps {
 }
 
 function PopupMainViewUpdater({ store, intent }: PopupMainViewUpdaterProps): ReactNode {
+    const repository = useMemo(() => new PopupRepostiroy(browser.bookmarks, store), [store]);
     const state = usePopupMainState(store);
+
+    useEffect(() => {
+        repository.start();
+        return () => {
+            repository.stop();
+        };
+    }, [repository]);
 
     const view = (
         <StrictMode>

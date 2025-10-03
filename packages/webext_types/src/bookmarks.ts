@@ -3,6 +3,8 @@ import type { ExtensionEventManager } from './ExtensionEventManager.js';
 declare const bookmarkIdMarker: unique symbol;
 export type BookmarkId = string & { [bookmarkIdMarker]: never };
 
+export type BookmarkOnChangedEventListener = (id: BookmarkId, changeInfo: OnChangeInfo) => void;
+
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks
 export interface WebExtBookmarkService {
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/create
@@ -39,7 +41,7 @@ export interface WebExtBookmarkService {
     onRemoved: ExtensionEventManager<(id: BookmarkId, removeInfo: OnRemoveInfo) => void>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onChanged
-    onChanged: ExtensionEventManager<(id: BookmarkId, changeInfo: OnChangeInfo) => void>;
+    onChanged: ExtensionEventManager<BookmarkOnChangedEventListener>;
 
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/bookmarks/onMoved
     onMoved: ExtensionEventManager<(id: BookmarkId, moveInfo: OnMoveInfo) => void>;
