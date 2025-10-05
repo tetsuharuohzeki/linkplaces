@@ -75,25 +75,7 @@ const modernReactPluginConfigs = [
 const hooksPluginConfigs = [
     {
         extends: [reactHooksESLintPlugin.configs['recommended-latest']],
-        rules: {
-            // This enables opt-in rules that are not enabled by default and are related to react-compiler
-            // See https://react.dev/reference/eslint-plugin-react-hooks#additional-rules
-            'react-hooks/component-hook-factories': 'warn',
-            'react-hooks/config': 'warn',
-            'react-hooks/error-boundaries': 'warn',
-            'react-hooks/gating': 'warn',
-            'react-hooks/globals': 'warn',
-            'react-hooks/immutability': 'warn',
-            'react-hooks/incompatible-library': 'warn',
-            'react-hooks/preserve-manual-memoization': 'warn',
-            'react-hooks/purity': 'warn',
-            'react-hooks/refs': 'warn',
-            'react-hooks/set-state-in-effect': 'warn',
-            'react-hooks/set-state-in-render': 'warn',
-            'react-hooks/static-components': 'warn',
-            'react-hooks/unsupported-syntax': 'warn',
-            'react-hooks/use-memo': 'warn',
-        },
+        rules: {},
     },
 ];
 
