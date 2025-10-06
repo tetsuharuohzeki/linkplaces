@@ -14,16 +14,11 @@ class AsyncFactoryObservable<T> extends Observable<T> {
             });
 
             const promise = factory(destination, signal);
-            promise.then(
-                () => {
-                    destination.complete(null);
-                },
-                (e: unknown) => {
-                    destination.error(e);
-                    const error = new SubscriptionCompleteByFailureError(e);
-                    destination.complete(error);
-                }
-            );
+            promise.catch((e: unknown) => {
+                destination.error(e);
+                const error = new SubscriptionCompleteByFailureError(e);
+                destination.complete(error);
+            });
         });
     }
 }
