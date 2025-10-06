@@ -3,8 +3,9 @@ import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRule
 import { browser, type BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { type Nullable, isNotNull, expectNotNull } from 'option-t/nullable';
-import { StrictMode, useSyncExternalStore, type ReactNode } from 'react';
+import { StrictMode } from 'react';
 
+import { SidebarViewUpdater } from './SidebarContextView.js';
 import type { SidebarItemViewModelEntity } from './SidebarDomain.js';
 import { SidebarEpic } from './SidebarEpic.js';
 import { SidebarIntent } from './SidebarIntent.js';
@@ -12,7 +13,6 @@ import type { RemoteActionChannel } from './SidebarMessageChannel.js';
 import { createUpdateFromSourceAction } from './SidebarReduxAction.js';
 import type { SidebarState } from './SidebarState.js';
 import { createSidebarStore, type SidebarPlainReduxStore } from './SidebarStore.js';
-import { SidebarView } from './SidebarView.js';
 import { SidebarRepository } from './repository/SidebarRepository.js';
 
 const subscribeOnRx = operators.subscribeOnNextLoop;
@@ -137,34 +137,4 @@ function subscribeSidebarRepositoryBySidebarStore(
             },
         });
     return subscription;
-}
-
-interface SidebarViewUpdaterProps {
-    store: SidebarPlainReduxStore;
-    intent: SidebarIntent;
-}
-
-function SidebarViewUpdater({ store, intent }: SidebarViewUpdaterProps): ReactNode {
-    const state = useSyncExternalStore(
-        (onStoreChange) => {
-            const disposer = store.subscribe(onStoreChange);
-            return () => {
-                disposer();
-            };
-        },
-        () => {
-            const state = store.state();
-            return state;
-        }
-    );
-
-    const view = (
-        <StrictMode>
-            <SidebarView
-                state={state}
-                intent={intent}
-            />
-        </StrictMode>
-    );
-    return view;
 }
