@@ -1,7 +1,6 @@
 import type { CompletionResult } from '../core/completion_result.js';
 import type { Observable } from '../core/observable.js';
 import { OperatorObservable, type OperatorFunction } from '../core/operator.js';
-import type { Unsubscribable } from '../core/subscribable.js';
 import type { Subscriber } from '../core/subscriber.js';
 import { InternalSubscriber } from '../core/subscriber_impl.js';
 
@@ -41,10 +40,9 @@ class FilterObservable<T> extends OperatorObservable<T, T> {
         this.filter = filter;
     }
 
-    protected override onSubscribe(destination: Subscriber<T>): Unsubscribable {
+    protected override onSubscribe(destination: Subscriber<T>): void {
         const innerSub = new FilterSubscriber(destination, this.filter);
-        const s = this.source.subscribe(innerSub);
-        return s;
+        this.source.subscribe(innerSub);
     }
 }
 

@@ -1,7 +1,6 @@
 import type { CompletionResult } from '../core/completion_result.js';
 import type { Observable } from '../core/observable.js';
 import { OperatorObservable, type OperatorFunction } from '../core/operator.js';
-import type { Unsubscribable } from '../core/subscribable.js';
 import type { Subscriber } from '../core/subscriber.js';
 import { InternalSubscriber } from '../core/subscriber_impl.js';
 
@@ -39,10 +38,9 @@ class MapObservable<TInput, TOutput> extends OperatorObservable<TInput, TOutput>
         this.transformer = transformer;
     }
 
-    protected override onSubscribe(destination: Subscriber<TOutput>): Unsubscribable {
+    protected override onSubscribe(destination: Subscriber<TOutput>): void {
         const innerSub = new MapSubscriber(destination, this.transformer);
-        const s = this.source.subscribe(innerSub);
-        return s;
+        this.source.subscribe(innerSub);
     }
 }
 
