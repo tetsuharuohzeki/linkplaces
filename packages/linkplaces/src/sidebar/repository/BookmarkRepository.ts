@@ -14,7 +14,7 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
 
     private constructor(init: Array<BookmarkTreeNode>, bookmarks: WebExtBookmarkService) {
         this._subject = new BehaviorSubject(init);
-        this._observable = createOnChangeBookmarks(bookmarks).pipe(operators.connect(() => this._subject));
+        this._observable = createOnChangeBookmarks(bookmarks).pipe(operators.connect(this._subject));
     }
 
     latestValue(): Array<BookmarkTreeNode> {
