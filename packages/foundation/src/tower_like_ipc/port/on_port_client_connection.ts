@@ -3,7 +3,7 @@ import type { ExtensionPort } from '@linkplaces/webext_types';
 import { isNull } from 'option-t/nullable';
 import { isUndefined } from 'option-t/undefinable';
 
-import { createIdentifiablePacket, createOneShotPacket, assertPacket } from './Packet.js';
+import { createIdentifiablePacket, createOneShotPacket, assertPacket } from './packet_type.js';
 
 interface PromiseResolverTuple {
     readonly resolve: (result?: unknown) => void;

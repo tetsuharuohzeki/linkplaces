@@ -1,9 +1,9 @@
 import type { Nullable } from 'option-t/nullable';
 
-import type { AssertTypeGuardFn } from '../AssertTypeGuardFn.js';
+import type { AssertTypeGuardFn } from '../assert_type_guard_fn.js';
 import type { TowerService } from '../framework/service_trait.js';
-import { assertIdentifiablePacket, createIdentifiablePacket, type Packet } from './Packet.js';
-import type { PacketCreationService } from './PacketCreationService.js';
+import type { PacketCreationService } from './packet_creation_service.js';
+import { assertIdentifiablePacket, createIdentifiablePacket, type Packet } from './packet_type.js';
 
 export class ReplyPacketResponder<const in TInnerArgs, const out TInnerOutput>
     implements PacketCreationService<Packet<unknown>, TInnerOutput>

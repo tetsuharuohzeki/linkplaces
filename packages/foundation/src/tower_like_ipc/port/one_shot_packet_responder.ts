@@ -1,7 +1,7 @@
-import type { AssertTypeGuardFn } from '../AssertTypeGuardFn.js';
+import type { AssertTypeGuardFn } from '../assert_type_guard_fn.js';
 import type { TowerService } from '../framework/service_trait.js';
-import { assertOneShotPacket, type Packet } from './Packet.js';
-import type { PacketCreationService } from './PacketCreationService.js';
+import type { PacketCreationService } from './packet_creation_service.js';
+import { assertOneShotPacket, type Packet } from './packet_type.js';
 
 export class OneShotPacketResponder<const in TInnerArgs, const out TInnerOutput>
     implements PacketCreationService<unknown, null>

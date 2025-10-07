@@ -1,7 +1,7 @@
 import type { ExtensionPort } from '@linkplaces/webext_types';
 
-import { assertPacket, type Packet } from './Packet.js';
-import type { PacketCreationService } from './PacketCreationService.js';
+import type { PacketCreationService } from './packet_creation_service.js';
+import { assertPacket, type Packet } from './packet_type.js';
 
 export class OnPortServerConnection {
     private _port: ExtensionPort;

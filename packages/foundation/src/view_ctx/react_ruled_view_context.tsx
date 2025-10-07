@@ -3,8 +3,8 @@ import { type Nullable, isNotNull, expectNotNull } from 'option-t/nullable';
 import type { ReactNode } from 'react';
 import { type Root, type RootOptions, createRoot } from 'react-dom/client';
 
-import { getMountPoint } from './LandingPad.js';
-import type { ViewContext } from './ViewContext.js';
+import { getMountPoint } from './landing_pad.js';
+import type { ViewContext } from './view_context.js';
 
 export abstract class ReactRuledViewContext implements ViewContext {
     private _renderRoot: Nullable<Root> = null;

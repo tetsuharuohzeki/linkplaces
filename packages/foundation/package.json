@@ -23,9 +23,9 @@
             "types": "./__dist/view_ctx/mod.d.ts",
             "default": "./__dist/view_ctx/mod.js"
         },
-        "./view_ctx/ReactRuledViewContext": {
-            "types": "./__dist/view_ctx/ReactRuledViewContext.d.ts",
-            "default": "./__dist/view_ctx/ReactRuledViewContext.js"
+        "./view_ctx/react": {
+            "types": "./__dist/view_ctx/react.d.ts",
+            "default": "./__dist/view_ctx/react.js"
         }
     },
     "dependencies": {

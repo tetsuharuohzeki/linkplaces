@@ -1,6 +1,6 @@
 import { expectNotNull } from 'option-t/nullable';
 
-import type { ViewContext } from './ViewContext.js';
+import type { ViewContext } from './view_context.js';
 
 const DOM_MOUNTPOINT_ID = 'js-mountpoint';
 

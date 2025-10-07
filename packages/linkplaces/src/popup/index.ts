@@ -1,4 +1,4 @@
-import { renderReactView } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
+import { renderReactView } from '@linkplaces/foundation/view_ctx/react';
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 
 import { browser } from '@linkplaces/webext_types';

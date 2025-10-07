@@ -1,11 +1,11 @@
 import type { Nullable } from 'option-t/nullable';
-import type { AssertTypeGuardFn } from '../AssertTypeGuardFn.js';
+import type { AssertTypeGuardFn } from '../assert_type_guard_fn.js';
 import type { TowerService } from '../framework/service_trait.js';
 
-import { OneShotPacketResponder } from './OneShotPacketResponder.js';
-import { isIdentifiablePacket, isOneShotPacket, type Packet } from './Packet.js';
-import type { PacketCreationService } from './PacketCreationService.js';
-import { ReplyPacketResponder } from './ReplyPacketResponder.js';
+import { OneShotPacketResponder } from './one_shot_packet_responder.js';
+import type { PacketCreationService } from './packet_creation_service.js';
+import { isIdentifiablePacket, isOneShotPacket, type Packet } from './packet_type.js';
+import { ReplyPacketResponder } from './reply_packet_responder.js';
 
 export class PacketResponder<const in TRequestBody, const out TResponse>
     implements PacketCreationService<unknown, TResponse>

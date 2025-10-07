@@ -1,4 +1,4 @@
-import type { ReactViewRenderFn, TeardownFn } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
+import type { ReactViewRenderFn, TeardownFn } from '@linkplaces/foundation/view_ctx/react';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { StrictMode } from 'react';

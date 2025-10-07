@@ -1,4 +1,4 @@
-import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
+import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/react';
 import { browser, type BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { StrictMode } from 'react';

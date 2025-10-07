@@ -1,6 +1,6 @@
 export * as Ix from './ix/mod.js';
 export * as Ipc from './tower_like_ipc/mod.js';
-export { type DomRef, createDomRef, createDomElement, createDocFragmentTree, createTextNode } from './domfactory.js';
+export { type DomRef, createDomRef, createDomElement, createDocFragmentTree, createTextNode } from './dom_factory.js';
 export type {
     HTMLCustomElementLifecycleHook,
     HTMLCustomElementAdoptedListenable,
@@ -11,7 +11,7 @@ export type {
     HTMLCustomElementFormDisabledListenable,
     HTMLCustomElementFormResetListenable,
     HTMLCustomElementFormStateRestoreListenable,
-} from './HTMLCustomElementLifecycleHook.js';
-export { NoImplementationError } from './NoImplementationError.js';
-export { type ActionArcheType, ReduxLikeStore } from './ReduxLikeStore.js';
-export type { Repository } from './Repository.js';
+} from './html_custom_element_lifecycle_hook.js';
+export { NoImplementationError } from './no_implementation_error.js';
+export { type ActionArcheType, ReduxLikeStore } from './redux_like_store.js';
+export type { Repository } from './repository_type.js';
