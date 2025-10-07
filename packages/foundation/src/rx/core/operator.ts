@@ -24,14 +24,14 @@ export abstract class OperatorObservable<TInput, TOutput> extends Observable<TOu
     protected abstract onSubscribe(destination: Subscriber<TOutput>): void;
 }
 
-export abstract class DeclarativeObservable<T> extends Observable<T> {
+export abstract class DeclarativeObservable<TOutput> extends Observable<TOutput> {
     constructor() {
-        super((destination: Subscriber<T>) => {
+        super((destination: Subscriber<TOutput>) => {
             this.onSubscribe(destination);
         });
     }
 
-    protected abstract onSubscribe(destination: Subscriber<T>): void;
+    protected abstract onSubscribe(destination: Subscriber<TOutput>): void;
 }
 
 export type ConnectableOperatorFunction<TInput, TOutput> = UnaryFunction<
