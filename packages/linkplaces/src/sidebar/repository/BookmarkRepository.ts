@@ -21,13 +21,7 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
                     return list;
                 })
             )
-            .pipe(operators.connect(this._subject))
-            .pipe(
-                operators.map((val) => {
-                    console.log(val);
-                    return val;
-                })
-            );
+            .pipe(operators.connect(this._subject));
     }
 
     latestValue(): Array<BookmarkTreeNode> {
