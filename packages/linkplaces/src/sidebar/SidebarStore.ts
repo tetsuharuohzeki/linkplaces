@@ -1,8 +1,11 @@
 import { ReduxLikeStore } from '@linkplaces/foundation';
+import { operators, type Unsubscribable } from '@linkplaces/foundation/rx';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
-import { type SidebarReduxAction, SidebarReduxActionType } from './SidebarReduxAction.js';
+import type { SidebarItemViewModelEntity } from './SidebarDomain.js';
+import { createUpdateFromSourceAction, type SidebarReduxAction, SidebarReduxActionType } from './SidebarReduxAction.js';
 import { createInitialSidebarState, type SidebarState } from './SidebarState.js';
+import type { SidebarRepository } from './repository/SidebarRepository.js';
 
 function reduceSidebarReduxState(prev: SidebarState, action: SidebarReduxAction): SidebarState {
     // FIXME:
@@ -23,4 +26,23 @@ export function createSidebarStore(initial: Array<BookmarkTreeNode>): SidebarPla
     const initialState = createInitialSidebarState(initial);
     const store = ReduxLikeStore.create<SidebarState, SidebarReduxAction>(reduceSidebarReduxState, initialState);
     return store;
+}
+
+export function subscribeSidebarRepositoryBySidebarStore(
+    store: SidebarPlainReduxStore,
+    repo: SidebarRepository
+): Unsubscribable {
+    const subscription = repo
+        .asObservable()
+        .pipe(operators.subscribeOnNextLoop())
+        .subscribeBy({
+            onNext(source: Iterable<SidebarItemViewModelEntity>) {
+                const state: Readonly<SidebarState> = {
+                    list: source,
+                };
+                const a = createUpdateFromSourceAction(state);
+                store.dispatch(a);
+            },
+        });
+    return subscription;
 }
