@@ -11,14 +11,12 @@ import { createSidebarStore } from './SidebarStore.js';
 import { SidebarRepository } from './repository/SidebarRepository.js';
 
 export class SidebarContext extends ReactRuledViewContext {
-    private _list: Array<BookmarkTreeNode>;
     private _channel: RemoteActionChannel;
 
     private _repo: SidebarRepository;
 
     constructor(list: Array<BookmarkTreeNode>, channel: RemoteActionChannel) {
         super();
-        this._list = list;
         this._channel = channel;
 
         this._repo = SidebarRepository.create(browser.bookmarks, list);
@@ -28,13 +26,14 @@ export class SidebarContext extends ReactRuledViewContext {
         this._repo.destroy();
         this._repo = null as never;
         this._channel = null as never;
-        this._list = null as never;
     }
 
     async onActivate(mountpoint: Element): Promise<void> {
         this._initRenderRoot(mountpoint);
 
-        const store = createSidebarStore(this._list);
+        const repo = this._repo;
+
+        const store = createSidebarStore(repo.latestValue());
 
         const epic = new SidebarEpic(this._channel, store);
         const intent = new SidebarIntent(epic, store);
@@ -44,7 +43,7 @@ export class SidebarContext extends ReactRuledViewContext {
                 <SidebarViewUpdater
                     store={store}
                     intent={intent}
-                    repo={this._repo}
+                    repo={repo}
                 />
             </StrictMode>
         );

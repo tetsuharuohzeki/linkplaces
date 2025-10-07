@@ -20,6 +20,12 @@ export class SidebarRepository implements Repository<Iterable<SidebarItemViewMod
         this._driver = driver;
     }
 
+    latestValue(): Iterable<SidebarItemViewModelEntity> {
+        const value = this._driver.latestValue();
+        const mapped = value.map(mapToSidebarItemEntity);
+        return mapped;
+    }
+
     destroy(): void {
         this._obs = null;
         this._emitter.unsubscribe();

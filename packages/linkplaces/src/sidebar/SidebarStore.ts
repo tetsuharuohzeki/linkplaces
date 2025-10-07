@@ -1,6 +1,5 @@
 import { ReduxLikeStore } from '@linkplaces/foundation';
 import { operators, type Unsubscribable } from '@linkplaces/foundation/rx';
-import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import type { SidebarItemViewModelEntity } from './SidebarDomain.js';
 import { createUpdateFromSourceAction, type SidebarReduxAction, SidebarReduxActionType } from './SidebarReduxAction.js';
@@ -22,7 +21,7 @@ function reduceSidebarReduxState(prev: SidebarState, action: SidebarReduxAction)
 
 export type SidebarPlainReduxStore = ReduxLikeStore<SidebarState, SidebarReduxAction>;
 
-export function createSidebarStore(initial: Array<BookmarkTreeNode>): SidebarPlainReduxStore {
+export function createSidebarStore(initial: Iterable<SidebarItemViewModelEntity>): SidebarPlainReduxStore {
     const initialState = createInitialSidebarState(initial);
     const store = ReduxLikeStore.create<SidebarState, SidebarReduxAction>(reduceSidebarReduxState, initialState);
     return store;
