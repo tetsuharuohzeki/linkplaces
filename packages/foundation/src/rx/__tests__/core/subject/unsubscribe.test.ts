@@ -1,7 +1,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { Subject, } from '../../../mod.js';
+import { Subject } from '../../../mod.js';
 
 test('.unsubscribe() should stop myself', (t) => {
     const sub = new Subject();

@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import { Subject, } from '../../../mod.js';
+import { Subject } from '../../../mod.js';
 
 test('set .hasActive on calling .unsubscribe()', (t) => {
     const actual = new Subject();

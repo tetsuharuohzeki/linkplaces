@@ -7,8 +7,7 @@ PKG_MAIN_DIST_DIR := $(PKG_MAIN)/__dist
 
 ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
 
-PRETTIER_TARGET := '$(CURDIR)/**/*.{css,yaml,yml}'
-PRETTIER_TARGET_JS := '$(CURDIR)/**/*.{js,jsx,cjs,mjs,ts,tsx,cts,mts}'
+PRETTIER_TARGET := '$(CURDIR)/**/*.{js,jsx,cjs,mjs,ts,tsx,cts,mts,css,yaml,yml}'
 
 all: help
 
@@ -85,17 +84,10 @@ check_relationship_between_workspace_and_ts_pj_reference:
 ####################################
 # Tools
 ####################################
-format: format_by_prettier ## Apply formetters for files.
-
-format_by_prettier:
+format: ## Apply formetters for files.
 	$(NPM_BIN_DIR)/prettier --write $(PRETTIER_TARGET)
 
-format_js_by_prettier:
-	$(NPM_BIN_DIR)/prettier --write $(PRETTIER_TARGET_JS)
-
-check_format: check_format_css ## Check a code formatting.
-
-check_format_css: ## Check CSS code formatting.
+format_check: ## Check a code formatting.
 	$(NPM_BIN_DIR)/prettier --check $(PRETTIER_TARGET)
 
 git_diff: ## Test whether there is no committed changes.

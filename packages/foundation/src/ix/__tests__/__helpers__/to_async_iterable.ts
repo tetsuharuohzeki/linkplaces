@@ -7,7 +7,7 @@ export function toAsyncIterable<T>(source: Iterable<T>): AsyncIterable<T> {
 }
 
 async function* iterate<T>(source: Iterable<T>): AsyncGenerator<T> {
-    for  (const val of source) {
+    for (const val of source) {
         yield val;
     }
 }

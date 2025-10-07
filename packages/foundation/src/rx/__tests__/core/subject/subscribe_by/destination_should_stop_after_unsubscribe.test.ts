@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import {  Subject } from '../../../../mod.js';
+import { Subject } from '../../../../mod.js';
 
 test('the destination should not be called after cancelled the subscription', (t) => {
     t.plan(5);

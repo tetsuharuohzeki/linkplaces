@@ -18,12 +18,15 @@ test('if the passed destination is closed', (t) => {
     // act
     destination.unsubscribe();
     t.is(destination.closed, true, 'observer should be closed before act');
-    t.throws(() => {
-        testTarget.asObservable().subscribe(destination)
-    }, {
-        instanceOf: SubscriptionError,
-        message: 'subscriber has been closed',
-    });
+    t.throws(
+        () => {
+            testTarget.asObservable().subscribe(destination);
+        },
+        {
+            instanceOf: SubscriptionError,
+            message: 'subscriber has been closed',
+        }
+    );
 
     // assertion
     t.is(onNext.callCount, 0, 'should not call onNext');

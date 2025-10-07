@@ -6,13 +6,7 @@ import {
 import type { BookmarkId } from '@linkplaces/webext_types';
 
 import { isNotNull } from 'option-t/nullable';
-import {
-    unwrapOk,
-    unwrapErr,
-    isErr,
-    type Result,
-    ResultOperator,
-} from 'option-t/plain_result';
+import { unwrapOk, unwrapErr, isErr, type Result, ResultOperator } from 'option-t/plain_result';
 
 import {
     hasSupportedMimeType,

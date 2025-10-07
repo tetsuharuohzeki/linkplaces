@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { BehaviorSubject,  } from '../../../../mod.js';
+import { BehaviorSubject } from '../../../../mod.js';
 
 import { TestSubscriber } from './__helpers__/mod.js';
 

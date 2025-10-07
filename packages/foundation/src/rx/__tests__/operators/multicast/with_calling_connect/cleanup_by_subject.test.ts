@@ -42,7 +42,7 @@ test('if the given subject calls .unsubscribe(), multiple subscribe chain should
     const onObserverCompleted2 = tinyspy.spy();
 
     // act
-   const sourceSubscription = source.connect();
+    const sourceSubscription = source.connect();
     const subscription1 = source.subscribeBy({
         onCompleted: onObserverCompleted1,
     });

@@ -42,7 +42,7 @@ test('if the all subscription is closed, subscribe chain should be cleared', (t)
     const onObserverCompleted2 = tinyspy.spy();
 
     // act
-   const sourceSubscription = source.connect();
+    const sourceSubscription = source.connect();
     const subscription1 = source.subscribeBy({
         onCompleted: onObserverCompleted1,
     });
@@ -78,7 +78,7 @@ test('if the one of subscriptions is closed, subscribe chain should be cleared',
     const onObserverCompleted2 = tinyspy.spy();
 
     // act
-   const sourceSubscription = source.connect();
+    const sourceSubscription = source.connect();
     const subscription1 = source.subscribeBy({
         onCompleted: onObserverCompleted1,
     });

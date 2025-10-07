@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import {  Subject } from '../../../../mod.js';
+import { Subject } from '../../../../mod.js';
 
 import { TestSubscriber } from '../../../__helpers__/mod.js';
 

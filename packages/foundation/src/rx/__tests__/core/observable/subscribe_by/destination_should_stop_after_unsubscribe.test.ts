@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import type { Subscriber, } from '../../../../mod.js';
+import type { Subscriber } from '../../../../mod.js';
 
 import { TestObservable } from '../../../__helpers__/mod.js';
 
