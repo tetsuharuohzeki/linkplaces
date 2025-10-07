@@ -26,5 +26,5 @@ test("the returned subscription's .unsubscribe() should propagate to the source"
     t.is(onNext.callCount, 0);
     t.is(onError.callCount, 0);
     t.is(onCompleted.callCount, 0);
-    t.is(testTarget.hasActive, true, 'testTarget.hasActive');
+    t.is(testTarget.hasActive, false, 'testTarget.hasActive');
 });

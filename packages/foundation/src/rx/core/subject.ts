@@ -126,6 +126,9 @@ export class Subject<T> implements Subjectable<T> {
 
         destination.addTeardown(() => {
             currentObservers.delete(observerId);
+            if (currentObservers.size === 0) {
+                this._hasActive = false;
+            }
         });
     }
 

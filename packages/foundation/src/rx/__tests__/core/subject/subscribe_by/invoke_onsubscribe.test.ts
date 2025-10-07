@@ -29,5 +29,5 @@ test('onSubscribe should be invoked by calling `.subscribe()`', (t) => {
     subscription.unsubscribe();
     t.true(subscription.closed);
 
-    t.is(testTarget.hasActive, true, 'testTarget.hasActive');
+    t.is(testTarget.hasActive, false, 'testTarget.hasActive');
 });

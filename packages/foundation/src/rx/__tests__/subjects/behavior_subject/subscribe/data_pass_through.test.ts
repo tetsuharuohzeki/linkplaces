@@ -34,7 +34,7 @@ test('.subscribe() should propagate the passed value to the child: onNext()', (t
     unsubscriber.unsubscribe();
     t.is(unsubscriber.closed, true);
 
-    t.is(testTarget.hasActive, true, 'testTarget.hasActive');
+    t.is(testTarget.hasActive, false, 'testTarget.hasActive');
 });
 
 test('.subscribe() should propagate the passed value to the child: onError', (t) => {
@@ -83,7 +83,7 @@ test('.subscribe() should propagate the passed value to the child: onError', (t)
     unsubscriber.unsubscribe();
     t.is(unsubscriber.closed, true);
 
-    t.is(testTarget.hasActive, true, 'testTarget.hasActive');
+    t.is(testTarget.hasActive, false, 'testTarget.hasActive');
 });
 
 test('.subscribe() should propagate the passed value to the child: onCompleted', (t) => {
