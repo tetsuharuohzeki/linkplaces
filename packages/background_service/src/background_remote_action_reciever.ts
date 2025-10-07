@@ -8,7 +8,7 @@ import {
 import { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } from '@linkplaces/shared/bookmark';
 import type { BookmarkId } from '@linkplaces/webext_types';
 
-import { createTab } from './TabOpener.js';
+import { createTab } from './tab_opener.js';
 
 export async function callBackgroundRemoteActionReciever(msg: RemoteAction): Promise<void> {
     switch (msg.type) {
