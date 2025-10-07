@@ -8,4 +8,4 @@
 
 @import './vars.css' layer(app);
 @import './component/mod.css' layer(app);
-@import './PopupMainView.css' layer(app);
+@import './popup_main_view.css' layer(app);

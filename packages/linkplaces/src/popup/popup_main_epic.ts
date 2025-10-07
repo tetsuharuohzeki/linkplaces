@@ -5,8 +5,8 @@ import {
 } from '@linkplaces/ipc_message';
 import { browser, type BookmarkId } from '@linkplaces/webext_types';
 
-import type { PopupPlainReduxStore } from './PopupMainStore.js';
-import type { RemoteActionChannel } from './PopupMessageChannel.js';
+import type { PopupPlainReduxStore } from './popup_main_store.js';
+import type { RemoteActionChannel } from './popup_message_channel.js';
 
 export class PopupMainEpic {
     private _channel: RemoteActionChannel;

@@ -1,5 +1,5 @@
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
-import { type PopupReduxAction, PopupReduxActionType } from './PopupReduxAction.js';
+import { type PopupReduxAction, PopupReduxActionType } from './popup_redux_action.js';
 
 export interface PopupMainState {
     list: Array<BookmarkTreeNode>;

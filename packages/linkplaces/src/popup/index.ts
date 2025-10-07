@@ -2,9 +2,9 @@ import { renderReactView } from '@linkplaces/foundation/view_ctx/ReactRuledViewC
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 
 import { browser } from '@linkplaces/webext_types';
-import { initPopupMain } from './PopupMainContext.js';
-import { createChannel } from './PopupMessageChannel.js';
 import { registerComponents } from './component/register.js';
+import { initPopupMain } from './popup_main_context.js';
+import { createChannel } from './popup_message_channel.js';
 
 (async function main() {
     registerComponents();

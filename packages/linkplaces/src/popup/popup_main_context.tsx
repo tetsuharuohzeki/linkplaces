@@ -3,11 +3,11 @@ import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { StrictMode } from 'react';
 
-import { PopupMainViewUpdater } from './PopupMainContextView.js';
-import { PopupMainEpic } from './PopupMainEpic.js';
-import { PopupMainIntent } from './PopupMainIntent.js';
-import { createPopupMainStore } from './PopupMainStore.js';
-import type { RemoteActionChannel } from './PopupMessageChannel.js';
+import { PopupMainViewUpdater } from './popup_main_context_view.js';
+import { PopupMainEpic } from './popup_main_epic.js';
+import { PopupMainIntent } from './popup_main_intent.js';
+import { createPopupMainStore } from './popup_main_store.js';
+import type { RemoteActionChannel } from './popup_message_channel.js';
 
 export async function initPopupMain(
     render: ReactViewRenderFn,

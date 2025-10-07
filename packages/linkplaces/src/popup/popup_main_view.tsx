@@ -10,9 +10,9 @@ import type { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } f
 
 import { StrictMode, type MouseEvent, type MouseEventHandler, useState, type ReactNode } from 'react';
 
-import type { PopupMainIntent } from './PopupMainIntent.js';
-import type { PopupMainState } from './PopupMainState.js';
-import { PopupItemIcon } from './component/PopupIconElement.js';
+import { PopupItemIcon } from './component/popup_icon_element.js';
+import type { PopupMainIntent } from './popup_main_intent.js';
+import type { PopupMainState } from './popup_main_state.js';
 
 const ICON_DIR = '../resources/icon/';
 

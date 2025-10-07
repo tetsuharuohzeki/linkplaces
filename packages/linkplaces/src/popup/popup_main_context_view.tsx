@@ -2,10 +2,10 @@ import { browser } from '@linkplaces/webext_types';
 
 import { StrictMode, useEffect, useMemo, type ReactNode } from 'react';
 
-import type { PopupMainIntent } from './PopupMainIntent.js';
-import { usePopupMainState, type PopupPlainReduxStore } from './PopupMainStore.js';
-import { PopupMainView } from './PopupMainView.js';
-import { PopupRepostiroy } from './PopupRepository.js';
+import type { PopupMainIntent } from './popup_main_intent.js';
+import { usePopupMainState, type PopupPlainReduxStore } from './popup_main_store.js';
+import { PopupMainView } from './popup_main_view.js';
+import { PopupRepostiroy } from './popup_repository.js';
 
 export interface PopupMainViewUpdaterProps {
     store: PopupPlainReduxStore;

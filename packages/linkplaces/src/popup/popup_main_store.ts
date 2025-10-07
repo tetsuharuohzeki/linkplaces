@@ -3,8 +3,8 @@ import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { useSyncExternalStore } from 'react';
 
-import { createInitialPopupMainState, type PopupMainState, reducePopupMain } from './PopupMainState.js';
-import type { PopupReduxAction } from './PopupReduxAction.js';
+import { createInitialPopupMainState, type PopupMainState, reducePopupMain } from './popup_main_state.js';
+import type { PopupReduxAction } from './popup_redux_action.js';
 
 export type PopupPlainReduxStore = ReduxLikeStore<PopupMainState, PopupReduxAction>;
 
