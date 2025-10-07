@@ -3,8 +3,8 @@ import type { AssertTypeGuardFn } from '../assert_type_guard_fn.js';
 import type { TowerService } from '../framework/service_trait.js';
 
 import { OneShotPacketResponder } from './one_shot_packet_responder.js';
+import { isIdentifiablePacket, isOneShotPacket, type Packet } from './packet.js';
 import type { PacketCreationService } from './packet_creation_service.js';
-import { isIdentifiablePacket, isOneShotPacket, type Packet } from './packet_type.js';
 import { ReplyPacketResponder } from './reply_packet_responder.js';
 
 export class PacketResponder<const in TRequestBody, const out TResponse>

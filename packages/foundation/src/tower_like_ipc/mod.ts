@@ -13,7 +13,7 @@ export {
     assertIdentifiablePacket,
     assertOneShotPacket,
     isPacket,
-} from './port/packet_type.js';
+} from './port/packet.js';
 export { PacketResponder } from './port/packet_responder.js';
 export { ReplyPacketResponder } from './port/reply_packet_responder.js';
 export { SendMessageSender, MessageResponderSideError } from './send_message_sender.js';

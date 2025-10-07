@@ -14,4 +14,4 @@ export type {
 } from './html_custom_element_lifecycle_hook.js';
 export { NoImplementationError } from './no_implementation_error.js';
 export { type ActionArcheType, ReduxLikeStore } from './redux_like_store.js';
-export type { Repository } from './repository_type.js';
+export type { Repository } from './repository.js';
