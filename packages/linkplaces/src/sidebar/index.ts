@@ -2,7 +2,7 @@ import { landViewContext } from '@linkplaces/foundation/view_ctx';
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 
 import { browser } from '@linkplaces/webext_types';
-import { SidebarContext } from './sidebar_context.js';
+import { SidebarContext } from './sidebar_context.jsx';
 import { createChannel } from './sidebar_message_channel.js';
 
 (async function main() {

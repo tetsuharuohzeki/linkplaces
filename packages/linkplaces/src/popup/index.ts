@@ -3,7 +3,7 @@ import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 
 import { browser } from '@linkplaces/webext_types';
 import { registerComponents } from './component/register.js';
-import { initPopupMain } from './popup_main_context.js';
+import { initPopupMain } from './popup_main_context.jsx';
 import { createChannel } from './popup_message_channel.js';
 
 (async function main() {

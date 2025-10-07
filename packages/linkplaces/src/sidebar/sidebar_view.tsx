@@ -4,7 +4,7 @@ import { PanelSectionList } from '@linkplaces/shared/component';
 import { StrictMode, type ReactNode } from 'react';
 import type { SidebarIntent } from './sidebar_intent.js';
 import type { SidebarState } from './sidebar_state.js';
-import { ListItem } from './view/sidebar_list_item_view.js';
+import { ListItem } from './view/sidebar_list_item_view.jsx';
 
 export interface SidebarViewProps {
     state: Readonly<SidebarState>;

@@ -4,7 +4,7 @@ import { browser, type BookmarkTreeNode } from '@linkplaces/webext_types';
 import { StrictMode } from 'react';
 
 import { SidebarRepository } from './repository/sidebar_repository.js';
-import { SidebarViewUpdater } from './sidebar_context_view.js';
+import { SidebarViewUpdater } from './sidebar_context_view.jsx';
 import { SidebarEpic } from './sidebar_epic.js';
 import { SidebarIntent } from './sidebar_intent.js';
 import type { RemoteActionChannel } from './sidebar_message_channel.js';

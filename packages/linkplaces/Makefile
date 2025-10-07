@@ -89,7 +89,7 @@ __bundle_css_%: clean_dist
         $(NODE_BIN) $(CURDIR)/tools/run_postcss.js
 
 __obj: __plain clean_obj
-	$(NPM_BIN_DIR)/babel $(PLAIN_DIR) --out-dir $(OBJ_DIR) --extensions=.js,.jsx --config-file $(CURDIR)/babel.config.mjs
+	$(NPM_BIN_DIR)/babel $(PLAIN_DIR) --out-dir $(OBJ_DIR) --extensions=.js,.jsx --config-file $(CURDIR)/babel.config.mjs --keep-file-extension
 
 __plain: $(addprefix __plain_, ts js)
 

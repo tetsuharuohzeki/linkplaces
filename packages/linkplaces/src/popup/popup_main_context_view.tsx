@@ -4,7 +4,7 @@ import { StrictMode, useEffect, useMemo, type ReactNode } from 'react';
 
 import type { PopupMainIntent } from './popup_main_intent.js';
 import { usePopupMainState, type PopupPlainReduxStore } from './popup_main_store.js';
-import { PopupMainView } from './popup_main_view.js';
+import { PopupMainView } from './popup_main_view.jsx';
 import { PopupRepostiroy } from './popup_repository.js';
 
 export interface PopupMainViewUpdaterProps {

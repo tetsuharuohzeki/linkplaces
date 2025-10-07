@@ -3,7 +3,7 @@ import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { StrictMode } from 'react';
 
-import { PopupMainViewUpdater } from './popup_main_context_view.js';
+import { PopupMainViewUpdater } from './popup_main_context_view.jsx';
 import { PopupMainEpic } from './popup_main_epic.js';
 import { PopupMainIntent } from './popup_main_intent.js';
 import { createPopupMainStore } from './popup_main_store.js';

@@ -1,5 +1,5 @@
 import { landViewContext } from '@linkplaces/foundation/view_ctx';
-import { OptionsContext } from './options_context.js';
+import { OptionsContext } from './options_context.jsx';
 
 (async function main() {
     const ctx = new OptionsContext();

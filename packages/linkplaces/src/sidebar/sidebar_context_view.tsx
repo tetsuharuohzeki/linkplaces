@@ -6,7 +6,7 @@ import { initHandlingPasteEvent } from './intent/paste.js';
 import type { SidebarRepository } from './repository/sidebar_repository.js';
 import type { SidebarIntent } from './sidebar_intent.js';
 import { subscribeSidebarRepositoryBySidebarStore, type SidebarPlainReduxStore } from './sidebar_store.js';
-import { SidebarView } from './sidebar_view.js';
+import { SidebarView } from './sidebar_view.jsx';
 
 export interface SidebarViewUpdaterProps {
     store: SidebarPlainReduxStore;
