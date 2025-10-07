@@ -1,8 +1,8 @@
-import { landViewContext } from '@linkplaces/foundation/view_ctx';
+import { renderReactView } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 
 import { browser } from '@linkplaces/webext_types';
-import { PopupMainContext } from './PopupMainContext.js';
+import { initPopupMain } from './PopupMainContext.js';
 import { createChannel } from './PopupMessageChannel.js';
 import { registerComponents } from './component/register.js';
 
@@ -24,8 +24,10 @@ import { registerComponents } from './component/register.js';
         }
     );
 
-    const ctx = new PopupMainContext(channel, list);
-    await landViewContext(ctx);
+    await renderReactView(async (render) => {
+        const teardown = initPopupMain(render, channel, list);
+        return teardown;
+    });
 })().catch(console.error);
 
 function disableCtxMenu(event: MouseEvent) {

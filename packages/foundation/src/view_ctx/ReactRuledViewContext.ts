@@ -1,7 +1,7 @@
 import { type Nullable, isNotNull, expectNotNull } from 'option-t/nullable';
 
 import type { ReactNode } from 'react';
-import { type Root, createRoot } from 'react-dom/client';
+import { type Root, type RootOptions, createRoot } from 'react-dom/client';
 
 import { getMountPoint } from './LandingPad.js';
 import type { ViewContext } from './ViewContext.js';
@@ -40,9 +40,9 @@ export type InitFn = (renderRoot: ReactViewRenderFn) => Promise<TeardownFn>;
 
 export type TeardownFn = () => void;
 
-export async function renderReactView(init: InitFn): Promise<TeardownFn> {
+export async function renderReactView(init: InitFn, rootOptions?: RootOptions): Promise<TeardownFn> {
     const mountpoint = getMountPoint(document);
-    const renderRoot = createRoot(mountpoint);
+    const renderRoot = createRoot(mountpoint, rootOptions);
     const render: ReactViewRenderFn = (view: ReactNode): void => {
         renderRoot.render(view);
     };

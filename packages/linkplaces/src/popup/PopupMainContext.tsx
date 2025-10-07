@@ -1,7 +1,6 @@
-import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
+import type { ReactViewRenderFn, TeardownFn } from '@linkplaces/foundation/view_ctx/ReactRuledViewContext';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
-import { type Nullable, isNotNull, isNull } from 'option-t/nullable';
 import { StrictMode } from 'react';
 
 import { PopupMainViewUpdater } from './PopupMainContextView.js';
@@ -10,56 +9,27 @@ import { PopupMainIntent } from './PopupMainIntent.js';
 import { createPopupMainStore } from './PopupMainStore.js';
 import type { RemoteActionChannel } from './PopupMessageChannel.js';
 
-export class PopupMainContext extends ReactRuledViewContext {
-    private _channel: RemoteActionChannel;
-    private _list: Array<BookmarkTreeNode>;
-    private _disposerSet: Nullable<Set<() => void>> = null;
+export async function initPopupMain(
+    render: ReactViewRenderFn,
+    channel: RemoteActionChannel,
+    list: Array<BookmarkTreeNode>
+): Promise<TeardownFn> {
+    const store = createPopupMainStore(list);
+    const epic = new PopupMainEpic(channel, store);
+    const intent = new PopupMainIntent(epic, store);
 
-    constructor(channel: RemoteActionChannel, list: Array<BookmarkTreeNode>) {
-        super();
-        this._channel = channel;
-        this._list = list;
-    }
+    const view = (
+        <StrictMode>
+            <PopupMainViewUpdater
+                store={store}
+                intent={intent}
+            />
+        </StrictMode>
+    );
 
-    destroy(): void {
-        this._list = null as never;
-        this._channel = null as never;
-    }
+    render(view);
 
-    async onActivate(mountpoint: Element): Promise<void> {
-        if (isNotNull(this._disposerSet)) {
-            throw new TypeError();
-        }
-
-        this._initRenderRoot(mountpoint);
-
-        const store = createPopupMainStore(this._list);
-        const epic = new PopupMainEpic(this._channel, store);
-        const intent = new PopupMainIntent(epic, store);
-
-        this._disposerSet = new Set();
-
-        const view = (
-            <StrictMode>
-                <PopupMainViewUpdater
-                    store={store}
-                    intent={intent}
-                />
-            </StrictMode>
-        );
-
-        const renderRoot = this._getRenderRoot();
-        renderRoot.render(view);
-    }
-
-    async onDestroy(_mountpoint: Element): Promise<void> {
-        if (isNull(this._disposerSet)) {
-            throw new TypeError();
-        }
-
-        this._disposerSet.forEach((fn) => fn());
-        this._disposerSet.clear();
-        this._disposerSet = null;
-        this._destroyRenderRoot();
-    }
+    return () => {
+        store.destory();
+    };
 }
