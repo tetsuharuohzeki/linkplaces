@@ -57,7 +57,7 @@ jobs:
             - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
             - uses: ./.github/actions/setup_ci
             - name: check formatting
-              run: make check_format -j
+              run: make format_check -j
               env:
                   CI: true
 
