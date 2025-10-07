@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers */
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 import { Subject, operators } from '../../../../mod.js';
@@ -16,10 +15,12 @@ test('if the subscription is closed, subscribe chain should be cleared', (t) => 
     const onObserverCompleted = tinyspy.spy();
 
     // act
+    const sourceSubscription = source.connect();
     const subscription = source.subscribeBy({
         onCompleted: onObserverCompleted,
     });
     subscription.unsubscribe();
+    sourceSubscription.unsubscribe();
 
     // assert
     t.is(onSourceTeardown.callCount, 1, 'onSourceTeardown.callCount');
@@ -41,6 +42,7 @@ test('if the all subscription is closed, subscribe chain should be cleared', (t)
     const onObserverCompleted2 = tinyspy.spy();
 
     // act
+   const sourceSubscription = source.connect();
     const subscription1 = source.subscribeBy({
         onCompleted: onObserverCompleted1,
     });
@@ -49,9 +51,10 @@ test('if the all subscription is closed, subscribe chain should be cleared', (t)
     });
     subscription1.unsubscribe();
     subscription2.unsubscribe();
+    sourceSubscription.unsubscribe();
 
     // assert
-    t.is(onSourceTeardown.callCount, 2, 'onSourceTeardown.callCount');
+    t.is(onSourceTeardown.callCount, 1, 'onSourceTeardown.callCount');
 
     t.is(onObserverCompleted1.callCount, 0, 'onObserverCompleted1.callCount');
     t.is(onObserverCompleted2.callCount, 0, 'onObserverCompleted2.callCount');
@@ -75,6 +78,7 @@ test('if the one of subscriptions is closed, subscribe chain should be cleared',
     const onObserverCompleted2 = tinyspy.spy();
 
     // act
+   const sourceSubscription = source.connect();
     const subscription1 = source.subscribeBy({
         onCompleted: onObserverCompleted1,
     });
@@ -82,6 +86,7 @@ test('if the one of subscriptions is closed, subscribe chain should be cleared',
         onCompleted: onObserverCompleted2,
     });
     subscription1.unsubscribe();
+    sourceSubscription.unsubscribe();
 
     // assert
     t.is(onSourceTeardown.callCount, 1, 'onSourceTeardown.callCount');

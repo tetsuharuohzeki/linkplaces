@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers */
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 import { Subject, operators } from '../../../../mod.js';
@@ -16,10 +15,12 @@ test('if the given subject calls .unsubscribe(), subscribe chain should be clear
     const onObserverCompleted = tinyspy.spy();
 
     // act
+    const sourceSubscription = source.connect();
     const subscription = source.subscribeBy({
         onCompleted: onObserverCompleted,
     });
     subject.unsubscribe();
+    sourceSubscription.unsubscribe();
 
     // assert
     t.is(onSourceTeardown.callCount, 1, 'onSourceTeardown.callCount');
@@ -41,6 +42,7 @@ test('if the given subject calls .unsubscribe(), multiple subscribe chain should
     const onObserverCompleted2 = tinyspy.spy();
 
     // act
+   const sourceSubscription = source.connect();
     const subscription1 = source.subscribeBy({
         onCompleted: onObserverCompleted1,
     });
@@ -48,9 +50,10 @@ test('if the given subject calls .unsubscribe(), multiple subscribe chain should
         onCompleted: onObserverCompleted2,
     });
     subject.unsubscribe();
+    sourceSubscription.unsubscribe();
 
     // assert
-    t.is(onSourceTeardown.callCount, 2, 'onSourceTeardown.callCount');
+    t.is(onSourceTeardown.callCount, 1, 'onSourceTeardown.callCount');
 
     t.is(onObserverCompleted1.callCount, 1, 'onObserverCompleted1.callCount');
     t.is(onObserverCompleted2.callCount, 1, 'onObserverCompleted2.callCount');

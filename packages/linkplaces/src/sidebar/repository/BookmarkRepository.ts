@@ -1,5 +1,11 @@
 import type { Repository } from '@linkplaces/foundation';
-import { BehaviorSubject, createObservable, operators, type Observable } from '@linkplaces/foundation/rx';
+import {
+    BehaviorSubject,
+    createObservable,
+    operators,
+    type Observable,
+    type Unsubscribable,
+} from '@linkplaces/foundation/rx';
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 import type { BookmarkTreeNode, WebExtBookmarkService } from '@linkplaces/webext_types';
 
@@ -11,10 +17,11 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
 
     private _subject: BehaviorSubject<Array<BookmarkTreeNode>>;
     private _observable: Observable<Array<BookmarkTreeNode>>;
+    private _sub: Unsubscribable;
 
     private constructor(init: Array<BookmarkTreeNode>, bookmarks: WebExtBookmarkService) {
         this._subject = new BehaviorSubject(init);
-        this._observable = createOnChangeBookmarks(bookmarks)
+        const obs = createOnChangeBookmarks(bookmarks)
             .pipe(
                 operators.switchMap(async (_: unknown) => {
                     const list = await getUnfiledBoolmarkFolder();
@@ -22,6 +29,9 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
                 })
             )
             .pipe(operators.multicast(this._subject));
+
+        this._observable = obs;
+        this._sub = obs.connect();
     }
 
     latestValue(): Array<BookmarkTreeNode> {
@@ -33,6 +43,7 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
     }
 
     destroy(): void {
+        this._sub.unsubscribe();
         this._subject.unsubscribe();
     }
 

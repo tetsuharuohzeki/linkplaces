@@ -1,10 +1,35 @@
+import { isNotNull, isNull, type Nullable } from 'option-t/nullable';
 import type { Observable } from '../core/observable.js';
-import { OperatorObservable, type OperatorFunction } from '../core/operator.js';
+import { ConnectableOperatorObservable, type ConnectableOperatorFunction } from '../core/operator.js';
+import type { Subject } from '../core/subject.js';
+import type { Unsubscribable } from '../core/subscribable.js';
 import type { Subscriber } from '../core/subscriber.js';
-import type { Subject } from '../mod.js';
+import { Subscription } from '../core/subscription.js';
 
-class MulticastObservable<T> extends OperatorObservable<T, T> {
+class Connection implements Unsubscribable {
+    private _sub: Nullable<Subscription>;
+
+    constructor(sub: Subscription) {
+        this._sub = sub;
+    }
+
+    get closed(): boolean {
+        const isClosed = isNull(this._sub);
+        return isClosed;
+    }
+
+    unsubscribe(): void {
+        const sub = this._sub;
+        if (isNotNull(sub)) {
+            sub.unsubscribe();
+            this._sub = null;
+        }
+    }
+}
+
+class MulticastObservable<T> extends ConnectableOperatorObservable<T, T> {
     private _connector: Subject<T>;
+    private _connection: Nullable<Connection> = null;
 
     constructor(source: Observable<T>, connector: Subject<T>) {
         super(source);
@@ -12,46 +37,29 @@ class MulticastObservable<T> extends OperatorObservable<T, T> {
     }
 
     protected override onSubscribe(destination: Subscriber<T>): void {
-        const connectorSubject = this._connector;
-        connectorSubject.asObservable().subscribe(destination);
-        const sourceSub = this.source.subscribe(connectorSubject);
+        const sub = this._connector.asObservable().subscribe(destination);
         destination.addTeardown(() => {
-            sourceSub.unsubscribe();
+            sub.unsubscribe();
         });
+    }
+
+    override connect(): Unsubscribable {
+        let connection = this._connection;
+        if (isNull(connection)) {
+            const sub = new Subscription(() => {
+                this._connection = null;
+            });
+            sub.add(this.source.subscribe(this._connector));
+            connection = new Connection(sub);
+            this._connection = connection;
+        }
+        return connection;
     }
 }
 
-export function multicast<T>(subject: Subject<T>): OperatorFunction<T, T> {
-    const operator: OperatorFunction<T, T> = (source: Observable<T>) => {
+export function multicast<T>(subject: Subject<T>): ConnectableOperatorFunction<T, T> {
+    const operator: ConnectableOperatorFunction<T, T> = (source: Observable<T>) => {
         const connected = new MulticastObservable<T>(source, subject);
-        return connected;
-    };
-    return operator;
-}
-
-type SubjectFactoryFn<T> = () => Subject<T>;
-
-class MulticastWithNewSubjectObservable<T> extends OperatorObservable<T, T> {
-    private _connector: SubjectFactoryFn<T>;
-
-    constructor(source: Observable<T>, connector: SubjectFactoryFn<T>) {
-        super(source);
-        this._connector = connector;
-    }
-
-    protected override onSubscribe(destination: Subscriber<T>): void {
-        const connectorSubject = this._connector();
-        connectorSubject.asObservable().subscribe(destination);
-        const sourceSub = this.source.subscribe(connectorSubject);
-        destination.addTeardown(() => {
-            sourceSub.unsubscribe();
-        });
-    }
-}
-
-export function multicastWithNewSubject<T>(subjectFactory: SubjectFactoryFn<T>): OperatorFunction<T, T> {
-    const operator: OperatorFunction<T, T> = (source: Observable<T>) => {
-        const connected = new MulticastWithNewSubjectObservable<T>(source, subjectFactory);
         return connected;
     };
     return operator;

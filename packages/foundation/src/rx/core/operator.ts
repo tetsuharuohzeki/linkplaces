@@ -1,3 +1,4 @@
+import { ConnectableObservable } from './connectable_observable.js';
 import { Observable } from './observable.js';
 import type { Unsubscribable } from './subscribable.js';
 import type { Subscriber } from './subscriber.js';
@@ -31,4 +32,21 @@ export abstract class DeclarativeObservable<T> extends Observable<T> {
     }
 
     protected abstract onSubscribe(destination: Subscriber<T>): void;
+}
+
+export type ConnectableOperatorFunction<TInput, TOutput> = UnaryFunction<
+    Observable<TInput>,
+    ConnectableObservable<TOutput>
+>;
+
+export abstract class ConnectableOperatorObservable<TInput, TOutput> extends ConnectableObservable<TOutput> {
+    protected source: Observable<TInput>;
+    constructor(source: Observable<TInput>) {
+        super((destination: Subscriber<TOutput>) => {
+            this.onSubscribe(destination);
+        });
+        this.source = source;
+    }
+
+    protected abstract onSubscribe(destination: Subscriber<TOutput>): void;
 }
