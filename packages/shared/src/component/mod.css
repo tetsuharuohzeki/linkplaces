@@ -1,13 +1,13 @@
-@import './PanelListItem.css';
+@import './panel_list_item.css';
 
 /*
-@import './PanelSectionFooter.css';
-@import './PanelSectionForm.css';
-@import './PanelSectionHeader.css';
+@import './panel_section_footer.css';
+@import './panel_section_form.css';
+@import './panel_section_header.css';
 */
 
-@import './PanelSectionList.css';
+@import './panel_section_list.css';
 
 /*
-@import './PanelSectionTabs.css';
+@import './panel_section_tabs.css';
 */

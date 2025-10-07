@@ -8,8 +8,8 @@
             "default": "./__dist/mod.js"
         },
         "./bookmark": {
-            "types": "./__dist/Bookmark.d.ts",
-            "default": "./__dist/Bookmark.js"
+            "types": "./__dist/bookmarks.d.ts",
+            "default": "./__dist/bookmarks.js"
         },
         "./component": {
             "types": "./__dist/component/mod.d.ts",
