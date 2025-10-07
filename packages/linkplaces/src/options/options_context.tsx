@@ -2,7 +2,7 @@ import type { ViewContext } from '@linkplaces/foundation/view_ctx';
 import { browser } from '@linkplaces/webext_types';
 import { expectNotNull } from 'option-t/nullable';
 
-import { createOptionsView } from './OptionsView.js';
+import { createOptionsView } from './options_view.js';
 
 function getUrl(path: string): { url: string; title: string } {
     const url = browser.runtime.getURL(path);
