@@ -1,5 +1,5 @@
 import { fromEventToObservable, Subscription, type Unsubscribable } from '@linkplaces/foundation/rx';
-import type { SidebarIntent } from '../SidebarIntent';
+import type { SidebarIntent } from '../sidebar_intent';
 
 export function activateDragAndDropTextItemHandling(window: Window, intent: SidebarIntent): Unsubscribable {
     const rootSubscription = new Subscription(null);

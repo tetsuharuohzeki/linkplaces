@@ -1,5 +1,5 @@
 import { fromEventToObservable, type Unsubscribable } from '@linkplaces/foundation/rx';
-import type { SidebarIntent } from '../SidebarIntent';
+import type { SidebarIntent } from '../sidebar_intent';
 
 export function initHandlingPasteEvent(window: Window, intent: SidebarIntent): Unsubscribable {
     const pastEventObservable = fromEventToObservable(window, 'paste');

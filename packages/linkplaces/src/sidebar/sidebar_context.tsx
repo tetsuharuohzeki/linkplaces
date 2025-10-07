@@ -3,12 +3,12 @@ import { browser, type BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { StrictMode } from 'react';
 
-import { SidebarViewUpdater } from './SidebarContextView.js';
-import { SidebarEpic } from './SidebarEpic.js';
-import { SidebarIntent } from './SidebarIntent.js';
-import type { RemoteActionChannel } from './SidebarMessageChannel.js';
-import { createSidebarStore } from './SidebarStore.js';
-import { SidebarRepository } from './repository/SidebarRepository.js';
+import { SidebarRepository } from './repository/sidebar_repository.js';
+import { SidebarViewUpdater } from './sidebar_context_view.js';
+import { SidebarEpic } from './sidebar_epic.js';
+import { SidebarIntent } from './sidebar_intent.js';
+import type { RemoteActionChannel } from './sidebar_message_channel.js';
+import { createSidebarStore } from './sidebar_store.js';
 
 export class SidebarContext extends ReactRuledViewContext {
     private _channel: RemoteActionChannel;

@@ -1,10 +1,10 @@
 import { ReduxLikeStore } from '@linkplaces/foundation';
 import { operators, type Unsubscribable } from '@linkplaces/foundation/rx';
 
-import type { SidebarItemViewModelEntity } from './SidebarDomain.js';
-import { createUpdateFromSourceAction, type SidebarReduxAction, SidebarReduxActionType } from './SidebarReduxAction.js';
-import { createInitialSidebarState, type SidebarState } from './SidebarState.js';
-import type { SidebarRepository } from './repository/SidebarRepository.js';
+import type { SidebarRepository } from './repository/sidebar_repository.js';
+import type { SidebarItemViewModelEntity } from './sidebar_domain.js';
+import { createUpdateFromSourceAction, type SidebarReduxAction, SidebarReduxActionType } from './sidebar_redux_action.js';
+import { createInitialSidebarState, type SidebarState } from './sidebar_state.js';
 
 function reduceSidebarReduxState(prev: SidebarState, action: SidebarReduxAction): SidebarState {
     // FIXME:

@@ -1,12 +1,12 @@
 import { Subscription } from '@linkplaces/foundation/rx';
 import { StrictMode, useEffect, useSyncExternalStore, type ReactNode } from 'react';
 
-import type { SidebarIntent } from './SidebarIntent.js';
-import { subscribeSidebarRepositoryBySidebarStore, type SidebarPlainReduxStore } from './SidebarStore.js';
-import { SidebarView } from './SidebarView.js';
 import { activateDragAndDropTextItemHandling } from './intent/drag_and_drop.js';
 import { initHandlingPasteEvent } from './intent/paste.js';
-import type { SidebarRepository } from './repository/SidebarRepository.js';
+import type { SidebarRepository } from './repository/sidebar_repository.js';
+import type { SidebarIntent } from './sidebar_intent.js';
+import { subscribeSidebarRepositoryBySidebarStore, type SidebarPlainReduxStore } from './sidebar_store.js';
+import { SidebarView } from './sidebar_view.js';
 
 export interface SidebarViewUpdaterProps {
     store: SidebarPlainReduxStore;

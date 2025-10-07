@@ -14,8 +14,6 @@ import {
     ResultOperator,
 } from 'option-t/plain_result';
 
-import type { RemoteActionChannel } from './SidebarMessageChannel.js';
-import type { SidebarPlainReduxStore } from './SidebarStore.js';
 import {
     hasSupportedMimeType,
     isSupportedFirefoxTabDrag,
@@ -23,6 +21,8 @@ import {
     tryToGetTextPlain,
     tryToGetTextUriList,
 } from './epic/drag_and_drop.js';
+import type { RemoteActionChannel } from './sidebar_message_channel.js';
+import type { SidebarPlainReduxStore } from './sidebar_store.js';
 
 export class SidebarEpic {
     private _channel: RemoteActionChannel;

@@ -10,8 +10,8 @@ import type { BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/w
 
 import { StrictMode, useState, type MouseEventHandler, type MouseEvent, type ReactNode } from 'react';
 
-import type { SidebarItemViewModelEntity } from '../SidebarDomain.js';
-import type { SidebarIntent } from '../SidebarIntent.js';
+import type { SidebarItemViewModelEntity } from '../sidebar_domain.js';
+import type { SidebarIntent } from '../sidebar_intent.js';
 
 const CLASS_NAME_PREFIX = 'sidebar-com-SidebarListItemView';
 const CLASS_NAME_CONTAINER = `${CLASS_NAME_PREFIX}__container`;

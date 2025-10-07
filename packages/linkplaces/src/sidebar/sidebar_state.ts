@@ -1,4 +1,4 @@
-import type { SidebarItemViewModelEntity } from './SidebarDomain.js';
+import type { SidebarItemViewModelEntity } from './sidebar_domain.js';
 
 export interface SidebarState {
     list: Iterable<SidebarItemViewModelEntity>;

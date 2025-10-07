@@ -2,8 +2,8 @@ import { Ix, type Repository } from '@linkplaces/foundation';
 import { Subject, type Observable, operators } from '@linkplaces/foundation/rx';
 import type { BookmarkTreeNode, WebExtBookmarkService } from '@linkplaces/webext_types';
 import type { Nullable } from 'option-t/nullable';
-import { type SidebarItemViewModelEntity, mapToSidebarItemEntity } from '../SidebarDomain.js';
-import { BookmarkRepository } from './BookmarkRepository.js';
+import { type SidebarItemViewModelEntity, mapToSidebarItemEntity } from '../sidebar_domain.js';
+import { BookmarkRepository } from './bookmark_repository.js';
 
 export class SidebarRepository implements Repository<Iterable<SidebarItemViewModelEntity>> {
     static create(bookmarks: WebExtBookmarkService, init: Array<BookmarkTreeNode>): SidebarRepository {
