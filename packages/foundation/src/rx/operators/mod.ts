@@ -1,4 +1,5 @@
 export { filter } from './filter.js';
+export { inspect } from './inspect.js';
 export { map } from './map.js';
 export { mergeAll } from './merge.js';
 export { multicast } from './multicast.js';
