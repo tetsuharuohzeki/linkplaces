@@ -11,7 +11,7 @@ test('if the given subject calls .unsubscribe(), subscribe chain should be clear
     const subject = new Subject<number>();
     const source = new TestObservable<number>((destination) => {
         destination.addTeardown(onSourceTeardown);
-    }).pipe(operators.connect(subject));
+    }).pipe(operators.multicast(subject));
 
     const onObserverCompleted = tinyspy.spy();
 
@@ -35,7 +35,7 @@ test('if the given subject calls .unsubscribe(), multiple subscribe chain should
     const subject = new Subject<number>();
     const source = new TestObservable<number>((destination) => {
         destination.addTeardown(onSourceTeardown);
-    }).pipe(operators.connect(subject));
+    }).pipe(operators.multicast(subject));
 
     const onObserverCompleted1 = tinyspy.spy();
     const onObserverCompleted2 = tinyspy.spy();

@@ -3,7 +3,7 @@ import { OperatorObservable, type OperatorFunction } from '../core/operator.js';
 import type { Subscriber } from '../core/subscriber.js';
 import type { Subject } from '../mod.js';
 
-class ConnectObservable<T> extends OperatorObservable<T, T> {
+class MulticastObservable<T> extends OperatorObservable<T, T> {
     private _connector: Subject<T>;
 
     constructor(source: Observable<T>, connector: Subject<T>) {
@@ -21,9 +21,9 @@ class ConnectObservable<T> extends OperatorObservable<T, T> {
     }
 }
 
-export function connect<T>(subject: Subject<T>): OperatorFunction<T, T> {
+export function multicast<T>(subject: Subject<T>): OperatorFunction<T, T> {
     const operator: OperatorFunction<T, T> = (source: Observable<T>) => {
-        const connected = new ConnectObservable<T>(source, subject);
+        const connected = new MulticastObservable<T>(source, subject);
         return connected;
     };
     return operator;
@@ -31,7 +31,7 @@ export function connect<T>(subject: Subject<T>): OperatorFunction<T, T> {
 
 type SubjectFactoryFn<T> = () => Subject<T>;
 
-class ConnectWithNewSubjectObservable<T> extends OperatorObservable<T, T> {
+class MulticastWithNewSubjectObservable<T> extends OperatorObservable<T, T> {
     private _connector: SubjectFactoryFn<T>;
 
     constructor(source: Observable<T>, connector: SubjectFactoryFn<T>) {
@@ -49,9 +49,9 @@ class ConnectWithNewSubjectObservable<T> extends OperatorObservable<T, T> {
     }
 }
 
-export function connectWithNewSubject<T>(subjectFactory: SubjectFactoryFn<T>): OperatorFunction<T, T> {
+export function multicastWithNewSubject<T>(subjectFactory: SubjectFactoryFn<T>): OperatorFunction<T, T> {
     const operator: OperatorFunction<T, T> = (source: Observable<T>) => {
-        const connected = new ConnectWithNewSubjectObservable<T>(source, subjectFactory);
+        const connected = new MulticastWithNewSubjectObservable<T>(source, subjectFactory);
         return connected;
     };
     return operator;

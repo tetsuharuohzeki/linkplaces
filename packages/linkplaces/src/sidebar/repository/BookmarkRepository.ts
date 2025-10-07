@@ -21,7 +21,7 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
                     return list;
                 })
             )
-            .pipe(operators.connect(this._subject));
+            .pipe(operators.multicast(this._subject));
     }
 
     latestValue(): Array<BookmarkTreeNode> {

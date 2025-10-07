@@ -11,7 +11,7 @@ test('if the subscription is closed, subscribe chain should be cleared', (t) => 
     const subject = new Subject<number>();
     const source = new TestObservable<number>((destination) => {
         destination.addTeardown(onSourceTeardown);
-    }).pipe(operators.connect(subject));
+    }).pipe(operators.multicast(subject));
 
     const onObserverCompleted = tinyspy.spy();
 
@@ -35,7 +35,7 @@ test('if the all subscription is closed, subscribe chain should be cleared', (t)
     const subject = new Subject<number>();
     const source = new TestObservable<number>((destination) => {
         destination.addTeardown(onSourceTeardown);
-    }).pipe(operators.connect(subject));
+    }).pipe(operators.multicast(subject));
 
     const onObserverCompleted1 = tinyspy.spy();
     const onObserverCompleted2 = tinyspy.spy();
@@ -69,7 +69,7 @@ test('if the one of subscriptions is closed, subscribe chain should be cleared',
     const subject = new Subject<number>();
     const source = new TestObservable<number>((destination) => {
         destination.addTeardown(onSourceTeardown);
-    }).pipe(operators.connect(subject));
+    }).pipe(operators.multicast(subject));
 
     const onObserverCompleted1 = tinyspy.spy();
     const onObserverCompleted2 = tinyspy.spy();
