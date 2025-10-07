@@ -1,6 +1,6 @@
 import { type Nullable, isNotNull, expectNotNull } from 'option-t/nullable';
 
-import type { ReactNode } from 'react';
+import { StrictMode, type ReactNode } from 'react';
 import { type Root, type RootOptions, createRoot } from 'react-dom/client';
 
 import { getMountPoint } from './landing_pad.js';
@@ -44,7 +44,8 @@ export async function renderReactView(init: InitFn, rootOptions?: RootOptions): 
     const mountpoint = getMountPoint(document);
     const renderRoot = createRoot(mountpoint, rootOptions);
     const render: ReactViewRenderFn = (view: ReactNode): void => {
-        renderRoot.render(view);
+        const tree = <StrictMode>{view}</StrictMode>;
+        renderRoot.render(tree);
     };
     const teardown = await init(render);
 
