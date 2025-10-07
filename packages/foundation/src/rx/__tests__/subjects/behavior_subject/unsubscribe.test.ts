@@ -6,7 +6,7 @@ import { Subject, BehaviorSubject, type CompletionResult } from '../../../mod.js
 test('.unsubscribe() should stop myself', (t) => {
     const sub = new BehaviorSubject(0);
     sub.unsubscribe();
-    t.true(sub.isCompleted);
+    t.false(sub.hasActive);
 });
 
 test('.unsubscribe() should stop subscriptions by myself', (t) => {

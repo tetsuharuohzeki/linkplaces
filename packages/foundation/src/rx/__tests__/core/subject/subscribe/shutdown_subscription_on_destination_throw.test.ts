@@ -156,5 +156,5 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
 
     t.is(subscription.closed, false);
 
-    t.is(testTarget.isCompleted, false);
+    t.is(testTarget.hasActive, true, 'testTarget.hasActive');
 });

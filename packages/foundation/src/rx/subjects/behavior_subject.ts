@@ -17,10 +17,6 @@ export class BehaviorSubject<T> extends Subject<T> {
     }
 
     override next(value: T): void {
-        if (this.isCompleted) {
-            return;
-        }
-
         this._value = value;
         super.next(value);
     }

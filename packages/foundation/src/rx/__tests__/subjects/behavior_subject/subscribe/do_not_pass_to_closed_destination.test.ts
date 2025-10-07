@@ -40,5 +40,5 @@ test('if the passed destination calls its unsubscribe() after start subscribing,
     t.is(onError.callCount, 0);
     t.is(onCompleted.callCount, 0);
 
-    t.is(testTarget.isCompleted, true);
+    t.is(testTarget.hasActive, false, 'testTarget.hasActive');
 });

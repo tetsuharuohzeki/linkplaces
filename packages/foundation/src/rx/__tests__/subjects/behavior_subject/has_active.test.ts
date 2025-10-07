@@ -1,14 +1,14 @@
 import test from 'ava';
 import { BehaviorSubject } from '../../../mod.js';
 
-test('set .isCompleted on calling .unsubscribe()', (t) => {
+test('set .hasActive on calling .unsubscribe()', (t) => {
     const actual = new BehaviorSubject(0);
     actual.unsubscribe();
 
-    t.is(actual.isCompleted, true);
+    t.is(actual.hasActive, false);
 });
 
-test('set .isCompleted on calling .complete()', (t) => {
+test('set .hasActive on calling .complete()', (t) => {
     const actual = new BehaviorSubject(0);
 
     {
@@ -16,5 +16,5 @@ test('set .isCompleted on calling .complete()', (t) => {
         actual.complete(result);
     }
 
-    t.is(actual.isCompleted, true);
+    t.is(actual.hasActive, false);
 });

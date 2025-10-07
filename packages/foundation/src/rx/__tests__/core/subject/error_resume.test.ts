@@ -16,7 +16,7 @@ test('.error() should propagate the passed value to the child', (t) => {
 
     target.error(ERROR_INPUT);
 
-    t.is(target.isCompleted, false);
+    t.is(target.hasActive, true, 'target.hasActive');
     t.is(onError.callCount, 1);
     t.deepEqual(onError.calls, [[ERROR_INPUT]]);
 });
@@ -36,7 +36,7 @@ test('.error() should not stop myself', (t) => {
 
     target.error(ERROR_INPUT);
 
-    t.is(target.isCompleted, false);
+    t.is(target.hasActive, true, 'target.hasActive');
     t.is(onError.callCount, 1);
     t.deepEqual(onError.calls, [[ERROR_INPUT]]);
 

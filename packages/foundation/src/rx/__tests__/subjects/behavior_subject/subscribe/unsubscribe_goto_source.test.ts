@@ -31,5 +31,5 @@ test("the returned subscription's .unsubscribe() should propagate to the source"
     t.is(observer.error.callCount, 0);
     t.is(observer.complete.callCount, 0);
 
-    t.is(testTarget.isCompleted, false);
+    t.is(testTarget.hasActive, true, 'testTarget.hasActive');
 });

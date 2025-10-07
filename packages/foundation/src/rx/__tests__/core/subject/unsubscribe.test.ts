@@ -6,7 +6,7 @@ import { Subject, } from '../../../mod.js';
 test('.unsubscribe() should stop myself', (t) => {
     const sub = new Subject();
     sub.unsubscribe();
-    t.is(sub.isCompleted, true);
+    t.is(sub.hasActive, false);
 });
 
 test('.unsubscribe() should stop subscriptions by myself', (t) => {

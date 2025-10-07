@@ -48,7 +48,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     t.is(onCompleted.callCount, 0);
 
     t.is(subscription.closed, false);
-    t.is(testTarget.isCompleted, false);
+    t.is(testTarget.hasActive, true, 'testTarget.hasActive');
 });
 
 test.serial('Graceful shutdown subscriptions if the child observer throw the error: onError', (t) => {
@@ -88,7 +88,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     t.deepEqual(spiedReportError.calls, [[THROWN_ERROR]]);
 
     t.is(subscription.closed, false);
-    t.is(testTarget.isCompleted, false);
+    t.is(testTarget.hasActive, true, 'testTarget.hasActive');
 });
 
 test.serial('Graceful shutdown subscriptions if the child observer throw the error: onCompleted', (t) => {
@@ -124,7 +124,7 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     t.deepEqual(spiedReportError.calls, [[THROWN_ERROR]]);
 
     t.is(subscription.closed, true);
-    t.is(testTarget.isCompleted, true);
+    t.is(testTarget.hasActive, false, 'testTarget.hasActive');
 });
 
 test.serial('Graceful shutdown subscriptions if the child observer throw the error: onNext -> onError', (t) => {
@@ -167,5 +167,5 @@ test.serial('Graceful shutdown subscriptions if the child observer throw the err
     t.deepEqual(spiedReportError.calls, [[THROWN_ERROR_ON_ERROR_CB]]);
 
     t.is(subscription.closed, false);
-    t.is(testTarget.isCompleted, false);
+    t.is(testTarget.hasActive, true, 'testTarget.hasActive');
 });

@@ -21,7 +21,7 @@ test("the returned subscription's .unsubscribe() should propagate to the source"
         onCompleted: onCompleted,
     });
     subscription.unsubscribe();
-    t.is(subscription.closed, true);
+    t.is(subscription.closed, true, 'subscription.closed');
 
     // assert
     t.is(onNext.callCount, 1);
@@ -31,5 +31,5 @@ test("the returned subscription's .unsubscribe() should propagate to the source"
 
     t.is(onCompleted.callCount, 0);
 
-    t.is(testTarget.isCompleted, false);
+    t.is(testTarget.hasActive, true, 'testTarget.hasActive');
 });

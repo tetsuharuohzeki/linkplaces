@@ -31,5 +31,5 @@ test('the destination should not be called after cancelled the subscription', (t
     t.is(onError.callCount, 0, 'should not call error callback');
     t.is(onCompleted.callCount, 0, 'should not call complete callback');
 
-    t.is(subject.isCompleted, true, 'subject should be completed');
+    t.is(subject.hasActive, false, 'subject should be completed');
 });

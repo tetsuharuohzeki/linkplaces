@@ -11,7 +11,7 @@ test('.complete() should propagate it to the child', (t) => {
 
     target.complete(null);
 
-    t.is(target.isCompleted, true);
+    t.is(target.hasActive, false, 'target.hasActive');
     t.is(onCompleted.callCount, 1);
     t.deepEqual(onCompleted.calls, [[null]]);
 });
@@ -29,7 +29,7 @@ test('.complete() should stop myself', (t) => {
 
     target.complete(null);
 
-    t.is(target.isCompleted, true);
+    t.is(target.hasActive, false, 'target.hasActive');
     t.is(onCompleted.callCount, 1);
     t.deepEqual(onCompleted.calls, [[null]]);
 
@@ -37,13 +37,13 @@ test('.complete() should stop myself', (t) => {
     t.is(onNext.callCount, 0);
 });
 
-test('.complete() should flip its flag at the first on calling it', (t) => {
+test('.complete() should not flip its flag at the first on calling it', (t) => {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     t.plan(4);
 
     const target = new Subject<number>();
     const onCompleted = tinyspy.spy(() => {
-        t.is(target.isCompleted, true);
+        t.is(target.hasActive, true, 'target.hasActive');
     });
     target.asObservable().subscribeBy({
         onCompleted: onCompleted,
@@ -51,12 +51,12 @@ test('.complete() should flip its flag at the first on calling it', (t) => {
 
     target.complete(null);
 
-    t.is(target.isCompleted, true);
+    t.is(target.hasActive, false, 'target.hasActive');
     t.is(onCompleted.callCount, 1);
     t.deepEqual(onCompleted.calls, [[null]]);
 });
 
-test('.complete() should propagate the passed value on reentrant case', (t) => {
+test('.complete() should not propagate the passed value on reentrant case', (t) => {
     // arrange
     const target = new Subject<number>();
     const onInnerComplete = tinyspy.spy();
@@ -74,11 +74,11 @@ test('.complete() should propagate the passed value on reentrant case', (t) => {
     target.complete(null);
 
     // assert
-    t.is(target.isCompleted, true);
+    t.is(target.hasActive, false, 'target.hasActive');
 
     t.is(onOuterComplete.callCount, 1);
     t.deepEqual(onOuterComplete.calls, [[null]]);
 
-    t.is(onInnerComplete.callCount, 1);
-    t.deepEqual(onOuterComplete.calls, [[null]]);
+    t.is(onInnerComplete.callCount, 0);
+    t.deepEqual(onInnerComplete.calls, []);
 });
