@@ -33,16 +33,16 @@ class FilterSubscriber<T> extends InternalSubscriber<T> {
 }
 
 class FilterObservable<T> extends OperatorObservable<T, T> {
-    private filter: FilterFn<T>;
+    private _filter: FilterFn<T>;
 
     constructor(source: Observable<T>, filter: FilterFn<T>) {
         super(source);
-        this.filter = filter;
+        this._filter = filter;
     }
 
     protected override onSubscribe(destination: Subscriber<T>): void {
-        const innerSub = new FilterSubscriber(destination, this.filter);
-        this.source.subscribe(innerSub);
+        const innerSub = new FilterSubscriber(destination, this._filter);
+        this._source.subscribe(innerSub);
     }
 }
 

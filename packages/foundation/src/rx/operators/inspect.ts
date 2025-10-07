@@ -40,7 +40,7 @@ class InspectObservable<T> extends OperatorObservable<T, T> {
 
     protected override onSubscribe(destination: Subscriber<T>): void {
         const innerSub = new InspectSubscriber(destination, this._effector);
-        this.source.subscribe(innerSub);
+        this._source.subscribe(innerSub);
     }
 }
 

@@ -12,7 +12,7 @@ class SubscribeOnNextLoopObservable<T> extends OperatorObservable<T, T> {
     protected override onSubscribe(destination: Subscriber<T>): void {
         let actualSubscribe: Nullable<Unsubscribable> = null;
         const id = window.setTimeout(() => {
-            actualSubscribe = this.source.subscribe(destination);
+            actualSubscribe = this._source.subscribe(destination);
         }, 0);
 
         destination.addTeardown(() => {

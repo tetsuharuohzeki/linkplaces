@@ -49,7 +49,7 @@ class MulticastObservable<T> extends ConnectableOperatorObservable<T, T> {
             const sub = new Subscription(() => {
                 this._connection = null;
             });
-            sub.add(this.source.subscribe(this._connector));
+            sub.add(this._source.subscribe(this._connector));
             connection = new Connection(sub);
             this._connection = connection;
         }

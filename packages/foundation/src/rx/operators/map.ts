@@ -31,16 +31,16 @@ class MapSubscriber<TInput, TOutput> extends InternalSubscriber<TInput> {
 }
 
 class MapObservable<TInput, TOutput> extends OperatorObservable<TInput, TOutput> {
-    private transformer: TransformerFn<TInput, TOutput>;
+    private _transformer: TransformerFn<TInput, TOutput>;
 
     constructor(source: Observable<TInput>, transformer: TransformerFn<TInput, TOutput>) {
         super(source);
-        this.transformer = transformer;
+        this._transformer = transformer;
     }
 
     protected override onSubscribe(destination: Subscriber<TOutput>): void {
-        const innerSub = new MapSubscriber(destination, this.transformer);
-        this.source.subscribe(innerSub);
+        const innerSub = new MapSubscriber(destination, this._transformer);
+        this._source.subscribe(innerSub);
     }
 }
 

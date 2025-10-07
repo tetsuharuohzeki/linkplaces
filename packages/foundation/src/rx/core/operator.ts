@@ -13,12 +13,12 @@ export type UnaryFunction<TInput, TOutput> = (source: TInput) => TOutput;
 export type OperatorFunction<TInput, TOutput> = UnaryFunction<Observable<TInput>, Observable<TOutput>>;
 
 export abstract class OperatorObservable<TInput, TOutput> extends Observable<TOutput> {
-    protected source: Observable<TInput>;
+    protected _source: Observable<TInput>;
     constructor(source: Observable<TInput>) {
         super((destination: Subscriber<TOutput>) => {
             this.onSubscribe(destination);
         });
-        this.source = source;
+        this._source = source;
     }
 
     protected abstract onSubscribe(destination: Subscriber<TOutput>): void;
@@ -40,12 +40,12 @@ export type ConnectableOperatorFunction<TInput, TOutput> = UnaryFunction<
 >;
 
 export abstract class ConnectableOperatorObservable<TInput, TOutput> extends ConnectableObservable<TOutput> {
-    protected source: Observable<TInput>;
+    protected _source: Observable<TInput>;
     constructor(source: Observable<TInput>) {
         super((destination: Subscriber<TOutput>) => {
             this.onSubscribe(destination);
         });
-        this.source = source;
+        this._source = source;
     }
 
     protected abstract onSubscribe(destination: Subscriber<TOutput>): void;

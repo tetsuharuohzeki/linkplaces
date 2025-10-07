@@ -43,7 +43,7 @@ class TestObservable<T> extends ConnectableOperatorObservable<T, T> {
 
     protected override onSubscribe(destination: Subscriber<T>): Unsubscribable {
         const innerSub = new TestSubscriber(destination);
-        const s = this.source.subscribe(innerSub);
+        const s = this._source.subscribe(innerSub);
         return s;
     }
 }

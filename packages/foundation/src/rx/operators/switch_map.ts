@@ -62,7 +62,7 @@ class SwitchMapObservable<TInput, TOutput> extends OperatorObservable<TInput, TO
 
     protected override onSubscribe(destination: Subscriber<TOutput>): void {
         const innerSub = new SwitchMapSubscriber(destination, this.transformer);
-        this.source.subscribe(innerSub);
+        this._source.subscribe(innerSub);
     }
 }
 
