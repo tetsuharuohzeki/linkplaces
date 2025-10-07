@@ -1,7 +1,7 @@
 import { isNotNull, isNull, type Nullable } from 'option-t/nullable';
 import type { Observable } from '../core/observable.js';
 import { ConnectableOperatorObservable, type ConnectableOperatorFunction } from '../core/operator.js';
-import type { Subject } from '../core/subject.js';
+import { Subject } from '../core/subject.js';
 import type { Unsubscribable } from '../core/subscribable.js';
 import type { Subscriber } from '../core/subscriber.js';
 import { Subscription } from '../core/subscription.js';
@@ -60,6 +60,15 @@ class MulticastObservable<T> extends ConnectableOperatorObservable<T, T> {
 export function multicast<T>(subject: Subject<T>): ConnectableOperatorFunction<T, T> {
     const operator: ConnectableOperatorFunction<T, T> = (source: Observable<T>) => {
         const connected = new MulticastObservable<T>(source, subject);
+        return connected;
+    };
+    return operator;
+}
+
+export function publish<T>(): ConnectableOperatorFunction<T, T> {
+    const operator: ConnectableOperatorFunction<T, T> = (source: Observable<T>) => {
+        const subject = new Subject<T>();
+        const connected = source.pipe(multicast(subject));
         return connected;
     };
     return operator;
