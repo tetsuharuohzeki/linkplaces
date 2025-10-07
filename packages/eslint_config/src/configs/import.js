@@ -86,6 +86,7 @@ export const configForTypeScript = Object.freeze({
         ...rulesForESM,
         // This can be detected by typescript compiler.
         'import/named': 'off',
+        'import/namespace': 'off',
     },
     settings: {
         ...settings,
