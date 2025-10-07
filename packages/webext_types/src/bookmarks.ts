@@ -1,4 +1,4 @@
-import type { ExtensionEventManager } from './ExtensionEventManager.js';
+import type { ExtensionEventManager } from './extension_event_manager.js';
 
 declare const bookmarkIdMarker: unique symbol;
 export type BookmarkId = string & { [bookmarkIdMarker]: never };

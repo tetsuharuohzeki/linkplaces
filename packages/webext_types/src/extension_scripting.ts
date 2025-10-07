@@ -1,6 +1,6 @@
 // https://searchfox.org/mozilla-central/source/dom/webidl/ExtensionScripting.webidl
 
-import type { RunAt } from './extensionTypes.js';
+import type { RunAt } from './extension_types.js';
 import type { TabId } from './tabs.js';
 
 interface ExecuteScriptArgsBase {

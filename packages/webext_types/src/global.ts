@@ -1,9 +1,9 @@
-import type { ExtensionBrowser } from './ExtensionBrowser.js';
 import type { WebExtBookmarkService } from './bookmarks.js';
-import type { WebExtBrowserActionService } from './browserAction.js';
-import type { WebExtContextMenuService } from './contextMenus.js';
-import type { WebExtPageActionService } from './pageAction.js';
-import type { WebExtSidebarActionService } from './sidebarAction.js';
+import type { WebExtBrowserActionService } from './browser_action.js';
+import type { WebExtContextMenuService } from './context_menus.js';
+import type { ExtensionBrowser } from './extension_browser.js';
+import type { WebExtPageActionService } from './page_action.js';
+import type { WebExtSidebarActionService } from './sidebar_action.js';
 import type { WebExtTabsService } from './tabs.js';
 import type { WebExtWindowsService } from './windows.js';
 

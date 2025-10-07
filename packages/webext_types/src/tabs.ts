@@ -1,7 +1,7 @@
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs
 
-import type { LooselyPartial } from './LooselyPartial.js';
-import type { RunAt } from './extensionTypes.js';
+import type { RunAt } from './extension_types.js';
+import type { LooselyPartial } from './loosely_partial.js';
 import type { WindowId, WindowType } from './windows.js';
 
 declare const tabIdMarker: unique symbol;

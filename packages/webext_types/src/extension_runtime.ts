@@ -1,8 +1,8 @@
 // https://searchfox.org/mozilla-central/source/dom/webidl/ExtensionRuntime.webidl
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime
 
-import type { ExtensionEventManager } from './ExtensionEventManager.js';
-import type { ExtensionPort } from './ExtensionPort.js';
+import type { ExtensionEventManager } from './extension_event_manager.js';
+import type { ExtensionPort } from './extension_port.js';
 
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/connect
 interface ConnectionInfo {
