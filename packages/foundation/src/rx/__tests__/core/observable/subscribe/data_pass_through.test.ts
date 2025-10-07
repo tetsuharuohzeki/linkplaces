@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
-
-import { TestObservable, TestSubscriber } from './__helpers__/mod.js';
+import { TestSubscriber, TestObservable } from '../../../__helpers__/mod.js';
 
 test('.subscribe() should propagate the passed value to the child: onNext()', (t) => {
     // setup

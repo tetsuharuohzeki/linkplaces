@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
-import { TestObservable } from './__helpers__/mod.js';
+import { TestObservable } from '../../../__helpers__/mod.js';
 
 test('.subscribe() should propagate the passed value to the child: onNext()', (t) => {
     // setup

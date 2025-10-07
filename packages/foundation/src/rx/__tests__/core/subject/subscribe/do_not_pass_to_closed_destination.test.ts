@@ -4,7 +4,7 @@ import * as tinyspy from 'tinyspy';
 
 import {  Subject } from '../../../../mod.js';
 
-import { TestSubscriber } from './__helpers__/mod.js';
+import { TestSubscriber } from '../../../__helpers__/mod.js';
 
 test('if the passed destination calls its unsubscribe() after start subscribing, event should not propagete to it', (t) => {
     t.plan(6);

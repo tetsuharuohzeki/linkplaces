@@ -1,5 +1,5 @@
-import { InternalSubscriber } from '../../../../../core/subscriber_impl.js';
-import { Observable, type OnSubscribeFn, type CompletionResult } from '../../../../../mod.js';
+import { InternalSubscriber } from '../../core/subscriber_impl.js';
+import { Observable, type OnSubscribeFn, type CompletionResult } from '../../mod.js';
 
 export class TestObservable<T> extends Observable<T> {
     constructor(onSubscribe: OnSubscribeFn<T>) {

@@ -3,7 +3,7 @@ import * as tinyspy from 'tinyspy';
 
 import type { Subscriber, } from '../../../../mod.js';
 
-import { TestObservable, TestSubscriber } from './__helpers__/mod.js';
+import { TestSubscriber, TestObservable } from '../../../__helpers__/mod.js';
 
 test('should throw if onSubscribeFn throw`', (t) => {
     // arrange

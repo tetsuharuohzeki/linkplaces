@@ -2,7 +2,7 @@ import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
 import type { Observer, Subscriber } from '../../../../mod.js';
-import { TestObservable } from './__helpers__/mod.js';
+import { TestObservable } from '../../../__helpers__/mod.js';
 
 const spiedReportError = tinyspy.spy();
 

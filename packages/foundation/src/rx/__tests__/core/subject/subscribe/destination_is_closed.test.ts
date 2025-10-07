@@ -3,7 +3,7 @@ import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
 import { Subject, SubscriptionError } from '../../../../mod.js';
-import { TestSubscriber } from './__helpers__/mod.js';
+import { TestSubscriber } from '../../../__helpers__/mod.js';
 
 test('if the passed destination is closed', (t) => {
     t.plan(5);

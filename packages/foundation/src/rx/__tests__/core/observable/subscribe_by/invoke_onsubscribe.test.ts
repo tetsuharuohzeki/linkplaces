@@ -1,7 +1,7 @@
 import test from 'ava';
 import { spy } from 'tinyspy';
 
-import { TestObservable } from './__helpers__/mod.js';
+import { TestObservable } from '../../../__helpers__/mod.js';
 
 test('onSubscribe should be invoked by calling `.subscribe()`', (t) => {
     // arrange

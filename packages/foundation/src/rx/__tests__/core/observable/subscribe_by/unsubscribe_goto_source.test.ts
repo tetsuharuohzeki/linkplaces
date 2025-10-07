@@ -3,7 +3,7 @@ import test from 'ava';
 import * as tinyspy from 'tinyspy';
 
 import type { Subscriber } from '../../../../mod.js';
-import { TestObservable } from './__helpers__/mod.js';
+import { TestObservable } from '../../../__helpers__/mod.js';
 
 test("the returned subscription's .unsubscribe() should propagate to the source", (t) => {
     t.plan(7);

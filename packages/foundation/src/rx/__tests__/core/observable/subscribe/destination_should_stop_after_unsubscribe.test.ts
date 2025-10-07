@@ -4,7 +4,7 @@ import * as tinyspy from 'tinyspy';
 
 import type { Subscriber } from '../../../../mod.js';
 
-import { TestObservable, TestSubscriber } from './__helpers__/mod.js';
+import { TestSubscriber, TestObservable } from '../../../__helpers__/mod.js';
 
 test('the destination should not be called after cancelled the subscription', (t) => {
     t.plan(8);
