@@ -1,8 +1,8 @@
 import type { BookmarkId, WebExtSidebarActionService } from '@linkplaces/webext_types';
 import { UndefinableOperator } from 'option-t/undefinable';
 
-import { type WhereToOpenItem, createOpenUrlAction, createRegisterUrlAction } from './RemoteAction.js';
-import type { RemoteActionChannel } from './RemoteActionChannel.js';
+import { type WhereToOpenItem, createOpenUrlAction, createRegisterUrlAction } from './remote_action.js';
+import type { RemoteActionChannel } from './remote_action_channel.js';
 
 export function openItemOneshot(
     chan: RemoteActionChannel,

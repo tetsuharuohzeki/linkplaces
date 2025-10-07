@@ -1,3 +1,3 @@
-export * from './RemoteAction.js';
-export * from './RemoteActionChannel.js';
-export * from './RemoteCall.js';
+export * from './remote_action.js';
+export * from './remote_action_channel.js';
+export * from './remote_call.js';
