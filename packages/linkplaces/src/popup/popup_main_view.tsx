@@ -175,7 +175,7 @@ function ItemListItem(props: ItemListItemProps): ReactNode {
                     <PanelListItemIcon>
                         <PopupItemIcon
                             icondir={ICON_DIR}
-                            iconfile={'defaultFavicon.svg'}
+                            iconfile={'default_favicon.svg'}
                         />
                     </PanelListItemIcon>
                     <PanelListItemText>{label}</PanelListItemText>

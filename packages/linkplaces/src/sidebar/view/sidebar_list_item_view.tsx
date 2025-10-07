@@ -128,7 +128,7 @@ function ListItemForBookmarkItem(props: ListItemForBookmarkItemProps) {
             >
                 <ListBaseItem
                     iconDir={ICON_DIR}
-                    iconFile={'defaultFavicon.svg'}
+                    iconFile={'default_favicon.svg'}
                     label={label}
                 />
             </a>
