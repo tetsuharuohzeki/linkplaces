@@ -1,8 +1,8 @@
-import { landViewContext } from '@linkplaces/foundation/view_ctx';
+import { renderReactView } from '@linkplaces/foundation/view_ctx/react';
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 
 import { browser } from '@linkplaces/webext_types';
-import { SidebarContext } from './sidebar_context.jsx';
+import { initSidebarContext } from './sidebar_context.jsx';
 import { createChannel } from './sidebar_message_channel.js';
 
 (async function main() {
@@ -21,8 +21,9 @@ import { createChannel } from './sidebar_message_channel.js';
         }
     );
 
-    const ctx = new SidebarContext(list, channel);
-    await landViewContext(ctx);
+    await renderReactView((render) => {
+        return initSidebarContext(render, channel, list);
+    });
 })().catch(console.error);
 
 function disableCtxMenu(event: MouseEvent) {

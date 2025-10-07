@@ -1,4 +1,4 @@
-import { ReactRuledViewContext } from '@linkplaces/foundation/view_ctx/react';
+import type { ReactViewRenderFn, TeardownFn } from '@linkplaces/foundation/view_ctx/react';
 import { browser, type BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { StrictMode } from 'react';
@@ -10,49 +10,32 @@ import { SidebarIntent } from './sidebar_intent.js';
 import type { RemoteActionChannel } from './sidebar_message_channel.js';
 import { createSidebarStore } from './sidebar_store.js';
 
-export class SidebarContext extends ReactRuledViewContext {
-    private _channel: RemoteActionChannel;
+export async function initSidebarContext(
+    render: ReactViewRenderFn,
 
-    private _repo: SidebarRepository;
+    channel: RemoteActionChannel,
+    list: Array<BookmarkTreeNode>
+): Promise<TeardownFn> {
+    const repo = SidebarRepository.create(browser.bookmarks, list);
+    const store = createSidebarStore(repo.latestValue());
 
-    constructor(list: Array<BookmarkTreeNode>, channel: RemoteActionChannel) {
-        super();
-        this._channel = channel;
+    const epic = new SidebarEpic(channel, store);
+    const intent = new SidebarIntent(epic, store);
 
-        this._repo = SidebarRepository.create(browser.bookmarks, list);
-    }
+    const view = (
+        <StrictMode>
+            <SidebarViewUpdater
+                store={store}
+                intent={intent}
+                repo={repo}
+            />
+        </StrictMode>
+    );
 
-    destroy(): void {
-        this._repo.destroy();
-        this._repo = null as never;
-        this._channel = null as never;
-    }
+    render(view);
 
-    async onActivate(mountpoint: Element): Promise<void> {
-        this._initRenderRoot(mountpoint);
-
-        const repo = this._repo;
-
-        const store = createSidebarStore(repo.latestValue());
-
-        const epic = new SidebarEpic(this._channel, store);
-        const intent = new SidebarIntent(epic, store);
-
-        const view = (
-            <StrictMode>
-                <SidebarViewUpdater
-                    store={store}
-                    intent={intent}
-                    repo={repo}
-                />
-            </StrictMode>
-        );
-
-        const renderRoot = this._getRenderRoot();
-        renderRoot.render(view);
-    }
-
-    async onDestroy(_mountpoint: Element): Promise<void> {
-        this._destroyRenderRoot();
-    }
+    return () => {
+        store.destory();
+        repo.destroy();
+    };
 }
