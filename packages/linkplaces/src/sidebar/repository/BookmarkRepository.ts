@@ -14,7 +14,20 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
 
     private constructor(init: Array<BookmarkTreeNode>, bookmarks: WebExtBookmarkService) {
         this._subject = new BehaviorSubject(init);
-        this._observable = createOnChangeBookmarks(bookmarks).pipe(operators.connect(this._subject));
+        this._observable = createOnChangeBookmarks(bookmarks)
+            .pipe(
+                operators.switchMap(async (_: unknown) => {
+                    const list = await getUnfiledBoolmarkFolder();
+                    return list;
+                })
+            )
+            .pipe(operators.connect(this._subject))
+            .pipe(
+                operators.map((val) => {
+                    console.log(val);
+                    return val;
+                })
+            );
     }
 
     latestValue(): Array<BookmarkTreeNode> {
@@ -34,14 +47,10 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
     }
 }
 
-function createOnChangeBookmarks(bookmarks: WebExtBookmarkService): Observable<Array<BookmarkTreeNode>> {
+function createOnChangeBookmarks(bookmarks: WebExtBookmarkService): Observable<unknown> {
     const o = createObservable((destination) => {
         const callback = () => {
-            getUnfiledBoolmarkFolder()
-                .then((list) => {
-                    destination.next(list);
-                })
-                .catch(console.error);
+            destination.next(undefined);
         };
         bookmarks.onChanged.addListener(callback);
         // bookmarks.onChildrenReordered.addListener(callback); // unimplemted in Firefox
