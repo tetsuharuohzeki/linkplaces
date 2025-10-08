@@ -1,3 +1,4 @@
+import { setupTeardownOnPageHide } from '@linkplaces/foundation/view_ctx';
 import { renderReactView } from '@linkplaces/foundation/view_ctx/react';
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 
@@ -10,19 +11,14 @@ import { createChannel } from './sidebar_message_channel.js';
 
     window.addEventListener('contextmenu', disableCtxMenu);
 
-    window.addEventListener(
-        'pagehide',
-        function onClose(_event) {
-            window.removeEventListener('contextmenu', disableCtxMenu);
-            channel.destroy();
-        },
-        {
-            once: true,
-        }
-    );
-
-    await renderReactView((render) => {
+    const viewTeardown = await renderReactView((render) => {
         return initSidebarContext(render, channel, list);
+    });
+
+    setupTeardownOnPageHide(window, (_event) => {
+        viewTeardown();
+        window.removeEventListener('contextmenu', disableCtxMenu);
+        channel.destroy();
     });
 })().catch(console.error);
 

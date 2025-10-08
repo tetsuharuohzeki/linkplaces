@@ -14,3 +14,9 @@ export function getMountPoint(document: Document): Element {
     const mountpoint = expectNotNull(element, 'not found mountpoint');
     return mountpoint;
 }
+
+export function setupTeardownOnPageHide(win: Window, onPageHide: (event: PageTransitionEvent) => void): void {
+    win.addEventListener('pagehide', onPageHide, {
+        once: true,
+    });
+}

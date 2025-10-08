@@ -1,3 +1,4 @@
+import { setupTeardownOnPageHide } from '@linkplaces/foundation/view_ctx';
 import { renderReactView } from '@linkplaces/foundation/view_ctx/react';
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 
@@ -13,20 +14,15 @@ import { createChannel } from './popup_message_channel.js';
 
     window.addEventListener('contextmenu', disableCtxMenu);
 
-    window.addEventListener(
-        'pagehide',
-        function onClose(_event) {
-            window.removeEventListener('contextmenu', disableCtxMenu);
-            channel.destroy();
-        },
-        {
-            once: true,
-        }
-    );
-
-    await renderReactView(async (render) => {
+    const viewTeardown = await renderReactView(async (render) => {
         const teardown = initPopupMain(render, channel, list);
         return teardown;
+    });
+
+    setupTeardownOnPageHide(window, (_event) => {
+        viewTeardown();
+        window.removeEventListener('contextmenu', disableCtxMenu);
+        channel.destroy();
     });
 })().catch(console.error);
 
