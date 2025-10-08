@@ -5,11 +5,14 @@ import { getMountPoint } from './landing_pad.js';
 
 export type ReactViewRenderFn = (view: ReactNode) => void;
 
-export type InitFn = (renderRoot: ReactViewRenderFn) => Promise<TeardownFn>;
+export type ReactViewRenderInitFn = (renderRoot: ReactViewRenderFn) => Promise<ReactViewTeardownFn>;
 
-export type TeardownFn = () => void;
+export type ReactViewTeardownFn = () => void;
 
-export async function renderReactView(init: InitFn, rootOptions?: RootOptions): Promise<TeardownFn> {
+export async function renderReactView(
+    init: ReactViewRenderInitFn,
+    rootOptions?: RootOptions
+): Promise<ReactViewTeardownFn> {
     const mountpoint = getMountPoint(document);
     const renderRoot = createRoot(mountpoint, rootOptions);
     const render: ReactViewRenderFn = (view: ReactNode): void => {

@@ -1,4 +1,4 @@
-import type { ReactViewRenderFn, TeardownFn } from '@linkplaces/foundation/view_ctx/react';
+import type { ReactViewRenderFn, ReactViewTeardownFn } from '@linkplaces/foundation/view_ctx/react';
 import type { BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { StrictMode } from 'react';
@@ -13,7 +13,7 @@ export async function initPopupMain(
     render: ReactViewRenderFn,
     channel: RemoteActionChannel,
     list: Array<BookmarkTreeNode>
-): Promise<TeardownFn> {
+): Promise<ReactViewTeardownFn> {
     const store = createPopupMainStore(list);
     const epic = new PopupMainEpic(channel, store);
     const intent = new PopupMainIntent(epic, store);

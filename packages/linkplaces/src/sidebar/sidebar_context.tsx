@@ -1,4 +1,4 @@
-import type { ReactViewRenderFn, TeardownFn } from '@linkplaces/foundation/view_ctx/react';
+import type { ReactViewRenderFn, ReactViewTeardownFn } from '@linkplaces/foundation/view_ctx/react';
 import { browser, type BookmarkTreeNode } from '@linkplaces/webext_types';
 
 import { StrictMode } from 'react';
@@ -15,7 +15,7 @@ export async function initSidebarContext(
 
     channel: RemoteActionChannel,
     list: Array<BookmarkTreeNode>
-): Promise<TeardownFn> {
+): Promise<ReactViewTeardownFn> {
     const repo = SidebarRepository.create(browser.bookmarks, list);
     const store = createSidebarStore(repo.latestValue());
 
