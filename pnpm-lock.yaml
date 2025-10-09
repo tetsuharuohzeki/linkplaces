@@ -146,12 +146,6 @@ importers:
       '@babel/plugin-syntax-jsx':
         specifier: 'catalog:'
         version: 7.27.1(@babel/core@7.28.4)
-      '@eslint/css':
-        specifier: 'catalog:'
-        version: 0.11.1
-      '@eslint/js':
-        specifier: 'catalog:'
-        version: 9.37.0
       '@linkplaces/eslint_config':
         specifier: workspace:*
         version: link:packages/eslint_config
@@ -182,9 +176,6 @@ importers:
       eslint:
         specifier: 'catalog:'
         version: 9.37.0
-      eslint-config-turbo:
-        specifier: 'catalog:'
-        version: 2.5.8(eslint@9.37.0)(turbo@2.5.8)
       globals:
         specifier: 'catalog:'
         version: 16.4.0
@@ -231,15 +222,27 @@ importers:
       '@eslint-react/eslint-plugin':
         specifier: 'catalog:'
         version: 2.0.6(eslint@9.37.0)(typescript@5.9.3)
+      '@eslint/css':
+        specifier: 'catalog:'
+        version: 0.11.1
+      '@eslint/js':
+        specifier: 'catalog:'
+        version: 9.37.0
       '@typescript-eslint/eslint-plugin':
         specifier: 'catalog:'
         version: 8.45.0(@typescript-eslint/parser@8.45.0(eslint@9.37.0)(typescript@5.9.3))(eslint@9.37.0)(typescript@5.9.3)
       '@typescript-eslint/parser':
         specifier: 'catalog:'
         version: 8.45.0(eslint@9.37.0)(typescript@5.9.3)
+      eslint:
+        specifier: 'catalog:'
+        version: 9.37.0
       eslint-config-prettier:
         specifier: 'catalog:'
         version: 10.1.8(eslint@9.37.0)
+      eslint-config-turbo:
+        specifier: 'catalog:'
+        version: 2.5.8(eslint@9.37.0)(turbo@2.5.8)
       eslint-plugin-import-x:
         specifier: 'catalog:'
         version: 4.16.1(@typescript-eslint/utils@8.45.0(eslint@9.37.0)(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.37.0)

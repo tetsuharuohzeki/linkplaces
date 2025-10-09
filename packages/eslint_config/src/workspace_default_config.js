@@ -3,22 +3,24 @@ import { fileURLToPath } from 'node:url';
 
 import css from '@eslint/css';
 import js from '@eslint/js';
+
+import { defineConfig } from 'eslint/config';
+import turboConfig from 'eslint-config-turbo/flat';
+import { config as coreConfig } from './configs/core.js';
+import * as importConfig from './configs/import.js';
 import {
-    coreConfig,
-    importConfig,
     languageOptionsForModule,
     languageOptionsForCommonJS,
     languageOptionsForTesting,
-    prettierConfigs,
-    reactConfig,
-    createlanguageOptionsForTypeScript,
-    configForTypeScript,
-} from '@linkplaces/eslint_config';
-import { defineConfig } from 'eslint/config';
-import turboConfig from 'eslint-config-turbo/flat';
+} from './configs/language_options.js';
+import { configs as prettierConfigs } from './configs/prettier.js';
+import * as reactConfig from './configs/react.js';
+import { createlanguageOptionsForTypeScript, config as configForTypeScript } from './configs/typescript.js';
 
 const THIS_FILE_NAME = fileURLToPath(import.meta.url);
 const THIS_DIR_NAME = path.dirname(THIS_FILE_NAME);
+const WORKSPACE_ROOT_DIR_NAME = path.resolve(THIS_DIR_NAME, '..');
+const REPO_ROOT_DIR_NAME = path.resolve(WORKSPACE_ROOT_DIR_NAME, '..', '..');
 
 const FILE_PATTERN_CSS = ['**/*.css'];
 const FILE_PATTERN_JS_ESM = ['**/*.mjs', '**/*.js'];
@@ -68,7 +70,7 @@ export default defineConfig([
     },
     {
         files: FILE_PATTERN_TS,
-        languageOptions: createlanguageOptionsForTypeScript(THIS_DIR_NAME),
+        languageOptions: createlanguageOptionsForTypeScript(REPO_ROOT_DIR_NAME),
         ...configForTypeScript,
     },
 

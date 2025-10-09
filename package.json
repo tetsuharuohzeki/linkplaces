@@ -7,8 +7,6 @@
     "devDependencies": {
         "@ava/typescript": "catalog:",
         "@babel/plugin-syntax-jsx": "catalog:",
-        "@eslint/css": "catalog:",
-        "@eslint/js": "catalog:",
         "@linkplaces/eslint_config": "workspace:*",
         "@linkplaces/tools": "workspace:*",
         "@monorepo-utils/workspaces-to-typescript-project-references": "catalog:",
@@ -19,7 +17,6 @@
         "ava": "catalog:",
         "babel-plugin-react-compiler": "catalog:",
         "eslint": "catalog:",
-        "eslint-config-turbo": "catalog:",
         "globals": "catalog:",
         "prettier": "catalog:",
         "tinyspy": "catalog:",
