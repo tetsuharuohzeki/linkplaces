@@ -8,10 +8,14 @@
         }
     },
     "dependencies": {
+        "@eslint/css": "catalog:",
+        "@eslint/js": "catalog:",
         "@eslint-react/eslint-plugin": "catalog:",
         "@typescript-eslint/eslint-plugin": "catalog:",
         "@typescript-eslint/parser": "catalog:",
+        "eslint": "catalog:",
         "eslint-config-prettier": "catalog:",
+        "eslint-config-turbo": "catalog:",
         "eslint-plugin-import-x": "catalog:",
         "eslint-plugin-react": "catalog:",
         "eslint-plugin-react-hooks": "catalog:"
