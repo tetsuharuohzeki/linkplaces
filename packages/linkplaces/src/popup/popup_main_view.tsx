@@ -30,11 +30,11 @@ export function PopupMainView(props: Readonly<PopupMainViewProps>): ReactNode {
         intent.openWebExtSidebar().catch(console.error);
     };
 
-    const items = state.list.map((item, i) => {
-        const key = `PopupMainView-${String(i)}`;
+    const items = state.list.map((item) => {
+        const id = item.id;
         const v = (
             <ListItem
-                key={key}
+                key={id}
                 item={item}
                 intent={intent}
             />
