@@ -27,6 +27,17 @@ export const reactConfigs = defineConfig([
 
             // JSX-specific rules
             'react/jsx-no-literals': 1,
+
+            // This prevents to pass props which is not intended accidentally.
+            'react/jsx-props-no-spreading': [
+                'warn',
+                {
+                    html: 'enforce',
+                    custom: 'enforce',
+                    explicitSpread: 'ignore',
+                    exceptions: [],
+                },
+            ],
         },
     },
 
