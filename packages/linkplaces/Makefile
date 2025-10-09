@@ -53,22 +53,8 @@ clean_plain:
 ####################################
 # Build
 ####################################
-.PHONY: build_debug
-build_debug: ## Run `make build` with `RELEASE_CHANNEL=development`
-	$(MAKE) build RELEASE_CHANNEL=development
-
-.PHONY: build_release
-build_release: ## Run `make build` with `RELEASE_CHANNEL=production`
-	$(MAKE) build RELEASE_CHANNEL=production
-
-.PHONY: build
-build: build_package ## Build the artifact (This is not for CI).
-
 .PHONY: build_package
-build_package: __webext_xpi ## Build the artifact.
-
-__webext_xpi: webextension
-	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)
+build_package: webextension ## Build the artifact.
 
 webextension: webextension_cp webextension_js webextension_css
 

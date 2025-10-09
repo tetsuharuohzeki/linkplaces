@@ -8,6 +8,17 @@
         "//#build": {
             "cache": false
         },
+        "//#build:package": {
+            "cache": false, // FIXME: Remove this.
+            "dependsOn": ["@linkplaces/app#build"],
+            "outputs": [
+                // See https://turborepo.com/docs/reference/configuration#turbo_root
+                "$TURBO_ROOT$/web-ext-artifacts/**"
+            ]
+        },
+        "@linkplaces/app#build": {
+            "cache": false
+        },
         "test": {
             "dependsOn": ["^//#build"],
             "inputs": [

@@ -42,11 +42,11 @@ clean_webext_artifacts:
 ####################################
 .PHONY: build_debug
 build_debug: clean ## Run `make build` with `RELEASE_CHANNEL=development`
-	$(MAKE) $@ -C $(PKG_MAIN)
+	env RELEASE_CHANNEL=development $(NPM_BIN_DIR)/turbo run '//#build:package'
 
 .PHONY: build_release
 build_release: clean ## Run `make build` with `RELEASE_CHANNEL=production`
-	$(MAKE) $@ -C $(PKG_MAIN)
+	env RELEASE_CHANNEL=production $(NPM_BIN_DIR)/turbo run '//#build:package'
 
 __webext_xpi: clean_webext_artifacts
 	$(NPM_BIN_DIR)/web-ext build -s $(PKG_MAIN_DIST_DIR) --artifacts-dir $(ARTIFACT_DIR)

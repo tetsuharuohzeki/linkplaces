@@ -26,6 +26,7 @@
     },
     "scripts": {
         "build": "tsc --build",
+        "build:package": "make __webext_xpi",
         "eslint": "eslint '.'"
     }
 }
