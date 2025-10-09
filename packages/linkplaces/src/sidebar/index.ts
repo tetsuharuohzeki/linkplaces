@@ -7,7 +7,10 @@ import { initSidebarContext } from './sidebar_context.jsx';
 import { createChannel } from './sidebar_message_channel.js';
 
 (async function main() {
-    const [list, channel] = await Promise.all([getUnfiledBoolmarkFolder(), createChannel(browser.runtime)]);
+    const [list, channel] = await Promise.all([
+        getUnfiledBoolmarkFolder(browser.bookmarks),
+        createChannel(browser.runtime),
+    ]);
 
     window.addEventListener('contextmenu', disableCtxMenu);
 

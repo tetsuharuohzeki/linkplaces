@@ -10,7 +10,10 @@ import { createChannel } from './popup_message_channel.js';
 (async function main() {
     registerComponents();
 
-    const [list, channel] = await Promise.all([getUnfiledBoolmarkFolder(), createChannel(browser.runtime)]);
+    const [list, channel] = await Promise.all([
+        getUnfiledBoolmarkFolder(browser.bookmarks),
+        createChannel(browser.runtime),
+    ]);
 
     window.addEventListener('contextmenu', disableCtxMenu);
 

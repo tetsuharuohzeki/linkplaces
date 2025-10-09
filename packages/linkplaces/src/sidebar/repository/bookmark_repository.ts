@@ -24,7 +24,7 @@ export class BookmarkRepository implements Repository<Array<BookmarkTreeNode>> {
         const obs = createOnChangeBookmarks(bookmarks)
             .pipe(
                 operators.switchMap(async (_: unknown) => {
-                    const list = await getUnfiledBoolmarkFolder();
+                    const list = await getUnfiledBoolmarkFolder(bookmarks);
                     return list;
                 })
             )

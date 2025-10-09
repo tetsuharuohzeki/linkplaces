@@ -5,6 +5,7 @@ import {
     type BookmarkTreeNodeFolder,
     type BookmarkTreeNodeSeparator,
     browser,
+    type WebExtBookmarkService,
 } from '@linkplaces/webext_types';
 
 import { isNull } from 'option-t/nullable';
@@ -14,9 +15,9 @@ const PRIVILEGED_SCHEME_PATTERN = /^(chrome|resource|about|data|javascript):/u;
 
 const UNFILED_BOOKMARK_ID: BookmarkId = 'unfiled_____' as BookmarkId;
 
-export function getUnfiledBoolmarkFolder(): Promise<Array<BookmarkTreeNode>> {
+export function getUnfiledBoolmarkFolder(bookmarks: WebExtBookmarkService): Promise<Array<BookmarkTreeNode>> {
     // This code only works with Firefox.
-    return browser.bookmarks.getChildren(UNFILED_BOOKMARK_ID);
+    return bookmarks.getChildren(UNFILED_BOOKMARK_ID);
 }
 
 function validateUrlForRegister(input: string): Result<string, URIError> {
