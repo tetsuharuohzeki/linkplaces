@@ -1,12 +1,18 @@
+// @ts-check
+
 import eslintReact from '@eslint-react/eslint-plugin';
+import { defineConfig } from 'eslint/config';
 import reactESLintPlugin from 'eslint-plugin-react';
 import reactHooksESLintPlugin from 'eslint-plugin-react-hooks';
+import { FILE_PATTERN_TS } from './file_patterns.js';
 
 /**
  *  @type   {ReadonlyArray<import('eslint').Linter.Config>}
  */
-const reactPluginConfigs = [
+export const reactConfigs = defineConfig([
+    // @prettier-ignore
     {
+        files: FILE_PATTERN_TS,
         plugins: {
             react: reactESLintPlugin,
         },
@@ -23,14 +29,10 @@ const reactPluginConfigs = [
             'react/jsx-no-literals': 1,
         },
     },
-];
 
-/**
- *  @type   {ReadonlyArray<import('eslint').Linter.Config>}
- */
-const modernReactPluginConfigs = [
-    eslintReact.configs['recommended-typescript'],
     {
+        files: FILE_PATTERN_TS,
+        extends: [eslintReact.configs['recommended-typescript']],
         rules: {
             // Enforce to specify html's boolean type attribute.
             '@eslint-react/jsx-shorthand-boolean': [
@@ -67,24 +69,10 @@ const modernReactPluginConfigs = [
             ],
         },
     },
-];
 
-/**
- *  @type   {ReadonlyArray<import('eslint').Linter.Config>}
- */
-const hooksPluginConfigs = [
     {
+        files: FILE_PATTERN_TS,
         extends: [reactHooksESLintPlugin.configs.flat['recommended-latest']],
         rules: {},
     },
-];
-
-/**
- *  @type   {ReadonlyArray<import('eslint').Linter.Config>}
- */
-export const configs = Object.freeze([
-    // @prettier-ignore
-    ...reactPluginConfigs,
-    ...modernReactPluginConfigs,
-    ...hooksPluginConfigs,
 ]);

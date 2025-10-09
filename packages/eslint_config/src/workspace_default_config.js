@@ -21,7 +21,7 @@ import {
     languageOptionsForTesting,
 } from './configs/language_options.js';
 import { configs as prettierConfigs } from './configs/prettier.js';
-import * as reactConfig from './configs/react.js';
+import { reactConfigs } from './configs/react.js';
 import { createlanguageOptionsForTypeScript, config as configForTypeScript } from './configs/typescript.js';
 
 const THIS_FILE_NAME = fileURLToPath(import.meta.url);
@@ -88,12 +88,7 @@ export default defineConfig([
     },
 
     // for react
-    ...reactConfig.configs.map((config) => {
-        return {
-            files: FILE_PATTERN_TS,
-            ...config,
-        };
-    }),
+    ...reactConfigs,
 
     {
         files: ['packages/webext_types/src/**/*.ts'],
