@@ -6,7 +6,7 @@ import {
     MSG_TYPE_REGISTER_URL,
 } from '@linkplaces/ipc_message';
 import { createBookmarkItem, getLinkSchemeType, removeBookmarkItem } from '@linkplaces/shared/bookmark';
-import type { BookmarkId } from '@linkplaces/webext_types';
+import { browser, type BookmarkId } from '@linkplaces/webext_types';
 
 import { createTab } from './tab_opener.js';
 
@@ -19,7 +19,7 @@ export async function callBackgroundRemoteActionReciever(msg: RemoteAction): Pro
         }
         case MSG_TYPE_REGISTER_URL: {
             const { url, title } = msg.value;
-            await createBookmarkItem(url, title);
+            await createBookmarkItem(browser.bookmarks, url, title);
             return;
         }
         default:
@@ -29,7 +29,7 @@ export async function callBackgroundRemoteActionReciever(msg: RemoteAction): Pro
 
 async function openUrlFromPopup(url: string, bookmarkId: BookmarkId, where: WhereToOpenItem): Promise<void> {
     await openUrl(url, where);
-    await removeBookmarkItem(bookmarkId);
+    await removeBookmarkItem(browser.bookmarks, bookmarkId);
 }
 
 async function openUrl(url: string, where: WhereToOpenItem): Promise<number> {

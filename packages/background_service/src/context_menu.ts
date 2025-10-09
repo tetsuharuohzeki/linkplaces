@@ -114,7 +114,7 @@ async function saveSingleTab(
     url: string
 ): Promise<ReadonlyArray<CreateBookmarkItemResult>> {
     const title = UndefinableOperator.unwrapOr(titleMaybe, url);
-    const created = await createBookmarkItem(url, title);
+    const created = await createBookmarkItem(browser.bookmarks, url, title);
     return [created];
 }
 
@@ -128,7 +128,7 @@ async function saveMultipleTabs(
             throw new TypeError('Cannot found both of `title` & `url`');
         }
         const title = UndefinableOperator.unwrapOr(titleMaybe, url);
-        const task = createBookmarkItem(url, title);
+        const task = createBookmarkItem(browser.bookmarks, url, title);
         taskList.push(task);
     }
     const taskResult = await Promise.allSettled(taskList);
@@ -162,7 +162,7 @@ function onClickSavePage(info: OnClickData, tab: Tab): Promise<CreateBookmarkIte
     const url = expectNotUndefined(info.pageUrl, 'Cannot found `info.pageUrl`');
 
     const title = UndefinableOperator.unwrapOr<string>(tab.title, url);
-    const created = createBookmarkItem(url, title);
+    const created = createBookmarkItem(browser.bookmarks, url, title);
     return created;
 }
 
@@ -170,6 +170,6 @@ function onClickSaveLink(info: OnClickData): Promise<CreateBookmarkItemResult> {
     const url = expectNotUndefined(info.linkUrl, 'Cannot found `info.linkUrl`');
 
     const title = UndefinableOperator.unwrapOr(info.linkText, url);
-    const created = createBookmarkItem(url, title);
+    const created = createBookmarkItem(browser.bookmarks, url, title);
     return created;
 }

@@ -1,11 +1,10 @@
-import {
-    type BookmarkId,
-    type BookmarkTreeNode,
-    type BookmarkTreeNodeItem,
-    type BookmarkTreeNodeFolder,
-    type BookmarkTreeNodeSeparator,
-    browser,
-    type WebExtBookmarkService,
+import type {
+    BookmarkId,
+    BookmarkTreeNode,
+    BookmarkTreeNodeItem,
+    BookmarkTreeNodeFolder,
+    BookmarkTreeNodeSeparator,
+    WebExtBookmarkService,
 } from '@linkplaces/webext_types';
 
 import { isNull } from 'option-t/nullable';
@@ -53,12 +52,16 @@ function validateUrlForRegister(input: string): Result<string, URIError> {
 
 export type CreateBookmarkItemResult = Result<BookmarkTreeNode, Error>;
 
-export async function createBookmarkItem(urlLikeString: string, title: string): Promise<CreateBookmarkItemResult> {
+export async function createBookmarkItem(
+    bookmarks: WebExtBookmarkService,
+    urlLikeString: string,
+    title: string
+): Promise<CreateBookmarkItemResult> {
     const validatedUrl = validateUrlForRegister(urlLikeString);
     const result = await ResultOperator.mapAsync(validatedUrl, async (url) => {
         // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/create
         // Save to "Other Bookmarks" if there is no `parentId`
-        const created = await browser.bookmarks.create({
+        const created = await bookmarks.create({
             url,
             title,
         });
@@ -67,8 +70,8 @@ export async function createBookmarkItem(urlLikeString: string, title: string): 
     return result;
 }
 
-export function removeBookmarkItem(id: BookmarkId): Promise<void> {
-    const r = browser.bookmarks.remove(id);
+export function removeBookmarkItem(bookmarks: WebExtBookmarkService, id: BookmarkId): Promise<void> {
+    const r = bookmarks.remove(id);
     return r;
 }
 
