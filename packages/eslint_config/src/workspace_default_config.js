@@ -7,6 +7,13 @@ import js from '@eslint/js';
 import { defineConfig } from 'eslint/config';
 import turboConfig from 'eslint-config-turbo/flat';
 import { config as coreConfig } from './configs/core.js';
+import {
+    FILE_PATTERN_CSS,
+    FILE_PATTERN_JS_ESM,
+    FILE_PATTERN_JS_CJS,
+    FILE_PATTERN_TS,
+    FILE_PATTERNS_ALL_JS_AND_TS,
+} from './configs/file_patterns.js';
 import * as importConfig from './configs/import.js';
 import {
     languageOptionsForModule,
@@ -21,14 +28,6 @@ const THIS_FILE_NAME = fileURLToPath(import.meta.url);
 const THIS_DIR_NAME = path.dirname(THIS_FILE_NAME);
 const WORKSPACE_ROOT_DIR_NAME = path.resolve(THIS_DIR_NAME, '..');
 const REPO_ROOT_DIR_NAME = path.resolve(WORKSPACE_ROOT_DIR_NAME, '..', '..');
-
-const FILE_PATTERN_CSS = ['**/*.css'];
-const FILE_PATTERN_JS_ESM = ['**/*.mjs', '**/*.js'];
-const FILE_PATTERN_JS_CJS = ['**/*.cjs'];
-const FILE_PATTERN_TS = ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'];
-const FILE_PATTERNS_ALL_JS_AND_TS = Array.from(
-    new Set([...FILE_PATTERN_JS_ESM, ...FILE_PATTERN_JS_CJS, ...FILE_PATTERN_TS])
-);
 
 // eslint-disable-next-line import/no-default-export -- ESLint requires default export.
 export default defineConfig([
