@@ -74,7 +74,7 @@ const modernReactPluginConfigs = [
  */
 const hooksPluginConfigs = [
     {
-        extends: [reactHooksESLintPlugin.configs['recommended-latest']],
+        extends: [reactHooksESLintPlugin.configs.flat['recommended-latest']],
         rules: {},
     },
 ];
