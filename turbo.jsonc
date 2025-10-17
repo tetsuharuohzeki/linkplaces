@@ -2,6 +2,10 @@
     "$schema": "https://turbo.build/schema.json",
     "tasks": {
         "clean": {
+            "cache": false,
+            "dependsOn": ["//#clean:package"]
+        },
+        "//#clean:package": {
             "cache": false
         },
         // See https://turbo.build/repo/docs/messages/missing-root-task-in-turbo-json
@@ -10,7 +14,11 @@
         },
         "//#build:package": {
             "cache": false, // FIXME: Remove this.
-            "dependsOn": ["@linkplaces/app#build"],
+            "dependsOn": [
+                // @prettier-ignore
+                "//#clean:package",
+                "@linkplaces/app#build"
+            ],
             "outputs": [
                 // See https://turborepo.com/docs/reference/configuration#turbo_root
                 "$TURBO_ROOT$/web-ext-artifacts/**"

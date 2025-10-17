@@ -30,11 +30,8 @@ install: ## Install dependencies
 ####################################
 # Clean
 ####################################
-clean: clean_webext_artifacts ## Clean up all generated files.
+clean: ## Clean up all generated files.
 	$(NPM_BIN_DIR)/turbo clean
-
-clean_webext_artifacts:
-	$(NODE_BIN) $(CURDIR)/tools/rm_dir.js $(ARTIFACT_DIR)
 
 
 ####################################
@@ -48,7 +45,7 @@ build_debug: clean ## Run `make build` with `RELEASE_CHANNEL=development`
 build_release: clean ## Run `make build` with `RELEASE_CHANNEL=production`
 	env RELEASE_CHANNEL=production $(NPM_BIN_DIR)/turbo run '//#build:package'
 
-__webext_xpi: clean_webext_artifacts
+__webext_xpi:
 	$(NPM_BIN_DIR)/web-ext build -s $(PKG_MAIN_DIST_DIR) --artifacts-dir $(ARTIFACT_DIR)
 
 __plain_ts:

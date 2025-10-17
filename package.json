@@ -25,6 +25,7 @@
         "web-ext": "catalog:"
     },
     "scripts": {
+        "clean:package": "node ./tools/rm_dir.js ./web-ext-artifacts/ --verbose",
         "build": "tsc --build",
         "build:package": "make __webext_xpi",
         "eslint": "eslint '.'"
