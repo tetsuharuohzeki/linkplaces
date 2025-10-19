@@ -3,10 +3,17 @@
     "tasks": {
         "clean": {
             "cache": false,
-            "dependsOn": ["//#clean:package"]
+            "dependsOn": [
+                // This allows to run this task parallely in actually.
+                "transit"
+            ]
         },
         "//#clean:package": {
-            "cache": false
+            "cache": false,
+            "dependsOn": [
+                // This allows to run this task parallely in actually.
+                "transit"
+            ]
         },
         // See https://turbo.build/repo/docs/messages/missing-root-task-in-turbo-json
         "//#build": {
