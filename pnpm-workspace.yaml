@@ -7,7 +7,7 @@ catalog:
   '@babel/core': ^7.28.4
   '@babel/plugin-syntax-jsx': ^7.27.1
   '@babel/preset-react': ^7.27.1
-  '@eslint-react/eslint-plugin': ^2.0.3
+  '@eslint-react/eslint-plugin': ^2.2.2
   '@eslint/css': ^0.13.0
   '@eslint/js': ^9.37.0
   '@monorepo-utils/workspaces-to-typescript-project-references': ^2.11.0
