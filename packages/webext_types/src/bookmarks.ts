@@ -113,9 +113,9 @@ export interface BookmarkTreeNodeSeparator extends BookmarkTreeNodeBase {
 }
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/bookmarks/CreateDetails
-export type CreateDetails = {
+export interface CreateDetails {
     parentId?: BookmarkId;
     index?: number;
     title?: string;
     url?: string | null;
-};
+}

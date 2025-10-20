@@ -25,7 +25,7 @@ export type MenuItemId = string | number; // string or integer.
 export type ModifierKeyValue = 'Command' | 'Ctrl' | 'MacCtrl' | 'Shift';
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus/OnClickData
-export type OnClickData = {
+export interface OnClickData {
     checked?: boolean;
     editable: boolean;
     frameUrl?: string;
@@ -39,9 +39,9 @@ export type OnClickData = {
     selectionText?: string;
     srcUrl?: string;
     wasChecked?: boolean;
-};
+}
 
-export type CreateArgument = {
+export interface CreateArgument {
     checked?: boolean;
     command?: '_execute_browser_action' | '_execute_page_action' | '_execute_sidebar_action';
     contexts?: Array<ContextType>;
@@ -53,7 +53,7 @@ export type CreateArgument = {
     targetUrlPatterns?: Array<string>;
     title?: string;
     type?: ItemType;
-};
+}
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/contextMenus
 export interface WebExtContextMenuService {

@@ -48,8 +48,8 @@ module.exports = {
             },
         ],
 
-        // Each style has its own pros & cons.
-        '@typescript-eslint/consistent-type-definitions': 'off',
+        // Basically, we should prefer to use `interface` for type check performance.
+        '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
 
         // TODO: (#64) @typescript-eslint/explicit-function-return-type
 

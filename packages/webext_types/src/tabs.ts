@@ -18,14 +18,14 @@ export interface Tab {
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/TabStatus
 export type TabStatus = 'loading' | 'complete';
 
-type ExecuteScriptDetails = {
+interface ExecuteScriptDetails {
     allFrames?: boolean;
     code?: string;
     file?: string;
     frameId?: number;
     matchAboutBlank?: boolean;
     runAt?: RunAt;
-};
+}
 
 export interface WebExtTabsService {
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/TAB_ID_NONE
@@ -80,7 +80,7 @@ export interface WebExtTabsService {
     update(tabId: number, updateProperties: TabUpdateArg): Promise<Readonly<Tab>>;
 }
 
-type TabUpdateArg = {
+interface TabUpdateArg {
     active?: boolean;
     autoDiscardable?: boolean;
     highlighted?: boolean;
@@ -88,4 +88,4 @@ type TabUpdateArg = {
     openerTabId?: number;
     pinned?: boolean;
     url?: string;
-};
+}
