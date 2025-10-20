@@ -48,9 +48,6 @@ build_release: ## Run `make build` with `RELEASE_CHANNEL=production`
 __webext_xpi:
 	$(NPM_BIN_DIR)/web-ext build -s $(PKG_MAIN_DIST_DIR) --artifacts-dir $(ARTIFACT_DIR)
 
-__plain_ts:
-	$(NPM_BIN_DIR)/tsc --build --force
-
 
 ####################################
 # Test
