@@ -1,9 +1,6 @@
 NODE_BIN := node
 NPM_BIN_DIR := $(shell pnpm bin)
 
-PKG_DIR := $(CURDIR)/packages
-PKG_MAIN := $(PKG_DIR)/linkplaces
-PKG_MAIN_DIST_DIR := $(PKG_MAIN)/__dist
 
 ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
 
@@ -44,9 +41,6 @@ build_debug:  ## Run `make build` with `RELEASE_CHANNEL=development`
 .PHONY: build_release
 build_release: ## Run `make build` with `RELEASE_CHANNEL=production`
 	env RELEASE_CHANNEL=production $(NPM_BIN_DIR)/turbo run '//#build:package'
-
-__webext_xpi:
-	$(NPM_BIN_DIR)/web-ext build -s $(PKG_MAIN_DIST_DIR) --artifacts-dir $(ARTIFACT_DIR)
 
 
 ####################################

@@ -27,7 +27,7 @@
     "scripts": {
         "clean:package": "node ./tools/rm_dir.js ./web-ext-artifacts/ --verbose",
         "build": "tsc --build",
-        "build:package": "make __webext_xpi",
+        "build:package": "web-ext build -s ./packages/linkplaces/__dist/ --artifacts-dir ./web-ext-artifacts",
         "eslint": "eslint '.'"
     }
 }
