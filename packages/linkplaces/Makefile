@@ -5,7 +5,6 @@ REPOSITORY_ROOT_DIR := $(abspath $(CURDIR)/../..)
 
 SRC_DIR := $(CURDIR)/src
 PLAIN_DIR := $(CURDIR)/__plain
-PLAIN_SRC_DIR := $(PLAIN_DIR)/src
 OBJ_DIR := $(CURDIR)/__obj
 OBJ_SRC_DIR := $(OBJ_DIR)/src
 DIST_DIR := $(CURDIR)/__dist
@@ -53,9 +52,6 @@ clean_plain:
 ####################################
 # Build
 ####################################
-webextension_cp:
-	$(NODE_BIN) $(CURDIR)/tools/cp_files.js --basedir $(SRC_DIR) --source '$(SRC_DIR)/**/**.{json,html,svg}' --destination $(DIST_DIR) --verbose
-
 __bundle_js_%:
 	RELEASE_CHANNEL=$(RELEASE_CHANNEL) $(NPM_BIN_DIR)/rollup $(OBJ_SRC_DIR)/$*/index.js --config $(CURDIR)/rollup.config.mjs --output.file $(DIST_DIR)/$*/$*_bundled.js
 
@@ -64,9 +60,3 @@ __bundle_css_%:
         ENTRY_POINT=$(SRC_DIR)/$*/registry.css \
         OUTPUT_FILE=$(DIST_DIR)/$*/$*.css \
         $(NODE_BIN) $(CURDIR)/tools/run_postcss.js
-
-__obj:
-	$(NPM_BIN_DIR)/babel $(PLAIN_DIR) --out-dir $(OBJ_DIR) --extensions=.js,.jsx --config-file $(CURDIR)/babel.config.mjs --keep-file-extension
-
-__plain_js:
-	$(NODE_BIN) $(CURDIR)/tools/cp_files.js --basedir $(SRC_DIR) --source '$(SRC_DIR)/**/*.{js,jsx}' --destination $(PLAIN_SRC_DIR) --verbose

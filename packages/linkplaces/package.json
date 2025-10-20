@@ -9,16 +9,15 @@
         "clean:obj": "make clean_obj -j",
         "clean:plain": "make clean_plain -j",
         "test": "ava",
-        "build:copy": "make webextension_cp -j",
+        "build:copy": "node ./tools/cp_files.js --basedir './src/' --source '**/**.{json,html,svg}' --destination './__dist/' --verbose",
         "build:js:bundle:popup": "make __bundle_js_popup -j",
         "build:js:bundle:sidebar": "make __bundle_js_sidebar -j",
         "build:js:bundle:option": "make __bundle_js_options -j",
         "build:css:bundle:popup": "make __bundle_css_popup -j",
         "build:css:bundle:sidebar": "make __bundle_css_sidebar -j",
         "build:css:bundle:option": "make __bundle_css_options -j",
-        "build:js:obj": "make __obj -j",
-        "build:js:plain:js": "make __plain_js -j",
-        "build:js:plain:ts": ""
+        "build:js:obj": "babel './__plain/' --out-dir './__obj/' --extensions=.js,.jsx --config-file ./babel.config.mjs --keep-file-extension",
+        "build:js:plain:js": "node ./tools/cp_files.js --basedir './src/' --source 'src/**/*.{js,jsx}' --destination './__plain/src/' --verbose"
     },
     "repository": {
         "type": "git",
