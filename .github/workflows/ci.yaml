@@ -19,12 +19,16 @@ jobs:
     build:
         needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                variants:
+                    - release
+                    - debug
         steps:
             - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
             - uses: ./.github/actions/setup_ci
             - name: build
-              run: make build_package -j
-              working-directory: ./packages/linkplaces
+              run: make build_${{ matrix.variants }} -j
               env:
                   CI: true
 

@@ -42,7 +42,7 @@ build_debug: clean ## Run `make build` with `RELEASE_CHANNEL=development`
 	env RELEASE_CHANNEL=development $(NPM_BIN_DIR)/turbo run '//#build:package'
 
 .PHONY: build_release
-build_release: clean ## Run `make build` with `RELEASE_CHANNEL=production`
+build_release: ## Run `make build` with `RELEASE_CHANNEL=production`
 	env RELEASE_CHANNEL=production $(NPM_BIN_DIR)/turbo run '//#build:package'
 
 __webext_xpi:

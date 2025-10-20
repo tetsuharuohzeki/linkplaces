@@ -5,8 +5,20 @@
     "type": "module",
     "scripts": {
         "clean": "make clean -j",
+        "clean:dist": "make clean_dist -j",
+        "clean:obj": "make clean_obj -j",
+        "clean:plain": "make clean_plain -j",
         "test": "ava",
-        "build": "make build_package -j"
+        "build:copy": "make webextension_cp -j",
+        "build:js:bundle:popup": "make __bundle_js_popup -j",
+        "build:js:bundle:sidebar": "make __bundle_js_sidebar -j",
+        "build:js:bundle:option": "make __bundle_js_options -j",
+        "build:css:bundle:popup": "make __bundle_css_popup -j",
+        "build:css:bundle:sidebar": "make __bundle_css_sidebar -j",
+        "build:css:bundle:option": "make __bundle_css_options -j",
+        "build:js:obj": "make __obj -j",
+        "build:js:plain:js": "make __plain_js -j",
+        "build:js:plain:ts": ""
     },
     "repository": {
         "type": "git",

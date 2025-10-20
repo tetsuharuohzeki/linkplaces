@@ -53,34 +53,20 @@ clean_plain:
 ####################################
 # Build
 ####################################
-.PHONY: build_package
-build_package: webextension ## Build the artifact.
-
-webextension: webextension_cp webextension_js webextension_css
-
-webextension_cp: clean_dist
+webextension_cp:
 	$(NODE_BIN) $(CURDIR)/tools/cp_files.js --basedir $(SRC_DIR) --source '$(SRC_DIR)/**/**.{json,html,svg}' --destination $(DIST_DIR) --verbose
 
-webextension_js: $(addprefix __bundle_js_, background popup sidebar options)
-
-webextension_css: $(addprefix __bundle_css_, popup sidebar options)
-
-__bundle_js_%: clean_dist __obj
+__bundle_js_%:
 	RELEASE_CHANNEL=$(RELEASE_CHANNEL) $(NPM_BIN_DIR)/rollup $(OBJ_SRC_DIR)/$*/index.js --config $(CURDIR)/rollup.config.mjs --output.file $(DIST_DIR)/$*/$*_bundled.js
 
-__bundle_css_%: clean_dist
+__bundle_css_%:
 	RELEASE_CHANNEL=$(RELEASE_CHANNEL) \
         ENTRY_POINT=$(SRC_DIR)/$*/registry.css \
         OUTPUT_FILE=$(DIST_DIR)/$*/$*.css \
         $(NODE_BIN) $(CURDIR)/tools/run_postcss.js
 
-__obj: __plain clean_obj
+__obj:
 	$(NPM_BIN_DIR)/babel $(PLAIN_DIR) --out-dir $(OBJ_DIR) --extensions=.js,.jsx --config-file $(CURDIR)/babel.config.mjs --keep-file-extension
 
-__plain: $(addprefix __plain_, ts js)
-
-__plain_js: clean_plain
+__plain_js:
 	$(NODE_BIN) $(CURDIR)/tools/cp_files.js --basedir $(SRC_DIR) --source '$(SRC_DIR)/**/*.{js,jsx}' --destination $(PLAIN_SRC_DIR) --verbose
-
-__plain_ts: clean_plain
-	$(MAKE) $@ -C $(REPOSITORY_ROOT_DIR)

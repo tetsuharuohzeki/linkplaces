@@ -8,6 +8,14 @@
                 "transit"
             ]
         },
+        "//#clean": {
+            "cache": false,
+            "dependsOn": [
+                //
+                "^clean",
+                "//#clean:package"
+            ]
+        },
         "//#clean:package": {
             "cache": false,
             "dependsOn": [
@@ -17,7 +25,11 @@
         },
         // See https://turbo.build/repo/docs/messages/missing-root-task-in-turbo-json
         "//#build": {
-            "cache": false
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:plain"
+            ]
         },
         "//#build:package": {
             "cache": false, // FIXME: Remove this.
@@ -31,8 +43,128 @@
                 "$TURBO_ROOT$/web-ext-artifacts/**"
             ]
         },
-        "@linkplaces/app#build": {
+        "@linkplaces/app#clean:dist": {
             "cache": false
+        },
+        "@linkplaces/app#clean:obj": {
+            "cache": false
+        },
+        "@linkplaces/app#clean:plain": {
+            "cache": false
+        },
+        "@linkplaces/app#build": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#build:js:bundle",
+                "@linkplaces/app#build:css:bundle",
+                "@linkplaces/app#build:copy"
+            ]
+        },
+        "@linkplaces/app#build:copy": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:dist"
+            ]
+        },
+        "@linkplaces/app#build:js:bundle": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:dist",
+                "@linkplaces/app#build:js:bundle:popup",
+                "@linkplaces/app#build:js:bundle:sidebar",
+                "@linkplaces/app#build:js:bundle:option"
+            ]
+        },
+        "@linkplaces/app#build:js:bundle:popup": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:dist",
+                "@linkplaces/app#build:js:obj"
+            ]
+        },
+        "@linkplaces/app#build:js:bundle:sidebar": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:dist",
+                "@linkplaces/app#build:js:obj"
+            ]
+        },
+        "@linkplaces/app#build:js:bundle:option": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:dist",
+                "@linkplaces/app#build:js:obj"
+            ]
+        },
+        "@linkplaces/app#build:js:obj": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:obj",
+                "@linkplaces/app#build:js:plain"
+            ]
+        },
+        "@linkplaces/app#build:js:plain": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:plain",
+                "@linkplaces/app#build:js:plain:js",
+                "@linkplaces/app#build:js:plain:ts"
+            ]
+        },
+        "@linkplaces/app#build:js:plain:js": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:plain",
+                "//#build"
+            ]
+        },
+        "@linkplaces/app#build:js:plain:ts": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:plain",
+                "//#build"
+            ]
+        },
+        "@linkplaces/app#build:css:bundle": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:dist",
+                "@linkplaces/app#build:css:bundle:popup",
+                "@linkplaces/app#build:css:bundle:sidebar",
+                "@linkplaces/app#build:css:bundle:option"
+            ]
+        },
+        "@linkplaces/app#build:css:bundle:popup": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:dist"
+            ]
+        },
+        "@linkplaces/app#build:css:bundle:sidebar": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:dist"
+            ]
+        },
+        "@linkplaces/app#build:css:bundle:option": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:dist"
+            ]
         },
         "test": {
             "dependsOn": [
@@ -55,6 +187,10 @@
                 "$TURBO_DEFAULT$"
             ]
         },
+        // FIXME:
+        // This is required to supress this error:
+        // > //#transit requires an entry in turbo.json before it can be depended on because it is a task declared in the root package.json
+        "//#transit": {},
         // This is an empty task to tell the workspace dependency graph to turborepo.
         // This task name __must not__ be present in any workspaces.
         //
