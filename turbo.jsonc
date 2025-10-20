@@ -17,11 +17,7 @@
             ]
         },
         "//#clean:package": {
-            "cache": false,
-            "dependsOn": [
-                // This allows to run this task parallely in actually.
-                "transit"
-            ]
+            "cache": false
         },
         // See https://turbo.build/repo/docs/messages/missing-root-task-in-turbo-json
         "//#build": {
@@ -187,10 +183,6 @@
                 "$TURBO_DEFAULT$"
             ]
         },
-        // FIXME:
-        // This is required to supress this error:
-        // > //#transit requires an entry in turbo.json before it can be depended on because it is a task declared in the root package.json
-        "//#transit": {},
         // This is an empty task to tell the workspace dependency graph to turborepo.
         // This task name __must not__ be present in any workspaces.
         //
