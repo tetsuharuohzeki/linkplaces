@@ -7,7 +7,7 @@ export interface PanelListItemProps {
 }
 
 export function PanelListItem(props: PanelListItemProps): ReactNode {
-    const { disabled = false, onClick } = props;
+    const { disabled = false, onClick, children } = props;
 
     const className = disabled ? 'shared-com-PanelListItem__container disabled' : 'shared-com-PanelListItem__container';
 
@@ -18,7 +18,7 @@ export function PanelListItem(props: PanelListItemProps): ReactNode {
                 onClick={onClick}
                 aria-disabled={disabled}
             >
-                {props.children}
+                {children}
             </div>
         </StrictMode>
     );
@@ -28,10 +28,10 @@ export interface PanelListItemIconProps {
     children: ReactNode;
 }
 
-export function PanelListItemIcon(props: PanelListItemIconProps): ReactNode {
+export function PanelListItemIcon({ children }: PanelListItemIconProps): ReactNode {
     return (
         <StrictMode>
-            <div className={'shared-com-PanelListItem__icon'}>{props.children}</div>
+            <div className={'shared-com-PanelListItem__icon'}>{children}</div>
         </StrictMode>
     );
 }
@@ -40,10 +40,10 @@ export interface PanelListItemTextProps {
     children: ReactNode;
 }
 
-export function PanelListItemText(props: PanelListItemTextProps): ReactNode {
+export function PanelListItemText({ children }: PanelListItemTextProps): ReactNode {
     return (
         <StrictMode>
-            <div className={'shared-com-PanelListItem__text'}>{props.children}</div>
+            <div className={'shared-com-PanelListItem__text'}>{children}</div>
         </StrictMode>
     );
 }

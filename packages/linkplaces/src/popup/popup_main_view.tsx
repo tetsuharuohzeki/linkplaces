@@ -57,12 +57,12 @@ interface HeaderProps {
     onClick: MouseEventHandler<HTMLElement>;
 }
 
-function Header(props: HeaderProps): ReactNode {
+function Header({ onClick }: HeaderProps): ReactNode {
     return (
         <StrictMode>
             <div className={'popup-c-PopupMainView-Header__container'}>
                 <PanelSectionList>
-                    <PanelListItem onClick={props.onClick}>
+                    <PanelListItem onClick={onClick}>
                         <PanelListItemIcon>
                             <PopupItemIcon
                                 icondir={ICON_DIR}

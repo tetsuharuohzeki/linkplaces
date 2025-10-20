@@ -4,10 +4,10 @@ export interface PanelSectionListProps {
     children: ReactNode;
 }
 
-export function PanelSectionList(props: PanelSectionListProps): ReactNode {
+export function PanelSectionList({ children }: PanelSectionListProps): ReactNode {
     return (
         <StrictMode>
-            <div className={'shared-com-PanelSectionList__container'}>{props.children}</div>
+            <div className={'shared-com-PanelSectionList__container'}>{children}</div>
         </StrictMode>
     );
 }

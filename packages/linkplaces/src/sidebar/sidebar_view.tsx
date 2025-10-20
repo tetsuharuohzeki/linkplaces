@@ -11,14 +11,14 @@ export interface SidebarViewProps {
     intent: SidebarIntent;
 }
 
-export function SidebarView(props: Readonly<SidebarViewProps>): ReactNode {
-    const mapped = Ix.map(props.state.list, (item) => {
+export function SidebarView({ state, intent }: Readonly<SidebarViewProps>): ReactNode {
+    const mapped = Ix.map(state.list, (item) => {
         const id = item.id();
         return (
             <ListItem
                 key={id}
                 item={item}
-                intent={props.intent}
+                intent={intent}
             />
         );
     });
