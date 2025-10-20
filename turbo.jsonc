@@ -19,6 +19,9 @@
         "//#clean:package": {
             "cache": false
         },
+        "//#typecheck": {
+            "cache": false
+        },
         // See https://turbo.build/repo/docs/messages/missing-root-task-in-turbo-json
         "//#build": {
             "cache": false,

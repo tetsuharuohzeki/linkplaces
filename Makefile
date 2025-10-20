@@ -48,7 +48,7 @@ build_release: ## Run `make build` with `RELEASE_CHANNEL=production`
 ####################################
 
 typecheck: ## Check static typing integrity
-	$(NPM_BIN_DIR)/tsc --build --emitDeclarationOnly
+	$(NODE_BIN) --run typecheck
 
 test: ## Run unit tests
 	$(NPM_BIN_DIR)/turbo test

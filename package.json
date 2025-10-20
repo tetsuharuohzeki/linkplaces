@@ -26,6 +26,7 @@
     },
     "scripts": {
         "clean:package": "node ./tools/rm_dir.js ./web-ext-artifacts/ --verbose",
+        "typecheck": "tsc --build --emitDeclarationOnly",
         "build": "tsc --build",
         "build:package": "web-ext build -s ./packages/linkplaces/__dist/ --artifacts-dir ./web-ext-artifacts",
         "eslint": "eslint '.'"
