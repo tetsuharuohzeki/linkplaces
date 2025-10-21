@@ -1,4 +1,4 @@
-import { IS_PRODUCTION_MODE, ENABLE_REACT_COMPILER, ENABLE_SWC_REACT_TRANSFORM } from './buildconfig.js';
+import { IS_PRODUCTION_MODE, ENABLE_REACT_COMPILER } from './buildconfig.js';
 
 /**
  *  @type   {Partial<import('babel-plugin-react-compiler').PluginOptions>}
@@ -79,18 +79,6 @@ export const cliConfig = {
 };
 
 export const rollupConfig = {
-    presets: ENABLE_SWC_REACT_TRANSFORM
-        ? []
-        : [
-              [
-                  '@babel/preset-react',
-                  {
-                      // https://github.com/babel/babel/tree/master/packages/babel-preset-react#options
-                      development: !IS_PRODUCTION_MODE,
-                      useSpread: true,
-                      runtime: 'automatic',
-                  },
-              ],
-          ],
+    presets: [],
     plugins,
 };

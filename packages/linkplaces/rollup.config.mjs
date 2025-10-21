@@ -16,7 +16,6 @@ import {
     LIB_NODE_ENV,
     LIB_NODE_ENV_IS_NOT_PRODUCTION,
     IS_PRODUCTION_MODE,
-    ENABLE_SWC_REACT_TRANSFORM,
     ENABLE_REACT_PROFILER,
     ENABLE_REACT_COMPILER,
 } from './tools/buildconfig.js';
@@ -31,7 +30,6 @@ NODE_ENV: ${NODE_ENV}
 LIB_NODE_ENV: ${LIB_NODE_ENV}
 LIB_NODE_ENV_IS_NOT_PRODUCTION: ${LIB_NODE_ENV_IS_NOT_PRODUCTION}
 IS_PRODUCTION_MODE: ${IS_PRODUCTION_MODE}
-ENABLE_SWC_REACT_TRANSFORM: ${ENABLE_SWC_REACT_TRANSFORM}
 ENABLE_REACT_PROFILER: ${ENABLE_REACT_PROFILER}
 ENABLE_REACT_COMPILER: ${ENABLE_REACT_COMPILER}
 ======================================
@@ -65,28 +63,19 @@ class RollupWarningAsError extends Error {
 
 // This is for jsx files placed in other workspace.
 // For the current workspace, we transform react jsx by babel cli offline.
-const reactTransformer = ENABLE_SWC_REACT_TRANSFORM
-    ? [
-          // https://github.com/rollup/plugins/tree/master/packages/babel
-          babel({
-              ...babelConfig,
-              babelHelpers: 'bundled',
-              extensions: ['.jsx'],
-          }),
-          // https://www.npmjs.com/package/@rollup/plugin-swc#options
-          swc({
-              swc: swcOptions,
-              include: ['**/**/*.jsx'],
-          }),
-      ]
-    : [
-          // https://github.com/rollup/plugins/tree/master/packages/babel
-          babel({
-              ...babelConfig,
-              babelHelpers: 'bundled',
-              extensions: ['.jsx'],
-          }),
-      ];
+const reactTransformer = [
+    // https://github.com/rollup/plugins/tree/master/packages/babel
+    babel({
+        ...babelConfig,
+        babelHelpers: 'bundled',
+        extensions: ['.jsx'],
+    }),
+    // https://www.npmjs.com/package/@rollup/plugin-swc#options
+    swc({
+        swc: swcOptions,
+        include: ['**/**/*.jsx'],
+    }),
+];
 
 /**
  *  See:
