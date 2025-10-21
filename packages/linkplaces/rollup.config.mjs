@@ -6,6 +6,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import { default as swc } from '@rollup/plugin-swc';
+import { defineConfig } from 'rollup';
 
 import { rollupConfig as babelConfig } from './tools/babel_config.mjs';
 import {
@@ -86,7 +87,7 @@ const reactTransformer = [
  */
 // eslint-disable-next-line import/no-default-export
 export default async function createConfiguration(_commandLineArgs) {
-    return {
+    return defineConfig({
         strictDeprecations: true,
 
         treeshake: true,
@@ -170,5 +171,5 @@ export default async function createConfiguration(_commandLineArgs) {
             const e = new RollupWarningAsError(warning);
             throw e;
         },
-    };
+    });
 }
