@@ -10,6 +10,7 @@
         "clean:plain": "make clean_plain -j",
         "test": "ava",
         "build:copy": "make webextension_cp -j",
+        "build:js:bundle:background": "make __bundle_js_background -j",
         "build:js:bundle:popup": "make __bundle_js_popup -j",
         "build:js:bundle:sidebar": "make __bundle_js_sidebar -j",
         "build:js:bundle:option": "make __bundle_js_options -j",
