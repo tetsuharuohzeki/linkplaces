@@ -10,6 +10,7 @@
         "clean:plain": "make clean_plain -j",
         "test": "ava",
         "build:copy": "node ./tools/cp_files.js --basedir './src/' --source '**/**.{json,html,svg}' --destination './__dist/' --verbose",
+        "build:js:bundle:background": "make __bundle_js_background -j",
         "build:js:bundle:popup": "make __bundle_js_popup -j",
         "build:js:bundle:sidebar": "make __bundle_js_sidebar -j",
         "build:js:bundle:option": "make __bundle_js_options -j",

@@ -72,9 +72,18 @@
             "dependsOn": [
                 // @prettier-ignore
                 "@linkplaces/app#clean:dist",
+                "@linkplaces/app#build:js:bundle:background",
                 "@linkplaces/app#build:js:bundle:popup",
                 "@linkplaces/app#build:js:bundle:sidebar",
                 "@linkplaces/app#build:js:bundle:option"
+            ]
+        },
+        "@linkplaces/app#build:js:bundle:background": {
+            "cache": false,
+            "dependsOn": [
+                // @prettier-ignore
+                "@linkplaces/app#clean:dist",
+                "@linkplaces/app#build:js:obj"
             ]
         },
         "@linkplaces/app#build:js:bundle:popup": {
