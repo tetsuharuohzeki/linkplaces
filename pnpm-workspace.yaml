@@ -12,7 +12,7 @@ catalog:
   '@eslint/js': ^9.39.1
   '@monorepo-utils/workspaces-to-typescript-project-references': ^2.11.0
   '@reflink/reflink': ^0.1.19
-  '@rollup/plugin-alias': ^5.1.1
+  '@rollup/plugin-alias': ^6.0.0
   '@rollup/plugin-babel': ^6.1.0
   '@rollup/plugin-commonjs': ^28.0.9
   '@rollup/plugin-node-resolve': ^16.0.3

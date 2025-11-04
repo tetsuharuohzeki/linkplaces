@@ -37,8 +37,8 @@ catalogs:
       specifier: ^0.1.19
       version: 0.1.19
     '@rollup/plugin-alias':
-      specifier: ^5.1.1
-      version: 5.1.1
+      specifier: ^6.0.0
+      version: 6.0.0
     '@rollup/plugin-babel':
       specifier: ^6.1.0
       version: 6.1.0
@@ -329,7 +329,7 @@ importers:
         version: link:../tools
       '@rollup/plugin-alias':
         specifier: 'catalog:'
-        version: 5.1.1(rollup@4.52.5)
+        version: 6.0.0(rollup@4.52.5)
       '@rollup/plugin-babel':
         specifier: 'catalog:'
         version: 6.1.0(@babel/core@7.28.5)(rollup@4.52.5)
@@ -815,11 +815,11 @@ packages:
     resolution: {integrity: sha512-DmCG8GzysnCZ15bres3N5AHCmwBwYgp0As6xjhQ47rAUTUXxJiK+lLUxaGsX3hd/30qUpVElh05PbGuxRPgJwA==}
     engines: {node: '>= 10'}
 
-  '@rollup/plugin-alias@5.1.1':
-    resolution: {integrity: sha512-PR9zDb+rOzkRb2VD+EuKB7UC41vU5DIwZ5qqCpk0KJudcWAyi8rvYOhS7+L5aZCspw1stTViLgN5v6FF1p5cgQ==}
-    engines: {node: '>=14.0.0'}
+  '@rollup/plugin-alias@6.0.0':
+    resolution: {integrity: sha512-tPCzJOtS7uuVZd+xPhoy5W4vThe6KWXNmsFCNktaAh5RTqcLiSfT4huPQIXkgJ6YCOjJHvecOAzQxLFhPxKr+g==}
+    engines: {node: '>=20.19.0'}
     peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+      rollup: '>=4.0.0'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -4490,7 +4490,7 @@ snapshots:
       '@reflink/reflink-win32-arm64-msvc': 0.1.19
       '@reflink/reflink-win32-x64-msvc': 0.1.19
 
-  '@rollup/plugin-alias@5.1.1(rollup@4.52.5)':
+  '@rollup/plugin-alias@6.0.0(rollup@4.52.5)':
     optionalDependencies:
       rollup: 4.52.5
 
