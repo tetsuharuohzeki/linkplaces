@@ -7,33 +7,33 @@ catalog:
   '@babel/core': ^7.28.5
   '@babel/plugin-syntax-jsx': ^7.27.1
   '@babel/preset-react': ^7.28.5
-  '@eslint-react/eslint-plugin': ^2.2.3
-  '@eslint/css': ^0.13.0
-  '@eslint/js': ^9.38.0
+  '@eslint-react/eslint-plugin': ^2.3.1
+  '@eslint/css': ^0.14.0
+  '@eslint/js': ^9.39.1
   '@monorepo-utils/workspaces-to-typescript-project-references': ^2.11.0
   '@reflink/reflink': ^0.1.19
-  '@rollup/plugin-alias': ^5.1.1
+  '@rollup/plugin-alias': ^6.0.0
   '@rollup/plugin-babel': ^6.1.0
-  '@rollup/plugin-commonjs': ^28.0.9
+  '@rollup/plugin-commonjs': ^29.0.0
   '@rollup/plugin-node-resolve': ^16.0.3
-  '@rollup/plugin-replace': ^6.0.2
+  '@rollup/plugin-replace': ^6.0.3
   '@rollup/plugin-swc': ^0.4.0
-  '@swc/core': ^1.13.5
-  '@types/node': ^24.9.1
+  '@swc/core': ^1.14.0
+  '@types/node': ^24.10.0
   '@types/react': ^19.2.2
   '@types/react-dom': ^19.2.2
-  '@typescript-eslint/eslint-plugin': ^8.46.2
-  '@typescript-eslint/parser': ^8.46.2
+  '@typescript-eslint/eslint-plugin': ^8.46.3
+  '@typescript-eslint/parser': ^8.46.3
   ava: ^6.4.1
   babel-plugin-react-compiler: ^1.0.0
-  eslint: ^9.38.0
+  eslint: ^9.39.1
   eslint-config-prettier: ^10.1.8
-  eslint-config-turbo: ^2.5.8
+  eslint-config-turbo: ^2.6.0
   eslint-plugin-import-x: ^4.16.1
   eslint-plugin-react: ^7.37.5
-  eslint-plugin-react-hooks: ^7.0.0
+  eslint-plugin-react-hooks: ^7.0.1
   expect-type: ^1.2.2
-  globals: ^16.4.0
+  globals: ^16.5.0
   option-t: ^55.1.0
   postcss: ^8.5.6
   postcss-import: ^16.1.1
@@ -42,7 +42,7 @@ catalog:
   react-dom: ^19.2.0
   rollup: ^4.52.5
   tinyspy: ^4.0.4
-  turbo: ^2.5.8
+  turbo: ^2.6.0
   typescript: ^5.9.3
   web-ext: ^9.1.0
 
