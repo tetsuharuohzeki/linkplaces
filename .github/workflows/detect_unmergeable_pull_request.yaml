@@ -18,7 +18,7 @@ permissions:
 
 jobs:
     detect_unmergeable_pull_request_and_mark_them:
-        runs-on: ubuntu-slim
+        runs-on: ubuntu-latest
         permissions:
             contents: none
             pull-requests: write
