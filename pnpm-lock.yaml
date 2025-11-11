@@ -174,7 +174,7 @@ importers:
         specifier: 'catalog:'
         version: 1.0.0
       eslint:
-        specifier: 'catalog:'
+        specifier: 9.39.1
         version: 9.39.1
       globals:
         specifier: 'catalog:'
