@@ -13,7 +13,7 @@ jobs:
     warmup_dependency_cache:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+            - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
             - uses: ./.github/actions/setup_ci
 
     build:
@@ -25,7 +25,7 @@ jobs:
                     - release
                     - debug
         steps:
-            - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+            - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
             - uses: ./.github/actions/setup_ci
             - name: build
               run: make build_${{ matrix.variants }} -j
@@ -36,7 +36,7 @@ jobs:
         needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+            - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
             - uses: ./.github/actions/setup_ci
             - name: Lint
               run: make lint -j
@@ -47,7 +47,7 @@ jobs:
         needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+            - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
             - uses: ./.github/actions/setup_ci
             - name: typecheck
               run: make typecheck -j
@@ -58,7 +58,7 @@ jobs:
         needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+            - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
             - uses: ./.github/actions/setup_ci
             - name: check formatting
               run: make format_check -j
@@ -69,7 +69,7 @@ jobs:
         needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+            - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
             - uses: ./.github/actions/setup_ci
             - name: Run unittests
               run: make test -j
