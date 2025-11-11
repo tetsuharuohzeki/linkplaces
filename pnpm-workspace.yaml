@@ -47,3 +47,5 @@ catalog:
   web-ext: ^9.1.0
 
 minimumReleaseAge: 1440
+
+trustPolicy: no-downgrade
