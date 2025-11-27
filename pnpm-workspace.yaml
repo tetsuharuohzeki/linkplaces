@@ -48,5 +48,4 @@ catalog:
 
 # Sort with dependabot (5 days)
 minimumReleaseAge: 7200
-
 # trustPolicy: no-downgrade
