@@ -46,6 +46,7 @@ catalog:
   typescript: ^5.9.3
   web-ext: ^9.2.0
 
-minimumReleaseAge: 1440
+# Sort with dependabot (5 days)
+minimumReleaseAge: 7200
 
 trustPolicy: no-downgrade
