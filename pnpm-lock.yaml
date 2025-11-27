@@ -100,7 +100,7 @@ catalogs:
       specifier: ^1.2.2
       version: 1.2.2
     globals:
-      specifier: ^16.4.0
+      specifier: ^16.5.0
       version: 16.5.0
     option-t:
       specifier: ^55.1.0
