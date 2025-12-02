@@ -11,6 +11,7 @@
         "@linkplaces/tools": "workspace:*",
         "@monorepo-utils/workspaces-to-typescript-project-references": "catalog:",
         "@reflink/reflink": "catalog:",
+        "@typescript/native-preview": "catalog:",
         "@types/node": "catalog:",
         "@types/react": "catalog:",
         "@types/react-dom": "catalog:",
@@ -26,7 +27,7 @@
     },
     "scripts": {
         "clean:package": "node ./tools/rm_dir.js ./web-ext-artifacts/ --verbose",
-        "typecheck": "tsc --build --emitDeclarationOnly",
+        "typecheck": "tsgo --build --emitDeclarationOnly",
         "build": "tsc --build",
         "build:package": "web-ext build -s ./packages/linkplaces/__dist/ --artifacts-dir ./web-ext-artifacts",
         "eslint": "eslint '.'"
