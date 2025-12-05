@@ -6,9 +6,10 @@ export abstract class IterableX<const in out TInput, const out TOutput = TInput>
     abstract [Symbol.iterator](): Iterator<TOutput>;
 }
 
-export abstract class AsyncIterableX<const in out TInput, const out TOutput = TInput>
-    implements AsyncIterable<TOutput>
-{
+export abstract class AsyncIterableX<
+    const in out TInput,
+    const out TOutput = TInput,
+> implements AsyncIterable<TOutput> {
     protected _source: AsyncIterable<TInput>;
     constructor(source: AsyncIterable<TInput>) {
         this._source = source;

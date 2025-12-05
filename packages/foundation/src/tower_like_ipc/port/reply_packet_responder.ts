@@ -5,9 +5,10 @@ import type { TowerService } from '../framework/service_trait.js';
 import { assertIdentifiablePacket, createIdentifiablePacket, type Packet } from './packet.js';
 import type { PacketCreationService } from './packet_creation_service.js';
 
-export class ReplyPacketResponder<const in TInnerArgs, const out TInnerOutput>
-    implements PacketCreationService<Packet<unknown>, TInnerOutput>
-{
+export class ReplyPacketResponder<const in TInnerArgs, const out TInnerOutput> implements PacketCreationService<
+    Packet<unknown>,
+    TInnerOutput
+> {
     private _validator: AssertTypeGuardFn<TInnerArgs>;
     private _source: TowerService<[req: TInnerArgs], TInnerOutput>;
 
