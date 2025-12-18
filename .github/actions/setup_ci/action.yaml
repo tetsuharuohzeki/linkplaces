@@ -29,7 +29,7 @@ runs:
           run: echo "id=${{ hashFiles('**/pnpm-lock.yaml') }}" >> $GITHUB_OUTPUT
 
         - name: Restore dependency caches
-          uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+          uses: actions/cache/restore@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
           id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
           with:
               path: ${{ steps.npm-cache-dir.outputs.dir }}
@@ -45,7 +45,7 @@ runs:
               make install
 
         - name: Save dependency caches
-          uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+          uses: actions/cache/save@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
           # We run this step only on _trunk_ to aim to improve a cache hit.
           # For example, dependabot's pull requests sometimes shoot down a cache hit ratio
           # by changing a lock file with multiple variants.
