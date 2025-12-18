@@ -11,6 +11,8 @@ updates:
           default-days: 5 # This 1-week delay is just by my intuition.
           include:
               - "*"
+          exclude:
+              - "@typescript/native-preview"
       open-pull-requests-limit: 99
       labels:
           - A-dependency

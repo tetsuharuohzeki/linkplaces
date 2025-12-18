@@ -48,3 +48,5 @@ catalog:
   web-ext: ^9.2.0
 
 minimumReleaseAge: 7200
+minimumReleaseAgeExclude:
+  - '@typescript/native-preview'
