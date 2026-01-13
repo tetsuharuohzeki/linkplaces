@@ -1,5 +1,3 @@
-/* eslint-env node */
-
 import importPlugin from 'postcss-import';
 
 import { RELEASE_CHANNEL, ENABLE_SOURCE_MAP } from './tools/buildconfig.js';
