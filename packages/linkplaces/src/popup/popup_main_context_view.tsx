@@ -13,6 +13,7 @@ export interface PopupMainViewUpdaterProps {
 }
 
 export function PopupMainViewUpdater({ store, intent }: PopupMainViewUpdaterProps): ReactNode {
+    // eslint-disable-next-line @eslint-react/no-unnecessary-use-memo
     const repository = useMemo(() => new PopupRepostiroy(browser.bookmarks, store), [store]);
     const state = usePopupMainState(store);
 
