@@ -58,8 +58,8 @@ catalogs:
       specifier: ^1.15.8
       version: 1.15.8
     '@types/node':
-      specifier: ^25.0.8
-      version: 25.0.8
+      specifier: ^25.0.10
+      version: 25.0.10
     '@types/react':
       specifier: ^19.2.7
       version: 19.2.7
@@ -163,7 +163,7 @@ importers:
         version: 0.1.19
       '@types/node':
         specifier: 'catalog:'
-        version: 25.0.8
+        version: 25.0.10
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.7
@@ -1115,8 +1115,8 @@ packages:
   '@types/minimist@1.2.5':
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
 
-  '@types/node@25.0.8':
-    resolution: {integrity: sha512-powIePYMmC3ibL0UJ2i2s0WIbq6cg6UyVFQxSCpaPxxzAaziRfimGivjdF943sSGV6RADVbk0Nvlm5P/FB44Zg==}
+  '@types/node@25.0.10':
+    resolution: {integrity: sha512-zWW5KPngR/yvakJgGOmZ5vTBemDoSqF3AcV/LrO5u5wTWyEAVVh+IT39G4gtyAkh3CtTZs8aX/yRM82OfzHJRg==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -4708,7 +4708,7 @@ snapshots:
 
   '@types/minimist@1.2.5': {}
 
-  '@types/node@25.0.8':
+  '@types/node@25.0.10':
     dependencies:
       undici-types: 7.16.0
 
@@ -4726,7 +4726,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 25.0.8
+      '@types/node': 25.0.10
 
   '@typescript-eslint/eslint-plugin@8.53.1(@typescript-eslint/parser@8.53.1(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(typescript@5.9.3)':
     dependencies:
@@ -5383,7 +5383,7 @@ snapshots:
 
   chrome-launcher@1.2.0:
     dependencies:
-      '@types/node': 25.0.8
+      '@types/node': 25.0.10
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 2.0.2
