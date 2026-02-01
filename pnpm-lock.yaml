@@ -61,8 +61,8 @@ catalogs:
       specifier: ^25.0.10
       version: 25.0.10
     '@types/react':
-      specifier: ^19.2.7
-      version: 19.2.7
+      specifier: ^19.2.10
+      version: 19.2.10
     '@types/react-dom':
       specifier: ^19.2.3
       version: 19.2.3
@@ -118,11 +118,11 @@ catalogs:
       specifier: ^3.8.1
       version: 3.8.1
     react:
-      specifier: ^19.2.3
-      version: 19.2.3
+      specifier: ^19.2.4
+      version: 19.2.4
     react-dom:
-      specifier: ^19.2.3
-      version: 19.2.3
+      specifier: ^19.2.4
+      version: 19.2.4
     rollup:
       specifier: ^4.56.0
       version: 4.56.0
@@ -166,10 +166,10 @@ importers:
         version: 25.0.10
       '@types/react':
         specifier: 'catalog:'
-        version: 19.2.7
+        version: 19.2.10
       '@types/react-dom':
         specifier: 'catalog:'
-        version: 19.2.3(@types/react@19.2.7)
+        version: 19.2.3(@types/react@19.2.10)
       '@typescript/native-preview':
         specifier: 'catalog:'
         version: 7.0.0-dev.20251212.1
@@ -269,10 +269,10 @@ importers:
         version: 55.1.1
       react:
         specifier: 'catalog:'
-        version: 19.2.3
+        version: 19.2.4
       react-dom:
         specifier: 'catalog:'
-        version: 19.2.3(react@19.2.3)
+        version: 19.2.4(react@19.2.4)
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -319,7 +319,7 @@ importers:
         version: 55.1.1
       react:
         specifier: 'catalog:'
-        version: 19.2.3
+        version: 19.2.4
     devDependencies:
       '@babel/cli':
         specifier: 'catalog:'
@@ -374,7 +374,7 @@ importers:
         version: 55.1.1
       react:
         specifier: 'catalog:'
-        version: 19.2.3
+        version: 19.2.4
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -1126,8 +1126,8 @@ packages:
     peerDependencies:
       '@types/react': ^19.2.0
 
-  '@types/react@19.2.7':
-    resolution: {integrity: sha512-MWtvHrGZLFttgeEj28VXHxpmwYbor/ATPYbBfSFZEIRK0ecCFLl2Qo55z52Hss+UV9CRN7trSeq1zbgx7YDWWg==}
+  '@types/react@19.2.10':
+    resolution: {integrity: sha512-WPigyYuGhgZ/cTPRXB2EwUw+XvsRA3GqHlsP4qteqrnnjDrApbS7MxcGr/hke5iUoeB7E/gQtrs9I37zAJ0Vjw==}
 
   '@types/resolve@1.20.2':
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
@@ -3277,16 +3277,16 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
-  react-dom@19.2.3:
-    resolution: {integrity: sha512-yELu4WmLPw5Mr/lmeEpox5rw3RETacE++JgHqQzd2dg+YbJuat3jH4ingc+WPZhxaoFzdv9y33G+F7Nl5O0GBg==}
+  react-dom@19.2.4:
+    resolution: {integrity: sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==}
     peerDependencies:
-      react: ^19.2.3
+      react: ^19.2.4
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
-  react@19.2.3:
-    resolution: {integrity: sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA==}
+  react@19.2.4:
+    resolution: {integrity: sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ==}
     engines: {node: '>=0.10.0'}
 
   read-cache@1.0.0:
@@ -4714,11 +4714,11 @@ snapshots:
 
   '@types/normalize-package-data@2.4.4': {}
 
-  '@types/react-dom@19.2.3(@types/react@19.2.7)':
+  '@types/react-dom@19.2.3(@types/react@19.2.10)':
     dependencies:
-      '@types/react': 19.2.7
+      '@types/react': 19.2.10
 
-  '@types/react@19.2.7':
+  '@types/react@19.2.10':
     dependencies:
       csstype: 3.2.3
 
@@ -7113,14 +7113,14 @@ snapshots:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
 
-  react-dom@19.2.3(react@19.2.3):
+  react-dom@19.2.4(react@19.2.4):
     dependencies:
-      react: 19.2.3
+      react: 19.2.4
       scheduler: 0.27.0
 
   react-is@16.13.1: {}
 
-  react@19.2.3: {}
+  react@19.2.4: {}
 
   read-cache@1.0.0:
     dependencies:
