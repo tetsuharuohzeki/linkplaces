@@ -1,9 +1,6 @@
 {
     "extends": "../../tsconfig.base.project_reference.json",
     "compilerOptions": {
-        // Disallow to touch any DOM object.
-        "lib": [],
-
         "outDir": "${configDir}/__dist",
         "rootDir": "${configDir}/src"
     },

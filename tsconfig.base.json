@@ -14,8 +14,8 @@
         "target": "ES2022" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
         "lib": [
             /* Specify a set of bundled library declaration files that describe the target runtime environment. */
-            "esnext",
-            "dom"
+            "esnext"
+            // We don't specify `dom` to disallow to touch any DOM object by default.
         ],
         "jsx": "preserve" /* Specify what JSX code is generated. */,
         // "experimentalDecorators": true,                   /* Enable experimental support for legacy experimental decorators. */
@@ -109,7 +109,7 @@
 
         /* Completeness */
         // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-        "libReplacement": false, /* We don't use this feature. */
+        "libReplacement": false /* We don't use this feature. */,
         "skipLibCheck": true /* Skip type checking all .d.ts files. */
     }
 }

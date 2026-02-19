@@ -1,6 +1,7 @@
 {
     "extends": "../../tsconfig.base.project_reference.json",
     "compilerOptions": {
+        "lib": ["ESNext", "DOM"],
         "outDir": "${configDir}/__dist",
         "rootDir": "${configDir}/src"
     },
@@ -8,7 +9,5 @@
         // @prettier-ignore
         "**/*"
     ],
-    "references": [
-        { "path": "../webext_types" }
-    ]
+    "references": [{ "path": "../webext_types" }]
 }
