@@ -46,20 +46,17 @@ export class OnPortClientConnection<const in TPayload> {
     }
 
     postMessage(payload: TPayload): Promise<unknown> {
-        const task = new Promise<unknown>((resolve, reject) => {
-            const id = this._incrementRequestId();
-
-            this._callback.set(id, {
-                resolve,
-                reject,
-            });
-
-            const port = this._port;
-
-            const packet = createIdentifiablePacket(id, payload);
-            port.postMessage(packet);
+        const { promise, resolve, reject } = Promise.withResolvers();
+        const id = this._incrementRequestId();
+        this._callback.set(id, {
+            resolve,
+            reject,
         });
-        return task;
+
+        const packet = createIdentifiablePacket(id, payload);
+        this._port.postMessage(packet);
+
+        return promise;
     }
 
     postOneShotMessage(payload: TPayload): void {
