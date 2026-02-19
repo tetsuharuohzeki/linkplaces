@@ -43,7 +43,7 @@ catalog:
   react-dom: ^19.2.4
   rollup: ^4.57.1
   tinyspy: ^4.0.4
-  turbo: ^2.8.3
+  turbo: ^2.8.8
   typescript: ^5.9.3
   web-ext: ^9.3.0
 
