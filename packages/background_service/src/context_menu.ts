@@ -36,17 +36,15 @@ export function appendContextMenu(browser: WebExtGlobalNamespace): void {
 
     const onCreateList: Array<Promise<void>> = [];
     for (const item of list) {
-        const menu: Promise<void> = new Promise((resolve, reject) => {
-            browser.menus.create(item, () => {
-                const e = browser.runtime.lastError;
-                if (!!e) {
-                    reject(e);
-                } else {
-                    resolve();
-                }
-            });
+        const { promise: menu, resolve, reject } = Promise.withResolvers<void>();
+        browser.menus.create(item, () => {
+            const e = browser.runtime.lastError;
+            if (!!e) {
+                reject(e);
+            } else {
+                resolve();
+            }
         });
-
         onCreateList.push(menu);
     }
 
