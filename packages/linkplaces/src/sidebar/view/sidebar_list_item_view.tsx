@@ -8,7 +8,7 @@ import {
 } from '@linkplaces/shared/component';
 import type { BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/webext_types';
 
-import { StrictMode, useState, type MouseEventHandler, type MouseEvent, type ReactNode } from 'react';
+import { StrictMode, useState, type MouseEventHandler, type MouseEvent, type ReactNode, startTransition } from 'react';
 
 import type { SidebarItemViewModelEntity } from '../sidebar_domain.jsx';
 import type { SidebarIntent } from '../sidebar_intent.jsx';
@@ -111,9 +111,10 @@ function ListItemForBookmarkItem(props: ListItemForBookmarkItemProps) {
         evt.preventDefault();
 
         const where = calculateWhereToOpenItem(evt);
-        intent.openItem(id, url, where);
-
-        setIsOpening(true);
+        startTransition(async () => {
+            setIsOpening(true);
+            await intent.openItem(id, url, where);
+        });
     };
 
     const label = bookmarkTitle === '' ? url : bookmarkTitle;

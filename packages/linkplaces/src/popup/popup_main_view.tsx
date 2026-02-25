@@ -8,7 +8,7 @@ import {
 } from '@linkplaces/shared/component';
 import type { BookmarkTreeNode, BookmarkTreeNodeItem, BookmarkTreeNodeFolder } from '@linkplaces/webext_types';
 
-import { StrictMode, type MouseEvent, type MouseEventHandler, useState, type ReactNode } from 'react';
+import { StrictMode, type MouseEvent, type MouseEventHandler, useState, type ReactNode, startTransition } from 'react';
 
 import { PopupItemIcon } from './component/popup_icon_element.js';
 import type { PopupMainIntent } from './popup_main_intent.js';
@@ -152,10 +152,10 @@ function ItemListItem(props: ItemListItemProps): ReactNode {
 
     const onClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
         event.preventDefault();
-
-        intent.openItem(id, url).catch(console.error);
-
-        setIsOpening(true);
+        startTransition(async () => {
+            setIsOpening(true);
+            await intent.openItem(id, url);
+        });
     };
 
     const title = item.title;

@@ -10,8 +10,8 @@ export class SidebarIntent {
         this._epic = epic;
     }
 
-    openItem(id: BookmarkId, url: string, where: WhereToOpenItem): void {
-        this._epic.openItem(id, url, where).catch(console.error);
+    async openItem(id: BookmarkId, url: string, where: WhereToOpenItem): Promise<void> {
+        await this._epic.openItem(id, url, where);
     }
 
     pasteItemFromClipboardActionActual(event: ClipboardEvent): void {
