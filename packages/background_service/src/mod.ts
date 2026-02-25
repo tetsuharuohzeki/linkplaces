@@ -5,6 +5,15 @@ import { browser } from '@linkplaces/webext_types';
 import { callBackgroundRemoteActionReciever } from './background_remote_action_reciever.js';
 import { appendContextMenu, onClickContextMenu } from './context_menu.js';
 
+export async function callBackgroundServiceAsInProcessReceiver(message: object): Promise<unknown> {
+    const res = await callResponderServiceWithMessage(
+        callBackgroundRemoteActionReciever,
+        assertIsRemoteAction,
+        message
+    );
+    return res;
+}
+
 export function startBackgroundService(): void {
     const runtime = browser.runtime;
     const menus = browser.menus;
@@ -15,13 +24,5 @@ export function startBackgroundService(): void {
 
     menus.onClicked.addListener(onClickContextMenu);
 
-    runtime.onMessage.addListener(async function onMessage(message, sender) {
-        const res = await callResponderServiceWithMessage(
-            callBackgroundRemoteActionReciever,
-            assertIsRemoteAction,
-            message,
-            sender
-        );
-        return res;
-    });
+    runtime.onMessage.addListener(callBackgroundServiceAsInProcessReceiver);
 }
