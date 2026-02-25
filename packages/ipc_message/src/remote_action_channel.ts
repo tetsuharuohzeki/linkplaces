@@ -1,11 +1,11 @@
-import { SendMessageSender } from '@linkplaces/foundation/tower_like_ipc';
+import { ToBackgroundMessageSender, type MessageSendable } from '@linkplaces/foundation/tower_like_ipc';
 import type { ExtensionRuntime } from '@linkplaces/webext_types';
 
 import type { RemoteAction } from './remote_action.js';
 
-export type RemoteActionChannel = SendMessageSender<RemoteAction>;
+export type RemoteActionChannel = MessageSendable<RemoteAction>;
 
 export async function createChannel(runtime: ExtensionRuntime): Promise<RemoteActionChannel> {
-    const c = new SendMessageSender<RemoteAction>(runtime);
+    const c = new ToBackgroundMessageSender<RemoteAction>(runtime);
     return c;
 }
