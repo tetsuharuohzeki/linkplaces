@@ -2,10 +2,6 @@ NODE_BIN := node
 NPM_BIN_DIR := $(shell pnpm bin)
 
 
-ARTIFACT_DIR := $(CURDIR)/web-ext-artifacts
-
-PRETTIER_TARGET := '$(CURDIR)/**/*.{js,jsx,cjs,mjs,ts,tsx,cts,mts,css,yaml,yml}'
-
 all: help
 
 help:
@@ -71,10 +67,10 @@ eslint_fix: ## Run ESLint with --fix option
 # Tools
 ####################################
 format: ## Apply formetters for files.
-	$(NPM_BIN_DIR)/prettier --write $(PRETTIER_TARGET)
+	$(NODE_BIN) --run format
 
 format_check: ## Check a code formatting.
-	$(NPM_BIN_DIR)/prettier --check $(PRETTIER_TARGET)
+	$(NODE_BIN) --run 'format:check'
 
 git_diff: ## Test whether there is no committed changes.
 	git diff --exit-code

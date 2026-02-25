@@ -28,6 +28,9 @@
     "scripts": {
         "clean:package": "node ./tools/rm_dir.js ./web-ext-artifacts/ --verbose",
         "typecheck": "tsgo --build --emitDeclarationOnly",
+        "format": "node --run __format -- --write",
+        "format:check": "node --run __format -- --check",
+        "__format": "prettier '**/*.{js,jsx,cjs,mjs,ts,tsx,cts,mts,css,yaml,yml}'",
         "build": "tsc --build",
         "build:package": "web-ext build -s ./packages/linkplaces/__dist/ --artifacts-dir ./web-ext-artifacts",
         "check:relationship_between_workspace_and_ts_pj_reference": "workspaces-to-typescript-project-references --check",
