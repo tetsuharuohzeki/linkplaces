@@ -1,7 +1,7 @@
 import type { ExtensionRuntime } from '@linkplaces/webext_types';
 import type { Nullable } from 'option-t/nullable';
 import { createOk, createErr, type Result } from 'option-t/plain_result';
-import type { MessageSendable as RpcMessageSendable } from './message_sendable';
+import type { RpcMessageSendable } from './message_sendable';
 
 export class MessageResponderSideError extends Error {
     constructor(message: string, cause: Nullable<unknown>) {
