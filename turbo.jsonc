@@ -58,7 +58,6 @@
             ]
         },
         "//#lint": {
-            "cache": false, // FIXME: Remove this.
             "dependsOn": [
                 // @prettier-ignore
 
