@@ -1,9 +1,4 @@
-import {
-    type RemoteActionChannel,
-    type WhereToOpenItem,
-    openItemOneshot as openItemViaChannel,
-    registerItem as registerItemViaChannel,
-} from '@linkplaces/ipc_message';
+import { type RemoteActionChannel, type WhereToOpenItem, openItem, registerItem } from '@linkplaces/ipc_message';
 import type { BookmarkId } from '@linkplaces/webext_types';
 
 import { isNotNull } from 'option-t/nullable';
@@ -25,11 +20,11 @@ export class SidebarEpic {
         this._channel = channel;
     }
 
-    openItem(id: BookmarkId, url: string, where: WhereToOpenItem): void {
-        openItemViaChannel(this._channel, id, url, where);
+    async openItem(id: BookmarkId, url: string, where: WhereToOpenItem): Promise<void> {
+        await openItem(this._channel, id, url, where);
     }
 
-    pasteItemFromClipboardActionActual(event: ClipboardEvent): void {
+    async pasteItemFromClipboardActionActual(event: ClipboardEvent): Promise<void> {
         const data = event.clipboardData;
         if (!data) {
             return;
@@ -37,7 +32,7 @@ export class SidebarEpic {
 
         const url = data.getData('text/plain');
 
-        registerItemViaChannel(this._channel, url);
+        await registerItem(this._channel, url);
     }
 
     async dropItemLikeHyperLink(event: DragEvent): Promise<void> {
@@ -53,7 +48,7 @@ export class SidebarEpic {
         if (isSupportedFirefoxTabDrag(dataTransfer)) {
             const items = await tryGetUrlFromFirefoxTab(dataTransfer);
             if (isNotNull(items)) {
-                registerMultipleItemViaChannel(this._channel, items);
+                await registerMultipleItemViaChannel(this._channel, items);
             }
             return;
         }
@@ -66,14 +61,17 @@ export class SidebarEpic {
         }
 
         const list = unwrapOk(result);
-        registerMultipleItemViaChannel(this._channel, list);
+        await registerMultipleItemViaChannel(this._channel, list);
     }
 }
 
-function registerMultipleItemViaChannel(channel: RemoteActionChannel, list: Array<string>): void {
+async function registerMultipleItemViaChannel(channel: RemoteActionChannel, list: Array<string>): Promise<void> {
+    const promises = [];
     for (const url of list) {
-        registerItemViaChannel(channel, url);
+        const registered = registerItem(channel, url);
+        promises.push(registered);
     }
+    await Promise.all(promises);
 }
 
 // TODO: support text/x-moz-url

@@ -1,6 +1,6 @@
 import {
     WhereToOpenItem,
-    openItemOneshot as openItemViaChannel,
+    openItem,
     openWebExtSidebar as openWebExtSidebarDirect,
     type RemoteActionChannel,
 } from '@linkplaces/ipc_message';
@@ -17,8 +17,9 @@ export class PopupMainEpic {
 
     async openItem(id: BookmarkId, url: string): Promise<void> {
         const where: WhereToOpenItem = WhereToOpenItem.Tab;
-        openItemViaChannel(this._channel, id, url, where);
-        return closeWindow();
+        const tabOpen = openItem(this._channel, id, url, where);
+        const closingPopup = closeWindow();
+        await Promise.all([tabOpen, closingPopup]);
     }
 
     // eslint-disable-next-line class-methods-use-this

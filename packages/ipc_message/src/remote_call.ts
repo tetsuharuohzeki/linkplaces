@@ -4,12 +4,12 @@ import { UndefinableOperator } from 'option-t/undefinable';
 import { type WhereToOpenItem, createOpenUrlAction, createRegisterUrlAction } from './remote_action.js';
 import type { RemoteActionChannel } from './remote_action_channel.js';
 
-export function openItemOneshot(
+export async function openItem(
     chan: RemoteActionChannel,
     bookmarkId: BookmarkId,
     url: string,
     where: WhereToOpenItem
-): void {
+): Promise<void> {
     const a = createOpenUrlAction(bookmarkId, url, where);
     chan.postOneShotMessage(a);
 }
@@ -23,7 +23,7 @@ export async function openWebExtSidebar(sidebarAction: WebExtSidebarActionServic
     }
 }
 
-export function registerItem(chan: RemoteActionChannel, url: string, title?: string): void {
+export async function registerItem(chan: RemoteActionChannel, url: string, title?: string): Promise<void> {
     const t = UndefinableOperator.unwrapOr(title, url);
     const a = createRegisterUrlAction(url, t);
     chan.postOneShotMessage(a);

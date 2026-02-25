@@ -11,11 +11,11 @@ export class SidebarIntent {
     }
 
     openItem(id: BookmarkId, url: string, where: WhereToOpenItem): void {
-        this._epic.openItem(id, url, where);
+        this._epic.openItem(id, url, where).catch(console.error);
     }
 
     pasteItemFromClipboardActionActual(event: ClipboardEvent): void {
-        this._epic.pasteItemFromClipboardActionActual(event);
+        this._epic.pasteItemFromClipboardActionActual(event).catch(console.error);
     }
 
     dropItemLikeHyperLink(event: DragEvent): void {
