@@ -14,13 +14,11 @@ class SyncFactoryObservable<T> extends Observable<T> {
                 aborter.abort();
             });
 
-            let result: CompletionResult = null;
             try {
                 factory(destination, signal);
-                result = null;
             } catch (e: unknown) {
                 destination.error(e);
-                result = new SubscriptionCompleteByFailureError(e);
+                const result: CompletionResult = new SubscriptionCompleteByFailureError(e);
                 destination.complete(result);
             }
         });

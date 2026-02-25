@@ -20,7 +20,7 @@ export function getUnfiledBoolmarkFolder(bookmarks: WebExtBookmarkService): Prom
 }
 
 function validateUrlForRegister(input: string): Result<string, URIError> {
-    let urlString = '';
+    let urlString: string;
     // This path accepts an arbitary data which maybe a password or other sensitive data from clipboard.
     // Here, we try to convert them to a valid URL by https://url.spec.whatwg.org/#dom-url-url
     // If the input string is not started with `http`, `https` or other common schecmes, it might be
