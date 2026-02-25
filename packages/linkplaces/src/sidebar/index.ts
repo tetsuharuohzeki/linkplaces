@@ -1,6 +1,6 @@
 import { setupTeardownOnPageHide } from '@linkplaces/foundation/view_ctx';
 import { renderReactView } from '@linkplaces/foundation/view_ctx/react';
-import { createChannel } from '@linkplaces/ipc_message';
+import { createChannelForBackgroundService } from '@linkplaces/ipc_message';
 import { getUnfiledBoolmarkFolder } from '@linkplaces/shared/bookmark';
 
 import { browser } from '@linkplaces/webext_types';
@@ -9,7 +9,7 @@ import { initSidebarContext } from './sidebar_context.jsx';
 (async function main() {
     const [list, channel] = await Promise.all([
         getUnfiledBoolmarkFolder(browser.bookmarks),
-        createChannel(browser.runtime),
+        createChannelForBackgroundService(browser.runtime),
     ]);
 
     window.addEventListener('contextmenu', disableCtxMenu);
