@@ -5,7 +5,7 @@ import { browser } from '@linkplaces/webext_types';
 import { callBackgroundRemoteActionReciever } from './background_remote_action_reciever.js';
 import { appendContextMenu, onClickContextMenu } from './context_menu.js';
 
-(function main() {
+export function startBackgroundService(): void {
     const runtime = browser.runtime;
     const menus = browser.menus;
 
@@ -24,4 +24,4 @@ import { appendContextMenu, onClickContextMenu } from './context_menu.js';
         );
         return res;
     });
-})();
+}

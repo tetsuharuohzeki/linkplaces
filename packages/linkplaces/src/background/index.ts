@@ -1,1 +1,5 @@
-import '@linkplaces/background_service';
+import { startBackgroundService } from '@linkplaces/background_service';
+
+(function main() {
+    startBackgroundService();
+})();
