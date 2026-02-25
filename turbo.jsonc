@@ -19,6 +19,21 @@
         "//#clean:package": {
             "cache": false
         },
+        "//#check:relationship_between_workspace_and_ts_pj_reference": {
+            // You can know which files are used as inputs by `turbo run <task_name> --dry=json | jq '.tasks[].inputs'
+            // See https://turborepo.dev/docs/reference/run#--dry----dry-run
+            //
+            "inputs": [
+                "package.json",
+                "packages/**/package.json",
+                "pnpm-lock.yaml",
+                "pnpm-workspace.yaml",
+                "tsconfig.json",
+                "tsconfig.*.json",
+                "packages/**/tsconfig.json",
+                "packages/**/tsconfig.*.json"
+            ]
+        },
         "//#typecheck": {
             "cache": false
         },
@@ -40,6 +55,18 @@
             "outputs": [
                 // See https://turborepo.com/docs/reference/configuration#turbo_root
                 "$TURBO_ROOT$/web-ext-artifacts/**"
+            ]
+        },
+        "//#lint": {
+            "cache": false, // FIXME: Remove this.
+            "dependsOn": [
+                // @prettier-ignore
+
+                // We don't have to run this task before typecheck.
+                // because it's not frequent operation.
+                "//#check:relationship_between_workspace_and_ts_pj_reference",
+
+                "//#eslint"
             ]
         },
         "@linkplaces/app#clean:dist": {

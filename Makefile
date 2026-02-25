@@ -57,16 +57,14 @@ test: ## Run unit tests
 ####################################
 # Lint
 ####################################
-lint: eslint check_relationship_between_workspace_and_ts_pj_reference ## Run all lints.
+lint: ## Run all lints.
+	$(NPM_BIN_DIR)/turbo run lint
 
 eslint: ## Run ESLint
 	$(NPM_BIN_DIR)/turbo eslint
 
 eslint_fix: ## Run ESLint with --fix option
 	$(NPM_BIN_DIR)/turbo eslint -- --fix
-
-check_relationship_between_workspace_and_ts_pj_reference:
-	$(NPM_BIN_DIR)/workspaces-to-typescript-project-references --check
 
 
 ####################################
