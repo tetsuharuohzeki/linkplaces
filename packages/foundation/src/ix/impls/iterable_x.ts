@@ -3,7 +3,7 @@ export abstract class IterableX<const in out TInput, const out TOutput = TInput>
     constructor(source: Iterable<TInput>) {
         this._source = source;
     }
-    abstract [Symbol.iterator](): Iterator<TOutput>;
+    abstract [Symbol.iterator](): IteratorObject<TOutput>;
 }
 
 export abstract class AsyncIterableX<
@@ -14,7 +14,7 @@ export abstract class AsyncIterableX<
     constructor(source: AsyncIterable<TInput>) {
         this._source = source;
     }
-    abstract [Symbol.asyncIterator](): AsyncIterator<TOutput>;
+    abstract [Symbol.asyncIterator](): AsyncIteratorObject<TOutput>;
 }
 
 export function getIterator<T>(iter: Iterable<T>): Iterator<T> {
