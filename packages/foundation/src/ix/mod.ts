@@ -9,6 +9,7 @@ export {
     filterMapAsyncWithComparatorForAsyncIterable as filterMapAsyncWithComparator,
 } from './impls/filter_map_async.js';
 export { flatMapForIterable as flatMap } from './impls/flat_map.js';
+export { lazyForIterable as lazy, type LazyIterable } from './impls/lazy.js';
 export { mapForIterable as map } from './impls/map.js';
 export { mapAsyncForAsyncIterable as mapAsync } from './impls/map_async.js';
 export { skipForIterable as skip } from './impls/skip.js';
