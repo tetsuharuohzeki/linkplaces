@@ -9,6 +9,7 @@ export type TabId = number & { [tabIdMarker]: never };
 
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/Tab
 export interface Tab {
+    active: boolean;
     title?: string;
     url?: string;
     id?: TabId;

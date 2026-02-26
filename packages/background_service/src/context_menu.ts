@@ -1,4 +1,4 @@
-import { Ix } from '@linkplaces/foundation';
+import { Assert, Ix } from '@linkplaces/foundation';
 import { createBookmarkItem, type CreateBookmarkItemResult } from '@linkplaces/shared/bookmark';
 import {
     type OnClickData,
@@ -91,15 +91,26 @@ async function onClickedAsync(info: OnClickData, tab: Maybe<Tab>): Promise<void>
 }
 
 async function onClickSaveTab(tab: Tab): Promise<ReadonlyArray<CreateBookmarkItemResult>> {
-    const { title: titleMaybe, url, windowId } = tab;
+    const { title, url, windowId } = tab;
     if (typeof url !== 'string') {
         throw new TypeError('Cannot found both of `url`');
     }
 
     const currentSelectedTabsResult = await getSelectedTabsAll(windowId);
     const currentSelectedTabs = ResultOperator.unwrapOr(currentSelectedTabsResult, []);
-    if (currentSelectedTabs.length === 0) {
-        const result = await saveSingleTab(titleMaybe, url);
+
+    // Firefox's 150's multiple tab selections (`Ctrl`+Click) does not take the state that
+    // selects only background tabs excluding the current tab.
+    // If there are multiple selected tabs, it always includes the current tabs.
+    // In other words, the number of _selected tabs_ is 1, _selected tab_ means just the current tab.
+    // To allow to click and try save a background tab, we should care such case.
+    if (currentSelectedTabs.length <= 1) {
+        const currentSelectedTab = currentSelectedTabs[0];
+        if (!!currentSelectedTab) {
+            Assert.ok(currentSelectedTab.active, 'this certify the above hypothesis');
+        }
+
+        const result = await saveSingleTab(title, url);
         return result;
     }
 
