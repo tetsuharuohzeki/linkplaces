@@ -14,7 +14,7 @@ export async function callBackgroundServiceAsInProcessReceiver(message: object):
     return res;
 }
 
-export function startBackgroundService(): void {
+export function initializeBackgroundService(): void {
     const runtime = browser.runtime;
     const menus = browser.menus;
 

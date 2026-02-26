@@ -1,5 +1,5 @@
-import { startBackgroundService } from '@linkplaces/background_service';
+import { initializeBackgroundService } from '@linkplaces/background_service';
 
 (function main() {
-    startBackgroundService();
+    initializeBackgroundService();
 })();
