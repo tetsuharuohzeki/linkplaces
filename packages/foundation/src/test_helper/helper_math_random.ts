@@ -3,7 +3,7 @@ import type { Nullable } from 'option-t/nullable';
 
 let original: Nullable<typeof Math.random> = null;
 
-function createFakeMathRandom() {
+function createDeterministicFakeMathRandom() {
     let seed = 49734321;
     return function MockMathRandom() {
         /* eslint-disable no-bitwise */
@@ -21,13 +21,13 @@ function createFakeMathRandom() {
     };
 }
 
-export function replaceMathRandomWithFake(): void {
+export function replaceMathRandomWithDeterministicFake(): void {
     if (original !== null) {
         throw new TypeError('Math.random() has been mocked. You may call this twice');
     }
 
     original = Math.random;
-    globalThis.Math.random = createFakeMathRandom();
+    globalThis.Math.random = createDeterministicFakeMathRandom();
 }
 
 export function revetMathRandomToOriginal(): void {
