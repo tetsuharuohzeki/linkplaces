@@ -27,7 +27,8 @@
     },
     "scripts": {
         "clean:package": "node ./tools/rm_dir.js ./web-ext-artifacts/ --verbose",
-        "typecheck": "tsgo --build --emitDeclarationOnly",
+        "typecheck": "tsc --build --emitDeclarationOnly",
+        "typecheck:go": "tsgo --build --emitDeclarationOnly",
         "format": "node --run __format -- --write",
         "format:check": "node --run __format -- --check",
         "__format": "prettier '**/*.{js,jsx,cjs,mjs,ts,tsx,cts,mts,css,yaml,yml}'",
