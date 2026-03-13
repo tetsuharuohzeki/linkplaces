@@ -8,6 +8,8 @@
         "module": "ES2022",
         "moduleResolution": "Bundler",
 
+        "stableTypeOrdering": true, // Keep the compat with 7.0~
+
         "composite": true,
         "declaration": true,
         "isolatedDeclarations": true,

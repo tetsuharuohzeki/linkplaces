@@ -1,9 +1,8 @@
 {
     "extends": "../../tsconfig.base.project_reference.json",
     "compilerOptions": {
-        // Disallow to touch any DOM object.
-        "lib": ["es2022"],
-
+        // Allow to runnable in worker (does not allow to touch DOM).
+        "lib": ["ESNext", "WebWorker"],
         "outDir": "${configDir}/__dist",
         "rootDir": "${configDir}/src"
     },
