@@ -32,11 +32,11 @@ clean: ## Clean up all generated files.
 ####################################
 .PHONY: build_debug
 build_debug:  ## Run `make build` with `RELEASE_CHANNEL=development`
-	env RELEASE_CHANNEL=development $(NPM_BIN_DIR)/turbo run 'build:package'
+	env RELEASE_CHANNEL=development $(NPM_BIN_DIR)/turbo run '//#build:package'
 
 .PHONY: build_release
 build_release: ## Run `make build` with `RELEASE_CHANNEL=production`
-	env RELEASE_CHANNEL=production $(NPM_BIN_DIR)/turbo run 'build:package'
+	env RELEASE_CHANNEL=production $(NPM_BIN_DIR)/turbo run '//#build:package'
 
 
 ####################################
