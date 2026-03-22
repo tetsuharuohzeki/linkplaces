@@ -44,7 +44,7 @@ catalog:
   rollup: ^4.59.0
   tinyspy: ^4.0.4
   turbo: ^2.8.17
-  typescript: ^6.0.1-rc
+  typescript: 6.0.1-rc
   web-ext: ^10.0.0
 
 minimumReleaseAge: 7200
