@@ -29,7 +29,7 @@ catalog:
   babel-plugin-react-compiler: ^1.0.0
   eslint: ^10.0.3
   eslint-config-prettier: ^10.1.8
-  eslint-config-turbo: ^2.8.17
+  eslint-config-turbo: ^2.8.20
   eslint-plugin-import-x: ^4.16.2
   eslint-plugin-react: ^7.37.5
   eslint-plugin-react-hooks: ^7.0.1
@@ -43,7 +43,7 @@ catalog:
   react-dom: ^19.2.4
   rollup: ^4.59.0
   tinyspy: ^4.0.4
-  turbo: ^2.8.17
+  turbo: ^2.8.20
   typescript: 6.0.1-rc
   web-ext: ^10.0.0
 
