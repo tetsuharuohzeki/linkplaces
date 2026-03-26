@@ -41,7 +41,7 @@ catalog:
   prettier: ^3.8.1
   react: ^19.2.4
   react-dom: ^19.2.4
-  rollup: ^4.59.0
+  rollup: ^4.59.1
   tinyspy: ^4.0.4
   turbo: ^2.8.20
   typescript: 6.0.2
