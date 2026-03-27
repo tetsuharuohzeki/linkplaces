@@ -24,7 +24,7 @@ catalog:
   '@types/react-dom': ^19.2.3
   '@typescript-eslint/eslint-plugin': ^8.57.1
   '@typescript-eslint/parser': ^8.57.1
-  '@typescript/native-preview': 7.0.0-dev.20260322.1
+  '@typescript/native-preview': 7.0.0-dev.20260326.1
   ava: ^7.0.0
   babel-plugin-react-compiler: ^1.0.0
   eslint: ^10.0.3
