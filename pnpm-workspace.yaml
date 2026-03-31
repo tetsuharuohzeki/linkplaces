@@ -48,9 +48,11 @@ catalog:
   web-ext: ^10.0.0
 
 minimumReleaseAge: 7200
-
 minimumReleaseAgeExclude:
   - '@typescript/native-preview'
   - '@typescript/native-preview-*'
   - option-t
   - typescript
+
+trustPolicy: no-downgrade
+trustPolicyExclude:
