@@ -56,3 +56,4 @@ minimumReleaseAgeExclude:
 
 trustPolicy: no-downgrade
 trustPolicyExclude:
+trustPolicyIgnoreAfter: 43200 # 60 * 24 * 30 min
