@@ -4,11 +4,13 @@ import { MaybeOperator } from 'option-t/maybe';
  *  @import { RuleFunction } from '@eslint-react/kit';
  */
 
-const DEFAULT_MODE_SYNTAX = 'syntax';
+const MODE_SYNTAX = 'syntax';
+const MODE_ELEMENT = 'element';
+const DEFAULT_MODE = MODE_SYNTAX;
 
 /**
  *  @typedef    {Object}    JsxsFragmentsOptions
- *  @property   {typeof DEFAULT_MODE_SYNTAX|'element'?} mode
+ *  @property   {(typeof MODE_SYNTAX|typeof MODE_ELEMENT)?} mode
  */
 
 /**
@@ -16,11 +18,11 @@ const DEFAULT_MODE_SYNTAX = 'syntax';
  * @returns {RuleFunction}
  */
 export function jsxFragments(options = undefined) {
-    const mode = MaybeOperator.mapOr(options, DEFAULT_MODE_SYNTAX, (options) => {
-        return MaybeOperator.unwrapOr(options.mode, DEFAULT_MODE_SYNTAX);
+    const mode = MaybeOperator.mapOr(options, DEFAULT_MODE, (options) => {
+        return MaybeOperator.unwrapOr(options.mode, DEFAULT_MODE);
     });
 
-    return (context) => {
+    return function jsxFragmentsImpl(context) {
         function reportSyntaxPreferred(node, pattern) {
             const hasAttributes = node.attributes.length > 0;
             if (hasAttributes) {
@@ -40,46 +42,48 @@ export function jsxFragments(options = undefined) {
             });
         }
 
-        return {
-            JSXOpeningElement(node) {
-                const name = node.name;
+        switch (mode) {
+            case MODE_SYNTAX:
+                return {
+                    JSXOpeningElement(node) {
+                        const name = node.name;
+                        if (name.type === 'JSXIdentifier' && name.name === 'Fragment') {
+                            reportSyntaxPreferred(node, 'Fragment');
+                            return;
+                        }
 
-                if (name.type === 'JSXIdentifier' && name.name === 'Fragment') {
-                    if (mode === 'syntax') {
-                        reportSyntaxPreferred(node, 'Fragment');
-                    }
-                    return;
-                }
+                        // Handle <React.Fragment> (JSXMemberExpression)
+                        if (name.type !== 'JSXMemberExpression') {
+                            return;
+                        }
 
-                // Handle <React.Fragment> (JSXMemberExpression)
-                if (name.type !== 'JSXMemberExpression') {
-                    return;
-                }
-                if (name.object.type !== 'JSXIdentifier' || name.object.name !== 'React') {
-                    return;
-                }
-                if (name.property.type !== 'JSXIdentifier' || name.property.name !== 'Fragment') {
-                    return;
-                }
+                        if (name.object.type !== 'JSXIdentifier' || name.object.name !== 'React') {
+                            return;
+                        }
+                        if (name.property.type !== 'JSXIdentifier' || name.property.name !== 'Fragment') {
+                            return;
+                        }
 
-                if (mode === 'syntax') {
-                    reportSyntaxPreferred(node, 'React.Fragment');
-                }
-            },
-            JSXFragment(node) {
-                if (mode === 'element') {
-                    context.report({
-                        node,
-                        message: "Use '<React.Fragment>...</React.Fragment>' instead of shorthand '<>...</>'.",
-                        fix(fixer) {
-                            return [
-                                fixer.replaceText(node.openingFragment, '<React.Fragment>'),
-                                fixer.replaceText(node.closingFragment, '</React.Fragment>'),
-                            ];
-                        },
-                    });
-                }
-            },
-        };
+                        reportSyntaxPreferred(node, 'React.Fragment');
+                    },
+                };
+            case MODE_ELEMENT:
+                return {
+                    JSXFragment(node) {
+                        context.report({
+                            node,
+                            message: "Use '<React.Fragment>...</React.Fragment>' instead of shorthand '<>...</>'.",
+                            fix(fixer) {
+                                return [
+                                    fixer.replaceText(node.openingFragment, '<React.Fragment>'),
+                                    fixer.replaceText(node.closingFragment, '</React.Fragment>'),
+                                ];
+                            },
+                        });
+                    },
+                };
+            default:
+                throw new RangeError(`unknown mode: ${mode}`);
+        }
     };
 }
