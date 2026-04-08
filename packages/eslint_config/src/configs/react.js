@@ -2,7 +2,6 @@
 
 import eslintReact from '@eslint-react/eslint-plugin';
 import { defineConfig } from 'eslint/config';
-import reactESLintPlugin from 'eslint-plugin-react';
 import reactHooksESLintPlugin from 'eslint-plugin-react-hooks';
 import { FILE_PATTERN_TS } from './file_patterns.js';
 
@@ -13,15 +12,6 @@ import { getESLintReactKitConfig } from './react_rule_kit.js';
  */
 export const reactConfigs = defineConfig([
     // @prettier-ignore
-    {
-        files: FILE_PATTERN_TS,
-        plugins: {
-            react: reactESLintPlugin,
-        },
-        rules: {
-        },
-    },
-
     {
         files: FILE_PATTERN_TS,
         extends: [

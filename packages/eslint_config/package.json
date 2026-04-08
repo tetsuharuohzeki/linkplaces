@@ -18,7 +18,6 @@
         "eslint-config-prettier": "catalog:",
         "eslint-config-turbo": "catalog:",
         "eslint-plugin-import-x": "catalog:",
-        "eslint-plugin-react": "catalog:",
         "eslint-plugin-react-hooks": "catalog:",
         "option-t": "catalog:"
     }
