@@ -6,6 +6,8 @@ import reactESLintPlugin from 'eslint-plugin-react';
 import reactHooksESLintPlugin from 'eslint-plugin-react-hooks';
 import { FILE_PATTERN_TS } from './file_patterns.js';
 
+import { getESLintReactKitConfig } from './react_rule_kit.js';
+
 /**
  *  @type   {ReadonlyArray<import('eslint').Linter.Config>}
  */
@@ -43,16 +45,12 @@ export const reactConfigs = defineConfig([
 
     {
         files: FILE_PATTERN_TS,
-        extends: [eslintReact.configs['strict-typescript']],
+        extends: [
+            // @prettier-ignore
+            eslintReact.configs['strict-typescript'],
+            getESLintReactKitConfig(),
+        ],
         rules: {
-            // Enforce to specify html's boolean type attribute.
-            '@eslint-react/jsx-shorthand-boolean': [
-                'error',
-                // This should be set `-1` to warn shorthand boolean
-                // ref https://github.com/Rel1cx/eslint-react/blob/5d8e0c5f7f6ca254f66e3c59a9d24f4483431fda/packages/plugins/eslint-plugin-react-x/src/rules/jsx-shorthand-boolean.ts#L75C25-L86
-                -1,
-            ],
-
             // We don't have to use a react class component excluding some situations
             // that you need to implement react error boundary with `getDerivedStateFromError()`.
             // See:
@@ -62,22 +60,14 @@ export const reactConfigs = defineConfig([
             '@eslint-react/no-class-component': 'error',
 
             // We respect JSX syntax
-            '@eslint-react/no-children-prop': 'error',
+            '@eslint-react/jsx-no-children-prop': 'error',
 
             // Improve the debuggability on react devtools.
             '@eslint-react/no-missing-component-display-name': 'warn',
             '@eslint-react/no-missing-context-display-name': 'warn',
 
             // Should clean up codes.
-            '@eslint-react/no-useless-fragment': 'warn',
-
-            // We would like to use syntax to swap to other libs easily.
-            '@eslint-react/jsx-shorthand-fragment': [
-                'warn',
-                // This should be set `-1` to warn non shorthand syntax
-                // See https://github.com/Rel1cx/eslint-react/blob/5d8e0c5f7f6ca254f66e3c59a9d24f4483431fda/packages/plugins/eslint-plugin-react-x/src/rules/jsx-shorthand-fragment.ts#L63-L84
-                1,
-            ],
+            '@eslint-react/jsx-no-useless-fragment': 'warn',
         },
     },
 

@@ -11,6 +11,7 @@
         "@eslint/css": "catalog:",
         "@eslint/js": "catalog:",
         "@eslint-react/eslint-plugin": "catalog:",
+        "@eslint-react/kit": "catalog:",
         "@typescript-eslint/eslint-plugin": "catalog:",
         "@typescript-eslint/parser": "catalog:",
         "eslint": "catalog:",
@@ -18,6 +19,7 @@
         "eslint-config-turbo": "catalog:",
         "eslint-plugin-import-x": "catalog:",
         "eslint-plugin-react": "catalog:",
-        "eslint-plugin-react-hooks": "catalog:"
+        "eslint-plugin-react-hooks": "catalog:",
+        "option-t": "catalog:"
     }
 }
