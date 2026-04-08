@@ -19,13 +19,6 @@ export const reactConfigs = defineConfig([
             react: reactESLintPlugin,
         },
         rules: {
-            'react/self-closing-comp': [
-                2,
-                {
-                    component: true,
-                    html: false,
-                },
-            ],
         },
     },
 
