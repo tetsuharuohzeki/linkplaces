@@ -45,7 +45,7 @@ catalog:
   tinyspy: ^4.0.4
   turbo: ^2.9.3
   typescript: 6.0.2
-  web-ext: ^10.0.0
+  web-ext: ^10.1.0
 
 minimumReleaseAge: 7200
 minimumReleaseAgeExclude:
