@@ -75,7 +75,7 @@ export function jsxSelfClosing() {
     const component = true;
     const html = false;
 
-    return (context) => {
+    return function jsxSelfClosingImpl(context) {
         function isComponent(node) {
             return (
                 node.name &&

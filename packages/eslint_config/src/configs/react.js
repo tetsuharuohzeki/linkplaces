@@ -37,6 +37,8 @@ export const reactConfigs = defineConfig([
 
             // Should clean up codes.
             '@eslint-react/jsx-no-useless-fragment': 'warn',
+
+            '@eslint-react/no-unstable-default-props': 'error',
         },
     },
 

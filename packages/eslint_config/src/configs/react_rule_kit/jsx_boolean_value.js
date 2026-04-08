@@ -7,18 +7,20 @@
  *  @returns {RuleFunction}
  */
 export function jsxBooleanValue() {
-    return (context) => ({
-        JSXAttribute(node) {
-            const value = node.value;
-            if (value === null) {
-                context.report({
-                    node,
-                    message: 'Supply the value for boolean attributes explicitly',
-                    fix(fixer) {
-                        return fixer.insertTextAfter(node, '={true}');
-                    },
-                });
-            }
-        },
-    });
+    return function jsxBooleanValueImpl(context) {
+        return {
+            JSXAttribute(node) {
+                const value = node.value;
+                if (value === null) {
+                    context.report({
+                        node,
+                        message: 'Supply the value for boolean attributes explicitly',
+                        fix(fixer) {
+                            return fixer.insertTextAfter(node, '={true}');
+                        },
+                    });
+                }
+            },
+        };
+    };
 }

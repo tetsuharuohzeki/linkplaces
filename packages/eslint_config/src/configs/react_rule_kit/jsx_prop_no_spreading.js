@@ -13,19 +13,21 @@ function isProperty(property) {
  * @returns {RuleFunction}
  */
 export function jsxPropsNoSpreading() {
-    return (context) => ({
-        JSXSpreadAttribute(node) {
-            const argument = node.argument;
+    return function jsxPropsNoSpreadingImpl(context) {
+        return {
+            JSXSpreadAttribute(node) {
+                const argument = node.argument;
 
-            // ignoreExplicitSpread
-            if (argument.type === 'ObjectExpression' && argument.properties.every(isProperty)) {
-                return;
-            }
+                // ignoreExplicitSpread
+                if (argument.type === 'ObjectExpression' && argument.properties.every(isProperty)) {
+                    return;
+                }
 
-            context.report({
-                node,
-                message: 'Props spreading is not allowed.',
-            });
-        },
-    });
+                context.report({
+                    node,
+                    message: 'Props spreading is not allowed.',
+                });
+            },
+        };
+    };
 }
