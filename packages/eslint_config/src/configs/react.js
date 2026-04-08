@@ -26,9 +26,6 @@ export const reactConfigs = defineConfig([
                     html: false,
                 },
             ],
-
-            // JSX-specific rules
-            'react/jsx-no-literals': 1,
         },
     },
 
