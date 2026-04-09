@@ -1,3 +1,5 @@
+// @ts-check
+
 // https://github.com/jsx-eslint/eslint-plugin-react/blob/012ec39f962627d5312e9fbaee3eb41d9a4d8bb6/lib/rules/jsx-no-literals.js
 // https://www.eslint-react.xyz/docs/migrating-from-eslint-plugin-react#jsx-no-literals
 
@@ -6,6 +8,17 @@
  */
 
 /**
+ *  @typedef    {Object}    JsxNoLiteralsOptions
+ *  @property   {boolean=}  noStrings
+ *      Enforces no string literals used as children, wrapped or unwrapped.
+ *  @property   {Array<string>=}  allowedStrings
+ *      An array of unique string values that would otherwise warn, but will be ignored
+ *  @property   {boolean=}  ignoreProps
+ *      When `true` the rule ignores literals used in props.
+ */
+
+/**
+ * @param   {JsxNoLiteralsOptions=} options
  * @returns {RuleFunction}
  */
 export function jsxNoLiterals(options = {}) {
