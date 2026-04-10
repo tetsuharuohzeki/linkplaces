@@ -57,4 +57,6 @@ minimumReleaseAgeExclude:
 trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 43200 # 60 * 24 * 30 min
 
+# Mitigate an attack vector for a typical supply chain attack.
 blockExoticSubdeps: true
+strictDepBuilds: true
