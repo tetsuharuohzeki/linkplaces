@@ -20,5 +20,8 @@
         "eslint-plugin-import-x": "catalog:",
         "eslint-plugin-react-hooks": "catalog:",
         "option-t": "catalog:"
+    },
+    "scripts": {
+        "test": "node --test './**/**.test.js'"
     }
 }
