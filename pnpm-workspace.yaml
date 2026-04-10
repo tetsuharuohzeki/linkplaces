@@ -56,3 +56,5 @@ minimumReleaseAgeExclude:
 
 trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 43200 # 60 * 24 * 30 min
+
+blockExoticSubdeps: true
