@@ -22,7 +22,7 @@
  * @returns {RuleFunction}
  */
 export function jsxNoLiterals(options = {}) {
-    const { noStrings = false, allowedStrings = [], ignoreProps = true } = options;
+    const { noStrings = false, allowedStrings = [], ignoreProps = false } = options;
     const allowedSet = new Set(allowedStrings);
     return function jsxNoLiteralsImpl(context) {
         return {
@@ -30,6 +30,7 @@ export function jsxNoLiterals(options = {}) {
                 if (typeof node.value !== 'string') {
                     return;
                 }
+
                 const text = node.value.trim();
                 if (text === '' || allowedSet.has(text)) {
                     return;
