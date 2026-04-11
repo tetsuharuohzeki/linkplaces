@@ -13,6 +13,9 @@
  *      When `true` the rule ignores literals used in props.
  */
 
+const SINGE_QUOTE_CHAR = `'`;
+const DOUBLE_QUOTE_CHAR = `"`;
+
 /**
  * @param   {JsxNoLiteralsOptions=} options
  * @returns {RuleFunction}
@@ -32,15 +35,14 @@ export function jsxNoLiterals(options = {}) {
                     return;
                 }
 
-                const value = node.value;
-                if (!value || value.type !== 'Literal') {
+                const valueNode = node.value;
+                if (!(!!valueNode && valueNode.type === 'Literal')) {
                     return;
                 }
 
-                const text = value.value;
                 context.report({
                     node,
-                    message: `String literals are not allowed in JSX props. Use {'${text}'} instead.`,
+                    message: `String literals are not wrapped as \`{value}\` JSX props.`,
                 });
             },
             JSXText(node) {
@@ -51,7 +53,22 @@ export function jsxNoLiterals(options = {}) {
 
                 context.report({
                     node,
-                    message: `String literals should be wrapped in JSX expression: {'${text}'}`,
+                    message: `String literals should be wrapped as \`{value}\` in JSX expression`,
+                    fix(fixer) {
+                        const rawValue = node.raw;
+                        const trimmed = rawValue.trim();
+
+                        let replaced;
+                        if (trimmed.startsWith(SINGE_QUOTE_CHAR) && trimmed.endsWith(SINGE_QUOTE_CHAR)) {
+                            replaced = `{\`${rawValue}\`}`;
+                        } else if (trimmed.startsWith(DOUBLE_QUOTE_CHAR) && trimmed.endsWith(DOUBLE_QUOTE_CHAR)) {
+                            replaced = `{\`${rawValue}\`}`;
+                        } else {
+                            replaced = `{'${rawValue}'}`;
+                        }
+
+                        return fixer.replaceText(node, replaced);
+                    },
                 });
             },
         };

@@ -37,23 +37,43 @@ ruleTester.run(RULE_NAME, rule, {
             code: '<bar>foo</bar>',
             errors: [
                 {
-                    message: `String literals should be wrapped in JSX expression: {'foo'}`,
+                    message: `String literals should be wrapped as \`{value}\` in JSX expression`,
                 },
             ],
+            output: `<bar>{'foo'}</bar>`,
         },
         {
             code: '<>foo</>',
             errors: [
                 {
-                    message: `String literals should be wrapped in JSX expression: {'foo'}`,
+                    message: `String literals should be wrapped as \`{value}\` in JSX expression`,
                 },
             ],
+            output: `<>{'foo'}</>`,
+        },
+        {
+            code: `<>  'foo'   </>`,
+            errors: [
+                {
+                    message: `String literals should be wrapped as \`{value}\` in JSX expression`,
+                },
+            ],
+            output: `<>{\`  'foo'   \`}</>`,
+        },
+        {
+            code: `<>  "foo"   </>`,
+            errors: [
+                {
+                    message: `String literals should be wrapped as \`{value}\` in JSX expression`,
+                },
+            ],
+            output: `<>{\`  "foo"   \`}</>`,
         },
         {
             code: '<bar bar="1"/>',
             errors: [
                 {
-                    message: `String literals are not allowed in JSX props. Use {'1'} instead.`,
+                    message: `String literals are not wrapped as \`{value}\` JSX props.`,
                 },
             ],
         },
