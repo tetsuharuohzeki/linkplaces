@@ -9,10 +9,6 @@
 
 /**
  *  @typedef    {Object}    JsxNoLiteralsOptions
- *  @property   {boolean=}  noStrings
- *      Enforces no string literals used as children, wrapped or unwrapped.
- *  @property   {Array<string>=}  allowedStrings
- *      An array of unique string values that would otherwise warn, but will be ignored
  *  @property   {boolean=}  ignoreProps
  *      When `true` the rule ignores literals used in props.
  */
@@ -22,70 +18,41 @@
  * @returns {RuleFunction}
  */
 export function jsxNoLiterals(options = {}) {
-    const { noStrings = false, allowedStrings = [], ignoreProps = false } = options;
-    const allowedSet = new Set(allowedStrings);
+    const { ignoreProps = false } = options;
     return function jsxNoLiteralsImpl(context) {
         return {
-            Literal(node) {
-                if (typeof node.value !== 'string') {
+            JSXAttribute(node) {
+                if (ignoreProps) {
                     return;
                 }
 
-                const text = node.value.trim();
-                if (text === '' || allowedSet.has(text)) {
+                const prop = node.name;
+                if (prop.type !== 'JSXIdentifier') {
+                    // this is unknown tree structure.
                     return;
                 }
 
-                const parent = node.parent;
-                if (!parent) {
+                const value = node.value;
+                if (!value || value.type !== 'Literal') {
                     return;
                 }
 
-                if (parent.type === 'JSXAttribute') {
-                    if (!ignoreProps) {
-                        context.report({
-                            node,
-                            message: `String literals are not allowed in JSX props. Use {'${text}'} instead.`,
-                        });
-                    }
-                    return;
-                }
-
-                if (parent.type === 'JSXExpressionContainer') {
-                    return;
-                }
-
-                if (parent.type === 'JSXElement' || parent.type === 'JSXFragment') {
-                    if (noStrings) {
-                        context.report({
-                            node,
-                            message: `String literals are not allowed as JSX children.`,
-                        });
-                    } else {
-                        context.report({
-                            node,
-                            message: `String literals should be wrapped in JSX expression: {'${text}'}`,
-                        });
-                    }
-                }
+                const text = value.value;
+                context.report({
+                    node,
+                    message: `String literals are not allowed in JSX props. Use {'${text}'} instead.`,
+                });
             },
             JSXText(node) {
                 const text = node.value.trim();
-                if (text === '' || allowedSet.has(text)) {
+                if (text === '') {
                     return;
                 }
 
-                if (noStrings) {
-                    context.report({
-                        node,
-                        message: `String literals are not allowed as JSX children.`,
-                    });
-                } else {
-                    context.report({
-                        node,
-                        message: `String literals should be wrapped in JSX expression: {'${text}'}`,
-                    });
-                }
+                context.report({
+                    node,
+                    message: `String literals should be wrapped in JSX expression: {'${text}'}`,
+                });
             },
         };
     };
