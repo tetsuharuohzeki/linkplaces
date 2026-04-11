@@ -23,7 +23,7 @@ export function jsxFragments(options = undefined) {
     });
 
     return function jsxFragmentsImpl(context) {
-        function reportSyntaxPreferred(node, pattern) {
+        function reportSyntaxPreferred(node, _) {
             const hasAttributes = node.attributes.length > 0;
             if (hasAttributes) {
                 return;
@@ -31,7 +31,7 @@ export function jsxFragments(options = undefined) {
 
             context.report({
                 node,
-                message: `Use shorthand fragment syntax '<>...</>' instead of '<${pattern}>...</${pattern}'.`,
+                message: `Use shorthand fragment syntax '<>...</>'.`,
                 fix(fixer) {
                     const closing = node.parent?.closingElement;
                     if (!closing) {
