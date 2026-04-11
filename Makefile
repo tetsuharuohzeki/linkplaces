@@ -16,8 +16,8 @@ setup_corepack:
 	corepack enable
 	corepack prepare pnpm@latest --activate
 
-install_for_ci: ## Install dependencies
-	pnpm ci
+install: ## Install dependencies
+	pnpm install
 
 
 ####################################
