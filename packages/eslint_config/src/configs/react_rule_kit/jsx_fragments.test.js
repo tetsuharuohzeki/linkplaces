@@ -40,7 +40,7 @@ ruleTester.run(RULE_NAME, rule, {
                     message: `Use shorthand fragment syntax '<>...</>'.`,
                 },
             ],
-            output: `<>foo</>`
+            output: `<>foo</>`,
         },
         {
             code: '<React.Fragment>foo</React.Fragment>',
@@ -49,7 +49,7 @@ ruleTester.run(RULE_NAME, rule, {
                     message: `Use shorthand fragment syntax '<>...</>'.`,
                 },
             ],
-            output: `<>foo</>`
+            output: `<>foo</>`,
         },
     ],
 });
