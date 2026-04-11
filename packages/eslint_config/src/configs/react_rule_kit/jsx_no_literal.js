@@ -43,6 +43,11 @@ export function jsxNoLiterals(options = {}) {
                 context.report({
                     node,
                     message: `String literals are not wrapped as \`{value}\` JSX props.`,
+                    fix(fixer) {
+                        const rawValue = valueNode.raw;
+                        const replaced = `{${rawValue}}`;
+                        return fixer.replaceText(valueNode, replaced);
+                    },
                 });
             },
             JSXText(node) {

@@ -76,6 +76,16 @@ ruleTester.run(RULE_NAME, rule, {
                     message: `String literals are not wrapped as \`{value}\` JSX props.`,
                 },
             ],
+            output: '<bar bar={"1"}/>',
+        },
+        {
+            code: '<bar bar=\'1\'/>',
+            errors: [
+                {
+                    message: `String literals are not wrapped as \`{value}\` JSX props.`,
+                },
+            ],
+            output: '<bar bar={\'1\'}/>',
         },
     ],
 });
