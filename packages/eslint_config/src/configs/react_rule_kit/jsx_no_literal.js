@@ -36,7 +36,11 @@ export function jsxNoLiterals(options = {}) {
                 }
 
                 const valueNode = node.value;
-                if (!(!!valueNode && valueNode.type === 'Literal')) {
+                if (!valueNode) {
+                    return;
+                }
+
+                if (valueNode.type !== 'Literal') {
                     return;
                 }
 

@@ -1,3 +1,5 @@
+import { isNotNull } from 'option-t/nullable';
+
 /**
  *  @import { RuleFunction } from '@eslint-react/kit';
  */
@@ -11,15 +13,17 @@ export function jsxBooleanValue() {
         return {
             JSXAttribute(node) {
                 const value = node.value;
-                if (value === null) {
-                    context.report({
-                        node,
-                        message: 'Supply the value for boolean attributes explicitly',
-                        fix(fixer) {
-                            return fixer.insertTextAfter(node, '={true}');
-                        },
-                    });
+                if (isNotNull(value)) {
+                    return;
                 }
+
+                context.report({
+                    node,
+                    message: 'Supply the value for boolean attributes explicitly',
+                    fix(fixer) {
+                        return fixer.insertTextAfter(node, '={true}');
+                    },
+                });
             },
         };
     };
