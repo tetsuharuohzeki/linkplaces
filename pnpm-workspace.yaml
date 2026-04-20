@@ -38,7 +38,7 @@ catalog:
   option-t: ^56.0.0
   postcss: ^8.5.9
   postcss-import: ^16.1.1
-  prettier: ^3.8.2
+  prettier: ^3.8.3
   react: ^19.2.5
   react-dom: ^19.2.5
   rollup: ^4.60.1
