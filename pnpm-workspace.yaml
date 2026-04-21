@@ -25,7 +25,7 @@ catalog:
   '@types/react-dom': ^19.2.3
   '@typescript-eslint/eslint-plugin': ^8.58.2
   '@typescript-eslint/parser': ^8.58.2
-  '@typescript/native-preview': 7.0.0-dev.20260420.1
+  '@typescript/native-preview': ^7.0.0-dev.20260421.2
   ava: ^7.0.0
   babel-plugin-react-compiler: ^1.0.0
   eslint: ^10.2.0
@@ -44,7 +44,6 @@ catalog:
   rollup: ^4.60.1
   tinyspy: ^4.0.4
   turbo: ^2.9.3
-  typescript: 6.0.2
   web-ext: ^10.1.0
 
 minimumReleaseAge: 7200
