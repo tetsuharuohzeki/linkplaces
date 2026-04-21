@@ -97,8 +97,8 @@ catalogs:
       specifier: ^4.16.2
       version: 4.16.2
     eslint-plugin-react-hooks:
-      specifier: ^7.1.0-canary-56824423-20260414
-      version: 7.1.0-canary-fd524fe0-20251121
+      specifier: ^7.1.1
+      version: 7.1.1
     expect-type:
       specifier: ^1.3.0
       version: 1.3.0
@@ -257,7 +257,7 @@ importers:
         version: 4.16.2(@typescript-eslint/utils@8.58.1(eslint@10.2.0)(typescript@6.0.2))(eslint@10.2.0)
       eslint-plugin-react-hooks:
         specifier: 'catalog:'
-        version: 7.1.0-canary-fd524fe0-20251121(eslint@10.2.0)
+        version: 7.1.1(eslint@10.2.0)
       option-t:
         specifier: 'catalog:'
         version: 56.0.0
@@ -2062,11 +2062,11 @@ packages:
       eslint: ^10.0.0
       typescript: '*'
 
-  eslint-plugin-react-hooks@7.1.0-canary-fd524fe0-20251121:
-    resolution: {integrity: sha512-G5we0+XjZTKpjkLL9AgdWxzmo4mqelVDIYzoR1dBlhhiN8Lf5PQ+l8frr+BmX02nU4g0AEez3eGSF/LNfHokEw==}
+  eslint-plugin-react-hooks@7.1.1:
+    resolution: {integrity: sha512-f2I7Gw6JbvCexzIInuSbZpfdQ44D7iqdWX01FKLvrPgqxoE7oMj8clOfto8U6vYiz4yd5oKu39rRSVOe1zRu0g==}
     engines: {node: '>=18'}
     peerDependencies:
-      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
+      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0 || ^10.0.0
 
   eslint-plugin-react-jsx@4.2.3:
     resolution: {integrity: sha512-IUiYO1Qm/NDo/CVBa/nOP6lKJvPtDz7ucKsfcmrDYFS7NGyLJedubB4vFtMGZ2XGBFJeEYLnSo7Y+89b0qdynA==}
@@ -5349,7 +5349,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-react-hooks@7.1.0-canary-fd524fe0-20251121(eslint@10.2.0):
+  eslint-plugin-react-hooks@7.1.1(eslint@10.2.0):
     dependencies:
       '@babel/core': 7.29.0
       '@babel/parser': 7.29.2
