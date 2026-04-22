@@ -6,9 +6,6 @@ settings:
 
 catalogs:
   default:
-    '@ava/typescript':
-      specifier: ^6.0.0
-      version: 6.0.0
     '@babel/cli':
       specifier: ^7.28.6
       version: 7.28.6
@@ -141,8 +138,8 @@ importers:
   .:
     devDependencies:
       '@ava/typescript':
-        specifier: 'catalog:'
-        version: 6.0.0
+        specifier: 7.0.0
+        version: 7.0.0
       '@babel/plugin-syntax-jsx':
         specifier: 'catalog:'
         version: 7.28.6(@babel/core@7.29.0)
@@ -172,7 +169,7 @@ importers:
         version: 7.0.0-dev.20260421.2
       ava:
         specifier: 'catalog:'
-        version: 7.0.0(@ava/typescript@6.0.0)(rollup@4.60.1)
+        version: 7.0.0(@ava/typescript@7.0.0)(rollup@4.60.1)
       babel-plugin-react-compiler:
         specifier: 'catalog:'
         version: 1.0.0
@@ -394,9 +391,9 @@ importers:
 
 packages:
 
-  '@ava/typescript@6.0.0':
-    resolution: {integrity: sha512-+8oDYc4J5cCaWZh1VUbyc+cegGplJO9FqHpqR4LVAVx8fRLVRaYlC4yyA6cqHJ1vWP23Ff/ECS5U68Zz6OLZlg==}
-    engines: {node: ^20.8 || ^22 || >=24}
+  '@ava/typescript@7.0.0':
+    resolution: {integrity: sha512-0ktzq4/9ya2QoAuVWzl3McpLV9W//Tj+oMonQ4ucgm5l6tQ46aaju/rJL9kzeY5MkG6wzXvFt/MmaLqf9uNC9w==}
+    engines: {node: ^22.20 || ^24.12 || >=25}
 
   '@babel/cli@7.28.6':
     resolution: {integrity: sha512-6EUNcuBbNkj08Oj4gAZ+BUU8yLCgKzgVX4gaTh09Ya2C8ICM4P+G30g4m3akRxSYAp3A/gnWchrNst7px4/nUQ==}
@@ -3701,7 +3698,7 @@ packages:
 
 snapshots:
 
-  '@ava/typescript@6.0.0':
+  '@ava/typescript@7.0.0':
     dependencies:
       escape-string-regexp: 5.0.0
       execa: 9.6.1
@@ -4946,7 +4943,7 @@ snapshots:
       stubborn-fs: 2.0.0
       when-exit: 2.1.5
 
-  ava@7.0.0(@ava/typescript@6.0.0)(rollup@4.60.1):
+  ava@7.0.0(@ava/typescript@7.0.0)(rollup@4.60.1):
     dependencies:
       '@vercel/nft': 1.5.0(rollup@4.60.1)
       acorn: 8.16.0
@@ -4988,7 +4985,7 @@ snapshots:
       write-file-atomic: 7.0.1
       yargs: 18.0.0
     optionalDependencies:
-      '@ava/typescript': 6.0.0
+      '@ava/typescript': 7.0.0
     transitivePeerDependencies:
       - encoding
       - rollup
