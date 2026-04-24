@@ -136,7 +136,10 @@ export class Subject<T> implements Subjectable<T> {
         const observerId = this._observerCounter;
         const nextId = observerId + 1;
         if (nextId >= Number.MAX_SAFE_INTEGER) {
-            throw new RangeError(`Too many observer is registred.`);
+            // This case is suprer rerely absolutely because this path requires approximately 100 days
+            // (`Number.MAX_SAFE_INTEGER / ((1 * 1000 * 1000 * 1000) * 60 * 60 * 24)`)
+            // if the object wil be registered per 1ns.
+            throw new RangeError(`Too many observer is registered during the single instance`);
         }
         this._observerCounter = nextId;
 
