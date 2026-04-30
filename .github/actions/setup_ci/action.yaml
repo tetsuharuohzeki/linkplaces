@@ -42,7 +42,7 @@ runs:
           # thus we need to do `npm ci` to restore `node_modules/` so we need run always this step.
           # if: steps.npm-cache.outputs.cache-hit != 'true''
           run: |
-              make ci_install
+              make install
 
         - name: Save dependency caches
           uses: actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
