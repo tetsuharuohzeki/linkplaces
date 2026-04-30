@@ -19,6 +19,8 @@ setup_corepack:
 install: ## Install dependencies
 	pnpm install
 
+ci_install: ## Remove all `node_modules/` and install dependencies.
+	pnpm ci
 
 ####################################
 # Clean
