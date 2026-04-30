@@ -14,7 +14,6 @@ help:
 ####################################
 setup_corepack:
 	corepack enable
-	corepack prepare pnpm@latest --activate
 
 install: ## Install dependencies
 	pnpm install
