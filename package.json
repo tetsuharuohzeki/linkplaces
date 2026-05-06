@@ -3,7 +3,7 @@
     "private": true,
     "type": "module",
     "license": "MPL-2.0",
-    "packageManager": "pnpm@11.0.4+sha512.0a397165007a014ed52919a61e5f46c48b9bca88404c303ecaecc63f62def563898d3c6b8a5d5ea5811eb398cfe03ab05da1a5ce963f126d5ead4c02f93b83c3",
+    "packageManager": "pnpm@11.0.6+sha512.97f906e1da2bedac3df83cadae04b4753a130092dd49d55cd36825ad3e623e9df3f97754f8f259e699172a360fac569acf2f908e7732bdae3eddb2dcf7e121fd",
     "devDependencies": {
         "@ava/typescript": "catalog:",
         "@babel/plugin-syntax-jsx": "catalog:",
