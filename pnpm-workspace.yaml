@@ -39,8 +39,8 @@ catalog:
   postcss: ^8.5.13
   postcss-import: ^16.1.1
   prettier: ^3.8.3
-  react: ^19.2.5
-  react-dom: ^19.2.5
+  react: ^19.2.6
+  react-dom: ^19.2.6
   rollup: ^4.60.2
   tinyspy: ^4.0.4
   turbo: ^2.9.7
