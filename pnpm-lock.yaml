@@ -118,11 +118,11 @@ catalogs:
       specifier: ^3.8.3
       version: 3.8.3
     react:
-      specifier: ^19.2.5
-      version: 19.2.5
+      specifier: ^19.2.6
+      version: 19.2.6
     react-dom:
-      specifier: ^19.2.5
-      version: 19.2.5
+      specifier: ^19.2.6
+      version: 19.2.6
     rollup:
       specifier: ^4.60.2
       version: 4.60.2
@@ -245,7 +245,7 @@ importers:
         version: 10.1.8(eslint@10.3.0)
       eslint-config-turbo:
         specifier: 'catalog:'
-        version: 2.9.7(eslint@10.3.0)(turbo@2.9.7)
+        version: 2.9.7(eslint@10.3.0)(turbo@2.9.9)
       eslint-plugin-import-x:
         specifier: 'catalog:'
         version: 4.16.2(@typescript-eslint/utils@8.59.1(eslint@10.3.0)(typescript@6.0.2))(eslint@10.3.0)
@@ -266,10 +266,10 @@ importers:
         version: 56.1.1
       react:
         specifier: 'catalog:'
-        version: 19.2.5
+        version: 19.2.6
       react-dom:
         specifier: 'catalog:'
-        version: 19.2.5(react@19.2.5)
+        version: 19.2.6(react@19.2.6)
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -316,7 +316,7 @@ importers:
         version: 56.1.1
       react:
         specifier: 'catalog:'
-        version: 19.2.5
+        version: 19.2.6
     devDependencies:
       '@babel/cli':
         specifier: 'catalog:'
@@ -371,7 +371,7 @@ importers:
         version: 56.1.1
       react:
         specifier: 'catalog:'
-        version: 19.2.5
+        version: 19.2.6
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -1139,8 +1139,18 @@ packages:
     cpu: [x64]
     os: [darwin]
 
+  '@turbo/darwin-64@2.9.9':
+    resolution: {integrity: sha512-hTEiNu2ABZZOO1qbjnKASI8eF3BdOOzU6iKv5w5uGOK65DDMc10cS40N1kqM99YT0uSAGUwNu6GdFctRPeEeVA==}
+    cpu: [x64]
+    os: [darwin]
+
   '@turbo/darwin-arm64@2.9.7':
     resolution: {integrity: sha512-mA0FIPMwwN3lodDkQYaGxj6PeT7ZaN5aCEbkKn/WB+ZB9yJdVWA4J83GH7t43jqDc5dcnVluVN5UFx3plRiXhA==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@turbo/darwin-arm64@2.9.9':
+    resolution: {integrity: sha512-MinO40EEcP5mJiTVpfjtEulsEBhVeryfq21QhYtJZ8hQJLHGgy459rcmDVAY8/JERe4dkVU4KW+zoLF22o01EA==}
     cpu: [arm64]
     os: [darwin]
 
@@ -1149,8 +1159,18 @@ packages:
     cpu: [x64]
     os: [linux]
 
+  '@turbo/linux-64@2.9.9':
+    resolution: {integrity: sha512-7JNLw88Isk+gMlbsC8pulLDkrqe2B827ZsKFEHilb17AC6Xn/62pzH7afjY7fEU6Ayp4XP/vGhlRWOzqBvBvIQ==}
+    cpu: [x64]
+    os: [linux]
+
   '@turbo/linux-arm64@2.9.7':
     resolution: {integrity: sha512-VkUjulo9ytfHKUHOS5gy0XPoh4CTKPXWCL8nLdrlHVi9fSut31ECeUqnm/dAbETP5D4xo9mH9XkJ+qMzGe/zmg==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@turbo/linux-arm64@2.9.9':
+    resolution: {integrity: sha512-0pnXDwPw1rHii98JZPRg7SvsjIzy7jrhkwGU9Jy5fVYoMdYd3P2vbtLfII+OJ0Mm4Ar5yykdHDTz3RWiRI1o9g==}
     cpu: [arm64]
     os: [linux]
 
@@ -1159,8 +1179,18 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@turbo/windows-64@2.9.9':
+    resolution: {integrity: sha512-vjDQycz4gQVvIq4n2rPtiiIESwJlAc406qtkiZlqyL+fHZEd9SxYNlBIFYtc5cuMuwrk+sIKrhN7XvwjmvS9YQ==}
+    cpu: [x64]
+    os: [win32]
+
   '@turbo/windows-arm64@2.9.7':
     resolution: {integrity: sha512-xBBgxCC5PK2+WZ1PPRZdp+aJ0bMBcEbweXWux3RUHJvX9ZodcoQySkrW6qt+ahb+uk8ZjyQodLfDwtVSoYds1w==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@turbo/windows-arm64@2.9.9':
+    resolution: {integrity: sha512-V6NiH43oCctepbOdQFp7UjqLyK8p6Tt824QA+G4TE+B1BBHu80A0W8OCL+H7uBJ3XZjAj/hvPDw3k3l65DoDGw==}
     cpu: [arm64]
     os: [win32]
 
@@ -3015,13 +3045,13 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
-  react-dom@19.2.5:
-    resolution: {integrity: sha512-J5bAZz+DXMMwW/wV3xzKke59Af6CHY7G4uYLN1OvBcKEsWOs4pQExj86BBKamxl/Ik5bx9whOrvBlSDfWzgSag==}
+  react-dom@19.2.6:
+    resolution: {integrity: sha512-0prMI+hvBbPjsWnxDLxlCGyM8PN6UuWjEUCYmZhO67xIV9Xasa/r/vDnq+Xyq4Lo27g8QSbO5YzARu0D1Sps3g==}
     peerDependencies:
-      react: ^19.2.5
+      react: ^19.2.6
 
-  react@19.2.5:
-    resolution: {integrity: sha512-llUJLzz1zTUBrskt2pwZgLq59AemifIftw4aB7JxOqf1HY2FDaGDxgwpAPVzHU1kdWabH7FauP4i1oEeer2WCA==}
+  react@19.2.6:
+    resolution: {integrity: sha512-sfWGGfavi0xr8Pg0sVsyHMAOziVYKgPLNrS7ig+ivMNb3wbCBw3KxtflsGBAwD3gYQlE/AEZsTLgToRrSCjb0Q==}
     engines: {node: '>=0.10.0'}
 
   read-cache@1.0.0:
@@ -3370,6 +3400,10 @@ packages:
 
   turbo@2.9.7:
     resolution: {integrity: sha512-epxzqVO2s0IxcSWcgb+qKrtco8isfe7g3VtiS6hkYnEK4A9XQDZbrtavQ6MtWR1KoQn+1fUomaQth2rfRHlUlg==}
+    hasBin: true
+
+  turbo@2.9.9:
+    resolution: {integrity: sha512-3xfzXE/yTjhh0S5dIWlE+3E+J9A09REpLI1ZqVh2+HrNZoVzZn0pkvjiRgVK/Ev3PF9XnaTwCntTx+CADWXcyA==}
     hasBin: true
 
   type-check@0.4.0:
@@ -4344,19 +4378,37 @@ snapshots:
   '@turbo/darwin-64@2.9.7':
     optional: true
 
+  '@turbo/darwin-64@2.9.9':
+    optional: true
+
   '@turbo/darwin-arm64@2.9.7':
+    optional: true
+
+  '@turbo/darwin-arm64@2.9.9':
     optional: true
 
   '@turbo/linux-64@2.9.7':
     optional: true
 
+  '@turbo/linux-64@2.9.9':
+    optional: true
+
   '@turbo/linux-arm64@2.9.7':
+    optional: true
+
+  '@turbo/linux-arm64@2.9.9':
     optional: true
 
   '@turbo/windows-64@2.9.7':
     optional: true
 
+  '@turbo/windows-64@2.9.9':
+    optional: true
+
   '@turbo/windows-arm64@2.9.7':
+    optional: true
+
+  '@turbo/windows-arm64@2.9.9':
     optional: true
 
   '@tybys/wasm-util@0.10.1':
@@ -5155,11 +5207,11 @@ snapshots:
     dependencies:
       eslint: 10.3.0
 
-  eslint-config-turbo@2.9.7(eslint@10.3.0)(turbo@2.9.7):
+  eslint-config-turbo@2.9.7(eslint@10.3.0)(turbo@2.9.9):
     dependencies:
       eslint: 10.3.0
-      eslint-plugin-turbo: 2.9.7(eslint@10.3.0)(turbo@2.9.7)
-      turbo: 2.9.7
+      eslint-plugin-turbo: 2.9.7(eslint@10.3.0)(turbo@2.9.9)
+      turbo: 2.9.9
 
   eslint-import-context@0.1.9(unrs-resolver@1.11.1):
     dependencies:
@@ -5295,11 +5347,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-turbo@2.9.7(eslint@10.3.0)(turbo@2.9.7):
+  eslint-plugin-turbo@2.9.7(eslint@10.3.0)(turbo@2.9.9):
     dependencies:
       dotenv: 16.0.3
       eslint: 10.3.0
-      turbo: 2.9.7
+      turbo: 2.9.9
 
   eslint-scope@8.4.0:
     dependencies:
@@ -6248,12 +6300,12 @@ snapshots:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
 
-  react-dom@19.2.5(react@19.2.5):
+  react-dom@19.2.6(react@19.2.6):
     dependencies:
-      react: 19.2.5
+      react: 19.2.6
       scheduler: 0.27.0
 
-  react@19.2.5: {}
+  react@19.2.6: {}
 
   read-cache@1.0.0:
     dependencies:
@@ -6590,6 +6642,15 @@ snapshots:
       '@turbo/linux-arm64': 2.9.7
       '@turbo/windows-64': 2.9.7
       '@turbo/windows-arm64': 2.9.7
+
+  turbo@2.9.9:
+    optionalDependencies:
+      '@turbo/darwin-64': 2.9.9
+      '@turbo/darwin-arm64': 2.9.9
+      '@turbo/linux-64': 2.9.9
+      '@turbo/linux-arm64': 2.9.9
+      '@turbo/windows-64': 2.9.9
+      '@turbo/windows-arm64': 2.9.9
 
   type-check@0.4.0:
     dependencies:
