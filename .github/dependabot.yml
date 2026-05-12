@@ -54,6 +54,9 @@ updates:
               patterns:
                   - "babel-plugin-react-compiler"
                   - "eslint-plugin-react-hooks"
+          eslint-react:
+              patterns:
+                  - "@eslint-react/*"
 
     - package-ecosystem: github-actions
       directories:
