@@ -63,13 +63,7 @@ export class Subject<T> implements Subjectable<T> {
     }
 
     complete(result: CompletionResult): void {
-        if (
-            !(
-                isNull(null) ||
-                // FIXME: This should be `Error.isError`
-                result instanceof Error
-            )
-        ) {
+        if (!(isNull(null) || Error.isError(result))) {
             throw new TypeError('the passed result must be CompletionResult');
         }
 
