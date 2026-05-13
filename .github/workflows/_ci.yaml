@@ -75,3 +75,18 @@ jobs:
               run: make test -j
               env:
                   CI: true
+
+    sentinel:
+        needs:
+            - build
+            - lint
+            - check_type_integrity
+            - check_formatting
+            - unittest
+        runs-on: ubuntu-slim
+        if: ${{ always() }}
+        steps:
+            - name: Check whether required jobs are successful
+              if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+              # Fail this job
+              run: exit 1
