@@ -106,8 +106,8 @@ catalogs:
       specifier: ^17.6.0
       version: 17.6.0
     option-t:
-      specifier: ^56.1.1
-      version: 56.1.1
+      specifier: ^56.1.2
+      version: 56.1.2
     postcss:
       specifier: ^8.5.14
       version: 8.5.14
@@ -211,7 +211,7 @@ importers:
         version: link:../webext_types
       option-t:
         specifier: 'catalog:'
-        version: 56.1.1
+        version: 56.1.2
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -254,7 +254,7 @@ importers:
         version: 7.1.1(eslint@10.3.0)
       option-t:
         specifier: 'catalog:'
-        version: 56.1.1
+        version: 56.1.2
 
   packages/foundation:
     dependencies:
@@ -263,7 +263,7 @@ importers:
         version: link:../webext_types
       option-t:
         specifier: 'catalog:'
-        version: 56.1.1
+        version: 56.1.2
       react:
         specifier: 'catalog:'
         version: 19.2.6
@@ -288,7 +288,7 @@ importers:
         version: link:../webext_types
       option-t:
         specifier: 'catalog:'
-        version: 56.1.1
+        version: 56.1.2
     devDependencies:
       '@linkplaces/tools':
         specifier: workspace:*
@@ -313,7 +313,7 @@ importers:
         version: link:../webext_types
       option-t:
         specifier: 'catalog:'
-        version: 56.1.1
+        version: 56.1.2
       react:
         specifier: 'catalog:'
         version: 19.2.6
@@ -368,7 +368,7 @@ importers:
         version: link:../webext_types
       option-t:
         specifier: 'catalog:'
-        version: 56.1.1
+        version: 56.1.2
       react:
         specifier: 'catalog:'
         version: 19.2.6
@@ -381,7 +381,7 @@ importers:
     dependencies:
       option-t:
         specifier: 'catalog:'
-        version: 56.1.1
+        version: 56.1.2
 
   packages/webext_types:
     devDependencies:
@@ -390,7 +390,7 @@ importers:
         version: link:../tools
       option-t:
         specifier: 'catalog:'
-        version: 56.1.1
+        version: 56.1.2
 
 packages:
 
@@ -2822,8 +2822,8 @@ packages:
     resolution: {integrity: sha512-smsWv2LzFjP03xmvFoJ331ss6h+jixfA4UUV/Bsiyuu4YJPfN+FIQGOIiv4w9/+MoHkfkJ22UIaQWRVFRfH6Vw==}
     engines: {node: '>=20'}
 
-  option-t@56.1.1:
-    resolution: {integrity: sha512-evYmJ2QNc3l2pbCphbiC8UC84YPGvL39TvBK3w9n+5kfEnhxq8Kpf1pvCfAEMymiglqLpvMBIY2taxdoMasbxQ==}
+  option-t@56.1.2:
+    resolution: {integrity: sha512-FEEXXhblMiDmQbXC/mBUT9VTHKt2V7nIWXEgPPsBP8bZXq4w3sejmWGPdZ+zoKL6GzQLRyYUeV6ZQ1zWH8GIUw==}
     engines: {node: '>=24.5.0'}
 
   optionator@0.9.4:
@@ -6075,7 +6075,7 @@ snapshots:
       powershell-utils: 0.1.0
       wsl-utils: 0.3.1
 
-  option-t@56.1.1: {}
+  option-t@56.1.2: {}
 
   optionator@0.9.4:
     dependencies:
