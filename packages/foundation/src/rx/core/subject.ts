@@ -126,7 +126,7 @@ export class Subject<T> implements Subjectable<T> {
         });
     }
 
-    private _getObserverId() {
+    private _getObserverId(): number {
         const observerId = this._observerCounter;
         const nextId = observerId + 1;
         if (nextId >= Number.MAX_SAFE_INTEGER) {
