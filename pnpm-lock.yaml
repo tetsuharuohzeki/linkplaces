@@ -109,8 +109,8 @@ catalogs:
       specifier: ^56.1.2
       version: 56.1.2
     postcss:
-      specifier: ^8.5.14
-      version: 8.5.14
+      specifier: ^8.5.15
+      version: 8.5.15
     postcss-import:
       specifier: ^16.1.1
       version: 16.1.1
@@ -353,10 +353,10 @@ importers:
         version: 1.15.33
       postcss:
         specifier: 'catalog:'
-        version: 8.5.14
+        version: 8.5.15
       postcss-import:
         specifier: 'catalog:'
-        version: 16.1.1(postcss@8.5.14)
+        version: 16.1.1(postcss@8.5.15)
       rollup:
         specifier: 'catalog:'
         version: 4.60.4
@@ -3036,8 +3036,8 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.5.14:
-    resolution: {integrity: sha512-SoSL4+OSEtR99LHFZQiJLkT59C5B1amGO1NzTwj7TT1qCUgUO6hxOvzkOYxD+vMrXBM3XJIKzokoERdqQq/Zmg==}
+  postcss@8.5.15:
+    resolution: {integrity: sha512-FfR8sjd4em2T6fb3I2MwAJU7HWVMr9zba+enmQeeWFfCbm+UOC/0X4DS8XtpUTMwWMGbjKYP7xjfNekzyGmB3A==}
     engines: {node: ^10 || ^12 || >=14}
 
   powershell-utils@0.1.0:
@@ -6360,16 +6360,16 @@ snapshots:
     dependencies:
       irregular-plurals: 4.2.0
 
-  postcss-import@16.1.1(postcss@8.5.14):
+  postcss-import@16.1.1(postcss@8.5.15):
     dependencies:
-      postcss: 8.5.14
+      postcss: 8.5.15
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.12
 
   postcss-value-parser@4.2.0: {}
 
-  postcss@8.5.14:
+  postcss@8.5.15:
     dependencies:
       nanoid: 3.3.12
       picocolors: 1.1.1
