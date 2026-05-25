@@ -26,7 +26,7 @@ catalog:
   '@typescript-eslint/eslint-plugin': ^8.59.4
   '@typescript-eslint/parser': ^8.59.4
   '@typescript/native-preview': 7.0.0-dev.20260519.1
-  ava: ^8.0.0
+  ava: ^8.0.1
   babel-plugin-react-compiler: ^1.0.0
   eslint: ^10.3.0
   eslint-config-prettier: ^10.1.8
