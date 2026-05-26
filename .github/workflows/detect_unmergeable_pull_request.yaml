@@ -19,6 +19,7 @@ permissions:
 jobs:
     detect_unmergeable_pull_request_and_mark_them:
         runs-on: ubuntu-latest
+        timeout-minutes: 10 # This value is just by feeling.
         permissions:
             contents: none
             pull-requests: write
