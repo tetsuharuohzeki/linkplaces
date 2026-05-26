@@ -13,6 +13,8 @@ jobs:
     warmup_dependency_cache:
         timeout-minutes: 10 # This value is just by feeling.
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         steps:
             - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
               with:
@@ -23,6 +25,8 @@ jobs:
         timeout-minutes: 10 # This value is just by feeling.
         needs: [warmup_dependency_cache]
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         strategy:
             matrix:
                 variants:
@@ -42,6 +46,8 @@ jobs:
         needs: [warmup_dependency_cache]
         timeout-minutes: 10 # This value is just by feeling.
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         steps:
             - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
               with:
@@ -56,6 +62,8 @@ jobs:
         needs: [warmup_dependency_cache]
         timeout-minutes: 10 # This value is just by feeling.
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         steps:
             - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
               with:
@@ -70,6 +78,8 @@ jobs:
         needs: [warmup_dependency_cache]
         timeout-minutes: 10 # This value is just by feeling.
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         steps:
             - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
               with:
@@ -84,6 +94,8 @@ jobs:
         needs: [warmup_dependency_cache]
         timeout-minutes: 10 # This value is just by feeling.
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         steps:
             - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
               with:
@@ -96,6 +108,7 @@ jobs:
 
     sentinel:
         timeout-minutes: 10
+        permissions: {}
         needs:
             - build
             - lint
