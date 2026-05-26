@@ -13,8 +13,7 @@ on:
     pull_request:
         types: synchronize
 
-permissions:
-    pull-requests: write
+permissions: {}
 
 jobs:
     detect_unmergeable_pull_request_and_mark_them:
