@@ -68,6 +68,10 @@ const reactTransformer = [
         ...babelConfig,
         babelHelpers: 'bundled',
         extensions: ['.jsx'],
+        // FIXME: we would like to set `true`
+        // but we cannot do it by the error:
+        // (plugin babel) Error: Cannot use "parallel" mode because the "plugins" option is not serializable.
+        parallel: false,
     }),
     // https://www.npmjs.com/package/@rollup/plugin-swc#options
     swc({
