@@ -12,7 +12,7 @@ updates:
           include:
               - "*"
           exclude:
-              - "@typescript/native-preview"
+              - "typescript"
       open-pull-requests-limit: 99
       labels:
           - A-dependency
