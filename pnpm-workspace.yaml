@@ -64,3 +64,5 @@ allowBuilds:
   '@swc/core': false
   spawn-sync: false
   unrs-resolver: false
+
+strictPeerDependencies: true # Detect peerDependencies corretness
