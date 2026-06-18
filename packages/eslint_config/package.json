@@ -19,7 +19,8 @@
         "eslint-config-turbo": "catalog:",
         "eslint-plugin-import-x": "catalog:",
         "eslint-plugin-react-hooks": "catalog:",
-        "option-t": "catalog:"
+        "option-t": "catalog:",
+        "typescript": "catalog:typescript6"
     },
     "scripts": {
         "test": "node --test './**/**.test.js'"
