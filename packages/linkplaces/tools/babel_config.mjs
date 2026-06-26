@@ -1,4 +1,4 @@
-import { IS_PRODUCTION_MODE, ENABLE_REACT_COMPILER } from './buildconfig.js';
+import { ENABLE_REACT_COMPILER } from './buildconfig.js';
 
 /**
  *  @type   {Partial<import('babel-plugin-react-compiler').PluginOptions>}
@@ -62,21 +62,6 @@ const plugins = ENABLE_REACT_COMPILER
           ['@babel/plugin-syntax-jsx'],
       ]
     : [];
-
-export const cliConfig = {
-    presets: [
-        [
-            '@babel/preset-react',
-            {
-                // https://github.com/babel/babel/tree/master/packages/babel-preset-react#options
-                development: !IS_PRODUCTION_MODE,
-                useSpread: true,
-                runtime: 'automatic',
-            },
-        ],
-    ],
-    plugins,
-};
 
 export const rollupConfig = {
     presets: [],
