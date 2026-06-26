@@ -1,5 +1,3 @@
-import { IS_PRODUCTION_MODE } from './buildconfig.js';
-
 /** @type {import('@swc/core').Options} */
 export const swcOptions = {
     jsc: {
@@ -11,7 +9,6 @@ export const swcOptions = {
         transform: {
             react: {
                 runtime: 'automatic',
-                development: !IS_PRODUCTION_MODE,
             },
         },
     },
