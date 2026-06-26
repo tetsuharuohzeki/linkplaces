@@ -61,20 +61,15 @@ const plugins = ENABLE_REACT_COMPILER
           // So other transformer have not transformed jsx yet.
           ['@babel/plugin-syntax-jsx'],
       ]
-    : [];
+    : [
+          // This is required to parse jsx syntax.
+          // react compiler is required to place to the first.
+          // So other transformer have not transformed jsx yet.
+          ['@babel/plugin-syntax-jsx'],
+      ];
 
 export const cliConfig = {
-    presets: [
-        [
-            '@babel/preset-react',
-            {
-                // https://github.com/babel/babel/tree/master/packages/babel-preset-react#options
-                development: !IS_PRODUCTION_MODE,
-                useSpread: true,
-                runtime: 'automatic',
-            },
-        ],
-    ],
+    presets: [],
     plugins,
 };
 

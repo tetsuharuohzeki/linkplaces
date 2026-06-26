@@ -46,7 +46,6 @@
     "devDependencies": {
         "@babel/cli": "catalog:",
         "@babel/core": "catalog:",
-        "@babel/preset-react": "catalog:",
         "@linkplaces/tools": "workspace:*",
         "@rollup/plugin-alias": "catalog:",
         "@rollup/plugin-babel": "catalog:",
