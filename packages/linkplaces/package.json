@@ -17,8 +17,7 @@
         "build:css:bundle:popup": "make __bundle_css_popup -j",
         "build:css:bundle:sidebar": "make __bundle_css_sidebar -j",
         "build:css:bundle:option": "make __bundle_css_options -j",
-        "build:js:obj": "node ./tools/cp_files.js --basedir './__plain/' --source 'src/**/*.{js,jsx}' --destination './__obj/' --verbose",
-        "build:js:plain:js": "node ./tools/cp_files.js --basedir './src/' --source 'src/**/*.{js,jsx}' --destination './__plain/src/' --verbose"
+        "build:js:obj": "node ./tools/cp_files.js --basedir './__plain/' --source 'src/**/*.{js,jsx}' --destination './__obj/' --verbose"
     },
     "repository": {
         "type": "git",
