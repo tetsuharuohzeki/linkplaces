@@ -64,17 +64,7 @@ const plugins = ENABLE_REACT_COMPILER
     : [];
 
 export const cliConfig = {
-    presets: [
-        [
-            '@babel/preset-react',
-            {
-                // https://github.com/babel/babel/tree/master/packages/babel-preset-react#options
-                development: !IS_PRODUCTION_MODE,
-                useSpread: true,
-                runtime: 'automatic',
-            },
-        ],
-    ],
+    presets: [],
     plugins,
 };
 
