@@ -18,7 +18,12 @@ export class OptionsContext implements ViewContext {
     destroy(): void {}
 
     async onActivate(mountpoint: Element): Promise<void> {
-        const list = [getUrl('popup/index.html'), getUrl('sidebar/index.html'), getUrl('options/index.html')];
+        const list = [
+            // @prettier-ignore
+            getUrl('popup/index.html'),
+            getUrl('sidebar/index.html'),
+            getUrl('options/index.html'),
+        ];
 
         const view = createOptionsView({
             list,

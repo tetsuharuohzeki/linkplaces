@@ -1,4 +1,4 @@
-import { Ix, createDocFragmentTree, createDomElement as element, createTextNode as text } from '@linkplaces/foundation';
+import { createDocFragmentTree, createDomElement as element, createTextNode as text } from '@linkplaces/foundation';
 
 import { BUILD_DATE, GIT_REVISION, RELEASE_CHANNEL } from '@linkplaces/shared/constants';
 
@@ -12,7 +12,8 @@ export interface OptionsViewProps {
 }
 export function createOptionsView(props: Readonly<OptionsViewProps>): DocumentFragment {
     const { list } = props;
-    const links: Iterable<Element> = Ix.map(list, (page) => {
+
+    const links: IteratorObject<Element> = Iterator.from(list).map((page) => {
         const item = element('li', null, [
             element(
                 'a',
