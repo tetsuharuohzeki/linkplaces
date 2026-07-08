@@ -33,7 +33,7 @@ catalog:
   expect-type: ^1.4.0
   globals: ^17.7.0
   option-t: ^56.1.2
-  postcss: ^8.5.15
+  postcss: ^8.5.16
   postcss-import: ^16.1.1
   prettier: ^3.9.4
   react: ^19.2.7
