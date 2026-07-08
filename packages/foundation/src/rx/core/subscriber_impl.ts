@@ -76,13 +76,11 @@ export abstract class InternalSubscriber<T> implements Subscriber<T>, Unsubscrib
     }
 
     complete(result: CompletionResult): void {
-        if (
-            !(
-                isNull(null) ||
-                // FIXME: This should be `Error.isError`
-                result instanceof Error
-            )
-        ) {
+        if (!(
+            isNull(null) ||
+            // FIXME: This should be `Error.isError`
+            result instanceof Error
+        )) {
             throw new TypeError('the passed result must be CompletionResult');
         }
 
