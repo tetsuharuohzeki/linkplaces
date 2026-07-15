@@ -42,7 +42,7 @@ catalog:
   tinyspy: ^4.0.4
   turbo: ^2.10.3
   typescript: ^7.0.2
-  web-ext: ^10.4.0
+  web-ext: ^10.5.0
 
 catalogs:
   # Workaround some packages' `peerDependencies` which specify `typescript` to `*` but they only work with `^6`.
