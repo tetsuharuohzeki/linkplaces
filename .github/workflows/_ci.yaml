@@ -18,7 +18,7 @@ jobs:
             - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
               with:
                   persist-credentials: false
-            - uses: ./.github/actions/setup_ci
+            - uses: $/.github/actions/setup_ci
 
     build:
         timeout-minutes: 10 # This value is just by feeling.
@@ -35,7 +35,7 @@ jobs:
             - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
               with:
                   persist-credentials: false
-            - uses: ./.github/actions/setup_ci
+            - uses: $/.github/actions/setup_ci
             - name: build
               run: make build_${{ matrix.variants }} -j
               env:
@@ -51,7 +51,7 @@ jobs:
             - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
               with:
                   persist-credentials: false
-            - uses: ./.github/actions/setup_ci
+            - uses: $/.github/actions/setup_ci
             - name: Lint
               run: make lint -j
               env:
@@ -67,7 +67,7 @@ jobs:
             - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
               with:
                   persist-credentials: false
-            - uses: ./.github/actions/setup_ci
+            - uses: $/.github/actions/setup_ci
             - name: typecheck
               run: make typecheck -j
               env:
@@ -83,7 +83,7 @@ jobs:
             - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
               with:
                   persist-credentials: false
-            - uses: ./.github/actions/setup_ci
+            - uses: $/.github/actions/setup_ci
             - name: check formatting
               run: make format_check -j
               env:
@@ -99,7 +99,7 @@ jobs:
             - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
               with:
                   persist-credentials: false
-            - uses: ./.github/actions/setup_ci
+            - uses: $/.github/actions/setup_ci
             - name: Run unittests
               run: make test -j
               env:
