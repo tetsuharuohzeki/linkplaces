@@ -172,7 +172,7 @@ importers:
         specifier: 'catalog:'
         version: 1.0.0
       eslint:
-        specifier: 'catalog:'
+        specifier: 10.8.0
         version: 10.8.0(supports-color@7.2.0)
       globals:
         specifier: 'catalog:'
