@@ -22,7 +22,7 @@ catalog:
   '@types/react': ^19.2.18
   '@types/react-dom': ^19.2.4
   '@typescript-eslint/eslint-plugin': ^8.66.0
-  '@typescript-eslint/parser': ^8.66.0
+  '@typescript-eslint/parser': ^8.67.0
   ava: ^8.0.1
   babel-plugin-react-compiler: ^1.0.0
   eslint: ^10.8.0
