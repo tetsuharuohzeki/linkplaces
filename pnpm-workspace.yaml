@@ -34,7 +34,7 @@ catalog:
   globals: ^17.9.0
   option-t: ^56.1.2
   postcss: ^8.5.26
-  postcss-import: ^16.1.1
+  postcss-import: ^16.2.0
   prettier: ^3.9.6
   react: ^19.2.8
   react-dom: ^19.2.8

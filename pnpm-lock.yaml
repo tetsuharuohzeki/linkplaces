@@ -103,8 +103,8 @@ catalogs:
       specifier: ^8.5.26
       version: 8.5.26
     postcss-import:
-      specifier: ^16.1.1
-      version: 16.1.1
+      specifier: ^16.2.0
+      version: 16.2.0
     prettier:
       specifier: ^3.9.6
       version: 3.9.6
@@ -351,7 +351,7 @@ importers:
         version: 8.5.26
       postcss-import:
         specifier: 'catalog:'
-        version: 16.1.1(postcss@8.5.26)
+        version: 16.2.0(postcss@8.5.26)
       rollup:
         specifier: 'catalog:'
         version: 4.62.4
@@ -2957,8 +2957,8 @@ packages:
     resolution: {integrity: sha512-Y9wXQivjRX0REtwpA9+n0bYYypWESn3cWtW2vazymw711qn+AQXxzZjRqhANYGBLIMC1UzVdpwe/1hHQwHfwng==}
     engines: {node: '>=20'}
 
-  postcss-import@16.1.1:
-    resolution: {integrity: sha512-2xVS1NCZAfjtVdvXiyegxzJ447GyqCeEI5V7ApgQVOWnros1p5lGNovJNapwPpMombyFBfqDwt7AD3n2l0KOfQ==}
+  postcss-import@16.2.0:
+    resolution: {integrity: sha512-0mQUGlSp87Zl70K58RNwQAN1WS9plFE6KWGui9nyK6ninduMyjW/Khaoy/BpBoFTBh7ndAvAKrSKVbwy6vd/BA==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       postcss: ^8.0.0
@@ -4358,8 +4358,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.66.0(@typescript/typescript6@6.0.2)(supports-color@7.2.0)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.66.0(@typescript/typescript6@6.0.2)
-      '@typescript-eslint/types': 8.66.0
+      '@typescript-eslint/tsconfig-utils': 8.67.0(@typescript/typescript6@6.0.2)
+      '@typescript-eslint/types': 8.67.0
       debug: 4.4.3(supports-color@7.2.0)
       typescript: '@typescript/typescript6@6.0.2'
     transitivePeerDependencies:
@@ -6126,7 +6126,7 @@ snapshots:
     dependencies:
       irregular-plurals: 4.2.0
 
-  postcss-import@16.1.1(postcss@8.5.26):
+  postcss-import@16.2.0(postcss@8.5.26):
     dependencies:
       postcss: 8.5.26
       postcss-value-parser: 4.2.0
