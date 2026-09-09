@@ -15,7 +15,6 @@ catalog:
   '@rollup/plugin-replace': ^6.0.3
   '@rollup/plugin-swc': ^0.4.1
   '@swc/core': ^1.16.1
-  '@swc/react-compiler': ^1.16.1
   '@types/node': ^26.4.1
   '@types/react': ^19.2.18
   '@types/react-dom': ^19.2.7
@@ -61,7 +60,6 @@ blockExoticSubdeps: true
 strictDepBuilds: true
 allowBuilds:
   '@swc/core': false
-  '@swc/react-compiler': false
   spawn-sync: false
   unrs-resolver: false
 
