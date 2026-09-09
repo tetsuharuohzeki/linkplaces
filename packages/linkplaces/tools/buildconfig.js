@@ -18,7 +18,7 @@ const LIB_NODE_ENV =
 export const LIB_NODE_ENV_IS_NOT_PRODUCTION = RELEASE_CHANNEL !== 'production';
 
 const IS_PRODUCTION_MODE = RELEASE_CHANNEL === RELEASE_CHANNEL_VALUE_PRODUCTION;
-const IS_DEVELOPMENT_MODE = RELEASE_CHANNEL === RELEASE_CHANNEL_VALUE_DEVELOPMENT;
+export const IS_DEVELOPMENT_MODE = RELEASE_CHANNEL === RELEASE_CHANNEL_VALUE_DEVELOPMENT;
 
 const SHOULD_FORCE_ENABLE_SOURCE_MAP = process.env.FORCE_ENABLE_SOURCE_MAP === 'true';
 const ENABLE_SOURCE_MAP = SHOULD_FORCE_ENABLE_SOURCE_MAP || !IS_PRODUCTION_MODE;
@@ -26,16 +26,11 @@ const ENABLE_SOURCE_MAP = SHOULD_FORCE_ENABLE_SOURCE_MAP || !IS_PRODUCTION_MODE;
 const ENABLE_REACT_COMPILER = MaybeOperator.mapOrElse(
     process.env.ENABLE_REACT_COMPILER,
     () => {
-        if (IS_DEVELOPMENT_MODE) {
-            // make debugging easier
-            return false;
-        }
         return true;
     },
     (val) => {
-        assert.ok(IS_PRODUCTION_MODE, `ENABLE_REACT_COMPILER is configurable only in the production build`);
-        const enabled = val === 'true';
-        return enabled;
+        const ok = val === 'true' || val === '1';
+        return ok;
     }
 );
 
