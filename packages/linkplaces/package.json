@@ -44,11 +44,11 @@
     },
     "devDependencies": {
         "@linkplaces/tools": "workspace:*",
+        "@rollup/pluginutils": "catalog:",
         "@rollup/plugin-alias": "catalog:",
         "@rollup/plugin-commonjs": "catalog:",
         "@rollup/plugin-node-resolve": "catalog:",
         "@rollup/plugin-replace": "catalog:",
-        "@rollup/plugin-swc": "catalog:",
         "@swc/core": "catalog:",
         "postcss": "catalog:",
         "postcss-import": "catalog:",

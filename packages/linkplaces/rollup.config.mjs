@@ -2,7 +2,6 @@ import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
-import { default as swc } from '@rollup/plugin-swc';
 import { defineConfig } from 'rollup';
 
 import {
@@ -16,6 +15,7 @@ import {
     ENABLE_REACT_PROFILER,
     ENABLE_REACT_COMPILER,
 } from './tools/buildconfig.js';
+import { swc } from './tools/rollup_swc_bridge.js';
 import { swcOptions } from './tools/swc_config.js';
 
 console.log(`
@@ -62,8 +62,7 @@ class RollupWarningAsError extends Error {
 // For the current workspace, we transform react jsx by babel cli offline.
 const reactTransformer = [
     // https://www.npmjs.com/package/@rollup/plugin-swc#options
-    swc({
-        swc: swcOptions,
+    swc(swcOptions, {
         include: ['**/**/*.jsx'],
     }),
 ];
