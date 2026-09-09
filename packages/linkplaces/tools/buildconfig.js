@@ -2,6 +2,17 @@ import * as assert from 'node:assert/strict';
 
 import { MaybeOperator } from 'option-t/maybe';
 
+/**
+ *  @param {string} val
+ *  @returns    {boolean}
+ */
+function toBooleanFromEnvVar(val) {
+    assert.strictEqual(typeof val, 'string');
+
+    const ok = val === 'true' || val === '1';
+    return ok;
+}
+
 const GIT_REVISION = MaybeOperator.mapOr(process.env.GIT_REVISION, 'unknown', String);
 const BUILD_DATE = MaybeOperator.mapOr(process.env.BUILD_DATE, 'unknown', String);
 
@@ -28,10 +39,7 @@ const ENABLE_REACT_COMPILER = MaybeOperator.mapOrElse(
     () => {
         return true;
     },
-    (val) => {
-        const ok = val === 'true' || val === '1';
-        return ok;
-    }
+    toBooleanFromEnvVar
 );
 
 const ENABLE_REACT_PROFILER = MaybeOperator.mapOr(process.env.ENABLE_REACT_PROFILER, false, (val) => {
