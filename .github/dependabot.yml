@@ -32,9 +32,6 @@ updates:
               patterns:
                   - "@types/react"
                   - "@types/react-dom"
-          babel:
-              patterns:
-                  - "@babel/*"
           rollup:
               patterns:
                   - rollup
@@ -43,6 +40,9 @@ updates:
               patterns:
                   - eslint
                   - "@eslint/*"
+          swc:
+              patterns:
+                  - "@swc/*"
           turborepo:
               patterns:
                   - turbo
@@ -52,7 +52,6 @@ updates:
                   - "@typescript-eslint/*"
           react-compiler:
               patterns:
-                  - "babel-plugin-react-compiler"
                   - "eslint-plugin-react-hooks"
           eslint-react:
               patterns:

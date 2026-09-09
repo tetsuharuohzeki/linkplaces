@@ -1,12 +1,10 @@
 import alias from '@rollup/plugin-alias';
-import { babel } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import { default as swc } from '@rollup/plugin-swc';
 import { defineConfig } from 'rollup';
 
-import { rollupConfig as babelConfig } from './tools/babel_config.mjs';
 import {
     GIT_REVISION,
     BUILD_DATE,
@@ -63,16 +61,6 @@ class RollupWarningAsError extends Error {
 // This is for jsx files placed in other workspace.
 // For the current workspace, we transform react jsx by babel cli offline.
 const reactTransformer = [
-    // https://github.com/rollup/plugins/tree/master/packages/babel
-    babel({
-        ...babelConfig,
-        babelHelpers: 'bundled',
-        extensions: ['.jsx'],
-        // FIXME: we would like to set `true`
-        // but we cannot do it by the error:
-        // (plugin babel) Error: Cannot use "parallel" mode because the "plugins" option is not serializable.
-        parallel: false,
-    }),
     // https://www.npmjs.com/package/@rollup/plugin-swc#options
     swc({
         swc: swcOptions,

@@ -3,8 +3,6 @@ packages:
 
 catalog:
   '@ava/typescript': ^7.0.0
-  '@babel/core': ^7.29.7
-  '@babel/plugin-syntax-jsx': ^7.29.7
   '@eslint-react/eslint-plugin': ^5.18.7
   '@eslint-react/kit': ^5.18.7
   '@eslint/css': ^2.0.0
@@ -12,19 +10,18 @@ catalog:
   '@monorepo-utils/workspaces-to-typescript-project-references': ^2.11.0
   '@reflink/reflink': ^0.1.19
   '@rollup/plugin-alias': ^6.0.0
-  '@rollup/plugin-babel': ^7.1.0
   '@rollup/plugin-commonjs': ^29.0.3
   '@rollup/plugin-node-resolve': ^16.0.3
   '@rollup/plugin-replace': ^6.0.3
   '@rollup/plugin-swc': ^0.4.1
   '@swc/core': ^1.16.1
+  '@swc/react-compiler': ^1.16.1
   '@types/node': ^26.4.1
   '@types/react': ^19.2.18
   '@types/react-dom': ^19.2.7
   '@typescript-eslint/eslint-plugin': ^8.69.0
   '@typescript-eslint/parser': ^8.69.0
   ava: ^8.0.1
-  babel-plugin-react-compiler: ^1.0.0
   eslint: ^10.9.1
   eslint-config-prettier: ^10.1.8
   eslint-config-turbo: ^2.10.12
@@ -64,6 +61,7 @@ blockExoticSubdeps: true
 strictDepBuilds: true
 allowBuilds:
   '@swc/core': false
+  '@swc/react-compiler': false
   spawn-sync: false
   unrs-resolver: false
 

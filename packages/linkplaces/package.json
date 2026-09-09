@@ -43,15 +43,14 @@
         "react": "catalog:"
     },
     "devDependencies": {
-        "@babel/core": "catalog:",
         "@linkplaces/tools": "workspace:*",
         "@rollup/plugin-alias": "catalog:",
-        "@rollup/plugin-babel": "catalog:",
         "@rollup/plugin-commonjs": "catalog:",
         "@rollup/plugin-node-resolve": "catalog:",
         "@rollup/plugin-replace": "catalog:",
         "@rollup/plugin-swc": "catalog:",
         "@swc/core": "catalog:",
+        "@swc/react-compiler": "catalog:",
         "postcss": "catalog:",
         "postcss-import": "catalog:",
         "rollup": "catalog:"
