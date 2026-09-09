@@ -1,3 +1,5 @@
+// @ts-check
+
 import * as assert from 'node:assert/strict';
 
 import { MaybeOperator } from 'option-t/maybe';

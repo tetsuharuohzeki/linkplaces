@@ -1,3 +1,5 @@
+// @ts-check
+
 import { IS_DEVELOPMENT_MODE } from './buildconfig.js';
 import { getReactCompilerConfig } from './react_compiler_config.js';
 

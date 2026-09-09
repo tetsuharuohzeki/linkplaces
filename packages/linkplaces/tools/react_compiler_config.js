@@ -1,3 +1,5 @@
+// @ts-check
+
 import { ENABLE_REACT_COMPILER } from './buildconfig.js';
 
 /**
@@ -5,11 +7,11 @@ import { ENABLE_REACT_COMPILER } from './buildconfig.js';
  */
 
 /**
- *  @returns    {Readonly<ReactCompilerOptions>|null}
+ *  @returns    {Readonly<ReactCompilerOptions>|undefined}
  */
 export function getReactCompilerConfig() {
     if (!ENABLE_REACT_COMPILER) {
-        return null;
+        return undefined;
     }
 
     return {
