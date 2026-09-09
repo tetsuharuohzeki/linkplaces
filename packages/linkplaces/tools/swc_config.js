@@ -1,7 +1,7 @@
-import { IS_DEVELOPMENT_MODE } from './buildconfig.js';
+import { IS_PRODUCTION_MODE, ENABLE_REACT_COMPILER } from './buildconfig.js';
 
 /** @type {import('@swc/core').ReactCompilerOptions} */
-const reactCompilerConfig = {
+const reactCompilerConfig = !ENABLE_REACT_COMPILER ? undefined : {
     // See https://react.dev/reference/react-compiler/compilationMode
     compilationMode: 'infer',
 
@@ -11,10 +11,9 @@ const reactCompilerConfig = {
     panicThreshold: 'all_errors',
 
     // https://swc.rs/docs/configuration/react-compiler#outputmode
-    outputMode: 'client',
+    outputMode: 'client'
 
-    // https://swc.rs/docs/configuration/react-compiler#isdev
-    isDev: IS_DEVELOPMENT_MODE,
+    // FIXME: isDev
 };
 
 /** @type {import('@swc/core').Options} */
@@ -28,7 +27,7 @@ export const swcOptions = {
         transform: {
             react: {
                 runtime: 'automatic',
-                development: IS_DEVELOPMENT_MODE,
+                development: !IS_PRODUCTION_MODE,
             },
             reactCompiler: reactCompilerConfig,
         },
