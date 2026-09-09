@@ -157,7 +157,7 @@ importers:
         specifier: 'catalog:'
         version: 8.0.1(@ava/typescript@7.0.0)(rollup@4.63.1)(supports-color@7.2.0)
       eslint:
-        specifier: 'catalog:'
+        specifier: 10.9.1
         version: 10.9.1(supports-color@7.2.0)
       globals:
         specifier: 'catalog:'
