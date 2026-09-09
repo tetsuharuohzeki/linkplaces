@@ -12,7 +12,7 @@ export const swcOptions = {
             syntax: 'ecmascript',
             jsx: true,
         },
-        target: 'es2022',
+        target: 'es2024',
         transform: {
             react: {
                 runtime: 'automatic',
