@@ -58,15 +58,6 @@ class RollupWarningAsError extends Error {
     }
 }
 
-// This is for jsx files placed in other workspace.
-// For the current workspace, we transform react jsx by babel cli offline.
-const reactTransformer = [
-    // https://www.npmjs.com/package/@rollup/plugin-swc#options
-    swc(swcOptions, {
-        include: ['**/**/*.jsx'],
-    }),
-];
-
 /**
  *  See:
  *      - https://github.com/rollup/rollup/wiki/JavaScript-API
@@ -153,7 +144,9 @@ export default async function createConfiguration(_commandLineArgs) {
                 },
             }),
 
-            ...reactTransformer,
+            swc(swcOptions, {
+                include: ['**/**/*.jsx'],
+            }),
         ],
 
         onwarn(warning) {
