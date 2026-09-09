@@ -31,7 +31,7 @@ catalog:
   eslint-plugin-import-x: ^4.17.1
   eslint-plugin-react-hooks: ^7.1.1
   expect-type: ^1.4.0
-  globals: ^17.9.0
+  globals: ^17.12.0
   option-t: ^56.1.2
   postcss: ^8.5.28
   postcss-import: ^17.0.0

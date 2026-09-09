@@ -94,8 +94,8 @@ catalogs:
       specifier: ^1.4.0
       version: 1.4.0
     globals:
-      specifier: ^17.9.0
-      version: 17.9.0
+      specifier: ^17.12.0
+      version: 17.12.0
     option-t:
       specifier: ^56.1.2
       version: 56.1.2
@@ -176,7 +176,7 @@ importers:
         version: 10.8.0(supports-color@7.2.0)
       globals:
         specifier: 'catalog:'
-        version: 17.9.0
+        version: 17.12.0
       prettier:
         specifier: 'catalog:'
         version: 3.9.6
@@ -2299,8 +2299,8 @@ packages:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
     engines: {node: '>=18'}
 
-  globals@17.9.0:
-    resolution: {integrity: sha512-m/MvAW61QVU5VDNF1Vj8axt016h8w7L5TU1e9zlab7XIttAT2YAlCwl75K1fOqvMM9apmD7lbCIRhpfkhmxhCg==}
+  globals@17.12.0:
+    resolution: {integrity: sha512-cezEd/DTyyht9cvSSURyygXPfy04GtWO/5e6ZPvH7fCtjKz9PYOmuawphw1Ctd1f6C+5JypXfGD7ahNMXvevBA==}
     engines: {node: '>=18'}
 
   globby@11.1.0:
@@ -5506,7 +5506,7 @@ snapshots:
 
   globals@14.0.0: {}
 
-  globals@17.9.0: {}
+  globals@17.12.0: {}
 
   globby@11.1.0:
     dependencies:
