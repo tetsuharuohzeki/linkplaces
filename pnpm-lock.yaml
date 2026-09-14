@@ -264,8 +264,8 @@ catalogs:
       specifier: ^4.63.1
       version: 4.63.1
     tinyspy:
-      specifier: ^4.0.4
-      version: 4.0.4
+      specifier: ^4.0.6
+      version: 4.0.6
     turbo:
       specifier: ^2.10.12
       version: 2.10.12
@@ -322,7 +322,7 @@ importers:
         version: 3.9.6
       tinyspy:
         specifier: 'catalog:'
-        version: 4.0.4
+        version: 4.0.6
       turbo:
         specifier: 'catalog:'
         version: 2.10.12
@@ -3432,8 +3432,8 @@ packages:
     resolution: {integrity: sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g==}
     engines: {node: '>=12.0.0'}
 
-  tinyspy@4.0.4:
-    resolution: {integrity: sha512-azl+t0z7pw/z958Gy9svOTuzqIk6xq+NSheJzn5MMWtWTFywIacg2wUlzKFGtt3cthx0r2SxMK0yzJOR0IES7Q==}
+  tinyspy@4.0.6:
+    resolution: {integrity: sha512-u8KszXvGfU68hVcZpRHKG28T0krMuv2G5nDhiHaMLen/gIuFEgIJhaJuO69qjnXg5paSrbPMFfx3brNuN8eVSg==}
     engines: {node: '>=14.0.0'}
 
   tmp@0.2.7:
@@ -6560,7 +6560,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
 
-  tinyspy@4.0.4: {}
+  tinyspy@4.0.6: {}
 
   tmp@0.2.7: {}
 
