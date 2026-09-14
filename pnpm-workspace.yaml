@@ -15,7 +15,7 @@ catalog:
   '@rollup/plugin-node-resolve': ^16.0.3
   '@rollup/plugin-replace': ^6.0.3
   '@swc/core': ^1.16.1
-  '@types/node': ^26.4.1
+  '@types/node': ^26.5.0
   '@types/react': ^19.2.18
   '@types/react-dom': ^19.2.7
   '@typescript-eslint/eslint-plugin': ^8.70.0
