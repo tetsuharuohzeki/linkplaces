@@ -5,7 +5,7 @@ catalog:
   '@ava/typescript': ^7.0.0
   '@eslint-react/eslint-plugin': ^5.19.1
   '@eslint-react/kit': ^5.19.1
-  '@eslint/css': ^2.0.0
+  '@eslint/css': ^2.0.1
   '@eslint/js': ^10.0.1
   '@monorepo-utils/workspaces-to-typescript-project-references': ^2.11.0
   '@reflink/reflink': ^0.1.19
@@ -21,7 +21,7 @@ catalog:
   '@typescript-eslint/eslint-plugin': ^8.70.0
   '@typescript-eslint/parser': ^8.71.2
   ava: ^8.0.1
-  eslint: ^10.10.0
+  eslint: ^10.13.0
   eslint-config-prettier: ^10.1.8
   eslint-config-turbo: ^2.11.8
   eslint-plugin-import-x: ^4.17.1
