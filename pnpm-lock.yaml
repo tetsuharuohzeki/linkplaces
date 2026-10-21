@@ -249,8 +249,8 @@ catalogs:
       specifier: ^8.5.29
       version: 8.5.29
     postcss-import:
-      specifier: ^17.0.0
-      version: 17.0.0
+      specifier: ^17.0.1
+      version: 17.0.1
     prettier:
       specifier: ^3.9.9
       version: 3.9.9
@@ -485,7 +485,7 @@ importers:
         version: 8.5.29
       postcss-import:
         specifier: 'catalog:'
-        version: 17.0.0(postcss@8.5.29)
+        version: 17.0.1(postcss@8.5.29)
       rollup:
         specifier: 'catalog:'
         version: 4.64.3
@@ -3267,8 +3267,8 @@ packages:
     resolution: {integrity: sha512-Y9wXQivjRX0REtwpA9+n0bYYypWESn3cWtW2vazymw711qn+AQXxzZjRqhANYGBLIMC1UzVdpwe/1hHQwHfwng==}
     engines: {node: '>=20'}
 
-  postcss-import@17.0.0:
-    resolution: {integrity: sha512-qzVMJhcq39KweT7Fp0HcjE5YxL5yI854Q3CtufxDuZKO9HLQUp2rptB9+U0MIj3pT1ZEVXoqnpeC1mSkfYuz4Q==}
+  postcss-import@17.0.1:
+    resolution: {integrity: sha512-lthLZRa+sMc/xo+lG7TMUvOviwP9ngR0VULnvfXTyOE3JIc0mFrbjcubI6Jx52X+B3IKt9yfp6wwVWE768JezA==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       postcss: ^8.0.0
@@ -6609,7 +6609,7 @@ snapshots:
     dependencies:
       irregular-plurals: 4.2.0
 
-  postcss-import@17.0.0(postcss@8.5.29):
+  postcss-import@17.0.1(postcss@8.5.29):
     dependencies:
       postcss: 8.5.29
       postcss-value-parser: 4.2.0
