@@ -20,7 +20,7 @@ catalog:
   '@types/react-dom': ^19.3.0
   '@typescript-eslint/eslint-plugin': ^8.70.0
   '@typescript-eslint/parser': ^8.71.2
-  ava: ^8.0.1
+  ava: ^8.0.2
   eslint: ^10.10.0
   eslint-config-prettier: ^10.1.8
   eslint-config-turbo: ^2.11.9
