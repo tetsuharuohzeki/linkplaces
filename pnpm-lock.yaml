@@ -989,15 +989,6 @@ packages:
       rollup:
         optional: true
 
-  '@rollup/pluginutils@5.4.0':
-    resolution: {integrity: sha512-MfPp06CjRLfXQ3wY0R8vJDYBy/MvVcc9OulEfR0B8Iv9ko+GCNaRZ+EpJYFl27LhKsZK0o420sYCRHCjfCgeUg==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-
   '@rollup/pluginutils@5.5.1':
     resolution: {integrity: sha512-P9ZvnfouRu4MSC+ilERaw6FmZs8zqKhpHxEs4aGDGWQAMzQGXnhvCSvoNwokfNvdt7t3Y5Y4p6gStQgezeIqug==}
     engines: {node: '>=14.0.0'}
@@ -1799,11 +1790,6 @@ packages:
   acorn-walk@8.3.5:
     resolution: {integrity: sha512-HEHNfbars9v4pgpW6SO1KSPkfoS0xVOM/9UzkJltjlsHZmJasxg8aXkuZa7SMf8vKGIBhpUsPluQSqhJFCqebw==}
     engines: {node: '>=0.4.0'}
-
-  acorn@8.18.0:
-    resolution: {integrity: sha512-lGq+9yr1/GuAWaVYIHRjvvySG5/4VfKIvC8EWxStPdcDh/Ka7FG3twP6v4d5BkravUilhIAsG4Qj83t02LWUPQ==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
 
   acorn@8.19.0:
     resolution: {integrity: sha512-oJlA3XiRm7Cyk6qFD2Jn8ak9B7jSy0qy00ADO3+8dpT0LSjFihQYv4C02LFCSYJV3Q37xYwwRy5m+IpIiUzqWw==}
@@ -3530,10 +3516,6 @@ packages:
   sonic-boom@4.2.1:
     resolution: {integrity: sha512-w6AxtubXa2wTXAUsZMMWERrsIRAdrK0Sc+FUytWvYAhBJLyuI4llrMIC1DtlNSdI99EI86KZum2MMq3EAZlF9Q==}
 
-  source-map-js@1.2.1:
-    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
-    engines: {node: '>=0.10.0'}
-
   source-map-js@1.2.2:
     resolution: {integrity: sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw==}
     engines: {node: '>=0.10.0'}
@@ -4104,8 +4086,8 @@ snapshots:
 
   '@eslint-react/ast@5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)':
     dependencies:
-      '@typescript-eslint/types': 8.71.2
-      '@typescript-eslint/typescript-estree': 8.71.2(@typescript/typescript6@6.0.2)(supports-color@7.2.0)
+      '@typescript-eslint/types': 8.72.0
+      '@typescript-eslint/typescript-estree': 8.72.0(@typescript/typescript6@6.0.2)(supports-color@7.2.0)
       '@typescript-eslint/utils': 8.71.2(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       typescript: '@typescript/typescript6@6.0.2'
     optionalDependencies:
@@ -4119,7 +4101,7 @@ snapshots:
       '@eslint-react/eslint': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/shared': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/var': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
-      '@typescript-eslint/types': 8.71.2
+      '@typescript-eslint/types': 8.72.0
       '@typescript-eslint/utils': 8.71.2(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       ts-pattern: 5.9.2
       typescript: '@typescript/typescript6@6.0.2'
@@ -4145,7 +4127,7 @@ snapshots:
 
   '@eslint-react/eslint@5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)':
     dependencies:
-      '@typescript-eslint/types': 8.71.2
+      '@typescript-eslint/types': 8.72.0
       '@typescript-eslint/utils': 8.71.2(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       typescript: '@typescript/typescript6@6.0.2'
     optionalDependencies:
@@ -4158,7 +4140,7 @@ snapshots:
       '@eslint-react/ast': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/eslint': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/var': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
-      '@typescript-eslint/types': 8.71.2
+      '@typescript-eslint/types': 8.72.0
       '@typescript-eslint/utils': 8.71.2(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       ts-pattern: 5.9.2
       typescript: '@typescript/typescript6@6.0.2'
@@ -4172,7 +4154,7 @@ snapshots:
       '@eslint-react/ast': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/core': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/shared': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
-      '@typescript-eslint/types': 8.71.2
+      '@typescript-eslint/types': 8.72.0
       '@typescript-eslint/utils': 8.71.2(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       string-ts: 2.3.1
       typescript: '@typescript/typescript6@6.0.2'
@@ -4197,8 +4179,8 @@ snapshots:
     dependencies:
       '@eslint-react/ast': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/eslint': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
-      '@typescript-eslint/scope-manager': 8.71.2
-      '@typescript-eslint/types': 8.71.2
+      '@typescript-eslint/scope-manager': 8.72.0
+      '@typescript-eslint/types': 8.72.0
       '@typescript-eslint/utils': 8.71.2(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       ts-pattern: 5.9.2
       typescript: '@typescript/typescript6@6.0.2'
@@ -4242,7 +4224,7 @@ snapshots:
   '@eslint/css-tree@4.1.0':
     dependencies:
       mdn-data: 2.34.0
-      source-map-js: 1.2.1
+      source-map-js: 1.2.2
 
   '@eslint/css@2.0.0':
     dependencies:
@@ -4469,7 +4451,7 @@ snapshots:
     optionalDependencies:
       rollup: 4.65.0
 
-  '@rollup/pluginutils@5.4.0(rollup@4.63.1)':
+  '@rollup/pluginutils@5.5.1(rollup@4.63.1)':
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
@@ -4778,8 +4760,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.69.0(@typescript/typescript6@6.0.2)(supports-color@7.2.0)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.71.2(@typescript/typescript6@6.0.2)
-      '@typescript-eslint/types': 8.71.2
+      '@typescript-eslint/tsconfig-utils': 8.72.0(@typescript/typescript6@6.0.2)
+      '@typescript-eslint/types': 8.72.0
       debug: 4.4.3(supports-color@7.2.0)
       typescript: '@typescript/typescript6@6.0.2'
     transitivePeerDependencies:
@@ -4788,8 +4770,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.70.0(@typescript/typescript6@6.0.2)(supports-color@7.2.0)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.70.0(@typescript/typescript6@6.0.2)
-      '@typescript-eslint/types': 8.70.0
+      '@typescript-eslint/tsconfig-utils': 8.72.0(@typescript/typescript6@6.0.2)
+      '@typescript-eslint/types': 8.72.0
       debug: 4.4.3(supports-color@7.2.0)
       typescript: '@typescript/typescript6@6.0.2'
     transitivePeerDependencies:
@@ -4797,8 +4779,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.71.2(@typescript/typescript6@6.0.2)(supports-color@7.2.0)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.71.2(@typescript/typescript6@6.0.2)
-      '@typescript-eslint/types': 8.71.2
+      '@typescript-eslint/tsconfig-utils': 8.72.0(@typescript/typescript6@6.0.2)
+      '@typescript-eslint/types': 8.72.0
       debug: 4.4.3(supports-color@7.2.0)
       typescript: '@typescript/typescript6@6.0.2'
     transitivePeerDependencies:
@@ -5086,9 +5068,9 @@ snapshots:
   '@vercel/nft@1.11.0(rollup@4.63.1)(supports-color@7.2.0)':
     dependencies:
       '@mapbox/node-pre-gyp': 2.0.3(supports-color@7.2.0)
-      '@rollup/pluginutils': 5.4.0(rollup@4.63.1)
-      acorn: 8.18.0
-      acorn-import-attributes: 1.9.5(acorn@8.18.0)
+      '@rollup/pluginutils': 5.5.1(rollup@4.63.1)
+      acorn: 8.19.0
+      acorn-import-attributes: 1.9.5(acorn@8.19.0)
       async-sema: 3.1.1
       bindings: 1.5.0
       estree-walker: 2.0.2
@@ -5104,19 +5086,17 @@ snapshots:
 
   abbrev@3.0.1: {}
 
-  acorn-import-attributes@1.9.5(acorn@8.18.0):
+  acorn-import-attributes@1.9.5(acorn@8.19.0):
     dependencies:
-      acorn: 8.18.0
+      acorn: 8.19.0
 
-  acorn-jsx@5.3.2(acorn@8.18.0):
+  acorn-jsx@5.3.2(acorn@8.19.0):
     dependencies:
-      acorn: 8.18.0
+      acorn: 8.19.0
 
   acorn-walk@8.3.5:
     dependencies:
-      acorn: 8.18.0
-
-  acorn@8.18.0: {}
+      acorn: 8.19.0
 
   acorn@8.19.0: {}
 
@@ -5664,7 +5644,7 @@ snapshots:
 
   eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.69.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0))(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0):
     dependencies:
-      '@typescript-eslint/types': 8.70.0
+      '@typescript-eslint/types': 8.72.0
       comment-parser: 1.4.8
       debug: 4.4.3(supports-color@7.2.0)
       eslint: 10.10.0(supports-color@7.2.0)
@@ -5690,7 +5670,7 @@ snapshots:
       '@eslint-react/jsx': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/shared': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/var': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
-      '@typescript-eslint/types': 8.71.2
+      '@typescript-eslint/types': 8.72.0
       '@typescript-eslint/utils': 8.71.2(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       compare-versions: 6.1.1
       ts-pattern: 5.9.2
@@ -5718,7 +5698,7 @@ snapshots:
       '@eslint-react/eslint': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/jsx': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/shared': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
-      '@typescript-eslint/types': 8.71.2
+      '@typescript-eslint/types': 8.72.0
       '@typescript-eslint/utils': 8.71.2(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       typescript: '@typescript/typescript6@6.0.2'
     optionalDependencies:
@@ -5733,7 +5713,7 @@ snapshots:
       '@eslint-react/eslint': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/shared': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/var': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
-      '@typescript-eslint/types': 8.71.2
+      '@typescript-eslint/types': 8.72.0
       '@typescript-eslint/utils': 8.71.2(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       ts-pattern: 5.9.2
       typescript: '@typescript/typescript6@6.0.2'
@@ -5749,7 +5729,7 @@ snapshots:
       '@eslint-react/eslint': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/shared': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/var': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
-      '@typescript-eslint/types': 8.71.2
+      '@typescript-eslint/types': 8.72.0
       '@typescript-eslint/utils': 8.71.2(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       typescript: '@typescript/typescript6@6.0.2'
     optionalDependencies:
@@ -5764,7 +5744,7 @@ snapshots:
       '@eslint-react/eslint': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/shared': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/var': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
-      '@typescript-eslint/types': 8.71.2
+      '@typescript-eslint/types': 8.72.0
       '@typescript-eslint/utils': 8.71.2(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       ts-pattern: 5.9.2
       typescript: '@typescript/typescript6@6.0.2'
@@ -5781,9 +5761,9 @@ snapshots:
       '@eslint-react/jsx': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/shared': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint-react/var': 5.28.0(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
-      '@typescript-eslint/scope-manager': 8.71.2
-      '@typescript-eslint/types': 8.71.2
-      '@typescript-eslint/typescript-estree': 8.71.2(@typescript/typescript6@6.0.2)(supports-color@7.2.0)
+      '@typescript-eslint/scope-manager': 8.72.0
+      '@typescript-eslint/types': 8.72.0
+      '@typescript-eslint/typescript-estree': 8.72.0(@typescript/typescript6@6.0.2)(supports-color@7.2.0)
       '@typescript-eslint/utils': 8.71.2(@typescript/typescript6@6.0.2)(eslint@10.10.0(supports-color@7.2.0))(supports-color@7.2.0)
       compare-versions: 6.1.1
       string-ts: 2.3.1
@@ -5895,14 +5875,14 @@ snapshots:
 
   espree@10.4.0:
     dependencies:
-      acorn: 8.18.0
-      acorn-jsx: 5.3.2(acorn@8.18.0)
+      acorn: 8.19.0
+      acorn-jsx: 5.3.2(acorn@8.19.0)
       eslint-visitor-keys: 4.2.1
 
   espree@11.2.0:
     dependencies:
-      acorn: 8.18.0
-      acorn-jsx: 5.3.2(acorn@8.18.0)
+      acorn: 8.19.0
+      acorn-jsx: 5.3.2(acorn@8.19.0)
       eslint-visitor-keys: 5.0.1
 
   esprima@4.0.1: {}
@@ -6918,8 +6898,6 @@ snapshots:
   sonic-boom@4.2.1:
     dependencies:
       atomic-sleep: 1.0.0
-
-  source-map-js@1.2.1: {}
 
   source-map-js@1.2.2: {}
 
