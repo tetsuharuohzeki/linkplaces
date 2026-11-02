@@ -3,7 +3,7 @@
     "private": true,
     "type": "module",
     "license": "MPL-2.0",
-    "packageManager": "pnpm@12.4.0+sha512.37536c26ed40ab4134b6511e09f6b27f3ebb45687468f2406ca3805279a4e5ca158c1931350ad9774d6ab2108d71b3dbaeb39943159294375e4d053e8e05685c",
+    "packageManager": "pnpm@12.17.0+sha512.b8d223ebec04b580a89ed206daa71d1bccb6a1ee1d52efa95cc3b0db75271561df8f0d8e2c43add39c5ec08018af7a8a95108e7090f95a29f88727b7a40fd53d",
     "devDependencies": {
         "@ava/typescript": "catalog:",
         "@linkplaces/eslint_config": "workspace:*",
