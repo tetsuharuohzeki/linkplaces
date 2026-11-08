@@ -219,8 +219,8 @@ catalogs:
       specifier: ^8.72.1
       version: 8.72.1
     ava:
-      specifier: ^8.2.0
-      version: 8.2.0
+      specifier: ^8.3.0
+      version: 8.3.0
     eslint:
       specifier: ^10.13.0
       version: 10.13.0
@@ -310,7 +310,7 @@ importers:
         version: 19.3.0(@types/react@19.3.0)
       ava:
         specifier: 'catalog:'
-        version: 8.2.0(@ava/typescript@7.0.0)(rollup@4.65.1)(supports-color@7.2.0)
+        version: 8.3.0(@ava/typescript@7.0.0)(rollup@4.65.1)(supports-color@7.2.0)
       eslint:
         specifier: 'catalog:'
         version: 10.13.0(supports-color@7.2.0)
@@ -1657,8 +1657,8 @@ packages:
   atomically@2.1.1:
     resolution: {integrity: sha512-P4w9o2dqARji6P7MHprklbfiArZAWvo07yW7qs3pdljb3BWr12FIB7W+p0zJiuiVsUpRO0iZn1kFFcpPegg0tQ==}
 
-  ava@8.2.0:
-    resolution: {integrity: sha512-9THsZEBUhwvA3e1oVqyJx9o4cBaLSkxScfP0oPlA9I7TDga51UDLMQJRy6bMDqMl3eubFCqxlj12h5IHEsLO7g==}
+  ava@8.3.0:
+    resolution: {integrity: sha512-Tr/p0fmC+oCJo5+m1oJdpmBxC1OO57xtVKlJfbN0gkz31yofpk08jl4Hzx654RdKq1FPc0XYiHF4ZzdqR+87gg==}
     engines: {node: ^22.20 || ^24.12 || >=26}
     hasBin: true
     peerDependencies:
@@ -4730,7 +4730,7 @@ snapshots:
       stubborn-fs: 2.0.0
       when-exit: 2.1.5
 
-  ava@8.2.0(@ava/typescript@7.0.0)(rollup@4.65.1)(supports-color@7.2.0):
+  ava@8.3.0(@ava/typescript@7.0.0)(rollup@4.65.1)(supports-color@7.2.0):
     dependencies:
       '@vercel/nft': 1.11.0(rollup@4.65.1)(supports-color@7.2.0)
       acorn: 8.19.0
