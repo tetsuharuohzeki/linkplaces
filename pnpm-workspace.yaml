@@ -37,7 +37,7 @@ catalog:
   rollup: ^4.68.7
   tinyspy: ^4.0.6
   turbo: ^2.11.13
-  typescript: ^7.1.0-dev.20261124.1
+  typescript: ^7.1.0-dev.20261125.1
   web-ext: ^10.8.0
 
 catalogs:
