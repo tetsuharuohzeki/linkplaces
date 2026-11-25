@@ -7,7 +7,7 @@ catalog:
   '@eslint-react/kit': ^5.30.1
   '@eslint/css': ^2.0.1
   '@eslint/js': ^10.0.1
-  '@monorepo-utils/workspaces-to-typescript-project-references': ^2.11.0
+  '@monorepo-utils/workspaces-to-typescript-project-references': ^3.0.2
   '@reflink/reflink': ^0.1.19
   '@rollup/pluginutils': ^5.5.1
   '@rollup/plugin-alias': ^6.0.1
