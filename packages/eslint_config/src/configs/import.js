@@ -22,6 +22,7 @@ const rulesForESModule = Object.freeze({
         'error',
         'always',
         {
+            checkSelfReference: true,
             ignorePackages: true,
         },
     ],
